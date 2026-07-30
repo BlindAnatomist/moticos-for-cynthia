@@ -55,7 +55,7 @@ The first playable uses:
 
 ## Verification evidence
 
-Quality run 4 passed the deterministic logic tests, production build, desktop Chromium interaction suite, mobile-sized Chromium interaction suite, and artifact upload. Initial desktop and mobile screenshots were inspected directly. A final screenshot run is pending to verify the repaired page texture, one-line tier typography, progression outlines, and post-merge state.
+Multiple quality runs have passed the deterministic logic tests, production build, desktop Chromium interaction suite, mobile-sized Chromium interaction suite, and artifact upload. Initial and post-merge screenshots were inspected directly. The label now remains on one line. The final acceptance evidence must confirm the nested shape-following border around unlocked progression swatches at desktop and mobile sizes.
 
 The verification sequence is:
 
@@ -75,4 +75,4 @@ The later human checkpoint should focus on whether the game feels enjoyable, und
 
 ## Current stop condition
 
-Do not merge to `main` or publish a hosted game during this assignment without separate authorization. Stop after the final texture and post-merge screenshot evidence passes, the draft pull request remains unmerged, and a concrete improvement assessment is reported.
+Do not merge to `main` or publish a hosted game during this assignment without separate authorization. Stop after the final nested-border screenshot evidence passes, the draft pull request remains unmerged, and a concrete improvement assessment is reported.
