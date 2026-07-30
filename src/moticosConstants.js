@@ -17,9 +17,9 @@ export const GRAIN =
 
 export const FIBER =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'>" +
-  "<filter id='f'><feTurbulence type='turbulence' baseFrequency='0.012 0.09' numOctaves='2' seed='7'/>" +
+  "<filter id='f'><feTurbulence type='turbulence' baseFrequency='0.012 0.09' numOctaves='2' seed='7' stitchTiles='stitch'/>" +
   "<feColorMatrix type='saturate' values='0'/></filter>" +
-  "<rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.5'/></svg>";
+  "<rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.26'/></svg>";
 
 export const TIERS = [
   { name: "Clip", bg: "#C9A876", ink: "#3B2E1F", shape: 0 },

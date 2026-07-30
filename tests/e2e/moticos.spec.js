@@ -18,7 +18,7 @@ test("renders the complete game at desktop and mobile sizes", async ({ page }, t
   });
 });
 
-test("merges, scores, locks controls during flight, and undoes cleanly", async ({ page }) => {
+test("merges, scores, locks controls during flight, and undoes cleanly", async ({ page }, testInfo) => {
   const first = page.locator('[data-tier="0"]').nth(0);
   const second = page.locator('[data-tier="0"]').nth(1);
   const from = await first.boundingBox();
@@ -38,6 +38,12 @@ test("merges, scores, locks controls during flight, and undoes cleanly", async (
   await expect(page.getByTestId("highest")).toHaveText("Fragment");
   await expect(page.locator('[data-tier="1"]')).toHaveCount(1);
   await expect(page.getByRole("button", { name: "Undo" })).toBeEnabled();
+
+  await mkdir("test-results/screenshots", { recursive: true });
+  await page.screenshot({
+    path: `test-results/screenshots/${testInfo.project.name}-after-merge.png`,
+    fullPage: true,
+  });
 
   await page.getByRole("button", { name: "Undo" }).click();
   await expect(page.getByTestId("score")).toHaveText("0");
