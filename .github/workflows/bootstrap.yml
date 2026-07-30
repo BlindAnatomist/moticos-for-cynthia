@@ -14,7 +14,6 @@ concurrency:
 
 jobs:
   unpack:
-    if: ${{ hashFiles('.bootstrap/chunk-00') != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -24,6 +23,7 @@ jobs:
       - name: Reconstruct and verify project archive
         shell: bash
         run: |
+          test -f .bootstrap/chunk-00
           cat .bootstrap/chunk-* > /tmp/moticos.zip.b64
           base64 --decode /tmp/moticos.zip.b64 > /tmp/moticos.zip
           echo "7d50f28818894caadff77176a4a99925098719fb02bfd198e0a52e10d1e7395d  /tmp/moticos.zip" | sha256sum --check --strict
