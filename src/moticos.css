@@ -162,8 +162,16 @@
   gap: 5px;
 }
 
-.mm-progression-row > div {
-  filter: drop-shadow(0 0 1px rgba(34, 31, 29, 0.72));
+.mm-progression-swatch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 29px;
+  height: 29px;
+}
+
+.mm-progression-swatch-fill {
+  position: absolute;
+  display: block;
 }
 
 .mm-burst {

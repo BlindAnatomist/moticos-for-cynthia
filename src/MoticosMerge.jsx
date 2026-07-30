@@ -454,21 +454,32 @@ export default function MoticosMerge() {
         <section className="mm-progression" aria-label="Tier progression">
           <div className="mm-progression-title">THE PROGRESSION</div>
           <div className="mm-progression-row">
-            {TIERS.map((tier, index) => (
-              <div
-                key={tier.name}
-                title={tier.name}
-                aria-label={tier.name}
-                style={{
-                  width: 27,
-                  height: 27,
-                  background: tileBackground(tier),
-                  clipPath: clipPathOf(SHAPES[tier.shape]),
-                  opacity: index <= highest ? 1 : 0.35,
-                  boxShadow: index <= highest ? "0 0 0 2px #221F1D" : "none",
-                }}
-              />
-            ))}
+            {TIERS.map((tier, index) => {
+              const unlocked = index <= highest;
+              const shape = clipPathOf(SHAPES[tier.shape]);
+              return (
+                <div
+                  key={tier.name}
+                  title={tier.name}
+                  aria-label={tier.name}
+                  className="mm-progression-swatch"
+                  style={{
+                    clipPath: shape,
+                    opacity: unlocked ? 1 : 0.35,
+                    background: unlocked ? "#221F1D" : "transparent",
+                  }}
+                >
+                  <span
+                    className="mm-progression-swatch-fill"
+                    style={{
+                      inset: unlocked ? 2 : 0,
+                      background: tileBackground(tier),
+                      clipPath: shape,
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>

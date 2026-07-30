@@ -148,7 +148,7 @@ The tile label permitted breaking anywhere and retained a minimum font size too 
 
 #### Proven solution
 
-Tier labels now remain on one line and use tier-length-aware maximum sizes. Progression swatches receive a shape-following drop shadow. Final screenshots must verify Fragment at desktop and mobile sizes.
+Tier labels now remain on one line and use tier-length-aware maximum sizes. Unlocked progression swatches now use a nested dark silhouette behind the colored shape, producing a true shape-following border. Final screenshots must verify Fragment at desktop and mobile sizes.
 
 #### Prevention rule
 
