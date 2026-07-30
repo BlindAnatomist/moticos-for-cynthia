@@ -2,7 +2,7 @@
 
 This file governs all agent work in `BlindAnatomist/moticos-for-cynthia`.
 
-The GitHub repository may temporarily retain the misspelled slug `monicos-for-cynthia` until the owner renames it. Product text, branch names, documentation, code, and future references must use `Moticos`.
+The authoritative product name is `Moticos`. Repository, branch, documentation, code, and future references must preserve that spelling.
 
 ## Authoritative reconstruction
 
