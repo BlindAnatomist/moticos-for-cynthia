@@ -58,8 +58,8 @@ export function tileBackground(tier) {
 }
 
 export function labelSize(name) {
-  if (name.length > 10) return 9;
-  if (name.length > 7) return 10;
+  if (name.length > 10) return 6;
+  if (name.length > 7) return 8;
   return 11;
 }
 

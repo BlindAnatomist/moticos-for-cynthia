@@ -51,10 +51,11 @@ The first playable uses:
 4. Tone.js nodes were not disposed when the component unmounted.
 5. Burst fragments randomized again on rerender, producing avoidable animation instability.
 6. Tile text was extremely small on the supplied layout.
+7. Post-merge screenshots showed `FRAGMENT` breaking mid-word and its pale progression swatch disappearing against the page.
 
 ## Verification evidence
 
-Quality run 4 passed the deterministic logic tests, production build, desktop Chromium interaction suite, mobile-sized Chromium interaction suite, and artifact upload. Initial desktop and mobile screenshots were inspected directly. A final screenshot run is pending only to verify the repaired page texture and capture the post-merge state.
+Quality run 4 passed the deterministic logic tests, production build, desktop Chromium interaction suite, mobile-sized Chromium interaction suite, and artifact upload. Initial desktop and mobile screenshots were inspected directly. A final screenshot run is pending to verify the repaired page texture, one-line tier typography, progression outlines, and post-merge state.
 
 The verification sequence is:
 

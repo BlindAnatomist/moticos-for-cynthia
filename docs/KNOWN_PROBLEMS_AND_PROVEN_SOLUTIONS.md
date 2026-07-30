@@ -130,6 +130,34 @@ Inspect procedural textures at full-page scale; a locally attractive tile can be
 
 Moticos visual design.
 
+### MOT-005 — Tier label broke in the middle of a word
+
+Status: `proven`
+
+First observed: 2026-07-29
+
+Affected area: tile typography and progression visibility
+
+#### Symptoms
+
+Post-merge desktop and mobile screenshots showed `FRAGMENT` split into arbitrary letter groups inside the tile. The pale Fragment swatch was also difficult to distinguish from the page background.
+
+#### Cause
+
+The tile label permitted breaking anywhere and retained a minimum font size too large for longer tier names. The progression relied on a clipped box shadow that did not produce a dependable visible edge.
+
+#### Proven solution
+
+Tier labels now remain on one line and use tier-length-aware maximum sizes. Progression swatches receive a shape-following drop shadow. Final screenshots must verify Fragment at desktop and mobile sizes.
+
+#### Prevention rule
+
+Do not rely on arbitrary word breaking inside compact visual tokens; define deliberate typography for the longest real label.
+
+#### Scope
+
+Moticos tile and progression typography.
+
 ## Incident entry template
 
 ### MOT-000 — Concise problem name
