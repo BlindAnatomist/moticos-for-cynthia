@@ -12,7 +12,7 @@ Status date: 2026-07-30
 
 Moticos for Cynthia is a fresh, independent visual game project. It is not a resurrection of the discarded earlier experiment and is not part of Val Music Vault or Guitar Eyes.
 
-Moticos is intended to be visually appealing and fun for Cynthia. It is not being designed as a VoiceOver game for the owner. The owner is not responsible for visual quality assurance.
+Moticos is intended to be visually appealing and fun for Cynthia. Cynthia's iPhone is the primary platform and acceptance authority. Desktop support is secondary. The owner is not responsible for visual quality assurance.
 
 ## Verified first playable
 
@@ -49,15 +49,19 @@ Hosted acceptance run `30552836701` confirmed against the public address:
 - Shuffle decrementing from 3 to 2;
 - no console or page errors.
 
-## Generative collage iteration
+## Accepted generative collage iteration
 
 Active iteration branch:
 
 `work/generative-collage-iteration`
 
+Draft pull request:
+
+`2 — Generative collage iteration`
+
 This branch is intentionally separated from both the frozen demo and the first-playable branch.
 
-The iteration candidate introduces:
+The iteration introduces:
 
 - procedural miniature collages rather than plain color labels;
 - unique visual DNA for every spawned Clip;
@@ -68,13 +72,43 @@ The iteration candidate introduces:
 - collage-aware postcard rendering;
 - a final Motico arrival presentation;
 - a development-only all-tier visual gallery at `?gallery=1`;
-- the singular final tier name `Motico`.
+- the singular final tier name `Motico`;
+- iPhone safe-area support through `viewport-fit=cover` and environment insets;
+- 44-point tap targets for phone controls;
+- Mobile Safari WebKit as the primary automated browser gate.
 
-The candidate remains unaccepted until logic tests, production build, desktop and mobile browser interaction, all-tier gallery screenshots, and exported postcard inspection pass on the exact branch head.
+Exact accepted branch head:
+
+`deeb973f16231404abd8decf3729e406e72e2246`
+
+Quality run `30562311268` passed:
+
+- eight deterministic logic tests, including the final Correspondence-to-Motico merge and 128-scrap lineage;
+- production Vite build;
+- WebKit installation and execution;
+- an iPhone 13 Mobile Safari profile;
+- a large 430-by-932 Mobile Safari profile;
+- secondary desktop Chromium coverage;
+- 20 browser scenarios passed and one desktop-only skip;
+- iPhone viewport containment and no horizontal overflow;
+- 44-point tap-target verification;
+- sound toggle and New board through touch taps;
+- merge, Undo, Chop, residue, scoring, and lineage behavior;
+- legal progression to Panel;
+- actual postcard PNG downloads in both iPhone profiles;
+- final Motico arrival containment and dismissal;
+- all-tier gallery rendering.
+
+Visual inspection of the exact evidence confirmed that the initial board, post-merge board, Chop state, Panel state, final arrival, progression, and postcards remain legible and composed on both iPhone sizes. The sound button is no longer blocked by the title.
+
+Evidence artifact:
+
+`sha256:920583cf2d11020f163e870a00f17876d6e4eee1a1a2cb18104209b106740956`
 
 ## Current boundaries
 
 - `main` remains unchanged.
-- Draft pull request 1 remains open and unmerged.
-- The public Cynthia demo remains unchanged.
-- Do not republish the demo from the generative branch until the iteration has passed visual and functional acceptance.
+- Draft pull requests 1 and 2 remain open and unmerged.
+- The public Cynthia demo remains the verified first-playable snapshot and has not been replaced.
+- The generative iteration is automatically accepted for iPhone-oriented preview publication, but it has not yet received real-device play-experience feedback from Cynthia.
+- Do not replace the root demo or merge either pull request without separate authorization.
