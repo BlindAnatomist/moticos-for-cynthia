@@ -36,7 +36,7 @@ Public address:
 
 `https://blindanatomist.github.io/moticos-for-cynthia/`
 
-The demo is served from a dedicated compiled `gh-pages` branch. It is a frozen snapshot and does not follow development branches automatically. Continuing development cannot alter Cynthia's current demo unless the compiled `gh-pages` branch is deliberately replaced.
+The demo is served from a dedicated compiled `gh-pages` branch. It is a frozen snapshot and does not follow development branches automatically. Continuing development cannot alter Cynthia's current demo unless the compiled root files on `gh-pages` are deliberately replaced.
 
 Hosted acceptance run `30552836701` confirmed against the public address:
 
@@ -77,7 +77,7 @@ The iteration introduces:
 - 44-point tap targets for phone controls;
 - Mobile Safari WebKit as the primary automated browser gate.
 
-Exact accepted branch head:
+Exact accepted application commit:
 
 `deeb973f16231404abd8decf3729e406e72e2246`
 
@@ -105,10 +105,42 @@ Evidence artifact:
 
 `sha256:920583cf2d11020f163e870a00f17876d6e4eee1a1a2cb18104209b106740956`
 
+## Published generative collage preview
+
+Public iPhone preview address:
+
+`https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/`
+
+The accepted application was compiled with project-relative asset paths and published only inside `gh-pages/collage-preview`. The frozen root demo was not replaced. Its root `index.html` blob remained:
+
+`71a34b8ed4421f3710c923cdcba91a7231a05254`
+
+Hosted verification run `30565696221` passed:
+
+- accepted-application byte verification against commit `deeb973f16231404abd8decf3729e406e72e2246`;
+- isolated production build;
+- root-demo preservation check before and after publication;
+- GitHub Pages availability at the separate subdirectory;
+- Mobile Safari WebKit load at an iPhone 13 viewport;
+- eight initial Clip tiles;
+- a real WebKit tap on the sound control;
+- a live Clip-to-Fragment merge;
+- merge count advancing to 1;
+- score advancing to 20;
+- no browser console or page errors;
+- hosted screenshot capture and visual inspection.
+
+Hosted evidence artifact:
+
+`sha256:c24f69911c58d823f66c20f8c97161978b25e1678e1f7ffd10e927ef735e06ee`
+
+The one-use publication workflow was removed after verification. Publication PR 3 was closed without merging.
+
 ## Current boundaries
 
 - `main` remains unchanged.
 - Draft pull requests 1 and 2 remain open and unmerged.
-- The public Cynthia demo remains the verified first-playable snapshot and has not been replaced.
-- The generative iteration is automatically accepted for iPhone-oriented preview publication, but it has not yet received real-device play-experience feedback from Cynthia.
-- Do not replace the root demo or merge either pull request without separate authorization.
+- The original root demo remains available and unchanged.
+- The accepted generative iteration is now available at the separate `collage-preview` address for Cynthia's real-iPhone play-experience test.
+- Real-device feedback should evaluate comfort, beauty, clarity, sound, and desire to continue—not basic functionality already covered by automation.
+- Do not replace the root demo or merge either implementation pull request without separate authorization.
