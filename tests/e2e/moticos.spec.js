@@ -67,7 +67,7 @@ test("renders the twenty-piece found composition", async ({ page }, testInfo) =>
   await expect(page.locator(".mm-artwork-svg")).toHaveCount(20 + 8);
   await expect(page.getByTestId("highest")).toHaveText("—");
   await expect(page.getByRole("button", { name: "Undo" })).toBeDisabled();
-  await expect(page.getByRole("button", { name: /Chop/ })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Chop (3)" })).toBeEnabled();
   await expect(page.getByRole("button", { name: /Save postcard/ })).toBeDisabled();
 
   const collages = await page
