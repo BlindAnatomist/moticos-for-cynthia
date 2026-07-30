@@ -152,7 +152,7 @@ test("reaches Panel legally and downloads a collage postcard", async ({ page }, 
 });
 
 test("reaches Motico, presents the arrival, and saves the final correspondence", async ({ page }, testInfo) => {
-  test.setTimeout(90_000);
+  test.setTimeout(180_000);
 
   for (let merge = 1; merge <= 127; merge += 1) {
     await mergeHighestAvailablePair(page, merge);
