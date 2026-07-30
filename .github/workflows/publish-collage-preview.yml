@@ -6,6 +6,11 @@ on:
       - work/publish-collage-preview
     paths:
       - .github/workflows/publish-collage-preview.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/publish-collage-preview.yml
 
 permissions:
   contents: write
@@ -23,6 +28,7 @@ jobs:
       - name: Check out preview source
         uses: actions/checkout@v4
         with:
+          ref: work/publish-collage-preview
           fetch-depth: 0
 
       - name: Verify accepted application bytes are unchanged
@@ -120,7 +126,6 @@ jobs:
           await page.mouse.down();
           await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 10 });
           await page.mouse.up();
-          await page.getByTestId('merges').waitFor();
           await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent === '1');
           if ((await page.getByTestId('score').textContent()) !== '20') {
             throw new Error('Hosted merge did not score 20 points.');
