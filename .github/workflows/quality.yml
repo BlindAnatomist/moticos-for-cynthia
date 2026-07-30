@@ -45,13 +45,14 @@ jobs:
       - name: Run browser tests and capture screenshots
         run: npm run test:e2e
 
-      - name: Upload screenshots and traces
+      - name: Upload screenshots, postcards, and traces
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: moticos-browser-evidence
           path: |
             test-results/screenshots
+            test-results/postcards
             test-results/**/trace.zip
             playwright-report
           if-no-files-found: ignore
