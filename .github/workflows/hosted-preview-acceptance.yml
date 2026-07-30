@@ -1,0 +1,115 @@
+name: Hosted Preview Acceptance
+
+on:
+  push:
+    branches:
+      - work/fresh-moticos-playable
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moticos-hosted-preview-acceptance
+  cancel-in-progress: true
+
+jobs:
+  accept:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install browser tooling
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Exercise live preview
+        run: |
+          mkdir -p test-results/hosted-preview
+          node --input-type=module <<'NODE'
+          import { chromium } from '@playwright/test';
+          import fs from 'node:fs/promises';
+
+          const url = 'https://blindanatomist.github.io/moticos-for-cynthia/';
+          const browser = await chromium.launch();
+          const context = await browser.newContext({
+            viewport: { width: 430, height: 932 },
+            hasTouch: true,
+            isMobile: true,
+          });
+          const page = await context.newPage();
+          const errors = [];
+          page.on('console', message => {
+            if (message.type() === 'error') errors.push(`console: ${message.text()}`);
+          });
+          page.on('pageerror', error => errors.push(`pageerror: ${error.message}`));
+
+          const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 });
+          if (!response || response.status() !== 200) throw new Error(`Hosted page returned ${response?.status()}`);
+          await page.getByText('MOTICOS', { exact: true }).waitFor({ state: 'visible' });
+          const clips = page.locator('[data-tier="0"]');
+          if (await clips.count() !== 8) throw new Error('Hosted board did not begin with eight Clip tiles.');
+
+          await page.screenshot({ path: 'test-results/hosted-preview/initial.png', fullPage: true });
+
+          const first = clips.nth(0);
+          const second = clips.nth(1);
+          const from = await first.boundingBox();
+          const to = await second.boundingBox();
+          if (!from || !to) throw new Error('Hosted Clip pair was not measurable.');
+          await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
+          await page.mouse.down();
+          await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 8 });
+          await page.mouse.up();
+
+          await page.getByTestId('score').waitFor({ state: 'visible' });
+          if ((await page.getByTestId('score').textContent())?.trim() !== '20') throw new Error('Hosted merge did not score 20.');
+          if ((await page.getByTestId('merges').textContent())?.trim() !== '1') throw new Error('Hosted merge count did not advance.');
+          if ((await page.getByTestId('highest').textContent())?.trim() !== 'Fragment') throw new Error('Hosted highest tier did not become Fragment.');
+          await page.waitForTimeout(750);
+          await page.screenshot({ path: 'test-results/hosted-preview/after-merge.png', fullPage: true });
+
+          await page.getByRole('button', { name: 'Undo' }).click();
+          if ((await page.getByTestId('score').textContent())?.trim() !== '0') throw new Error('Hosted Undo did not restore score.');
+          if (await page.locator('[data-tier="0"]').count() !== 8) throw new Error('Hosted Undo did not restore eight Clips.');
+
+          await page.getByRole('button', { name: 'Shuffle (3)' }).click();
+          await page.getByRole('button', { name: 'Shuffle (2)' }).waitFor({ state: 'visible' });
+          await page.screenshot({ path: 'test-results/hosted-preview/after-shuffle.png', fullPage: true });
+
+          const result = {
+            url,
+            status: response.status(),
+            title: await page.title(),
+            initialClips: 8,
+            mergeScore: 20,
+            mergeCount: 1,
+            highestAfterMerge: 'Fragment',
+            undoRestored: true,
+            shuffleDecremented: true,
+            errors,
+          };
+          await fs.writeFile('test-results/hosted-preview/result.json', JSON.stringify(result, null, 2));
+          console.log(JSON.stringify(result, null, 2));
+          if (errors.length) process.exitCode = 1;
+          await browser.close();
+          NODE
+
+      - name: Upload hosted acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-hosted-preview-acceptance
+          path: test-results/hosted-preview
+          if-no-files-found: error
+          retention-days: 1
