@@ -8,6 +8,10 @@
     calc(16px + env(safe-area-inset-left));
 }
 
+.mm-title {
+  pointer-events: none;
+}
+
 .mm-mute {
   top: -4px;
   display: grid;
