@@ -5,12 +5,28 @@ import {
   tileTier,
 } from "./collageArt.js";
 
-export const SIZE = 6;
+export const SIZE = 5;
 export const CELLS = SIZE * SIZE;
 export const MAX_TIER = 7;
 
+// Twenty inherited pieces carry exactly 128 source scraps. With no automatic
+// refill, every legal merge condenses the field until one Motico remains.
+// Nineteen merges complete a round; each optional Chop adds one action and
+// one later merge, keeping the full session inside the intended 15–30 actions.
+export const FOUND_COMPOSITION_TIERS = Object.freeze([
+  0, 0, 0, 0,
+  1, 1, 1, 1,
+  2, 2, 2,
+  3, 3, 3, 3, 3,
+  4, 4, 4, 4,
+]);
+
 export function emptyBoard() {
   return Array(CELLS).fill(null);
+}
+
+export function totalLineage(board) {
+  return board.reduce((total, tile) => total + (tile?.lineage ?? 0), 0);
 }
 
 export function randomEmptyIndex(board, rng = Math.random) {
@@ -43,6 +59,8 @@ export function chooseSpawnTier(board, rng = Math.random) {
   return rescueCandidates[Math.floor(rng() * rescueCandidates.length)];
 }
 
+// Preserved for later procedural-composer work. Human rounds deliberately do
+// not call this after every merge; the board should thin and reveal residue.
 export function spawnTileAt(board, rng = Math.random) {
   const next = board.slice();
   const index = randomEmptyIndex(next, rng);
@@ -55,10 +73,11 @@ export function spawnTileAt(board, rng = Math.random) {
 }
 
 export function initialBoard(rng = Math.random) {
-  let board = emptyBoard();
-  for (let count = 0; count < 8; count += 1) {
-    board = spawnTileAt(board, rng).board;
-  }
+  const board = emptyBoard();
+  FOUND_COMPOSITION_TIERS.forEach((tier) => {
+    const index = randomEmptyIndex(board, rng);
+    board[index] = createFoundTile(tier, rng);
+  });
   return board;
 }
 
@@ -93,12 +112,11 @@ export function resolveMerge(board, fromIndex, toIndex, rng = Math.random) {
     scoreDelta = (fromTile.tier + 2) * 10;
   }
 
-  const spawned = spawnTileAt(next, rng);
   return {
-    board: spawned.board,
-    spawnedIndex: spawned.index,
-    spawnedTier: spawned.tier,
-    spawnedTile: spawned.tile,
+    board: next,
+    spawnedIndex: -1,
+    spawnedTier: null,
+    spawnedTile: null,
     mergedIndex: toIndex,
     mergedTile,
     fromTile,
