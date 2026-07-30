@@ -1,0 +1,54 @@
+name: Temporary Moticos Preview
+
+on:
+  push:
+    branches:
+      - work/fresh-moticos-playable
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: moticos-pages-preview
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build preview
+        run: npm run build -- --base=/moticos-for-cynthia/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy temporary preview
+        id: deployment
+        uses: actions/deploy-pages@v4
