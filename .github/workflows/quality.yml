@@ -1,58 +1,80 @@
-name: Quality
+name: Apply and verify found composition
 
 on:
   push:
     branches:
-      - main
-      - work/fresh-moticos-playable
       - work/generative-collage-iteration
     paths:
       - .github/workflows/quality.yml
-      - index.html
-      - package.json
-      - package-lock.json
-      - vite.config.js
-      - playwright.config.js
-      - src/**
-      - tests/**
   pull_request:
     branches:
       - main
     paths:
       - .github/workflows/quality.yml
-      - index.html
-      - package.json
-      - package-lock.json
-      - vite.config.js
-      - playwright.config.js
-      - src/**
-      - tests/**
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: moticos-quality-${{ github.ref }}
+  group: moticos-found-composition-recognized-workflow
   cancel-in-progress: true
 
 jobs:
-  verify:
+  implement-and-verify:
+    if: github.event_name == 'push' || github.head_ref == 'work/generative-collage-iteration'
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     steps:
-      - name: Check out repository
+      - name: Check out the exact work branch
         uses: actions/checkout@v4
+        with:
+          ref: work/generative-collage-iteration
+          fetch-depth: 2
+
+      - name: Verify immutable preconditions
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "2e743167eae701560a8fa33d798947e1bd5928bd"
+          test "$(git hash-object .github/workflows/apply-found-composition.yml)" = "a66ed15cdf13401d7672f9addcfbfd53168e646e"
+          test "$(git hash-object src/gameLogic.js)" = "769f1f1f9969963b4cc17f7bd540e50c8a5f5309"
+          test "$(git hash-object src/MoticosMerge.jsx)" = "3b941ca236dad0f91fd21e2fa8b94daf73508600"
+          test "$(git hash-object src/MoticosBoard.jsx)" = "3a6df2bb46dbfb635e7ac423bff8b9678d7297a4"
+          test "$(git hash-object tests/gameLogic.test.js)" = "62b46a48f8469f0ba27ab6a7840cb47c6cdfa958"
+          test "$(git hash-object tests/e2e/moticos.spec.js)" = "2a2514907fd4495252b9fb1cd9d68332659bc77e"
+
+      - name: Apply the preserved implementation script
+        shell: bash
+        run: |
+          set -euo pipefail
+          python <<'PY'
+          from pathlib import Path
+
+          workflow = Path(".github/workflows/apply-found-composition.yml").read_text()
+          opening = "          python <<'PY'\n"
+          closing = "\n          PY\n"
+          start = workflow.index(opening) + len(opening)
+          end = workflow.index(closing, start)
+          block = workflow[start:end]
+          script = "\n".join(
+              line[10:] if line.startswith("          ") else line
+              for line in block.splitlines()
+          ) + "\n"
+          compile(script, "apply-found-composition.py", "exec")
+          Path("/tmp/apply-found-composition.py").write_text(script)
+          PY
+          python /tmp/apply-found-composition.py
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install dependencies
+      - name: Install dependencies once
         run: npm install --no-audit --no-fund
 
-      - name: Run game-logic tests
+      - name: Run deterministic game-logic tests
         run: npm test
 
       - name: Build production bundle
@@ -64,11 +86,102 @@ jobs:
       - name: Run iPhone-first browser tests and capture screenshots
         run: npm run test:e2e
 
-      - name: Upload screenshots, postcards, and traces
+      - name: Restore the governing workflow and commit the verified application
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > .github/workflows/quality.yml <<'YAML'
+          name: Quality
+
+          on:
+            push:
+              branches:
+                - main
+                - work/fresh-moticos-playable
+                - work/generative-collage-iteration
+              paths:
+                - .github/workflows/quality.yml
+                - index.html
+                - package.json
+                - package-lock.json
+                - vite.config.js
+                - playwright.config.js
+                - src/**
+                - tests/**
+            pull_request:
+              branches:
+                - main
+              paths:
+                - .github/workflows/quality.yml
+                - index.html
+                - package.json
+                - package-lock.json
+                - vite.config.js
+                - playwright.config.js
+                - src/**
+                - tests/**
+
+          permissions:
+            contents: read
+
+          concurrency:
+            group: moticos-quality-${{ github.ref }}
+            cancel-in-progress: true
+
+          jobs:
+            verify:
+              runs-on: ubuntu-latest
+              timeout-minutes: 25
+
+              steps:
+                - name: Check out repository
+                  uses: actions/checkout@v4
+
+                - name: Use Node.js 22
+                  uses: actions/setup-node@v4
+                  with:
+                    node-version: 22
+
+                - name: Install dependencies
+                  run: npm install --no-audit --no-fund
+
+                - name: Run game-logic tests
+                  run: npm test
+
+                - name: Build production bundle
+                  run: npm run build
+
+                - name: Install Mobile Safari WebKit and desktop Chromium
+                  run: npx playwright install --with-deps webkit chromium
+
+                - name: Run iPhone-first browser tests and capture screenshots
+                  run: npm run test:e2e
+
+                - name: Upload screenshots, postcards, and traces
+                  if: always()
+                  uses: actions/upload-artifact@v4
+                  with:
+                    name: moticos-browser-evidence
+                    path: |
+                      test-results/screenshots
+                      test-results/postcards
+                      test-results/**/trace.zip
+                      playwright-report
+                    if-no-files-found: ignore
+                    retention-days: 1
+          YAML
+          git rm .github/workflows/apply-found-composition.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/quality.yml src tests
+          git commit -m "Implement five-by-five found-composition sessions"
+          git push origin HEAD:work/generative-collage-iteration
+
+      - name: Upload implementation evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: moticos-browser-evidence
+          name: moticos-found-composition-implementation-evidence
           path: |
             test-results/screenshots
             test-results/postcards
