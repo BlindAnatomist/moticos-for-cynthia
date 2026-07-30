@@ -61,6 +61,19 @@ describe("Moticos game logic", () => {
     expect(titleForTile(result.mergedTile)).toMatch(/\S+/);
   });
 
+  it("merges two Correspondence pieces into one 128-scrap Motico", () => {
+    const board = Array(CELLS).fill(null);
+    board[0] = tierTile(MAX_TIER - 1, 70);
+    board[1] = tierTile(MAX_TIER - 1, 71);
+
+    const result = resolveMerge(board, 0, 1, makeSeededRng(72));
+    expect(result.bonus).toBe(false);
+    expect(result.newTier).toBe(MAX_TIER);
+    expect(result.mergedTile.tier).toBe(MAX_TIER);
+    expect(result.mergedTile.lineage).toBe(128);
+    expect(result.board.filter((tile) => tile?.tier === MAX_TIER)).toHaveLength(1);
+  });
+
   it("turns two top-tier Moticos into the 500-point clear bonus", () => {
     const board = Array(CELLS).fill(null);
     board[0] = tierTile(MAX_TIER, 1);
