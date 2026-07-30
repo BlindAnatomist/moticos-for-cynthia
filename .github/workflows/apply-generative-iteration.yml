@@ -6,17 +6,12 @@ on:
       - work/generative-collage-iteration
     paths:
       - .github/workflows/apply-generative-iteration.yml
-  pull_request:
-    branches:
-      - main
-    paths:
-      - .github/workflows/apply-generative-iteration.yml
 
 permissions:
   contents: write
 
 concurrency:
-  group: moticos-apply-generative-iteration-${{ github.event_name }}
+  group: moticos-apply-generative-iteration
   cancel-in-progress: false
 
 jobs:
@@ -73,16 +68,15 @@ jobs:
           print(f'Verified {len(actual)} intended files.')
           PY
 
-      - name: Apply exact candidate and remove transport scaffolding
+      - name: Apply exact non-workflow candidate files
         shell: bash
         run: |
           set -euo pipefail
-          unzip -q -o /tmp/moticos-generative.zip -d .
+          unzip -q -o /tmp/moticos-generative.zip -d . -x '.github/workflows/quality.yml'
           rm -rf transfer/generative-iteration
-          rm .github/workflows/apply-generative-iteration.yml
           git diff --check
 
-      - name: Commit generative collage iteration
+      - name: Commit generative collage source
         shell: bash
         run: |
           set -euo pipefail
