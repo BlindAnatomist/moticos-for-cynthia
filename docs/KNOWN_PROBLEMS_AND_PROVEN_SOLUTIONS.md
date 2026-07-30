@@ -158,6 +158,34 @@ Do not rely on arbitrary word breaking inside compact visual tokens; define deli
 
 Moticos tile and progression typography.
 
+### MOT-006 — Decorative title intercepted the iPhone sound control
+
+Status: `proven`
+
+First observed: 2026-07-30
+
+Affected area: iPhone header interaction
+
+#### Symptoms
+
+The sound icon was visible and its button measured 44 points, but Mobile Safari WebKit could not tap it. Playwright reported that the `MOTICOS` heading intercepted every pointer attempt in both tested iPhone profiles.
+
+#### Cause
+
+The absolutely positioned sound button occupied the same header layer as a full-width heading box. The visible text did not appear to overlap the icon, but the heading's rectangular hit region still covered the control.
+
+#### Proven solution
+
+The decorative heading now uses `pointer-events: none`, while the sound button retains its own 44-point interactive target. Quality run `30562311268` passed the exact touch tap in both the iPhone 13 and 430-by-932 Mobile Safari WebKit projects.
+
+#### Prevention rule
+
+Do not judge mobile hit testing from visible artwork alone. Verify the actual topmost hit region with real tap actions in the target browser engine, especially when absolute controls overlap full-width decorative elements.
+
+#### Scope
+
+Repository-wide iPhone interaction standard.
+
 ## Incident entry template
 
 ### MOT-000 — Concise problem name
