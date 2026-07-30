@@ -19,6 +19,7 @@ import {
 } from "./collageArt.js";
 import exportPostcardImage from "./exportPostcard.js";
 import {
+  CELLS,
   MAX_TIER,
   canChop,
   initialBoard,
@@ -36,8 +37,9 @@ import {
 } from "./moticosConstants.js";
 import useMoticosAudio from "./useMoticosAudio.js";
 import "./moticos.css";
+import "./foundComposition.css";
 
-const emptyResidue = () => Array(36).fill(null);
+const emptyResidue = () => Array(CELLS).fill(null);
 
 export default function MoticosMerge() {
   const galleryMode = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("gallery");
@@ -50,7 +52,7 @@ export default function MoticosMerge() {
   const [residue, setResidue] = useState(emptyResidue);
   const [score, setScore] = useState(0);
   const [merges, setMerges] = useState(0);
-  const [highest, setHighest] = useState(0);
+  const [highest, setHighest] = useState(-1);
   const [pasteIdx, setPasteIdx] = useState(null);
   const [spawnIdx, setSpawnIdx] = useState(null);
   const [bursts, setBursts] = useState([]);
@@ -123,13 +125,31 @@ export default function MoticosMerge() {
     };
   }
 
+  function findMagneticTarget(x, y, fromIndex) {
+    const fromTier = board[fromIndex]?.tier;
+    if (fromTier === undefined) return null;
+
+    let best = null;
+    board.forEach((tile, index) => {
+      if (!tile || index === fromIndex || tile.tier !== fromTier) return;
+      const center = cellCenter(index);
+      if (!center) return;
+      const distance = Math.hypot(x - center.x, y - center.y);
+      const radius = Math.max(52, center.size * 0.95);
+      if (distance <= radius && (!best || distance < best.distance)) {
+        best = { index, center, distance, radius };
+      }
+    });
+    return best;
+  }
+
   const reset = useCallback(() => {
     clearTimers();
     setBoard(initialBoard());
     setResidue(emptyResidue());
     setScore(0);
     setMerges(0);
-    setHighest(0);
+    setHighest(-1);
     setPasteIdx(null);
     setSpawnIdx(null);
     setBursts([]);
@@ -233,13 +253,38 @@ export default function MoticosMerge() {
       if (!current || current.pointerId !== event.pointerId || current.snapBack) {
         return current;
       }
-      const dx = event.clientX - current.startX;
-      const dy = event.clientY - current.startY;
+      const rawX = event.clientX;
+      const rawY = event.clientY;
+      const dx = rawX - current.startX;
+      const dy = rawY - current.startY;
+      const dragging = current.dragging || Math.hypot(dx, dy) > 6;
+      if (!dragging) {
+        return { ...current, rawX, rawY, x: rawX, y: rawY, dragging };
+      }
+
+      const magnetic = findMagneticTarget(rawX, rawY, current.index);
+      if (!magnetic) {
+        return {
+          ...current,
+          rawX,
+          rawY,
+          x: rawX,
+          y: rawY,
+          dragging,
+          magneticIndex: null,
+        };
+      }
+
+      const closeness = 1 - magnetic.distance / magnetic.radius;
+      const pull = 0.28 + closeness * 0.34;
       return {
         ...current,
-        x: event.clientX,
-        y: event.clientY,
-        dragging: current.dragging || Math.hypot(dx, dy) > 6,
+        rawX,
+        rawY,
+        x: rawX + (magnetic.center.x - rawX) * pull,
+        y: rawY + (magnetic.center.y - rawY) * pull,
+        dragging,
+        magneticIndex: magnetic.index,
       };
     });
   }
@@ -254,7 +299,9 @@ export default function MoticosMerge() {
       return;
     }
 
-    const targetIndex = findCellAtPoint(event.clientX, event.clientY);
+    const directTargetIndex = findCellAtPoint(event.clientX, event.clientY);
+    const magnetic = findMagneticTarget(event.clientX, event.clientY, drag.index);
+    const targetIndex = magnetic?.index ?? directTargetIndex;
     const fromTier = board[drag.index]?.tier;
     const valid =
       targetIndex !== -1 &&
@@ -377,7 +424,7 @@ export default function MoticosMerge() {
 
   let hoverIndex = -1;
   if (drag?.dragging && !drag.snapBack) {
-    hoverIndex = findCellAtPoint(drag.x, drag.y);
+    hoverIndex = drag.magneticIndex ?? findCellAtPoint(drag.rawX ?? drag.x, drag.rawY ?? drag.y);
   }
 
   const interactionLocked = Boolean(flying);
@@ -410,18 +457,18 @@ export default function MoticosMerge() {
             {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
           </button>
           <h1 className="mm-title">MOTICOS</h1>
-          <p className="mm-subtitle">Merge matching scraps. Each one remembers what came before.</p>
+          <p className="mm-subtitle">Begin with found pieces. Merge matching histories until one Motico remains.</p>
         </header>
 
         <section aria-label="Game score" className="mm-scoreboard">
           <div>
-            HIGHEST
+            HIGHEST MADE
             <br />
             <strong
               data-testid="highest"
               className={`mm-stat-highest${recordFlash ? " flash" : ""}`}
             >
-              {TIERS[highest].name}
+              {highest < 0 ? "—" : TIERS[highest].name}
             </strong>
           </div>
           <div>
@@ -447,6 +494,7 @@ export default function MoticosMerge() {
           spawnIdx={spawnIdx}
           bursts={bursts}
           hoverIndex={hoverIndex}
+          matchTier={drag?.dragging ? board[drag.index]?.tier ?? null : null}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
