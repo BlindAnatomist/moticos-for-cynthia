@@ -113,6 +113,7 @@ test("reaches Panel legally and downloads a postcard", async ({ page }, testInfo
   const postcard = page.getByRole("button", { name: "Save postcard" });
   await expect(postcard).toBeEnabled();
 
+  await page.waitForTimeout(750);
   await mkdir("test-results/screenshots", { recursive: true });
   await page.screenshot({
     path: `test-results/screenshots/${testInfo.project.name}-panel-unlocked.png`,
@@ -123,4 +124,6 @@ test("reaches Panel legally and downloads a postcard", async ({ page }, testInfo
   await postcard.click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toMatch(/^moticos-panel-\d+\.png$/);
+  await mkdir("test-results/postcards", { recursive: true });
+  await download.saveAs(`test-results/postcards/${testInfo.project.name}-panel.png`);
 });
