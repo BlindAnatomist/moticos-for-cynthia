@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "2e743167eae701560a8fa33d798947e1bd5928bd"
+          test "$(git rev-parse HEAD^)" = "631a40843711dba5fed8bb1e73d3a902f96b2669"
           test "$(git hash-object .github/workflows/apply-found-composition.yml)" = "a66ed15cdf13401d7672f9addcfbfd53168e646e"
           test "$(git hash-object src/gameLogic.js)" = "769f1f1f9969963b4cc17f7bd540e50c8a5f5309"
           test "$(git hash-object src/MoticosMerge.jsx)" = "3b941ca236dad0f91fd21e2fa8b94daf73508600"
@@ -61,6 +61,72 @@ jobs:
               line[10:] if line.startswith("          ") else line
               for line in block.splitlines()
           ) + "\n"
+
+          original_helper = '''def replace_once(path, old, new):
+              file = Path(path)
+              text = file.read_text()
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{path}: expected one preimage, found {count}")
+              file.write_text(text.replace(old, new, 1))
+          '''
+
+          robust_helper = '''def replace_once(path, old, new):
+              import re
+
+              file = Path(path)
+              text = file.read_text()
+              count = text.count(old)
+              if count == 1:
+                  file.write_text(text.replace(old, new, 1))
+                  return
+              if count > 1:
+                  raise SystemExit(f"{path}: expected one preimage, found {count}")
+
+              old_lines = old.splitlines()
+              pattern_lines = []
+              for line in old_lines:
+                  stripped = line.strip()
+                  if stripped:
+                      pattern_lines.append(r"^[ \\t]*" + re.escape(stripped) + r"[ \\t]*$")
+                  else:
+                      pattern_lines.append(r"^[ \\t]*$")
+              pattern = re.compile("\\n".join(pattern_lines), re.MULTILINE)
+              matches = list(pattern.finditer(text))
+              if len(matches) != 1:
+                  raise SystemExit(
+                      f"{path}: normalized preimage expected once, found {len(matches)}"
+                  )
+
+              match = matches[0]
+              actual_lines = match.group(0).splitlines()
+              leading = lambda value: len(value) - len(value.lstrip(" "))
+              probe = next(
+                  (index for index in range(1, len(old_lines)) if old_lines[index].strip()),
+                  0,
+              )
+              first_offset = leading(actual_lines[0]) - leading(old_lines[0])
+              body_offset = leading(actual_lines[probe]) - leading(old_lines[probe])
+
+              adjusted = []
+              for index, line in enumerate(new.splitlines()):
+                  if not line.strip():
+                      adjusted.append(line)
+                      continue
+                  offset = first_offset if index == 0 else body_offset
+                  if offset >= 0:
+                      adjusted.append(" " * offset + line)
+                  else:
+                      adjusted.append(line[min(-offset, leading(line)):])
+              replacement = "\\n".join(adjusted)
+              if new.endswith("\\n"):
+                  replacement += "\\n"
+              file.write_text(text[:match.start()] + replacement + text[match.end():])
+          '''
+
+          if script.count(original_helper) != 1:
+              raise SystemExit("Implementation helper preimage changed")
+          script = script.replace(original_helper, robust_helper, 1)
           compile(script, "apply-found-composition.py", "exec")
           Path("/tmp/apply-found-composition.py").write_text(script)
           PY
