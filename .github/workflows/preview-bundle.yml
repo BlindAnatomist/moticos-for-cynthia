@@ -1,0 +1,29 @@
+name: Preview Source Bundle
+
+on:
+  push:
+    branches:
+      - work/fresh-moticos-playable
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Upload exact preview source
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-preview-source
+          path: |
+            index.html
+            package.json
+            vite.config.js
+            src
+          if-no-files-found: error
+          retention-days: 1
