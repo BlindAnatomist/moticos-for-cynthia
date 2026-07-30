@@ -36,6 +36,8 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Build preview
         run: npm run build -- --base=/moticos-for-cynthia/
@@ -46,11 +48,12 @@ jobs:
           path: dist
 
   deploy:
+    if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment:
-      name: moticos-preview
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     outputs:
       page_url: ${{ steps.deployment.outputs.page_url }}
@@ -59,11 +62,58 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+  verify-live:
+    if: github.event_name == 'push'
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify live page and built assets
+        env:
+          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          import time
+          import urllib.parse
+          import urllib.request
+
+          page_url = os.environ["PAGE_URL"]
+          if not page_url:
+              raise SystemExit("Pages deployment returned no URL")
+
+          last_error = None
+          for _ in range(12):
+              try:
+                  with urllib.request.urlopen(page_url, timeout=20) as response:
+                      html = response.read().decode("utf-8")
+                  if "<title>Moticos</title>" not in html:
+                      raise RuntimeError("Live HTML does not contain the Moticos title")
+                  assets = re.findall(r'(?:src|href)="([^"]+/assets/[^"]+)"', html)
+                  if not assets:
+                      raise RuntimeError("Live HTML contains no built asset references")
+                  for asset in assets:
+                      asset_url = urllib.parse.urljoin(page_url, asset)
+                      with urllib.request.urlopen(asset_url, timeout=20) as response:
+                          if response.status != 200:
+                              raise RuntimeError(f"Asset returned {response.status}: {asset_url}")
+                          response.read(64)
+                  print(f"Verified live Moticos preview: {page_url}")
+                  break
+              except Exception as error:
+                  last_error = error
+                  time.sleep(5)
+          else:
+              raise SystemExit(f"Live preview verification failed: {last_error}")
+          PY
+
   report:
-    if: always()
+    if: always() && github.event_name == 'push'
     needs:
       - build
       - deploy
+      - verify-live
     runs-on: ubuntu-latest
     steps:
       - name: Report preview result on draft PR
@@ -71,13 +121,16 @@ jobs:
         env:
           BUILD_RESULT: ${{ needs.build.result }}
           DEPLOY_RESULT: ${{ needs.deploy.result }}
+          VERIFY_RESULT: ${{ needs.verify-live.result }}
           PAGE_URL: ${{ needs.deploy.outputs.page_url }}
         with:
           script: |
-            const success = process.env.BUILD_RESULT === 'success' && process.env.DEPLOY_RESULT === 'success';
+            const success = process.env.BUILD_RESULT === 'success'
+              && process.env.DEPLOY_RESULT === 'success'
+              && process.env.VERIFY_RESULT === 'success';
             const body = success
-              ? `Temporary Moticos preview deployed successfully from commit ${context.sha}.\n\n${process.env.PAGE_URL}`
-              : `Temporary Moticos preview failed from commit ${context.sha}. Build: ${process.env.BUILD_RESULT}. Deploy: ${process.env.DEPLOY_RESULT}.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+              ? `Temporary Moticos preview deployed and verified from commit ${context.sha}.\n\n${process.env.PAGE_URL}`
+              : `Temporary Moticos preview failed from commit ${context.sha}. Build: ${process.env.BUILD_RESULT}. Deploy: ${process.env.DEPLOY_RESULT}. Live verification: ${process.env.VERIFY_RESULT}.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
