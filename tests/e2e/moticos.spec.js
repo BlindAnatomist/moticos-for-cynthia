@@ -95,7 +95,10 @@ test("keeps the iPhone layout inside the viewport with touch-ready controls", as
       boardRight: board?.right ?? Infinity,
       buttonHeights: buttons,
       tileTouchAction: tileStyle.touchAction,
-      tileUserSelect: tileStyle.userSelect,
+      tileUserSelect:
+        tileStyle.userSelect ||
+        tileStyle.webkitUserSelect ||
+        tileStyle.getPropertyValue("-webkit-user-select"),
     };
   });
 
