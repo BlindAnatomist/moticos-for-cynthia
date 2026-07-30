@@ -1,107 +1,105 @@
 # Implementation Status
 
-Repository: `BlindAnatomist/monicos-for-cynthia`
+Repository: `BlindAnatomist/moticos-for-cynthia`
 
 Visibility: public
 
 Default branch: `main`
 
-Status date: 2026-07-29
+Status date: 2026-07-30
 
 ## Project identity
 
-Monicos for Cynthia is an independent game project. It must remain separate from Val Music Vault, Guitar Eyes, and the earlier experimental placement of the game inside another repository.
+Moticos for Cynthia is a fresh, independent visual game project. It is not a resurrection of the discarded earlier experiment and is not part of Val Music Vault or Guitar Eyes.
 
-The game concept, technical stack, rules, interface, hosting path, and acceptance criteria have not yet been formally established in this repository.
+The owner supplied a new React component as the design and gameplay starting point. Moticos is intended to be visually appealing and fun for Cynthia. It is not being designed as a VoiceOver game for the owner.
 
-## Current accepted state
+## Current work
 
-The repository has been created publicly under the accepted name:
+Active branch:
 
-`monicos-for-cynthia`
+`work/fresh-moticos-playable`
 
-The initial governance foundation consists of:
+Draft pull request:
 
-- `AGENTS.md`
-- `docs/PREFLIGHT.md`
-- `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md`
-- `docs/implementation-status.md`
+`1 — Fresh Moticos first playable`
 
-These files establish repository-specific operating discipline without importing the Music Vault's private-data, backend-production, or private-repository Actions constraints.
+The first playable uses:
 
-## Automation position
+- React 19;
+- Vite 8;
+- Tone.js sound effects;
+- Lucide React controls;
+- Vitest game-logic tests;
+- Playwright desktop and mobile-sized Chromium tests;
+- GitHub Actions for public-repository verification and screenshot evidence.
 
-Standard GitHub-hosted Actions runners may be used for this public repository when they materially support development, verification, preview publication, or release preparation.
+## Supplied game concept
 
-No workflow has yet been created because the application stack and required checks have not yet been selected. Before adding a workflow, define:
+- Six-by-six collage board.
+- Eight initial Clip tiles.
+- Drag any clipping onto another clipping of the same tier.
+- Equal tiers merge into the next progression tier.
+- The progression ends at Moticos.
+- Two Moticos clear for a 500-point bonus.
+- Each merge creates a new clipping.
+- Undo, three shuffles, sound toggle, score tracking, and postcard export are included.
 
-- the application stack and package manager;
-- installation command;
-- type-checking command, if applicable;
-- lint command;
-- test command;
-- production-build command;
-- automated accessibility checks;
-- preview or publication mechanism;
-- permissions, concurrency, timeout, and artifact-retention requirements.
+## Confirmed defects repaired
 
-Paid runners, paid infrastructure, and paid external services remain unauthorized unless the owner explicitly approves them.
+1. Pointer drop and flight geometry ignored CSS grid gaps and padding.
+2. The board could reach eight unique tiers with no legal merge, while shuffle could not create a match.
+3. A delayed merge could overwrite a newly reset board if New board was activated during flight.
+4. Tone.js nodes were not disposed when the component unmounted.
+5. Burst fragments randomized again on rerender, producing avoidable animation instability.
+6. Tile text was extremely small on the supplied layout.
+7. Post-merge screenshots showed `FRAGMENT` breaking mid-word and its pale progression swatch disappearing against the page.
 
-## Accessibility position
+## Application verification
 
-Accessibility is a core design requirement from the first implementation.
+The accepted first playable passed deterministic logic tests, production build, desktop Chromium interaction tests, mobile-sized Chromium interaction tests, screenshot capture, a legal seven-merge route to Panel, postcard unlocking, and actual postcard PNG download.
 
-The eventual game must be designed for reliable VoiceOver operation on the owner's iPhone, including:
+Initial, post-merge, settled Panel, and exported postcard images were inspected directly at desktop and mobile sizes. The Fragment label remains on one line, unlocked progression swatches have a visible shape-following border, the page texture no longer reads as tiled wallpaper, and the exported postcard renders correctly.
 
-- concise and accurate control names;
-- logical swipe and focus order;
-- state changes announced without excessive repetition;
-- instructions separated from control identity;
-- recoverable validation and error handling;
-- game information available without visual inference;
-- no dependence on color, animation, spatial position, or timed visual recognition alone.
+The exact verified application commit before later documentation and publication-support changes was:
 
-Automated checks will not replace real-device VoiceOver acceptance.
+`75ee8a17dd62c7101167ed98b5890aad352e0c21`
 
-## Recorded incidents
+## Temporary hosted preview
 
-No Monicos-specific implementation incident has yet occurred.
+Public address:
 
-General proven standards are recorded in `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md` without pretending they originated in this repository.
+`https://blindanatomist.github.io/moticos-for-cynthia/`
 
-## Unresolved foundation decisions
+The preview is served from the dedicated compiled `gh-pages` branch. Publication did not merge or modify `main` and did not require the owner to navigate GitHub Pages settings.
 
-Before application code is added, establish:
+The published branch uses portable relative asset paths at commit:
 
-1. The authoritative spelling and meaning of “Monicos” within the game.
-2. The game rules and win or loss conditions.
-3. The intended player experience for Cynthia and any broader audience.
-4. Whether the game is single-player, local shared play, or something else.
-5. The initial content set and whether any content is private or copyrighted.
-6. The technical stack.
-7. The hosting and preview path.
-8. The minimum first playable checkpoint.
-9. The VoiceOver acceptance criteria for that checkpoint.
+`010878bbf253559f29097f2c69c9d902d6a3664b`
 
-## Next bounded task
+External-preview validation run `30552315475` confirmed that the GitHub Pages address returned HTTP 200, displayed the Moticos game at a mobile viewport, and produced no browser errors. Alternative no-settings hosts were rejected because they displayed warning pages, failed to load assets, returned unusable raw HTML, or opened an editor shell instead of the game.
 
-Create the project-definition brief before writing application code. That brief should establish the game concept, vocabulary, rules, accessibility model, first playable scope, technical constraints, and acceptance tests.
+Hosted acceptance run `30552836701` confirmed against the public address:
 
-After the brief is accepted:
+- page title `Moticos`;
+- eight initial Clip tiles;
+- a live drag merge scoring 20 points;
+- merge count advancing to 1;
+- highest tier advancing to Fragment;
+- Undo restoring the initial state;
+- Shuffle decrementing from 3 to 2;
+- no console or page errors.
 
-1. choose the smallest suitable technical stack;
-2. add `.github/AUTOMATION_POLICY.md` tailored to that stack;
-3. scaffold the application;
-4. add the first quality workflow;
-5. build a hosted first playable candidate;
-6. stop for real-device VoiceOver testing at the defined acceptance point.
+All one-use publication, comparison, and hosted-acceptance workflows were removed after evidence was captured. Only the permanent quality workflow remains on the work branch.
 
-## Prohibited assumptions
+## Owner and Cynthia involvement
 
-Until explicitly decided, do not assume:
+The owner is not responsible for visual testing. Automated interaction and screenshot inspection have now exhausted the functional and visual questions that can be answered without a human player.
 
-- that code from the earlier game experiment should be copied;
-- that the earlier implementation was technically or conceptually authoritative;
-- that publication or deployment is authorized;
-- that Cynthia's name in the repository title authorizes publication of personal information or private assets;
-- that a framework used in another repository is automatically appropriate here.
+Cynthia's checkpoint should focus on whether the game feels enjoyable, understandable, and aesthetically satisfying; whether the sounds are pleasing; and whether the current open-ended score chase needs a clearer goal or round structure.
+
+## Current stop condition
+
+The first playable and its temporary hosted preview are verified. Draft pull request 1 remains open and unmerged, and `main` remains unchanged.
+
+Do not merge the pull request or replace the temporary preview with a production release without separate authorization.
