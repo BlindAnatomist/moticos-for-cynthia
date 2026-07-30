@@ -1,14 +1,12 @@
 # Implementation Status
 
-Repository currently reachable as: `BlindAnatomist/monicos-for-cynthia`
-
-Correct project and intended repository name: `moticos-for-cynthia`
+Repository: `BlindAnatomist/moticos-for-cynthia`
 
 Visibility: public
 
 Default branch: `main`
 
-Status date: 2026-07-29
+Status date: 2026-07-30
 
 ## Project identity
 
@@ -55,17 +53,13 @@ The first playable uses:
 
 ## Verification evidence
 
-Multiple quality runs have passed the deterministic logic tests, production build, desktop Chromium interaction suite, mobile-sized Chromium interaction suite, and artifact upload. Initial and post-merge screenshots were inspected directly. The label now remains on one line. The final acceptance evidence must confirm the nested shape-following border around unlocked progression swatches at desktop and mobile sizes.
+The accepted first playable passed deterministic logic tests, production build, desktop Chromium interaction tests, mobile-sized Chromium interaction tests, screenshot capture, a legal seven-merge route to Panel, postcard unlocking, and actual postcard PNG download.
 
-The verification sequence is:
+Initial, post-merge, settled Panel, and exported postcard images were inspected directly at desktop and mobile sizes. The Fragment label remains on one line, unlocked progression swatches have a visible shape-following border, the page texture no longer reads as tiled wallpaper, and the exported postcard renders correctly.
 
-1. run deterministic game-logic tests;
-2. produce a successful production build;
-3. exercise drag, merge, scoring, undo, shuffle, and control locking in desktop Chromium;
-4. repeat core rendering at a mobile viewport;
-5. capture and inspect screenshots directly;
-6. repair confirmed visual or interaction defects;
-7. create a playable hosted preview only after the build is stable and publication is authorized.
+The exact verified application commit before this documentation-only rename cleanup was:
+
+`75ee8a17dd62c7101167ed98b5890aad352e0c21`
 
 ## Owner and Cynthia involvement
 
@@ -75,4 +69,6 @@ The later human checkpoint should focus on whether the game feels enjoyable, und
 
 ## Current stop condition
 
-Do not merge to `main` or publish a hosted game during this assignment without separate authorization. Stop after the final nested-border screenshot evidence passes, the draft pull request remains unmerged, and a concrete improvement assessment is reported.
+The first playable is verified but remains on an unmerged draft pull request. Do not merge to `main` or publish a hosted game without separate authorization.
+
+The next bounded step is deciding and preparing the temporary hosted preview for Cynthia.
