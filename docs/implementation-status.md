@@ -20,6 +20,10 @@ Active branch:
 
 `work/fresh-moticos-playable`
 
+Draft pull request:
+
+`1 — Fresh Moticos first playable`
+
 The first playable uses:
 
 - React 19;
@@ -51,24 +55,51 @@ The first playable uses:
 6. Tile text was extremely small on the supplied layout.
 7. Post-merge screenshots showed `FRAGMENT` breaking mid-word and its pale progression swatch disappearing against the page.
 
-## Verification evidence
+## Application verification
 
 The accepted first playable passed deterministic logic tests, production build, desktop Chromium interaction tests, mobile-sized Chromium interaction tests, screenshot capture, a legal seven-merge route to Panel, postcard unlocking, and actual postcard PNG download.
 
 Initial, post-merge, settled Panel, and exported postcard images were inspected directly at desktop and mobile sizes. The Fragment label remains on one line, unlocked progression swatches have a visible shape-following border, the page texture no longer reads as tiled wallpaper, and the exported postcard renders correctly.
 
-The exact verified application commit before this documentation-only rename cleanup was:
+The exact verified application commit before later documentation and publication-support changes was:
 
 `75ee8a17dd62c7101167ed98b5890aad352e0c21`
 
+## Temporary hosted preview
+
+Public address:
+
+`https://blindanatomist.github.io/moticos-for-cynthia/`
+
+The preview is served from the dedicated compiled `gh-pages` branch. Publication did not merge or modify `main` and did not require the owner to navigate GitHub Pages settings.
+
+The published branch uses portable relative asset paths at commit:
+
+`010878bbf253559f29097f2c69c9d902d6a3664b`
+
+External-preview validation run `30552315475` confirmed that the GitHub Pages address returned HTTP 200, displayed the Moticos game at a mobile viewport, and produced no browser errors. Alternative no-settings hosts were rejected because they displayed warning pages, failed to load assets, returned unusable raw HTML, or opened an editor shell instead of the game.
+
+Hosted acceptance run `30552836701` confirmed against the public address:
+
+- page title `Moticos`;
+- eight initial Clip tiles;
+- a live drag merge scoring 20 points;
+- merge count advancing to 1;
+- highest tier advancing to Fragment;
+- Undo restoring the initial state;
+- Shuffle decrementing from 3 to 2;
+- no console or page errors.
+
+All one-use publication, comparison, and hosted-acceptance workflows were removed after evidence was captured. Only the permanent quality workflow remains on the work branch.
+
 ## Owner and Cynthia involvement
 
-The owner is not responsible for visual testing. Cynthia should not be asked to test until automated interaction and screenshot inspection have exhausted what can be verified without her.
+The owner is not responsible for visual testing. Automated interaction and screenshot inspection have now exhausted the functional and visual questions that can be answered without a human player.
 
-The later human checkpoint should focus on whether the game feels enjoyable, understandable, and aesthetically satisfying rather than whether basic controls work.
+Cynthia's checkpoint should focus on whether the game feels enjoyable, understandable, and aesthetically satisfying; whether the sounds are pleasing; and whether the current open-ended score chase needs a clearer goal or round structure.
 
 ## Current stop condition
 
-The first playable is verified but remains on an unmerged draft pull request. Do not merge to `main` or publish a hosted game without separate authorization.
+The first playable and its temporary hosted preview are verified. Draft pull request 1 remains open and unmerged, and `main` remains unchanged.
 
-The next bounded step is deciding and preparing the temporary hosted preview for Cynthia.
+Do not merge the pull request or replace the temporary preview with a production release without separate authorization.
