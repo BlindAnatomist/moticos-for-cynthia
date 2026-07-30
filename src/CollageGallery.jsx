@@ -1,10 +1,20 @@
+import { useState } from "react";
+import MoticoArrival from "./MoticoArrival.jsx";
 import TileArtwork from "./TileArtwork.jsx";
 import { createFoundTile, makeSeededRng, titleForTile } from "./collageArt.js";
 import { SHAPES, TIERS, clipPathOf } from "./moticosConstants.js";
 
-const galleryTiles = TIERS.map((_, tier) => createFoundTile(tier, makeSeededRng(1000 + tier * 91)));
+const galleryTiles = TIERS.map((_, tier) =>
+  createFoundTile(tier, makeSeededRng(1000 + tier * 91))
+);
 
 export default function CollageGallery() {
+  const arrivalRequested =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).has("arrival");
+  const [showArrival, setShowArrival] = useState(arrivalRequested);
+  const motico = galleryTiles[galleryTiles.length - 1];
+
   return (
     <main className="mm-gallery-page">
       <header>
@@ -29,6 +39,13 @@ export default function CollageGallery() {
           );
         })}
       </div>
+      <MoticoArrival
+        tile={showArrival ? motico : null}
+        title={titleForTile(motico)}
+        exporting={false}
+        onClose={() => setShowArrival(false)}
+        onSave={() => {}}
+      />
     </main>
   );
 }
