@@ -37,6 +37,7 @@ async function mergeHighestAvailablePair(page, expectedMergeCount) {
   await page.mouse.move(toBox.x + toBox.width / 2, toBox.y + toBox.height / 2, { steps: 8 });
   await page.mouse.up();
   await expect(page.getByTestId("merges")).toHaveText(String(expectedMergeCount));
+  await expect(page.getByRole("button", { name: "New board" })).toBeEnabled();
 }
 
 test.beforeEach(async ({ page }) => {
