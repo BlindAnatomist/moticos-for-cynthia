@@ -43,7 +43,7 @@ The first playable uses:
 - Each merge creates a new clipping.
 - Undo, three shuffles, sound toggle, score tracking, and postcard export are included.
 
-## Confirmed pre-browser defects under repair
+## Confirmed defects repaired
 
 1. Pointer drop and flight geometry ignored CSS grid gaps and padding.
 2. The board could reach eight unique tiers with no legal merge, while shuffle could not create a match.
@@ -52,9 +52,11 @@ The first playable uses:
 5. Burst fragments randomized again on rerender, producing avoidable animation instability.
 6. Tile text was extremely small on the supplied layout.
 
-## Verification plan
+## Verification evidence
 
-Before calling the first playable ready:
+Quality run 4 passed the deterministic logic tests, production build, desktop Chromium interaction suite, mobile-sized Chromium interaction suite, and artifact upload. Initial desktop and mobile screenshots were inspected directly. A final screenshot run is pending only to verify the repaired page texture and capture the post-merge state.
+
+The verification sequence is:
 
 1. run deterministic game-logic tests;
 2. produce a successful production build;
@@ -72,4 +74,4 @@ The later human checkpoint should focus on whether the game feels enjoyable, und
 
 ## Current stop condition
 
-Do not merge to `main` or publish a hosted game during this assignment without separate authorization. Stop after a verified playable branch, evidence review, and a concrete improvement assessment.
+Do not merge to `main` or publish a hosted game during this assignment without separate authorization. Stop after the final texture and post-merge screenshot evidence passes, the draft pull request remains unmerged, and a concrete improvement assessment is reported.
