@@ -103,7 +103,8 @@
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.15px;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 .mm-special-ring {
@@ -159,6 +160,10 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+}
+
+.mm-progression-row > div {
+  filter: drop-shadow(0 0 1px rgba(34, 31, 29, 0.72));
 }
 
 .mm-burst {
