@@ -1,0 +1,88 @@
+name: Apply Generative Collage Iteration
+
+on:
+  push:
+    branches:
+      - work/generative-collage-iteration
+    paths:
+      - .github/workflows/apply-generative-iteration.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: moticos-apply-generative-iteration
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact iteration branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/generative-collage-iteration
+          fetch-depth: 0
+
+      - name: Reconstruct and verify candidate bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat transfer/generative-iteration/part-* > /tmp/moticos-generative.b64
+          base64 --decode /tmp/moticos-generative.b64 > /tmp/moticos-generative.zip
+          printf '%s  %s\n' \
+            '87c73c899a39c76016243d11a1fbbc4249fc651f73bdcfa0bdafa203b86b6f42' \
+            '/tmp/moticos-generative.zip' | sha256sum --check --strict
+          unzip -t /tmp/moticos-generative.zip
+          python - <<'PY'
+          from zipfile import ZipFile
+
+          expected = {
+              '.github/workflows/quality.yml',
+              'docs/implementation-status.md',
+              'playwright.config.js',
+              'src/CollageGallery.jsx',
+              'src/MoticoArrival.jsx',
+              'src/MoticosBoard.jsx',
+              'src/MoticosMerge.jsx',
+              'src/ResidueMark.jsx',
+              'src/TileArtwork.jsx',
+              'src/collageArt.js',
+              'src/collageCanvas.js',
+              'src/exportPostcard.js',
+              'src/gameLogic.js',
+              'src/moticos.css',
+              'src/moticosConstants.js',
+              'tests/e2e/moticos.spec.js',
+              'tests/gameLogic.test.js',
+          }
+          with ZipFile('/tmp/moticos-generative.zip') as archive:
+              actual = {name for name in archive.namelist() if not name.endswith('/')}
+          if actual != expected:
+              raise SystemExit(
+                  'Candidate file list mismatch. '
+                  f'Missing: {sorted(expected - actual)}; '
+                  f'Unexpected: {sorted(actual - expected)}'
+              )
+          print(f'Verified {len(actual)} intended files.')
+          PY
+
+      - name: Apply exact candidate and remove transport scaffolding
+        shell: bash
+        run: |
+          set -euo pipefail
+          unzip -q -o /tmp/moticos-generative.zip -d .
+          rm -rf transfer/generative-iteration
+          rm .github/workflows/apply-generative-iteration.yml
+          git diff --check
+
+      - name: Commit generative collage iteration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Build generative collage iteration'
+          git push origin HEAD:work/generative-collage-iteration
