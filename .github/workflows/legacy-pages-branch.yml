@@ -50,7 +50,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch --orphan gh-pages
-          git rm -rf .
+          git rm -rf --ignore-unmatch .
+          git clean -fdx
           cp -R /tmp/moticos-pages/. .
           git add -A
           git commit -m "Publish temporary Moticos preview from ${GITHUB_SHA}"
