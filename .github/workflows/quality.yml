@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - work/fresh-moticos-playable
+      - work/generative-collage-iteration
     paths:
       - .github/workflows/quality.yml
       - index.html
