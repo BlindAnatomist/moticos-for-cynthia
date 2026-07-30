@@ -45,12 +45,17 @@ jobs:
       - name: Run browser tests and capture screenshots
         run: npm run test:e2e
 
-      - name: Upload screenshots, postcards, and traces
+      - name: Upload preview bundle, screenshots, postcards, and traces
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: moticos-browser-evidence
           path: |
+            dist
+            index.html
+            package.json
+            vite.config.js
+            src
             test-results/screenshots
             test-results/postcards
             test-results/**/trace.zip
