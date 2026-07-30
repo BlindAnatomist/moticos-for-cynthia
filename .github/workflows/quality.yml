@@ -5,9 +5,27 @@ on:
     branches:
       - main
       - work/fresh-moticos-playable
+    paths:
+      - .github/workflows/quality.yml
+      - index.html
+      - package.json
+      - package-lock.json
+      - vite.config.js
+      - playwright.config.js
+      - src/**
+      - tests/**
   pull_request:
     branches:
       - main
+    paths:
+      - .github/workflows/quality.yml
+      - index.html
+      - package.json
+      - package-lock.json
+      - vite.config.js
+      - playwright.config.js
+      - src/**
+      - tests/**
 
 permissions:
   contents: read
@@ -45,17 +63,12 @@ jobs:
       - name: Run browser tests and capture screenshots
         run: npm run test:e2e
 
-      - name: Upload preview bundle, screenshots, postcards, and traces
+      - name: Upload screenshots, postcards, and traces
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: moticos-browser-evidence
           path: |
-            dist
-            index.html
-            package.json
-            vite.config.js
-            src
             test-results/screenshots
             test-results/postcards
             test-results/**/trace.zip
