@@ -38,7 +38,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Check out repository
@@ -58,10 +58,10 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Mobile Safari WebKit and desktop Chromium
+        run: npx playwright install --with-deps webkit chromium
 
-      - name: Run browser tests and capture screenshots
+      - name: Run iPhone-first browser tests and capture screenshots
         run: npm run test:e2e
 
       - name: Upload screenshots, postcards, and traces
