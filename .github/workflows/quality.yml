@@ -1,43 +1,48 @@
-name: Verify Hosted Found Composition Preview
+name: Quality
 
 on:
+  push:
+    branches:
+      - main
+      - work/fresh-moticos-playable
+      - work/generative-collage-iteration
+    paths:
+      - .github/workflows/quality.yml
+      - index.html
+      - package.json
+      - package-lock.json
+      - vite.config.js
+      - playwright.config.js
+      - src/**
+      - tests/**
   pull_request:
     branches:
       - main
     paths:
       - .github/workflows/quality.yml
+      - index.html
+      - package.json
+      - package-lock.json
+      - vite.config.js
+      - playwright.config.js
+      - src/**
+      - tests/**
 
 permissions:
   contents: read
 
 concurrency:
-  group: moticos-found-composition-hosted-verification
+  group: moticos-quality-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify-hosted-preview:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
-      - name: Check out exact publication branch
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: work/publish-found-composition-preview
-          fetch-depth: 0
-
-      - name: Verify candidate and preserved Pages trees
-        shell: bash
-        run: |
-          set -euo pipefail
-          git merge-base --is-ancestor 986d4a4415f88faeecdbed6e714a27ebb2644fbe HEAD
-          git diff --exit-code 986d4a4415f88faeecdbed6e714a27ebb2644fbe -- \
-            index.html package.json package-lock.json vite.config.js playwright.config.js src tests
-
-          git fetch origin gh-pages
-          test "$(git rev-parse origin/gh-pages:index.html)" = "71a34b8ed4421f3710c923cdcba91a7231a05254"
-          test "$(git rev-parse origin/gh-pages:collage-preview/index.html)" = "fd0c04f55b7429b78ad5d33b7656ee66d0874d84"
-          test "$(git show origin/gh-pages:found-composition-preview/accepted-application-commit.txt)" = "986d4a4415f88faeecdbed6e714a27ebb2644fbe"
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
@@ -47,121 +52,27 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Wait for Pages and confirm all three addresses
-        shell: bash
-        run: |
-          set -euo pipefail
-          ROOT='https://blindanatomist.github.io/moticos-for-cynthia/'
-          COLLAGE='https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/'
-          TARGET='https://blindanatomist.github.io/moticos-for-cynthia/found-composition-preview/'
-          MARKER="${TARGET}accepted-application-commit.txt"
+      - name: Run game-logic tests
+        run: npm test
 
-          READY=0
-          for attempt in $(seq 1 60); do
-            if test "$(curl --fail --silent --show-error "$MARKER" || true)" = "986d4a4415f88faeecdbed6e714a27ebb2644fbe"; then
-              READY=1
-              break
-            fi
-            sleep 5
-          done
-          test "$READY" -eq 1
+      - name: Build production bundle
+        run: npm run build
 
-          curl --fail --silent --show-error "$ROOT" | grep -q '<title>Moticos</title>'
-          curl --fail --silent --show-error "$COLLAGE" | grep -q '<title>Moticos</title>'
-          curl --fail --silent --show-error "$TARGET" | grep -q '<title>Moticos</title>'
+      - name: Install Mobile Safari WebKit and desktop Chromium
+        run: npx playwright install --with-deps webkit chromium
 
-      - name: Install Mobile Safari WebKit
-        run: npx playwright install --with-deps webkit
+      - name: Run iPhone-first browser tests and capture screenshots
+        run: npm run test:e2e
 
-      - name: Smoke-test the hosted iPhone game
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p hosted-evidence
-          node --input-type=module <<'NODE'
-          import { webkit } from '@playwright/test';
-
-          const url = 'https://blindanatomist.github.io/moticos-for-cynthia/found-composition-preview/';
-          const browser = await webkit.launch();
-          const context = await browser.newContext({
-            viewport: { width: 390, height: 844 },
-            deviceScaleFactor: 3,
-            isMobile: true,
-            hasTouch: true,
-          });
-          const page = await context.newPage();
-          const failures = [];
-          page.on('pageerror', error => failures.push(`pageerror: ${error.message}`));
-          page.on('console', message => {
-            if (message.type() === 'error') failures.push(`console: ${message.text()}`);
-          });
-
-          const response = await page.goto(url, { waitUntil: 'networkidle' });
-          if (!response || response.status() !== 200) {
-            throw new Error(`Hosted preview returned ${response?.status() ?? 'no response'}.`);
-          }
-          await page.getByRole('heading', { name: 'MOTICOS' }).waitFor();
-
-          const expected = new Map([[0, 4], [1, 4], [2, 3], [3, 5], [4, 4]]);
-          for (const [tier, count] of expected) {
-            const actual = await page.locator(`[data-tier="${tier}"]`).count();
-            if (actual !== count) throw new Error(`Tier ${tier} count was ${actual}, expected ${count}.`);
-          }
-
-          const populated = page.locator('[data-tier]:not([data-tier="empty"])');
-          if (await populated.count() !== 20) throw new Error('Hosted preview did not start with 20 pieces.');
-          const lineage = await populated.evaluateAll(elements =>
-            elements.reduce((sum, element) => sum + Number(element.dataset.lineage), 0)
-          );
-          if (lineage !== 128) throw new Error(`Starting lineage was ${lineage}, expected 128.`);
-
-          const metrics = await page.evaluate(() => {
-            const board = document.querySelector('.mm-board')?.getBoundingClientRect();
-            return {
-              width: window.innerWidth,
-              scrollWidth: document.documentElement.scrollWidth,
-              boardLeft: board?.left ?? -1,
-              boardRight: board?.right ?? Infinity,
-            };
-          });
-          if (metrics.scrollWidth > metrics.width + 1 || metrics.boardLeft < 0 || metrics.boardRight > metrics.width + 1) {
-            throw new Error(`Hosted iPhone layout overflowed: ${JSON.stringify(metrics)}`);
-          }
-
-          await page.getByRole('button', { name: 'Mute sound effects' }).tap();
-          await page.getByRole('button', { name: 'Unmute sound effects' }).waitFor();
-
-          const first = page.locator('[data-tier="0"]').nth(0);
-          const second = page.locator('[data-tier="0"]').nth(1);
-          const from = await first.boundingBox();
-          const to = await second.boundingBox();
-          if (!from || !to) throw new Error('Unable to locate hosted Clip pair.');
-
-          await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
-          await page.mouse.down();
-          await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 10 });
-          await page.mouse.up();
-          await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent === '1');
-
-          if ((await page.getByTestId('score').textContent()) !== '20') {
-            throw new Error('Hosted Clip merge did not score 20 points.');
-          }
-          if (await populated.count() !== 19) {
-            throw new Error('Hosted board did not condense to 19 pieces after one merge.');
-          }
-          if (failures.length) throw new Error(failures.join('\n'));
-
-          await page.screenshot({
-            path: 'hosted-evidence/found-composition-preview-iphone.png',
-            fullPage: true,
-          });
-          await browser.close();
-          NODE
-
-      - name: Upload hosted verification screenshot
+      - name: Upload screenshots, postcards, and traces
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: moticos-found-composition-preview-hosted-evidence
-          path: hosted-evidence/found-composition-preview-iphone.png
-          if-no-files-found: error
+          name: moticos-browser-evidence
+          path: |
+            test-results/screenshots
+            test-results/postcards
+            test-results/**/trace.zip
+            playwright-report
+          if-no-files-found: ignore
           retention-days: 1
