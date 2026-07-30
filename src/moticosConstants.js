@@ -22,15 +22,16 @@ export const FIBER =
   "<rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.26'/></svg>";
 
 export const TIERS = [
-  { name: "Clip", bg: "#C9A876", ink: "#3B2E1F", shape: 0 },
-  { name: "Fragment", bg: "#E4D9BB", ink: "#3B2E1F", shape: 1 },
-  { name: "Glyph", bg: "#221F1D", ink: "#EDE6D6", shape: 2 },
-  { name: "Panel", bg: "#A83228", ink: "#FFF8E8", shape: 1 },
-  { name: "Chop", bg: "#365D54", ink: "#FFF8E8", shape: 3 },
-  { name: "Assemblage", bg: "#D9A441", ink: "#221F1D", shape: 2 },
-  { name: "Correspondence", bg: "#31566E", ink: "#FFF8E8", shape: 4 },
+  { name: "Clip", bg: "#C9A876", canvasBg: "#C9A876", ink: "#3B2E1F", shape: 0 },
+  { name: "Fragment", bg: "#E4D9BB", canvasBg: "#E4D9BB", ink: "#3B2E1F", shape: 1 },
+  { name: "Glyph", bg: "#221F1D", canvasBg: "#221F1D", ink: "#EDE6D6", shape: 2 },
+  { name: "Panel", bg: "#A83228", canvasBg: "#A83228", ink: "#FFF8E8", shape: 1 },
+  { name: "Chop", bg: "#365D54", canvasBg: "#365D54", ink: "#FFF8E8", shape: 3 },
+  { name: "Assemblage", bg: "#D9A441", canvasBg: "#D9A441", ink: "#221F1D", shape: 2 },
+  { name: "Correspondence", bg: "#31566E", canvasBg: "#31566E", ink: "#FFF8E8", shape: 4 },
   {
-    name: "Moticos",
+    name: "Motico",
+    canvasBg: "#D9A441",
     bg: "conic-gradient(from 45deg, #A83228, #D9A441, #365D54, #31566E, #A83228)",
     ink: "#221F1D",
     shape: 3,

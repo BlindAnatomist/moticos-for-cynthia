@@ -1,5 +1,7 @@
+import { titleForTile } from "./collageArt.js";
+import { drawCollageTile } from "./collageCanvas.js";
 import { SIZE } from "./gameLogic.js";
-import { SHAPES, TIERS, drawTilePath } from "./moticosConstants.js";
+import { TIERS } from "./moticosConstants.js";
 
 export default async function exportPostcardImage({
   board,
@@ -17,7 +19,7 @@ export default async function exportPostcardImage({
   }
 
   const width = 600;
-  const height = 760;
+  const height = 780;
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
@@ -38,58 +40,36 @@ export default async function exportPostcardImage({
   ctx.fillStyle = "#221F1D";
   ctx.textAlign = "center";
   ctx.font = "44px 'Special Elite', monospace";
-  ctx.fillText("MOTICOS", width / 2, 92);
+  ctx.fillText("MOTICOS", width / 2, 82);
 
   ctx.font = "16px 'Archivo', sans-serif";
   ctx.fillStyle = "#5B5347";
   ctx.fillText(
     `Highest: ${TIERS[highest].name}   Score: ${score}   Merges: ${merges}`,
     width / 2,
-    120
+    110
   );
+
+  const featured = board.find((tile) => tile?.tier === highest);
+  if (featured) {
+    ctx.font = "italic 15px Georgia, serif";
+    ctx.fillStyle = "#6A5C4D";
+    ctx.fillText(titleForTile(featured), width / 2, 136, 500);
+  }
 
   const gridSize = 480;
   const gridX = (width - gridSize) / 2;
-  const gridY = 150;
+  const gridY = 160;
   const cell = gridSize / SIZE;
   const gap = 4;
 
-  board.forEach((value, index) => {
-    if (value === null) return;
+  board.forEach((tile, index) => {
+    if (!tile) return;
     const row = Math.floor(index / SIZE);
     const column = index % SIZE;
-    const x = gridX + column * cell;
-    const y = gridY + row * cell;
-    const tier = TIERS[value];
-
-    drawTilePath(
-      ctx,
-      x + gap / 2,
-      y + gap / 2,
-      cell - gap,
-      cell - gap,
-      SHAPES[tier.shape]
-    );
-
-    if (tier.special && ctx.createConicGradient) {
-      const gradient = ctx.createConicGradient(
-        Math.PI / 4,
-        x + cell / 2,
-        y + cell / 2
-      );
-      const stops = ["#A83228", "#D9A441", "#365D54", "#31566E", "#A83228"];
-      stops.forEach((color, stopIndex) => {
-        gradient.addColorStop(stopIndex / (stops.length - 1), color);
-      });
-      ctx.fillStyle = gradient;
-    } else {
-      ctx.fillStyle = tier.special ? "#D9A441" : tier.bg;
-    }
-
-    ctx.fill();
-    ctx.fillStyle = tier.ink;
-    ctx.font = "10px 'Archivo', sans-serif";
-    ctx.fillText(tier.name, x + cell / 2, y + cell / 2 + 3);
+    const x = gridX + column * cell + gap / 2;
+    const y = gridY + row * cell + gap / 2;
+    drawCollageTile(ctx, x, y, cell - gap, cell - gap, tile);
   });
 
   ctx.strokeStyle = "#31566E";
@@ -109,6 +89,11 @@ export default async function exportPostcardImage({
     year: "numeric",
   });
   ctx.fillText(date, width - 90, height - 78);
+
+  ctx.textAlign = "left";
+  ctx.font = "12px Georgia, serif";
+  ctx.fillStyle = "#6A5C4D";
+  ctx.fillText("cut, remembered, sent", 54, height - 74);
 
   const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
   if (!blob) throw new Error("Postcard rendering failed.");

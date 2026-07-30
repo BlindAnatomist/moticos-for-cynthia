@@ -1,8 +1,10 @@
 import Burst from "./Burst.jsx";
-import { GRAIN, SHAPES, TIERS, clipPathOf, labelSize, tileBackground } from "./moticosConstants.js";
+import ResidueMark from "./ResidueMark.jsx";
+import TileArtwork from "./TileArtwork.jsx";
+import { GRAIN, SHAPES, TIERS, clipPathOf } from "./moticosConstants.js";
 
-function FloatingTile({ x, y, size, tierIndex, snapBack = false, flying = false }) {
-  const tier = TIERS[tierIndex];
+function FloatingTile({ x, y, size, tile, snapBack = false, flying = false }) {
+  const tier = TIERS[tile.tier];
   return (
     <div
       className={`mm-floating-tile${snapBack ? " snap-back" : ""}${flying ? " flying" : ""}`}
@@ -11,19 +13,17 @@ function FloatingTile({ x, y, size, tierIndex, snapBack = false, flying = false 
         top: y - size / 2,
         width: size,
         height: size,
-        background: tileBackground(tier),
         clipPath: clipPathOf(SHAPES[tier.shape]),
       }}
     >
-      <span style={{ fontSize: labelSize(tier.name), color: tier.ink }}>
-        {tier.name}
-      </span>
+      <TileArtwork tile={tile} />
     </div>
   );
 }
 
 export default function MoticosBoard({
   board,
+  residue,
   gridRef,
   cellRefs,
   drag,
@@ -44,8 +44,8 @@ export default function MoticosBoard({
       className="mm-board"
       style={{ backgroundImage: `url("${GRAIN}")` }}
     >
-      {board.map((value, index) => {
-        const tier = value === null ? null : TIERS[value];
+      {board.map((tile, index) => {
+        const tier = tile ? TIERS[tile.tier] : null;
         const isDragSource = drag?.index === index && drag.dragging;
         const isFlightSource = flying?.from === index;
         const tileBursts = bursts.filter((burst) => burst.index === index);
@@ -57,7 +57,7 @@ export default function MoticosBoard({
           hoverIndex === index &&
           index !== drag.index
         ) {
-          dropClass = board[index] === board[drag.index]
+          dropClass = board[index]?.tier === board[drag.index]?.tier
             ? " drop-valid"
             : " drop-invalid";
         }
@@ -70,17 +70,19 @@ export default function MoticosBoard({
             type="button"
             key={index}
             data-cell-index={index}
-            data-tier={value ?? "empty"}
+            data-tier={tile?.tier ?? "empty"}
+            data-lineage={tile?.lineage ?? 0}
+            data-motif-count={tile?.motifs.length ?? 0}
             onPointerDown={(event) => onPointerDown(event, index)}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerCancel}
-            aria-label={tier ? `${tier.name}, tier ${value + 1}` : "empty space"}
+            aria-label={tier ? `${tier.name}, tier ${tile.tier + 1}, ${tile.lineage} source scraps` : "empty space"}
             disabled={!tier}
             className={`mm-tile${pasteIdx === index ? " paste" : ""}${spawnIdx === index ? " spawn" : ""}${dropClass}`}
             style={{
               cursor: tier ? "grab" : "default",
-              background: tier ? tileBackground(tier) : "transparent",
+              background: tier ? tier.canvasBg ?? tier.bg : "transparent",
               boxShadow: tier
                 ? "inset 0 1px 3px rgba(0,0,0,0.22), inset 0 -2px 3px rgba(255,255,255,0.15), 0 3px 4px rgba(0,0,0,0.3)"
                 : "none",
@@ -88,17 +90,8 @@ export default function MoticosBoard({
               opacity: isDragSource || isFlightSource ? 0.18 : 1,
             }}
           >
-            {tier && (
-              <span
-                className="mm-tile-label"
-                style={{
-                  fontSize: `clamp(7px, 2.25vw, ${labelSize(tier.name)}px)`,
-                  color: tier.ink,
-                }}
-              >
-                {tier.name}
-              </span>
-            )}
+            <ResidueMark residue={residue[index]} />
+            {tile && <TileArtwork tile={tile} />}
             {tier?.special && <span className="mm-special-ring" />}
             {tileBursts.map((burst) => (
               <Burst
@@ -112,12 +105,12 @@ export default function MoticosBoard({
         );
       })}
 
-      {drag && board[drag.index] !== null && (drag.dragging || drag.snapBack) && (
+      {drag && board[drag.index] && (drag.dragging || drag.snapBack) && (
         <FloatingTile
           x={drag.x}
           y={drag.y}
           size={drag.size}
-          tierIndex={board[drag.index]}
+          tile={board[drag.index]}
           snapBack={drag.snapBack}
         />
       )}
@@ -127,7 +120,7 @@ export default function MoticosBoard({
           x={flying.x}
           y={flying.y}
           size={flying.size}
-          tierIndex={flying.tier}
+          tile={flying.tile}
           flying
         />
       )}
