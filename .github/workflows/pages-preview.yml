@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - work/fresh-moticos-playable
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -12,7 +15,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: moticos-pages-preview
+  group: moticos-pages-preview-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
