@@ -150,6 +150,38 @@ test("reaches Panel legally and downloads a collage postcard", async ({ page }, 
   await download.saveAs(`test-results/postcards/${testInfo.project.name}-collage-panel.png`);
 });
 
+test("reaches Motico, presents the arrival, and saves the final correspondence", async ({ page }, testInfo) => {
+  test.setTimeout(90_000);
+
+  for (let merge = 1; merge <= 127; merge += 1) {
+    await mergeHighestAvailablePair(page, merge);
+  }
+
+  await expect(page.getByTestId("highest")).toHaveText("Motico");
+  await expect(page.locator('[data-tier="7"]')).toHaveCount(1);
+  await expect(page.locator('[data-tier="7"]')).toHaveAttribute("data-lineage", "128");
+  const arrival = page.getByRole("dialog");
+  await expect(arrival).toBeVisible();
+  await expect(arrival.getByText("A MOTICO HAS ARRIVED")).toBeVisible();
+  await expect(arrival.getByText("128 scraps have become one correspondence.")).toBeVisible();
+
+  await mkdir("test-results/screenshots", { recursive: true });
+  await page.screenshot({
+    path: `test-results/screenshots/${testInfo.project.name}-motico-arrival.png`,
+    fullPage: true,
+  });
+
+  const downloadPromise = page.waitForEvent("download");
+  await arrival.getByRole("button", { name: "Save postcard" }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/^moticos-motico-\d+\.png$/);
+  await mkdir("test-results/postcards", { recursive: true });
+  await download.saveAs(`test-results/postcards/${testInfo.project.name}-motico.png`);
+
+  await page.getByRole("button", { name: "Return to the board" }).click();
+  await expect(arrival).toBeHidden();
+});
+
 test("renders all tiers in the development gallery", async ({ page }, testInfo) => {
   await page.goto("/?gallery=1");
   await expect(page.getByRole("heading", { name: "Every tier, inspected at full scale" })).toBeVisible();
