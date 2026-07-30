@@ -72,16 +72,15 @@ jobs:
           await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 8 });
           await page.mouse.up();
 
-          await page.getByTestId('score').waitFor({ state: 'visible' });
-          if ((await page.getByTestId('score').textContent())?.trim() !== '20') throw new Error('Hosted merge did not score 20.');
-          if ((await page.getByTestId('merges').textContent())?.trim() !== '1') throw new Error('Hosted merge count did not advance.');
-          if ((await page.getByTestId('highest').textContent())?.trim() !== 'Fragment') throw new Error('Hosted highest tier did not become Fragment.');
+          await page.waitForFunction(() => document.querySelector('[data-testid="score"]')?.textContent?.trim() === '20');
+          await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent?.trim() === '1');
+          await page.waitForFunction(() => document.querySelector('[data-testid="highest"]')?.textContent?.trim() === 'Fragment');
           await page.waitForTimeout(750);
           await page.screenshot({ path: 'test-results/hosted-preview/after-merge.png', fullPage: true });
 
           await page.getByRole('button', { name: 'Undo' }).click();
-          if ((await page.getByTestId('score').textContent())?.trim() !== '0') throw new Error('Hosted Undo did not restore score.');
-          if (await page.locator('[data-tier="0"]').count() !== 8) throw new Error('Hosted Undo did not restore eight Clips.');
+          await page.waitForFunction(() => document.querySelector('[data-testid="score"]')?.textContent?.trim() === '0');
+          await page.waitForFunction(() => document.querySelectorAll('[data-tier="0"]').length === 8);
 
           await page.getByRole('button', { name: 'Shuffle (3)' }).click();
           await page.getByRole('button', { name: 'Shuffle (2)' }).waitFor({ state: 'visible' });
