@@ -1,4 +1,4 @@
-name: Publish Found Composition Preview
+name: Verify Hosted Found Composition Preview
 
 on:
   pull_request:
@@ -8,16 +8,16 @@ on:
       - .github/workflows/quality.yml
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: moticos-found-composition-preview
-  cancel-in-progress: false
+  group: moticos-found-composition-hosted-verification
+  cancel-in-progress: true
 
 jobs:
-  publish-and-verify:
+  verify-hosted-preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
 
     steps:
       - name: Check out exact publication branch
@@ -26,13 +26,18 @@ jobs:
           ref: work/publish-found-composition-preview
           fetch-depth: 0
 
-      - name: Verify immutable candidate source
+      - name: Verify candidate and preserved Pages trees
         shell: bash
         run: |
           set -euo pipefail
           git merge-base --is-ancestor 986d4a4415f88faeecdbed6e714a27ebb2644fbe HEAD
           git diff --exit-code 986d4a4415f88faeecdbed6e714a27ebb2644fbe -- \
             index.html package.json package-lock.json vite.config.js playwright.config.js src tests
+
+          git fetch origin gh-pages
+          test "$(git rev-parse origin/gh-pages:index.html)" = "71a34b8ed4421f3710c923cdcba91a7231a05254"
+          test "$(git rev-parse origin/gh-pages:collage-preview/index.html)" = "fd0c04f55b7429b78ad5d33b7656ee66d0874d84"
+          test "$(git show origin/gh-pages:found-composition-preview/accepted-application-commit.txt)" = "986d4a4415f88faeecdbed6e714a27ebb2644fbe"
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
@@ -41,48 +46,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-
-      - name: Build isolated third preview
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run build -- --base=/moticos-for-cynthia/found-composition-preview/
-          printf '%s\n' '986d4a4415f88faeecdbed6e714a27ebb2644fbe' > dist/accepted-application-commit.txt
-
-      - name: Publish only the third preview directory
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch origin gh-pages
-
-          ROOT_INDEX_BEFORE="$(git rev-parse origin/gh-pages:index.html)"
-          ROOT_ASSETS_BEFORE="$(git rev-parse origin/gh-pages:assets)"
-          COLLAGE_TREE_BEFORE="$(git rev-parse origin/gh-pages:collage-preview)"
-
-          test "$ROOT_INDEX_BEFORE" = "71a34b8ed4421f3710c923cdcba91a7231a05254"
-          test "$(git rev-parse origin/gh-pages:collage-preview/index.html)" = "fd0c04f55b7429b78ad5d33b7656ee66d0874d84"
-
-          if git cat-file -e origin/gh-pages:found-composition-preview 2>/dev/null; then
-            echo 'The third preview path already exists; refusing to replace it.' >&2
-            exit 1
-          fi
-
-          git worktree add /tmp/moticos-gh-pages origin/gh-pages
-          mkdir -p /tmp/moticos-gh-pages/found-composition-preview
-          cp -R dist/. /tmp/moticos-gh-pages/found-composition-preview/
-
-          cd /tmp/moticos-gh-pages
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add found-composition-preview
-          git commit -m 'Publish found composition preview'
-          git push origin HEAD:gh-pages
-
-          git fetch origin gh-pages
-          test "$ROOT_INDEX_BEFORE" = "$(git rev-parse origin/gh-pages:index.html)"
-          test "$ROOT_ASSETS_BEFORE" = "$(git rev-parse origin/gh-pages:assets)"
-          test "$COLLAGE_TREE_BEFORE" = "$(git rev-parse origin/gh-pages:collage-preview)"
-          test "$(git show origin/gh-pages:found-composition-preview/accepted-application-commit.txt)" = "986d4a4415f88faeecdbed6e714a27ebb2644fbe"
 
       - name: Wait for Pages and confirm all three addresses
         shell: bash
