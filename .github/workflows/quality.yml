@@ -1,0 +1,58 @@
+name: Quality
+
+on:
+  push:
+    branches:
+      - main
+      - work/fresh-moticos-playable
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moticos-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run game-logic tests
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser tests and capture screenshots
+        run: npm run test:e2e
+
+      - name: Upload screenshots and traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-browser-evidence
+          path: |
+            test-results/screenshots
+            test-results/**/trace.zip
+            playwright-report
+          if-no-files-found: ignore
+          retention-days: 1

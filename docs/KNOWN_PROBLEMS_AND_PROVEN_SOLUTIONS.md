@@ -1,51 +1,33 @@
 # Known Problems and Proven Solutions
 
-This is the consolidated operational memory for `BlindAnatomist/monicos-for-cynthia`.
+This is the consolidated operational memory for Moticos.
 
-Record a problem here only after it has actually occurred and its cause or solution has been established with evidence. Do not copy unrelated incidents from other repositories merely because they may be cautionary.
-
-## Current state
-
-No Monicos-specific incidents have yet been recorded.
+Record a problem only after it has occurred and its cause or solution has evidence. Do not import unrelated incidents from other repositories.
 
 ## Repository-wide proven standards
-
-These standards are inherited because the underlying mechanisms are general, not because another repository's history governs Monicos.
 
 ### Change method after two confirmed failures
 
 When the same connector, transfer path, command, workflow, or deployment mechanism fails twice for the same established reason, stop repeating it and choose a materially different route.
 
-Required response:
+### Visual interaction failures are geometry and state failures
 
-1. Preserve the exact state already completed.
-2. Identify the one remaining gate.
-3. State why the current mechanism is invalid.
-4. Select a replacement mechanism that preserves source fidelity.
-5. Define the new stop condition.
-6. Keep the owner informed while the replacement route is executed.
+For drag-and-drop defects, inspect the actual target geometry, pointer capture, animation state, responsive dimensions, and delayed state transitions. Do not patch only the visible symptom.
 
-Do not manually rebuild large source files from overlapping fragments when an authenticated checkout, direct file route, verified artifact, or other exact method is available.
+The blind owner must not be asked to validate visual alignment or appearance that can be inspected through screenshots and browser tooling.
 
-### Accessibility failures are mechanism failures
+## Current incidents under first-playable verification
 
-When VoiceOver announces the wrong item, repeats content, lands focus incorrectly, or exposes an unusable swipe path, diagnose the semantic mechanism rather than patching the spoken symptom alone.
+The supplied source exposed two concrete mechanisms before browser execution:
 
-Preserve these distinctions:
+1. Drop targeting and flight centers were calculated by dividing the outer board rectangle into six equal bands, ignoring grid padding and gaps. This could select or animate toward the wrong cell near boundaries.
+2. A board containing one tile from each of the eight tiers had no possible merge. Because matching tiles may merge from anywhere, shuffling positions could not restore a move.
 
-- accessible name: concise identity of the control;
-- accessible description: supplementary instruction or consequence;
-- visible text: information available in ordinary reading order;
-- live feedback: transient confirmation or error information;
-- focus movement: deliberate relocation only when required for comprehension or recovery.
-
-A control should not absorb an adjacent paragraph into its accessible name merely to force that paragraph to be spoken.
+These will be promoted to proven incident entries after the repaired implementation passes automated and browser verification.
 
 ## Incident entry template
 
-Use the following structure for each verified incident.
-
-### MON-000 — Concise problem name
+### MOT-000 — Concise problem name
 
 Status: `investigating`, `proven`, `failed-do-not-repeat`, or `superseded`
 
@@ -55,24 +37,24 @@ Affected area:
 
 #### Symptoms
 
-Describe what the user, test, workflow, or hosted environment actually did.
+Describe what the player, test, workflow, or hosted environment actually did.
 
 #### Cause
 
-State the established technical or procedural mechanism. Distinguish evidence from inference.
+State the established mechanism and distinguish evidence from inference.
 
 #### Failed approaches
 
-Record approaches that were attempted and why they failed or should not be repeated.
+Record attempted approaches that failed or should not be repeated.
 
 #### Proven solution
 
-Describe the exact solution that worked, including relevant files, commands, commits, pull requests, or acceptance evidence.
+Describe the exact solution that worked, including files, commits, tests, screenshots, or acceptance evidence.
 
 #### Prevention rule
 
-State the reusable rule that should govern future work.
+State the reusable rule.
 
 #### Scope
 
-State whether the rule is specific to one component, repository-wide, or a candidate for use elsewhere.
+State whether the rule is component-specific, repository-wide, or a candidate for use elsewhere.

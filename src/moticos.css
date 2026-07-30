@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&family=Archivo:wght@400;600;700;800&display=swap");
+
+.mm-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 26px 16px 52px;
+  font-family: "Archivo", sans-serif;
+}
+
+.mm-shell {
+  width: 100%;
+  max-width: 480px;
+}
+
+.mm-header {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mm-title {
+  margin: 0;
+  color: #221f1d;
+  font-family: "Special Elite", monospace;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 0 rgba(201, 168, 118, 0.6);
+  transform: rotate(-1deg);
+}
+
+.mm-subtitle {
+  margin-top: 6px;
+  color: #5b5347;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mm-mute {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  padding: 6px;
+  border: 0;
+  color: #5b5347;
+  background: transparent;
+  cursor: pointer;
+}
+
+.mm-scoreboard {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  color: #ede6d6;
+  background: #221f1d;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.mm-scoreboard strong {
+  font-size: 14px;
+}
+
+.mm-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 7px;
+  padding: 9px;
+  border-radius: 12px;
+  background: #cbbe9c;
+  background-image: var(--grain);
+  box-shadow:
+    inset 0 0 0 2px #b7a97e,
+    inset 0 2px 10px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mm-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 2px;
+  border: 0;
+  border-radius: 4px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mm-tile-label,
+.mm-floating-tile span {
+  max-width: 88%;
+  font-weight: 800;
+  line-height: 1.05;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15px;
+  overflow-wrap: anywhere;
+}
+
+.mm-special-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px #d9a441;
+  pointer-events: none;
+}
+
+.mm-floating-tile {
+  position: fixed;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  box-shadow: 0 14px 22px rgba(0, 0, 0, 0.4);
+  transform: rotate(-7deg) scale(1.1);
+}
+
+.mm-floating-tile.snap-back {
+  transition: left 170ms ease-out, top 170ms ease-out, transform 170ms ease-out;
+  transform: rotate(0deg) scale(1);
+}
+
+.mm-floating-tile.flying {
+  transition: left 190ms cubic-bezier(0.3, 0.6, 0.3, 1), top 190ms cubic-bezier(0.3, 0.6, 0.3, 1);
+}
+
+.mm-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.mm-progression {
+  margin-top: 28px;
+}
+
+.mm-progression-title {
+  margin-bottom: 7px;
+  color: #5b5347;
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.mm-progression-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.mm-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mm-scrap-orbit {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mm-scrap {
+  display: block;
+  border-radius: 1px;
+  animation: scrapOut 560ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.mm-tile:focus-visible,
+.mm-btn:focus-visible,
+.mm-mute:focus-visible {
+  outline: 3px solid #31566e;
+  outline-offset: 3px;
+}
+
+.mm-tile.paste {
+  animation: pasteDown 300ms cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.mm-tile.spawn {
+  animation: dropIn 340ms cubic-bezier(0.2, 1.1, 0.3, 1);
+}
+
+.mm-tile.drop-valid {
+  animation: dropGlow 550ms ease-in-out infinite;
+}
+
+.mm-tile.drop-invalid {
+  box-shadow: 0 0 0 3px rgba(138, 59, 52, 0.7), inset 0 1px 3px rgba(0, 0, 0, 0.25) !important;
+}
+
+.mm-stat-highest.flash {
+  animation: recordFlash 700ms ease-out;
+}
+
+@keyframes scrapOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--dist) * -1)) rotate(var(--rot)) scale(0.4);
+  }
+}
+
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px) rotate(-10deg) scale(0.55);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(2px) rotate(3deg) scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes pasteDown {
+  0% { transform: scale(1.28) rotate(6deg); }
+  55% { transform: scale(0.92) rotate(-3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes dropGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 2px #d9a441, inset 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 4px #d9a441, inset 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@keyframes recordFlash {
+  0% {
+    color: #ede6d6;
+    text-shadow: 0 0 0 #d9a441;
+  }
+  40% {
+    color: #d9a441;
+    text-shadow: 0 0 10px #d9a441;
+  }
+  100% {
+    color: #ede6d6;
+    text-shadow: 0 0 0 #d9a441;
+  }
+}
+
+@media (max-width: 380px) {
+  .mm-page {
+    padding-inline: 10px;
+  }
+
+  .mm-board {
+    gap: 5px;
+    padding: 7px;
+  }
+
+  .mm-controls {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-tile,
+  .mm-scrap,
+  .mm-stat-highest.flash,
+  .mm-floating-tile {
+    animation: none !important;
+    transition: none !important;
+  }
+}

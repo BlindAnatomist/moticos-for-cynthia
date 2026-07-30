@@ -1,6 +1,8 @@
 # Repository Instructions
 
-This file governs all agent work in `BlindAnatomist/monicos-for-cynthia`.
+This file governs all agent work in `BlindAnatomist/moticos-for-cynthia`.
+
+The GitHub repository may temporarily retain the misspelled slug `monicos-for-cynthia` until the owner renames it. Product text, branch names, documentation, code, and future references must use `Moticos`.
 
 ## Authoritative reconstruction
 
@@ -9,58 +11,62 @@ Before changing the repository:
 1. Confirm the exact repository, branch, starting commit, and any open pull request in scope.
 2. Read `docs/PREFLIGHT.md`.
 3. Read `docs/implementation-status.md`.
-4. Read the relevant entries in `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md`.
-5. Inspect the current implementation and preserve behavior already recorded as accepted unless the assignment explicitly changes it.
+4. Read relevant entries in `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md`.
+5. Inspect the current implementation and preserve accepted behavior unless the assignment explicitly changes it.
 
-Do not rely on conversation history alone when the repository can establish the current state.
+Do not rely on conversation history alone when repository evidence is available.
 
-## Repository character
+## Product authority
 
-This is a public repository. Never commit secrets, credentials, access tokens, private correspondence, personal identifying information, or assets that Cynthia or the owner has not authorized for public release.
+Moticos is a visual, collage-inspired game for Cynthia. It is not being designed as a VoiceOver game for the owner.
 
-Standard GitHub-hosted Actions runners may be used when they materially support implementation, verification, or publication. This authorization does not extend to paid larger runners, paid infrastructure, paid external services, or spending of any kind without the owner's explicit approval.
+The owner is blind. Therefore:
+
+- Perform as much functional, browser, responsive, visual, and screenshot testing as the available tools permit before asking the owner or Cynthia to test.
+- Inspect screenshots directly and describe material visual findings in words.
+- Do not transfer visual quality assurance to the owner.
+- Ask Cynthia to test only when automated and agent-operated testing can no longer answer a genuinely human play-experience question.
+
+General web quality still matters: use semantic controls, visible focus, readable contrast, reduced-motion support, and robust touch and mouse interaction. These are engineering standards, not a requirement to redesign Moticos around VoiceOver.
+
+## Public repository boundary
+
+This is a public repository. Never commit secrets, credentials, tokens, private correspondence, personal identifying information, or assets not authorized for public release.
+
+Standard GitHub-hosted Actions runners may be used when they materially support implementation and verification. This does not authorize paid runners, paid services, or spending.
 
 ## Scope and authorization
 
 Treat each assignment as bounded.
 
-- Do not broaden a repair into redesign, cleanup, or a new feature phase.
-- Do not merge, publish, deploy, release, or alter external production state without explicit authorization for that action.
-- Do not delete accepted work merely because another implementation appears cleaner.
-- When instructions conflict, stop before an irreversible action and identify the conflict.
-
-## Accessibility authority
-
-Accessibility is part of functional correctness, not a later enhancement.
-
-- Preserve semantic HTML and native controls whenever possible.
-- Give every interactive control an accurate accessible name, role, state, and usable focus order.
-- Do not duplicate long instructions inside control names when adjacent text already provides them.
-- Automated accessibility checks supplement rather than replace real-device VoiceOver testing.
-- Record the exact point at which owner-operated iPhone testing becomes necessary.
+- Do not broaden a repair into an unrelated redesign or feature phase.
+- Do not merge, publish, deploy, release, or alter external production state without explicit authorization.
+- Do not copy code from the discarded earlier experiment unless the owner explicitly supplies and authorizes that exact code.
+- The fresh React source supplied by the owner is the starting design authority for the first playable.
 
 ## Working method
 
 - Inspect before editing.
-- Use the smallest coherent change that satisfies the assignment.
-- Run available relevant checks before pushing.
-- Batch coherent verified changes rather than using CI as an exploratory guessing loop.
-- Give the owner concise progress reports during multi-step work, including the current gate, any blocker, and the replacement method when a method fails.
+- Separate confirmed defects from optional improvements.
+- Use the smallest coherent repair that makes the game reliable.
+- Run deterministic logic tests, production builds, browser interaction tests, and screenshot inspection when applicable.
+- Give concise progress reports during multi-step work, including the current gate and any blocker.
 - Never claim completion without repository evidence and verification results.
 
 ## Failure and transport rule
 
-When a connector, transfer path, command, or deployment mechanism fails twice for the same confirmed reason, stop repeating that mechanism and change methods. Preserve exact source fidelity, but do not confuse fidelity with loyalty to a failed transport route.
+When a connector, transfer path, command, workflow, or deployment mechanism fails twice for the same confirmed reason, stop repeating it and change methods.
 
-Manual reconstruction of large files from overlapping fragments is prohibited when a safer source-preserving route exists.
+Do not manually reconstruct large files from overlapping fragments when a safer source-preserving route exists.
 
 ## Completion record
 
 At the end of a repository assignment, report:
 
-- the exact branch and final commit;
+- exact branch and final commit;
 - files changed;
-- checks run and their results;
-- Actions or deployments triggered, if any;
-- anything intentionally left unchanged;
-- the next bounded step and whether it requires owner testing or authorization.
+- tests, builds, browser runs, and screenshot inspections performed;
+- Actions or deployments triggered;
+- confirmed defects repaired;
+- optional improvements still under consideration;
+- whether Cynthia is needed for the next step.

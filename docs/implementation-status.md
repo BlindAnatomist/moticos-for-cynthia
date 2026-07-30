@@ -1,6 +1,8 @@
 # Implementation Status
 
-Repository: `BlindAnatomist/monicos-for-cynthia`
+Repository currently reachable as: `BlindAnatomist/monicos-for-cynthia`
+
+Correct project and intended repository name: `moticos-for-cynthia`
 
 Visibility: public
 
@@ -10,98 +12,64 @@ Status date: 2026-07-29
 
 ## Project identity
 
-Monicos for Cynthia is an independent game project. It must remain separate from Val Music Vault, Guitar Eyes, and the earlier experimental placement of the game inside another repository.
+Moticos for Cynthia is a fresh, independent visual game project. It is not a resurrection of the discarded earlier experiment and is not part of Val Music Vault or Guitar Eyes.
 
-The game concept, technical stack, rules, interface, hosting path, and acceptance criteria have not yet been formally established in this repository.
+The owner supplied a new React component as the design and gameplay starting point. Moticos is intended to be visually appealing and fun for Cynthia. It is not being designed as a VoiceOver game for the owner.
 
-## Current accepted state
+## Current work
 
-The repository has been created publicly under the accepted name:
+Active branch:
 
-`monicos-for-cynthia`
+`work/fresh-moticos-playable`
 
-The initial governance foundation consists of:
+The first playable uses:
 
-- `AGENTS.md`
-- `docs/PREFLIGHT.md`
-- `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md`
-- `docs/implementation-status.md`
+- React 19;
+- Vite 8;
+- Tone.js sound effects;
+- Lucide React controls;
+- Vitest game-logic tests;
+- Playwright desktop and mobile-sized Chromium tests;
+- GitHub Actions for public-repository verification and screenshot evidence.
 
-These files establish repository-specific operating discipline without importing the Music Vault's private-data, backend-production, or private-repository Actions constraints.
+## Supplied game concept
 
-## Automation position
+- Six-by-six collage board.
+- Eight initial Clip tiles.
+- Drag any clipping onto another clipping of the same tier.
+- Equal tiers merge into the next progression tier.
+- The progression ends at Moticos.
+- Two Moticos clear for a 500-point bonus.
+- Each merge creates a new clipping.
+- Undo, three shuffles, sound toggle, score tracking, and postcard export are included.
 
-Standard GitHub-hosted Actions runners may be used for this public repository when they materially support development, verification, preview publication, or release preparation.
+## Confirmed pre-browser defects under repair
 
-No workflow has yet been created because the application stack and required checks have not yet been selected. Before adding a workflow, define:
+1. Pointer drop and flight geometry ignored CSS grid gaps and padding.
+2. The board could reach eight unique tiers with no legal merge, while shuffle could not create a match.
+3. A delayed merge could overwrite a newly reset board if New board was activated during flight.
+4. Tone.js nodes were not disposed when the component unmounted.
+5. Burst fragments randomized again on rerender, producing avoidable animation instability.
+6. Tile text was extremely small on the supplied layout.
 
-- the application stack and package manager;
-- installation command;
-- type-checking command, if applicable;
-- lint command;
-- test command;
-- production-build command;
-- automated accessibility checks;
-- preview or publication mechanism;
-- permissions, concurrency, timeout, and artifact-retention requirements.
+## Verification plan
 
-Paid runners, paid infrastructure, and paid external services remain unauthorized unless the owner explicitly approves them.
+Before calling the first playable ready:
 
-## Accessibility position
+1. run deterministic game-logic tests;
+2. produce a successful production build;
+3. exercise drag, merge, scoring, undo, shuffle, and control locking in desktop Chromium;
+4. repeat core rendering at a mobile viewport;
+5. capture and inspect screenshots directly;
+6. repair confirmed visual or interaction defects;
+7. create a playable hosted preview only after the build is stable and publication is authorized.
 
-Accessibility is a core design requirement from the first implementation.
+## Owner and Cynthia involvement
 
-The eventual game must be designed for reliable VoiceOver operation on the owner's iPhone, including:
+The owner is not responsible for visual testing. Cynthia should not be asked to test until automated interaction and screenshot inspection have exhausted what can be verified without her.
 
-- concise and accurate control names;
-- logical swipe and focus order;
-- state changes announced without excessive repetition;
-- instructions separated from control identity;
-- recoverable validation and error handling;
-- game information available without visual inference;
-- no dependence on color, animation, spatial position, or timed visual recognition alone.
+The later human checkpoint should focus on whether the game feels enjoyable, understandable, and aesthetically satisfying rather than whether basic controls work.
 
-Automated checks will not replace real-device VoiceOver acceptance.
+## Current stop condition
 
-## Recorded incidents
-
-No Monicos-specific implementation incident has yet occurred.
-
-General proven standards are recorded in `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md` without pretending they originated in this repository.
-
-## Unresolved foundation decisions
-
-Before application code is added, establish:
-
-1. The authoritative spelling and meaning of “Monicos” within the game.
-2. The game rules and win or loss conditions.
-3. The intended player experience for Cynthia and any broader audience.
-4. Whether the game is single-player, local shared play, or something else.
-5. The initial content set and whether any content is private or copyrighted.
-6. The technical stack.
-7. The hosting and preview path.
-8. The minimum first playable checkpoint.
-9. The VoiceOver acceptance criteria for that checkpoint.
-
-## Next bounded task
-
-Create the project-definition brief before writing application code. That brief should establish the game concept, vocabulary, rules, accessibility model, first playable scope, technical constraints, and acceptance tests.
-
-After the brief is accepted:
-
-1. choose the smallest suitable technical stack;
-2. add `.github/AUTOMATION_POLICY.md` tailored to that stack;
-3. scaffold the application;
-4. add the first quality workflow;
-5. build a hosted first playable candidate;
-6. stop for real-device VoiceOver testing at the defined acceptance point.
-
-## Prohibited assumptions
-
-Until explicitly decided, do not assume:
-
-- that code from the earlier game experiment should be copied;
-- that the earlier implementation was technically or conceptually authoritative;
-- that publication or deployment is authorized;
-- that Cynthia's name in the repository title authorizes publication of personal information or private assets;
-- that a framework used in another repository is automatically appropriate here.
+Do not merge to `main` or publish a hosted game during this assignment without separate authorization. Stop after a verified playable branch, evidence review, and a concrete improvement assessment.
