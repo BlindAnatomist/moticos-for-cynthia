@@ -32,6 +32,7 @@ export default function MoticosBoard({
   spawnIdx,
   bursts,
   hoverIndex,
+  matchTier,
   onPointerDown,
   onPointerMove,
   onPointerUp,
@@ -48,6 +49,8 @@ export default function MoticosBoard({
         const tier = tile ? TIERS[tile.tier] : null;
         const isDragSource = drag?.index === index && drag.dragging;
         const isFlightSource = flying?.from === index;
+        const isPossibleMatch =
+          drag?.dragging && !drag.snapBack && index !== drag.index && tile?.tier === matchTier;
         const tileBursts = bursts.filter((burst) => burst.index === index);
         let dropClass = "";
 
@@ -79,7 +82,7 @@ export default function MoticosBoard({
             onPointerCancel={onPointerCancel}
             aria-label={tier ? `${tier.name}, tier ${tile.tier + 1}, ${tile.lineage} source scraps` : "empty space"}
             disabled={!tier}
-            className={`mm-tile${pasteIdx === index ? " paste" : ""}${spawnIdx === index ? " spawn" : ""}${dropClass}`}
+            className={`mm-tile${pasteIdx === index ? " paste" : ""}${spawnIdx === index ? " spawn" : ""}${isPossibleMatch ? " match-possible" : ""}${dropClass}`}
             style={{
               cursor: tier ? "grab" : "default",
               background: tier ? tier.canvasBg ?? tier.bg : "transparent",
