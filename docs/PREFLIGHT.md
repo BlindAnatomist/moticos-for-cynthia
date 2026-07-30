@@ -4,7 +4,7 @@ Use this checklist before every substantial Moticos implementation, repair, revi
 
 ## 1. Establish authority
 
-- Confirm the repository currently reachable as `BlindAnatomist/monicos-for-cynthia`, pending correction to `BlindAnatomist/moticos-for-cynthia`.
+- Confirm the repository is `BlindAnatomist/moticos-for-cynthia`.
 - Record the active branch and exact starting commit.
 - Identify any open pull request governing the work.
 - Read `AGENTS.md`.
