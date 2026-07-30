@@ -1,0 +1,57 @@
+name: Legacy Pages Branch Preview
+
+on:
+  push:
+    branches:
+      - work/fresh-moticos-playable
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: moticos-legacy-pages
+  cancel-in-progress: true
+
+jobs:
+  publish-branch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact work branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/fresh-moticos-playable
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build project-path preview
+        run: npm run build -- --base=/moticos-for-cynthia/
+
+      - name: Prepare static branch
+        run: |
+          rm -rf /tmp/moticos-pages
+          mkdir -p /tmp/moticos-pages
+          cp -R dist/. /tmp/moticos-pages/
+          touch /tmp/moticos-pages/.nojekyll
+          printf '%s\n' "${GITHUB_SHA}" > /tmp/moticos-pages/source-commit.txt
+
+      - name: Publish compiled files to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --orphan gh-pages
+          git rm -rf .
+          cp -R /tmp/moticos-pages/. .
+          git add -A
+          git commit -m "Publish temporary Moticos preview from ${GITHUB_SHA}"
+          git push --force origin gh-pages
