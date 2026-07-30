@@ -1,0 +1,143 @@
+name: Publish Collage Preview
+
+on:
+  push:
+    branches:
+      - work/publish-collage-preview
+    paths:
+      - .github/workflows/publish-collage-preview.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: moticos-collage-preview
+  cancel-in-progress: true
+
+jobs:
+  publish-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out preview source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify accepted application bytes are unchanged
+        run: |
+          git diff --exit-code deeb973f16231404abd8decf3729e406e72e2246 -- \
+            index.html package.json package-lock.json vite.config.js playwright.config.js src tests
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build isolated preview
+        run: |
+          npm run build -- --base=/moticos-for-cynthia/collage-preview/
+          printf '%s\n' 'deeb973f16231404abd8decf3729e406e72e2246' > dist/accepted-application-commit.txt
+
+      - name: Publish without altering the root demo
+        run: |
+          git fetch origin gh-pages
+          ROOT_INDEX_BEFORE="$(git rev-parse origin/gh-pages:index.html)"
+          git worktree add /tmp/moticos-gh-pages origin/gh-pages
+          rm -rf /tmp/moticos-gh-pages/collage-preview
+          mkdir -p /tmp/moticos-gh-pages/collage-preview
+          cp -R dist/. /tmp/moticos-gh-pages/collage-preview/
+          cd /tmp/moticos-gh-pages
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add collage-preview
+          if git diff --cached --quiet; then
+            echo 'Collage preview already matches the accepted build.'
+          else
+            git commit -m 'Publish generative collage preview'
+            git push origin HEAD:gh-pages
+          fi
+          git fetch origin gh-pages
+          ROOT_INDEX_AFTER="$(git rev-parse origin/gh-pages:index.html)"
+          test "$ROOT_INDEX_BEFORE" = "$ROOT_INDEX_AFTER"
+
+      - name: Wait for GitHub Pages publication
+        run: |
+          URL='https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/'
+          READY=0
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent --show-error "$URL" | grep -q '<title>Moticos</title>'; then
+              READY=1
+              break
+            fi
+            sleep 5
+          done
+          test "$READY" -eq 1
+
+      - name: Install Mobile Safari WebKit
+        run: npx playwright install --with-deps webkit
+
+      - name: Verify the hosted iPhone experience
+        run: |
+          mkdir -p hosted-evidence
+          node --input-type=module <<'NODE'
+          import { webkit } from '@playwright/test';
+
+          const url = 'https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/';
+          const browser = await webkit.launch();
+          const context = await browser.newContext({
+            viewport: { width: 390, height: 844 },
+            deviceScaleFactor: 3,
+            isMobile: true,
+            hasTouch: true,
+          });
+          const page = await context.newPage();
+          const failures = [];
+          page.on('pageerror', error => failures.push(`pageerror: ${error.message}`));
+          page.on('console', message => {
+            if (message.type() === 'error') failures.push(`console: ${message.text()}`);
+          });
+
+          await page.goto(url, { waitUntil: 'networkidle' });
+          await page.getByRole('heading', { name: 'MOTICOS' }).waitFor();
+          if (await page.locator('[data-tier="0"]').count() !== 8) {
+            throw new Error('Hosted preview did not start with eight Clip tiles.');
+          }
+
+          await page.getByRole('button', { name: 'Mute sound effects' }).tap();
+          await page.getByRole('button', { name: 'Unmute sound effects' }).waitFor();
+
+          const first = page.locator('[data-tier="0"]').nth(0);
+          const second = page.locator('[data-tier="0"]').nth(1);
+          const from = await first.boundingBox();
+          const to = await second.boundingBox();
+          if (!from || !to) throw new Error('Unable to locate hosted Clip pair.');
+          await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
+          await page.mouse.down();
+          await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 10 });
+          await page.mouse.up();
+          await page.getByTestId('merges').waitFor();
+          await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent === '1');
+          if ((await page.getByTestId('score').textContent()) !== '20') {
+            throw new Error('Hosted merge did not score 20 points.');
+          }
+          if (failures.length) throw new Error(failures.join('\n'));
+
+          await page.screenshot({
+            path: 'hosted-evidence/collage-preview-iphone.png',
+            fullPage: true,
+          });
+          await browser.close();
+          NODE
+
+      - name: Upload hosted verification screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-collage-preview-hosted-evidence
+          path: hosted-evidence/collage-preview-iphone.png
+          if-no-files-found: error
+          retention-days: 1
