@@ -1,9 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const iphone13 = devices["iPhone 13"];
+
 export default defineConfig({
   testDir: "./tests/e2e",
-  timeout: 30_000,
-  expect: { timeout: 5_000 },
+  timeout: 45_000,
+  expect: { timeout: 7_500 },
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [["line"], ["html", { open: "never" }]] : "line",
@@ -17,15 +19,26 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
   },
   projects: [
-    { name: "chromium-desktop", use: { ...devices["Desktop Chrome"] } },
     {
-      name: "chromium-mobile",
+      name: "webkit-iphone-13",
       use: {
-        ...devices["Desktop Chrome"],
-        viewport: { width: 430, height: 932 },
-        isMobile: true,
-        hasTouch: true,
+        ...iphone13,
+        browserName: "webkit",
       },
+    },
+    {
+      name: "webkit-iphone-large",
+      use: {
+        ...iphone13,
+        browserName: "webkit",
+        viewport: { width: 430, height: 932 },
+        screen: { width: 430, height: 932 },
+        deviceScaleFactor: 3,
+      },
+    },
+    {
+      name: "chromium-desktop",
+      use: { ...devices["Desktop Chrome"] },
     },
   ],
 });
