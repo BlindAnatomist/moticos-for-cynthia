@@ -6,17 +6,19 @@ Visibility: public
 
 Default branch: `main`
 
-Status date: 2026-07-30
+Status date: 2026-07-31
 
 ## Project identity
 
 Moticos for Cynthia is a fresh, independent visual game project. It is not a resurrection of the discarded earlier experiment and is not part of Val Music Vault or Guitar Eyes.
 
-Moticos is intended to be visually appealing and fun for Cynthia. Cynthia's iPhone is the primary platform and acceptance authority. Desktop support is secondary. The owner is not responsible for visual quality assurance.
+Moticos is intended to be visually appealing and fun for Cynthia. Cynthia's physical iPhone is the primary human acceptance platform. Mobile Safari WebKit is the primary automated browser gate. Desktop support is secondary. The owner is not responsible for visual quality assurance.
 
-## Verified first playable
+`Moticos` is singular. It is an anagram of `osmotic` and is the authoritative name of the final form.
 
-Baseline development branch:
+## Frozen first playable
+
+Branch:
 
 `work/fresh-moticos-playable`
 
@@ -24,34 +26,19 @@ Draft pull request:
 
 `1 — Fresh Moticos first playable`
 
-The accepted first playable passed deterministic logic tests, production build, desktop and mobile-sized Chromium interaction tests, screenshot capture, a legal seven-merge route to Panel, postcard unlocking, and actual postcard PNG download.
-
-Exact verified application commit before later documentation and publication-support changes:
+Exact verified application commit:
 
 `75ee8a17dd62c7101167ed98b5890aad352e0c21`
-
-## Frozen Cynthia demo
 
 Public address:
 
 `https://blindanatomist.github.io/moticos-for-cynthia/`
 
-The demo is served from a dedicated compiled `gh-pages` branch. It is a frozen snapshot and does not follow development branches automatically. Continuing development cannot alter Cynthia's current demo unless the compiled root files on `gh-pages` are deliberately replaced.
+The original first-playable demo remains frozen at the root address and is not changed by later development.
 
-Hosted acceptance run `30552836701` confirmed against the public address:
+## Accepted generative collage version
 
-- page title `Moticos`;
-- eight initial Clip tiles;
-- a live drag merge scoring 20 points;
-- merge count advancing to 1;
-- highest tier advancing to Fragment;
-- Undo restoring the initial state;
-- Shuffle decrementing from 3 to 2;
-- no console or page errors.
-
-## Accepted generative collage iteration
-
-Active iteration branch:
+Branch:
 
 `work/generative-collage-iteration`
 
@@ -59,88 +46,133 @@ Draft pull request:
 
 `2 — Generative collage iteration`
 
-This branch is intentionally separated from both the frozen demo and the first-playable branch.
-
-The iteration introduces:
-
-- procedural miniature collages rather than plain color labels;
-- unique visual DNA for every spawned Clip;
-- merge ancestry that preserves material from both parent pieces;
-- accumulated lineage counts and generated artwork titles;
-- faint board residue where pieces were removed;
-- a meaningful three-use Chop action replacing cosmetic Shuffle;
-- collage-aware postcard rendering;
-- a final Motico arrival presentation;
-- a development-only all-tier visual gallery at `?gallery=1`;
-- the singular final tier name `Motico`;
-- iPhone safe-area support through `viewport-fit=cover` and environment insets;
-- 44-point tap targets for phone controls;
-- Mobile Safari WebKit as the primary automated browser gate.
-
 Exact accepted application commit:
 
 `deeb973f16231404abd8decf3729e406e72e2246`
 
-Quality run `30562311268` passed:
+Quality run:
 
-- eight deterministic logic tests, including the final Correspondence-to-Motico merge and 128-scrap lineage;
-- production Vite build;
-- WebKit installation and execution;
-- an iPhone 13 Mobile Safari profile;
-- a large 430-by-932 Mobile Safari profile;
-- secondary desktop Chromium coverage;
-- 20 browser scenarios passed and one desktop-only skip;
-- iPhone viewport containment and no horizontal overflow;
-- 44-point tap-target verification;
-- sound toggle and New board through touch taps;
-- merge, Undo, Chop, residue, scoring, and lineage behavior;
-- legal progression to Panel;
-- actual postcard PNG downloads in both iPhone profiles;
-- final Motico arrival containment and dismissal;
-- all-tier gallery rendering.
+`30562311268`
 
-Visual inspection of the exact evidence confirmed that the initial board, post-merge board, Chop state, Panel state, final arrival, progression, and postcards remain legible and composed on both iPhone sizes. The sound button is no longer blocked by the title.
-
-Evidence artifact:
-
-`sha256:920583cf2d11020f163e870a00f17876d6e4eee1a1a2cb18104209b106740956`
-
-## Published generative collage preview
-
-Public iPhone preview address:
+Public address:
 
 `https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/`
 
-The accepted application was compiled with project-relative asset paths and published only inside `gh-pages/collage-preview`. The frozen root demo was not replaced. Its root `index.html` blob remained:
+This version introduced unique procedural miniature collages, inherited visual ancestry, lineage counts, generated titles, residue, the three-use cutting mechanic, collage-aware postcard export, a final arrival, the all-tier gallery, iPhone safe-area support, 44-point controls, and Mobile Safari WebKit verification.
 
-`71a34b8ed4421f3710c923cdcba91a7231a05254`
+## Accepted found-composition version
 
-Hosted verification run `30565696221` passed:
+Exact application commit:
 
-- accepted-application byte verification against commit `deeb973f16231404abd8decf3729e406e72e2246`;
-- isolated production build;
-- root-demo preservation check before and after publication;
-- GitHub Pages availability at the separate subdirectory;
-- Mobile Safari WebKit load at an iPhone 13 viewport;
-- eight initial Clip tiles;
-- a real WebKit tap on the sound control;
-- a live Clip-to-Fragment merge;
-- merge count advancing to 1;
-- score advancing to 20;
-- no browser console or page errors;
-- hosted screenshot capture and visual inspection.
+`986d4a4415f88faeecdbed6e714a27ebb2644fbe`
 
-Hosted evidence artifact:
+Public address:
 
-`sha256:c24f69911c58d823f66c20f8c97161978b25e1678e1f7ffd10e927ef735e06ee`
+`https://blindanatomist.github.io/moticos-for-cynthia/found-composition-preview/`
 
-The one-use publication workflow was removed after verification. Publication PR 3 was closed without merging.
+This version introduced the five-by-five board, larger pieces, magnetic near-miss acceptance, stronger lift-and-snap behavior, visible possible matches, a 20-piece composition carrying 128 scraps, and a 19-merge route to the final form.
+
+Hosted verification run `30572688304` confirmed the separate preview while preserving the first two public versions.
+
+## Cynthia real-iPhone feedback
+
+Cynthia tested the found-composition version on her physical iPhone.
+
+Accepted human-tested behavior:
+
+- she liked the dragging and piece movement;
+- she thought the game was pretty;
+- the five-by-five tactile interaction should be preserved.
+
+Requested refinement:
+
+- replace sharp high-frequency sounds with gentler material sounds;
+- remove confusing generated text such as number-and-name combinations;
+- lengthen the session without returning to the 127-merge route;
+- introduce bonuses or discoveries before the final artwork;
+- make generated pieces more intentionally composed and less randomly accumulated;
+- significantly improve the progression area;
+- clearly distinguish native sharing from downloading and explain where downloads go;
+- preserve singular `Moticos` terminology;
+- rename the action from `Chop` to `Cut` while retaining `Chop` as a tier;
+- offer both a found-pieces route and a route beginning from individual scraps.
+
+## Verified Cynthia-feedback refinement
+
+Exact verified branch head before later documentation-only commits:
+
+`cf9d0b114e258839676b76b64962cdd5e159e2cc`
+
+Exact quality run:
+
+`30648298231`
+
+The refinement includes:
+
+- the accepted magnetic drag mechanism unchanged in purpose and feel;
+- a gentle material audio palette using low-pass pink and brown noise, muted low tones, and no bright ping effects;
+- generated-title sanitization so bare numbers and Cynthia's name cannot accidentally form path-like or account-like text;
+- a 25-piece Found Pieces route completing in 24 merges;
+- a From Scraps route completing in 31 merges while still converging on 128 scraps;
+- correspondence discoveries every six meaningful moves;
+- earned Keepsakes that let the player preserve a focal fragment through the next merge;
+- a composition grammar with focal, support, accent, and structural roles, controlled density, negative space, palette coordination, and recomposition across merges;
+- a two-column iPhone `Path to Moticos` archive with clear tier names, states, and current-stage emphasis;
+- separate `Share postcard` and `Download postcard` actions;
+- native file sharing through the iPhone share sheet when available;
+- explicit confirmation that Safari downloads are found in Downloads in the Files app;
+- final-tier and arrival language corrected to singular `Moticos`;
+- the action renamed `Cut` while the tier remains `Chop`;
+- transient reward and Keepsake notices implemented as pointer-transparent overlays so they never move the board during a gesture;
+- synchronous drag-state handling so pointer-up cannot read stale React state.
+
+Verification passed:
+
+- 11 deterministic game-logic, lineage, route, Keepsake, title, art-grammar, and audio-profile tests;
+- production Vite build;
+- Mobile Safari WebKit installation and execution;
+- iPhone 13 WebKit profile;
+- large 430-by-932 WebKit profile;
+- secondary desktop Chromium;
+- 32 browser scenarios passed;
+- one intentional desktop skip for the iPhone-only layout gate;
+- complete Found Pieces progression through 24 real drag merges in all three browser profiles;
+- complete From Scraps progression through 31 real drag merges in all three browser profiles;
+- magnetic near-miss merge and Undo;
+- Cut and board preservation;
+- Keepsake earning, arming, and focal-fragment preservation;
+- found-piece discovery;
+- native share path;
+- actual postcard downloads and explanatory confirmation;
+- final Moticos arrival;
+- recomposed all-tier gallery;
+- screenshot and postcard evidence upload.
+
+Evidence artifact:
+
+- artifact ID: `8800502464`;
+- SHA-256: `620862e04d4501ce8dfedd7d9b55d4d7f8e99ee0cf1585a5ac2229db73aba08d`;
+- 27 evidence files.
+
+Direct visual inspection of every screenshot set and all three postcard exports confirmed:
+
+- no horizontal overflow, clipped board, displaced controls, or broken iPhone safe-area layout;
+- the two starting routes are clear and visually distinct;
+- the 25-piece board remains comfortably readable on both iPhone sizes;
+- progression names, including `Correspondence`, are fully legible;
+- found, made, waiting, and current progression states are distinguishable;
+- reward notices do not reflow or obstruct play;
+- Keepsake preservation is visible without overwhelming the artwork;
+- Cut, magnetic merge, route discovery, and final arrival states remain composed;
+- the final dialog fits both iPhone profiles;
+- postcards are framed correctly and preserve distinct generated boards;
+- the recomposed pieces show stronger hierarchy and intentional negative space than the previous version.
 
 ## Current boundaries
 
 - `main` remains unchanged.
-- Draft pull requests 1 and 2 remain open and unmerged.
-- The original root demo remains available and unchanged.
-- The accepted generative iteration is now available at the separate `collage-preview` address for Cynthia's real-iPhone play-experience test.
-- Real-device feedback should evaluate comfort, beauty, clarity, sound, and desire to continue—not basic functionality already covered by automation.
-- Do not replace the root demo or merge either implementation pull request without separate authorization.
+- Draft PR 2 remains open and unmerged.
+- The first three public versions remain available and unchanged.
+- Exhibition Mode remains deferred.
+- The Cynthia-feedback refinement is verified but is not yet public at a fourth address.
+- Separate authorization already covers publishing this exact verified refinement as a fourth isolated preview while preserving the first three.
