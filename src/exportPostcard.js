@@ -3,13 +3,7 @@ import { drawCollageTile } from "./collageCanvas.js";
 import { SIZE } from "./gameLogic.js";
 import { TIERS } from "./moticosConstants.js";
 
-export default async function exportPostcardImage({
-  board,
-  highest,
-  score,
-  merges,
-  schedule,
-}) {
+export default async function renderPostcardImage({ board, highest, score, merges }) {
   if (document.fonts?.ready) {
     try {
       await document.fonts.ready;
@@ -98,12 +92,32 @@ export default async function exportPostcardImage({
   const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
   if (!blob) throw new Error("Postcard rendering failed.");
 
+  return {
+    blob,
+    filename: `moticos-${TIERS[highest].name.toLowerCase()}-${Date.now()}.png`,
+  };
+}
+
+export function downloadPostcard({ blob, filename, schedule = window.setTimeout }) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `moticos-${TIERS[highest].name.toLowerCase()}-${Date.now()}.png`;
+  link.download = filename;
   document.body.appendChild(link);
   link.click();
   link.remove();
   schedule(() => URL.revokeObjectURL(url), 1_000);
+}
+
+export async function sharePostcard({ blob, filename }) {
+  const file = new File([blob], filename, { type: "image/png" });
+  if (!navigator.share || !navigator.canShare?.({ files: [file] })) {
+    return { shared: false, reason: "unavailable" };
+  }
+  await navigator.share({
+    title: "Moticos postcard",
+    text: "A Moticos correspondence",
+    files: [file],
+  });
+  return { shared: true };
 }
