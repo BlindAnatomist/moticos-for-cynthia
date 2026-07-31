@@ -89,6 +89,7 @@ export default function MoticosMerge() {
   const cellRefs = useRef([]);
   const burstCounter = useRef(0);
   const timersRef = useRef(new Set());
+  const dragRef = useRef(null);
 
   const {
     playPickup,
@@ -186,6 +187,7 @@ export default function MoticosMerge() {
     setKeepsakeArmed(false);
     setReward(null);
     setPrevState(null);
+    dragRef.current = null;
     setDrag(null);
     setFlying(null);
     setPostcardStatus("");
@@ -301,6 +303,15 @@ export default function MoticosMerge() {
     finishMerge(nextBoard, result.mergedIndex, discoveredIndex);
   }
 
+  function setActiveDrag(next) {
+  dragRef.current = next;
+  setDrag(next);
+}
+
+function cancelDrag() {
+  setActiveDrag(null);
+}
+
   function handlePointerDown(event, index) {
     if (flying || !board[index]) return;
     try {
@@ -310,7 +321,7 @@ export default function MoticosMerge() {
     }
     const center = cellCenter(index);
     if (!center) return;
-    setDrag({
+    setActiveDrag({
       index,
       pointerId: event.pointerId,
       startX: event.clientX,
@@ -327,35 +338,36 @@ export default function MoticosMerge() {
   }
 
   function handlePointerMove(event) {
-    setDrag((current) => {
-      if (!current || current.pointerId !== event.pointerId || current.snapBack) {
-        return current;
-      }
-      const rawX = event.clientX;
-      const rawY = event.clientY;
-      const dx = rawX - current.startX;
-      const dy = rawY - current.startY;
-      const dragging = current.dragging || Math.hypot(dx, dy) > 6;
-      if (!dragging) {
-        return { ...current, rawX, rawY, x: rawX, y: rawY, dragging };
-      }
+  const current = dragRef.current;
+  if (!current || current.pointerId !== event.pointerId || current.snapBack) {
+    return;
+  }
 
-      const magnetic = findMagneticTarget(rawX, rawY, current.index);
-      if (!magnetic) {
-        return {
-          ...current,
-          rawX,
-          rawY,
-          x: rawX,
-          y: rawY,
-          dragging,
-          magneticIndex: null,
-        };
-      }
+  const rawX = event.clientX;
+  const rawY = event.clientY;
+  const dx = rawX - current.startX;
+  const dy = rawY - current.startY;
+  const dragging = current.dragging || Math.hypot(dx, dy) > 6;
+  let next;
 
+  if (!dragging) {
+    next = { ...current, rawX, rawY, x: rawX, y: rawY, dragging };
+  } else {
+    const magnetic = findMagneticTarget(rawX, rawY, current.index);
+    if (!magnetic) {
+      next = {
+        ...current,
+        rawX,
+        rawY,
+        x: rawX,
+        y: rawY,
+        dragging,
+        magneticIndex: null,
+      };
+    } else {
       const closeness = 1 - magnetic.distance / magnetic.radius;
       const pull = 0.28 + closeness * 0.34;
-      return {
+      next = {
         ...current,
         rawX,
         rawY,
@@ -364,71 +376,75 @@ export default function MoticosMerge() {
         dragging,
         magneticIndex: magnetic.index,
       };
-    });
+    }
   }
 
+  setActiveDrag(next);
+}
+
   function handlePointerUp(event) {
-    if (!drag || drag.pointerId !== event.pointerId) {
-      setDrag(null);
-      return;
-    }
-    if (!drag.dragging) {
-      setDrag(null);
-      return;
-    }
+  const activeDrag = dragRef.current;
+  if (!activeDrag || activeDrag.pointerId !== event.pointerId) {
+    cancelDrag();
+    return;
+  }
+  if (!activeDrag.dragging) {
+    cancelDrag();
+    return;
+  }
 
-    const directTargetIndex = findCellAtPoint(event.clientX, event.clientY);
-    const magnetic = findMagneticTarget(event.clientX, event.clientY, drag.index);
-    const targetIndex = magnetic?.index ?? directTargetIndex;
-    const fromTier = board[drag.index]?.tier;
-    const valid =
+  const directTargetIndex = findCellAtPoint(event.clientX, event.clientY);
+  const magnetic = findMagneticTarget(event.clientX, event.clientY, activeDrag.index);
+  const targetIndex = magnetic?.index ?? directTargetIndex;
+  const fromTier = board[activeDrag.index]?.tier;
+  const valid =
+    targetIndex !== -1 &&
+    targetIndex !== activeDrag.index &&
+    board[targetIndex]?.tier === fromTier;
+
+  if (!valid) {
+    const origin = cellCenter(activeDrag.index);
+    if (!origin) {
+      cancelDrag();
+      return;
+    }
+    if (
       targetIndex !== -1 &&
-      targetIndex !== drag.index &&
-      board[targetIndex]?.tier === fromTier;
-
-    if (!valid) {
-      const origin = cellCenter(drag.index);
-      if (!origin) {
-        setDrag(null);
-        return;
-      }
-      if (
-        targetIndex !== -1 &&
-        board[targetIndex] &&
-        board[targetIndex].tier !== fromTier
-      ) {
-        playDenied();
-      }
-      setDrag({ ...drag, snapBack: true, x: origin.x, y: origin.y });
-      schedule(() => setDrag(null), 170);
-      return;
+      board[targetIndex] &&
+      board[targetIndex].tier !== fromTier
+    ) {
+      playDenied();
     }
+    setActiveDrag({ ...activeDrag, snapBack: true, x: origin.x, y: origin.y });
+    schedule(cancelDrag, 170);
+    return;
+  }
 
-    const target = cellCenter(targetIndex);
-    if (!target) {
-      setDrag(null);
-      return;
-    }
+  const target = cellCenter(targetIndex);
+  if (!target) {
+    cancelDrag();
+    return;
+  }
 
-    const fromIndex = drag.index;
-    const boardSnapshot = board.slice();
-    const residueSnapshot = residue.slice();
-    const scoreSnapshot = score;
-    const mergesSnapshot = merges;
-    const highestSnapshot = highest;
-    const cutsSnapshot = cutsLeft;
-    const keepsakesSnapshot = keepsakes;
-    const keepsakeArmedSnapshot = keepsakeArmed;
+  const fromIndex = activeDrag.index;
+  const boardSnapshot = board.slice();
+  const residueSnapshot = residue.slice();
+  const scoreSnapshot = score;
+  const mergesSnapshot = merges;
+  const highestSnapshot = highest;
+  const cutsSnapshot = cutsLeft;
+  const keepsakesSnapshot = keepsakes;
+  const keepsakeArmedSnapshot = keepsakeArmed;
 
-    setFlying({
-      from: fromIndex,
-      to: targetIndex,
-      tile: board[fromIndex],
-      x: drag.x,
-      y: drag.y,
-      size: drag.size,
-    });
-    setDrag(null);
+  setFlying({
+    from: fromIndex,
+    to: targetIndex,
+    tile: board[fromIndex],
+    x: activeDrag.x,
+    y: activeDrag.y,
+    size: activeDrag.size,
+  });
+  cancelDrag();
 
     requestAnimationFrame(() => {
       setFlying((current) =>
@@ -655,7 +671,7 @@ export default function MoticosMerge() {
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
-          onPointerCancel={() => setDrag(null)}
+          onPointerCancel={cancelDrag}
         />
 
         <div className="mm-controls">
