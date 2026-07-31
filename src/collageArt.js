@@ -14,7 +14,6 @@ const WORDS = [
   "SIDEWALK",
   "TENDER",
   "HELLO",
-  "CYNTHIA",
   "CUT",
   "PASTE",
   "ELSEWHERE",
@@ -25,6 +24,9 @@ const WORDS = [
   "SENT",
   "KEEP",
   "REPLY",
+  "THREAD",
+  "REMEMBER",
+  "NEAR",
 ];
 
 const PALETTE = [
@@ -49,6 +51,13 @@ const MOTIF_KINDS = [
 ];
 
 const SILHOUETTES = ["eye", "bird", "shoe", "profile", "flower", "machine", "map"];
+
+const SUPPORT_ZONES = [
+  { x: [4, 20], y: [5, 20], width: [22, 38], height: [16, 32], rotation: [-15, 8] },
+  { x: [62, 76], y: [8, 24], width: [18, 32], height: [18, 34], rotation: [-8, 16] },
+  { x: [5, 22], y: [63, 77], width: [24, 42], height: [14, 28], rotation: [-12, 12] },
+  { x: [58, 73], y: [62, 76], width: [22, 38], height: [16, 31], rotation: [-14, 10] },
+];
 
 export function mixSeeds(...values) {
   let hash = 2166136261;
@@ -93,7 +102,7 @@ function motifKindForTier(tier, rng) {
   return choose(weighted, rng);
 }
 
-function createMotif(seed, index, tier, forcedKind) {
+function createMotif(seed, index, tier, forcedKind, options = {}) {
   const motifSeed = mixSeeds(seed, index, tier, 0x9e3779b9);
   const rng = makeSeededRng(motifSeed);
   const kind = forcedKind ?? motifKindForTier(tier, rng);
@@ -103,29 +112,36 @@ function createMotif(seed, index, tier, forcedKind) {
 
   return {
     id: `${motifSeed.toString(16)}-${index}`,
-    originSeed: seed,
+    originSeed: options.originSeed ?? seed,
     kind,
     variant: kind === "silhouette" ? choose(SILHOUETTES, rng) : Math.floor(rng() * 7),
     text:
       kind === "word"
         ? choose(WORDS, rng)
         : kind === "number"
-          ? String(10 + Math.floor(rng() * 89))
+          ? `No. ${10 + Math.floor(rng() * 89)}`
           : "",
-    x: between(8, 78, rng),
-    y: between(8, 78, rng),
-    width: between(kind === "word" ? 30 : 18, kind === "word" ? 68 : 50, rng),
-    height: between(kind === "word" ? 13 : 18, kind === "word" ? 22 : 50, rng),
-    rotation: between(-24, 24, rng),
+    x: 12,
+    y: 12,
+    width: kind === "word" ? 52 : 36,
+    height: kind === "word" ? 18 : 36,
+    rotation: 0,
     color: foreground,
     background,
-    opacity: between(0.72, 1, rng),
+    opacity: between(0.76, 1, rng),
     weight: rng() > 0.5 ? 700 : 500,
+    excludeFromTitle: Boolean(options.excludeFromTitle),
+    correspondence: Boolean(options.correspondence),
+    kept: Boolean(options.kept),
   };
 }
 
-function uniqueWords(motifs) {
-  return [...new Set(motifs.filter((motif) => motif.text).map((motif) => motif.text))];
+function titleWords(motifs) {
+  return [...new Set(
+    motifs
+      .filter((motif) => motif.kind === "word" && motif.text && !motif.excludeFromTitle)
+      .map((motif) => motif.text)
+  )];
 }
 
 function shuffleWithSeed(values, seed) {
@@ -138,12 +154,115 @@ function shuffleWithSeed(values, seed) {
   return next;
 }
 
-export function createFoundTile(tier = 0, rng = Math.random) {
+function targetMotifCount(tier) {
+  if (tier <= 1) return 3;
+  if (tier <= 4) return 4;
+  return 5;
+}
+
+function harmonize(motif, harmony, index) {
+  const foreground = harmony[index % harmony.length];
+  const background = harmony[(index + 1) % harmony.length];
+  return {
+    ...motif,
+    color: motif.kind === "tape" ? motif.color : foreground,
+    background: motif.kind === "tape" ? motif.background : background,
+  };
+}
+
+function placeFocal(motif, rng) {
+  const word = motif.kind === "word";
+  return {
+    ...motif,
+    role: "focal",
+    x: between(17, 29, rng),
+    y: between(19, 31, rng),
+    width: between(word ? 50 : 45, word ? 70 : 64, rng),
+    height: between(word ? 17 : 38, word ? 24 : 58, rng),
+    rotation: between(-7, 7, rng),
+    opacity: between(0.9, 1, rng),
+  };
+}
+
+function placeSupport(motif, zone, rng, index) {
+  const word = motif.kind === "word";
+  return {
+    ...motif,
+    role: "support",
+    x: between(zone.x[0], zone.x[1], rng),
+    y: between(zone.y[0], zone.y[1], rng),
+    width: between(
+      word ? Math.max(30, zone.width[0]) : zone.width[0],
+      word ? Math.max(44, zone.width[1]) : zone.width[1],
+      rng
+    ),
+    height: between(
+      word ? 13 : zone.height[0],
+      word ? 20 : zone.height[1],
+      rng
+    ),
+    rotation: between(zone.rotation[0], zone.rotation[1], rng),
+    opacity: between(index > 2 ? 0.68 : 0.78, 0.94, rng),
+  };
+}
+
+export function composeMotifs(candidates, seed, tier, options = {}) {
+  const rng = makeSeededRng(mixSeeds(seed, tier, 0xc011a6e));
+  const target = targetMotifCount(tier);
+  const requiredIds = new Set(options.requiredMotifIds ?? []);
+  const preservedId = options.preserveMotifId ?? null;
+  if (preservedId) requiredIds.add(preservedId);
+
+  const required = candidates.filter((motif) => requiredIds.has(motif.id));
+  const remaining = shuffleWithSeed(
+    candidates.filter((motif) => !requiredIds.has(motif.id)),
+    mixSeeds(seed, 0x51e1ec7)
+  );
+
+  const chosen = [];
+  [...required, ...remaining].forEach((motif) => {
+    if (chosen.length >= target) return;
+    if (!chosen.some((current) => current.id === motif.id)) chosen.push(motif);
+  });
+
+  while (chosen.length < target) {
+    chosen.push(createMotif(seed, 400 + chosen.length, tier));
+  }
+
+  let focalIndex = chosen.findIndex((motif) => motif.id === preservedId);
+  if (focalIndex === -1) {
+    focalIndex = chosen.findIndex((motif) => ["silhouette", "word", "glyph"].includes(motif.kind));
+  }
+  if (focalIndex === -1) focalIndex = 0;
+  const [focal] = chosen.splice(focalIndex, 1);
+  chosen.unshift(focal);
+
+  const harmonyRng = makeSeededRng(mixSeeds(seed, 0xface));
+  const harmony = shuffleWithSeed(PALETTE, mixSeeds(seed, 0xbead)).slice(0, 3);
+  if (!harmony.includes("#F0E7D2") && harmonyRng() > 0.35) harmony[2] = "#F0E7D2";
+
+  return chosen.map((motif, index) => {
+    const marked = {
+      ...motif,
+      kept: motif.id === preservedId || motif.kept,
+    };
+    const placed = index === 0
+      ? placeFocal(marked, rng)
+      : placeSupport(marked, SUPPORT_ZONES[(index - 1) % SUPPORT_ZONES.length], rng, index);
+    return harmonize(placed, harmony, index);
+  });
+}
+
+export function createFoundTile(tier = 0, rng = Math.random, options = {}) {
   const seed = seedFromRng(rng);
-  const motifCount = Math.min(7, 2 + tier);
-  const motifs = Array.from({ length: motifCount }, (_, index) =>
+  const rawCount = Math.min(7, 3 + tier);
+  const candidates = Array.from({ length: rawCount }, (_, index) =>
     createMotif(seed, index, tier)
   );
+  if (options.discovered && tier >= 2) {
+    candidates.push(createMotif(seed, 70 + tier, tier, "stamp", { correspondence: true }));
+  }
+  const motifs = composeMotifs(candidates, seed, tier);
 
   return {
     tier,
@@ -151,39 +270,50 @@ export function createFoundTile(tier = 0, rng = Math.random) {
     generation: tier,
     lineage: Math.max(1, 2 ** tier),
     motifs,
-    words: uniqueWords(motifs),
+    words: titleWords(motifs),
+    focalMotifId: motifs[0]?.id ?? null,
+    correspondenceCount: options.discovered ? 1 : 0,
   };
 }
 
-export function mergeTileArtwork(left, right, newTier, rng = Math.random) {
+export function mergeTileArtwork(left, right, newTier, rng = Math.random, options = {}) {
   const entropy = seedFromRng(rng);
   const seed = mixSeeds(left.seed, right.seed, newTier, entropy);
   const leftMotifs = shuffleWithSeed(left.motifs, mixSeeds(seed, 1));
   const rightMotifs = shuffleWithSeed(right.motifs, mixSeeds(seed, 2));
-  const inherited = [];
+  const candidates = [...leftMotifs, ...rightMotifs];
+  const requiredMotifIds = [leftMotifs[0]?.id, rightMotifs[0]?.id].filter(Boolean);
 
-  if (leftMotifs[0]) inherited.push(leftMotifs[0]);
-  if (rightMotifs[0]) inherited.push(rightMotifs[0]);
+  if (newTier >= 2) candidates.push(createMotif(seed, 90 + newTier, newTier, "tape"));
+  if (newTier >= 3) candidates.push(createMotif(seed, 120 + newTier, newTier, "stamp", {
+    correspondence: options.correspondence,
+  }));
+  if (newTier >= 5) candidates.push(createMotif(seed, 150 + newTier, newTier, "glyph"));
+  if (newTier === 7 && seed % 7 === 0) {
+    candidates.push({
+      ...createMotif(seed, 777, newTier, "word", { excludeFromTitle: true }),
+      text: "FOR CYNTHIA",
+      correspondence: true,
+    });
+  }
 
-  const remaining = shuffleWithSeed(
-    [...leftMotifs.slice(1), ...rightMotifs.slice(1)],
-    mixSeeds(seed, 3)
-  );
-  const inheritedTarget = Math.min(6, 2 + newTier);
-  inherited.push(...remaining.slice(0, Math.max(0, inheritedTarget - inherited.length)));
+  const motifs = composeMotifs(candidates, seed, newTier, {
+    requiredMotifIds,
+    preserveMotifId: options.preserveMotifId,
+  });
 
-  const additions = [createMotif(seed, 90 + newTier, newTier)];
-  if (newTier >= 3) additions.push(createMotif(seed, 120 + newTier, newTier, "stamp"));
-  if (newTier >= 5) additions.push(createMotif(seed, 150 + newTier, newTier, "glyph"));
-
-  const motifs = [...inherited, ...additions].slice(0, 9);
   return {
     tier: newTier,
     seed,
     generation: Math.max(left.generation, right.generation) + 1,
     lineage: left.lineage + right.lineage,
     motifs,
-    words: uniqueWords(motifs),
+    words: titleWords(motifs),
+    focalMotifId: motifs[0]?.id ?? null,
+    correspondenceCount:
+      (left.correspondenceCount ?? 0) +
+      (right.correspondenceCount ?? 0) +
+      (options.correspondence ? 1 : 0),
   };
 }
 
@@ -195,7 +325,7 @@ function ensureMotifCount(tile, motifs, minimum, seedOffset) {
   return next;
 }
 
-export function chopTileArtwork(tile, rng = Math.random) {
+export function cutTileArtwork(tile, rng = Math.random) {
   const lowerTier = Math.max(0, tile.tier - 1);
   const seedA = mixSeeds(tile.seed, seedFromRng(rng), 0xa11ce);
   const seedB = mixSeeds(tile.seed, seedFromRng(rng), 0xb0b);
@@ -215,17 +345,24 @@ export function chopTileArtwork(tile, rng = Math.random) {
   motifsA.push(createMotif(seedA, 270, lowerTier, "stripe"));
   motifsB.push(createMotif(seedB, 271, lowerTier, "tape"));
 
-  const makeChild = (seed, motifs) => ({
-    tier: lowerTier,
-    seed,
-    generation: tile.generation + 1,
-    lineage: Math.max(1, Math.ceil(tile.lineage / 2)),
-    motifs: motifs.slice(0, 8),
-    words: uniqueWords(motifs),
-  });
+  const makeChild = (seed, candidates) => {
+    const motifs = composeMotifs(candidates, seed, lowerTier);
+    return {
+      tier: lowerTier,
+      seed,
+      generation: tile.generation + 1,
+      lineage: Math.max(1, Math.ceil(tile.lineage / 2)),
+      motifs,
+      words: titleWords(motifs),
+      focalMotifId: motifs[0]?.id ?? null,
+      correspondenceCount: tile.correspondenceCount ?? 0,
+    };
+  };
 
   return [makeChild(seedA, motifsA), makeChild(seedB, motifsB)];
 }
+
+export const chopTileArtwork = cutTileArtwork;
 
 export function createResidue(tile) {
   const rng = makeSeededRng(mixSeeds(tile.seed, tile.tier, 0x51de));
@@ -251,7 +388,7 @@ export function titleForTile(tile) {
   const second = titleCase(words[1] === words[0] ? choose(WORDS, fallbackRng) : words[1]);
   const forms = [
     `Dear ${first}, After ${second}`,
-    `${first} / ${second} Again`,
+    `${first} Returns Again`,
     `Please Return ${first}`,
     `${first} Sent Elsewhere`,
     `For ${first}, Maybe ${second}`,
