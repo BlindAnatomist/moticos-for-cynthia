@@ -22,9 +22,9 @@ jobs:
       - name: Verify exact repair preconditions
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "f2d1dc4004252f6fe2a0574ba3b04f67fcb270ce"
+          test "$(git rev-parse HEAD^^)" = "f2d1dc4004252f6fe2a0574ba3b04f67fcb270ce"
           test "$(git rev-parse HEAD:tests/e2e/moticos.spec.js)" = "2bf9a0ef9fd7ce475c12fec73ecb45862bcc94c1"
-          test "$(git rev-parse HEAD^:.github/workflows/quality.yml)" = "ed273df171b041c5bc2f97bdee3c180f1e486496"
+          test "$(git rev-parse HEAD^^:.github/workflows/quality.yml)" = "ed273df171b041c5bc2f97bdee3c180f1e486496"
       - name: Scope long-route timing and immediate viewport restoration
         run: |
           python - <<'PY'
@@ -33,18 +33,16 @@ jobs:
           path = Path('tests/e2e/moticos.spec.js')
           text = path.read_text()
 
-          old_scroll = '''  // Control clicks and long routes can leave board cells outside the viewport.
-          // Restore the complete board before measuring and synthesizing the next drag.
-          await page.locator(".mm-board").scrollIntoViewIfNeeded();
-          '''.replace('          ', '')
-          new_scroll = '''  // Control clicks and long routes can leave board cells outside the viewport.
-          // Restore the board immediately; do not wait for Playwright's stability heuristic.
-          await page.evaluate(() => {
+          old_scroll = '  await page.locator(".mm-board").scrollIntoViewIfNeeded();'
+          new_scroll = '''  await page.evaluate(() => {
             document.querySelector(".mm-board")?.scrollIntoView({ block: "center", behavior: "auto" });
-          });
-          '''.replace('          ', '')
+          });'''
           assert text.count(old_scroll) == 1
           text = text.replace(old_scroll, new_scroll)
+          text = text.replace(
+              '// Restore the complete board before measuring and synthesizing the next drag.',
+              '// Restore the board immediately; do not wait for Playwright\'s stability heuristic.'
+          )
 
           found = 'test("completes Found Pieces in 24 merges and names the singular final form Moticos", async ({ page }, testInfo) => {\n'
           scraps = 'test("completes From Scraps in 31 merges", async ({ page }) => {\n'
