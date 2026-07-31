@@ -30,7 +30,7 @@ export const TIERS = [
   { name: "Assemblage", bg: "#D9A441", canvasBg: "#D9A441", ink: "#221F1D", shape: 2 },
   { name: "Correspondence", bg: "#31566E", canvasBg: "#31566E", ink: "#FFF8E8", shape: 4 },
   {
-    name: "Motico",
+    name: "Moticos",
     canvasBg: "#D9A441",
     bg: "conic-gradient(from 45deg, #A83228, #D9A441, #365D54, #31566E, #A83228)",
     ink: "#221F1D",
@@ -64,12 +64,14 @@ export function labelSize(name) {
   return 11;
 }
 
-export function btnBase(disabled) {
+export function btnBase(disabled, active = false) {
   return {
     display: "inline-flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: 6,
-    background: disabled ? "#B8AC93" : "#221F1D",
+    minHeight: 44,
+    background: disabled ? "#B8AC93" : active ? "#31566E" : "#221F1D",
     color: "#EDE6D6",
     border: "none",
     borderRadius: 7,
