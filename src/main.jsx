@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import MoticosMerge from "./MoticosMerge.jsx";
 import "./styles.css";
 import "./iphone.css";
+import "./feedbackOverlay.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
