@@ -134,9 +134,9 @@ function Motif({ motif }) {
           textAnchor="middle"
           fill={motif.color}
           fontFamily="Georgia, serif"
-          fontSize={Math.max(8, motif.height * 0.62)}
+          fontSize={Math.max(7, motif.height * 0.58)}
           fontWeight={motif.weight}
-          letterSpacing="0.4"
+          letterSpacing="0.35"
         >
           {motif.text}
         </text>
@@ -146,18 +146,20 @@ function Motif({ motif }) {
 
   if (motif.kind === "number") {
     return (
-      <text
-        {...common}
-        x={motif.x + motif.width / 2}
-        y={motif.y + motif.height * 0.8}
-        textAnchor="middle"
-        fill={motif.color}
-        fontFamily="'Special Elite', monospace"
-        fontSize={Math.max(13, motif.height)}
-        fontWeight="700"
-      >
-        {motif.text}
-      </text>
+      <g {...common}>
+        <rect x={motif.x - 1} y={motif.y} width={motif.width + 2} height={motif.height} fill="rgba(240,231,210,.56)" />
+        <text
+          x={motif.x + motif.width / 2}
+          y={motif.y + motif.height * 0.72}
+          textAnchor="middle"
+          fill={motif.color}
+          fontFamily="'Special Elite', monospace"
+          fontSize={Math.max(9, motif.height * 0.62)}
+          fontWeight="700"
+        >
+          {motif.text}
+        </text>
+      </g>
     );
   }
 
@@ -197,7 +199,7 @@ function Motif({ motif }) {
     const cy = motif.y + motif.height / 2;
     const radius = Math.min(motif.width, motif.height) / 2;
     return (
-      <g {...common} fill="none" stroke={motif.color} strokeWidth="2.2">
+      <g {...common} fill="none" stroke={motif.color} strokeWidth={motif.correspondence ? "3" : "2.2"}>
         <circle cx={cx} cy={cy} r={radius} />
         <circle cx={cx} cy={cy} r={radius * 0.73} />
         <path d={`M ${cx - radius * 0.7} ${cy} L ${cx + radius * 0.7} ${cy}`} />
@@ -214,6 +216,7 @@ function Motif({ motif }) {
 
 export default function TileArtwork({ tile, showLabel = true, showLineage = true, className = "" }) {
   const tier = TIERS[tile.tier];
+  const hasKeptFragment = tile.motifs.some((motif) => motif.kept);
   return (
     <span className={`mm-artwork ${className}`.trim()} aria-hidden="true">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="mm-artwork-svg">
@@ -230,6 +233,10 @@ export default function TileArtwork({ tile, showLabel = true, showLineage = true
         <span className="mm-lineage-mark" title={`${tile.lineage} source scraps`}>
           {tile.lineage}
         </span>
+      )}
+      {hasKeptFragment && <span className="mm-kept-mark" title="Keepsake preserved">K</span>}
+      {(tile.correspondenceCount ?? 0) > 0 && (
+        <span className="mm-correspondence-mark" title="Correspondence discovered" />
       )}
     </span>
   );
