@@ -6,14 +6,24 @@ function isIphoneProject(testInfo) {
 }
 
 async function dragTile(page, from, to, nearMiss = false) {
+  const floating = page.locator(".mm-floating-tile");
+  await expect(floating).toHaveCount(0);
+
   const fromBox = await from.boundingBox();
   const toBox = await to.boundingBox();
   if (!fromBox || !toBox) throw new Error("Unable to locate merge pair.");
+  const startX = fromBox.x + fromBox.width / 2;
+  const startY = fromBox.y + fromBox.height / 2;
   const targetX = toBox.x + toBox.width / 2 + (nearMiss ? toBox.width * 0.62 : 0);
   const targetY = toBox.y + toBox.height / 2;
-  await page.mouse.move(fromBox.x + fromBox.width / 2, fromBox.y + fromBox.height / 2);
+  const midpointX = startX + (targetX - startX) * 0.55;
+  const midpointY = startY + (targetY - startY) * 0.55;
+
+  await page.mouse.move(startX, startY);
   await page.mouse.down();
-  await page.mouse.move(targetX, targetY, { steps: 10 });
+  await page.mouse.move(midpointX, midpointY, { steps: 4 });
+  await page.mouse.move(targetX, targetY, { steps: 8 });
+  await expect(floating).toBeVisible();
   await page.mouse.up();
 }
 
@@ -48,6 +58,7 @@ async function mergeHighestAvailablePair(page, expectedMergeCount) {
     page.locator(`[data-cell-index="${toIndex}"]`)
   );
   await expect(page.getByTestId("merges")).toHaveText(String(expectedMergeCount));
+  await expect(page.locator(".mm-floating-tile")).toHaveCount(0);
 }
 
 async function capture(page, testInfo, name) {
