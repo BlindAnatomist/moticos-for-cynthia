@@ -38,3 +38,37 @@ textarea {
 button {
   -webkit-tap-highlight-color: transparent;
 }
+
+@media (max-width: 520px) {
+  .mm-progression-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .mm-progression-card {
+    min-height: 134px;
+    padding: 10px 7px 9px;
+  }
+
+  .mm-progression-art {
+    width: 64px;
+    height: 64px;
+    margin-top: 2px;
+  }
+
+  .mm-progression-card strong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 25px;
+    overflow: visible;
+    font-size: 11px;
+    line-height: 1.05;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .mm-progression-card[data-progression-tier="6"] strong {
+    font-size: 10px;
+  }
+}
