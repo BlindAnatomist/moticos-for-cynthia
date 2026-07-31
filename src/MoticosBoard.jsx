@@ -3,11 +3,11 @@ import ResidueMark from "./ResidueMark.jsx";
 import TileArtwork from "./TileArtwork.jsx";
 import { GRAIN, SHAPES, TIERS, clipPathOf } from "./moticosConstants.js";
 
-function FloatingTile({ x, y, size, tile, snapBack = false, flying = false }) {
+function FloatingTile({ x, y, size, tile, snapBack = false, flying = false, keepsake = false }) {
   const tier = TIERS[tile.tier];
   return (
     <div
-      className={`mm-floating-tile${snapBack ? " snap-back" : ""}${flying ? " flying" : ""}`}
+      className={`mm-floating-tile${snapBack ? " snap-back" : ""}${flying ? " flying" : ""}${keepsake ? " keepsake" : ""}`}
       style={{
         left: x - size / 2,
         top: y - size / 2,
@@ -33,6 +33,7 @@ export default function MoticosBoard({
   bursts,
   hoverIndex,
   matchTier,
+  keepsakeArmed,
   onPointerDown,
   onPointerMove,
   onPointerUp,
@@ -42,7 +43,7 @@ export default function MoticosBoard({
     <section
       ref={gridRef}
       aria-label="Moticos board"
-      className="mm-board"
+      className={`mm-board${keepsakeArmed ? " keepsake-armed" : ""}`}
       style={{ backgroundImage: `url("${GRAIN}")` }}
     >
       {board.map((tile, index) => {
@@ -76,6 +77,7 @@ export default function MoticosBoard({
             data-tier={tile?.tier ?? "empty"}
             data-lineage={tile?.lineage ?? 0}
             data-motif-count={tile?.motifs.length ?? 0}
+            data-correspondences={tile?.correspondenceCount ?? 0}
             onPointerDown={(event) => onPointerDown(event, index)}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
@@ -115,6 +117,7 @@ export default function MoticosBoard({
           size={drag.size}
           tile={board[drag.index]}
           snapBack={drag.snapBack}
+          keepsake={keepsakeArmed}
         />
       )}
 
@@ -125,6 +128,7 @@ export default function MoticosBoard({
           size={flying.size}
           tile={flying.tile}
           flying
+          keepsake={keepsakeArmed}
         />
       )}
     </section>
