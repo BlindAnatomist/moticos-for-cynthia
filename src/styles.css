@@ -1,0 +1,94 @@
+:root {
+  color: #221f1d;
+  background: #e4dac0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  background: #e4dac0;
+}
+
+body {
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mm-reward,
+.mm-keepsake-instruction {
+  position: fixed;
+  left: 50%;
+  z-index: 80;
+  width: min(90vw, 420px);
+  margin: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 5px 16px rgba(34, 31, 29, 0.3);
+}
+
+.mm-reward {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+}
+
+.mm-keepsake-instruction {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 70px);
+}
+
+@media (max-width: 520px) {
+  .mm-progression-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .mm-progression-card {
+    min-height: 134px;
+    padding: 10px 7px 9px;
+  }
+
+  .mm-progression-art {
+    width: 64px;
+    height: 64px;
+    margin-top: 2px;
+  }
+
+  .mm-progression-card strong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 25px;
+    overflow: visible;
+    font-size: 11px;
+    line-height: 1.05;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .mm-progression-card[data-progression-tier="6"] strong {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,226 @@
+name: Publish Cynthia Refinement Preview
+
+on:
+  push:
+    branches:
+      - work/publish-cynthia-refinement-preview
+    paths:
+      - .github/workflows/publish-cynthia-refinement-preview.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/publish-cynthia-refinement-preview.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: moticos-cynthia-refinement-preview
+  cancel-in-progress: true
+
+jobs:
+  publish-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out exact publication source
+        uses: actions/checkout@v4
+        with:
+          ref: work/publish-cynthia-refinement-preview
+          fetch-depth: 0
+
+      - name: Verify immutable accepted application
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "cf9d0b114e258839676b76b64962cdd5e159e2cc"
+          git diff --exit-code cf9d0b114e258839676b76b64962cdd5e159e2cc -- \
+            index.html package.json package-lock.json vite.config.js playwright.config.js src tests
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build isolated fourth preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build -- --base=/moticos-for-cynthia/cynthia-refinement-preview/
+          printf '%s\n' 'cf9d0b114e258839676b76b64962cdd5e159e2cc' > dist/accepted-application-commit.txt
+
+      - name: Publish only the fourth preview directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin gh-pages
+
+          ROOT_INDEX_BEFORE="$(git rev-parse origin/gh-pages:index.html)"
+          ROOT_ASSETS_BEFORE="$(git rev-parse origin/gh-pages:assets)"
+          COLLAGE_TREE_BEFORE="$(git rev-parse origin/gh-pages:collage-preview)"
+          FOUND_TREE_BEFORE="$(git rev-parse origin/gh-pages:found-composition-preview)"
+
+          test "$ROOT_INDEX_BEFORE" = "71a34b8ed4421f3710c923cdcba91a7231a05254"
+          test "$(git rev-parse origin/gh-pages:collage-preview/index.html)" = "fd0c04f55b7429b78ad5d33b7656ee66d0874d84"
+          test "$(git rev-parse origin/gh-pages:found-composition-preview/index.html)" = "a7cdf4d4391f614fe0cde49bcde35f1f0f45fc5f"
+          test "$(git show origin/gh-pages:found-composition-preview/accepted-application-commit.txt)" = "986d4a4415f88faeecdbed6e714a27ebb2644fbe"
+
+          TARGET_EXISTS=0
+          if git cat-file -e origin/gh-pages:cynthia-refinement-preview/accepted-application-commit.txt 2>/dev/null; then
+            TARGET_EXISTS=1
+            test "$(git show origin/gh-pages:cynthia-refinement-preview/accepted-application-commit.txt)" = "cf9d0b114e258839676b76b64962cdd5e159e2cc"
+          fi
+
+          if test "$TARGET_EXISTS" -eq 0; then
+            git worktree add /tmp/moticos-gh-pages origin/gh-pages
+            mkdir -p /tmp/moticos-gh-pages/cynthia-refinement-preview
+            cp -R dist/. /tmp/moticos-gh-pages/cynthia-refinement-preview/
+            cd /tmp/moticos-gh-pages
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add cynthia-refinement-preview
+            git commit -m 'Publish Cynthia feedback refinement preview'
+            git push origin HEAD:gh-pages
+          else
+            echo 'Exact fourth preview is already published; continuing with verification.'
+          fi
+
+          git fetch origin gh-pages
+          test "$ROOT_INDEX_BEFORE" = "$(git rev-parse origin/gh-pages:index.html)"
+          test "$ROOT_ASSETS_BEFORE" = "$(git rev-parse origin/gh-pages:assets)"
+          test "$COLLAGE_TREE_BEFORE" = "$(git rev-parse origin/gh-pages:collage-preview)"
+          test "$FOUND_TREE_BEFORE" = "$(git rev-parse origin/gh-pages:found-composition-preview)"
+          test "$(git show origin/gh-pages:cynthia-refinement-preview/accepted-application-commit.txt)" = "cf9d0b114e258839676b76b64962cdd5e159e2cc"
+
+      - name: Wait for Pages and confirm all four addresses
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT='https://blindanatomist.github.io/moticos-for-cynthia/'
+          COLLAGE='https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/'
+          FOUND='https://blindanatomist.github.io/moticos-for-cynthia/found-composition-preview/'
+          TARGET='https://blindanatomist.github.io/moticos-for-cynthia/cynthia-refinement-preview/'
+          MARKER="${TARGET}accepted-application-commit.txt"
+
+          READY=0
+          for attempt in $(seq 1 60); do
+            if test "$(curl --fail --silent --show-error "$MARKER" || true)" = "cf9d0b114e258839676b76b64962cdd5e159e2cc"; then
+              READY=1
+              break
+            fi
+            sleep 5
+          done
+          test "$READY" -eq 1
+
+          curl --fail --silent --show-error "$ROOT" | grep -q '<title>Moticos</title>'
+          curl --fail --silent --show-error "$COLLAGE" | grep -q '<title>Moticos</title>'
+          curl --fail --silent --show-error "$FOUND" | grep -q '<title>Moticos</title>'
+          curl --fail --silent --show-error "$TARGET" | grep -q '<title>Moticos</title>'
+
+      - name: Install Mobile Safari WebKit
+        run: npx playwright install --with-deps webkit
+
+      - name: Smoke-test the hosted iPhone refinement
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p hosted-evidence
+          node --input-type=module <<'NODE'
+          import { webkit } from '@playwright/test';
+
+          const url = 'https://blindanatomist.github.io/moticos-for-cynthia/cynthia-refinement-preview/';
+          const browser = await webkit.launch();
+          const context = await browser.newContext({
+            viewport: { width: 390, height: 844 },
+            deviceScaleFactor: 3,
+            isMobile: true,
+            hasTouch: true,
+          });
+          const page = await context.newPage();
+          const failures = [];
+          page.on('pageerror', error => failures.push(`pageerror: ${error.message}`));
+          page.on('console', message => {
+            if (message.type() === 'error') failures.push(`console: ${message.text()}`);
+          });
+
+          const response = await page.goto(url, { waitUntil: 'networkidle' });
+          if (!response || response.status() !== 200) {
+            throw new Error(`Hosted preview returned ${response?.status() ?? 'no response'}.`);
+          }
+          await page.getByRole('heading', { name: 'MOTICOS' }).waitFor();
+
+          const foundRoute = page.getByRole('button', { name: /Found Pieces.*24 merges/ });
+          if ((await foundRoute.getAttribute('aria-pressed')) !== 'true') {
+            throw new Error('Found Pieces was not the selected opening route.');
+          }
+          const populated = page.locator('[data-tier]:not([data-tier="empty"])');
+          if (await populated.count() !== 25) throw new Error('Hosted Found Pieces route did not start with 25 pieces.');
+          const lineage = await populated.evaluateAll(elements =>
+            elements.reduce((sum, element) => sum + Number(element.dataset.lineage), 0)
+          );
+          if (lineage !== 128) throw new Error(`Starting lineage was ${lineage}, expected 128.`);
+
+          const metrics = await page.evaluate(() => {
+            const board = document.querySelector('.mm-board')?.getBoundingClientRect();
+            return {
+              width: window.innerWidth,
+              scrollWidth: document.documentElement.scrollWidth,
+              boardLeft: board?.left ?? -1,
+              boardRight: board?.right ?? Infinity,
+            };
+          });
+          if (metrics.scrollWidth > metrics.width + 1 || metrics.boardLeft < 0 || metrics.boardRight > metrics.width + 1) {
+            throw new Error(`Hosted iPhone layout overflowed: ${JSON.stringify(metrics)}`);
+          }
+
+          await page.getByRole('button', { name: 'Mute sound effects' }).tap();
+          await page.getByRole('button', { name: 'Unmute sound effects' }).waitFor();
+
+          const first = page.locator('[data-tier="0"]').nth(0);
+          const second = page.locator('[data-tier="0"]').nth(1);
+          const from = await first.boundingBox();
+          const to = await second.boundingBox();
+          if (!from || !to) throw new Error('Unable to locate hosted Clip pair.');
+          await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
+          await page.mouse.down();
+          await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 12 });
+          await page.mouse.up();
+          await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent === '1');
+          if ((await page.getByTestId('score').textContent()) !== '20') {
+            throw new Error('Hosted Clip merge did not score 20 points.');
+          }
+          if (await populated.count() !== 24) throw new Error('Hosted board did not condense to 24 pieces.');
+          if (!(await page.getByRole('button', { name: 'Cut (3)' }).isEnabled())) {
+            throw new Error('Cut did not become available after the first merge.');
+          }
+          if (await page.getByText('PATH TO MOTICOS').count() !== 1) {
+            throw new Error('Improved Path to Moticos was not present.');
+          }
+          if (await page.getByText('Moticos', { exact: true }).count() < 1) {
+            throw new Error('Singular final form Moticos was not present.');
+          }
+
+          await page.getByRole('button', { name: /From Scraps.*31 merges/ }).tap();
+          if (await page.locator('[data-tier="0"]').count() !== 25) {
+            throw new Error('From Scraps did not begin with 25 individual Clips.');
+          }
+          if (failures.length) throw new Error(failures.join('\n'));
+
+          await page.screenshot({
+            path: 'hosted-evidence/cynthia-refinement-preview-iphone.png',
+            fullPage: true,
+          });
+          await browser.close();
+          NODE
+
+      - name: Upload hosted verification screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-cynthia-refinement-hosted-evidence
+          path: hosted-evidence/cynthia-refinement-preview-iphone.png
+          if-no-files-found: error
+          retention-days: 1

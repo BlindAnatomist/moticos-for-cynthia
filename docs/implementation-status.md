@@ -1,107 +1,146 @@
 # Implementation Status
 
-Repository: `BlindAnatomist/monicos-for-cynthia`
+Repository: `BlindAnatomist/moticos-for-cynthia`
 
 Visibility: public
 
 Default branch: `main`
 
-Status date: 2026-07-29
+Status date: 2026-07-30
 
 ## Project identity
 
-Monicos for Cynthia is an independent game project. It must remain separate from Val Music Vault, Guitar Eyes, and the earlier experimental placement of the game inside another repository.
+Moticos for Cynthia is a fresh, independent visual game project. It is not a resurrection of the discarded earlier experiment and is not part of Val Music Vault or Guitar Eyes.
 
-The game concept, technical stack, rules, interface, hosting path, and acceptance criteria have not yet been formally established in this repository.
+Moticos is intended to be visually appealing and fun for Cynthia. Cynthia's iPhone is the primary platform and acceptance authority. Desktop support is secondary. The owner is not responsible for visual quality assurance.
 
-## Current accepted state
+## Verified first playable
 
-The repository has been created publicly under the accepted name:
+Baseline development branch:
 
-`monicos-for-cynthia`
+`work/fresh-moticos-playable`
 
-The initial governance foundation consists of:
+Draft pull request:
 
-- `AGENTS.md`
-- `docs/PREFLIGHT.md`
-- `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md`
-- `docs/implementation-status.md`
+`1 — Fresh Moticos first playable`
 
-These files establish repository-specific operating discipline without importing the Music Vault's private-data, backend-production, or private-repository Actions constraints.
+The accepted first playable passed deterministic logic tests, production build, desktop and mobile-sized Chromium interaction tests, screenshot capture, a legal seven-merge route to Panel, postcard unlocking, and actual postcard PNG download.
 
-## Automation position
+Exact verified application commit before later documentation and publication-support changes:
 
-Standard GitHub-hosted Actions runners may be used for this public repository when they materially support development, verification, preview publication, or release preparation.
+`75ee8a17dd62c7101167ed98b5890aad352e0c21`
 
-No workflow has yet been created because the application stack and required checks have not yet been selected. Before adding a workflow, define:
+## Frozen Cynthia demo
 
-- the application stack and package manager;
-- installation command;
-- type-checking command, if applicable;
-- lint command;
-- test command;
-- production-build command;
-- automated accessibility checks;
-- preview or publication mechanism;
-- permissions, concurrency, timeout, and artifact-retention requirements.
+Public address:
 
-Paid runners, paid infrastructure, and paid external services remain unauthorized unless the owner explicitly approves them.
+`https://blindanatomist.github.io/moticos-for-cynthia/`
 
-## Accessibility position
+The demo is served from a dedicated compiled `gh-pages` branch. It is a frozen snapshot and does not follow development branches automatically. Continuing development cannot alter Cynthia's current demo unless the compiled root files on `gh-pages` are deliberately replaced.
 
-Accessibility is a core design requirement from the first implementation.
+Hosted acceptance run `30552836701` confirmed against the public address:
 
-The eventual game must be designed for reliable VoiceOver operation on the owner's iPhone, including:
+- page title `Moticos`;
+- eight initial Clip tiles;
+- a live drag merge scoring 20 points;
+- merge count advancing to 1;
+- highest tier advancing to Fragment;
+- Undo restoring the initial state;
+- Shuffle decrementing from 3 to 2;
+- no console or page errors.
 
-- concise and accurate control names;
-- logical swipe and focus order;
-- state changes announced without excessive repetition;
-- instructions separated from control identity;
-- recoverable validation and error handling;
-- game information available without visual inference;
-- no dependence on color, animation, spatial position, or timed visual recognition alone.
+## Accepted generative collage iteration
 
-Automated checks will not replace real-device VoiceOver acceptance.
+Active iteration branch:
 
-## Recorded incidents
+`work/generative-collage-iteration`
 
-No Monicos-specific implementation incident has yet occurred.
+Draft pull request:
 
-General proven standards are recorded in `docs/KNOWN_PROBLEMS_AND_PROVEN_SOLUTIONS.md` without pretending they originated in this repository.
+`2 — Generative collage iteration`
 
-## Unresolved foundation decisions
+This branch is intentionally separated from both the frozen demo and the first-playable branch.
 
-Before application code is added, establish:
+The iteration introduces:
 
-1. The authoritative spelling and meaning of “Monicos” within the game.
-2. The game rules and win or loss conditions.
-3. The intended player experience for Cynthia and any broader audience.
-4. Whether the game is single-player, local shared play, or something else.
-5. The initial content set and whether any content is private or copyrighted.
-6. The technical stack.
-7. The hosting and preview path.
-8. The minimum first playable checkpoint.
-9. The VoiceOver acceptance criteria for that checkpoint.
+- procedural miniature collages rather than plain color labels;
+- unique visual DNA for every spawned Clip;
+- merge ancestry that preserves material from both parent pieces;
+- accumulated lineage counts and generated artwork titles;
+- faint board residue where pieces were removed;
+- a meaningful three-use Chop action replacing cosmetic Shuffle;
+- collage-aware postcard rendering;
+- a final Motico arrival presentation;
+- a development-only all-tier visual gallery at `?gallery=1`;
+- the singular final tier name `Motico`;
+- iPhone safe-area support through `viewport-fit=cover` and environment insets;
+- 44-point tap targets for phone controls;
+- Mobile Safari WebKit as the primary automated browser gate.
 
-## Next bounded task
+Exact accepted application commit:
 
-Create the project-definition brief before writing application code. That brief should establish the game concept, vocabulary, rules, accessibility model, first playable scope, technical constraints, and acceptance tests.
+`deeb973f16231404abd8decf3729e406e72e2246`
 
-After the brief is accepted:
+Quality run `30562311268` passed:
 
-1. choose the smallest suitable technical stack;
-2. add `.github/AUTOMATION_POLICY.md` tailored to that stack;
-3. scaffold the application;
-4. add the first quality workflow;
-5. build a hosted first playable candidate;
-6. stop for real-device VoiceOver testing at the defined acceptance point.
+- eight deterministic logic tests, including the final Correspondence-to-Motico merge and 128-scrap lineage;
+- production Vite build;
+- WebKit installation and execution;
+- an iPhone 13 Mobile Safari profile;
+- a large 430-by-932 Mobile Safari profile;
+- secondary desktop Chromium coverage;
+- 20 browser scenarios passed and one desktop-only skip;
+- iPhone viewport containment and no horizontal overflow;
+- 44-point tap-target verification;
+- sound toggle and New board through touch taps;
+- merge, Undo, Chop, residue, scoring, and lineage behavior;
+- legal progression to Panel;
+- actual postcard PNG downloads in both iPhone profiles;
+- final Motico arrival containment and dismissal;
+- all-tier gallery rendering.
 
-## Prohibited assumptions
+Visual inspection of the exact evidence confirmed that the initial board, post-merge board, Chop state, Panel state, final arrival, progression, and postcards remain legible and composed on both iPhone sizes. The sound button is no longer blocked by the title.
 
-Until explicitly decided, do not assume:
+Evidence artifact:
 
-- that code from the earlier game experiment should be copied;
-- that the earlier implementation was technically or conceptually authoritative;
-- that publication or deployment is authorized;
-- that Cynthia's name in the repository title authorizes publication of personal information or private assets;
-- that a framework used in another repository is automatically appropriate here.
+`sha256:920583cf2d11020f163e870a00f17876d6e4eee1a1a2cb18104209b106740956`
+
+## Published generative collage preview
+
+Public iPhone preview address:
+
+`https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/`
+
+The accepted application was compiled with project-relative asset paths and published only inside `gh-pages/collage-preview`. The frozen root demo was not replaced. Its root `index.html` blob remained:
+
+`71a34b8ed4421f3710c923cdcba91a7231a05254`
+
+Hosted verification run `30565696221` passed:
+
+- accepted-application byte verification against commit `deeb973f16231404abd8decf3729e406e72e2246`;
+- isolated production build;
+- root-demo preservation check before and after publication;
+- GitHub Pages availability at the separate subdirectory;
+- Mobile Safari WebKit load at an iPhone 13 viewport;
+- eight initial Clip tiles;
+- a real WebKit tap on the sound control;
+- a live Clip-to-Fragment merge;
+- merge count advancing to 1;
+- score advancing to 20;
+- no browser console or page errors;
+- hosted screenshot capture and visual inspection.
+
+Hosted evidence artifact:
+
+`sha256:c24f69911c58d823f66c20f8c97161978b25e1678e1f7ffd10e927ef735e06ee`
+
+The one-use publication workflow was removed after verification. Publication PR 3 was closed without merging.
+
+## Current boundaries
+
+- `main` remains unchanged.
+- Draft pull requests 1 and 2 remain open and unmerged.
+- The original root demo remains available and unchanged.
+- The accepted generative iteration is now available at the separate `collage-preview` address for Cynthia's real-iPhone play-experience test.
+- Real-device feedback should evaluate comfort, beauty, clarity, sound, and desire to continue—not basic functionality already covered by automation.
+- Do not replace the root demo or merge either implementation pull request without separate authorization.
