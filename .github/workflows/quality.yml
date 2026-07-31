@@ -1,4 +1,4 @@
-name: Publish Cynthia Feedback Preview
+name: Verify Cynthia Feedback Preview
 
 on:
   pull_request:
@@ -8,127 +8,129 @@ on:
       - .github/workflows/quality.yml
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: moticos-cynthia-feedback-publication
-  cancel-in-progress: false
+  group: moticos-cynthia-feedback-hosted-verification
+  cancel-in-progress: true
 
 jobs:
-  publish-and-verify:
+  verify-hosted:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
 
     steps:
-      - name: Check out exact publication head
+      - name: Check out verification branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 2
+          fetch-depth: 4
 
-      - name: Verify immutable application parent
+      - name: Verify application source remains exact
         run: |
           set -euo pipefail
-          expected_parent='cf9d0b114e258839676b76b64962cdd5e159e2cc'
-          test "$(git rev-parse HEAD^)" = "$expected_parent"
-          test "$(git diff --name-only HEAD^ HEAD)" = '.github/workflows/quality.yml'
+          test -z "$(git diff --name-only cf9d0b114e258839676b76b64962cdd5e159e2cc HEAD | grep -v '^.github/workflows/quality.yml$' || true)"
+
+      - name: Verify all four Pages entries without writing
+        run: |
+          set -euo pipefail
+          git fetch origin gh-pages
+          git worktree add /tmp/moticos-pages origin/gh-pages
+          cd /tmp/moticos-pages
+          test "$(git hash-object index.html)" = '71a34b8ed4421f3710c923cdcba91a7231a05254'
+          test "$(git hash-object collage-preview/index.html)" = 'fd0c04f55b7429b78ad5d33b7656ee66d0874d84'
+          test "$(git hash-object found-composition-preview/index.html)" = 'a7cdf4d4391f614fe0cde49bcde35f1f0f45fc5f'
+          test "$(cat cynthia-feedback-preview/application-commit.txt)" = 'cf9d0b114e258839676b76b64962cdd5e159e2cc'
+          test -f cynthia-feedback-preview/index.html
+          test -f cynthia-feedback-preview/assets/index-BXjuQz_G.css
+          test -f cynthia-feedback-preview/assets/index-Dl-yfPMx.js
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Verify and build exact candidate
+      - name: Install browser tooling
         run: |
-          set -euo pipefail
           npm install --no-audit --no-fund
-          npm test
-          npm run build -- --base=/moticos-for-cynthia/cynthia-feedback-preview/
-          printf '%s\n' 'cf9d0b114e258839676b76b64962cdd5e159e2cc' > dist/application-commit.txt
+          npx playwright install --with-deps webkit
 
-      - name: Publish only the fourth isolated directory
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Verify hosted preview in Mobile Safari WebKit
         run: |
           set -euo pipefail
-          git fetch origin gh-pages
-          git worktree add /tmp/moticos-pages origin/gh-pages
-          cd /tmp/moticos-pages
-
-          test "$(git hash-object index.html)" = '71a34b8ed4421f3710c923cdcba91a7231a05254'
-          test "$(git hash-object collage-preview/index.html)" = 'fd0c04f55b7429b78ad5d33b7656ee66d0874d84'
-          test "$(git hash-object found-composition-preview/index.html)" = 'a7cdf4d4391f614fe0cde49bcde35f1f0f45fc5f'
-          test ! -e cynthia-feedback-preview
-
-          cp -R "$GITHUB_WORKSPACE/dist" cynthia-feedback-preview
-
-          unexpected="$(git status --porcelain | grep -v '^?? cynthia-feedback-preview/' || true)"
-          test -z "$unexpected"
-
-          git add cynthia-feedback-preview
-          test -n "$(git diff --cached --name-only)"
-          test -z "$(git diff --cached --name-only | grep -v '^cynthia-feedback-preview/' || true)"
-
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Publish isolated Cynthia feedback preview'
-          git push origin HEAD:gh-pages
-
-          test "$(git hash-object index.html)" = '71a34b8ed4421f3710c923cdcba91a7231a05254'
-          test "$(git hash-object collage-preview/index.html)" = 'fd0c04f55b7429b78ad5d33b7656ee66d0874d84'
-          test "$(git hash-object found-composition-preview/index.html)" = 'a7cdf4d4391f614fe0cde49bcde35f1f0f45fc5f'
-          test "$(cat cynthia-feedback-preview/application-commit.txt)" = 'cf9d0b114e258839676b76b64962cdd5e159e2cc'
-
-      - name: Install Mobile Safari WebKit
-        run: npx playwright install --with-deps webkit
-
-      - name: Verify hosted fourth preview in Mobile Safari WebKit
-        run: |
-          set -euo pipefail
-          url='https://blindanatomist.github.io/moticos-for-cynthia/cynthia-feedback-preview/'
-          for attempt in $(seq 1 30); do
-            if curl --fail --silent --show-error "$url" >/dev/null; then
-              break
-            fi
-            test "$attempt" -lt 30
-            sleep 4
-          done
-
           mkdir -p test-results/hosted
           node --input-type=module <<'NODE'
           import { webkit, devices } from '@playwright/test';
+
           const url = 'https://blindanatomist.github.io/moticos-for-cynthia/cynthia-feedback-preview/';
           const browser = await webkit.launch();
           const context = await browser.newContext({ ...devices['iPhone 13'] });
           const page = await context.newPage();
           const errors = [];
+
           page.on('console', message => {
             if (message.type() === 'error') errors.push(`console: ${message.text()}`);
           });
           page.on('pageerror', error => errors.push(`page: ${error.message}`));
+
           await page.goto(url, { waitUntil: 'networkidle' });
           await page.getByRole('heading', { name: 'MOTICOS' }).waitFor();
+
           const marker = await (await fetch(`${url}application-commit.txt`)).text();
-          if (marker.trim() !== 'cf9d0b114e258839676b76b64962cdd5e159e2cc') throw new Error('Wrong hosted application commit');
-          if (await page.locator('[data-tier]:not([data-tier="empty"])').count() !== 25) throw new Error('Expected 25 starting pieces');
-          if (await page.locator('[data-progression-tier]').count() !== 8) throw new Error('Expected eight progression stages');
+          if (marker.trim() !== 'cf9d0b114e258839676b76b64962cdd5e159e2cc') {
+            throw new Error('Wrong hosted application commit');
+          }
+          if (await page.locator('[data-tier]:not([data-tier="empty"])').count() !== 25) {
+            throw new Error('Expected 25 starting pieces');
+          }
+          if (await page.locator('[data-progression-tier]').count() !== 8) {
+            throw new Error('Expected eight progression stages');
+          }
+
           await page.getByRole('button', { name: 'Mute sound effects' }).tap();
           await page.getByRole('button', { name: /From Scraps.*31 merges/ }).tap();
-          if (await page.locator('[data-tier="0"]').count() !== 25) throw new Error('From Scraps did not produce 25 Clips');
+          if (await page.locator('[data-tier="0"]').count() !== 25) {
+            throw new Error('From Scraps did not produce 25 Clips');
+          }
           await page.getByRole('button', { name: /Found Pieces.*24 merges/ }).tap();
+
+          await page.evaluate(() => {
+            document.querySelector('.mm-board')?.scrollIntoView({
+              block: 'center',
+              inline: 'nearest',
+              behavior: 'auto',
+            });
+          });
+          await page.evaluate(
+            () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+          );
+
           const first = page.locator('[data-tier="0"]').nth(0);
           const second = page.locator('[data-tier="0"]').nth(1);
           const a = await first.boundingBox();
           const b = await second.boundingBox();
           if (!a || !b) throw new Error('Unable to measure hosted merge pair');
-          await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+
+          const startX = a.x + a.width / 2;
+          const startY = a.y + a.height / 2;
+          const targetX = b.x + b.width / 2;
+          const targetY = b.y + b.height / 2;
+          const midpointX = startX + (targetX - startX) * 0.55;
+          const midpointY = startY + (targetY - startY) * 0.55;
+
+          await page.mouse.move(startX, startY);
           await page.mouse.down();
-          await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 12 });
+          await page.mouse.move(midpointX, midpointY, { steps: 4 });
+          await page.mouse.move(targetX, targetY, { steps: 8 });
+          await page.locator('.mm-floating-tile').waitFor({ state: 'visible' });
           await page.mouse.up();
-          await page.getByTestId('merges').waitFor();
-          if ((await page.getByTestId('merges').textContent())?.trim() !== '1') throw new Error('Hosted merge did not complete');
+          await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent?.trim() === '1');
+
           if (errors.length) throw new Error(errors.join('\n'));
-          await page.screenshot({ path: 'test-results/hosted/cynthia-feedback-preview-iphone.png', fullPage: true });
+          await page.screenshot({
+            path: 'test-results/hosted/cynthia-feedback-preview-iphone.png',
+            fullPage: true,
+          });
           await browser.close();
           NODE
 
