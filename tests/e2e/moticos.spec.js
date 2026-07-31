@@ -8,6 +8,9 @@ function isIphoneProject(testInfo) {
 async function dragTile(page, from, to, nearMiss = false) {
   const floating = page.locator(".mm-floating-tile");
   await expect(floating).toHaveCount(0);
+  // Control clicks and long routes can leave board cells outside the viewport.
+  // Restore the complete board before measuring and synthesizing the next drag.
+  await page.locator(".mm-board").scrollIntoViewIfNeeded();
 
   const fromBox = await from.boundingBox();
   const toBox = await to.boundingBox();
