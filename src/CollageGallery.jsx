@@ -13,7 +13,7 @@ export default function CollageGallery() {
     typeof window !== "undefined" &&
     new URLSearchParams(window.location.search).has("arrival");
   const [showArrival, setShowArrival] = useState(arrivalRequested);
-  const motico = galleryTiles[galleryTiles.length - 1];
+  const moticos = galleryTiles[galleryTiles.length - 1];
 
   return (
     <main className="mm-gallery-page">
@@ -40,11 +40,13 @@ export default function CollageGallery() {
         })}
       </div>
       <MoticoArrival
-        tile={showArrival ? motico : null}
-        title={titleForTile(motico)}
+        tile={showArrival ? moticos : null}
+        title={titleForTile(moticos)}
         exporting={false}
         onClose={() => setShowArrival(false)}
-        onSave={() => {}}
+        onDownload={() => {}}
+        onShare={() => {}}
+        postcardStatus=""
       />
     </main>
   );
