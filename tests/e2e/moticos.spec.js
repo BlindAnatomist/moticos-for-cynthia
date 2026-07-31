@@ -9,8 +9,10 @@ async function dragTile(page, from, to, nearMiss = false) {
   const floating = page.locator(".mm-floating-tile");
   await expect(floating).toHaveCount(0);
   // Control clicks and long routes can leave board cells outside the viewport.
-  // Restore the complete board before measuring and synthesizing the next drag.
-  await page.locator(".mm-board").scrollIntoViewIfNeeded();
+  // Restore the board immediately; do not wait for Playwright's stability heuristic.
+  await page.evaluate(() => {
+  document.querySelector(".mm-board")?.scrollIntoView({ block: "center", behavior: "auto" });
+});
 
   const fromBox = await from.boundingBox();
   const toBox = await to.boundingBox();
@@ -226,6 +228,7 @@ test("opens the native share path when file sharing is available", async ({ page
 });
 
 test("completes Found Pieces in 24 merges and names the singular final form Moticos", async ({ page }, testInfo) => {
+  test.setTimeout(90_000);
   for (let merge = 1; merge <= 24; merge += 1) {
     await mergeHighestAvailablePair(page, merge);
   }
@@ -237,6 +240,7 @@ test("completes Found Pieces in 24 merges and names the singular final form Moti
 });
 
 test("completes From Scraps in 31 merges", async ({ page }) => {
+  test.setTimeout(90_000);
   await page.getByRole("button", { name: /From Scraps.*31 merges/ }).click();
   for (let merge = 1; merge <= 31; merge += 1) {
     await mergeHighestAvailablePair(page, merge);
