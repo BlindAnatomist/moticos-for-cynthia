@@ -1,3 +1,4 @@
+// Cynthia's accepted direction is material and gentle: no sharp pings or high-pass transients.
 export const AUDIO_PROFILE = Object.freeze({
   pickup: { noise: "pink", filterType: "lowpass", frequency: 820, volume: -12 },
   merge: { noise: "brown", filterType: "lowpass", frequency: 460, volume: -5 },
