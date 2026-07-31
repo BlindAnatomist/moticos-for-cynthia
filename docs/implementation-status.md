@@ -8,43 +8,33 @@ Default branch: `main`
 
 Status date: 2026-07-31
 
-## Project identity
+## Product authority
 
-Moticos for Cynthia is a fresh, independent visual game project. It is not a resurrection of the discarded earlier experiment and is not part of Val Music Vault or Guitar Eyes.
-
-Moticos is intended to be visually appealing and fun for Cynthia. Cynthia's physical iPhone is the primary human acceptance platform. Mobile Safari WebKit is the primary automated browser gate. Desktop support is secondary. The owner is not responsible for visual quality assurance.
+Moticos is a visual, collage-inspired iPhone-first game for Cynthia. Cynthia's physical iPhone is the primary human acceptance platform. Mobile Safari WebKit is the primary automated browser gate. Desktop support is secondary.
 
 `Moticos` is singular. It is an anagram of `osmotic` and is the authoritative name of the final form.
 
-## Frozen first playable
+The owner is not responsible for visual quality assurance. Automated browser interaction, screenshots, postcard exports, and direct agent inspection must precede any request for Cynthia to test.
 
-Branch:
+## Public versions
 
-`work/fresh-moticos-playable`
-
-Draft pull request:
-
-`1 — Fresh Moticos first playable`
-
-Exact verified application commit:
-
-`75ee8a17dd62c7101167ed98b5890aad352e0c21`
+### 1. Frozen first playable
 
 Public address:
 
 `https://blindanatomist.github.io/moticos-for-cynthia/`
 
-The original first-playable demo remains frozen at the root address and is not changed by later development.
+Exact verified application commit:
 
-## Accepted generative collage version
+`75ee8a17dd62c7101167ed98b5890aad352e0c21`
 
-Branch:
+This root demo remains frozen and does not follow development branches automatically.
 
-`work/generative-collage-iteration`
+### 2. Generative collage preview
 
-Draft pull request:
+Public address:
 
-`2 — Generative collage iteration`
+`https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/`
 
 Exact accepted application commit:
 
@@ -54,31 +44,54 @@ Quality run:
 
 `30562311268`
 
-Public address:
+This version introduced unique procedural miniature collages, inherited visual ancestry, lineage counts, generated titles, residue, the three-use cutting mechanic, collage-aware postcard export, final arrival presentation, the all-tier gallery, iPhone safe-area support, 44-point controls, and Mobile Safari WebKit verification.
 
-`https://blindanatomist.github.io/moticos-for-cynthia/collage-preview/`
-
-This version introduced unique procedural miniature collages, inherited visual ancestry, lineage counts, generated titles, residue, the three-use cutting mechanic, collage-aware postcard export, a final arrival, the all-tier gallery, iPhone safe-area support, 44-point controls, and Mobile Safari WebKit verification.
-
-## Accepted found-composition version
-
-Exact application commit:
-
-`986d4a4415f88faeecdbed6e714a27ebb2644fbe`
+### 3. Found-composition preview
 
 Public address:
 
 `https://blindanatomist.github.io/moticos-for-cynthia/found-composition-preview/`
 
+Exact application commit:
+
+`986d4a4415f88faeecdbed6e714a27ebb2644fbe`
+
+Hosted verification run:
+
+`30572688304`
+
 This version introduced the five-by-five board, larger pieces, magnetic near-miss acceptance, stronger lift-and-snap behavior, visible possible matches, a 20-piece composition carrying 128 scraps, and a 19-merge route to the final form.
 
-Hosted verification run `30572688304` confirmed the separate preview while preserving the first two public versions.
+### 4. Cynthia-feedback preview
 
-## Cynthia real-iPhone feedback
+Public address:
+
+`https://blindanatomist.github.io/moticos-for-cynthia/cynthia-feedback-preview/`
+
+Exact verified application commit:
+
+`cf9d0b114e258839676b76b64962cdd5e159e2cc`
+
+Exact quality run:
+
+`30648298231`
+
+Hosted verification run:
+
+`30649489120`
+
+Hosted evidence artifact:
+
+- artifact ID: `8800817868`;
+- SHA-256: `e986cc88cb44f346e37b4e529ba71fdcc4b6dedbeae60a36368c027e278c2e17`.
+
+The fourth directory was added without replacing any earlier public version. Publication PR 9 was closed without merging.
+
+## Cynthia real-iPhone feedback authority
 
 Cynthia tested the found-composition version on her physical iPhone.
 
-Accepted human-tested behavior:
+Accepted behavior:
 
 - she liked the dragging and piece movement;
 - she thought the game was pretty;
@@ -97,25 +110,17 @@ Requested refinement:
 - rename the action from `Chop` to `Cut` while retaining `Chop` as a tier;
 - offer both a found-pieces route and a route beginning from individual scraps.
 
-## Verified Cynthia-feedback refinement
+## Implemented Cynthia-feedback refinement
 
-Exact verified branch head before later documentation-only commits:
+The exact verified application includes:
 
-`cf9d0b114e258839676b76b64962cdd5e159e2cc`
-
-Exact quality run:
-
-`30648298231`
-
-The refinement includes:
-
-- the accepted magnetic drag mechanism unchanged in purpose and feel;
-- a gentle material audio palette using low-pass pink and brown noise, muted low tones, and no bright ping effects;
+- the accepted magnetic drag mechanism preserved in purpose and feel;
+- a gentle material audio palette using low-pass pink and brown noise and muted low tones, with no bright ping effects;
 - generated-title sanitization so bare numbers and Cynthia's name cannot accidentally form path-like or account-like text;
-- a 25-piece Found Pieces route completing in 24 merges;
-- a From Scraps route completing in 31 merges while still converging on 128 scraps;
+- a 25-piece `Found Pieces` route completing in 24 merges;
+- a `From Scraps` route completing in 31 merges while converging on 128 scraps;
 - correspondence discoveries every six meaningful moves;
-- earned Keepsakes that let the player preserve a focal fragment through the next merge;
+- earned Keepsakes that preserve a chosen focal fragment through the next merge;
 - a composition grammar with focal, support, accent, and structural roles, controlled density, negative space, palette coordination, and recomposition across merges;
 - a two-column iPhone `Path to Moticos` archive with clear tier names, states, and current-stage emphasis;
 - separate `Share postcard` and `Download postcard` actions;
@@ -126,18 +131,19 @@ The refinement includes:
 - transient reward and Keepsake notices implemented as pointer-transparent overlays so they never move the board during a gesture;
 - synchronous drag-state handling so pointer-up cannot read stale React state.
 
-Verification passed:
+## Exact verification record
+
+Quality run `30648298231` passed:
 
 - 11 deterministic game-logic, lineage, route, Keepsake, title, art-grammar, and audio-profile tests;
 - production Vite build;
-- Mobile Safari WebKit installation and execution;
-- iPhone 13 WebKit profile;
-- large 430-by-932 WebKit profile;
+- iPhone 13 Mobile Safari WebKit;
+- large 430-by-932 Mobile Safari WebKit;
 - secondary desktop Chromium;
-- 32 browser scenarios passed;
+- 32 browser scenarios;
 - one intentional desktop skip for the iPhone-only layout gate;
-- complete Found Pieces progression through 24 real drag merges in all three browser profiles;
-- complete From Scraps progression through 31 real drag merges in all three browser profiles;
+- complete `Found Pieces` progression through 24 real drag merges in all three browser profiles;
+- complete `From Scraps` progression through 31 real drag merges in all three browser profiles;
 - magnetic near-miss merge and Undo;
 - Cut and board preservation;
 - Keepsake earning, arming, and focal-fragment preservation;
@@ -148,7 +154,7 @@ Verification passed:
 - recomposed all-tier gallery;
 - screenshot and postcard evidence upload.
 
-Evidence artifact:
+Primary evidence artifact:
 
 - artifact ID: `8800502464`;
 - SHA-256: `620862e04d4501ce8dfedd7d9b55d4d7f8e99ee0cf1585a5ac2229db73aba08d`;
@@ -158,7 +164,7 @@ Direct visual inspection of every screenshot set and all three postcard exports 
 
 - no horizontal overflow, clipped board, displaced controls, or broken iPhone safe-area layout;
 - the two starting routes are clear and visually distinct;
-- the 25-piece board remains comfortably readable on both iPhone sizes;
+- the 25-piece board remains readable on both iPhone sizes;
 - progression names, including `Correspondence`, are fully legible;
 - found, made, waiting, and current progression states are distinguishable;
 - reward notices do not reflow or obstruct play;
@@ -168,11 +174,24 @@ Direct visual inspection of every screenshot set and all three postcard exports 
 - postcards are framed correctly and preserve distinct generated boards;
 - the recomposed pieces show stronger hierarchy and intentional negative space than the previous version.
 
+Hosted run `30649489120` then confirmed the public fourth preview in Mobile Safari WebKit:
+
+- exact application marker `cf9d0b114e258839676b76b64962cdd5e159e2cc`;
+- all four Pages entries present;
+- the first three index blobs unchanged;
+- 25-piece starting field;
+- eight progression stages;
+- sound-control interaction;
+- both route selectors;
+- a real hosted drag merge;
+- no browser console or page errors;
+- hosted screenshot capture and direct visual inspection.
+
 ## Current boundaries
 
 - `main` remains unchanged.
 - Draft PR 2 remains open and unmerged.
-- The first three public versions remain available and unchanged.
-- Exhibition Mode remains deferred.
-- The Cynthia-feedback refinement is verified but is not yet public at a fourth address.
-- Separate authorization already covers publishing this exact verified refinement as a fourth isolated preview while preserving the first three.
+- All four public versions remain available.
+- The fourth preview is the current Cynthia-feedback candidate.
+- Exhibition Mode remains deferred until the human game is stable.
+- No paid service or infrastructure was introduced.
