@@ -44,7 +44,8 @@ button {
   position: fixed;
   left: 50%;
   z-index: 80;
-  width: min(90vw, 420px);
+  width: max-content;
+  max-width: calc(100vw - 24px);
   margin: 0;
   transform: translateX(-50%);
   pointer-events: none;
@@ -52,11 +53,16 @@ button {
 }
 
 .mm-reward {
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  top: calc(env(safe-area-inset-top, 0px) + 10px);
 }
 
 .mm-keepsake-instruction {
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 70px);
+  top: calc(env(safe-area-inset-top, 0px) + 62px);
+}
+
+.mm-page:has(.mm-arrival-backdrop) .mm-reward,
+.mm-page:has(.mm-arrival-backdrop) .mm-keepsake-instruction {
+  display: none;
 }
 
 @media (max-width: 520px) {
