@@ -1,0 +1,28 @@
+.mm-reward,
+.mm-keepsake-instruction {
+  position: fixed;
+  z-index: 95;
+  top: calc(82px + env(safe-area-inset-top));
+  left: 50%;
+  width: min(420px, calc(100vw - 24px));
+  margin: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(34, 31, 29, 0.24);
+}
+
+.mm-reward + .mm-keepsake-instruction {
+  top: calc(148px + env(safe-area-inset-top));
+}
+
+@media (max-width: 380px) {
+  .mm-reward,
+  .mm-keepsake-instruction {
+    top: calc(72px + env(safe-area-inset-top));
+    width: calc(100vw - 20px);
+  }
+
+  .mm-reward + .mm-keepsake-instruction {
+    top: calc(142px + env(safe-area-inset-top));
+  }
+}
