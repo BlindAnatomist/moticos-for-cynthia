@@ -1,5 +1,5 @@
 import {
-  chopTileArtwork,
+  cutTileArtwork,
   createFoundTile,
   mergeTileArtwork,
   tileTier,
@@ -9,17 +9,33 @@ export const SIZE = 5;
 export const CELLS = SIZE * SIZE;
 export const MAX_TIER = 7;
 
-// Twenty inherited pieces carry exactly 128 source scraps. With no automatic
-// refill, every legal merge condenses the field until one Motico remains.
-// Nineteen merges complete a round; each optional Chop adds one action and
-// one later merge, keeping the full session inside the intended 15–30 actions.
+export const MODE_FOUND = "found";
+export const MODE_SCRAPS = "scraps";
+
+// Twenty-five inherited pieces carry exactly 128 source scraps. With no
+// automatic refill, the board condenses to one Moticos in twenty-four merges.
 export const FOUND_COMPOSITION_TIERS = Object.freeze([
-  0, 0, 0, 0,
-  1, 1, 1, 1,
-  2, 2, 2,
+  0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1,
+  2, 2, 2, 2, 2, 2,
   3, 3, 3, 3, 3,
-  4, 4, 4, 4,
+  4, 4, 4,
 ]);
+
+export const SCRAPS_COMPOSITION_TIERS = Object.freeze(Array(CELLS).fill(0));
+
+// From Scraps begins with 25 individual Clips. Seven earned found pieces add
+// the remaining 103 scraps required for the same 128-scrap Moticos. The route
+// takes 31 merges and remains solvable under the deterministic highest-pair gate.
+export const SCRAPS_DISCOVERY_SCHEDULE = Object.freeze({
+  3: 6,
+  6: 4,
+  9: 3,
+  12: 3,
+  15: 2,
+  18: 1,
+  21: 0,
+});
 
 export function emptyBoard() {
   return Array(CELLS).fill(null);
@@ -51,7 +67,6 @@ export function hasMerge(board) {
 
 export function chooseSpawnTier(board, rng = Math.random) {
   if (hasMerge(board)) return 0;
-
   const rescueCandidates = board
     .map(tileTier)
     .filter((tier) => tier !== null && tier < MAX_TIER);
@@ -59,29 +74,53 @@ export function chooseSpawnTier(board, rng = Math.random) {
   return rescueCandidates[Math.floor(rng() * rescueCandidates.length)];
 }
 
-// Preserved for later procedural-composer work. Human rounds deliberately do
-// not call this after every merge; the board should thin and reveal residue.
-export function spawnTileAt(board, rng = Math.random) {
+export function spawnSpecificTier(board, tier, rng = Math.random) {
   const next = board.slice();
   const index = randomEmptyIndex(next, rng);
   if (index === -1) return { board: next, index, tier: null, tile: null };
-
-  const tier = chooseSpawnTier(next, rng);
-  const tile = createFoundTile(tier, rng);
+  const tile = createFoundTile(tier, rng, { discovered: true });
   next[index] = tile;
   return { board: next, index, tier, tile };
 }
 
-export function initialBoard(rng = Math.random) {
+// Preserved for the later procedural composer. Human rounds deliberately do
+// not call this after every merge.
+export function spawnTileAt(board, rng = Math.random) {
+  return spawnSpecificTier(board, chooseSpawnTier(board, rng), rng);
+}
+
+export function initialBoard(rng = Math.random, mode = MODE_FOUND) {
+  const tiers = mode === MODE_SCRAPS
+    ? SCRAPS_COMPOSITION_TIERS
+    : FOUND_COMPOSITION_TIERS;
   const board = emptyBoard();
-  FOUND_COMPOSITION_TIERS.forEach((tier) => {
+  tiers.forEach((tier) => {
     const index = randomEmptyIndex(board, rng);
-    board[index] = createFoundTile(tier, rng);
+    board[index] = createFoundTile(tier, rng, {
+      discovered: mode === MODE_FOUND && tier > 0,
+    });
   });
   return board;
 }
 
-export function resolveMerge(board, fromIndex, toIndex, rng = Math.random) {
+export function scheduledDiscoveryTier(mode, completedMerges) {
+  if (mode !== MODE_SCRAPS) return null;
+  return SCRAPS_DISCOVERY_SCHEDULE[completedMerges] ?? null;
+}
+
+export function addScheduledDiscovery(board, mode, completedMerges, rng = Math.random) {
+  const tier = scheduledDiscoveryTier(mode, completedMerges);
+  if (tier === null) return null;
+  return spawnSpecificTier(board, tier, rng);
+}
+
+export function resolveMerge(
+  board,
+  fromIndex,
+  toIndex,
+  rng = Math.random,
+  options = {}
+) {
   const fromTile = board[fromIndex];
   const toTile = board[toIndex];
   if (
@@ -106,7 +145,10 @@ export function resolveMerge(board, fromIndex, toIndex, rng = Math.random) {
     bonus = true;
   } else {
     newTier = fromTile.tier + 1;
-    mergedTile = mergeTileArtwork(fromTile, toTile, newTier, rng);
+    mergedTile = mergeTileArtwork(fromTile, toTile, newTier, rng, {
+      preserveMotifId: options.preserveMotifId ?? null,
+      correspondence: Boolean(options.correspondence),
+    });
     next[fromIndex] = null;
     next[toIndex] = mergedTile;
     scoreDelta = (fromTile.tier + 2) * 10;
@@ -127,12 +169,12 @@ export function resolveMerge(board, fromIndex, toIndex, rng = Math.random) {
   };
 }
 
-export function canChop(board) {
+export function canCut(board) {
   return board.some((tile) => tile?.tier > 0) && board.some((tile) => tile === null);
 }
 
-export function resolveChop(board, rng = Math.random) {
-  if (!canChop(board)) return null;
+export function resolveCut(board, rng = Math.random) {
+  if (!canCut(board)) return null;
 
   let targetIndex = -1;
   let targetTier = -1;
@@ -148,7 +190,7 @@ export function resolveChop(board, rng = Math.random) {
   const emptyIndex = randomEmptyIndex(board, rng);
   if (emptyIndex === -1) return null;
 
-  const [first, second] = chopTileArtwork(sourceTile, rng);
+  const [first, second] = cutTileArtwork(sourceTile, rng);
   const next = board.slice();
   next[targetIndex] = first;
   next[emptyIndex] = second;
@@ -163,3 +205,7 @@ export function resolveChop(board, rng = Math.random) {
     second,
   };
 }
+
+// Compatibility aliases for documentation-only commits and old evidence.
+export const canChop = canCut;
+export const resolveChop = resolveCut;
