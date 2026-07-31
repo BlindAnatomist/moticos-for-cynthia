@@ -1,143 +1,78 @@
-name: Verify Cynthia Feedback Preview
+name: Quality
 
 on:
+  push:
+    branches:
+      - main
+      - work/fresh-moticos-playable
+      - work/generative-collage-iteration
+    paths:
+      - .github/workflows/quality.yml
+      - index.html
+      - package.json
+      - package-lock.json
+      - vite.config.js
+      - playwright.config.js
+      - src/**
+      - tests/**
   pull_request:
     branches:
       - main
     paths:
       - .github/workflows/quality.yml
+      - index.html
+      - package.json
+      - package-lock.json
+      - vite.config.js
+      - playwright.config.js
+      - src/**
+      - tests/**
 
 permissions:
   contents: read
 
 concurrency:
-  group: moticos-cynthia-feedback-hosted-verification
+  group: moticos-quality-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify-hosted:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
-      - name: Check out verification branch
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 4
-
-      - name: Verify application source remains exact
-        run: |
-          set -euo pipefail
-          test -z "$(git diff --name-only cf9d0b114e258839676b76b64962cdd5e159e2cc HEAD | grep -v '^.github/workflows/quality.yml$' || true)"
-
-      - name: Verify all four Pages entries without writing
-        run: |
-          set -euo pipefail
-          git fetch origin gh-pages
-          git worktree add /tmp/moticos-pages origin/gh-pages
-          cd /tmp/moticos-pages
-          test "$(git hash-object index.html)" = '71a34b8ed4421f3710c923cdcba91a7231a05254'
-          test "$(git hash-object collage-preview/index.html)" = 'fd0c04f55b7429b78ad5d33b7656ee66d0874d84'
-          test "$(git hash-object found-composition-preview/index.html)" = 'a7cdf4d4391f614fe0cde49bcde35f1f0f45fc5f'
-          test "$(cat cynthia-feedback-preview/application-commit.txt)" = 'cf9d0b114e258839676b76b64962cdd5e159e2cc'
-          test -f cynthia-feedback-preview/index.html
-          test -f cynthia-feedback-preview/assets/index-BXjuQz_G.css
-          test -f cynthia-feedback-preview/assets/index-Dl-yfPMx.js
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install browser tooling
-        run: |
-          npm install --no-audit --no-fund
-          npx playwright install --with-deps webkit
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
 
-      - name: Verify hosted preview in Mobile Safari WebKit
-        run: |
-          set -euo pipefail
-          mkdir -p test-results/hosted
-          node --input-type=module <<'NODE'
-          import { webkit, devices } from '@playwright/test';
+      - name: Run game-logic tests
+        run: npm test
 
-          const url = 'https://blindanatomist.github.io/moticos-for-cynthia/cynthia-feedback-preview/';
-          const browser = await webkit.launch();
-          const context = await browser.newContext({ ...devices['iPhone 13'] });
-          const page = await context.newPage();
-          const errors = [];
+      - name: Build production bundle
+        run: npm run build
 
-          page.on('console', message => {
-            if (message.type() === 'error') errors.push(`console: ${message.text()}`);
-          });
-          page.on('pageerror', error => errors.push(`page: ${error.message}`));
+      - name: Install Mobile Safari WebKit and desktop Chromium
+        run: npx playwright install --with-deps webkit chromium
 
-          await page.goto(url, { waitUntil: 'networkidle' });
-          await page.getByRole('heading', { name: 'MOTICOS' }).waitFor();
+      - name: Run iPhone-first browser tests and capture screenshots
+        run: npm run test:e2e
 
-          const marker = await (await fetch(`${url}application-commit.txt`)).text();
-          if (marker.trim() !== 'cf9d0b114e258839676b76b64962cdd5e159e2cc') {
-            throw new Error('Wrong hosted application commit');
-          }
-          if (await page.locator('[data-tier]:not([data-tier="empty"])').count() !== 25) {
-            throw new Error('Expected 25 starting pieces');
-          }
-          if (await page.locator('[data-progression-tier]').count() !== 8) {
-            throw new Error('Expected eight progression stages');
-          }
-
-          await page.getByRole('button', { name: 'Mute sound effects' }).tap();
-          await page.getByRole('button', { name: /From Scraps.*31 merges/ }).tap();
-          if (await page.locator('[data-tier="0"]').count() !== 25) {
-            throw new Error('From Scraps did not produce 25 Clips');
-          }
-          await page.getByRole('button', { name: /Found Pieces.*24 merges/ }).tap();
-
-          await page.evaluate(() => {
-            document.querySelector('.mm-board')?.scrollIntoView({
-              block: 'center',
-              inline: 'nearest',
-              behavior: 'auto',
-            });
-          });
-          await page.evaluate(
-            () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
-          );
-
-          const first = page.locator('[data-tier="0"]').nth(0);
-          const second = page.locator('[data-tier="0"]').nth(1);
-          const a = await first.boundingBox();
-          const b = await second.boundingBox();
-          if (!a || !b) throw new Error('Unable to measure hosted merge pair');
-
-          const startX = a.x + a.width / 2;
-          const startY = a.y + a.height / 2;
-          const targetX = b.x + b.width / 2;
-          const targetY = b.y + b.height / 2;
-          const midpointX = startX + (targetX - startX) * 0.55;
-          const midpointY = startY + (targetY - startY) * 0.55;
-
-          await page.mouse.move(startX, startY);
-          await page.mouse.down();
-          await page.mouse.move(midpointX, midpointY, { steps: 4 });
-          await page.mouse.move(targetX, targetY, { steps: 8 });
-          await page.locator('.mm-floating-tile').waitFor({ state: 'visible' });
-          await page.mouse.up();
-          await page.waitForFunction(() => document.querySelector('[data-testid="merges"]')?.textContent?.trim() === '1');
-
-          if (errors.length) throw new Error(errors.join('\n'));
-          await page.screenshot({
-            path: 'test-results/hosted/cynthia-feedback-preview-iphone.png',
-            fullPage: true,
-          });
-          await browser.close();
-          NODE
-
-      - name: Upload hosted evidence
+      - name: Upload screenshots, postcards, and traces
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cynthia-feedback-preview-hosted-evidence
-          path: test-results/hosted
-          if-no-files-found: error
+          name: moticos-browser-evidence
+          path: |
+            test-results/screenshots
+            test-results/postcards
+            test-results/**/trace.zip
+            playwright-report
+          if-no-files-found: ignore
           retention-days: 1
