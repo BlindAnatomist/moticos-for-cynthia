@@ -39,6 +39,26 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+.mm-reward,
+.mm-keepsake-instruction {
+  position: fixed;
+  left: 50%;
+  z-index: 80;
+  width: min(90vw, 420px);
+  margin: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 5px 16px rgba(34, 31, 29, 0.3);
+}
+
+.mm-reward {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+}
+
+.mm-keepsake-instruction {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 70px);
+}
+
 @media (max-width: 520px) {
   .mm-progression-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
