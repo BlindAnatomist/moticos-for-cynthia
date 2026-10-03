@@ -4,8 +4,10 @@ Moticos is a collage-inspired merging game. Drag one clipping onto another clipp
 
 ## Development
 
+Use Node.js 22. Install the dependency versions recorded in `package-lock.json`:
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -14,7 +16,7 @@ npm run dev
 ```bash
 npm test
 npm run build
-npx playwright install chromium
+npx playwright install --with-deps webkit chromium
 npm run test:e2e
 ```
 
