@@ -1,0 +1,67 @@
+name: Verify dependency checkpoint
+
+on:
+  push:
+    branches:
+      - verify/moticos-dependencies-20261003
+    paths:
+      - .github/workflows/verify-dependency-checkpoint.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moticos-dependency-checkpoint-20261003
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out exact reviewed implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 8a146bf894f7ada1bcbf8ee42a2425c15fdcf50b
+          persist-credentials: false
+
+      - name: Verify checkpoint identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "8a146bf894f7ada1bcbf8ee42a2425c15fdcf50b"
+          test "$(git rev-parse HEAD^{tree})" = "ba63c2bcab1a0a69419744b4db7e66f029c98bc5"
+          echo "87024cf798a4b1f18febace90041a9580c9391ec788028966264181f3a0b0869  package-lock.json" | sha256sum -c -
+
+      - name: Use verified Node.js version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run game-logic tests
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Install Mobile Safari WebKit and desktop Chromium
+        run: npx playwright install --with-deps webkit chromium
+
+      - name: Run iPhone-first browser tests and capture screenshots
+        run: npm run test:e2e
+
+      - name: Upload screenshots, postcards, and traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-dependency-checkpoint-evidence
+          path: |
+            test-results/screenshots
+            test-results/postcards
+            test-results/**/trace.zip
+            playwright-report
+          if-no-files-found: ignore
+          retention-days: 1
