@@ -1,0 +1,11 @@
+{
+  "savedStrictFixturesPassed": 706,
+  "legacyRepresentativeFixturesPassed": 40,
+  "strictMutationEquivalenceCases": 51,
+  "wrongViewportRejected": true,
+  "liveArtMutationsRejected": 8,
+  "reachableControlMutationsRejected": 10,
+  "fallbackFixturesPassed": 8,
+  "pureSavedFixtureEvaluationMs": 233,
+  "totalCheckMs": 4977
+}

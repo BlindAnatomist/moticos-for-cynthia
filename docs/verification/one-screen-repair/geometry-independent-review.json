@@ -1,0 +1,62 @@
+{
+  "nonmodal_default_records": 706,
+  "violations": [],
+  "summary": [
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "records": 174,
+      "cellmin": 51.515625,
+      "cellmax": 51.53125,
+      "targetmin": 44,
+      "artbox_width_min": 47.515625,
+      "artbox_height_min": 25.515625,
+      "artbox_height_max": 36.53125,
+      "controls_bottom_max": 560
+    },
+    {
+      "viewport": [
+        390,
+        664
+      ],
+      "records": 175,
+      "cellmin": 68,
+      "cellmax": 68,
+      "targetmin": 44,
+      "artbox_width_min": 64,
+      "artbox_height_min": 53,
+      "artbox_height_max": 53,
+      "controls_bottom_max": 656
+    },
+    {
+      "viewport": [
+        430,
+        752
+      ],
+      "records": 180,
+      "cellmin": 75.3125,
+      "cellmax": 76,
+      "targetmin": 44,
+      "artbox_width_min": 71.3125,
+      "artbox_height_min": 60.3125,
+      "artbox_height_max": 61,
+      "controls_bottom_max": 744
+    },
+    {
+      "viewport": [
+        430,
+        932
+      ],
+      "records": 177,
+      "cellmin": 76,
+      "cellmax": 76,
+      "targetmin": 44,
+      "artbox_width_min": 72,
+      "artbox_height_min": 61,
+      "artbox_height_max": 61,
+      "controls_bottom_max": 924
+    }
+  ]
+}

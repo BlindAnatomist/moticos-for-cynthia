@@ -247,11 +247,12 @@ test('viewport changes cancel an unfinished drag and retarget a committed flight
   await expect(page.locator('.cg-floating.is-flying')).toHaveCount(1);
   const committed = await rawSave(page);
   expect(JSON.parse(committed).round).toMatchObject({ moves: 1, merges: 1 });
-  for (const viewport of [PHONE_VIEWPORTS[0], PHONE_VIEWPORTS[2]]) {
+  for (const viewport of [PHONE_VIEWPORTS[0], { width: 380, height: 664 }, { width: 381, height: 664 }, PHONE_VIEWPORTS[2]]) {
     await page.setViewportSize(viewport);
     await page.clock.runFor(32);
     await expect(page.locator('.cg-floating.is-flying')).toHaveCount(1);
     expect(await rawSave(page)).toBe(committed);
+    await expect(cell(page, 7).locator('.cg-cell-name')).toHaveText(viewport.width <= 380 ? 'Wing' : 'Riverwing');
     await expect.poll(() => page.evaluate(() => {
       const target = document.querySelector('[data-matching-cell="7"]').getBoundingClientRect();
       const flight = document.querySelector('.cg-floating');

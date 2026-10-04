@@ -3,7 +3,7 @@ name: Verify one-screen Moticos layout
 # Inert until the owner separately approves this bounded browser gate.
 on:
   push:
-    branches: [verify/one-screen-layout-20261004]
+    branches: [verify/one-screen-art-recheck-20261004]
 
 permissions:
   contents: read
@@ -41,6 +41,7 @@ jobs:
           path: |
             test-results/screenshots
             test-results/geometry
+            test-results/progress
             test-results/postcards
             test-results/**/trace.zip
             playwright-report

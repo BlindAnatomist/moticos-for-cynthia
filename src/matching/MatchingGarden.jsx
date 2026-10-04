@@ -6,6 +6,7 @@ import { downloadPostcard, sharePostcard } from '../exportPostcard.js';
 import { DEFAULT_ENVELOPE_ID, ENVELOPES, getEnvelope, getMatchingEngine } from './registry.js';
 import { openEnvelopeSession, commitEnvelopeSession, observeEnvelopeStorage } from './session.js';
 import { createCollectionPostcard } from './postcard.js';
+import { BOARD_ART_BOUNDS, COMPACT_BOARD_LABELS } from './boardArt.js';
 import CollectionDialog from '../collection/CollectionDialog.jsx';
 import './matching.css';
 
@@ -16,9 +17,20 @@ const browserStorage = {
   setItem: (key, value) => globalThis.localStorage.setItem(key, value),
 };
 
-function Art({ id, catalog, className = '', description = false, lazy = false }) {
+function Art({ id, catalog, className = '', description = false, lazy = false, inkBounds = null }) {
   const piece = catalog[id];
-  return <img className={`cg-art ${className}`} src={piece.art} alt={description ? piece.description : ''} draggable="false" loading={lazy ? 'lazy' : 'eager'} width="768" height="768" />;
+  return <img className={`cg-art ${className}`} src={piece.art} alt={description ? piece.description : ''} draggable="false" loading={lazy ? 'lazy' : 'eager'} width="768" height="768" data-ink-bounds={inkBounds?.join(',')} />;
+}
+function BoardArt({ id, catalog }) {
+  const { source: [width, height], crop: [x, y, cropWidth, cropHeight], ink } = BOARD_ART_BOUNDS[id];
+  const style = {
+    '--mg-crop-ratio': cropWidth / cropHeight,
+    '--mg-image-width': `${width / cropWidth * 100}%`,
+    '--mg-image-height': `${height / cropHeight * 100}%`,
+    '--mg-image-left': `${-x / cropWidth * 100}%`,
+    '--mg-image-top': `${-y / cropHeight * 100}%`,
+  };
+  return <span className="mg-board-art" aria-hidden="true"><span className="mg-art-fit" style={style}><Art id={id} catalog={catalog} className="mg-cropped-art" inkBounds={ink} /></span></span>;
 }
 function PostcardContent({ pieceId, envelope }) {
   const CATALOG = envelope.catalog.CATALOG;
@@ -65,6 +77,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
   const [collectionEnvelopeId, setCollectionEnvelopeId] = useState(envelopeId);
   const [hint, setHint] = useState([]);
   const [largeText, setLargeText] = useState(false);
+  const [compactLabels, setCompactLabels] = useState(() => window.matchMedia('(max-width:380px)').matches);
   const shellRef = useRef(null);
   const boardRef = useRef(null), cells = useRef([]), timers = useRef(new Set());
   useEffect(() => {
@@ -115,6 +128,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     function cancelGesture() { setDrag(null); }
     function resizeGesture() {
       setDrag(null);
+      setCompactLabels(window.matchMedia('(max-width:380px)').matches);
       // A committed merge stays committed; only retarget its decorative flight.
       if (flightRef.current) {
         const target = center(flightRef.current.to);
@@ -302,7 +316,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
           const isSource = (drag?.dragging && drag.index === index) || flight?.from === index;
           const hovering = drag?.dragging && drag.magneticIndex === index;
           return <button key={index} type="button" ref={el => { cells.current[index] = el; }} data-matching-cell={index} data-piece-id={tile?.pieceId ?? 'empty'} tabIndex={index === focusIndex ? 0 : -1} onFocus={() => setFocusIndex(index)} onKeyDown={event => onKey(event, index)} aria-label={`${piece ? `${piece.name}, level ${piece.tier}` : 'Empty space'}, row ${Math.floor(index / 5) + 1}, column ${index % 5 + 1}${match ? ', matches selected piece' : ''}`} aria-pressed={selected === index} className={`cg-cell ${tile ? 'has-art' : 'is-empty'}${selected === index ? ' is-selected' : ''}${match ? ' is-match' : ''}${hovering ? ' is-target' : ''}${hint.includes(index) ? ' is-hint' : ''}${isSource ? ' is-source' : ''}${pasteIndex === index ? ' is-pasted' : ''}${flight?.to === index ? ' is-arriving' : ''}`} onPointerDown={event => pointerDown(event, index)} onPointerMove={pointerMove} onPointerUp={event => pointerUp(event, index)} onPointerCancel={event => { if (dragRef.current?.pointerId === event.pointerId) setDrag(null); }} onLostPointerCapture={event => { const d = dragRef.current; if (d?.pointerId === event.pointerId && !d.snapBack) setDrag(null); }} onClick={event => { if (event.detail === 0) choose(index); }}>
-            {piece ? <><span className={`mg-level mg-${piece.familyId}`} aria-hidden="true">{piece.tier}</span><Art catalog={CATALOG} id={piece.id} /><span className="cg-cell-name">{piece.shortName}</span>{piece.tier === 5 && <span className="cg-finale-mark" aria-hidden="true">✳</span>}</> : <span className="cg-empty-mark" aria-hidden="true">·</span>}
+            {piece ? <><span className={`mg-level mg-${piece.familyId}`} aria-hidden="true">{piece.tier}</span><BoardArt catalog={CATALOG} id={piece.id} /><span className="cg-cell-name">{compactLabels ? COMPACT_BOARD_LABELS[piece.id] ?? piece.shortName : piece.shortName}</span>{piece.tier === 5 && <span className="cg-finale-mark" aria-hidden="true">✳</span>}</> : <span className="cg-empty-mark" aria-hidden="true">·</span>}
           </button>;
         })}
       </section>

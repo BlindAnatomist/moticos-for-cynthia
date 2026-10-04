@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import { expect } from '@playwright/test';
 
 export const MATCHING_KEY = 'moticos.matching.garden.v1';
@@ -182,11 +183,7 @@ export async function assertControls(page, selector) {
     const box = node.getBoundingClientRect();
     return { name: node.getAttribute('aria-label') || node.textContent.trim(), width: box.width, height: box.height };
   }));
-  expect(sizes.length).toBeGreaterThan(0);
-  for (const control of sizes) {
-    expect(control.height, `${control.name} has a 44px target height`).toBeGreaterThanOrEqual(44);
-    expect(control.width, `${control.name} has a 44px target width`).toBeGreaterThanOrEqual(44);
-  }
+  expect(matchingControlViolations(sizes), 'all controls retain 44px targets').toEqual([]);
 }
 
 // Inspect every real, currently live tier at compact and standard phone widths.
@@ -215,16 +212,7 @@ export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live
           artWidth: art.width, artHeight: art.height,
         };
       }));
-      for (const tile of tiles) {
-        expect(tile.name, `${tile.id} has a visible short label at ${width}px`).toBeTruthy();
-        expect(tile.clipped, `${tile.id} label must not be truncated at ${width}px`).toBe(false);
-        expect(tile.font).toBeGreaterThanOrEqual(8);
-        expect(tile.accessibleName).toContain(NAMES[tile.id]);
-        expect(tile.width).toBeGreaterThanOrEqual(44);
-        expect(tile.height).toBeGreaterThanOrEqual(44);
-        expect(tile.artWidth).toBeGreaterThan(30);
-        expect(tile.artHeight).toBeGreaterThan(25);
-      }
+      expect(matchingArtViolations(tiles, width), `live artwork remains readable at ${width}px`).toEqual([]);
     }
   } finally {
     await page.setViewportSize(original);
@@ -255,11 +243,11 @@ export async function matchingGeometry(page, selector = '.mg-page > .cg-shell bu
       return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height };
     };
     const label = node => node.getAttribute('aria-label') || node.textContent.trim() || node.className;
-    const measure = node => {
+    const measure = (node, decorativeArt = false) => {
       const box = rect(node), hiddenBy = [], clippedBy = [];
       for (let ancestor = node; ancestor; ancestor = ancestor.parentElement) {
         const style = getComputedStyle(ancestor);
-        if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0 || ancestor.hidden || ancestor.getAttribute('aria-hidden') === 'true' || ancestor.inert) hiddenBy.push(ancestor.className || ancestor.tagName);
+        if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0 || ancestor.hidden || (ancestor.getAttribute('aria-hidden') === 'true' && !(decorativeArt && ancestor.matches('.mg-board-art'))) || ancestor.inert) hiddenBy.push(ancestor.className || ancestor.tagName);
         if (ancestor !== node) {
           const bounds = rect(ancestor);
           const clipsX = style.overflowX !== 'visible';
@@ -301,7 +289,25 @@ export async function matchingGeometry(page, selector = '.mg-page > .cg-shell bu
       body: { width: document.body.scrollWidth, height: document.body.scrollHeight },
       shell: measure(shell), regions,
       controls: [...document.querySelectorAll(selector)].map(measure), text,
-      artwork: [...shell.querySelectorAll('.cg-board img')].map(node => ({ ...measure(node), complete: node.complete, naturalWidth: node.naturalWidth })),
+      artwork: [...shell.querySelectorAll('.cg-board img')].map(node => {
+        const image = measure(node, true), frame = node.closest('.mg-art-fit'), allocated = node.closest('.mg-board-art');
+        const inkBounds = node.hasAttribute('data-ink-bounds') ? node.dataset.inkBounds.split(',').map(Number) : null;
+        const painted = inkBounds?.length === 4 && node.naturalWidth > 0 && node.naturalHeight > 0 ? {
+          left: image.left + image.width * inkBounds[0] / node.naturalWidth,
+          top: image.top + image.height * inkBounds[1] / node.naturalHeight,
+          width: image.width * inkBounds[2] / node.naturalWidth,
+          height: image.height * inkBounds[3] / node.naturalHeight,
+        } : null;
+        if (painted) { painted.right = painted.left + painted.width; painted.bottom = painted.top + painted.height; }
+        return { ...image, name: node.closest('[data-matching-cell]').getAttribute('aria-label'),
+          complete: node.complete, naturalWidth: node.naturalWidth, naturalHeight: node.naturalHeight,
+          cropped: Boolean(frame || allocated || inkBounds || node.matches('.mg-cropped-art')),
+          objectFit: getComputedStyle(node).objectFit, inkBounds, painted,
+          frame: frame ? measure(frame, true) : null,
+          allocated: allocated ? measure(allocated, true) : null,
+          cellBounds: rect(node.closest('[data-matching-cell]')),
+        };
+      }),
     };
   }, selector);
 }
@@ -318,22 +324,86 @@ export async function attachMatchingGeometry(page, info, name, geometry) {
   await info.attach(`${safeName}-viewport`, { path: screenshot, contentType: 'image/png' });
 }
 
-function expectUnclippedText(text) {
+function checkUnclippedText(text, check) {
   for (const item of text) {
-    expect(item.display, `${item.name} is rendered`).not.toBe('none');
-    expect(item.visibility, `${item.name} is visible`).toBe('visible');
+    check(item.display, `${item.name} is rendered`).not.toBe('none');
+    check(item.visibility, `${item.name} is visible`).toBe('visible');
     if (item.block) {
-      expect(item.scrollWidth, `${item.name} does not truncate horizontally`).toBeLessThanOrEqual(item.clientWidth + 1);
-      expect(item.scrollHeight, `${item.name} does not truncate vertically`).toBeLessThanOrEqual(item.clientHeight + 1);
+      check(item.scrollWidth, `${item.name} does not truncate horizontally`).toBeLessThanOrEqual(item.clientWidth + 1);
+      check(item.scrollHeight, `${item.name} does not truncate vertically`).toBeLessThanOrEqual(item.clientHeight + 1);
     }
     if (item.cellLabel) {
-      expect(item.font, `${item.name} retains a readable tile label`).toBeGreaterThanOrEqual(8);
-      expect(item.textBox.left).toBeGreaterThanOrEqual(item.left - 1);
-      expect(item.textBox.right).toBeLessThanOrEqual(item.right + 1);
-      expect(item.textBox.top).toBeGreaterThanOrEqual(item.top - 1);
-      expect(item.textBox.bottom).toBeLessThanOrEqual(item.bottom + 1);
+      check(item.font, `${item.name} retains a readable tile label`).toBeGreaterThanOrEqual(8);
+      check(item.textBox.left).toBeGreaterThanOrEqual(item.left - 1);
+      check(item.textBox.right).toBeLessThanOrEqual(item.right + 1);
+      check(item.textBox.top).toBeGreaterThanOrEqual(item.top - 1);
+      check(item.textBox.bottom).toBeLessThanOrEqual(item.bottom + 1);
     }
   }
+}
+
+// Numeric geometry predicates are pure and produce named violations. One
+// Playwright expectation records the result, instead of tracing ~1,000 tiny
+// assertions per screen (the previous gate spent 116–143 seconds per round
+// inside the geometry assertion blocks). Conditions remain unchanged.
+export function matchingViewportViolations(geometry, requestedViewport) {
+  const violations = [], check = collectChecks(violations);
+  const { viewport, controls, regions, text, artwork } = geometry;
+  check({ width: viewport.width, height: viewport.height }, 'actual CSS viewport equals the requested test viewport').toEqual(requestedViewport);
+  check(viewport.scrollX, 'fit is measured without horizontal scrolling').toBe(0);
+  check(viewport.scrollY, 'fit is measured without vertical scrolling').toBe(0);
+  check(geometry.document.width, 'document has no horizontal overflow').toBeLessThanOrEqual(viewport.width);
+  check(geometry.document.height, 'document has no vertical overflow').toBeLessThanOrEqual(viewport.height);
+  check(geometry.body.width, 'body has no horizontal overflow').toBeLessThanOrEqual(viewport.width);
+  check(geometry.body.height, 'body has no vertical overflow').toBeLessThanOrEqual(viewport.height);
+  const visibleBounds = viewport.visual ? {
+    left: viewport.visual.offsetLeft, top: viewport.visual.offsetTop,
+    right: viewport.visual.offsetLeft + viewport.visual.width,
+    bottom: viewport.visual.offsetTop + viewport.visual.height,
+  } : { left: 0, top: 0, right: viewport.width, bottom: viewport.height };
+  check(controls.filter(control => control.cell !== null)).toHaveLength(25);
+  check(controls.length, '25 cells, two header controls, two supplies, four tools and three secondary actions').toBeGreaterThanOrEqual(36);
+  for (const box of [...controls, ...regions]) {
+    check(box.hiddenBy, `${box.name} is not hidden by CSS, aria-hidden or inert`).toEqual([]);
+    check(box.clippedBy, `${box.name} is not clipped by an ancestor`).toEqual([]);
+    check(box.left, `${box.name} left edge`).toBeGreaterThanOrEqual(visibleBounds.left - .5);
+    check(box.top, `${box.name} top edge`).toBeGreaterThanOrEqual(visibleBounds.top - .5);
+    check(box.right, `${box.name} right edge`).toBeLessThanOrEqual(visibleBounds.right + .5);
+    check(box.bottom, `${box.name} bottom edge`).toBeLessThanOrEqual(visibleBounds.bottom + .5);
+    check(box.width, `${box.name} is rendered`).toBeGreaterThan(0);
+    check(box.height, `${box.name} is rendered`).toBeGreaterThan(0);
+    check(box.scrollWidth, `${box.name} has no concealed horizontal overflow`).toBeLessThanOrEqual(box.clientWidth + 1);
+    check(box.scrollHeight, `${box.name} has no concealed vertical overflow`).toBeLessThanOrEqual(box.clientHeight + 1);
+  }
+  for (const control of controls) {
+    check(control.width, `${control.name} target width`).toBeGreaterThanOrEqual(44);
+    check(control.height, `${control.name} target height`).toBeGreaterThanOrEqual(44);
+    check(control.hitTests.filter(hit => !hit.clear), `${control.name} has no overlaid or occluded hit area`).toEqual([]);
+  }
+  for (let i = 0; i < regions.length; i++) for (let j = i + 1; j < regions.length; j++) {
+    const a = regions[i], b = regions[j];
+    const overlapWidth = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+    const overlapHeight = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+    check(overlapWidth > 1 && overlapHeight > 1, `${a.name} and ${b.name} do not visually overlap`).toBe(false);
+  }
+  checkUnclippedText(text, check);
+  for (const item of text) {
+    check(item.textBox.left, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.left - 1);
+    check(item.textBox.right, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.right + 1);
+    check(item.textBox.top, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.top - 1);
+    check(item.textBox.bottom, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.bottom + 1);
+  }
+  for (const art of artwork) {
+    check(art.hiddenBy, 'tile artwork is visibly rendered').toEqual([]);
+    // The crop aperture intentionally clips only transparent source canvas.
+    // Preserve that IMG diagnostic, but judge visible paint against the frame.
+    if (!art.cropped) check(art.clippedBy, 'tile artwork is not clipped').toEqual([]);
+    else violations.push(...matchingPaintedArtViolations(art));
+    check(art.complete && art.naturalWidth > 0, 'real artwork loads').toBe(true);
+    check(art.width, 'tile art keeps its existing minimum width').toBeGreaterThan(30);
+    check(art.height, 'tile art keeps its existing minimum height').toBeGreaterThan(25);
+  }
+  return violations;
 }
 
 export async function assertMatchingViewportFit(page, info = null, name = 'fit') {
@@ -342,66 +412,19 @@ export async function assertMatchingViewportFit(page, info = null, name = 'fit')
   await imagesReady(page.locator('.cg-board img'));
   const geometry = await matchingGeometry(page);
   if (info) await attachMatchingGeometry(page, info, name, geometry);
-  const { viewport, controls, regions, text, artwork } = geometry;
-  expect({ width: viewport.width, height: viewport.height }, 'actual CSS viewport equals the requested test viewport').toEqual(page.viewportSize());
-  expect(viewport.scrollX, 'fit is measured without horizontal scrolling').toBe(0);
-  expect(viewport.scrollY, 'fit is measured without vertical scrolling').toBe(0);
-  expect(geometry.document.width, 'document has no horizontal overflow').toBeLessThanOrEqual(viewport.width);
-  expect(geometry.document.height, 'document has no vertical overflow').toBeLessThanOrEqual(viewport.height);
-  expect(geometry.body.width, 'body has no horizontal overflow').toBeLessThanOrEqual(viewport.width);
-  expect(geometry.body.height, 'body has no vertical overflow').toBeLessThanOrEqual(viewport.height);
-  const visibleBounds = viewport.visual ? {
-    left: viewport.visual.offsetLeft, top: viewport.visual.offsetTop,
-    right: viewport.visual.offsetLeft + viewport.visual.width,
-    bottom: viewport.visual.offsetTop + viewport.visual.height,
-  } : { left: 0, top: 0, right: viewport.width, bottom: viewport.height };
-  expect(controls.filter(control => control.cell !== null)).toHaveLength(25);
-  expect(controls.length, '25 cells, two header controls, two supplies, four tools and three secondary actions').toBeGreaterThanOrEqual(36);
-  for (const name of ['Undo', 'Cut', 'Hint', 'Collection', 'Envelopes', 'Fresh envelope', 'How to play']) {
-    await expect(page.getByRole('button', { name, exact: true })).toHaveCount(1);
-  }
-  for (const selector of ['.cg-header', '.cg-board', '.mg-supply', '.cg-tools', '.cg-footer']) {
-    await expect(page.locator(selector)).toHaveCount(1);
-  }
-  await expect(page.locator('.cg-postcard-button')).toHaveCount(1);
-  await expect(page.locator('.mg-supply button')).toHaveCount(2);
-  for (const box of [...controls, ...regions]) {
-    expect(box.hiddenBy, `${box.name} is not hidden by CSS, aria-hidden or inert`).toEqual([]);
-    expect(box.clippedBy, `${box.name} is not clipped by an ancestor`).toEqual([]);
-    expect(box.left, `${box.name} left edge`).toBeGreaterThanOrEqual(visibleBounds.left - .5);
-    expect(box.top, `${box.name} top edge`).toBeGreaterThanOrEqual(visibleBounds.top - .5);
-    expect(box.right, `${box.name} right edge`).toBeLessThanOrEqual(visibleBounds.right + .5);
-    expect(box.bottom, `${box.name} bottom edge`).toBeLessThanOrEqual(visibleBounds.bottom + .5);
-    expect(box.width, `${box.name} is rendered`).toBeGreaterThan(0);
-    expect(box.height, `${box.name} is rendered`).toBeGreaterThan(0);
-    expect(box.scrollWidth, `${box.name} has no concealed horizontal overflow`).toBeLessThanOrEqual(box.clientWidth + 1);
-    expect(box.scrollHeight, `${box.name} has no concealed vertical overflow`).toBeLessThanOrEqual(box.clientHeight + 1);
-  }
-  for (const control of controls) {
-    expect(control.width, `${control.name} target width`).toBeGreaterThanOrEqual(44);
-    expect(control.height, `${control.name} target height`).toBeGreaterThanOrEqual(44);
-    expect(control.hitTests.filter(hit => !hit.clear), `${control.name} has no overlaid or occluded hit area`).toEqual([]);
-  }
-  for (let i = 0; i < regions.length; i++) for (let j = i + 1; j < regions.length; j++) {
-    const a = regions[i], b = regions[j];
-    const overlapWidth = Math.min(a.right, b.right) - Math.max(a.left, b.left);
-    const overlapHeight = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
-    expect(overlapWidth > 1 && overlapHeight > 1, `${a.name} and ${b.name} do not visually overlap`).toBe(false);
-  }
-  expectUnclippedText(text);
-  for (const item of text) {
-    expect(item.textBox.left, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.left - 1);
-    expect(item.textBox.right, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.right + 1);
-    expect(item.textBox.top, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.top - 1);
-    expect(item.textBox.bottom, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.bottom + 1);
-  }
-  for (const art of artwork) {
-    expect(art.hiddenBy, 'tile artwork is visibly rendered').toEqual([]);
-    expect(art.clippedBy, 'tile artwork is not clipped').toEqual([]);
-    expect(art.complete && art.naturalWidth > 0, 'real artwork loads').toBe(true);
-    expect(art.width, 'tile art keeps its existing minimum width').toBeGreaterThan(30);
-    expect(art.height, 'tile art keeps its existing minimum height').toBeGreaterThan(25);
-  }
+  const identities = [
+    ...['Undo', 'Cut', 'Hint', 'Collection', 'Envelopes', 'Fresh envelope', 'How to play']
+      .map(name => ({ name, locator: page.getByRole('button', { name, exact: true }), count: 1 })),
+    ...['.cg-header', '.cg-board', '.mg-supply', '.cg-tools', '.cg-footer', '.cg-postcard-button']
+      .map(selector => ({ name: selector, locator: page.locator(selector), count: 1 })),
+    { name: '.mg-supply button', locator: page.locator('.mg-supply button'), count: 2 },
+  ];
+  // Preserve toHaveCount's retry behavior and role-based visibility semantics.
+  await expect.poll(async () => Promise.all(identities.map(async item => ({
+    name: item.name, count: await item.locator.count(),
+  }))), { message: 'all named controls and required regions remain present' })
+    .toEqual(identities.map(({ name, count }) => ({ name, count })));
+  expect(matchingViewportViolations(geometry, page.viewportSize()), `unclipped one-screen layout: ${name}`).toEqual([]);
   return geometry;
 }
 
@@ -413,30 +436,131 @@ export async function assertMatchingScrollableFallback(page, info, name) {
   await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
   const initial = await matchingGeometry(page);
   await attachMatchingGeometry(page, info, `${name}-top`, initial);
-  expect(initial.controls.filter(control => control.cell !== null)).toHaveLength(25);
-  expect(initial.controls.length).toBeGreaterThanOrEqual(36);
-  expect(initial.document.width).toBeLessThanOrEqual(initial.viewport.width);
-  expect(initial.body.width).toBeLessThanOrEqual(initial.viewport.width);
-  expect(initial.document.height, 'this fixture genuinely exercises the scrolling fallback').toBeGreaterThan(initial.viewport.height);
-  expectUnclippedText(initial.text);
+  const violations = matchingFallbackViolations(initial);
   for (let index = 0; index < initial.controls.length; index++) {
     const control = page.locator('.mg-page > .cg-shell button').nth(index);
     await expect(control).toBeVisible();
     await control.scrollIntoViewIfNeeded();
     const current = await matchingGeometry(page);
     const box = current.controls[index];
-    expect(box.hiddenBy, `${box.name} is not hidden in fallback`).toEqual([]);
-    // The viewport legitimately clips scrolled-off elements, so inspect only
-    // the control brought into view and reject any non-root clipping ancestor.
-    expect(box.clippedBy.filter(name => !['HTML', 'BODY'].includes(name)), `${box.name} stays reachable`).toEqual([]);
-    expect(box.width).toBeGreaterThanOrEqual(44);
-    expect(box.height).toBeGreaterThanOrEqual(44);
-    expect(box.left).toBeGreaterThanOrEqual(-.5);
-    expect(box.right).toBeLessThanOrEqual(current.viewport.width + .5);
-    expect(box.top).toBeGreaterThanOrEqual(-.5);
-    expect(box.bottom).toBeLessThanOrEqual(current.viewport.height + .5);
-    expect(box.hitTests.filter(hit => !hit.clear), `${box.name} can be reached without occlusion`).toEqual([]);
-    expect(current.document.width).toBeLessThanOrEqual(current.viewport.width);
+    violations.push(...matchingReachableControlViolations(box, current.viewport, current.document.width));
   }
   await attachMatchingGeometry(page, info, `${name}-bottom`, await matchingGeometry(page));
+  expect(violations, `scrolling fallback remains fully reachable: ${name}`).toEqual([]);
+}
+
+
+export function matchingControlViolations(sizes) {
+  const violations = [], check = collectChecks(violations);
+  check(sizes.length).toBeGreaterThan(0);
+  for (const control of sizes) {
+    check(control.height, `${control.name} has a 44px target height`).toBeGreaterThanOrEqual(44);
+    check(control.width, `${control.name} has a 44px target width`).toBeGreaterThanOrEqual(44);
+  }
+  return violations;
+}
+export function matchingArtViolations(tiles, width) {
+  const violations = [], check = collectChecks(violations);
+  for (const tile of tiles) {
+    check(tile.name, `${tile.id} has a visible short label at ${width}px`).toBeTruthy();
+    check(tile.clipped, `${tile.id} label must not be truncated at ${width}px`).toBe(false);
+    check(tile.font).toBeGreaterThanOrEqual(8);
+    check(tile.accessibleName).toContain(NAMES[tile.id]);
+    check(tile.width).toBeGreaterThanOrEqual(44);
+    check(tile.height).toBeGreaterThanOrEqual(44);
+    check(tile.artWidth).toBeGreaterThan(30);
+    check(tile.artHeight).toBeGreaterThan(25);
+  }
+  return violations;
+}
+export function matchingFallbackViolations(initial) {
+  const violations = [], check = collectChecks(violations);
+  check(initial.controls.filter(control => control.cell !== null)).toHaveLength(25);
+  check(initial.controls.length).toBeGreaterThanOrEqual(36);
+  check(initial.document.width).toBeLessThanOrEqual(initial.viewport.width);
+  check(initial.body.width).toBeLessThanOrEqual(initial.viewport.width);
+  check(initial.document.height, 'this fixture genuinely exercises the scrolling fallback').toBeGreaterThan(initial.viewport.height);
+  checkUnclippedText(initial.text, check);
+  for (const art of initial.artwork) if (art.cropped) violations.push(...matchingPaintedArtViolations(art, { allowPageScroll: true }));
+  return violations;
+}
+export function matchingReachableControlViolations(box, viewport, documentWidth) {
+  const violations = [], check = collectChecks(violations);
+  check(box.hiddenBy, `${box.name} is not hidden in fallback`).toEqual([]);
+  // The viewport legitimately clips scrolled-off elements, so inspect only
+  // the control brought into view and reject any non-root clipping ancestor.
+  check(box.clippedBy.filter(name => !['HTML', 'BODY'].includes(name)), `${box.name} stays reachable`).toEqual([]);
+  check(box.width).toBeGreaterThanOrEqual(44);
+  check(box.height).toBeGreaterThanOrEqual(44);
+  check(box.left).toBeGreaterThanOrEqual(-.5);
+  check(box.right).toBeLessThanOrEqual(viewport.width + .5);
+  check(box.top).toBeGreaterThanOrEqual(-.5);
+  check(box.bottom).toBeLessThanOrEqual(viewport.height + .5);
+  check(box.hitTests.filter(hit => !hit.clear), `${box.name} can be reached without occlusion`).toEqual([]);
+  check(documentWidth).toBeLessThanOrEqual(viewport.width);
+  return violations;
+}
+
+// The IMG may be larger than its clipping aperture. Measure all three
+// separately: allocated art slot, visible frame, and alpha>=16 painted bounds.
+// This prevents a large transparent canvas from counting as large artwork.
+export function matchingPaintedArtViolations(art, { allowPageScroll = false } = {}) {
+  const violations = [], check = collectChecks(violations);
+  check(Boolean(art.frame), `${art.name} has a visible art frame`).toBe(true);
+  check(Boolean(art.allocated), `${art.name} has an allocated art slot`).toBe(true);
+  check(Boolean(art.cellBounds), `${art.name} has a containing cell`).toBe(true);
+  const validInk = Array.isArray(art.inkBounds) && art.inkBounds.length === 4 && art.inkBounds.every(Number.isFinite)
+    && art.inkBounds[0] >= 0 && art.inkBounds[1] >= 0 && art.inkBounds[2] > 0 && art.inkBounds[3] > 0
+    && art.inkBounds[0] + art.inkBounds[2] <= art.naturalWidth && art.inkBounds[1] + art.inkBounds[3] <= art.naturalHeight;
+  check(validInk, `${art.name} ink bounds are valid source-pixel metadata`).toBe(true);
+  check(Boolean(art.painted), `${art.name} has measurable painted bounds`).toBe(true);
+  check(art.objectFit, `${art.name} source-to-render mapping has no hidden letterbox`).toBe('fill');
+  check(art.hiddenBy, `${art.name} painted art remains visible`).toEqual([]);
+  if (!art.frame || !art.allocated || !art.cellBounds || !validInk || !art.painted) return violations;
+  const { frame, allocated, cellBounds, painted } = art;
+  for (const [name, box] of [['frame', frame], ['allocated slot', allocated]]) {
+    check(box.hiddenBy, `${art.name} ${name} remains visible`).toEqual([]);
+    const clippedBy = allowPageScroll ? box.clippedBy.filter(name => !['HTML', 'BODY'].includes(name)) : box.clippedBy;
+    check(clippedBy, `${art.name} ${name} is not clipped by other content`).toEqual([]);
+    check(box.width, `${art.name} ${name} has visible width`).toBeGreaterThan(0);
+    check(box.height, `${art.name} ${name} has visible height`).toBeGreaterThan(0);
+  }
+  check(allocated.width, `${art.name} allocated art keeps its existing minimum width`).toBeGreaterThan(30);
+  check(allocated.height, `${art.name} allocated art keeps its existing minimum height`).toBeGreaterThan(25);
+  check(painted.width, `${art.name} painted ink has visible width`).toBeGreaterThan(0);
+  check(painted.height, `${art.name} painted ink has visible height`).toBeGreaterThan(0);
+  check(Math.max(painted.width, painted.height), `${art.name} actual painted ink has a 30px long edge`).toBeGreaterThanOrEqual(30);
+  for (const [name, box, container] of [
+    ['frame in cell', frame, cellBounds], ['frame in slot', frame, allocated],
+    ['paint in frame', painted, frame], ['paint in cell', painted, cellBounds],
+  ]) {
+    check(box.left, `${art.name} ${name}: left`).toBeGreaterThanOrEqual(container.left - 1);
+    check(box.top, `${art.name} ${name}: top`).toBeGreaterThanOrEqual(container.top - 1);
+    check(box.right, `${art.name} ${name}: right`).toBeLessThanOrEqual(container.right + 1);
+    check(box.bottom, `${art.name} ${name}: bottom`).toBeLessThanOrEqual(container.bottom + 1);
+  }
+  check(Math.abs(art.width / art.naturalWidth - art.height / art.naturalHeight) * Math.max(art.naturalWidth, art.naturalHeight),
+    `${art.name} source aspect ratio is preserved within one rendered pixel`).toBeLessThanOrEqual(1);
+  return violations;
+}
+
+// These deliberately mirror only the synchronous matcher operations used by
+// the predicates above; they do not wrap or replace browser assertions.
+function collectChecks(violations) {
+  return (actual, name = 'layout predicate') => {
+    const record = (passed, matcher, expected) => {
+      if (!passed) violations.push({ check: name, matcher, actual, expected });
+    };
+    return {
+      toBe: expected => record(Object.is(actual, expected), 'toBe', expected),
+      not: { toBe: expected => record(!Object.is(actual, expected), 'not.toBe', expected) },
+      toEqual: expected => record(isDeepStrictEqual(actual, expected), 'toEqual', expected),
+      toHaveLength: expected => record(actual?.length === expected, 'toHaveLength', expected),
+      toBeTruthy: () => record(Boolean(actual), 'toBeTruthy', true),
+      toContain: expected => record(typeof actual === 'string' && actual.includes(expected), 'toContain', expected),
+      toBeGreaterThan: expected => record(typeof actual === 'number' && actual > expected, 'toBeGreaterThan', expected),
+      toBeGreaterThanOrEqual: expected => record(typeof actual === 'number' && actual >= expected, 'toBeGreaterThanOrEqual', expected),
+      toBeLessThanOrEqual: expected => record(typeof actual === 'number' && actual <= expected, 'toBeLessThanOrEqual', expected),
+    };
+  };
 }

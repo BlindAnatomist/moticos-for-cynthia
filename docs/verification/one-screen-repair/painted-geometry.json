@@ -1,0 +1,7 @@
+{
+  "piecesValidated": 30,
+  "minimumPaintedLongEdge": 30.219274475524475,
+  "paintMutationsRejected": 23,
+  "transparentCanvasClippingAllowedButPaintClippingRejected": true,
+  "pageScrollOnlyAllowedInFallback": true
+}

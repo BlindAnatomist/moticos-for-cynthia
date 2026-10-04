@@ -8,7 +8,7 @@ export default defineConfig({
   expect: { timeout: 7_500 },
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? [["line"], ["html", { open: "never" }]] : "line",
+  reporter: process.env.CI ? [["line"], ["html", { open: "never" }], ["./scripts/progress-reporter.mjs"]] : "line",
   use: {
     baseURL: "http://127.0.0.1:4173",
     trace: "retain-on-failure",
