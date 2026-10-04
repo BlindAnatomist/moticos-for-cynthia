@@ -219,3 +219,31 @@ State the reusable rule.
 #### Scope
 
 State whether the rule is component-specific, repository-wide, or a candidate for use elsewhere.
+
+### MOT-007 — A global art-name fixture invalidated envelope-local assertions
+
+Status: `proven`
+
+First observed: 2026-10-04
+
+Affected area: matching browser tests, not the game reducer or runtime.
+
+#### Symptoms
+
+The first second-envelope browser run passed 182 cases and one intentional skip, but failed all six original-Garden full-round cases after completing their merges. The expected collection included twenty names while the Garden correctly contained its own ten pieces.
+
+#### Cause
+
+The shared display-name lookup grew to include the new Key/Moon artwork. Two old assertions used every key in that global lookup as the expected Garden inventory and discovery set.
+
+#### Proven diagnosis and repair
+
+All six traces showed two completed 15-merge, 6-draw, 21-action family paths before the first wrong assertion. Independent review confirmed both expected-set assertions must remain scoped to the ten permanent Bird/Fern IDs. The repair changes only those two assertions; runtime and artwork remain byte-identical. The existing final-state, postcard export, collection, reload and Undo checks stayed in place. All six targeted cases passed in run 37177831714, completing those checks on unchanged runtime/artwork.
+
+#### Prevention rule
+
+Keep expected pack-local inventories explicit or derived from a pack-local fixture. A global naming registry is not an active-board inventory. When adding a pack, search for every assertion that enumerates shared registry keys and retain cross-envelope isolation checks.
+
+#### Scope
+
+Matching test-fixture design.

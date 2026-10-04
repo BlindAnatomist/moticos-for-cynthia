@@ -4,7 +4,7 @@
 
 Repository: `BlindAnatomist/moticos-for-cynthia` (public). Local branch: `work/matching-collection-expansion-20261004`. Exact starting Site source: `c897dd81bca4d9cc1652e2c155bdf08fd9a849c0`; corresponding public baseline: `bdf209e69b241cdbd2ae561513c48b21a2db25d6` on `work/matching-progression-20261004`.
 
-The published version 2 remains the preserved functional baseline. This branch is an isolated candidate, not a live release. No main merge, GitHub Actions run, public art push, or deployment has occurred for this expansion.
+The published version 2 remains the preserved functional baseline. This branch is an isolated candidate, not a live release. The source and six new images were authorized for the isolated public work branch. Two explicitly approved standard-runner jobs completed the verification below. Main and the accepted live version are preserved until the conditional preview deployment.
 
 ## The bounded increment
 
@@ -47,6 +47,10 @@ Local verification for the completed source/art snapshot is recorded under `docs
 
 Independent review caught two regressions during implementation: unguarded evaluation of the localStorage getter and mute loss on destination reload. Both were repaired and tested before this checkpoint.
 
-The browser suite is authored and discoverable, not yet executed for this candidate. It retains prior regressions and adds complete Moonlit rounds, new postcard exports, switching, Back/Forward, corrupt/quota/security cases, inactive cross-tab changes, compact dialogs, collection scroll coverage and mute reload. Both iPhone WebKit sizes and desktop Chromium remain required before live replacement. Local socket/browser access is known blocked; no bypass was attempted. A separately authorized standard-runner verification is the intended remaining route.
+The browser gate is complete across the two iPhone WebKit emulations and desktop Chromium. Run `37176745549` passed 182 cases and one intentional desktop-only skip, while six Garden full-round cases stopped at an incorrect test-fixture expected set. Both obsolete assertions were scoped back to the Garden's exact ten permanent IDs; no runtime or artwork changed. The separately authorized targeted run `37177831714` then passed all six cases, including the remaining Garden collection, six postcard downloads, reload and Undo checks. Combined coverage is 188 passing browser cases plus one intentional skip on the same runtime/artwork.
+
+The suite retains prior regressions and adds complete Moonlit rounds, new postcard exports, switching, Back/Forward, corrupt/quota/security cases, inactive cross-tab changes, compact dialogs, collection scroll coverage and mute reload. Local socket/browser access was known blocked; no bypass was attempted. Both jobs used standard runners with a 25-minute cap and zero browser retries. Full run and artifact identities are recorded in `docs/verification/expansion/browser-verification.json`.
+
+Actual Moonlit browser screenshots and postcards received independent direct pixel review, including all 30 iPhone 13 captures, both family orders, all lower collection scroll positions and all six new postcard designs. No blocking visual defect was found. Two non-blocking layout refinements remain optional: a narrow scrolled-content seam above the sticky collection heading, and tight right spacing on the Garden chooser title at 320px. Physical-device Safari and full assistive-technology acceptance are not claimed.
 
 The twenty-piece candidate does not prove long-term variety across hundreds of pieces. Routine increments use automated testing and agent-operated review; they do not require another Cynthia playtest. Reserve human playtesting for a major meaningful change or a genuinely unresolved experience question. Later content expansion should follow completed engineering and visual gates, not mass generation.
