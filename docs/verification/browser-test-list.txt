@@ -1,0 +1,152 @@
+Listing tests:
+  [webkit-iphone-13] › collection.spec.js:28:1 › board-first layout, real artwork, readable controls, and no automatic postcard
+  [webkit-iphone-13] › collection.spec.js:38:1 › accepted magnetic near-miss merges and undo restores the exact board
+  [webkit-iphone-13] › collection.spec.js:45:1 › invalid drag loses nothing and a subsequent drag still works
+  [webkit-iphone-13] › collection.spec.js:50:1 › tap pairing, move to empty space, cut, and multistep undo
+  [webkit-iphone-13] › collection.spec.js:59:1 › keyboard can select, merge, move, and dismiss help with focus restored
+  [webkit-iphone-13] › collection.spec.js:66:1 › both families finish through six drags without interrupting the board
+  [webkit-iphone-13] › collection.spec.js:73:1 › postcard opens only on request, downloads a real image, and returns to unchanged board
+  [webkit-iphone-13] › collection.spec.js:81:1 › share cancellation, repeated modal openings, and collection-to-postcard navigation are safe
+  [webkit-iphone-13] › collection.spec.js:88:1 › fresh-board cancel preserves play and confirmed reset keeps discovered art
+  [webkit-iphone-13] › collection.spec.js:93:1 › hint, sound, reduced motion, and malformed save recovery remain usable
+  [webkit-iphone-13] › collection.spec.js:101:1 › rapid keyboard input does not depend on animation-frame timing
+  [webkit-iphone-13] › matching.spec.js:22:1 › default board is matching-first, with eight clippings and two finite envelopes
+  [webkit-iphone-13] › matching.spec.js:68:1 › bird matches bird and fern matches fern, with higher identical tiers continuing each chain
+  [webkit-iphone-13] › matching.spec.js:87:1 › cross-family equal levels and same-family unequal levels are rejected without a cost
+  [webkit-iphone-13] › matching.spec.js:108:1 › a direct wrong-picture drop is never stolen by a nearby matching magnet
+  [webkit-iphone-13] › matching.spec.js:133:1 › an open-space near miss still accepts the matching piece and Undo is exact
+  [webkit-iphone-13] › matching.spec.js:148:1 › move to empty space, Cut, and multistep Undo preserve pieces and discovery
+  [webkit-iphone-13] › matching.spec.js:172:1 › supply adds exactly one pair, decreases the visible count, and is wholly reversible
+  [webkit-iphone-13] › matching.spec.js:192:1 › one empty cell refuses supply atomically and a merge makes room again
+  [webkit-iphone-13] › matching.spec.js:218:3 › full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)
+  [webkit-iphone-13] › matching.spec.js:218:3 › full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)
+  [webkit-iphone-13] › matching.spec.js:295:1 › Help and Collection are on demand, keep the board untouched, and restore keyboard focus
+  [webkit-iphone-13] › matching.spec.js:322:1 › postcard survives native file-share cancellation and board return
+  [webkit-iphone-13] › matching.spec.js:353:1 › rapid keyboard focus and merge work without animation-frame callbacks
+  [webkit-iphone-13] › matching.spec.js:375:3 › an interrupted drag (pointercancel) changes nothing and allows the next gesture
+  [webkit-iphone-13] › matching.spec.js:375:3 › an interrupted drag (lostpointercapture) changes nothing and allows the next gesture
+  [webkit-iphone-13] › matching.spec.js:375:3 › an interrupted drag (blur) changes nothing and allows the next gesture
+  [webkit-iphone-13] › matching.spec.js:392:1 › rapid supply and duplicate merge activations do not lose or double-consume material
+  [webkit-iphone-13] › matching.spec.js:407:1 › a merge saves before its decorative flight and reload retains exact Undo history and sound
+  [webkit-iphone-13] › matching.spec.js:429:1 › fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards
+  [webkit-iphone-13] › matching.spec.js:459:3 › malformed JSON stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:459:3 › empty stored string stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:459:3 › invalid current schema stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:459:3 › future version stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:486:1 › matching leaves the prior recipe study save untouched and both older routes remain separate
+  [webkit-iphone-13] › matching.spec.js:513:1 › reduced motion keeps matching, hints, touch controls, and postcard navigation usable
+  [webkit-iphone-13] › matching.spec.js:532:1 › an unreadable existing save is never overwritten, even if storage later recovers
+  [webkit-iphone-13] › matching.spec.js:565:1 › a genuinely stale second tab cannot overwrite the newer saved garden
+  [webkit-iphone-13] › matching.spec.js:596:1 › non-primary and non-left pointer-up cannot move a selected piece into empty space
+  [webkit-iphone-13] › moticos.spec.js:91:1 › starts with the longer Found Pieces route and improved progression
+  [webkit-iphone-13] › moticos.spec.js:107:1 › keeps the five-by-five iPhone layout and all controls inside the viewport
+  [webkit-iphone-13] › moticos.spec.js:136:1 › preserves the accepted magnetic drag and Undo behavior
+  [webkit-iphone-13] › moticos.spec.js:154:1 › awards a Keepsake at the sixth merge and preserves a focal fragment
+  [webkit-iphone-13] › moticos.spec.js:173:1 › uses Cut terminology and preserves the field
+  [webkit-iphone-13] › moticos.spec.js:184:1 › offers From Scraps and earns the first found piece
+  [webkit-iphone-13] › moticos.spec.js:200:1 › downloads a postcard and explains where it went
+  [webkit-iphone-13] › moticos.spec.js:217:1 › opens the native share path when file sharing is available
+  [webkit-iphone-13] › moticos.spec.js:239:1 › completes Found Pieces in 24 merges and names the singular final form Moticos
+  [webkit-iphone-13] › moticos.spec.js:251:1 › completes From Scraps in 31 merges
+  [webkit-iphone-13] › moticos.spec.js:262:1 › renders the recomposed all-tier gallery and final arrival
+  [webkit-iphone-large] › collection.spec.js:28:1 › board-first layout, real artwork, readable controls, and no automatic postcard
+  [webkit-iphone-large] › collection.spec.js:38:1 › accepted magnetic near-miss merges and undo restores the exact board
+  [webkit-iphone-large] › collection.spec.js:45:1 › invalid drag loses nothing and a subsequent drag still works
+  [webkit-iphone-large] › collection.spec.js:50:1 › tap pairing, move to empty space, cut, and multistep undo
+  [webkit-iphone-large] › collection.spec.js:59:1 › keyboard can select, merge, move, and dismiss help with focus restored
+  [webkit-iphone-large] › collection.spec.js:66:1 › both families finish through six drags without interrupting the board
+  [webkit-iphone-large] › collection.spec.js:73:1 › postcard opens only on request, downloads a real image, and returns to unchanged board
+  [webkit-iphone-large] › collection.spec.js:81:1 › share cancellation, repeated modal openings, and collection-to-postcard navigation are safe
+  [webkit-iphone-large] › collection.spec.js:88:1 › fresh-board cancel preserves play and confirmed reset keeps discovered art
+  [webkit-iphone-large] › collection.spec.js:93:1 › hint, sound, reduced motion, and malformed save recovery remain usable
+  [webkit-iphone-large] › collection.spec.js:101:1 › rapid keyboard input does not depend on animation-frame timing
+  [webkit-iphone-large] › matching.spec.js:22:1 › default board is matching-first, with eight clippings and two finite envelopes
+  [webkit-iphone-large] › matching.spec.js:68:1 › bird matches bird and fern matches fern, with higher identical tiers continuing each chain
+  [webkit-iphone-large] › matching.spec.js:87:1 › cross-family equal levels and same-family unequal levels are rejected without a cost
+  [webkit-iphone-large] › matching.spec.js:108:1 › a direct wrong-picture drop is never stolen by a nearby matching magnet
+  [webkit-iphone-large] › matching.spec.js:133:1 › an open-space near miss still accepts the matching piece and Undo is exact
+  [webkit-iphone-large] › matching.spec.js:148:1 › move to empty space, Cut, and multistep Undo preserve pieces and discovery
+  [webkit-iphone-large] › matching.spec.js:172:1 › supply adds exactly one pair, decreases the visible count, and is wholly reversible
+  [webkit-iphone-large] › matching.spec.js:192:1 › one empty cell refuses supply atomically and a merge makes room again
+  [webkit-iphone-large] › matching.spec.js:218:3 › full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)
+  [webkit-iphone-large] › matching.spec.js:218:3 › full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)
+  [webkit-iphone-large] › matching.spec.js:295:1 › Help and Collection are on demand, keep the board untouched, and restore keyboard focus
+  [webkit-iphone-large] › matching.spec.js:322:1 › postcard survives native file-share cancellation and board return
+  [webkit-iphone-large] › matching.spec.js:353:1 › rapid keyboard focus and merge work without animation-frame callbacks
+  [webkit-iphone-large] › matching.spec.js:375:3 › an interrupted drag (pointercancel) changes nothing and allows the next gesture
+  [webkit-iphone-large] › matching.spec.js:375:3 › an interrupted drag (lostpointercapture) changes nothing and allows the next gesture
+  [webkit-iphone-large] › matching.spec.js:375:3 › an interrupted drag (blur) changes nothing and allows the next gesture
+  [webkit-iphone-large] › matching.spec.js:392:1 › rapid supply and duplicate merge activations do not lose or double-consume material
+  [webkit-iphone-large] › matching.spec.js:407:1 › a merge saves before its decorative flight and reload retains exact Undo history and sound
+  [webkit-iphone-large] › matching.spec.js:429:1 › fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards
+  [webkit-iphone-large] › matching.spec.js:459:3 › malformed JSON stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:459:3 › empty stored string stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:459:3 › invalid current schema stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:459:3 › future version stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:486:1 › matching leaves the prior recipe study save untouched and both older routes remain separate
+  [webkit-iphone-large] › matching.spec.js:513:1 › reduced motion keeps matching, hints, touch controls, and postcard navigation usable
+  [webkit-iphone-large] › matching.spec.js:532:1 › an unreadable existing save is never overwritten, even if storage later recovers
+  [webkit-iphone-large] › matching.spec.js:565:1 › a genuinely stale second tab cannot overwrite the newer saved garden
+  [webkit-iphone-large] › matching.spec.js:596:1 › non-primary and non-left pointer-up cannot move a selected piece into empty space
+  [webkit-iphone-large] › moticos.spec.js:91:1 › starts with the longer Found Pieces route and improved progression
+  [webkit-iphone-large] › moticos.spec.js:107:1 › keeps the five-by-five iPhone layout and all controls inside the viewport
+  [webkit-iphone-large] › moticos.spec.js:136:1 › preserves the accepted magnetic drag and Undo behavior
+  [webkit-iphone-large] › moticos.spec.js:154:1 › awards a Keepsake at the sixth merge and preserves a focal fragment
+  [webkit-iphone-large] › moticos.spec.js:173:1 › uses Cut terminology and preserves the field
+  [webkit-iphone-large] › moticos.spec.js:184:1 › offers From Scraps and earns the first found piece
+  [webkit-iphone-large] › moticos.spec.js:200:1 › downloads a postcard and explains where it went
+  [webkit-iphone-large] › moticos.spec.js:217:1 › opens the native share path when file sharing is available
+  [webkit-iphone-large] › moticos.spec.js:239:1 › completes Found Pieces in 24 merges and names the singular final form Moticos
+  [webkit-iphone-large] › moticos.spec.js:251:1 › completes From Scraps in 31 merges
+  [webkit-iphone-large] › moticos.spec.js:262:1 › renders the recomposed all-tier gallery and final arrival
+  [chromium-desktop] › collection.spec.js:28:1 › board-first layout, real artwork, readable controls, and no automatic postcard
+  [chromium-desktop] › collection.spec.js:38:1 › accepted magnetic near-miss merges and undo restores the exact board
+  [chromium-desktop] › collection.spec.js:45:1 › invalid drag loses nothing and a subsequent drag still works
+  [chromium-desktop] › collection.spec.js:50:1 › tap pairing, move to empty space, cut, and multistep undo
+  [chromium-desktop] › collection.spec.js:59:1 › keyboard can select, merge, move, and dismiss help with focus restored
+  [chromium-desktop] › collection.spec.js:66:1 › both families finish through six drags without interrupting the board
+  [chromium-desktop] › collection.spec.js:73:1 › postcard opens only on request, downloads a real image, and returns to unchanged board
+  [chromium-desktop] › collection.spec.js:81:1 › share cancellation, repeated modal openings, and collection-to-postcard navigation are safe
+  [chromium-desktop] › collection.spec.js:88:1 › fresh-board cancel preserves play and confirmed reset keeps discovered art
+  [chromium-desktop] › collection.spec.js:93:1 › hint, sound, reduced motion, and malformed save recovery remain usable
+  [chromium-desktop] › collection.spec.js:101:1 › rapid keyboard input does not depend on animation-frame timing
+  [chromium-desktop] › matching.spec.js:22:1 › default board is matching-first, with eight clippings and two finite envelopes
+  [chromium-desktop] › matching.spec.js:68:1 › bird matches bird and fern matches fern, with higher identical tiers continuing each chain
+  [chromium-desktop] › matching.spec.js:87:1 › cross-family equal levels and same-family unequal levels are rejected without a cost
+  [chromium-desktop] › matching.spec.js:108:1 › a direct wrong-picture drop is never stolen by a nearby matching magnet
+  [chromium-desktop] › matching.spec.js:133:1 › an open-space near miss still accepts the matching piece and Undo is exact
+  [chromium-desktop] › matching.spec.js:148:1 › move to empty space, Cut, and multistep Undo preserve pieces and discovery
+  [chromium-desktop] › matching.spec.js:172:1 › supply adds exactly one pair, decreases the visible count, and is wholly reversible
+  [chromium-desktop] › matching.spec.js:192:1 › one empty cell refuses supply atomically and a merge makes room again
+  [chromium-desktop] › matching.spec.js:218:3 › full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)
+  [chromium-desktop] › matching.spec.js:218:3 › full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)
+  [chromium-desktop] › matching.spec.js:295:1 › Help and Collection are on demand, keep the board untouched, and restore keyboard focus
+  [chromium-desktop] › matching.spec.js:322:1 › postcard survives native file-share cancellation and board return
+  [chromium-desktop] › matching.spec.js:353:1 › rapid keyboard focus and merge work without animation-frame callbacks
+  [chromium-desktop] › matching.spec.js:375:3 › an interrupted drag (pointercancel) changes nothing and allows the next gesture
+  [chromium-desktop] › matching.spec.js:375:3 › an interrupted drag (lostpointercapture) changes nothing and allows the next gesture
+  [chromium-desktop] › matching.spec.js:375:3 › an interrupted drag (blur) changes nothing and allows the next gesture
+  [chromium-desktop] › matching.spec.js:392:1 › rapid supply and duplicate merge activations do not lose or double-consume material
+  [chromium-desktop] › matching.spec.js:407:1 › a merge saves before its decorative flight and reload retains exact Undo history and sound
+  [chromium-desktop] › matching.spec.js:429:1 › fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards
+  [chromium-desktop] › matching.spec.js:459:3 › malformed JSON stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:459:3 › empty stored string stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:459:3 › invalid current schema stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:459:3 › future version stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:486:1 › matching leaves the prior recipe study save untouched and both older routes remain separate
+  [chromium-desktop] › matching.spec.js:513:1 › reduced motion keeps matching, hints, touch controls, and postcard navigation usable
+  [chromium-desktop] › matching.spec.js:532:1 › an unreadable existing save is never overwritten, even if storage later recovers
+  [chromium-desktop] › matching.spec.js:565:1 › a genuinely stale second tab cannot overwrite the newer saved garden
+  [chromium-desktop] › matching.spec.js:596:1 › non-primary and non-left pointer-up cannot move a selected piece into empty space
+  [chromium-desktop] › moticos.spec.js:91:1 › starts with the longer Found Pieces route and improved progression
+  [chromium-desktop] › moticos.spec.js:107:1 › keeps the five-by-five iPhone layout and all controls inside the viewport
+  [chromium-desktop] › moticos.spec.js:136:1 › preserves the accepted magnetic drag and Undo behavior
+  [chromium-desktop] › moticos.spec.js:154:1 › awards a Keepsake at the sixth merge and preserves a focal fragment
+  [chromium-desktop] › moticos.spec.js:173:1 › uses Cut terminology and preserves the field
+  [chromium-desktop] › moticos.spec.js:184:1 › offers From Scraps and earns the first found piece
+  [chromium-desktop] › moticos.spec.js:200:1 › downloads a postcard and explains where it went
+  [chromium-desktop] › moticos.spec.js:217:1 › opens the native share path when file sharing is available
+  [chromium-desktop] › moticos.spec.js:239:1 › completes Found Pieces in 24 merges and names the singular final form Moticos
+  [chromium-desktop] › moticos.spec.js:251:1 › completes From Scraps in 31 merges
+  [chromium-desktop] › moticos.spec.js:262:1 › renders the recomposed all-tier gallery and final arrival
+Total: 150 tests in 3 files

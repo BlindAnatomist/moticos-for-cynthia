@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest run tests/gameLogic.test.js tests/collectionLogic.test.js",
-    "test:e2e": "playwright test"
+    "test": "vitest run tests/gameLogic.test.js tests/collectionLogic.test.js tests/matchingLogic.test.js tests/matchingUi.test.jsx",
+    "test:e2e": "playwright test",
+    "validate:matching": "node scripts/validateMatching.mjs"
   },
   "dependencies": {
     "lucide-react": "1.27.0",

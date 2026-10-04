@@ -23,7 +23,7 @@ async function merge(page,a,b,result,info,method='drag'){
 }
 async function makeWay(page,info){await merge(page,BIRD,MAP,RIVER,info);await merge(page,KEY,FERN,FROND,info);await merge(page,RIVER,FROND,WAY,info);}
 async function makeNight(page,info){await merge(page,BIRD,MOON,COURIER,info);await merge(page,CUP,FERN,FERNCUP,info);await merge(page,COURIER,FERNCUP,NIGHT,info);}
-test.beforeEach(async({page})=>{await page.goto('/');await expect(page.locator('.cg-board')).toBeVisible();});
+test.beforeEach(async({page})=>{await page.goto('/?recipe-study');await expect(page.locator('.cg-board')).toBeVisible();});
 
 test('board-first layout, real artwork, readable controls, and no automatic postcard',async({page},info)=>{
  await expect(occupied(page)).toHaveCount(8);await expect(page.locator('[data-collection-cell]')).toHaveCount(25);await expect(page.getByRole('dialog')).toHaveCount(0);
