@@ -156,3 +156,85 @@
   .mg-envelope-art .cg-art { width:42px; height:42px; }
   .mg-envelope-card h3 { font-size:18px; }
 }
+
+/* A play surface, rather than a long document. The small viewport stays stable
+   while Safari's toolbars expand/collapse. Text enlargement is allowed to make
+   the page taller; no overflow clipping or sub-44px hit targets hide content. */
+.mg-page {
+  --mg-top: max(8px, env(safe-area-inset-top));
+  --mg-bottom: max(8px, env(safe-area-inset-bottom));
+  min-height: 100svh;
+  padding: var(--mg-top) max(9px, env(safe-area-inset-right)) var(--mg-bottom) max(9px, env(safe-area-inset-left));
+}
+.mg-page .cg-shell {
+  width: min(100%, 580px);
+  height: calc(100svh - var(--mg-top) - var(--mg-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mg-page .cg-shell > * { flex-shrink: 0; }
+.mg-page .cg-header { min-height: 44px; margin: 0; gap: 4px; }
+.mg-heading { min-width: 0; }
+.mg-title-line { display: flex; align-items: baseline; gap: 10px; }
+.mg-page .cg-header h1 { font-size: 1.5rem; letter-spacing: -1px; }
+.mg-page .cg-header h1 span { font-size: 1rem; margin-left: 4px; }
+.mg-page .cg-header p { font-size: .6875rem; line-height: 1.1; letter-spacing: .35px; margin: 3px 0 0; text-transform: none; }
+.mg-page .cg-header-actions { gap: 0; flex-shrink: 0; }
+.mg-page .cg-progress { font-size: .9375rem; }
+.mg-page .cg-progress span { font-size: .75rem; }
+.mg-page .cg-instruction { font-size: .6875rem; line-height: 1.2; min-height: .9rem; margin: 0; display: flex; align-items: center; }
+.mg-page .mg-board-space { flex: 1 0 252px; min-height: 252px; min-width: 0; display: grid; place-items: center; }
+.mg-page .cg-board { width: min(100%, 406px); gap: 4px; padding: 7px; }
+@supports (width: 1cqw) {
+  .mg-page .mg-board-space { container-type: size; }
+  .mg-page .cg-board { width: min(100cqw, 100cqh); height: min(100cqw, 100cqh); }
+}
+.mg-page .cg-cell { padding: 1px; }
+.mg-page .cg-cell.is-selected,.mg-page .cg-cell.is-match { padding: 0; }
+.mg-page .cg-cell .cg-art { flex: 1; height: 0; min-height: 0; }
+.mg-page .cg-cell-name { flex: none; font-size: .625rem; line-height: 1.1; margin-top: 0; white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
+.mg-page .mg-level { font-size: .5625rem; }
+.mg-page .mg-supply { margin: 0; gap: 6px; }
+.mg-page .mg-supply-button { min-height: 44px; padding: 3px 5px; gap: 4px; }
+.mg-page .mg-supply-button > .cg-art { width: 26px; height: 30px; }
+.mg-page .mg-supply-button strong { font-size: .6875rem; }
+.mg-page .mg-supply-button small { font-size: .625rem; margin-top: 2px; }
+.mg-page .mg-supply-button > svg { width: 13px; height: 13px; }
+.mg-page .mg-inspector { min-height: 28px; padding: 0 2px; gap: 5px; }
+.mg-page .mg-inspector > .cg-art { width: 25px; height: 26px; }
+.mg-page .mg-inspector strong { font-family: Arial, Helvetica, sans-serif; font-size: .75rem; font-weight: 600; line-height: 1.1; margin: 0 0 1px; }
+.mg-page .mg-inspector span:not(.cg-inspector-symbol) { font-size: .6875rem; line-height: 1.2; }
+.mg-page .mg-inspector .cg-sr-only { margin: 0; }
+.mg-page .cg-tools { gap: 3px; padding: 0; }
+.mg-page .cg-tool { min-width: 44px; min-height: 44px; padding: 3px; gap: 2px; }
+.mg-page .cg-tool svg { width: 17px; height: 17px; }
+.mg-page .cg-tool span { font-size: .6875rem; }
+.mg-page .cg-notice { min-height: 28px; padding: 0 4px; font-size: .6875rem; line-height: 1.15; }
+.mg-page .cg-footer { display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: stretch; gap: 4px; padding: 0; }
+.mg-page .cg-footer button { min-width: 44px; min-height: 44px; font-size: .6875rem; justify-content: center; padding: 3px; line-height: 1.15; text-align: center; border: 1px solid #cdd5c7; border-radius: 7px; }
+.mg-page .cg-footer .cg-postcard-button { width: auto; gap: 4px; background: #e8ebdf; }
+.mg-page .cg-footer .cg-postcard-button.is-ready { background: #214e48; color: #fff; }
+.mg-page .cg-postcard-button svg { width: 15px; flex-shrink: 0; }
+.mg-save-status { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; width: 58px; gap: 1px; padding: 2px; border: 1px solid #a95433; border-radius: 6px; background: #fff2d6; color: #75371d!important; }
+.mg-save-status svg { width: 15px; height: 15px; }
+.mg-save-status span { font-size: .625rem; line-height: 1.05; }
+/* At enlarged text sizes the readable five-column board becomes taller. This
+   is an explicit accessibility fallback, not a claim of one-screen zoom fit. */
+.mg-large-text .cg-shell { height: auto; }
+.mg-large-text .mg-board-space { container-type: normal; flex: none; min-height: 0; display: block; }
+.mg-large-text .cg-board { width: 100%; height: auto; aspect-ratio: auto; grid-template-rows: repeat(5, minmax(88px, auto)); }
+.mg-large-text .cg-cell .cg-art { flex: none; height: 36px; min-height: 36px; }
+.mg-large-text .cg-header { flex-wrap: wrap; }
+.mg-large-text .cg-header-actions { margin-left: auto; }
+.mg-large-text .mg-title-line { flex-wrap: wrap; }
+.mg-large-text .mg-supply-button { flex-wrap: wrap; }
+.mg-large-text .cg-footer button { overflow-wrap: anywhere; }
+.mg-large-text .cg-tool span { max-width: 100%; overflow-wrap: anywhere; }
+.mg-large-text .cg-footer button span { min-width: 0; overflow-wrap: anywhere; }
+@supports not (width: 1cqw) {
+  .mg-page .cg-shell { height: auto; }
+  .mg-page .mg-board-space { flex: none; min-height: 0; display: block; }
+  .mg-page .cg-board { width: 100%; height: auto; }
+}
+.mg-page .cg-finale-mark { top: 0; right: 0; }

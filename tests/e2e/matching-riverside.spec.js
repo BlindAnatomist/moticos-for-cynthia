@@ -3,6 +3,7 @@ import {
   MATCHING_KEY, pieces, occupied, supply, activate, boardIds, rawSave, idle,
   mergeAt, mergeId, finishFamily, closeDialog, imagesReady, shot, downloadPNG,
   openCollectedPostcard, assertNoOverflow, assertControls, assertLiveArtAtPhoneWidths,
+  openSaveWarning, assertSaveWarning, saveWarning,
 } from './matching-helpers.js';
 const RIVER_KEY = 'moticos.matching.riverside-reverie.v1';
 const MOON_KEY = 'moticos.matching.moonlit-passage.v1';
@@ -46,12 +47,13 @@ for (const order of [['map', 'teacup'], ['teacup', 'map']]) {
   test(`complete Riverside Reverie ${order.join('-')} with thirty real merges and six postcards`, async ({ page }, info) => {
     test.setTimeout(240_000); await river(page, info); const prefix = order.join('-');
     for (const family of order) await finishFamily(page, family, info, 'drag', async id => {
-      await assertLiveArtAtPhoneWidths(page); await shot(page, info, `riverside-${prefix}-${id}`);
+      await assertLiveArtAtPhoneWidths(page, order[0] === 'map' ? info : null, `riverside-round-${id}`); await shot(page, info, `riverside-${prefix}-${id}`);
     });
     const save = JSON.parse(await rawSave(page, RIVER_KEY));
     expect(save.round).toMatchObject({ moves: 42, merges: 30, supply: { map: 0, teacup: 0 } });
     expect(save.discoveries).toHaveLength(10); await expect(occupied(page)).toHaveCount(2);
     await expect(pieces(page, 'r5')).toHaveCount(1); await expect(pieces(page, 't5')).toHaveCount(1);
+    if (order[0] === 'map') await assertLiveArtAtPhoneWidths(page, info, 'riverside-round-done');
     const board = await boardIds(page), hashes = [];
     for (const id of ['r3', 'r4', 'r5', 't3', 't4', 't5']) {
       await openCollectedPostcard(page, id, info);
@@ -70,6 +72,7 @@ for (const order of [['map', 'teacup'], ['teacup', 'map']]) {
     await closeDialog(page, info); await page.reload();
     await expect(pieces(page, 'r5')).toHaveCount(1); await expect(pieces(page, 't5')).toHaveCount(1);
     expect(await boardIds(page)).toEqual(board);
+    if (order[0] === 'map') await assertLiveArtAtPhoneWidths(page, info, 'riverside-round-done-reloaded');
     await activate(page.getByRole('button', { name: 'Undo', exact: true }), info);
     expect(JSON.parse(await rawSave(page, RIVER_KEY)).round.merges).toBe(29);
     expect(JSON.parse(await rawSave(page, RIVER_KEY)).discoveries).toHaveLength(10);
@@ -124,10 +127,12 @@ test('unread third save retains exact bytes through temporary play, all envelope
   await activate(supply(page, 'map'), info); const board = await boardIds(page);
   await choose(page, info, 'Garden Correspondence'); await choose(page, info, 'Moonlit Passage'); await river(page, info);
   expect(await boardIds(page)).toEqual(board); expect(await rawSave(page, RIVER_KEY)).toBe(raw);
+  await openSaveWarning(page, info);
   const pending = page.waitForEvent('download'); await activate(page.getByRole('button', { name: 'Download original save', exact: true }), info);
   const download = await pending; expect(download.suggestedFilename()).toBe('moticos-riverside-reverie-original-save.json');
   const stream = await download.createReadStream(), chunks = []; for await (const chunk of stream) chunks.push(chunk);
   expect(Buffer.concat(chunks).toString()).toBe(raw);
+  await closeDialog(page, info);
   await activate(page.getByRole('button', { name: 'Undo', exact: true }), info); await expect(occupied(page)).toHaveCount(8); expect(await rawSave(page, RIVER_KEY)).toBe(raw);
 });
 
@@ -135,7 +140,7 @@ test('third quota failure preserves temporary play without affecting the other t
   await river(page, info);
   await page.evaluate(key => { const set = Storage.prototype.setItem; Storage.prototype.setItem = function(k, value) { if (k === key) throw new DOMException('quota', 'QuotaExceededError'); return set.call(this, k, value); }; }, RIVER_KEY);
   await activate(supply(page, 'teacup'), info); const board = await boardIds(page);
-  await expect(page.locator('.cg-save-warning')).toContainText('cannot safely save');
+  await assertSaveWarning(page, info, 'cannot safely save');
   await choose(page, info, 'Garden Correspondence'); await activate(supply(page, 'bird'), info); const first = await rawSave(page);
   await choose(page, info, 'Moonlit Passage'); await activate(supply(page, 'moon'), info); const second = await rawSave(page, MOON_KEY);
   await river(page, info); expect(await boardIds(page)).toEqual(board); expect(await rawSave(page, RIVER_KEY)).toBeNull();
@@ -147,7 +152,7 @@ test('inactive third-envelope external edit cannot be overwritten on resuming or
   await choose(page, info, 'Moonlit Passage');
   const other = await context.newPage(); await other.goto('/?envelope=riverside-reverie');
   await activate(supply(other, 'teacup'), info); const external = await rawSave(other, RIVER_KEY); await other.close();
-  await river(page, info); await expect(page.locator('.cg-save-warning')).toContainText('Another tab changed this envelope');
+  await river(page, info); await assertSaveWarning(page, info, 'Another tab changed this envelope');
   expect(await boardIds(page)).toEqual(local); await activate(supply(page, 'map'), info); expect(await rawSave(page, RIVER_KEY)).toBe(external);
 });
 
@@ -158,7 +163,7 @@ test('mute and denied storage survive all three envelope switches', async ({ pag
   await page.addInitScript(() => Object.defineProperty(window, 'localStorage', { configurable: true, get() { throw new DOMException('blocked', 'SecurityError'); } }));
   await page.reload(); await activate(supply(page, 'map'), info); const board = await boardIds(page);
   await choose(page, info, 'Garden Correspondence'); await choose(page, info, 'Moonlit Passage'); await river(page, info);
-  expect(await boardIds(page)).toEqual(board); await expect(page.locator('.cg-save-warning')).toBeVisible();
+  expect(await boardIds(page)).toEqual(board); await expect(saveWarning(page)).toBeVisible();
 });
 
 test('all three chooser cards and tabs fit at 320px and scrolled header covers its top edge', async ({ page }, info) => {
@@ -170,16 +175,25 @@ test('all three chooser cards and tabs fit at 320px and scrolled header covers i
   for (const box of boxes) expect(box.scroll).toBeLessThanOrEqual(box.width + 1);
   await page.getByRole('button', { name: 'Open Riverside Reverie', exact: true }).scrollIntoViewIfNeeded();
   await imagesReady(page.locator('.mg-envelope-card').last().locator('img')); await assertNoOverflow(page);
-  await assertControls(page, '.mg-envelope-card button, .cg-dialog-header button'); await shot(page, info, 'riverside-compact-chooser-bottom');
-  const geometry = await page.locator('.mg-dialog').evaluate(dialog => {
+  await assertControls(page, '.mg-envelope-card button, .cg-dialog-header button'); await shot(page, info, 'riverside-compact-chooser-visible-cards');
+  // The third button can already fit without scrolling. Deliberately reveal
+  // the actual trailing note before asserting the sticky header's scroll state.
+  const dialog = page.locator('.mg-dialog');
+  await expect.poll(() => dialog.evaluate(node => node.scrollHeight - node.clientHeight)).toBeGreaterThan(0);
+  await page.locator('.mg-envelope-list > .cg-collection-note').scrollIntoViewIfNeeded();
+  await expect.poll(() => dialog.evaluate(node => node.scrollTop)).toBeGreaterThan(0);
+  await shot(page, info, 'riverside-compact-chooser-bottom', { fullPage: false });
+  const geometry = await dialog.evaluate(dialog => {
     const rect = dialog.getBoundingClientRect(), header = dialog.querySelector('.cg-dialog-header'), head = header.getBoundingClientRect();
     const backing = getComputedStyle(header, '::before');
-    return { top: rect.top, right: rect.right, bottom: rect.bottom, paintedTop: head.top + parseFloat(backing.top), headingTop: header.querySelector('h2').getBoundingClientRect().top, headingBottom: header.querySelector('h2').getBoundingClientRect().bottom, button: { top: header.querySelector('button').getBoundingClientRect().top, right: header.querySelector('button').getBoundingClientRect().right, bottom: header.querySelector('button').getBoundingClientRect().bottom }, scroll: dialog.scrollTop, width: dialog.clientWidth, scrollWidth: dialog.scrollWidth, backingColor: backing.backgroundColor, backingPointer: backing.pointerEvents };
+    const note = dialog.querySelector('.mg-envelope-list > .cg-collection-note').getBoundingClientRect();
+    return { top: rect.top, right: rect.right, bottom: rect.bottom, noteTop: note.top, noteBottom: note.bottom, headerBottom: head.bottom, paintedTop: head.top + parseFloat(backing.top), headingTop: header.querySelector('h2').getBoundingClientRect().top, headingBottom: header.querySelector('h2').getBoundingClientRect().bottom, button: { top: header.querySelector('button').getBoundingClientRect().top, right: header.querySelector('button').getBoundingClientRect().right, bottom: header.querySelector('button').getBoundingClientRect().bottom }, scroll: dialog.scrollTop, width: dialog.clientWidth, scrollWidth: dialog.scrollWidth, backingColor: backing.backgroundColor, backingPointer: backing.pointerEvents };
   });
   expect(geometry.scroll).toBeGreaterThan(0); expect(geometry.paintedTop).toBeLessThanOrEqual(geometry.top + 2);
   expect(geometry.headingTop).toBeGreaterThanOrEqual(geometry.top); expect(geometry.headingBottom).toBeLessThanOrEqual(geometry.bottom); expect(geometry.button.bottom).toBeLessThanOrEqual(geometry.bottom); expect(geometry.button.top).toBeGreaterThanOrEqual(geometry.top); expect(geometry.button.right).toBeLessThanOrEqual(geometry.right);
   expect(geometry.backingColor).toBe('rgb(249, 246, 236)'); expect(geometry.backingPointer).toBe('none');
   expect(geometry.scrollWidth).toBeLessThanOrEqual(geometry.width + 1);
+  expect(geometry.noteTop).toBeGreaterThanOrEqual(geometry.headerBottom); expect(geometry.noteBottom).toBeLessThanOrEqual(geometry.bottom);
   await activate(page.getByRole('button', { name: 'Open Riverside Reverie', exact: true }), info);
   await assertLiveArtAtPhoneWidths(page); await shot(page, info, 'riverside-compact-board');
   await collection(page, info, 'Riverside Reverie'); await assertControls(page, '.mg-collection-tabs button'); await assertNoOverflow(page); await shot(page, info, 'riverside-compact-collection');

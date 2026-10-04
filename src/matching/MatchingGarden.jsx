@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BookOpen, HelpCircle, Image as ImageIcon, Lightbulb, RotateCcw, Scissors, Undo2, Volume2, VolumeX, Plus, ArrowRight } from 'lucide-react';
+import { BookOpen, HelpCircle, Image as ImageIcon, Lightbulb, RotateCcw, Scissors, Undo2, Volume2, VolumeX, Plus, ArrowRight, AlertTriangle } from 'lucide-react';
 import useMoticosAudio from '../useMoticosAudio.js';
 import { FLIGHT_MS } from '../moticosConstants.js';
 import { downloadPostcard, sharePostcard } from '../exportPostcard.js';
@@ -64,7 +64,24 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
   const [storageConflict, setStorageConflict] = useState(initial.conflict);
   const [collectionEnvelopeId, setCollectionEnvelopeId] = useState(envelopeId);
   const [hint, setHint] = useState([]);
+  const [largeText, setLargeText] = useState(false);
+  const shellRef = useRef(null);
   const boardRef = useRef(null), cells = useRef([]), timers = useRef(new Set());
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell?.querySelector || typeof ResizeObserver === 'undefined') return;
+    // Text-only enlargement need not change the viewport. Keep readable labels
+    // and allow a taller, naturally scrolling board rather than clipping them.
+    const measureText = () => {
+      const instruction = shell.querySelector('.cg-instruction');
+      const labels = [...shell.querySelectorAll('.cg-cell-name')];
+      setLargeText(parseFloat(getComputedStyle(instruction).fontSize) > 11.5 || labels.some(label => parseFloat(getComputedStyle(label).fontSize) > 10.5));
+    };
+    const observer = new ResizeObserver(measureText);
+    for (const node of shell.querySelectorAll('.cg-header,.cg-instruction,.mg-inspector,.cg-cell-name')) observer.observe(node);
+    measureText();
+    return () => observer.disconnect();
+  }, [save.round.board]);
   const soundEnabled = sharedSound ?? save.sound;
   const soundRef = useRef(soundEnabled); soundRef.current = soundEnabled;
   const audio = useMoticosAudio(soundEnabled);
@@ -93,8 +110,18 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     };
     window.addEventListener('storage', changed);
     window.addEventListener('blur', cancelGesture);
+    window.addEventListener('resize', resizeGesture);
+    window.visualViewport?.addEventListener('resize', resizeGesture);
     function cancelGesture() { setDrag(null); }
-    return () => { document.removeEventListener('visibilitychange', cancel); window.removeEventListener('blur', cancelGesture); window.removeEventListener('storage', changed); };
+    function resizeGesture() {
+      setDrag(null);
+      // A committed merge stays committed; only retarget its decorative flight.
+      if (flightRef.current) {
+        const target = center(flightRef.current.to);
+        if (target) setFlight(current => current ? { ...current, ...target } : current);
+      }
+    }
+    return () => { document.removeEventListener('visibilitychange', cancel); window.removeEventListener('blur', cancelGesture); window.removeEventListener('storage', changed); window.removeEventListener('resize', resizeGesture); window.visualViewport?.removeEventListener('resize', resizeGesture); };
   }, []);
   function updateSave(next) {
     if (!next) return false;
@@ -137,7 +164,10 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     setFlight({ from, to, tile: snapshot.round.board[from], ...origin });
     updateSave(next);
     setDrag(null); setSelected(null); setHint([]);
-    requestAnimationFrame(() => setFlight(current => current ? { ...current, x: target.x, y: target.y } : current));
+    requestAnimationFrame(() => {
+      const landing = center(to) ?? target;
+      setFlight(current => current ? { ...current, ...landing } : current);
+    });
     schedule(() => {
       flightRef.current = null; setFlight(null); setPasteIndex(to); setSelected(to); focusCell(to);
       const title = resultPiece.name;
@@ -248,11 +278,23 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
   const inspectorPiece = selectedPiece ?? CATALOG[FAMILIES[0].starterId];
   const matchingCount = selectedTile ? board.filter((t, i) => i !== selected && compatible(selectedTile, t)).length : 0;
   const postcardId = selectedPiece?.tier >= 3 ? selectedPiece.id : [...postcards].sort((a, b) => a.tier - b.tier).at(-1)?.id;
-  return <main className="cg-page mg-page">
-    <div className="cg-shell">
-      <header className="cg-header"><div><h1>Moticos<span aria-hidden="true">✳</span></h1><p>{envelope.subtitle}</p></div><div className="cg-header-actions"><button className="cg-icon-button" aria-label={soundEnabled ? 'Mute sound' : 'Enable sound'} aria-pressed={soundEnabled} onClick={() => { const enabled = !soundEnabled; perform({ type: 'sound', enabled }); onSoundChoice?.(enabled); if (enabled) audio.playEnabledCue(); }}>{soundEnabled ? <Volume2 /> : <VolumeX />}</button><button className="cg-icon-button" aria-label="How to play" disabled={busy} onClick={() => openOverlay({ type: 'help' })}><HelpCircle /></button></div></header>
-      <div className="cg-mission"><div><span className="cg-eyebrow">One envelope · two little worlds</span><h2>{completed.length === 2 ? 'Two worlds, made by you.' : 'Match a pair. Grow a world.'}</h2></div><span className="cg-progress" aria-label={`${save.discoveries.length} of ${PIECES.length} pieces discovered`}>{save.discoveries.length}<span>/{PIECES.length}</span></span></div>
-      <p className="cg-instruction" id="mg-instruction">Match two identical pictures. Drag together, or tap both.</p>
+  const saveAlert = storageConflict
+    ? 'Another tab changed this envelope. This tab will not overwrite it. Reload to continue the saved board, or keep this tab open for temporary play.'
+    : initial.invalid
+      ? 'Your existing save could not be read and has been left untouched. This practice board is temporary.'
+      : storageWarning ? 'This browser cannot safely save progress. Keep this tab open to continue your board.' : null;
+  return <main className={`cg-page mg-page${largeText ? ' mg-large-text' : ''}`}>
+    <div className="cg-shell" ref={shellRef}>
+      <header className="cg-header">
+        <div className="mg-heading"><div className="mg-title-line"><h1>Moticos<span aria-hidden="true">✳</span></h1><span className="cg-progress" aria-label={`${save.discoveries.length} of ${PIECES.length} pieces discovered`}>{save.discoveries.length}<span>/{PIECES.length}</span></span></div><p>{envelope.subtitle}</p></div>
+        <div className="cg-header-actions">
+          {saveAlert && <button className="mg-save-status" aria-label="Save warning: temporary play. Show save details" onClick={() => openOverlay({ type: 'save' })}><AlertTriangle aria-hidden="true" /><span role="alert">Temporary play</span></button>}
+          <button className="cg-icon-button" aria-label={soundEnabled ? 'Mute sound' : 'Enable sound'} aria-pressed={soundEnabled} onClick={() => { const enabled = !soundEnabled; perform({ type: 'sound', enabled }); onSoundChoice?.(enabled); if (enabled) audio.playEnabledCue(); }}>{soundEnabled ? <Volume2 /> : <VolumeX />}</button><button className="cg-icon-button" aria-label="How to play" disabled={busy} onClick={() => openOverlay({ type: 'help' })}><HelpCircle /></button>
+        </div>
+      </header>
+      <h2 className="cg-sr-only">{completed.length === 2 ? 'Two worlds, made by you.' : 'Match a pair. Grow a world.'}</h2>
+      <p className="cg-instruction" id="mg-instruction">Match identical pictures: drag, or tap both.</p>
+      <div className="mg-board-space">
       <section className="cg-board" aria-label="Matching collage board, five by five" aria-describedby="mg-instruction mg-keyboard-help" ref={boardRef}>
         {board.map((tile, index) => {
           const piece = CATALOG[tile?.pieceId];
@@ -264,19 +306,24 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
           </button>;
         })}
       </section>
+      </div>
       {((drag?.dragging && board[drag.index]) || flight) && (() => { const floating = flight ?? drag; const tile = flight?.tile ?? board[drag.index]; return <div aria-hidden="true" className={`cg-floating${flight ? ' is-flying' : ''}${drag?.snapBack ? ' snap-back' : ''}`} style={{ left: floating.x - floating.size / 2, top: floating.y - floating.size / 2, width: floating.size, height: floating.size }}><Art catalog={CATALOG} id={tile.pieceId} /></div>; })()}
       <p id="mg-keyboard-help" className="cg-sr-only">Use arrow keys to move around the board. Enter or Space selects a piece, then activate the identical picture to merge or an empty space to move. Escape clears the selection.</p>
       <div className="mg-supply" aria-label="Clipping envelope">
-        {FAMILIES.map(family => <button key={family.id} className={`mg-supply-button mg-${family.id}`} onClick={() => supply(family.id)} disabled={round.supply[family.id] < 2 || emptyCount < 2 || busy || Boolean(drag)} aria-label={`Add ${family.id} pair, ${round.supply[family.id] / 2} pairs left`}><Art catalog={CATALOG} id={family.starterId} /><span><strong>{round.supply[family.id] ? `Add ${family.id} pair` : `${family.name} supplied`}</strong><small>{round.supply[family.id] / 2} pairs left in envelope</small></span><Plus aria-hidden="true" /></button>)}
+        {FAMILIES.map(family => <button key={family.id} className={`mg-supply-button mg-${family.id}`} onClick={() => supply(family.id)} disabled={round.supply[family.id] < 2 || emptyCount < 2 || busy || Boolean(drag)} aria-label={`Add ${family.id} pair, ${round.supply[family.id] / 2} pairs left`}><Art catalog={CATALOG} id={family.starterId} /><span><strong>{round.supply[family.id] ? `Add ${family.id} pair` : `${family.shortName} supplied`}</strong><small>{round.supply[family.id] / 2} pairs left</small></span><Plus aria-hidden="true" /></button>)}
       </div>
-      <div className="cg-inspector mg-inspector" aria-live="polite"><Art catalog={CATALOG} id={inspectorPiece.id} /><div><strong>{selectedPiece ? selectedPiece.name : 'Same picture. Next discovery.'}</strong><span>{targetPiece ? `2 ${inspectorPiece.shortName} pieces → ${targetPiece.name}` : 'A finished world. Your postcard is ready.'}</span><small>{selectedPiece ? `Level ${selectedPiece.tier} of 5${targetPiece ? matchingCount ? ' · matching pieces glow' : ` · make another ${selectedPiece.shortName}` : ''}` : `${FAMILIES[0].shortName} matches ${FAMILIES[0].shortName.toLowerCase()}. ${FAMILIES[1].shortName} matches ${FAMILIES[1].shortName.toLowerCase()}.`}</small></div>{targetPiece && <Art catalog={CATALOG} className="mg-next-art" id={targetPiece.id} />}</div>
+      <div className="cg-inspector mg-inspector" aria-live="polite"><Art catalog={CATALOG} id={inspectorPiece.id} /><div><strong>{selectedPiece ? selectedPiece.name : 'Same picture. Next discovery.'}</strong><span>{targetPiece ? `2 ${inspectorPiece.shortName} → ${targetPiece.name}` : 'Finished world. Your postcard is ready.'}</span><small className="cg-sr-only">{selectedPiece ? `Level ${selectedPiece.tier} of 5${targetPiece ? matchingCount ? ' · matching pieces glow' : ` · make another ${selectedPiece.shortName}` : ''}` : `${FAMILIES[0].shortName} matches ${FAMILIES[0].shortName.toLowerCase()}. ${FAMILIES[1].shortName} matches ${FAMILIES[1].shortName.toLowerCase()}.`}</small></div>{targetPiece && <Art catalog={CATALOG} className="mg-next-art" id={targetPiece.id} />}</div>
       <nav className="cg-tools" aria-label="Board tools"><button className="cg-tool" onClick={undo} disabled={!save.history.length || busy}><Undo2 /><span>Undo</span></button><button className="cg-tool" onClick={cut} disabled={!selectedPiece || selectedPiece.tier < 2 || !emptyCount || busy}><Scissors /><span>Cut</span></button><button className="cg-tool" onClick={showHint} disabled={busy}><Lightbulb /><span>Hint</span></button><button className="cg-tool" onClick={() => openOverlay({ type: 'collection' })} disabled={busy}><BookOpen /><span>Collection</span></button></nav>
       <div className="cg-notice" role="status" aria-live="polite">{emptyCount < 2 && Object.values(round.supply).some(amount => amount > 0) ? 'Merge matching pieces to make room for a fresh pair.' : notice}</div>
-      <button className={`cg-postcard-button ${postcardId ? 'is-ready' : ''}`} onClick={() => openOverlay({ type: 'postcard', pieceId: postcardId })} disabled={!postcardId || busy}><ImageIcon /><span>{postcardId ? 'Open your postcard' : 'Your first postcard arrives at level 3'}</span>{postcardId && <span aria-hidden="true">↗</span>}</button>
-      {storageConflict ? <p className="cg-save-warning" role="alert">Another tab changed this envelope. This tab will not overwrite it. Reload to continue the saved board, or keep this tab open for temporary play.</p> : initial.invalid ? <p className="cg-save-warning" role="alert">Your existing save could not be read and has been left untouched. This practice board is temporary. {typeof initial.sourceRaw === 'string' && <button className="mg-text-button" onClick={downloadOriginal}>Download original save</button>}</p> : storageWarning && <p className="cg-save-warning" role="alert">This browser cannot safely save progress. Keep this tab open to continue your board.</p>}
-      <footer className="cg-footer"><span>{initial.blocked || storageWarning || storageConflict ? 'Playing in this tab' : 'Progress saves in this browser'}</span><div className="mg-footer-actions">{onChooseEnvelope && <button onClick={() => openOverlay({ type: 'envelopes' })} disabled={busy}>Envelopes</button>}<button onClick={() => openOverlay({ type: 'reset' })} disabled={busy}>Fresh envelope</button></div></footer>
+      <footer className="cg-footer">
+        <span className="cg-sr-only">{initial.blocked || storageWarning || storageConflict ? 'Playing in this tab' : 'Progress saves in this browser'}</span>
+        {onChooseEnvelope && <button onClick={() => openOverlay({ type: 'envelopes' })} disabled={busy}>Envelopes</button>}
+        <button className={`cg-postcard-button ${postcardId ? 'is-ready' : ''}`} aria-label={postcardId ? 'Open your postcard' : 'Your first postcard arrives at level 3'} onClick={() => openOverlay({ type: 'postcard', pieceId: postcardId })} disabled={!postcardId || busy}><ImageIcon aria-hidden="true" /><span>{postcardId ? 'Postcard' : 'Postcard at level 3'}</span></button>
+        <button onClick={() => openOverlay({ type: 'reset' })} disabled={busy}>Fresh envelope</button>
+      </footer>
     </div>
-    {overlay && <CollectionDialog title={overlay.type === 'postcard' ? 'Your correspondence' : overlay.type === 'collection' ? 'Your collection' : overlay.type === 'envelopes' ? 'Your envelopes' : overlay.type === 'reset' ? 'Open a fresh envelope?' : 'Two of a kind'} onClose={() => setOverlay(null)} className={`mg-dialog${overlay.type === 'postcard' ? ' cg-dialog-postcard' : ''}`}>
+    {overlay && <CollectionDialog title={overlay.type === 'postcard' ? 'Your correspondence' : overlay.type === 'collection' ? 'Your collection' : overlay.type === 'envelopes' ? 'Your envelopes' : overlay.type === 'reset' ? 'Open a fresh envelope?' : overlay.type === 'save' ? 'Save protection' : 'Two of a kind'} onClose={() => setOverlay(null)} className={`mg-dialog${overlay.type === 'postcard' ? ' cg-dialog-postcard' : ''}`}>
+      {overlay.type === 'save' && <div className="cg-help"><p className="cg-save-warning" role="alert">{saveAlert}</p>{initial.invalid && typeof initial.sourceRaw === 'string' && <button className="cg-button" onClick={downloadOriginal}>Download original save</button>}</div>}
       {overlay.type === 'postcard' && <PostcardContent key={overlay.pieceId} pieceId={overlay.pieceId} envelope={getEnvelope(overlay.envelopeId ?? envelopeId)} />}
       {overlay.type === 'help' && <div className="cg-help"><div className="mg-help-equation"><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><span>+</span><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><ArrowRight /><Art catalog={CATALOG} id={FAMILIES[0].pieceIds[1]} /></div><p>Two identical pictures make one new piece. {FAMILIES[0].shortName} matches {FAMILIES[0].shortName.toLowerCase()}, {FAMILIES[1].shortName.toLowerCase()} matches {FAMILIES[1].shortName.toLowerCase()}, and two {CATALOG[FAMILIES[0].pieceIds[1]].name} pieces make {CATALOG[FAMILIES[0].pieceIds[2]].name}.</p><ol><li>Drag one piece onto its match, or tap a piece and then its match. Matching pieces glow.</li><li>The two buttons below the board add a matching pair from your envelope. Each path has enough pieces to reach level 5. There is no waiting or payment.</li><li>Keep matching your new pieces. Level 3 earns your first postcard; levels 4 and 5 reveal more. Open a postcard whenever you like, then return to the same board.</li><li>Undo takes back a move, including a supplied pair. Cut turns a selected made piece into two of its previous level when there is space.</li></ol><p>Invalid matches cost nothing. Every discovered picture stays in your collection, including its postcard, even after a merge, Cut, Undo or fresh envelope.</p><p>Each envelope has ten distinct pieces and six postcards to discover. Use Envelopes to visit another journey; each board and its Undo history wait for you. More of the collection is still being made.</p><h3>Keyboard</h3><p>Tab to the board, use arrow keys, and press Enter or Space to select and match. Escape clears the selection.</p></div>}
       {overlay.type === 'reset' && <div className="cg-help"><p>This starts {envelope.title} again with a full envelope and clears the current board and Undo history. Your discovered art and postcards stay in the collection.</p><button className="cg-button cg-primary" onClick={resetRound}><RotateCcw size={18} /> Start fresh</button></div>}

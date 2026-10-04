@@ -189,14 +189,27 @@ describe('matching component input boundaries', () => {
     vi.advanceTimersByTime(250); page.render(); page.tool('Undo').props.onClick(); page.render();
     expect(page.save().round.merges).toBe(0); expect(page.save().round.board[6].pieceId).toBe('b1');
   });
-  it.each(['pointercancel', 'lostpointercapture', 'blur', 'hidden'])('cancels an interrupted drag on %s without a move or stuck interaction', reason => {
+  it.each(['pointercancel', 'lostpointercapture', 'blur', 'hidden', 'resize'])('cancels an interrupted drag on %s without a move or stuck interaction', reason => {
     const page = harness().down(6).move(6, 245, 145), original = serializeSave(page.save());
     if (reason === 'pointercancel') page.cell(6).props.onPointerCancel(page.event(6));
     if (reason === 'lostpointercapture') page.cell(6).props.onLostPointerCapture(page.event(6));
     if (reason === 'blur') emit(windowListeners, 'blur');
+    if (reason === 'resize') emit(windowListeners, 'resize');
     if (reason === 'hidden') { document.hidden = true; emit(documentListeners, 'visibilitychange'); }
     page.render().up(6, { clientX: 245, clientY: 145 }); expect(serializeSave(page.save())).toBe(original);
     page.down(6).up(6).down(7).up(7); expect(page.save().round.merges).toBe(1);
+  });
+  it('keeps a committed merge and one Undo after a viewport resize during flight', () => {
+    const page = harness().activate(6).activate(7), committed = serializeSave(page.save());
+    emit(windowListeners, 'resize'); page.render();
+    expect(serializeSave(page.save())).toBe(committed);
+    expect(page.save().round.merges).toBe(1);
+    vi.advanceTimersByTime(1000); page.render();
+    expect(serializeSave(page.save())).toBe(committed);
+    page.tool('Undo').props.onClick(); page.render();
+    expect(page.save().round.merges).toBe(0);
+    expect(page.save().round.board[6].pieceId).toBe('b1');
+    expect(page.save().round.board[7].pieceId).toBe('b1');
   });
 });
 

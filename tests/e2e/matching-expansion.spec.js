@@ -3,6 +3,7 @@ import {
   MATCHING_KEY, NAMES, pieces, cell, occupied, supply, activate, boardIds, rawSave,
   idle, mergeAt, mergeId, finishFamily, closeDialog, imagesReady, shot, downloadPNG,
   openCollectedPostcard, assertNoOverflow, assertControls, assertLiveArtAtPhoneWidths,
+  openSaveWarning, assertSaveWarning, saveWarning,
 } from './matching-helpers.js';
 const MOON_KEY = 'moticos.matching.moonlit-passage.v1';
 const moonURL = '/?envelope=moonlit-passage';
@@ -41,13 +42,14 @@ for (const order of [['key', 'moon'], ['moon', 'key']]) {
   test(`complete Moonlit Passage ${order.join('-')} with real merges and six postcards`, async ({ page }, info) => {
     test.setTimeout(240_000); await moon(page, info); const prefix = order.join('-');
     for (const family of order) await finishFamily(page, family, info, 'drag', async id => {
-      if (Number(id[1]) >= 3) { await assertLiveArtAtPhoneWidths(page); await shot(page, info, `moonlit-${prefix}-${id}`); }
+      if (Number(id[1]) >= 3 || order[0] === 'key') { await assertLiveArtAtPhoneWidths(page, order[0] === 'key' ? info : null, `moonlit-round-${id}`); await shot(page, info, `moonlit-${prefix}-${id}`); }
     });
     const save = JSON.parse(await rawSave(page, MOON_KEY));
     expect(save.round).toMatchObject({ moves: 42, merges: 30, supply: { key: 0, moon: 0 } });
     expect(save.discoveries).toHaveLength(10); await expect(occupied(page)).toHaveCount(2);
     await expect(pieces(page, 'k5')).toHaveCount(1); await expect(pieces(page, 'm5')).toHaveCount(1);
     await expect(page.getByRole('heading', { name: 'Two worlds, made by you.' })).toBeVisible();
+    if (order[0] === 'key') await assertLiveArtAtPhoneWidths(page, info, 'moonlit-round-done');
     const board = await boardIds(page), hashes = [];
     for (const id of ['k3', 'k4', 'k5', 'm3', 'm4', 'm5']) {
       await openCollectedPostcard(page, id, info);
@@ -63,6 +65,7 @@ for (const order of [['key', 'moon'], ['moon', 'key']]) {
       await imagesReady(page.locator('.cg-collection-piece').filter({ has: page.getByRole('heading', { name: title, exact: true }) }).locator('img')); await shot(page, info, `moonlit-${prefix}-collection-${title.toLowerCase().replaceAll(' ', '-')}`);
     }
     await closeDialog(page, info); await page.reload(); await expect(pieces(page, 'k5')).toHaveCount(1); await expect(pieces(page, 'm5')).toHaveCount(1);
+    if (order[0] === 'key') await assertLiveArtAtPhoneWidths(page, info, 'moonlit-round-done-reloaded');
   });
 }
 
@@ -107,9 +110,11 @@ for (const key of [MATCHING_KEY, MOON_KEY]) {
     const activeFamily = key === MOON_KEY ? 'key' : 'bird'; await activate(supply(page, activeFamily), info); const board = await boardIds(page);
     if (key === MOON_KEY) { await garden(page, info); await moon(page, info); } else { await moon(page, info); await garden(page, info); }
     expect(await boardIds(page)).toEqual(board); expect(await rawSave(page, key)).toBe(raw);
+    await openSaveWarning(page, info);
     const pending = page.waitForEvent('download'); await activate(page.getByRole('button', { name: 'Download original save', exact: true }), info);
     const download = await pending; expect(download.suggestedFilename()).toBe(`moticos-${key === MOON_KEY ? 'moonlit-passage' : 'matching-garden'}-original-save.json`);
     const stream = await download.createReadStream(); const chunks = []; for await (const chunk of stream) chunks.push(chunk); expect(Buffer.concat(chunks).toString()).toBe(raw);
+    await closeDialog(page, info);
     await activate(page.getByRole('button', { name: 'Undo', exact: true }), info); await expect(occupied(page)).toHaveCount(8); expect(await rawSave(page, key)).toBe(raw);
   });
 }
@@ -117,14 +122,14 @@ for (const key of [MATCHING_KEY, MOON_KEY]) {
 test('storage quota failure does not lose temporary state when switching envelopes', async ({ page }, info) => {
   await page.evaluate(key => { const set = Storage.prototype.setItem; Storage.prototype.setItem = function(k, value) { if (k === key) throw new DOMException('quota', 'QuotaExceededError'); return set.call(this, k, value); }; }, MATCHING_KEY);
   await activate(supply(page, 'bird'), info); const board = await boardIds(page);
-  await expect(page.locator('.cg-save-warning')).toContainText('cannot safely save'); await moon(page, info); await activate(supply(page, 'moon'), info);
+  await assertSaveWarning(page, info, 'cannot safely save'); await moon(page, info); await activate(supply(page, 'moon'), info);
   await garden(page, info); expect(await boardIds(page)).toEqual(board); expect(await rawSave(page)).toBeNull();
   await activate(page.getByRole('button', { name: 'Undo', exact: true }), info); await expect(occupied(page)).toHaveCount(8);
 });
 
 test('a denied localStorage property permits temporary play and safe switching', async ({ page }, info) => {
   await page.addInitScript(() => Object.defineProperty(window, 'localStorage', { configurable: true, get() { throw new DOMException('blocked', 'SecurityError'); } }));
-  await page.reload(); await expect(page.locator('.cg-save-warning')).toBeVisible(); await activate(supply(page, 'bird'), info); const board = await boardIds(page);
+  await page.reload(); await expect(saveWarning(page)).toBeVisible(); await activate(supply(page, 'bird'), info); const board = await boardIds(page);
   await moon(page, info); await activate(supply(page, 'key'), info); await garden(page, info); expect(await boardIds(page)).toEqual(board);
 });
 
@@ -132,7 +137,7 @@ test('inactive envelope changed elsewhere is protected when resumed', async ({ p
   await activate(supply(page, 'bird'), info); const originalBoard = await boardIds(page); await moon(page, info);
   const other = await context.newPage(); await other.goto('/'); await expect(supply(other, 'fern')).toBeEnabled(); await activate(supply(other, 'fern'), info);
   const external = await rawSave(other); await other.close(); await garden(page, info);
-  await expect(page.locator('.cg-save-warning')).toContainText('Another tab'); expect(await boardIds(page)).toEqual(originalBoard);
+  await assertSaveWarning(page, info, 'Another tab'); expect(await boardIds(page)).toEqual(originalBoard);
   await activate(supply(page, 'bird'), info); expect(await rawSave(page)).toBe(external);
   await moon(page, info); await garden(page, info); await expect(pieces(page, 'b1')).toHaveCount(8); expect(await rawSave(page)).toBe(external);
 });

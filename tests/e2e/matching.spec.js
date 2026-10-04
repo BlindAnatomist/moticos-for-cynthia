@@ -5,6 +5,7 @@ import {
   boardIds, rawSave, saved, idle, clearSelection, imagesReady, shot, beginDrag, dragTo,
   mergeAt, mergeId, makeLevelThree, finishFamily, closeDialog, openCollectedPostcard,
   downloadPNG, assertNoOverflow, assertControls, assertLiveArtAtPhoneWidths,
+  openSaveWarning, assertSaveWarning, saveWarning, assertMatchingViewportFit,
 } from './matching-helpers.js';
 
 const errorsByPage = new WeakMap();
@@ -62,7 +63,8 @@ test('default board is matching-first, with eight clippings and two finite envel
     expect(geometry.board.top).toBeLessThan(230);
     expect(geometry.board.bottom).toBeLessThan(geometry.height);
   }
-  await shot(page, info, 'initial');
+  if (isPhone(info)) await assertMatchingViewportFit(page, info, 'initial-project-viewport');
+  await shot(page, info, 'initial', { fullPage: false });
 });
 
 test('bird matches bird and fern matches fern, with higher identical tiers continuing each chain', async ({ page }, info) => {
@@ -218,10 +220,10 @@ for (const route of [
   test(`full real-UI round: ${route.order.join(' then ')}, 30 merges and 12 pair taps (${route.method})`, async ({ page }, info) => {
     test.setTimeout(180_000);
     const inspected = new Set(['b1', 'f1']);
-    if (route.order[0] === 'bird') await assertLiveArtAtPhoneWidths(page);
+    if (route.order[0] === 'bird') await assertLiveArtAtPhoneWidths(page, info, 'garden-round-initial');
     const inspectDiscovery = async id => {
       inspected.add(id);
-      if (route.order[0] === 'bird') await assertLiveArtAtPhoneWidths(page);
+      if (route.order[0] === 'bird') await assertLiveArtAtPhoneWidths(page, info, `garden-round-${id}`);
       if (Number(id[1]) >= 3) await shot(page, info, `${route.order[0]}-first-${id}`);
     };
     const first = await finishFamily(page, route.order[0], info, route.method, inspectDiscovery);
@@ -245,6 +247,7 @@ for (const route of [
     expect(complete.history).toHaveLength(42);
     expect(new Set(complete.discoveries)).toEqual(new Set(['b1', 'b2', 'b3', 'b4', 'b5', 'f1', 'f2', 'f3', 'f4', 'f5']));
     await assertNoOverflow(page);
+    if (route.order[0] === 'bird') await assertLiveArtAtPhoneWidths(page, info, 'garden-round-done');
     await shot(page, info, `${route.order[0]}-first-both-worlds`);
     if (route.order[0] === 'bird') {
       const viewport = page.viewportSize();
@@ -284,6 +287,7 @@ for (const route of [
     await page.reload();
     await expect(occupied(page)).toHaveCount(2);
     expect(await saved(page)).toEqual(complete);
+    if (route.order[0] === 'bird') await assertLiveArtAtPhoneWidths(page, info, 'garden-round-done-reloaded');
     await activate(page.getByRole('button', { name: 'Undo', exact: true }), info);
     await expect(occupied(page)).toHaveCount(3);
     expect((await saved(page)).round).toEqual(complete.history.at(-1));
@@ -460,12 +464,13 @@ for (const fixture of [
   test(`${fixture.name} stays byte-for-byte untouched while temporary play and original-save download work`, async ({ page }, info) => {
     await page.evaluate(({ key, raw }) => localStorage.setItem(key, raw), { key: MATCHING_KEY, raw: fixture.raw });
     await page.reload();
-    await expect(page.getByRole('alert')).toContainText('left untouched');
+    await assertSaveWarning(page, info, 'left untouched');
     await expect(occupied(page)).toHaveCount(8);
     await mergeId(page, 'b1', info);
     await activate(supply(page, 'fern'), info);
     await activate(page.getByRole('button', { name: 'Mute sound', exact: true }), info);
     expect(await rawSave(page)).toBe(fixture.raw);
+    await openSaveWarning(page, info);
     const pending = page.waitForEvent('download');
     await activate(page.getByRole('button', { name: 'Download original save', exact: true }), info);
     const download = await pending;
@@ -474,11 +479,12 @@ for (const fixture of [
     const path = `test-results/postcards/${info.project.name}-matching-original-${fixture.name.replaceAll(' ', '-')}.json`;
     await download.saveAs(path);
     expect(await readFile(path, 'utf8')).toBe(fixture.raw);
+    await closeDialog(page, info);
     await activate(page.getByRole('button', { name: 'Fresh envelope', exact: true }), info);
     await activate(page.getByRole('button', { name: 'Start fresh', exact: true }), info);
     expect(await rawSave(page)).toBe(fixture.raw);
     await page.reload();
-    await expect(page.getByRole('alert')).toContainText('practice board is temporary');
+    await assertSaveWarning(page, info, 'practice board is temporary');
     await expect(occupied(page)).toHaveCount(8);
     expect(await rawSave(page)).toBe(fixture.raw);
   });
@@ -549,8 +555,10 @@ test('an unreadable existing save is never overwritten, even if storage later re
     };
   }, MATCHING_KEY);
   await page.reload();
-  await expect(page.getByRole('alert')).toContainText('left untouched');
+  await openSaveWarning(page, info);
+  await expect(page.getByRole('dialog').getByRole('alert')).toContainText('left untouched');
   await expect(page.getByRole('button', { name: 'Download original save', exact: true })).toHaveCount(0);
+  await closeDialog(page, info);
   await expect(occupied(page)).toHaveCount(8);
   await mergeAt(page, 6, 7, info);
   expect(await page.evaluate(() => window.matchingOriginalRead())).toBe(original);
@@ -573,7 +581,7 @@ test('a genuinely stale second tab cannot overwrite the newer saved garden', asy
     await expect(occupied(stale)).toHaveCount(8);
     await mergeAt(page, 6, 7, info);
     const latest = await rawSave(page);
-    await expect(stale.getByRole('alert')).toContainText('Another tab changed this garden');
+    await assertSaveWarning(stale, info, 'Another tab changed this envelope');
     await activate(supply(stale, 'fern'), info);
     await expect(occupied(stale)).toHaveCount(10);
     expect(await rawSave(stale)).toBe(latest);
@@ -585,6 +593,7 @@ test('a genuinely stale second tab cannot overwrite the newer saved garden', asy
     await expect(pieces(stale, 'b2')).toHaveCount(1);
     await expect(occupied(stale)).toHaveCount(7);
     await expect(stale.getByRole('alert')).toHaveCount(0);
+    await expect(saveWarning(stale)).toHaveCount(0);
     expect(await rawSave(stale)).toBe(latest);
     await activate(supply(stale, 'fern'), info);
     await expect(occupied(stale)).toHaveCount(9);

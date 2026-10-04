@@ -1,9 +1,15 @@
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { expect } from '@playwright/test';
 
 export const MATCHING_KEY = 'moticos.matching.garden.v1';
 export const RECIPE_KEY = 'moticos.collection.garden.v1';
+export const PHONE_VIEWPORTS = Object.freeze([
+  { width: 320, height: 568 },
+  { width: 390, height: 664 },
+  { width: 430, height: 752 },
+  { width: 430, height: 932 },
+]);
 export const NAMES = {
   b1: 'Coral Bird', b2: 'Riverwing', b3: 'Wayfinder', b4: 'Aviary Gate', b5: 'Wandering Aviary',
   f1: 'Teal Fern', f2: 'Fern Cup', f3: 'Nightgarden', f4: 'Moonlit Arbor', f5: 'Lunar Conservatory',
@@ -42,10 +48,10 @@ export async function clearSelection(page) {
 export async function imagesReady(locator) {
   await expect.poll(() => locator.evaluateAll(images => images.length > 0 && images.every(image => image.complete && image.naturalWidth > 0))).toBe(true);
 }
-export async function shot(page, info, name) {
+export async function shot(page, info, name, { fullPage = true } = {}) {
   await mkdir('test-results/screenshots', { recursive: true });
   const path = `test-results/screenshots/${info.project.name}-matching-${name}.png`;
-  await page.screenshot({ path, fullPage: true, animations: 'disabled' });
+  await page.screenshot({ path, fullPage, animations: 'disabled' });
   await info.attach(`matching-${name}`, { path, contentType: 'image/png' });
 }
 export async function beginDrag(page, from, point) {
@@ -185,14 +191,15 @@ export async function assertControls(page, selector) {
 
 // Inspect every real, currently live tier at compact and standard phone widths.
 // The round itself still plays at the project's original viewport and engine.
-export async function assertLiveArtAtPhoneWidths(page) {
+export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live-art') {
   await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
   const original = page.viewportSize();
   try {
-    for (const width of [320, 390]) {
-      await page.setViewportSize({ width, height: Math.max(780, original.height) });
+    for (const viewport of PHONE_VIEWPORTS) {
+      const { width } = viewport;
+      await page.setViewportSize(viewport);
       await imagesReady(page.locator('.cg-board img'));
-      await assertNoOverflow(page);
+      await assertMatchingViewportFit(page, info, `${name}-${width}x${viewport.height}`);
       await assertControls(page, '.cg-header button, .cg-tools button, .mg-supply button, .cg-postcard-button, .cg-footer button');
       const tiles = await occupied(page).evaluateAll(nodes => nodes.map(node => {
         const label = node.querySelector('.cg-cell-name');
@@ -222,4 +229,214 @@ export async function assertLiveArtAtPhoneWidths(page) {
   } finally {
     await page.setViewportSize(original);
   }
+}
+
+
+export const saveWarning = page => page.getByRole('button', { name: /^Save warning:/ });
+export async function openSaveWarning(page, info) {
+  await expect(saveWarning(page)).toBeVisible();
+  await activate(saveWarning(page), info);
+  await expect(page.getByRole('dialog', { name: 'Save protection', exact: true })).toBeVisible();
+}
+export async function assertSaveWarning(page, info, text) {
+  await openSaveWarning(page, info);
+  await expect(page.getByRole('dialog').getByRole('alert')).toContainText(text);
+  await closeDialog(page, info);
+}
+
+// A layout gate must never scroll, enlarge the viewport, or turn a viewport
+// screenshot into a full-page image to make a too-tall game appear to fit.
+// Diagnostic JSON and the actual viewport are attached before assertions so
+// a failing fit gate has inspectable evidence too.
+export async function matchingGeometry(page, selector = '.mg-page > .cg-shell button') {
+  return page.evaluate(selector => {
+    const rect = node => {
+      const r = node.getBoundingClientRect();
+      return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height };
+    };
+    const label = node => node.getAttribute('aria-label') || node.textContent.trim() || node.className;
+    const measure = node => {
+      const box = rect(node), hiddenBy = [], clippedBy = [];
+      for (let ancestor = node; ancestor; ancestor = ancestor.parentElement) {
+        const style = getComputedStyle(ancestor);
+        if (style.display === 'none' || style.visibility !== 'visible' || Number(style.opacity) === 0 || ancestor.hidden || ancestor.getAttribute('aria-hidden') === 'true' || ancestor.inert) hiddenBy.push(ancestor.className || ancestor.tagName);
+        if (ancestor !== node) {
+          const bounds = rect(ancestor);
+          const clipsX = style.overflowX !== 'visible';
+          const clipsY = style.overflowY !== 'visible';
+          if ((clipsX && (box.left < bounds.left - 1 || box.right > bounds.right + 1)) ||
+              (clipsY && (box.top < bounds.top - 1 || box.bottom > bounds.bottom + 1))) clippedBy.push(ancestor.className || ancestor.tagName);
+        }
+      }
+      const hitTests = [[.5, .5], [.2, .2], [.8, .2], [.2, .8], [.8, .8]].map(([x, y]) => {
+        const px = box.left + box.width * x, py = box.top + box.height * y;
+        const hit = document.elementFromPoint(px, py);
+        return { x: px, y: py, clear: Boolean(hit && (hit === node || node.contains(hit))), covering: hit ? label(hit) : null };
+      });
+      return { name: label(node), tag: node.tagName, cell: node.dataset.matchingCell ?? null,
+        piece: node.dataset.pieceId ?? null, ...box, hiddenBy, clippedBy, hitTests,
+        scrollWidth: node.scrollWidth, clientWidth: node.clientWidth,
+        scrollHeight: node.scrollHeight, clientHeight: node.clientHeight };
+    };
+    const shell = document.querySelector('.mg-page > .cg-shell');
+    const text = [...shell.querySelectorAll('*')].filter(node =>
+      !node.closest('.cg-sr-only, .cg-floating, svg') &&
+      [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim())
+    ).map(node => {
+      const range = document.createRange(); range.selectNodeContents(node);
+      const box = rect(node), r = range.getBoundingClientRect(), style = getComputedStyle(node);
+      return { name: label(node), ...box, font: parseFloat(style.fontSize),
+        display: style.display, visibility: style.visibility,
+        textBox: { left: r.left, right: r.right, top: r.top, bottom: r.bottom },
+        scrollWidth: node.scrollWidth, clientWidth: node.clientWidth,
+        scrollHeight: node.scrollHeight, clientHeight: node.clientHeight,
+        // Inline text has no meaningful clientWidth; its Range still has bounds.
+        block: style.display !== 'inline', cellLabel: node.matches('.cg-cell-name') };
+    });
+    const regions = [...shell.querySelectorAll('.cg-header, .cg-instruction, .cg-board, .mg-supply, .mg-inspector, .cg-tools, .cg-notice, .cg-footer')].map(measure);
+    return {
+      viewport: { width: innerWidth, height: innerHeight, scrollX, scrollY,
+        visual: window.visualViewport ? { width: visualViewport.width, height: visualViewport.height, offsetLeft: visualViewport.offsetLeft, offsetTop: visualViewport.offsetTop, scale: visualViewport.scale } : null },
+      document: { width: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight },
+      body: { width: document.body.scrollWidth, height: document.body.scrollHeight },
+      shell: measure(shell), regions,
+      controls: [...document.querySelectorAll(selector)].map(measure), text,
+      artwork: [...shell.querySelectorAll('.cg-board img')].map(node => ({ ...measure(node), complete: node.complete, naturalWidth: node.naturalWidth })),
+    };
+  }, selector);
+}
+
+export async function attachMatchingGeometry(page, info, name, geometry) {
+  const safeName = name.replace(/[^a-zA-Z0-9_-]/g, '-');
+  const prefix = `${info.project.name}-matching-layout-${safeName}`;
+  await mkdir('test-results/screenshots', { recursive: true });
+  const json = `test-results/screenshots/${prefix}.json`;
+  const screenshot = `test-results/screenshots/${prefix}.png`;
+  await writeFile(json, JSON.stringify(geometry, null, 2) + '\n');
+  await page.screenshot({ path: screenshot, fullPage: false, animations: 'disabled' });
+  await info.attach(`${safeName}-geometry`, { path: json, contentType: 'application/json' });
+  await info.attach(`${safeName}-viewport`, { path: screenshot, contentType: 'image/png' });
+}
+
+function expectUnclippedText(text) {
+  for (const item of text) {
+    expect(item.display, `${item.name} is rendered`).not.toBe('none');
+    expect(item.visibility, `${item.name} is visible`).toBe('visible');
+    if (item.block) {
+      expect(item.scrollWidth, `${item.name} does not truncate horizontally`).toBeLessThanOrEqual(item.clientWidth + 1);
+      expect(item.scrollHeight, `${item.name} does not truncate vertically`).toBeLessThanOrEqual(item.clientHeight + 1);
+    }
+    if (item.cellLabel) {
+      expect(item.font, `${item.name} retains a readable tile label`).toBeGreaterThanOrEqual(8);
+      expect(item.textBox.left).toBeGreaterThanOrEqual(item.left - 1);
+      expect(item.textBox.right).toBeLessThanOrEqual(item.right + 1);
+      expect(item.textBox.top).toBeGreaterThanOrEqual(item.top - 1);
+      expect(item.textBox.bottom).toBeLessThanOrEqual(item.bottom + 1);
+    }
+  }
+}
+
+export async function assertMatchingViewportFit(page, info = null, name = 'fit') {
+  await idle(page);
+  await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
+  await imagesReady(page.locator('.cg-board img'));
+  const geometry = await matchingGeometry(page);
+  if (info) await attachMatchingGeometry(page, info, name, geometry);
+  const { viewport, controls, regions, text, artwork } = geometry;
+  expect({ width: viewport.width, height: viewport.height }, 'actual CSS viewport equals the requested test viewport').toEqual(page.viewportSize());
+  expect(viewport.scrollX, 'fit is measured without horizontal scrolling').toBe(0);
+  expect(viewport.scrollY, 'fit is measured without vertical scrolling').toBe(0);
+  expect(geometry.document.width, 'document has no horizontal overflow').toBeLessThanOrEqual(viewport.width);
+  expect(geometry.document.height, 'document has no vertical overflow').toBeLessThanOrEqual(viewport.height);
+  expect(geometry.body.width, 'body has no horizontal overflow').toBeLessThanOrEqual(viewport.width);
+  expect(geometry.body.height, 'body has no vertical overflow').toBeLessThanOrEqual(viewport.height);
+  const visibleBounds = viewport.visual ? {
+    left: viewport.visual.offsetLeft, top: viewport.visual.offsetTop,
+    right: viewport.visual.offsetLeft + viewport.visual.width,
+    bottom: viewport.visual.offsetTop + viewport.visual.height,
+  } : { left: 0, top: 0, right: viewport.width, bottom: viewport.height };
+  expect(controls.filter(control => control.cell !== null)).toHaveLength(25);
+  expect(controls.length, '25 cells, two header controls, two supplies, four tools and three secondary actions').toBeGreaterThanOrEqual(36);
+  for (const name of ['Undo', 'Cut', 'Hint', 'Collection', 'Envelopes', 'Fresh envelope', 'How to play']) {
+    await expect(page.getByRole('button', { name, exact: true })).toHaveCount(1);
+  }
+  for (const selector of ['.cg-header', '.cg-board', '.mg-supply', '.cg-tools', '.cg-footer']) {
+    await expect(page.locator(selector)).toHaveCount(1);
+  }
+  await expect(page.locator('.cg-postcard-button')).toHaveCount(1);
+  await expect(page.locator('.mg-supply button')).toHaveCount(2);
+  for (const box of [...controls, ...regions]) {
+    expect(box.hiddenBy, `${box.name} is not hidden by CSS, aria-hidden or inert`).toEqual([]);
+    expect(box.clippedBy, `${box.name} is not clipped by an ancestor`).toEqual([]);
+    expect(box.left, `${box.name} left edge`).toBeGreaterThanOrEqual(visibleBounds.left - .5);
+    expect(box.top, `${box.name} top edge`).toBeGreaterThanOrEqual(visibleBounds.top - .5);
+    expect(box.right, `${box.name} right edge`).toBeLessThanOrEqual(visibleBounds.right + .5);
+    expect(box.bottom, `${box.name} bottom edge`).toBeLessThanOrEqual(visibleBounds.bottom + .5);
+    expect(box.width, `${box.name} is rendered`).toBeGreaterThan(0);
+    expect(box.height, `${box.name} is rendered`).toBeGreaterThan(0);
+    expect(box.scrollWidth, `${box.name} has no concealed horizontal overflow`).toBeLessThanOrEqual(box.clientWidth + 1);
+    expect(box.scrollHeight, `${box.name} has no concealed vertical overflow`).toBeLessThanOrEqual(box.clientHeight + 1);
+  }
+  for (const control of controls) {
+    expect(control.width, `${control.name} target width`).toBeGreaterThanOrEqual(44);
+    expect(control.height, `${control.name} target height`).toBeGreaterThanOrEqual(44);
+    expect(control.hitTests.filter(hit => !hit.clear), `${control.name} has no overlaid or occluded hit area`).toEqual([]);
+  }
+  for (let i = 0; i < regions.length; i++) for (let j = i + 1; j < regions.length; j++) {
+    const a = regions[i], b = regions[j];
+    const overlapWidth = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+    const overlapHeight = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+    expect(overlapWidth > 1 && overlapHeight > 1, `${a.name} and ${b.name} do not visually overlap`).toBe(false);
+  }
+  expectUnclippedText(text);
+  for (const item of text) {
+    expect(item.textBox.left, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.left - 1);
+    expect(item.textBox.right, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.right + 1);
+    expect(item.textBox.top, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.top - 1);
+    expect(item.textBox.bottom, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.bottom + 1);
+  }
+  for (const art of artwork) {
+    expect(art.hiddenBy, 'tile artwork is visibly rendered').toEqual([]);
+    expect(art.clippedBy, 'tile artwork is not clipped').toEqual([]);
+    expect(art.complete && art.naturalWidth > 0, 'real artwork loads').toBe(true);
+    expect(art.width, 'tile art keeps its existing minimum width').toBeGreaterThan(30);
+    expect(art.height, 'tile art keeps its existing minimum height').toBeGreaterThan(25);
+  }
+  return geometry;
+}
+
+// Only the explicitly labelled accessibility/tiny-height fallback allows page
+// scrolling. It still rejects hidden/clipped controls, horizontal overflow,
+// smaller targets, and internal scrollboxes used to conceal the game.
+export async function assertMatchingScrollableFallback(page, info, name) {
+  await idle(page);
+  await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
+  const initial = await matchingGeometry(page);
+  await attachMatchingGeometry(page, info, `${name}-top`, initial);
+  expect(initial.controls.filter(control => control.cell !== null)).toHaveLength(25);
+  expect(initial.controls.length).toBeGreaterThanOrEqual(36);
+  expect(initial.document.width).toBeLessThanOrEqual(initial.viewport.width);
+  expect(initial.body.width).toBeLessThanOrEqual(initial.viewport.width);
+  expect(initial.document.height, 'this fixture genuinely exercises the scrolling fallback').toBeGreaterThan(initial.viewport.height);
+  expectUnclippedText(initial.text);
+  for (let index = 0; index < initial.controls.length; index++) {
+    const control = page.locator('.mg-page > .cg-shell button').nth(index);
+    await expect(control).toBeVisible();
+    await control.scrollIntoViewIfNeeded();
+    const current = await matchingGeometry(page);
+    const box = current.controls[index];
+    expect(box.hiddenBy, `${box.name} is not hidden in fallback`).toEqual([]);
+    // The viewport legitimately clips scrolled-off elements, so inspect only
+    // the control brought into view and reject any non-root clipping ancestor.
+    expect(box.clippedBy.filter(name => !['HTML', 'BODY'].includes(name)), `${box.name} stays reachable`).toEqual([]);
+    expect(box.width).toBeGreaterThanOrEqual(44);
+    expect(box.height).toBeGreaterThanOrEqual(44);
+    expect(box.left).toBeGreaterThanOrEqual(-.5);
+    expect(box.right).toBeLessThanOrEqual(current.viewport.width + .5);
+    expect(box.top).toBeGreaterThanOrEqual(-.5);
+    expect(box.bottom).toBeLessThanOrEqual(current.viewport.height + .5);
+    expect(box.hitTests.filter(hit => !hit.clear), `${box.name} can be reached without occlusion`).toEqual([]);
+    expect(current.document.width).toBeLessThanOrEqual(current.viewport.width);
+  }
+  await attachMatchingGeometry(page, info, `${name}-bottom`, await matchingGeometry(page));
 }
