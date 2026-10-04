@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest run tests/gameLogic.test.js tests/collectionLogic.test.js tests/matchingLogic.test.js tests/matchingUi.test.jsx tests/matchingSession.test.js tests/expansionAudit.test.js",
+    "test": "vitest run tests/gameLogic.test.js tests/collectionLogic.test.js tests/matchingLogic.test.js tests/matchingUi.test.jsx tests/matchingSession.test.js tests/expansionAudit.test.js tests/thirdEnvelopeAudit.test.js",
     "test:e2e": "playwright test",
     "validate:matching": "node scripts/validateMatching.mjs"
   },

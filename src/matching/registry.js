@@ -1,10 +1,12 @@
 import { GARDEN_CATALOG } from './catalog.js';
 import { GARDEN_ENGINE } from './game.js';
 import { MOONLIT_CATALOG } from './moonlitCatalog.js';
+import { RIVERSIDE_CATALOG } from './riversideCatalog.js';
 import { createMatchingEngine } from './engine.js';
 
 export const DEFAULT_ENVELOPE_ID = 'matching-garden';
 const moonlitEngine = createMatchingEngine({ catalog: MOONLIT_CATALOG, storageKey: 'moticos.matching.moonlit-passage.v1' });
+const riversideEngine = createMatchingEngine({ catalog: RIVERSIDE_CATALOG, storageKey: 'moticos.matching.riverside-reverie.v1' });
 export const ENVELOPES = Object.freeze([
   Object.freeze({
     id: DEFAULT_ENVELOPE_ID, contentRevision: 1, saveSchemaVersion: 1, title: 'Garden Correspondence', subtitle: 'Garden correspondence',
@@ -16,8 +18,13 @@ export const ENVELOPES = Object.freeze([
     description: 'Grow a golden key passage and send a crescent voyager into the moonlight.',
     storageKey: moonlitEngine.STORAGE_KEY, catalog: MOONLIT_CATALOG,
   }),
+  Object.freeze({
+    id: 'riverside-reverie', contentRevision: 1, saveSchemaVersion: 1, title: 'Riverside Reverie', subtitle: 'Riverside reverie',
+    description: 'Fold a river into a little world and let a teacup dream in ribbons.',
+    storageKey: riversideEngine.STORAGE_KEY, catalog: RIVERSIDE_CATALOG,
+  }),
 ]);
-const engines = Object.freeze({ [DEFAULT_ENVELOPE_ID]: GARDEN_ENGINE, 'moonlit-passage': moonlitEngine });
+const engines = Object.freeze({ [DEFAULT_ENVELOPE_ID]: GARDEN_ENGINE, 'moonlit-passage': moonlitEngine, 'riverside-reverie': riversideEngine });
 const descriptors = Object.freeze(Object.fromEntries(ENVELOPES.map(envelope => [envelope.id, envelope])));
 // Fail during development rather than allowing a later pack to steal an ID or key.
 const ids = ENVELOPES.flatMap(envelope => envelope.catalog.PIECES.map(piece => piece.id));

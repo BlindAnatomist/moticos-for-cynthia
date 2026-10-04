@@ -142,3 +142,17 @@
 .mg-level.mg-key { color:#71500c; }
 .mg-level.mg-moon { color:#1d4198; }
 @media(max-width:380px) { .mg-envelope-card { grid-template-columns:70px minmax(0,1fr); padding:11px; gap:8px; } .mg-envelope-art .cg-art { width:35px; } .mg-envelope-card h3 { font-size:19px; } }
+
+/* Keep the scrolling dialog header opaque to its padded edge. */
+.mg-dialog { --mg-dialog-padding:20px; padding:var(--mg-dialog-padding); }
+.mg-dialog .cg-dialog-header::before { content:""; position:absolute; top:calc(-1 * var(--mg-dialog-padding)); left:calc(-1 * var(--mg-dialog-padding)); right:calc(-1 * var(--mg-dialog-padding)); bottom:0; z-index:-1; background:#f9f6ec; pointer-events:none; }
+.mg-dialog .cg-dialog-header h2 { min-width:0; }
+.mg-level.mg-map { color:#204d91; }
+.mg-level.mg-teacup { color:#795218; }
+@media(max-width:380px) {
+  .mg-dialog { --mg-dialog-padding:14px; }
+  .mg-envelope-card { grid-template-columns:42px minmax(0,1fr); }
+  .mg-envelope-art { flex-direction:column; }
+  .mg-envelope-art .cg-art { width:42px; height:42px; }
+  .mg-envelope-card h3 { font-size:18px; }
+}

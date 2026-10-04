@@ -1,0 +1,48 @@
+name: Verify Riverside Reverie
+
+# This verification branch is pushed only after approval of this bounded run.
+# The ordinary candidate work branch is intentionally inert.
+on:
+  push:
+    branches: [verify/third-envelope-20261004]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moticos-third-envelope-verification
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify all three envelope engines, saves, and actual handlers
+        run: npm test
+      - name: Prove each finite envelope inventory
+        run: npm run validate:matching
+      - name: Build candidate
+        run: npm run build
+      - name: Install standard WebKit and Chromium browsers
+        run: npx playwright install --with-deps webkit chromium
+      - name: Verify both iPhone sizes and desktop, including all full rounds
+        run: npx playwright test --workers=2 --retries=0
+      - name: Keep review evidence for one day
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-third-envelope-evidence
+          path: |
+            test-results/screenshots
+            test-results/postcards
+            test-results/**/trace.zip
+            playwright-report
+          if-no-files-found: ignore
+          retention-days: 1

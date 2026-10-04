@@ -10,17 +10,19 @@ Status date: 2026-07-31
 
 ## Current preserved matching baseline — 2026-10-04
 
-The current working matching preview is Site version 2 at `https://moticos-garden-preview.blind-anatomist.chatgpt.site`.
+The accepted matching preview is Site version 3 at `https://moticos-garden-preview.blind-anatomist.chatgpt.site`.
 
-- Site source: `c897dd81bca4d9cc1652e2c155bdf08fd9a849c0`
-- Public repository counterpart: `work/matching-progression-20261004@bdf209e69b241cdbd2ae561513c48b21a2db25d6`
+- Site source: `a2a1073c679b644038cdf90407eef71b31e5ea86`
+- Public repository counterpart: `work/matching-collection-expansion-20261004@ccb5b2b9c2d46b1dd0d772d90c6e0fc8d60f059d`
+- Equivalent local implementation: `b19d687a52ab4f0435dbc1915fc603ceeea60cc9`
 - Public access policy revision: 2
-- Confirmed functional baseline: identical-picture matching, bird and fern five-tier journeys, finite pair supply, optional postcards, and preserved board interaction
-- Verification: 53 unit/handler checks, 149 browser tests passed, one intentional desktop-only skip, independent phone screenshot and postcard inspection
+- Twenty distinct authored pieces and twelve postcards in Garden Correspondence and Moonlit Passage
+- Identical-picture matching, five-tier families, finite pair supply, independent resumable boards and Undo histories
+- Verification: 97 unit/handler checks; combined 188 passing browser tests and one intentional skip; independent screenshot and postcard inspection
 
-This establishes a working functional baseline, not completion of the professional-scale collection or full VoiceOver acceptance. The earlier heterogeneous recipe study is superseded and is not expansion authority. Historical July records below remain for provenance.
+The local third-envelope candidate adds Riverside Reverie while preserving that live release. See `THIRD_ENVELOPE_CANDIDATE.md` for scope, verification and open gates. A local milestone does not authorize public art release, GitHub Actions, deployment, or a main merge.
 
-The current local-only incremental work adds Moonlit Passage while preserving this baseline and its save schema. See `MATCHING_COLLECTION_EXPANSION.md` for scope, evidence, and remaining gates. No main merge, new public art, or live replacement is implied by this candidate.
+This is an increment toward a professional collection well above 200 distinct authored pieces. Thirty candidate pieces do not complete that target. Historical July records below remain for provenance.
 
 ## Product authority
 

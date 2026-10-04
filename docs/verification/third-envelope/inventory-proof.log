@@ -1,0 +1,75 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moticos-for-cynthia@0.1.0 validate:matching
+> node scripts/validateMatching.mjs
+
+{
+  "matching-garden": {
+    "reachability": {
+      "perFamilyInventories": 116,
+      "fittingTwoFamilyStates": 13341,
+      "maxCompletionOperations": 42
+    },
+    "seededPlay": {
+      "seed": "0x4d4f5449",
+      "operations": 10000,
+      "successful": {
+        "merge": 1189,
+        "move": 2174,
+        "cut": 1064,
+        "supply": 348,
+        "undo": 1140,
+        "reset": 39
+      },
+      "reloads": 271,
+      "finalSaveBytes": 49819
+    }
+  },
+  "moonlit-passage": {
+    "reachability": {
+      "perFamilyInventories": 116,
+      "fittingTwoFamilyStates": 13341,
+      "maxCompletionOperations": 42
+    },
+    "seededPlay": {
+      "seed": "0x4d4f5449",
+      "operations": 10000,
+      "successful": {
+        "merge": 1189,
+        "move": 2174,
+        "cut": 1064,
+        "supply": 348,
+        "undo": 1140,
+        "reset": 39
+      },
+      "reloads": 271,
+      "finalSaveBytes": 49734
+    }
+  },
+  "riverside-reverie": {
+    "reachability": {
+      "perFamilyInventories": 116,
+      "fittingTwoFamilyStates": 13341,
+      "maxCompletionOperations": 42
+    },
+    "seededPlay": {
+      "seed": "0x4d4f5449",
+      "operations": 10000,
+      "successful": {
+        "merge": 1189,
+        "move": 2174,
+        "cut": 1064,
+        "supply": 348,
+        "undo": 1140,
+        "reset": 39
+      },
+      "reloads": 271,
+      "finalSaveBytes": 49904
+    }
+  }
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

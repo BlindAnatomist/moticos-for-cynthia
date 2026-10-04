@@ -1,6 +1,6 @@
 # Moticos for Cynthia
 
-Moticos is a collage-inspired merging game. Drag one clipping onto another clipping of the same tier to combine them into the next form.
+Moticos is a collage-inspired merging game. Drag one clipping onto an identical clipping to combine them into the next form.
 
 ## Development
 
@@ -28,4 +28,4 @@ The default route runs the corrected matching-piece garden: two five-step illust
 
 ## Matching collection expansion (local candidate)
 
-The default matching route now supports two independent ten-piece envelopes: Garden Correspondence and Moonlit Passage. The Envelopes control resumes each board and its own Undo history. Collection browsing does not change the active board. The original garden save key and v1 bytes remain compatible. The first envelope remains the live baseline while this candidate passes its separate browser/publication gates. See [expansion scope and verification](docs/MATCHING_COLLECTION_EXPANSION.md).
+The accepted version 3 contains Garden Correspondence and Moonlit Passage. This private candidate adds Riverside Reverie: three independent ten-piece envelopes and eighteen earnable postcards. The Envelopes control resumes each board and its own Undo history. Collection browsing does not change the active board. Both earlier envelopes and saves remain compatible. Live version 3 stays unchanged until the candidate passes its separate browser and publication gates. See [third-envelope scope and verification](docs/THIRD_ENVELOPE_CANDIDATE.md); [the accepted second-envelope record](docs/MATCHING_COLLECTION_EXPANSION.md) remains for provenance.
