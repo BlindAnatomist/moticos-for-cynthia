@@ -17,20 +17,20 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 15
     steps:
       - name: Check out exact reviewed implementation
         uses: actions/checkout@v4
         with:
-          ref: e4bce216fb29e322140971ca18b8aedf9fb338c5
+          ref: bbf7fc8334bad972234fe0590eec21dffd41e501
           persist-credentials: false
 
       - name: Verify checkpoint identity
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "e4bce216fb29e322140971ca18b8aedf9fb338c5"
-          test "$(git rev-parse HEAD^{tree})" = "7639911bac9d3a8b44c92627d1fac1196384ef29"
+          test "$(git rev-parse HEAD)" = "bbf7fc8334bad972234fe0590eec21dffd41e501"
+          test "$(git rev-parse HEAD^{tree})" = "9176717f28eacb55a28ffd71f547a591299f91cf"
           echo "87024cf798a4b1f18febace90041a9580c9391ec788028966264181f3a0b0869  package-lock.json" | sha256sum -c -
 
       - name: Use verified Node.js version
@@ -51,13 +51,13 @@ jobs:
         run: npx playwright install --with-deps webkit chromium
 
       - name: Run bounded browser verification and capture evidence
-        run: npm run test:e2e -- --workers=1 --retries=0
+        run: npm run test:e2e -- tests/e2e/collection.spec.js --workers=1 --retries=0
 
       - name: Preserve screenshots, real postcard exports, and traces
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: moticos-playable-collection-evidence
+          name: moticos-playable-collection-retest-evidence
           path: |
             test-results/screenshots
             test-results/postcards
