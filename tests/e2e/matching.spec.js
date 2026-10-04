@@ -228,7 +228,7 @@ for (const route of [
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(occupied(page)).toHaveCount(5);
     const second = await finishFamily(page, route.order[1], info, route.method, inspectDiscovery);
-    expect(inspected).toEqual(new Set(Object.keys(NAMES)));
+    expect(inspected).toEqual(new Set(['b1', 'b2', 'b3', 'b4', 'b5', 'f1', 'f2', 'f3', 'f4', 'f5']));
     expect(first.merges + second.merges).toBe(30);
     expect(first.draws + second.draws).toBe(12);
     expect(first.actions + second.actions).toBe(42);
@@ -243,7 +243,7 @@ for (const route of [
     const complete = await saved(page);
     expect(complete.round).toMatchObject({ moves: 42, merges: 30, supply: { bird: 0, fern: 0 } });
     expect(complete.history).toHaveLength(42);
-    expect(new Set(complete.discoveries)).toEqual(new Set(Object.keys(NAMES)));
+    expect(new Set(complete.discoveries)).toEqual(new Set(['b1', 'b2', 'b3', 'b4', 'b5', 'f1', 'f2', 'f3', 'f4', 'f5']));
     await assertNoOverflow(page);
     await shot(page, info, `${route.order[0]}-first-both-worlds`);
     if (route.order[0] === 'bird') {
