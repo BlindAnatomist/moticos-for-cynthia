@@ -1,0 +1,262 @@
+{
+  "collection": "Moticos Moonlit Passage expansion",
+  "created_utc": "2026-10-04",
+  "new_illustration_count": 6,
+  "generation_call_count": 6,
+  "generation_provider": "Built-in image_gen.imagegen",
+  "external_paid_generation_used": false,
+  "library_or_remote_write": false,
+  "scope": "Six original higher-tier sprites for two same-family five-tier matching chains.",
+  "method": "Built-in image_gen.imagegen, one reference-guided call per asset, transparent_background=true. No revision calls.",
+  "master_preservation": "Original 1254-square RGBA PNG masters preserved unchanged in the private source archive. Hashes below identify exact masters.",
+  "reference_roles": "Approved existing master PNGs served as style and family references, not edit targets.",
+  "qa": "Original PNG pixels and cream/dark-teal contact sheets at actual 50, 76 and 190 pixel rendering sizes inspected. Contact sheet composition is QA only and does not alter asset art.",
+  "assets": [
+    {
+      "id": "k3",
+      "name": "Drawbridge Key",
+      "chain": "key",
+      "tier": 3,
+      "prompt": "Use case: illustration-story.\nAsset type: one new Moticos matching-game higher-tier sprite and earned postcard illustration, called Drawbridge Key; do not draw the name.\nInput images are style and family references, not edit targets: image 1 is the exact gold Round Key; image 2 is the exact Frond Key. Create one new original evolution in the same handmade cut-paper world.\nSubject: a large mustard-gold antique key lies horizontally across the lower half, open round bow clearly on the left, thick shaft and two bold downward teeth clearly on the right. The entire recognizable key is the dominant object, not a tiny accessory. Above its shaft, a little impossible drawbridge unfolds as TWO broad angular cream paper bridge leaves with coral-red folded undersides, rising and lowering in a simple zigzag over the shaft. No rails or posts. One short dark teal frond with only four broad leaves grows from the key near the teeth. The new silhouette is a wide low gold key with a striking angular folded bridge rising in its middle. Key bow opening remains completely transparent and uncluttered. The cream paper bridge is compact, no more than half the key's width. Readable as a strong key family at 50px.\nStyle/medium: precisely match references' flat handcrafted layered colored paper collage, fine visible natural paper grain, slightly irregular crisp hand-cut edges, shallow overlap only. Gold, cream, coral, dark teal palette. Large simple shapes, charming surreal object, no realistic materials.\nComposition: single centered square isolated cutout, full object visible, central 82% of frame with generous clear margin. Actual transparent alpha background and all internal openings transparent. No drawn backdrop.\nAvoid: letters, numerals, symbols, labels, badges, borders, background cards, scenes, shadows on the background, gradients, photography, 3D, garden gates, arches, houses, greenhouses, birds, extra keys, tiny decoration, multiple images.",
+      "webp_path": "public/art/matching/k3.webp",
+      "original_sha256": "900f9d757205f2cb68c7eb541dd5300c484e257c96a9e9391c69f840fa757c76",
+      "webp_sha256": "c96f2f342382c416014c2cd5d5818abf06970d2d8ae6051b60db905013a04485",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        768,
+        768
+      ],
+      "original_alpha_extrema": [
+        0,
+        255
+      ],
+      "final_alpha_extrema": [
+        0,
+        255
+      ],
+      "webp_bytes": 135936,
+      "encoding": "Source PNG copied unchanged. Uniform Lanczos resize to 640 x 640 inside 768 x 768 transparent canvas (64 px padding); lossless WebP with exact RGBA; decoded RGBA and alpha verified byte-identical to resized/padded RGBA. No recoloring, illustration compositing, or drawn additions.",
+      "source_master_filename": "k3.png",
+      "reference_masters": [
+        {
+          "filename": "s03_round_key.png",
+          "sha256": "e2a0e0e32a34864169ba7610511eddc814bedff06fdfb86102e4e5e5cf27ba08",
+          "associated_web_asset": "public/art/garden/s03_round_key.webp"
+        },
+        {
+          "filename": "e02_frond_key.png",
+          "sha256": "2a2db4ceeae4ccd8f8fb89dbef5518ad84699b5212afa0d4dfdfecd410a3fbfb",
+          "associated_web_asset": "public/art/garden/e02_frond_key.webp"
+        }
+      ]
+    },
+    {
+      "id": "k4",
+      "name": "Stairway Key",
+      "chain": "key",
+      "tier": 4,
+      "prompt": "Use case: illustration-story.\nAsset type: one new Moticos matching-game higher-tier sprite and earned postcard illustration, called Stairway Key; do not draw the name.\nInput images are style and family references: image 1 exact gold Round Key; image 2 exact Frond Key. Generate a genuinely new evolution, keeping the entire recognizable gold key as the dominant object.\nSubject: one tall upright mustard-gold antique key. Its very large open round bow forms the top, a thick vertical shaft descends, and two bold stepped teeth project to the right near the bottom. A chunky cream folded-paper staircase climbs around the LOWER HALF of the shaft, only THREE broad zigzag steps, with small coral-red folded undersides. The gold key remains in front and readable from bow through shaft to teeth, not hidden by the stairs. A short dark teal frond with four bold leaves peeks from the staircase at one side. The staircase does not enter or cover the open circular bow. The total silhouette is tall and sculptural, with a bold ring top and stepped lower sides, recognizably different from a horizontal key. Gold is the main color and form. Simple large shapes legible at 50px.\nStyle/medium: match the references exactly: flat handcrafted layered cut colored paper, fine natural paper grain, crisp slightly irregular hand-cut edges, shallow overlap only, same mustard-gold, cream, coral-red and dark-teal palette. Friendly impossible paper object, no realistic materials.\nComposition: one centered square isolated illustration, entire object fully visible in the central 82% with generous clear margin. Genuine transparent alpha background; large circular bow hole and spaces between folds transparent.\nAvoid: words, letters, numerals, labels, symbols, borders, badges, background cards, scenery, ground shadow, gradients, 3D, metallic shine, photography, garden gates, arches, houses, greenhouses, birds, extra keys, fine rails, tiny ornament, multiple tiles.",
+      "webp_path": "public/art/matching/k4.webp",
+      "original_sha256": "6d7b80364fcdb9bec5045ef00de80fa0eca15dca0035cfe3e16445f20e4feeaa",
+      "webp_sha256": "d3f96ba683167ffb2881b3dccae2af94b17635a168cd9fee9eaceb45c1f486bb",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        768,
+        768
+      ],
+      "original_alpha_extrema": [
+        0,
+        255
+      ],
+      "final_alpha_extrema": [
+        0,
+        255
+      ],
+      "webp_bytes": 120154,
+      "encoding": "Source PNG copied unchanged. Uniform Lanczos resize to 640 x 640 inside 768 x 768 transparent canvas (64 px padding); lossless WebP with exact RGBA; decoded RGBA and alpha verified byte-identical to resized/padded RGBA. No recoloring, illustration compositing, or drawn additions.",
+      "source_master_filename": "k4.png",
+      "reference_masters": [
+        {
+          "filename": "s03_round_key.png",
+          "sha256": "e2a0e0e32a34864169ba7610511eddc814bedff06fdfb86102e4e5e5cf27ba08",
+          "associated_web_asset": "public/art/garden/s03_round_key.webp"
+        },
+        {
+          "filename": "e02_frond_key.png",
+          "sha256": "2a2db4ceeae4ccd8f8fb89dbef5518ad84699b5212afa0d4dfdfecd410a3fbfb",
+          "associated_web_asset": "public/art/garden/e02_frond_key.webp"
+        }
+      ]
+    },
+    {
+      "id": "k5",
+      "name": "Elsewhere Key",
+      "chain": "key",
+      "tier": 5,
+      "prompt": "Use case: illustration-story.\nAsset type: one new Moticos matching-game final-tier sprite and earned postcard illustration, called Elsewhere Key; do not draw the name.\nInput images are exact family/style references: image 1 gold Round Key, image 2 Frond Key. Create one original final evolution with a grand but simple surreal passage silhouette.\nSubject: a LARGE diagonal mustard-gold antique key runs from its two bold teeth at lower left to its huge open circular bow at upper right. Keep the whole continuous gold key unmistakable, with thick shaft and large transparent round hole. A single wide cream folded-paper stair-ribbon passes THROUGH THE LOWER PART of the open bow, then unfolds outward toward the right in THREE broad angular folds; coral-red folded undersides give depth by flat paper overlaps only. Most of the bow's central hole stays transparent so the gold ring reads immediately. The ribbon is an impossible little passage through the key itself, not a background building. At the lower shaft one short dark teal frond with four large leaves provides continuity to the Frond Key. Key dominates the picture, at least two thirds of its visual mass; passage is secondary. The silhouette is wide diagonal with a very large ring and angular ribbon exit, distinct from an upright stair or a drawbridge.\nStyle/medium: exactly the same handcrafted cut-paper collage as references, flat layers, natural paper grain, crisp subtly irregular hand-cut edges, very shallow overlaps. Same mustard-gold, cream, coral-red, dark-teal palette. Bold shapes designed to stay clear at 50px and beautiful large.\nComposition: one isolated balanced square cutout, centered with generous clear margins, full form inside central 82% of image. Genuine transparent alpha background, open key ring and negative spaces transparent.\nAvoid: words, letters, numerals, symbols, labels, badges, borders, background card, scenery, gradients, 3D, photography, metallic shine, cast background shadow, gate, arch, house, greenhouse, extra keys, bird, ornate tiny details, multiple tiles.",
+      "webp_path": "public/art/matching/k5.webp",
+      "original_sha256": "01c9b63cea7f55fe7c78533ce1aca8fee282ca61f5abecfb704422295d5f4fcd",
+      "webp_sha256": "d33c074fae2330b13c5a576b3e41aeae3b85cf0aae85e7c46f277ae7886ffc56",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        768,
+        768
+      ],
+      "original_alpha_extrema": [
+        0,
+        255
+      ],
+      "final_alpha_extrema": [
+        0,
+        255
+      ],
+      "webp_bytes": 155726,
+      "encoding": "Source PNG copied unchanged. Uniform Lanczos resize to 640 x 640 inside 768 x 768 transparent canvas (64 px padding); lossless WebP with exact RGBA; decoded RGBA and alpha verified byte-identical to resized/padded RGBA. No recoloring, illustration compositing, or drawn additions.",
+      "source_master_filename": "k5.png",
+      "reference_masters": [
+        {
+          "filename": "s03_round_key.png",
+          "sha256": "e2a0e0e32a34864169ba7610511eddc814bedff06fdfb86102e4e5e5cf27ba08",
+          "associated_web_asset": "public/art/garden/s03_round_key.webp"
+        },
+        {
+          "filename": "e02_frond_key.png",
+          "sha256": "2a2db4ceeae4ccd8f8fb89dbef5518ad84699b5212afa0d4dfdfecd410a3fbfb",
+          "associated_web_asset": "public/art/garden/e02_frond_key.webp"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "name": "Lunar Skiff",
+      "chain": "moon",
+      "tier": 3,
+      "prompt": "Use case: illustration-story.\nAsset type: one original Moticos matching-game higher-tier sprite and earned postcard illustration, called Lunar Skiff; do not draw the name.\nInput images are exact style/family references: image 1 the Cobalt Moon, image 2 Crescent Courier. Create a genuinely new authored evolution with the cobalt crescent as main identity, the coral bird now a tiny companion.\nSubject: one very broad upward-facing cobalt-blue crescent becomes a little moonboat. The thick blue crescent's pointed ends curl upward at left and right; the great open hollow remains transparent. Above the middle of the low crescent hull stands one modest triangular cream folded-paper sail on a short mustard-gold mast. The sail is small enough that the cobalt crescent is unmistakably dominant and the whole object remains low and wide. A tiny coral-red bird with cream belly and black round eye/beak rides near the right tip, less than one fifth the total object height. Keep the bird subordinate. One large cobalt crescent only, no additional moons. The silhouette is a low wide blue moonboat with a single bold triangular sail.\nStyle/medium: exact reference handmade cut colored-paper collage, flat layers, fine natural paper grain, slightly irregular crisp hand-cut edges, shallow overlaps only. Same vivid cobalt, cream, coral-red, mustard-gold and tiny black details. Bold simple forms legible at 50px.\nComposition: one isolated centered square sprite, entire object visible within central 82% and generous clear margin. Genuine transparent alpha background; crescent hollow and sail gaps transparent.\nAvoid: letters, numbers, writing, labels, symbols, badges, borders, background cards, scenery, water, waves, stars, clouds, ground shadows, gradients, photography, 3D, metallic reflections, fern, key, teacup, gates, houses, multiple birds, multiple images, tiny ornament.",
+      "webp_path": "public/art/matching/m3.webp",
+      "original_sha256": "013d276433999fbe5b7fd96215a9f3091fb226a95333e6c72af052f652b77e8d",
+      "webp_sha256": "b7bafc09d8ac6f25236e3f6afabb8559c70f9fd761ac59bef176ece61dd55638",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        768,
+        768
+      ],
+      "original_alpha_extrema": [
+        0,
+        255
+      ],
+      "final_alpha_extrema": [
+        0,
+        255
+      ],
+      "webp_bytes": 122768,
+      "encoding": "Source PNG copied unchanged. Uniform Lanczos resize to 640 x 640 inside 768 x 768 transparent canvas (64 px padding); lossless WebP with exact RGBA; decoded RGBA and alpha verified byte-identical to resized/padded RGBA. No recoloring, illustration compositing, or drawn additions.",
+      "source_master_filename": "m3.png",
+      "reference_masters": [
+        {
+          "filename": "s05_cobalt_moon.png",
+          "sha256": "aa8df81fccb53ca842d7b725070505cdb92ee2d29979aeafb7710afb4bd51672",
+          "associated_web_asset": "public/art/garden/s05_cobalt_moon.webp"
+        },
+        {
+          "filename": "e04_crescent_courier.png",
+          "sha256": "b85051c0be5d36ad3979415e8541dedb59c12a902b4f36c24f68aa39cb7a5a32",
+          "associated_web_asset": "public/art/garden/e04_crescent_courier.webp"
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "name": "Crescent Balloon",
+      "chain": "moon",
+      "tier": 4,
+      "prompt": "Use case: illustration-story.\nAsset type: one original Moticos matching-game higher-tier sprite and earned postcard illustration, called Crescent Balloon; do not draw the name.\nInput images are exact family and style references: image 1 Cobalt Moon, image 2 Crescent Courier. Create a new surreal paper travel object that keeps the vivid cobalt crescent huge and dominant, with the coral bird only a tiny passenger.\nSubject: a large upright cobalt-blue crescent moon floats as an impossible balloon, opening to the right with both pointed tips clearly visible and a generous TRANSPARENT crescent hollow. The blue crescent occupies roughly the top two thirds of the object and is by far its biggest shape. Two simple mustard-gold paper suspension strips descend from the lower outside of the crescent to a little angular cream folded-paper gondola directly underneath, with a small coral-red folded underside. The gondola is less than one third the width of the crescent. A tiny coral bird with cream belly, small black beak/eye sits in the gondola, less than one sixth the full object height. Suspension lines are bold enough to survive at 50px. The silhouette is tall and airy with a huge open crescent on top, two clear supports, and a small basket below. It must not look like a sailboat, a bird carrying a moon, or a round balloon.\nStyle/medium: match the references precisely: handcrafted flat layered cut colored paper, fine natural paper grain, crisp slightly irregular hand-cut edges and very shallow overlap. Same vivid cobalt, cream, mustard-gold, coral-red, tiny black details. Large simplified shapes.\nComposition: one centered square isolated cutout, whole object visible in central 82% with generous clear margin on all sides. Genuine transparent alpha background and open spaces between supports. No drawn backdrop.\nAvoid: letters, numerals, labels, symbols, text, badges, borders, background cards, landscapes, clouds, stars, water, cast background shadow, gradients, photography, 3D, realistic ropes, fern, key, teacup, houses, gates, extra moons, extra birds, tiny decoration, multiple tiles.",
+      "webp_path": "public/art/matching/m4.webp",
+      "original_sha256": "40076bdd4c08c34ecfabcdc236330f0184863c2087b4b99f0486256cc456f111",
+      "webp_sha256": "f1e25fb9fc5a6fe619840ffff83a65556ab99a973845ebdcf352775ffada90f8",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        768,
+        768
+      ],
+      "original_alpha_extrema": [
+        0,
+        255
+      ],
+      "final_alpha_extrema": [
+        0,
+        255
+      ],
+      "webp_bytes": 116972,
+      "encoding": "Source PNG copied unchanged. Uniform Lanczos resize to 640 x 640 inside 768 x 768 transparent canvas (64 px padding); lossless WebP with exact RGBA; decoded RGBA and alpha verified byte-identical to resized/padded RGBA. No recoloring, illustration compositing, or drawn additions.",
+      "source_master_filename": "m4.png",
+      "reference_masters": [
+        {
+          "filename": "s05_cobalt_moon.png",
+          "sha256": "aa8df81fccb53ca842d7b725070505cdb92ee2d29979aeafb7710afb4bd51672",
+          "associated_web_asset": "public/art/garden/s05_cobalt_moon.webp"
+        },
+        {
+          "filename": "e04_crescent_courier.png",
+          "sha256": "b85051c0be5d36ad3979415e8541dedb59c12a902b4f36c24f68aa39cb7a5a32",
+          "associated_web_asset": "public/art/garden/e04_crescent_courier.webp"
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "name": "Orbit Voyager",
+      "chain": "moon",
+      "tier": 5,
+      "prompt": "Use case: illustration-story.\nAsset type: one original Moticos matching-game final-tier sprite and earned postcard illustration, called Orbit Voyager; do not draw the name.\nInput images are exact family and style references: image 1 Cobalt Moon, image 2 Crescent Courier. Create one complete surreal celestial voyager, a genuinely different final silhouette, with an enormous vivid cobalt crescent and tiny coral bird.\nSubject: an enormous upright cobalt-blue crescent is the main sail of a broad angular cream folded-paper sky-vessel. The blue crescent opens to the RIGHT, with a clear sharp upper tip and lower tip and large empty transparent hollow; it is the dominant focal shape and color, at least half the visual mass. Beneath it a bold wide paper vessel has one pointed folded bow extending right and one broad pointed wing extending left, with just a few large cream paper folds and small mustard-gold/coral-red undersides. This base is a complete compact arrow-like paper airship, not a basket or traditional water ship. The crescent is attached directly as its huge sculptural sail. One tiny coral-red bird with cream belly and black round eye/beak perches at the right bow, less than one sixth the total height. The total silhouette is broad and sweeping: huge blue crescent above angular outstretched cream wings. Keep the design simple and elegant, readable at 50px, grand when displayed as a postcard. Only one crescent and one small bird.\nStyle/medium: exactly match the reference flat handcrafted cut colored-paper collage, fine natural paper grain, slightly irregular crisp hand-cut edges, shallow paper overlaps only, same vivid cobalt, cream, coral-red, mustard-gold and tiny black details.\nComposition: one isolated centered square cutout, entire form visible with generous clear margin inside central 82% of frame. Genuine transparent alpha background; crescent hollow and gaps remain transparent.\nAvoid: words, letters, numerals, symbols, labels, borders, badges, background card, space scene, stars, clouds, water, landscape, ground shadow, gradients, photography, 3D, realistic spaceship machinery, guns, flames, fern, key, teacup, gates, greenhouse, tall suspension strips, rigging, extra moons, extra birds, tiny ornaments, multiple tiles.",
+      "webp_path": "public/art/matching/m5.webp",
+      "original_sha256": "1b0164fa7dc5e1ca111033162b891106ab004007678ccbde9cae6038cd30d85b",
+      "webp_sha256": "31599da7665b9e9574d5c68b33dcf2db2f38e9e30ce4d0f906fe03459a8a2540",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        768,
+        768
+      ],
+      "original_alpha_extrema": [
+        0,
+        255
+      ],
+      "final_alpha_extrema": [
+        0,
+        255
+      ],
+      "webp_bytes": 156160,
+      "encoding": "Source PNG copied unchanged. Uniform Lanczos resize to 640 x 640 inside 768 x 768 transparent canvas (64 px padding); lossless WebP with exact RGBA; decoded RGBA and alpha verified byte-identical to resized/padded RGBA. No recoloring, illustration compositing, or drawn additions.",
+      "source_master_filename": "m5.png",
+      "reference_masters": [
+        {
+          "filename": "s05_cobalt_moon.png",
+          "sha256": "aa8df81fccb53ca842d7b725070505cdb92ee2d29979aeafb7710afb4bd51672",
+          "associated_web_asset": "public/art/garden/s05_cobalt_moon.webp"
+        },
+        {
+          "filename": "e04_crescent_courier.png",
+          "sha256": "b85051c0be5d36ad3979415e8541dedb59c12a902b4f36c24f68aa39cb7a5a32",
+          "associated_web_asset": "public/art/garden/e04_crescent_courier.webp"
+        }
+      ]
+    }
+  ]
+}

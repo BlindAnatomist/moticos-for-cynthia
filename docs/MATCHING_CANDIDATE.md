@@ -1,4 +1,6 @@
-# Moticos: matching-piece garden candidate
+# Moticos: preserved matching garden baseline
+
+This document describes the first matching envelope. The next local-only expansion is tracked in `MATCHING_COLLECTION_EXPANSION.md`; it does not supersede the live functional baseline until its remaining gates pass.
 
 ## Authority and boundary
 
@@ -35,7 +37,7 @@ Input uses rendered cell geometry and pointer capture. The accepted short flight
 
 The active collection contains ten genuinely distinct illustrations: six reused approved works and four new original higher-tier works. Unused art, board instances, recolors, and postcards are not counted as additional catalog pieces. Two independent pixel inspections checked family continuity and major-silhouette distinction at approximately 50 px. `matching-art-provenance.json` records the four built-in image-generation prompts, reference hashes, original masters, alpha checks, and final WebP hashes. No paid external generation was used.
 
-The production goal remains well above 200 genuinely distinct pieces. A reasonable content-planning target is 288 authored works distributed across coherent matching families and themed envelopes, not 288 active board types. The bounded candidate intentionally validates the mechanics and visual grammar before mass asset production. Production expansion will need a data-driven pack registry, active-family quotas and independent conservation, save-version migration, lazy pack artwork, session pacing validation, and exact-ID collision checks. Those production systems are not claimed as complete here. Cross-object ingredient recipes are not part of the plan.
+The production goal remains well above 200 genuinely distinct pieces. The collection will grow through coherent matching families and themed envelopes, with only two families active on any one board. There is no fixed 288-piece requirement. The bounded candidate intentionally validates the mechanics and visual grammar before mass asset production. Production expansion will need a data-driven pack registry, active-family quotas and independent conservation, save-version migration, lazy pack artwork, session pacing validation, and exact-ID collision checks. Those production systems are not claimed as complete here. Cross-object ingredient recipes are not part of the plan.
 
 ## Verification gates
 

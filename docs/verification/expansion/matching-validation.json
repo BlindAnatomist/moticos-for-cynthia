@@ -1,0 +1,44 @@
+{
+  "matching-garden": {
+    "reachability": {
+      "perFamilyInventories": 116,
+      "fittingTwoFamilyStates": 13341,
+      "maxCompletionOperations": 42
+    },
+    "seededPlay": {
+      "seed": "0x4d4f5449",
+      "operations": 10000,
+      "successful": {
+        "merge": 1189,
+        "move": 2174,
+        "cut": 1064,
+        "supply": 348,
+        "undo": 1140,
+        "reset": 39
+      },
+      "reloads": 271,
+      "finalSaveBytes": 49819
+    }
+  },
+  "moonlit-passage": {
+    "reachability": {
+      "perFamilyInventories": 116,
+      "fittingTwoFamilyStates": 13341,
+      "maxCompletionOperations": 42
+    },
+    "seededPlay": {
+      "seed": "0x4d4f5449",
+      "operations": 10000,
+      "successful": {
+        "merge": 1189,
+        "move": 2174,
+        "cut": 1064,
+        "supply": 348,
+        "undo": 1140,
+        "reset": 39
+      },
+      "reloads": 271,
+      "finalSaveBytes": 49734
+    }
+  }
+}

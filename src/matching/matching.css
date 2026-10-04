@@ -126,3 +126,19 @@
 @media(min-width:600px) { .mg-page .cg-cell-name{font-size:11px} .mg-page .cg-mission h2{font-size:29px} .mg-supply-button strong{font-size:13px} .mg-supply-button small{font-size:11px} .mg-level{font-size:11px} }
 @media(max-width:520px) { .mg-chain{grid-template-columns:repeat(2,minmax(0,1fr))} .mg-chain .cg-collection-piece:last-child{grid-column:1 / -1;display:grid;grid-template-columns:100px 1fr;column-gap:12px;text-align:left} .mg-chain .cg-collection-piece:last-child>.cg-art,.mg-chain .cg-collection-piece:last-child>.cg-mystery{grid-column:1;grid-row:1 / 5;width:100px;height:100px} .mg-chain .cg-collection-piece:last-child>h4,.mg-chain .cg-collection-piece:last-child>p{min-height:0;margin:4px 0} .mg-chain .cg-collection-piece:last-child>.mg-chain-level{grid-column:2;margin:0} }
 @media(max-width:380px) { .mg-page .cg-mission h2{font-size:20px} .mg-supply-button{gap:4px;padding-inline:5px} .mg-supply-button>svg{display:none} .mg-supply-button strong{font-size:10px} .mg-supply-button small{font-size:9px} .mg-page .cg-cell-name{font-size:8px} }
+.mg-footer-actions { display:flex; gap:13px; flex-wrap:wrap; }
+.mg-footer-actions button { min-width:44px; }
+.mg-collection-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:4px 0 15px; }
+.mg-collection-tabs .cg-button { flex:1; min-width:120px; }
+.mg-collection-tabs [aria-pressed="true"] { background:#214e48; color:#fff; border-color:#214e48; }
+.mg-envelope-list { padding:2px 0; }
+.mg-envelope-card { border:1px solid var(--line); border-radius:10px; padding:14px; margin:14px 0; display:grid; grid-template-columns:88px minmax(0,1fr); gap:12px; align-items:center; background:#fffdf5; }
+.mg-envelope-art { display:flex; align-items:center; }
+.mg-envelope-art .cg-art { width:44px; height:70px; }
+.mg-envelope-card h3 { margin:0 0 7px; font:normal 21px/1.1 Georgia,serif; }
+.mg-envelope-card p { margin:0 0 7px; font-size:12px; line-height:1.4; }
+.mg-envelope-card small { display:block; font-size:11px; line-height:1.5; color:var(--muted); }
+.mg-envelope-card .cg-button { grid-column:1 / -1; width:100%; }
+.mg-level.mg-key { color:#71500c; }
+.mg-level.mg-moon { color:#1d4198; }
+@media(max-width:380px) { .mg-envelope-card { grid-template-columns:70px minmax(0,1fr); padding:11px; gap:8px; } .mg-envelope-art .cg-art { width:35px; } .mg-envelope-card h3 { font-size:19px; } }

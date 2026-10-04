@@ -258,7 +258,8 @@ for (const route of [
     await expect(page.locator('.cg-collection-piece')).toHaveCount(10);
     await expect(page.locator('.is-undiscovered')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Open postcard', exact: true })).toHaveCount(6);
-    await imagesReady(page.locator('.cg-collection-piece img'));
+    for (const image of await page.locator('.cg-collection-piece img').all()) { await image.scrollIntoViewIfNeeded(); await imagesReady(image); }
+    await page.locator('.cg-collection-intro').scrollIntoViewIfNeeded();
     await assertControls(page, '.cg-dialog button');
     await assertNoOverflow(page);
     await shot(page, info, `${route.order[0]}-first-complete-collection`);
@@ -310,7 +311,7 @@ test('Help and Collection are on demand, keep the board untouched, and restore k
   await expect(help).toBeFocused();
   for (let visit = 0; visit < 3; visit++) {
     await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
-    await expect(page.getByRole('dialog', { name: 'Your two garden paths', exact: true })).toBeVisible();
+    await expect(page.getByRole('dialog', { name: 'Your collection', exact: true })).toBeVisible();
     await expect(page.locator('.cg-collection-piece')).toHaveCount(10);
     await expect(page.getByRole('button', { name: 'Open postcard', exact: true })).toHaveCount(1);
     await closeDialog(page, info);
@@ -468,7 +469,7 @@ for (const fixture of [
     const pending = page.waitForEvent('download');
     await activate(page.getByRole('button', { name: 'Download original save', exact: true }), info);
     const download = await pending;
-    expect(download.suggestedFilename()).toBe('moticos-original-save.json');
+    expect(download.suggestedFilename()).toBe('moticos-matching-garden-original-save.json');
     await mkdir('test-results/postcards', { recursive: true });
     const path = `test-results/postcards/${info.project.name}-matching-original-${fixture.name.replaceAll(' ', '-')}.json`;
     await download.saveAs(path);

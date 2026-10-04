@@ -1,9 +1,6 @@
-// Matching identity is explicit: equal piece IDs only, within one authored family.
-export const BOARD_SIZE = 5;
-export const PACK_ID = 'matching-garden';
-export const PACK_VERSION = 1;
-export const FAMILY_MATERIAL = 16;
-const base = import.meta.env?.BASE_URL ?? '/';
+import { createMatchingCatalog } from './catalogFactory.js';
+
+// This garden definition and its legacy exports remain stable for version-one saves.
 const rows = [
   ['b1', 'bird', 1, 'Coral Bird', 'Bird', 'A coral paper bird with a dark teal wing.', 'garden/s01_coral_bird'],
   ['b2', 'bird', 2, 'Riverwing', 'Riverwing', 'The coral bird carries a blue river inside its paper wing.', 'garden/e01_riverwing'],
@@ -16,29 +13,15 @@ const rows = [
   ['f4', 'fern', 4, 'Moonlit Arbor', 'Arbor', 'An arbor of paper fronds opens around the moonlit garden.', 'matching/f4'],
   ['f5', 'fern', 5, 'Lunar Conservatory', 'Moonhouse', 'Fern, cup, and moon become a complete luminous conservatory.', 'matching/f5'],
 ];
-export const PIECES = Object.freeze(rows.map(([id, familyId, tier, name, shortName, description, asset]) => Object.freeze({
-  id, familyId, tier, rank: tier - 1, name, shortName, description, packId: PACK_ID,
-  mass: 2 ** (tier - 1), art: `${base}art/${asset}.webp`,
-})));
-export const CATALOG = Object.freeze(Object.fromEntries(PIECES.map(piece => [piece.id, piece])));
-export const FAMILIES = Object.freeze([
-  { id: 'bird', name: 'Bird journey', shortName: 'Bird', color: '#c96653', prefix: 'b' },
-  { id: 'fern', name: 'Fern journey', shortName: 'Fern', color: '#28796f', prefix: 'f' },
-].map(({ prefix, ...family }) => Object.freeze({
-  ...family, pieceIds: Object.freeze([1, 2, 3, 4, 5].map(tier => `${prefix}${tier}`)),
-  starterId: `${prefix}1`, finalId: `${prefix}5`, material: FAMILY_MATERIAL,
-})));
-export const STARTERS = Object.freeze(FAMILIES.map(family => family.starterId));
-export const FINALS = Object.freeze(FAMILIES.map(family => family.finalId));
-export function pieceOf(id) { return typeof id === 'string' && Object.hasOwn(CATALOG, id) ? CATALOG[id] : null; }
-export function nextPiece(id) {
-  const piece = pieceOf(id);
-  return piece && piece.tier < 5 ? pieceOf(`${id[0]}${piece.tier + 1}`) : null;
-}
-export function idOf(tile) {
-  if (typeof tile === 'string') return pieceOf(tile)?.id ?? null;
-  if (!tile || typeof tile !== 'object' || Object.getPrototypeOf(tile) !== Object.prototype) return null;
-  const property = Object.getOwnPropertyDescriptor(tile, 'pieceId');
-  return property && Object.hasOwn(property, 'value') ? pieceOf(property.value)?.id ?? null : null;
-}
-export function nameOf(tile) { return pieceOf(idOf(tile))?.name ?? ''; }
+export const GARDEN_CATALOG = createMatchingCatalog({
+  id: 'matching-garden', rows,
+  families: [
+    { id: 'bird', name: 'Bird journey', shortName: 'Bird', color: '#c96653', pieceIds: ['b1', 'b2', 'b3', 'b4', 'b5'] },
+    { id: 'fern', name: 'Fern journey', shortName: 'Fern', color: '#28796f', pieceIds: ['f1', 'f2', 'f3', 'f4', 'f5'] },
+  ],
+});
+export const {
+  BOARD_SIZE, PACK_ID, PACK_VERSION, FAMILY_MATERIAL,
+  PIECES, CATALOG, FAMILIES, STARTERS, FINALS,
+  pieceOf, idOf, nextPiece, previousPiece, nameOf,
+} = GARDEN_CATALOG;

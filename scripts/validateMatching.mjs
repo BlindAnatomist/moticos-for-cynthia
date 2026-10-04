@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
-import { CATALOG, FAMILIES } from '../src/matching/catalog.js';
-import { newSave, act, mergePairs, validRound, validSave, serializeSave, readSave } from '../src/matching/game.js';
+import { GARDEN_ENGINE } from '../src/matching/game.js';
+import { ENVELOPES, getMatchingEngine } from '../src/matching/registry.js';
 const clone = value => structuredClone(value);
 export function allFamilyInventories() {
   const states = [];
@@ -17,12 +17,24 @@ export function allFamilyInventories() {
 const countPieces = inventory => inventory.counts.reduce((sum, count) => sum + count, 0);
 const hasPair = inventory => inventory.counts.slice(0, 4).some(count => count >= 2);
 const isFinal = inventory => inventory.supply === 0 && inventory.counts.join(',') === '0,0,0,0,1';
-export function validateConservativeInventories() {
+export function validateConservativeInventories(engine = GARDEN_ENGINE) {
+  // The inventory proof applies only after checking each authored envelope uses
+  // the same bounded material, board, tier weights, starting pieces and reserve.
+  assert.equal(engine.BOARD_SIZE, 5);
+  assert.equal(engine.FAMILIES.length, 2);
+  assert.equal(engine.FAMILY_MATERIAL, 16);
+  assert.equal(engine.createRound().board.filter(Boolean).length, 8);
+  for (const family of engine.FAMILIES) {
+    assert.equal(engine.createRound().supply[family.id], 12);
+    assert.equal(family.material, 16);
+    assert.deepEqual(family.pieceIds.map(id => engine.CATALOG[id].mass), [1, 2, 4, 8, 16]);
+    assert.deepEqual(family.pieceIds.map(id => engine.nextPiece(id)?.id ?? null), [...family.pieceIds.slice(1), null]);
+  }
   const families = allFamilyInventories(); let checked = 0; let maxSteps = 0;
-  for (const bird of families) for (const fern of families) {
-    if (countPieces(bird) + countPieces(fern) > 25) continue;
+  for (const first of families) for (const second of families) {
+    if (countPieces(first) + countPieces(second) > 25) continue;
     checked++;
-    const inventories = [clone(bird), clone(fern)]; let steps = 0;
+    const inventories = [clone(first), clone(second)]; let steps = 0;
     while (!inventories.every(isFinal)) {
       const pairFamily = inventories.find(hasPair);
       if (pairFamily) {
@@ -40,7 +52,8 @@ export function validateConservativeInventories() {
   }
   return { perFamilyInventories: families.length, fittingTwoFamilyStates: checked, maxCompletionOperations: maxSteps };
 }
-export function validateSeededOperations(operations = 10_000, initialSeed = 0x4d4f5449) {
+export function validateSeededOperations(operations = 10_000, initialSeed = 0x4d4f5449, engine = GARDEN_ENGINE) {
+  const { CATALOG, FAMILIES, newSave, act, mergePairs, validRound, validSave, serializeSave, readSave } = engine;
   let seed = initialSeed;
   const random = max => { seed = (Math.imul(1664525, seed) + 1013904223) >>> 0; return seed % max; };
   let save = newSave(); let reloads = 0;
@@ -56,7 +69,7 @@ export function validateSeededOperations(operations = 10_000, initialSeed = 0x4d
       pairs.length ? { type: 'merge', from: pairs[random(pairs.length)][0], to: -1 } : null,
       empty.length ? { type: 'move', from: live[random(live.length)], to: empty[random(empty.length)] } : null,
       cuts.length ? { type: 'cut', index: cuts[random(cuts.length)] } : null,
-      { type: 'supply', familyId: random(2) ? 'bird' : 'fern' },
+      { type: 'supply', familyId: FAMILIES[random(2) ? 0 : 1].id },
       { type: 'undo' }, { type: 'merge', from: -1, to: 999 },
     ];
     if (pairs.length) { const pair = pairs[random(pairs.length)]; choices[0] = { type: 'merge', from: pair[0], to: pair[1] }; }
@@ -79,5 +92,8 @@ export function validateSeededOperations(operations = 10_000, initialSeed = 0x4d
   return { seed: `0x${initialSeed.toString(16)}`, operations, successful, reloads, finalSaveBytes: new TextEncoder().encode(serializeSave(save)).length };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  console.log(JSON.stringify({ reachability: validateConservativeInventories(), seededPlay: validateSeededOperations() }, null, 2));
+  console.log(JSON.stringify(Object.fromEntries(ENVELOPES.map(envelope => {
+    const engine = getMatchingEngine(envelope.id);
+    return [envelope.id, { reachability: validateConservativeInventories(engine), seededPlay: validateSeededOperations(10_000, 0x4d4f5449, engine) }];
+  })), null, 2));
 }

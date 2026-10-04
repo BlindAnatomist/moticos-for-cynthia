@@ -7,6 +7,8 @@ export const RECIPE_KEY = 'moticos.collection.garden.v1';
 export const NAMES = {
   b1: 'Coral Bird', b2: 'Riverwing', b3: 'Wayfinder', b4: 'Aviary Gate', b5: 'Wandering Aviary',
   f1: 'Teal Fern', f2: 'Fern Cup', f3: 'Nightgarden', f4: 'Moonlit Arbor', f5: 'Lunar Conservatory',
+  k1: 'Round Key', k2: 'Frond Key', k3: 'Drawbridge Key', k4: 'Stairway Key', k5: 'Elsewhere Key',
+  m1: 'Cobalt Moon', m2: 'Crescent Courier', m3: 'Lunar Skiff', m4: 'Crescent Balloon', m5: 'Orbit Voyager',
 };
 export const cell = (page, index) => page.locator(`[data-matching-cell="${index}"]`);
 export const pieces = (page, id) => page.locator(`[data-matching-cell][data-piece-id="${id}"]`);
@@ -91,7 +93,7 @@ export async function mergeId(page, id, info, method = 'tap') {
   return mergeAt(page, indices[0], indices[1], info, method);
 }
 export async function makeLevelThree(page, family, info, method = 'tap') {
-  const prefix = family === 'bird' ? 'b' : 'f';
+  const prefix = { bird: 'b', fern: 'f', key: 'k', moon: 'm' }[family];
   await mergeId(page, `${prefix}1`, info, method);
   await mergeId(page, `${prefix}1`, info, method);
   await mergeId(page, `${prefix}2`, info, method);
@@ -101,7 +103,7 @@ export async function makeLevelThree(page, family, info, method = 'tap') {
 // Read the real rendered board, then make every move through the real UI.
 // Do not seed a finale, import the reducer, or invoke application internals.
 export async function finishFamily(page, family, info, method = 'tap', onDiscovery = null) {
-  const prefix = family === 'bird' ? 'b' : 'f';
+  const prefix = { bird: 'b', fern: 'f', key: 'k', moon: 'm' }[family];
   const seen = new Set();
   const counts = { merges: 0, draws: 0, actions: 0 };
   while (!(await pieces(page, `${prefix}5`).count())) {

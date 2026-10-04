@@ -34,6 +34,7 @@ vi.mock('react', async importOriginal => {
 });
 vi.mock('../src/useMoticosAudio.js', () => ({ default: () => new Proxy({}, { get: () => () => {} }) }));
 import MatchingGarden from '../src/matching/MatchingGarden.jsx';
+import { getMatchingEngine } from '../src/matching/registry.js';
 
 let raw, readError, writeError, storage, documentListeners, windowListeners, activeCells, mounted;
 const listen = (listeners, name, callback) => {
@@ -47,7 +48,7 @@ function visit(node, callback) {
   callback(node);
   visit(node.props.children, callback);
 }
-function harness() {
+function harness(props) {
   const owner = { slots: [], cursor: 0, pendingEffects: [], tree: null };
   const cells = Array.from({ length: 25 }, (_, index) => ({
     dataset: { matchingCell: String(index) },
@@ -58,7 +59,7 @@ function harness() {
   }));
   function render() {
     runtime.active = owner; owner.cursor = 0; activeCells = cells;
-    owner.tree = MatchingGarden(); runtime.active = null;
+    owner.tree = MatchingGarden(props); runtime.active = null;
     visit(owner.tree, node => {
       const ref = node.props.ref;
       if (typeof ref === 'function') ref(cells[node.props['data-matching-cell']]);
@@ -196,5 +197,26 @@ describe('matching component input boundaries', () => {
     if (reason === 'hidden') { document.hidden = true; emit(documentListeners, 'visibilitychange'); }
     page.render().up(6, { clientX: 245, clientY: 145 }); expect(serializeSave(page.save())).toBe(original);
     page.down(6).up(6).down(7).up(7); expect(page.save().round.merges).toBe(1);
+  });
+});
+
+
+describe('second envelope component handlers', () => {
+  it('uses key/moon supply and matching rules in the same real handlers', () => {
+    const moon = getMatchingEngine('moonlit-passage');
+    storage.setItem = vi.fn((key, value) => { expect(key).toBe(moon.STORAGE_KEY); raw = value; });
+    const page = harness({ envelopeId: 'moonlit-passage' });
+    expect(page.save()).toEqual(moon.newSave());
+    page.activate(6).activate(7); vi.advanceTimersByTime(1000); page.render();
+    expect(page.save().round.board[7].pieceId).toBe('k2'); expect(moon.readSave(raw).status).toBe('loaded');
+    page.add('moon'); expect(page.save().round.supply).toEqual({ key: 12, moon: 10 });
+  });
+  it('restores temporary key/moon progress and Undo from the shared session cache', () => {
+    raw = 'unread moon save'; const cache = new Map();
+    const props = { envelopeId: 'moonlit-passage', sessionCache: cache };
+    const first = harness(props).add('key').add('moon'); const expected = structuredClone(first.save()); first.destroy();
+    const returned = harness(props); expect(returned.save()).toEqual(expected);
+    returned.tool('Undo').props.onClick(); returned.render();
+    expect(returned.save().round.supply).toEqual({ key: 10, moon: 12 }); expect(raw).toBe('unread moon save');
   });
 });

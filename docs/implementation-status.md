@@ -8,6 +8,20 @@ Default branch: `main`
 
 Status date: 2026-07-31
 
+## Current preserved matching baseline — 2026-10-04
+
+The current working matching preview is Site version 2 at `https://moticos-garden-preview.blind-anatomist.chatgpt.site`.
+
+- Site source: `c897dd81bca4d9cc1652e2c155bdf08fd9a849c0`
+- Public repository counterpart: `work/matching-progression-20261004@bdf209e69b241cdbd2ae561513c48b21a2db25d6`
+- Public access policy revision: 2
+- Confirmed functional baseline: identical-picture matching, bird and fern five-tier journeys, finite pair supply, optional postcards, and preserved board interaction
+- Verification: 53 unit/handler checks, 149 browser tests passed, one intentional desktop-only skip, independent phone screenshot and postcard inspection
+
+This establishes a working functional baseline, not completion of the professional-scale collection or full VoiceOver acceptance. The earlier heterogeneous recipe study is superseded and is not expansion authority. Historical July records below remain for provenance.
+
+The current local-only incremental work adds Moonlit Passage while preserving this baseline and its save schema. See `MATCHING_COLLECTION_EXPANSION.md` for scope, evidence, and remaining gates. No main merge, new public art, or live replacement is implied by this candidate.
+
 ## Product authority
 
 Moticos is a visual, collage-inspired iPhone-first game for Cynthia. Cynthia's physical iPhone is the primary human acceptance platform. Mobile Safari WebKit is the primary automated browser gate. Desktop support is secondary.
