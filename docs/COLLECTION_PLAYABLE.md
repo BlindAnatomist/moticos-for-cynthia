@@ -63,6 +63,8 @@ The board and discovered journal persist in this browser only. No account or clo
 - Independent review checked 25 reachable inventories, 50 cut/recombine cases, and 10,000 seeded move/merge/cut/save-load operations.
 - Two source-level interaction races were repaired: old snap-back cleanup canceling a later gesture, and keyboard movement during a live drag producing a null round.
 - Dialog cleanup is safe under React StrictMode effect replay; malformed discovery IDs are filtered as own catalog members.
-- Browser execution in the local shell is blocked by the executor's socket restrictions; no local browser pass is claimed. A separately authorized single hosted verification job will provide WebKit/Chromium interaction, screenshot, and real postcard evidence. Its outcome must be recorded separately.
+- Browser execution in the local shell is blocked by the executor's socket restrictions; no local browser pass is claimed.
+- First authorized hosted run `37165544559` verified implementation `e4bce216fb29e322140971ca18b8aedf9fb338c5`: 60 browser scenarios passed, two failed, and one iPhone-only layout case was intentionally skipped on desktop. All original-game scenarios passed. Both new failures were the same rapid keyboard navigation/merge case in WebKit.
+- The failure trace showed the roving tabindex changing immediately while actual DOM focus waited for an animation frame. Two rapid arrows and Enter could therefore target the prior piece. The narrow repair moves focus synchronously on already-mounted cells. The original browser test remains; a new test deliberately withholds animation frames. Hosted verification of this repair is pending at this source checkpoint. The postcard dialog header also stays visible while its content scrolls, preserving an immediate return to the board.
 
 No merge or production deployment is part of this checkpoint.

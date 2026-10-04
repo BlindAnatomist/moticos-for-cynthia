@@ -104,7 +104,12 @@ export default function CollectionGarden() {
     });
     return best;
   }
-  function focusCell(index) { setFocusIndex(index); requestAnimationFrame(() => cells.current[index]?.focus({ preventScroll: true })); }
+  function focusCell(index) {
+    // Cell buttons stay mounted. Move real focus in this key event, before a
+    // second key can target the previous cell while WebKit awaits a frame.
+    setFocusIndex(index);
+    cells.current[index]?.focus({ preventScroll: true });
+  }
   function completeMerge(from, to, source = null) {
     if (flightRef.current) return;
     const snapshot = stateRef.current.round;

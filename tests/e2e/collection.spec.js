@@ -81,7 +81,7 @@ test('postcard opens only on request, downloads a real image, and returns to unc
 test('share cancellation, repeated modal openings, and collection-to-postcard navigation are safe',async({page},info)=>{
  await page.addInitScript(()=>{Object.defineProperty(navigator,'canShare',{configurable:true,value:()=>true});Object.defineProperty(navigator,'share',{configurable:true,value:async()=>{throw new DOMException('Canceled','AbortError');}});});await page.reload();await makeWay(page,info);
  for(let i=0;i<3;i++){await activate(page.getByRole('button',{name:'Collection',exact:true}),info);await expect(page.getByRole('dialog')).toBeVisible();await activate(page.getByRole('button',{name:'Back to board'}),info);await expect(page.getByRole('dialog')).toHaveCount(0);}
- await activate(page.getByRole('button',{name:'Collection',exact:true}),info);await activate(page.getByRole('button',{name:'Open postcard',exact:true}),info);await expect(page.locator('.cg-postcard')).toBeVisible();await expect(page.getByRole('button',{name:'Share postcard'})).toBeEnabled();await activate(page.getByRole('button',{name:'Share postcard'}),info);await expect(page.getByRole('status').last()).toContainText('Sharing canceled');await shot(page,info,'wayfinder-postcard');
+ await activate(page.getByRole('button',{name:'Collection',exact:true}),info);await activate(page.getByRole('button',{name:'Open postcard',exact:true}),info);await expect(page.locator('.cg-postcard')).toBeVisible();await expect(page.getByRole('button',{name:'Share postcard'})).toBeEnabled();await activate(page.getByRole('button',{name:'Share postcard'}),info);await expect(page.getByRole('status').last()).toContainText('Sharing canceled');const backBox=await page.getByRole('button',{name:'Back to board'}).boundingBox();expect(backBox.y).toBeGreaterThanOrEqual(0);expect(backBox.y+backBox.height).toBeLessThanOrEqual(page.viewportSize().height);await shot(page,info,'wayfinder-postcard');
  await activate(page.getByRole('button',{name:'Back to board'}),info);await expect(page.getByRole('dialog')).toHaveCount(0);await expect(page.locator('body')).not.toHaveCSS('overflow','hidden');
 });
 
@@ -95,4 +95,15 @@ test('hint, sound, reduced motion, and malformed save recovery remain usable',as
  await activate(page.getByRole('button',{name:'Mute sound',exact:true}),info);await page.reload();await expect(page.getByRole('button',{name:'Enable sound',exact:true})).toBeVisible();
  await page.emulateMedia({reducedMotion:'reduce'});await merge(page,BIRD,MAP,RIVER,info,'tap');await expect(page.locator('.cg-floating')).toHaveCount(0);
  await page.evaluate(()=>localStorage.setItem('moticos.collection.garden.v1','{"version":1,"round":{}}'));await page.reload();await expect(occupied(page)).toHaveCount(8);await expect(page.locator('.cg-progress')).toHaveText('6/12');
+});
+
+
+test('rapid keyboard input does not depend on animation-frame timing',async({page})=>{
+ await page.evaluate(()=>{ window.requestAnimationFrame = () => 1; });
+ const bird=piece(page,BIRD);await bird.press('Enter');await bird.press('ArrowRight');
+ expect(await page.evaluate(()=>document.activeElement.dataset.collectionCell)).toBe('7');
+ await page.keyboard.press('ArrowRight');
+ expect(await page.evaluate(()=>document.activeElement.dataset.collectionCell)).toBe('8');
+ await page.keyboard.press('Enter');await expect(piece(page,RIVER)).toBeVisible();
+ await expect(page.locator('.cg-progress')).toHaveText('7/12');
 });
