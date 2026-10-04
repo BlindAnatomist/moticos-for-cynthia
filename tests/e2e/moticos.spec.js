@@ -84,7 +84,7 @@ async function capture(page, testInfo, name) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/?classic");
   await expect(page.getByRole("heading", { name: "MOTICOS" })).toBeVisible();
 });
 
@@ -227,7 +227,7 @@ test("opens the native share path when file sharing is available", async ({ page
       },
     });
   });
-  await page.goto("/");
+  await page.goto("/?classic");
   await dragTile(page, page.locator('[data-tier="2"]').nth(0), page.locator('[data-tier="2"]').nth(1));
   const share = page.getByRole("button", { name: "Share postcard" });
   if (isIphoneProject(testInfo)) await share.tap();

@@ -1,0 +1,185 @@
+{
+  "description": "Verified original supplied artwork; optimized without changing composition.",
+  "pieces": [
+    {
+      "id": "s01_coral_bird",
+      "file": "public/art/garden/s01_coral_bird.webp",
+      "source_sha256": "29508b4c49847fd7a231de33232b423d221193fba4ce20237b55c0846f6ffd5c",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "902153aa3aea6d0f828c02407820dcb77c7aab59dce17543592066e7a91d7b9c",
+      "web_bytes": 57368,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "s02_river_map",
+      "file": "public/art/garden/s02_river_map.webp",
+      "source_sha256": "56e196c434e210dbea5080e9db824c8f95a3200f0f5e948e336f5ce0c9118214",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "9e69877fe55bdd4a9d90aa8d5c2183327db74c12c2841db3866f7ae76e0208d6",
+      "web_bytes": 63344,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "s03_round_key",
+      "file": "public/art/garden/s03_round_key.webp",
+      "source_sha256": "e2a0e0e32a34864169ba7610511eddc814bedff06fdfb86102e4e5e5cf27ba08",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "917c938f88e778a06334c6a3be219d91050a0f833cfc85905c2ecbc3b4380290",
+      "web_bytes": 47208,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "s04_teal_fern",
+      "file": "public/art/garden/s04_teal_fern.webp",
+      "source_sha256": "d6e5eec8918c42d32799e85c629f96ee99dfba9a8cb345b8c431b3633978f52f",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "08862a73c290cebf513fe9efd13b890c659b382eb1d190fd088b4cdf15b0d02c",
+      "web_bytes": 93730,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "s05_cobalt_moon",
+      "file": "public/art/garden/s05_cobalt_moon.webp",
+      "source_sha256": "aa8df81fccb53ca842d7b725070505cdb92ee2d29979aeafb7710afb4bd51672",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "026816e6ae7a81e0d5aaa64eb49f650eb8ee8871752c59a11ab0f6f98cfdb6ab",
+      "web_bytes": 44962,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "s06_cream_teacup",
+      "file": "public/art/garden/s06_cream_teacup.webp",
+      "source_sha256": "11759cd9138ccdb6ee772517ea9f9ca8bd736569f496222ad1da46a37116e856",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "dd88f7ab48a885fd456363b392442d11c7adffa62204ece7e3fc9470b784c8e8",
+      "web_bytes": 48012,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "e01_riverwing",
+      "file": "public/art/garden/e01_riverwing.webp",
+      "source_sha256": "c85f79444a40f2b88315747c17a48eb7b8f4d7d4e30f0a0fe0dd46e9c7057609",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "c90dd8710d9c3e523871b85bf9ab9d3d0e8b9c5a6333b8b9943f64bbd3903c0c",
+      "web_bytes": 56900,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "e02_frond_key",
+      "file": "public/art/garden/e02_frond_key.webp",
+      "source_sha256": "2a2db4ceeae4ccd8f8fb89dbef5518ad84699b5212afa0d4dfdfecd410a3fbfb",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "cf9914516101110366d4e4df6f3eaae213fade6ee4a47269cc402cf1900d292c",
+      "web_bytes": 73258,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "e04_crescent_courier",
+      "file": "public/art/garden/e04_crescent_courier.webp",
+      "source_sha256": "b85051c0be5d36ad3979415e8541dedb59c12a902b4f36c24f68aa39cb7a5a32",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "f5a4c0bd9145e0309ab48a349d00640165edd14ddad1065304681ba0f0cba6f3",
+      "web_bytes": 50668,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "e05_fern_cup",
+      "file": "public/art/garden/e05_fern_cup.webp",
+      "source_sha256": "573ebabd2cd78d2cca8ef39651355fd5dc37c39c00ae4837405822126a132e1d",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "b8788d67be4100d661e41d9884655ff7d6b88460d0647e9fb8eb763d0285d68c",
+      "web_bytes": 76414,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "e03_wayfinder_garden",
+      "file": "public/art/garden/e03_wayfinder_garden.webp",
+      "source_sha256": "a6efe2118e9840f1c4f5b0a6e4e708b0b07a3fbac7d8b7268cbd3ed718d168e5",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "d5399ce3dcad7edd43dd0b17772014dfc626da01ff089af8026f31563085bffb",
+      "web_bytes": 99366,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "id": "e06_nightgarden_nest",
+      "file": "public/art/garden/e06_nightgarden_nest.webp",
+      "source_sha256": "55a55caf674cf0b5e6586b7c48f1794b8a7a35b1c976ef03b8c21691938f24b3",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "web_sha256": "111914f7b614042ba6a391794883b9531f86d2b5790f9f6117e6a54e22c840fc",
+      "web_bytes": 82674,
+      "web_dimensions": [
+        768,
+        768
+      ]
+    }
+  ]
+}
