@@ -1,0 +1,14 @@
+{
+  "events": 428,
+  "terminal_tests": 213,
+  "status": {
+    "passed": 199,
+    "failed": 14
+  },
+  "end": {
+    "recordedAt": "2026-10-04T18:48:46.563Z",
+    "event": "end",
+    "status": "failed",
+    "durationMs": 1269827.677
+  }
+}

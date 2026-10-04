@@ -210,7 +210,18 @@ for (const viewport of PHONE_VIEWPORTS) {
       await expect(page.getByRole('dialog')).toBeVisible();
       await expect(page.getByRole('button', { name: 'Back to board', exact: true })).toBeFocused();
       await page.keyboard.press('Shift+Tab');
-      expect(await page.evaluate(() => Boolean(document.activeElement.closest('dialog'))), 'focus stays inside the modal').toBe(true);
+      const focus = await page.evaluate(() => ({
+        insideDialog: Boolean(document.activeElement.closest('dialog')),
+        onBoard: Boolean(document.activeElement.closest('.cg-shell')),
+        tag: document.activeElement.tagName,
+        name: document.activeElement.getAttribute('aria-label') || document.activeElement.textContent.trim().slice(0, 120),
+        documentFocused: document.hasFocus(),
+      }));
+      expect(focus, 'modal focus diagnostics after backward boundary').toMatchObject({ insideDialog: true, onBoard: false });
+      const dialogButtons = page.getByRole('dialog').locator('button:visible:not([disabled])');
+      await expect(dialogButtons.last(), 'Shift+Tab wraps to the last enabled modal control').toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByRole('button', { name: 'Back to board', exact: true }), 'Tab wraps back to the first modal control').toBeFocused();
       await page.keyboard.press('Escape');
       await expect(page.getByRole('dialog')).toHaveCount(0);
       await expect(trigger).toBeFocused();
@@ -252,7 +263,12 @@ test('viewport changes cancel an unfinished drag and retarget a committed flight
     await page.clock.runFor(32);
     await expect(page.locator('.cg-floating.is-flying')).toHaveCount(1);
     expect(await rawSave(page)).toBe(committed);
-    await expect(cell(page, 7).locator('.cg-cell-name')).toHaveText(viewport.width <= 380 ? 'Wing' : 'Riverwing');
+    const label = cell(page, 7).locator('.cg-cell-name');
+    await expect(label).toHaveText(viewport.width <= 380 ? 'Wing' : 'Riverwing', { useInnerText: true });
+    // Directly verify the CSS boundary without adding a delay for JS state.
+    await expect(label.locator('.mg-label-compact')).toHaveCSS('display', viewport.width <= 380 ? 'inline' : 'none');
+    await expect(label.locator('.mg-label-wide')).toHaveCSS('display', viewport.width <= 380 ? 'none' : 'inline');
+    await expect(label.locator('.mg-label-compact:visible, .mg-label-wide:visible')).toHaveCount(1);
     await expect.poll(() => page.evaluate(() => {
       const target = document.querySelector('[data-matching-cell="7"]').getBoundingClientRect();
       const flight = document.querySelector('.cg-floating');

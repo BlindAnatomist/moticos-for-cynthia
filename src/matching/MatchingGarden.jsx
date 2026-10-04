@@ -77,7 +77,6 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
   const [collectionEnvelopeId, setCollectionEnvelopeId] = useState(envelopeId);
   const [hint, setHint] = useState([]);
   const [largeText, setLargeText] = useState(false);
-  const [compactLabels, setCompactLabels] = useState(() => window.matchMedia('(max-width:380px)').matches);
   const shellRef = useRef(null);
   const boardRef = useRef(null), cells = useRef([]), timers = useRef(new Set());
   useEffect(() => {
@@ -128,7 +127,6 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     function cancelGesture() { setDrag(null); }
     function resizeGesture() {
       setDrag(null);
-      setCompactLabels(window.matchMedia('(max-width:380px)').matches);
       // A committed merge stays committed; only retarget its decorative flight.
       if (flightRef.current) {
         const target = center(flightRef.current.to);
@@ -316,7 +314,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
           const isSource = (drag?.dragging && drag.index === index) || flight?.from === index;
           const hovering = drag?.dragging && drag.magneticIndex === index;
           return <button key={index} type="button" ref={el => { cells.current[index] = el; }} data-matching-cell={index} data-piece-id={tile?.pieceId ?? 'empty'} tabIndex={index === focusIndex ? 0 : -1} onFocus={() => setFocusIndex(index)} onKeyDown={event => onKey(event, index)} aria-label={`${piece ? `${piece.name}, level ${piece.tier}` : 'Empty space'}, row ${Math.floor(index / 5) + 1}, column ${index % 5 + 1}${match ? ', matches selected piece' : ''}`} aria-pressed={selected === index} className={`cg-cell ${tile ? 'has-art' : 'is-empty'}${selected === index ? ' is-selected' : ''}${match ? ' is-match' : ''}${hovering ? ' is-target' : ''}${hint.includes(index) ? ' is-hint' : ''}${isSource ? ' is-source' : ''}${pasteIndex === index ? ' is-pasted' : ''}${flight?.to === index ? ' is-arriving' : ''}`} onPointerDown={event => pointerDown(event, index)} onPointerMove={pointerMove} onPointerUp={event => pointerUp(event, index)} onPointerCancel={event => { if (dragRef.current?.pointerId === event.pointerId) setDrag(null); }} onLostPointerCapture={event => { const d = dragRef.current; if (d?.pointerId === event.pointerId && !d.snapBack) setDrag(null); }} onClick={event => { if (event.detail === 0) choose(index); }}>
-            {piece ? <><span className={`mg-level mg-${piece.familyId}`} aria-hidden="true">{piece.tier}</span><BoardArt catalog={CATALOG} id={piece.id} /><span className="cg-cell-name">{compactLabels ? COMPACT_BOARD_LABELS[piece.id] ?? piece.shortName : piece.shortName}</span>{piece.tier === 5 && <span className="cg-finale-mark" aria-hidden="true">✳</span>}</> : <span className="cg-empty-mark" aria-hidden="true">·</span>}
+            {piece ? <><span className={`mg-level mg-${piece.familyId}`} aria-hidden="true">{piece.tier}</span><BoardArt catalog={CATALOG} id={piece.id} /><span className="cg-cell-name" aria-hidden="true"><span className="mg-label-wide">{piece.shortName}</span><span className="mg-label-compact">{COMPACT_BOARD_LABELS[piece.id] ?? piece.shortName}</span></span>{piece.tier === 5 && <span className="cg-finale-mark" aria-hidden="true">✳</span>}</> : <span className="cg-empty-mark" aria-hidden="true">·</span>}
           </button>;
         })}
       </section>
@@ -336,7 +334,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
         <button onClick={() => openOverlay({ type: 'reset' })} disabled={busy}>Fresh envelope</button>
       </footer>
     </div>
-    {overlay && <CollectionDialog title={overlay.type === 'postcard' ? 'Your correspondence' : overlay.type === 'collection' ? 'Your collection' : overlay.type === 'envelopes' ? 'Your envelopes' : overlay.type === 'reset' ? 'Open a fresh envelope?' : overlay.type === 'save' ? 'Save protection' : 'Two of a kind'} onClose={() => setOverlay(null)} className={`mg-dialog${overlay.type === 'postcard' ? ' cg-dialog-postcard' : ''}`}>
+    {overlay && <CollectionDialog trapFocus title={overlay.type === 'postcard' ? 'Your correspondence' : overlay.type === 'collection' ? 'Your collection' : overlay.type === 'envelopes' ? 'Your envelopes' : overlay.type === 'reset' ? 'Open a fresh envelope?' : overlay.type === 'save' ? 'Save protection' : 'Two of a kind'} onClose={() => setOverlay(null)} className={`mg-dialog${overlay.type === 'postcard' ? ' cg-dialog-postcard' : ''}`}>
       {overlay.type === 'save' && <div className="cg-help"><p className="cg-save-warning" role="alert">{saveAlert}</p>{initial.invalid && typeof initial.sourceRaw === 'string' && <button className="cg-button" onClick={downloadOriginal}>Download original save</button>}</div>}
       {overlay.type === 'postcard' && <PostcardContent key={overlay.pieceId} pieceId={overlay.pieceId} envelope={getEnvelope(overlay.envelopeId ?? envelopeId)} />}
       {overlay.type === 'help' && <div className="cg-help"><div className="mg-help-equation"><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><span>+</span><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><ArrowRight /><Art catalog={CATALOG} id={FAMILIES[0].pieceIds[1]} /></div><p>Two identical pictures make one new piece. {FAMILIES[0].shortName} matches {FAMILIES[0].shortName.toLowerCase()}, {FAMILIES[1].shortName.toLowerCase()} matches {FAMILIES[1].shortName.toLowerCase()}, and two {CATALOG[FAMILIES[0].pieceIds[1]].name} pieces make {CATALOG[FAMILIES[0].pieceIds[2]].name}.</p><ol><li>Drag one piece onto its match, or tap a piece and then its match. Matching pieces glow.</li><li>The two buttons below the board add a matching pair from your envelope. Each path has enough pieces to reach level 5. There is no waiting or payment.</li><li>Keep matching your new pieces. Level 3 earns your first postcard; levels 4 and 5 reveal more. Open a postcard whenever you like, then return to the same board.</li><li>Undo takes back a move, including a supplied pair. Cut turns a selected made piece into two of its previous level when there is space.</li></ol><p>Invalid matches cost nothing. Every discovered picture stays in your collection, including its postcard, even after a merge, Cut, Undo or fresh envelope.</p><p>Each envelope has ten distinct pieces and six postcards to discover. Use Envelopes to visit another journey; each board and its Undo history wait for you. More of the collection is still being made.</p><h3>Keyboard</h3><p>Tab to the board, use arrow keys, and press Enter or Space to select and match. Escape clears the selection.</p></div>}

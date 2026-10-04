@@ -184,7 +184,7 @@
 .mg-page .cg-progress { font-size: .9375rem; }
 .mg-page .cg-progress span { font-size: .75rem; }
 .mg-page .cg-instruction { font-size: .6875rem; line-height: 1.2; min-height: .9rem; margin: 0; display: flex; align-items: center; }
-.mg-page .mg-board-space { flex: 1 0 252px; min-height: 252px; min-width: 0; display: grid; place-items: center; }
+.mg-page .mg-board-space { flex: 1 0 289px; min-height: 289px; min-width: 0; display: grid; place-items: center; }
 .mg-page .cg-board { width: min(100%, 406px); gap: 4px; padding: 7px; }
 @supports (width: 1cqw) {
   .mg-page .mg-board-space { container-type: size; }
@@ -263,3 +263,13 @@
 @media (max-width: 380px) {
   .mg-page .mg-level { font-size: 9px; padding: 1px 2px; min-width: 12px; }
 }
+
+/* Label and crop switch in the same CSS layout pass, without a delayed React
+   viewport event. The button keeps its full accessible piece name. */
+.mg-page .mg-label-wide { display: inline; }
+.mg-page .mg-label-compact { display: none; }
+@media (max-width: 380px) {
+  .mg-page .mg-label-wide { display: none; }
+  .mg-page .mg-label-compact { display: inline; }
+}
+.mg-large-text .cg-header h1, .mg-large-text .cg-header h1 span { line-height: 1.2; }

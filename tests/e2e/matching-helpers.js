@@ -204,7 +204,7 @@ export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live
         const box = node.getBoundingClientRect();
         const art = image.getBoundingClientRect();
         return {
-          id: node.dataset.pieceId, name: label.textContent,
+          id: node.dataset.pieceId, name: label.innerText,
           accessibleName: node.getAttribute('aria-label'),
           clipped: label.scrollWidth > label.clientWidth + 1,
           font: parseFloat(getComputedStyle(label).fontSize),
@@ -242,7 +242,7 @@ export async function matchingGeometry(page, selector = '.mg-page > .cg-shell bu
       const r = node.getBoundingClientRect();
       return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height };
     };
-    const label = node => node.getAttribute('aria-label') || node.textContent.trim() || node.className;
+    const label = node => node.getAttribute('aria-label') || (node.matches('.cg-cell-name') ? node.innerText : node.textContent).trim() || node.className;
     const measure = (node, decorativeArt = false) => {
       const box = rect(node), hiddenBy = [], clippedBy = [];
       for (let ancestor = node; ancestor; ancestor = ancestor.parentElement) {
@@ -267,19 +267,30 @@ export async function matchingGeometry(page, selector = '.mg-page > .cg-shell bu
         scrollHeight: node.scrollHeight, clientHeight: node.clientHeight };
     };
     const shell = document.querySelector('.mg-page > .cg-shell');
+    // Only the deliberately inactive CSS label variant is excluded. Other
+    // display:none text remains in the audit and fails instead of disappearing.
+    const inactiveLabelVariant = node => node.parentElement?.matches('.cg-cell-name')
+      && node.matches('.mg-label-wide, .mg-label-compact') && getComputedStyle(node).display === 'none';
     const text = [...shell.querySelectorAll('*')].filter(node =>
-      !node.closest('.cg-sr-only, .cg-floating, svg') &&
-      [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim())
+      !node.closest('.cg-sr-only, .cg-floating, svg') && !inactiveLabelVariant(node) &&
+      (node.matches('.cg-cell-name') || [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim()))
     ).map(node => {
       const range = document.createRange(); range.selectNodeContents(node);
       const box = rect(node), r = range.getBoundingClientRect(), style = getComputedStyle(node);
       return { name: label(node), ...box, font: parseFloat(style.fontSize),
-        display: style.display, visibility: style.visibility,
+        display: style.display, visibility: style.visibility, opacity: Number(style.opacity),
         textBox: { left: r.left, right: r.right, top: r.top, bottom: r.bottom },
         scrollWidth: node.scrollWidth, clientWidth: node.clientWidth,
         scrollHeight: node.scrollHeight, clientHeight: node.clientHeight,
         // Inline text has no meaningful clientWidth; its Range still has bounds.
-        block: style.display !== 'inline', cellLabel: node.matches('.cg-cell-name') };
+        block: style.display !== 'inline', cellLabel: node.matches('.cg-cell-name, .mg-label-wide, .mg-label-compact'),
+        labelVariants: node.matches('.cg-cell-name') ? [...node.querySelectorAll('.mg-label-wide, .mg-label-compact')].map(variant => {
+          const css = getComputedStyle(variant), bounds = rect(variant);
+          return { kind: variant.matches('.mg-label-compact') ? 'compact' : 'wide', text: variant.textContent.trim(),
+            active: css.display !== 'none' && css.visibility === 'visible' && Number(css.opacity) > 0 && Number(style.opacity) > 0 && bounds.width > 0 && bounds.height > 0,
+            display: css.display, visibility: css.visibility, font: parseFloat(css.fontSize), ...bounds };
+        }) : undefined };
+
     });
     const regions = [...shell.querySelectorAll('.cg-header, .cg-instruction, .cg-board, .mg-supply, .mg-inspector, .cg-tools, .cg-notice, .cg-footer')].map(measure);
     return {
@@ -328,6 +339,7 @@ function checkUnclippedText(text, check) {
   for (const item of text) {
     check(item.display, `${item.name} is rendered`).not.toBe('none');
     check(item.visibility, `${item.name} is visible`).toBe('visible');
+    if (item.opacity !== undefined) check(item.opacity, `${item.name} has visible opacity`).toBeGreaterThan(0);
     if (item.block) {
       check(item.scrollWidth, `${item.name} does not truncate horizontally`).toBeLessThanOrEqual(item.clientWidth + 1);
       check(item.scrollHeight, `${item.name} does not truncate vertically`).toBeLessThanOrEqual(item.clientHeight + 1);
@@ -387,6 +399,7 @@ export function matchingViewportViolations(geometry, requestedViewport) {
     check(overlapWidth > 1 && overlapHeight > 1, `${a.name} and ${b.name} do not visually overlap`).toBe(false);
   }
   checkUnclippedText(text, check);
+  for (const item of text) if (item.labelVariants !== undefined) violations.push(...matchingLabelVariantViolations(item, viewport.width));
   for (const item of text) {
     check(item.textBox.left, `${item.name} text stays in the viewport`).toBeGreaterThanOrEqual(visibleBounds.left - 1);
     check(item.textBox.right, `${item.name} text stays in the viewport`).toBeLessThanOrEqual(visibleBounds.right + 1);
@@ -481,6 +494,7 @@ export function matchingFallbackViolations(initial) {
   check(initial.body.width).toBeLessThanOrEqual(initial.viewport.width);
   check(initial.document.height, 'this fixture genuinely exercises the scrolling fallback').toBeGreaterThan(initial.viewport.height);
   checkUnclippedText(initial.text, check);
+  for (const item of initial.text) if (item.labelVariants !== undefined) violations.push(...matchingLabelVariantViolations(item, initial.viewport.width));
   for (const art of initial.artwork) if (art.cropped) violations.push(...matchingPaintedArtViolations(art, { allowPageScroll: true }));
   return violations;
 }
@@ -541,6 +555,25 @@ export function matchingPaintedArtViolations(art, { allowPageScroll = false } = 
   }
   check(Math.abs(art.width / art.naturalWidth - art.height / art.naturalHeight) * Math.max(art.naturalWidth, art.naturalHeight),
     `${art.name} source aspect ratio is preserved within one rendered pixel`).toBeLessThanOrEqual(1);
+  return violations;
+}
+
+// The parent label's bounds/type checks remain in the normal text audit.
+// Both CSS alternatives must exist, but exactly the width-appropriate one is
+// visible; an intentionally hidden alternative is not missing interface text.
+export function matchingLabelVariantViolations(label, width) {
+  const violations = [], check = collectChecks(violations);
+  const variants = label.labelVariants, active = variants.filter(variant => variant.active);
+  check(variants.length, `${label.name} retains both label variants`).toBe(2);
+  check(variants.filter(variant => variant.kind === 'wide').length, `${label.name} has one wide variant`).toBe(1);
+  check(variants.filter(variant => variant.kind === 'compact').length, `${label.name} has one compact variant`).toBe(1);
+  check(active.length, `${label.name} has exactly one active label variant`).toBe(1);
+  for (const variant of active) {
+    check(variant.kind, `${label.name} uses the correct CSS width variant`).toBe(width <= 380 ? 'compact' : 'wide');
+    check(variant.text, `${label.name} active label has visible text`).toBeTruthy();
+    check(label.name.trim(), `${label.name} is measured using visible innerText`).toBe(variant.text);
+    check(variant.font, `${label.name} active label remains readable`).toBeGreaterThanOrEqual(8);
+  }
   return violations;
 }
 
