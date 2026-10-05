@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "expectedTotal": 3,
+  "cases": [
+    {
+      "id": "037ca3b527c0f9a032c1-3d089dbd165882a045a5",
+      "project": "webkit-iphone-13",
+      "file": "collage-live.spec.js",
+      "title": "hosted exact build, compact fit, preserved saves, real matching and actual postcard"
+    },
+    {
+      "id": "037ca3b527c0f9a032c1-f1e55e610ee65d9272c6",
+      "project": "webkit-iphone-large",
+      "file": "collage-live.spec.js",
+      "title": "hosted exact build, compact fit, preserved saves, real matching and actual postcard"
+    },
+    {
+      "id": "037ca3b527c0f9a032c1-cc9065d64dc3aa4c4a13",
+      "project": "chromium-desktop",
+      "file": "collage-live.spec.js",
+      "title": "hosted exact build, compact fit, preserved saves, real matching and actual postcard"
+    }
+  ],
+  "pinnedFiles": [
+    {
+      "path": "tests/live/collage-live.spec.js",
+      "sha256": "f91f73473488cb81d05e3e239751b65c1d42288b27e6dffefbe56259060851ac"
+    },
+    {
+      "path": "tests/live/shared-helpers.js",
+      "sha256": "d9819e99e489081a5dd32acc5db6724881a12bb512e9034607d3ba1d71ce1033"
+    }
+  ]
+}

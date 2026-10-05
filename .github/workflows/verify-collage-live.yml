@@ -1,0 +1,78 @@
+name: Verify exact eighty-piece Moticos live release
+
+# Publish this separate branch only after all RC and visual gates pass and the
+# exact verified build has been conditionally deployed. Never push the RC branch
+# again merely to run this smoke. No deployment action is included here.
+on:
+  push:
+    branches: [verify/collage-batch-live-20261005]
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: moticos-collage-batch-live-20261005
+  cancel-in-progress: false
+jobs:
+  hosted:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Start the five-minute job clock
+        run: echo "MOTICOS_LIVE_JOB_EPOCH=$(date +%s)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        id: checkout
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install the locked existing dependencies
+        timeout-minutes: 1
+        run: |
+          mkdir -p preflight-results
+          npm ci --no-audit --no-fund 2>&1 | tee preflight-results/dependencies.log
+      - name: Freeze and check three hosted identities without rebuilding the app
+        run: |
+          cp tests/verification/collage-live-contract.json preflight-results/accepted-live-contract.json
+          cp tests/verification/collage-live-coverage.json preflight-results/expected-live-coverage.json
+          npx playwright test --config=playwright.collage-live.config.js --list --reporter=json > preflight-results/collected.json
+          node scripts/verifyCollageLiveCoverage.mjs collected preflight-results/collected.json
+      - name: Install standard WebKit and Chromium
+        timeout-minutes: 2
+        run: npx playwright install --with-deps webkit chromium 2>&1 | tee preflight-results/browser-install.log
+      - name: Check the public release in three clean profiles exactly once
+        id: browser
+        env:
+          MOTICOS_LIVE_SMOKE_APPROVED: '1'
+        run: |
+          # Reserve 45s for complete evidence and 15s scheduling margin.
+          remaining=$((300 - ($(date +%s) - MOTICOS_LIVE_JOB_EPOCH) - 45 - 15))
+          if [ "$remaining" -lt 90 ]; then
+            echo "::error::Fewer than 90 browser seconds remain; no hosted browser started."
+            exit 1
+          fi
+          if [ "$remaining" -gt 180 ]; then remaining=180; fi
+          export MOTICOS_LIVE_BROWSER_BUDGET_MS=$((remaining * 1000))
+          printf '{"browserBudgetMs":%s,"evidenceReserveSeconds":45}\n' "$MOTICOS_LIVE_BROWSER_BUDGET_MS" > preflight-results/browser-budget.json
+          npx playwright test --config=playwright.collage-live.config.js 2>&1 | tee preflight-results/browser.log
+      - name: Require three terminal passes and three actual downloads
+        if: success() && steps.browser.outcome == 'success'
+        run: node scripts/verifyCollageLiveCoverage.mjs completed batch-test-results/results.json batch-test-results/progress/browser-events.jsonl preflight-results/completed-proof.json
+      - name: Preserve all screenshots, exports, geometry, logs and failure trace
+        id: package
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: python3 scripts/preserveCollageLiveEvidence.py --github-output "$GITHUB_OUTPUT"
+      - name: Retain at most 30 MiB of complete evidence for one day
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-collage-live-000
+          path: |
+            bounded-evidence/parts/part-000.bin
+            bounded-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
