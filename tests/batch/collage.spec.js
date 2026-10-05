@@ -35,6 +35,25 @@ async function exportCard(page,info,e,id){
 }
 const errors=new WeakMap();test.beforeEach(async({page})=>{errors.set(page,[]);page.on('pageerror',e=>errors.get(page).push(e.message));});test.afterEach(async({page})=>expect(errors.get(page)).toEqual([]));
 
+// Run the uncertain stale-tab gate first, before expensive picture journeys.
+test('corrupt/future bytes, quota and stale-tab failure keep existing saves',async({page},info)=>{
+ const e=BATCH_ENVELOPES[0];await page.goto(route(e));
+ for(const original of ['bad-json','{"version":999,"keep":"original"}']){await page.evaluate(({key,original})=>localStorage.setItem(key,original),{key:e.storageKey,original});await page.reload();await merge(page,info,e,e.catalog.STARTERS[0]);expect(await raw(page,e)).toBe(original);await expect(page.getByRole('button',{name:/^Save warning:/})).toBeVisible();}
+ await page.evaluate(key=>localStorage.removeItem(key),e.storageKey);await page.reload();await merge(page,info,e,e.catalog.STARTERS[0]);const original=await raw(page,e);
+ const blocked=await page.context().newPage();await blocked.addInitScript(key=>{const set=Storage.prototype.setItem;Storage.prototype.setItem=function(name,value){if(name===key)throw new DOMException('full','QuotaExceededError');return set.call(this,name,value);};},e.storageKey);await blocked.goto(route(e));await activate(supply(blocked,e.catalog.FAMILIES[0]),info);await expect(blocked.getByRole('button',{name:/^Save warning:/})).toBeVisible();expect(await raw(page,e)).toBe(original);await blocked.close();
+ // Establish that the second page has mounted the old session before a write elsewhere.
+ const oldBoard=await boardIds(page);const stale=await page.context().newPage();await stale.goto(route(e));
+ await expect(stale.locator('[data-matching-cell]')).toHaveCount(25);
+ await expect.poll(()=>boardIds(stale)).toEqual(oldBoard);
+ await expect(supply(stale,e.catalog.FAMILIES[0])).toBeEnabled();
+ expect(await raw(stale,e)).toBe(original);
+ await activate(supply(page,e.catalog.FAMILIES[0]),info);
+ await expect.poll(()=>raw(page,e)).not.toBe(original);const newest=await raw(page,e);
+ // Keep the automatic warning BEFORE the stale write, followed by exact protection.
+ await expect(stale.getByRole('button',{name:/^Save warning:/})).toBeVisible();
+ await activate(supply(stale,e.catalog.FAMILIES[0]),info);expect(await raw(page,e)).toBe(newest);await stale.close();
+});
+
 for(const envelope of BATCH_ENVELOPES){
  test(`${envelope.title}: complete ten-picture routes and six real postcards`,async({page},info)=>{
   test.setTimeout(180000);await page.goto(route(envelope));await expect(page.locator('.mg-supply-button')).toHaveCount(2);await expect(page.locator('[data-matching-cell]')).toHaveCount(25);
@@ -73,14 +92,6 @@ test('exact source assets, read-only album and eight-envelope save boundaries',a
  await activate(page.getByRole('button',{name:'Collection',exact:true}),info);await expect(page.locator('.mg-album-summary')).toContainText('/ 80');await expect(page.locator('.mg-album-summary')).toContainText('/ 48');await expect(page.getByLabel('Browse envelope',{exact:true}).locator('option')).toHaveCount(8);await closeDialog(page,info);
  expect(await page.evaluate(keys=>Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)])),publicKeys)).toEqual(sentinel);for(const e of BATCH_ENVELOPES)expect(await raw(page,e)).toBe(recorded[e.storageKey]);
  await page.goBack();await expect(page.locator('[data-matching-cell]')).toHaveCount(25);await shot(page,info,'batch-boundaries');
-});
-
-test('corrupt/future bytes, quota and stale-tab failure keep existing saves',async({page},info)=>{
- const e=BATCH_ENVELOPES[0];await page.goto(route(e));
- for(const original of ['bad-json','{"version":999,"keep":"original"}']){await page.evaluate(({key,original})=>localStorage.setItem(key,original),{key:e.storageKey,original});await page.reload();await merge(page,info,e,e.catalog.STARTERS[0]);expect(await raw(page,e)).toBe(original);await expect(page.getByRole('button',{name:/^Save warning:/})).toBeVisible();}
- await page.evaluate(key=>localStorage.removeItem(key),e.storageKey);await page.reload();await merge(page,info,e,e.catalog.STARTERS[0]);const original=await raw(page,e);
- const blocked=await page.context().newPage();await blocked.addInitScript(key=>{const set=Storage.prototype.setItem;Storage.prototype.setItem=function(name,value){if(name===key)throw new DOMException('full','QuotaExceededError');return set.call(this,name,value);};},e.storageKey);await blocked.goto(route(e));await activate(supply(blocked,e.catalog.FAMILIES[0]),info);await expect(blocked.getByRole('button',{name:/^Save warning:/})).toBeVisible();expect(await raw(page,e)).toBe(original);await blocked.close();
- const stale=await page.context().newPage();await stale.goto(route(e));await activate(supply(page,e.catalog.FAMILIES[0]),info);const newest=await raw(page,e);await expect(stale.getByRole('button',{name:/^Save warning:/})).toBeVisible();await activate(supply(stale,e.catalog.FAMILIES[0]),info);expect(await raw(page,e)).toBe(newest);await stale.close();
 });
 
 test('compact screen fit, reduced motion, keyboard and repeated dialog dismissal',async({page},info)=>{

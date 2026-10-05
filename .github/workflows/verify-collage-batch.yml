@@ -149,11 +149,26 @@ jobs:
         run: |
           node scripts/verifyCollageCoverage.mjs completed "$PROFILE" batch-test-results/results.json batch-test-results/progress/browser-events.jsonl preflight-results/completed-proof.json
           node scripts/verifyCollageBuild.mjs verify
-      - name: Package every raw profile result, image, export and failure trace
+      - name: Package independent bounded diagnosis and failure screenshots
+        id: diagnosis
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: python3 scripts/packEvidenceDiagnosis.py --source . --output bounded-evidence/diagnosis.zip
+      - name: Keep diagnosis even if complete evidence exceeds its budget
+        if: always() && steps.diagnosis.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-collage-${{ matrix.profile }}-diagnosis
+          path: bounded-evidence/diagnosis.zip
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+      - name: Package every raw profile byte with lossless object deduplication
         id: package
         if: always() && steps.checkout.outcome == 'success'
         timeout-minutes: 1
-        run: python3 scripts/preserveCollageEvidence.py browser --github-output "$GITHUB_OUTPUT"
+        run: python3 scripts/contentAddressedEvidence.py pack --source . --output bounded-evidence/object-evidence --github-output "$GITHUB_OUTPUT"
       - name: Upload complete profile part 000
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
         uses: actions/upload-artifact@v4
@@ -161,8 +176,8 @@ jobs:
         with:
           name: moticos-collage-${{ matrix.profile }}-000
           path: |
-            bounded-evidence/parts/part-000.bin
-            bounded-evidence/parts/manifest.json
+            bounded-evidence/object-evidence/parts/part-000.bin
+            bounded-evidence/object-evidence/parts/manifest.json
           compression-level: 0
           if-no-files-found: error
           retention-days: 1
@@ -173,8 +188,8 @@ jobs:
         with:
           name: moticos-collage-${{ matrix.profile }}-001
           path: |
-            bounded-evidence/parts/part-001.bin
-            bounded-evidence/parts/manifest.json
+            bounded-evidence/object-evidence/parts/part-001.bin
+            bounded-evidence/object-evidence/parts/manifest.json
           compression-level: 0
           if-no-files-found: error
           retention-days: 1

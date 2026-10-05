@@ -4,6 +4,12 @@
   "sourceFingerprint": "37c6b9adf582bc1bf8cbe84e33df6edf1fea0cd558dc58891077f7ecec89ca5d",
   "cases": [
     {
+      "id": "1269437256720c2a5a1a-41559d03685248e0ab1d",
+      "project": "webkit-iphone-13",
+      "file": "collage.spec.js",
+      "title": "corrupt/future bytes, quota and stale-tab failure keep existing saves"
+    },
+    {
       "id": "1269437256720c2a5a1a-8ce54d3d0fd937dd2aaa",
       "project": "webkit-iphone-13",
       "file": "collage.spec.js",
@@ -58,12 +64,6 @@
       "title": "exact source assets, read-only album and eight-envelope save boundaries"
     },
     {
-      "id": "1269437256720c2a5a1a-41559d03685248e0ab1d",
-      "project": "webkit-iphone-13",
-      "file": "collage.spec.js",
-      "title": "corrupt/future bytes, quota and stale-tab failure keep existing saves"
-    },
-    {
       "id": "1269437256720c2a5a1a-930adfb89462b7d06713",
       "project": "webkit-iphone-13",
       "file": "collage.spec.js",
@@ -74,6 +74,12 @@
       "project": "webkit-iphone-13",
       "file": "collage.spec.js",
       "title": "published Garden core: identical pairs, Cut, Undo and reload remain intact"
+    },
+    {
+      "id": "1269437256720c2a5a1a-364c29628bd247d77130",
+      "project": "webkit-iphone-large",
+      "file": "collage.spec.js",
+      "title": "corrupt/future bytes, quota and stale-tab failure keep existing saves"
     },
     {
       "id": "1269437256720c2a5a1a-69e7a0fe7e461ad3beba",
@@ -130,12 +136,6 @@
       "title": "exact source assets, read-only album and eight-envelope save boundaries"
     },
     {
-      "id": "1269437256720c2a5a1a-364c29628bd247d77130",
-      "project": "webkit-iphone-large",
-      "file": "collage.spec.js",
-      "title": "corrupt/future bytes, quota and stale-tab failure keep existing saves"
-    },
-    {
       "id": "1269437256720c2a5a1a-951bcfbcff74c72135cb",
       "project": "webkit-iphone-large",
       "file": "collage.spec.js",
@@ -146,6 +146,12 @@
       "project": "webkit-iphone-large",
       "file": "collage.spec.js",
       "title": "published Garden core: identical pairs, Cut, Undo and reload remain intact"
+    },
+    {
+      "id": "1269437256720c2a5a1a-8c2e46b79ceffaf67a67",
+      "project": "chromium-desktop",
+      "file": "collage.spec.js",
+      "title": "corrupt/future bytes, quota and stale-tab failure keep existing saves"
     },
     {
       "id": "1269437256720c2a5a1a-e80c557259b2b30addbc",
@@ -202,12 +208,6 @@
       "title": "exact source assets, read-only album and eight-envelope save boundaries"
     },
     {
-      "id": "1269437256720c2a5a1a-8c2e46b79ceffaf67a67",
-      "project": "chromium-desktop",
-      "file": "collage.spec.js",
-      "title": "corrupt/future bytes, quota and stale-tab failure keep existing saves"
-    },
-    {
       "id": "1269437256720c2a5a1a-fc4226d84027c0ad7f4c",
       "project": "chromium-desktop",
       "file": "collage.spec.js",
@@ -223,7 +223,7 @@
   "testFiles": [
     {
       "path": "tests/batch/collage.spec.js",
-      "sha256": "88978899502b67720e135d62f4570199b189ce966d1ac3d8da77e4b77c5ff79b"
+      "sha256": "21f3b0e65b5ba348a6f94248e4a5b4706ad6df57fbc5e1e1d9ad4252249ce937"
     },
     {
       "path": "tests/batch/shared-helpers.js",
