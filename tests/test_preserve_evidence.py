@@ -175,7 +175,6 @@ class PreserveEvidenceTests(unittest.TestCase):
         originals = {
             "test-results/screenshots/phone.png": b"\x89PNG\r\n\x1a\n" + bytes(range(256)),
             "test-results/progress/empty.json": b"",
-            "trial-test-results/review/ll3-export.png": b"canonical trial postcard fixture",
             "test-results/nested/trace.zip": b"PK\x03\x04\x00\xff\n",
             "playwright-report/index.html": b"<p>complete report</p>",
             "preflight-results/geometry/phone.json": b'{"width":390}',

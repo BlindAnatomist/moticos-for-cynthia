@@ -3,24 +3,16 @@ export const MAX_SAVE_BYTES = 512 * 1024;
 export const MAX_MOVES = 1_000_000;
 const POSITION_GROUPS = Object.freeze([Object.freeze([6, 7, 12, 16]), Object.freeze([8, 11, 13, 17])]);
 const RESERVE_UNITS = 12;
+const INITIAL_PIECES = 8;
+const FIRST_INSTANCE = INITIAL_PIECES + 1;
+const MAX_INSTANCE = 2 * MAX_MOVES + FIRST_INSTANCE;
 const own = (value, key) => Object.hasOwn(value, key);
 const integer = (value, min, max) => Number.isSafeInteger(value) && !Object.is(value, -0) && value >= min && value <= max;
 
 // An engine closes over just one bounded, immutable catalog. Saves keep their
 // exact v1 schema; envelope identity comes from the independent storage key.
 export function createMatchingEngine({ catalog, storageKey }) {
-  return createEngine({ catalog, storageKey }, 2);
-}
-
-export function createSingleFamilyTrialEngine({ catalog, storageKey }) {
-  if (catalog?.PACK_ID !== 'trial-light-letter' || storageKey !== 'moticos.matching.trial-light-letter.v1') {
-    throw new TypeError('Trial engines must use their isolated catalog and save key.');
-  }
-  return createEngine({ catalog, storageKey }, 1);
-}
-
-function createEngine({ catalog, storageKey }, familyCount) {
-  if (!catalog || catalog.FAMILIES?.length !== familyCount || catalog.PIECES?.length !== familyCount * 5 ||
+  if (!catalog || catalog.FAMILIES?.length !== 2 || catalog.PIECES?.length !== 10 ||
       catalog.BOARD_SIZE !== 5 || catalog.PACK_VERSION !== 1 || catalog.FAMILY_MATERIAL !== 16 ||
       !catalog.FAMILIES.every(family => family.pieceIds.length === 5) ||
       typeof storageKey !== 'string' || !/^moticos\.matching\.[a-z][a-z0-9-]*\.v1$/.test(storageKey)) {
@@ -28,9 +20,6 @@ function createEngine({ catalog, storageKey }, familyCount) {
   }
   const { BOARD_SIZE, CATALOG, FAMILIES, STARTERS, FINALS, FAMILY_MATERIAL, PACK_VERSION, pieceOf, idOf, nextPiece, previousPiece } = catalog;
   const STORAGE_KEY = storageKey;
-  const INITIAL_PIECES = familyCount * 4;
-  const FIRST_INSTANCE = INITIAL_PIECES + 1;
-  const MAX_INSTANCE = 2 * MAX_MOVES + FIRST_INSTANCE;
   const FAMILY_IDS = Object.freeze(FAMILIES.map(family => family.id));
   const INITIAL_POSITIONS = Object.freeze(Object.fromEntries(FAMILY_IDS.map((id, index) => [id, POSITION_GROUPS[index]])));
   const CELLS = BOARD_SIZE ** 2;

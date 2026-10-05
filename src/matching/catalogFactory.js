@@ -6,28 +6,15 @@ const safeId = id => typeof id === 'string' && /^[a-z][a-z0-9-]*$/.test(id) && !
 
 // Exactly two authored five-picture journeys form an envelope. Routes use
 // explicit pieceIds, so unrelated names or non-sequential IDs are safe.
-export function createMatchingCatalog({ id, rows, families }) {
-  return createCatalog({ id, rows, families }, 2);
-}
-
-// Private, build-gated art trials use one real family, never visually identical
-// aliases masquerading as two families. Public envelope admission stays strict.
-export function createSingleFamilyTrialCatalog(options) {
-  if (options.id !== 'trial-light-letter' || typeof options.artUrl !== 'function') {
-    throw new TypeError('Only the isolated Light / Letter trial is supported.');
-  }
-  return createCatalog(options, 1);
-}
-
-function createCatalog({ id, rows, families, artUrl = asset => `${base}art/${asset}.webp` }, familyCount) {
-  const pieceCount = familyCount * 5;
-  if (!safeId(id) || !Array.isArray(rows) || rows.length !== pieceCount || !Array.isArray(families) || families.length !== familyCount ||
-      new Set(families.map(family => family.id)).size !== familyCount ||
+export function createMatchingCatalog({ id, rows, families, artUrl = asset => `${base}art/${asset}.webp` }) {
+  if (typeof artUrl !== 'function') throw new TypeError('An artwork URL resolver must be a function.');
+  if (!safeId(id) || !Array.isArray(rows) || rows.length !== 10 || !Array.isArray(families) || families.length !== 2 ||
+      new Set(families.map(family => family.id)).size !== 2 ||
       !families.every(family => safeId(family.id) && Array.isArray(family.pieceIds) && family.pieceIds.length === 5)) {
     throw new TypeError('An envelope must contain exactly two distinct five-tier families.');
   }
   const routeIds = families.flatMap(family => family.pieceIds);
-  if (new Set(routeIds).size !== pieceCount || !routeIds.every(safeId) || new Set(rows.map(row => row[0])).size !== pieceCount ||
+  if (new Set(routeIds).size !== 10 || !routeIds.every(safeId) || new Set(rows.map(row => row[0])).size !== 10 ||
       !rows.every(row => {
         if (!Array.isArray(row) || row.length !== 7) return false;
         const [pieceId, familyId, tier, name, shortName, description, asset] = row;

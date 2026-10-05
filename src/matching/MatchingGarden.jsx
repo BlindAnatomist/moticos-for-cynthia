@@ -23,8 +23,8 @@ function Art({ id, catalog, className = '', description = false, lazy = false, i
   const piece = catalog[id];
   return <img className={`cg-art ${className}`} src={piece.art} alt={description ? piece.description : ''} draggable="false" loading={lazy ? 'lazy' : 'eager'} width="768" height="768" data-ink-bounds={inkBounds?.join(',')} />;
 }
-function BoardArt({ id, catalog, bounds = BOARD_ART_BOUNDS }) {
-  const { source: [width, height], crop: [x, y, cropWidth, cropHeight], ink } = bounds[id];
+function BoardArt({ id, catalog }) {
+  const { source: [width, height], crop: [x, y, cropWidth, cropHeight], ink } = BOARD_ART_BOUNDS[id];
   const style = {
     '--mg-crop-ratio': cropWidth / cropHeight,
     '--mg-image-width': `${width / cropWidth * 100}%`,
@@ -58,9 +58,9 @@ function PostcardContent({ pieceId, envelope }) {
     <p className="cg-export-status" role="status">{status}</p>
   </>;
 }
-export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessionCache = new Map(), onChooseEnvelope = null, sharedSound = null, onSoundChoice = null, trial = null } = {}) {
-  const envelope = trial?.envelope ?? getEnvelope(envelopeId);
-  const engine = trial?.engine ?? getMatchingEngine(envelopeId);
+export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessionCache = new Map(), onChooseEnvelope = null, sharedSound = null, onSoundChoice = null } = {}) {
+  const envelope = getEnvelope(envelopeId);
+  const engine = getMatchingEngine(envelopeId);
   const { CATALOG, PIECES, FAMILIES, FINALS, nextPiece, nameOf, act, compatible, mergePairs } = engine;
   const [initial] = useState(() => openEnvelopeSession(engine, sessionCache, browserStorage));
   const [save, setSave] = useState(initial.save);
@@ -73,7 +73,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
   const flightRef = useRef(null);
   const [pasteIndex, setPasteIndex] = useState(null);
   const [overlay, setOverlay] = useState(null);
-  const [notice, setNotice] = useState(trial ? 'Private Light / Letter trial. Match two Light pieces to begin.' : `Start with two matching ${FAMILIES[0].id} pieces or two matching ${FAMILIES[1].id} pieces.`);
+  const [notice, setNotice] = useState(`Start with two matching ${FAMILIES[0].id} pieces or two matching ${FAMILIES[1].id} pieces.`);
   const [storageWarning, setStorageWarning] = useState(initial.unavailable);
   const [storageConflict, setStorageConflict] = useState(initial.conflict);
   const [collectionEnvelopeId, setCollectionEnvelopeId] = useState(envelopeId);
@@ -271,7 +271,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     const pairs = mergePairs(current.board);
     const pair = pairs.sort((a, b) => CATALOG[current.board[b[0]].pieceId].tier - CATALOG[current.board[a[0]].pieceId].tier)[0];
     if (pair) { setHint(pair); setNotice(`Match the two highlighted ${CATALOG[current.board[pair[0]].pieceId].shortName} pieces.`); }
-    else if (completed.length === FINALS.length) setNotice(trial ? 'Light Letter is complete. Keep a postcard or revisit the five discoveries.' : 'Both worlds are complete. Keep any postcard, or open a fresh envelope.');
+    else if (completed.length === 2) setNotice('Both worlds are complete. Keep any postcard, or open a fresh envelope.');
     else { const family = FAMILIES.find(f => current.supply[f.id] > 0); setNotice(family ? `Add a ${family.id} pair from the envelope below the board.` : 'Your matching pieces can be brought together from anywhere on the board.'); }
   }
   function resetRound() {
@@ -299,7 +299,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     : initial.invalid
       ? 'Your existing save could not be read and has been left untouched. This practice board is temporary.'
       : storageWarning ? 'This browser cannot safely save progress. Keep this tab open to continue your board.' : null;
-  return <main className={`cg-page mg-page${largeText ? ' mg-large-text' : ''}${trial ? ' mg-private-trial' : ''}`} data-private-trial={trial ? 'light-letter' : undefined}>
+  return <main className={`cg-page mg-page${largeText ? ' mg-large-text' : ''}`}>
     <div className="cg-shell" ref={shellRef}>
       <header className="cg-header">
         <div className="mg-heading"><div className="mg-title-line"><h1>Moticos<span aria-hidden="true">✳</span></h1><span className="cg-progress" aria-label={`${save.discoveries.length} of ${PIECES.length} pieces discovered`}>{save.discoveries.length}<span>/{PIECES.length}</span></span></div><p>{envelope.subtitle}</p></div>
@@ -308,7 +308,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
           <button className="cg-icon-button" aria-label={soundEnabled ? 'Mute sound' : 'Enable sound'} aria-pressed={soundEnabled} onClick={() => { const enabled = !soundEnabled; perform({ type: 'sound', enabled }); onSoundChoice?.(enabled); if (enabled) audio.playEnabledCue(); }}>{soundEnabled ? <Volume2 /> : <VolumeX />}</button><button className="cg-icon-button" aria-label="How to play" disabled={busy} onClick={() => openOverlay({ type: 'help' })}><HelpCircle /></button>
         </div>
       </header>
-      <h2 className="cg-sr-only">{completed.length === FINALS.length ? (trial ? 'Light Letter, made by you.' : 'Two worlds, made by you.') : 'Match a pair. Grow a world.'}</h2>
+      <h2 className="cg-sr-only">{completed.length === 2 ? 'Two worlds, made by you.' : 'Match a pair. Grow a world.'}</h2>
       <p className="cg-instruction" id="mg-instruction">Match identical pictures: drag, or tap both.</p>
       <div className="mg-board-space">
       <section className="cg-board" aria-label="Matching collage board, five by five" aria-describedby="mg-instruction mg-keyboard-help" ref={boardRef}>
@@ -318,7 +318,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
           const isSource = (drag?.dragging && drag.index === index) || flight?.from === index;
           const hovering = drag?.dragging && drag.magneticIndex === index;
           return <button key={index} type="button" ref={el => { cells.current[index] = el; }} data-matching-cell={index} data-piece-id={tile?.pieceId ?? 'empty'} tabIndex={index === focusIndex ? 0 : -1} onFocus={() => setFocusIndex(index)} onKeyDown={event => onKey(event, index)} aria-label={`${piece ? `${piece.name}, level ${piece.tier}` : 'Empty space'}, row ${Math.floor(index / 5) + 1}, column ${index % 5 + 1}${match ? ', matches selected piece' : ''}`} aria-pressed={selected === index} className={`cg-cell ${tile ? 'has-art' : 'is-empty'}${selected === index ? ' is-selected' : ''}${match ? ' is-match' : ''}${hovering ? ' is-target' : ''}${hint.includes(index) ? ' is-hint' : ''}${isSource ? ' is-source' : ''}${pasteIndex === index ? ' is-pasted' : ''}${flight?.to === index ? ' is-arriving' : ''}`} onPointerDown={event => pointerDown(event, index)} onPointerMove={pointerMove} onPointerUp={event => pointerUp(event, index)} onPointerCancel={event => { if (dragRef.current?.pointerId === event.pointerId) setDrag(null); }} onLostPointerCapture={event => { const d = dragRef.current; if (d?.pointerId === event.pointerId && !d.snapBack) setDrag(null); }} onClick={event => { if (event.detail === 0) choose(index); }}>
-            {piece ? <><span className={`mg-level mg-${piece.familyId}`} aria-hidden="true">{piece.tier}</span><BoardArt catalog={CATALOG} id={piece.id} bounds={trial?.boardArtBounds ?? BOARD_ART_BOUNDS} /><span className="cg-cell-name" aria-hidden="true"><span className="mg-label-wide">{piece.shortName}</span><span className="mg-label-compact">{COMPACT_BOARD_LABELS[piece.id] ?? piece.shortName}</span></span>{piece.tier === 5 && <span className="cg-finale-mark" aria-hidden="true">✳</span>}</> : <span className="cg-empty-mark" aria-hidden="true">·</span>}
+            {piece ? <><span className={`mg-level mg-${piece.familyId}`} aria-hidden="true">{piece.tier}</span><BoardArt catalog={CATALOG} id={piece.id} /><span className="cg-cell-name" aria-hidden="true"><span className="mg-label-wide">{piece.shortName}</span><span className="mg-label-compact">{COMPACT_BOARD_LABELS[piece.id] ?? piece.shortName}</span></span>{piece.tier === 5 && <span className="cg-finale-mark" aria-hidden="true">✳</span>}</> : <span className="cg-empty-mark" aria-hidden="true">·</span>}
           </button>;
         })}
       </section>
@@ -328,7 +328,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
       <div className="mg-supply" aria-label="Clipping envelope">
         {FAMILIES.map(family => <button key={family.id} className={`mg-supply-button mg-${family.id}`} onClick={() => supply(family.id)} disabled={round.supply[family.id] < 2 || emptyCount < 2 || busy || Boolean(drag)} aria-label={`Add ${family.id} pair, ${round.supply[family.id] / 2} pairs left`}><Art catalog={CATALOG} id={family.starterId} /><span><strong>{round.supply[family.id] ? `Add ${family.id} pair` : `${family.shortName} supplied`}</strong><small>{round.supply[family.id] / 2} pairs left</small></span><Plus aria-hidden="true" /></button>)}
       </div>
-      <div className="cg-inspector mg-inspector" aria-live="polite"><Art catalog={CATALOG} id={inspectorPiece.id} /><div><strong>{selectedPiece ? selectedPiece.name : 'Same picture. Next discovery.'}</strong><span>{targetPiece ? `2 ${inspectorPiece.shortName} → ${targetPiece.name}` : 'Finished world. Your postcard is ready.'}</span><small className="cg-sr-only">{selectedPiece ? `Level ${selectedPiece.tier} of 5${targetPiece ? matchingCount ? ' · matching pieces glow' : ` · make another ${selectedPiece.shortName}` : ''}` : FAMILIES.map(family => `${family.shortName} matches ${family.shortName.toLowerCase()}.`).join(' ')}</small></div>{targetPiece && <Art catalog={CATALOG} className="mg-next-art" id={targetPiece.id} />}</div>
+      <div className="cg-inspector mg-inspector" aria-live="polite"><Art catalog={CATALOG} id={inspectorPiece.id} /><div><strong>{selectedPiece ? selectedPiece.name : 'Same picture. Next discovery.'}</strong><span>{targetPiece ? `2 ${inspectorPiece.shortName} → ${targetPiece.name}` : 'Finished world. Your postcard is ready.'}</span><small className="cg-sr-only">{selectedPiece ? `Level ${selectedPiece.tier} of 5${targetPiece ? matchingCount ? ' · matching pieces glow' : ` · make another ${selectedPiece.shortName}` : ''}` : `${FAMILIES[0].shortName} matches ${FAMILIES[0].shortName.toLowerCase()}. ${FAMILIES[1].shortName} matches ${FAMILIES[1].shortName.toLowerCase()}.`}</small></div>{targetPiece && <Art catalog={CATALOG} className="mg-next-art" id={targetPiece.id} />}</div>
       <nav className="cg-tools" aria-label="Board tools"><button className="cg-tool" onClick={undo} disabled={!save.history.length || busy}><Undo2 /><span>Undo</span></button><button className="cg-tool" onClick={cut} disabled={!selectedPiece || selectedPiece.tier < 2 || !emptyCount || busy}><Scissors /><span>Cut</span></button><button className="cg-tool" onClick={showHint} disabled={busy}><Lightbulb /><span>Hint</span></button><button className="cg-tool" onClick={() => openOverlay({ type: 'collection' })} disabled={busy}><BookOpen /><span>Collection</span></button></nav>
       <div className="cg-notice" role="status" aria-live="polite">{emptyCount < 2 && Object.values(round.supply).some(amount => amount > 0) ? 'Merge matching pieces to make room for a fresh pair.' : notice}</div>
       <footer className="cg-footer">
@@ -340,11 +340,11 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     </div>
     {overlay && <CollectionDialog trapFocus title={overlay.type === 'postcard' ? 'Your correspondence' : overlay.type === 'collection' ? 'Your collection' : overlay.type === 'envelopes' ? 'Your envelopes' : overlay.type === 'reset' ? 'Open a fresh envelope?' : overlay.type === 'save' ? 'Save protection' : 'Two of a kind'} onClose={() => setOverlay(null)} className={`mg-dialog${overlay.type === 'postcard' ? ' cg-dialog-postcard' : ''}`}>
       {overlay.type === 'save' && <div className="cg-help"><p className="cg-save-warning" role="alert">{saveAlert}</p>{initial.invalid && typeof initial.sourceRaw === 'string' && <button className="cg-button" onClick={downloadOriginal}>Download original save</button>}</div>}
-      {overlay.type === 'postcard' && <PostcardContent key={overlay.pieceId} pieceId={overlay.pieceId} envelope={trial?.envelope ?? getEnvelope(overlay.envelopeId ?? envelopeId)} />}
-      {overlay.type === 'help' && (trial ? trial.renderHelp() : <div className="cg-help"><div className="mg-help-equation"><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><span>+</span><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><ArrowRight /><Art catalog={CATALOG} id={FAMILIES[0].pieceIds[1]} /></div><p>Two identical pictures make one new piece. {FAMILIES[0].shortName} matches {FAMILIES[0].shortName.toLowerCase()}, {FAMILIES[1].shortName.toLowerCase()} matches {FAMILIES[1].shortName.toLowerCase()}, and two {CATALOG[FAMILIES[0].pieceIds[1]].name} pieces make {CATALOG[FAMILIES[0].pieceIds[2]].name}.</p><ol><li>Drag one piece onto its match, or tap a piece and then its match. Matching pieces glow.</li><li>The two buttons below the board add a matching pair from your envelope. Each path has enough pieces to reach level 5. There is no waiting or payment.</li><li>Keep matching your new pieces. Level 3 earns your first postcard; levels 4 and 5 reveal more. Open a postcard whenever you like, then return to the same board.</li><li>Undo takes back a move, including a supplied pair. Cut turns a selected made piece into two of its previous level when there is space.</li></ol><p>Invalid matches cost nothing. Every discovered picture stays in your collection, including its postcard, even after a merge, Cut, Undo or fresh envelope.</p><p>Each envelope has ten distinct pieces and six postcards to discover. Use Envelopes to visit another journey; each board and its Undo history wait for you. More of the collection is still being made.</p><h3>Keyboard</h3><p>Tab to the board, use arrow keys, and press Enter or Space to select and match. Escape clears the selection.</p></div>)}
+      {overlay.type === 'postcard' && <PostcardContent key={overlay.pieceId} pieceId={overlay.pieceId} envelope={getEnvelope(overlay.envelopeId ?? envelopeId)} />}
+      {overlay.type === 'help' && <div className="cg-help"><div className="mg-help-equation"><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><span>+</span><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><ArrowRight /><Art catalog={CATALOG} id={FAMILIES[0].pieceIds[1]} /></div><p>Two identical pictures make one new piece. {FAMILIES[0].shortName} matches {FAMILIES[0].shortName.toLowerCase()}, {FAMILIES[1].shortName.toLowerCase()} matches {FAMILIES[1].shortName.toLowerCase()}, and two {CATALOG[FAMILIES[0].pieceIds[1]].name} pieces make {CATALOG[FAMILIES[0].pieceIds[2]].name}.</p><ol><li>Drag one piece onto its match, or tap a piece and then its match. Matching pieces glow.</li><li>The two buttons below the board add a matching pair from your envelope. Each path has enough pieces to reach level 5. There is no waiting or payment.</li><li>Keep matching your new pieces. Level 3 earns your first postcard; levels 4 and 5 reveal more. Open a postcard whenever you like, then return to the same board.</li><li>Undo takes back a move, including a supplied pair. Cut turns a selected made piece into two of its previous level when there is space.</li></ol><p>Invalid matches cost nothing. Every discovered picture stays in your collection, including its postcard, even after a merge, Cut, Undo or fresh envelope.</p><p>Each envelope has ten distinct pieces and six postcards to discover. Use Envelopes to visit another journey; each board and its Undo history wait for you. More of the collection is still being made.</p><h3>Keyboard</h3><p>Tab to the board, use arrow keys, and press Enter or Space to select and match. Escape clears the selection.</p></div>}
       {overlay.type === 'reset' && <div className="cg-help"><p>This starts {envelope.title} again with a full envelope and clears the current board and Undo history. Your discovered art and postcards stay in the collection.</p><button className="cg-button cg-primary" onClick={resetRound}><RotateCcw size={18} /> Start fresh</button></div>}
       {overlay.type === 'envelopes' && <EnvelopeChooser currentId={envelopeId} activeSave={save} sessionCache={sessionCache} onChoose={id => { if (id === envelopeId) setOverlay(null); else onChooseEnvelope?.(id); }} />}
-      {overlay.type === 'collection' && (trial ? trial.renderCollection({ save, onPostcard: id => setOverlay({ type: 'postcard', pieceId: id }) }) : <CollectionContent envelopeId={collectionEnvelopeId} sessionCache={sessionCache} activeSave={save} activeId={envelopeId} onSelect={setCollectionEnvelopeId} onPostcard={id => setOverlay({ type: 'postcard', pieceId: id, envelopeId: collectionEnvelopeId })} />)}
+      {overlay.type === 'collection' && <CollectionContent envelopeId={collectionEnvelopeId} sessionCache={sessionCache} activeSave={save} activeId={envelopeId} onSelect={setCollectionEnvelopeId} onPostcard={id => setOverlay({ type: 'postcard', pieceId: id, envelopeId: collectionEnvelopeId })} />}
 
     </CollectionDialog>}
   </main>;

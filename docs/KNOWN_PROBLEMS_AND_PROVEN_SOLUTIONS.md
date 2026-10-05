@@ -14,7 +14,7 @@ When the same connector, transfer path, command, workflow, or deployment mechani
 
 For drag-and-drop defects, inspect the actual target geometry, pointer capture, animation state, responsive dimensions, and delayed state transitions. Do not patch only the visible symptom.
 
-The blind owner must not be asked to validate visual alignment or appearance that can be inspected through screenshots and browser tooling.
+Visual alignment and appearance must be checked directly through screenshots and browser tooling.
 
 ## Proven incidents
 
@@ -274,4 +274,4 @@ The scoped rescue in run `37254210619` successfully recovered the original ZIP i
 
 Status: `proven selection repair; continuation execution pending`
 
-Run `37254210619` produced 170 terminal passes, two interrupted cases and 74 unstarted cases. Its `.last-run.json` reported `timedout` but an empty failed-test array. Derive unresolved coverage from the full collected identity set minus zero-retry terminal passes, including in-flight cases. Pin runtime, artwork, dependencies and test bytes before carrying coverage forward. Use an explicit Playwright test-list and fail-closed identity/terminal-event checks; do not infer completeness from a successful subset or rerun all completed cases blindly. See `LANTERN_BROWSER_CONTINUATION.md`.
+Run `37254210619` produced 170 terminal passes, two interrupted cases and 74 unstarted cases. Its `.last-run.json` reported `timedout` but an empty failed-test array. Derive unresolved coverage from the full collected identity set minus zero-retry terminal passes, including in-flight cases. Pin runtime, artwork, dependencies and test bytes before carrying coverage forward. Use an explicit Playwright test-list and fail-closed identity/terminal-event checks; do not infer completeness from a successful subset or rerun all completed cases blindly.

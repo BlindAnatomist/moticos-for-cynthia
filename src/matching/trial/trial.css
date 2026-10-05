@@ -1,3 +1,0 @@
-/* Only the build-gated private route uses a single supply button. */
-.mg-private-trial .mg-supply { grid-template-columns: minmax(0, 1fr); }
-.mg-trial-ancestry { line-height: 1.5; }

@@ -16,7 +16,7 @@ This is a public, zero-spend repository. Standard GitHub-hosted runners may be u
 
 ## Visual testing authority
 
-Moticos is a visual game for Cynthia, not a VoiceOver product for the owner. Automated browser interaction and screenshots at desktop and mobile sizes are required before the owner is asked to involve Cynthia. The agent must inspect the screenshots and report visual defects rather than asking the blind owner to perform visual quality assurance.
+Moticos is a visual game for Cynthia. Automated browser interaction and screenshots at desktop and mobile sizes are required before the owner is asked to involve Cynthia. The agent must inspect the screenshots and report visual defects rather than transferring visual quality assurance to the owner.
 
 ## Current workflow purpose
 

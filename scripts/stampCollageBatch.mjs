@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]);
+const source=[...walk('src'),...walk('public'),'package.json','package-lock.json','vite.config.js','index.html'].sort().map(file=>({file,sha256:sha(file)}));
+const sourceFingerprint=createHash('sha256').update(JSON.stringify(source)).digest('hex');
+const receipt=JSON.parse(fs.readFileSync('evidence/collage-batch/asset-receipt.json'));
+const emitted=walk('dist-batch/assets').map(file=>({file:file.slice('dist-batch/'.length),sha256:sha(file)}));
+const assets=receipt.records.map(r=>{const matches=emitted.filter(a=>a.sha256===r.canonicalWebpSha256);assert.equal(matches.length,1,`Exact emitted canonical asset: ${r.id}`);return {id:r.id,...matches[0]};});
+assert.equal(assets.length,40);
+let index=fs.readFileSync('dist-batch/index.html','utf8');
+assert(!index.includes('moticos-private-collage-source'));
+index=index.replace('</head>',`<meta name="moticos-private-collage-source" content="${sourceFingerprint}" />\n</head>`);
+fs.writeFileSync('dist-batch/index.html',index);
+fs.writeFileSync('dist-batch/batch-manifest.json',JSON.stringify({kind:'private-forty-piece-collage-batch',baselineCommit:'3739e1d4eb38ef03eac7badec1821dfb4e6d1d01',sourceFingerprint,entryScripts:[...index.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]),assets,entryFiles:emitted.filter(a=>/\.(js|css)$/.test(a.file)),source},null,2)+'\n');
+console.log(`Private collage source fingerprint: ${sourceFingerprint}`);

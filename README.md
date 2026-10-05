@@ -1,31 +1,23 @@
-# Moticos for Cynthia
+# Moticos
 
-Moticos is a collage-inspired merging game. Drag one clipping onto an identical clipping to combine them into the next form.
+A visual, identical-picture merge game with authored collage families. Two copies of one picture advance to the next picture in the same five-stage chain.
 
-## Development
+This branch is an eighty-piece verification candidate: the existing forty pieces plus forty original collage artworks in four new envelopes. The ordinary build retains the forty-piece collection; the explicitly enabled batch build includes all eighty. Publication of this branch is not evidence that browser testing or preview deployment has passed.
 
-Use Node.js 22. Install the dependency versions recorded in `package-lock.json`:
+## Local checks
 
-```bash
-npm ci
-npm run dev
-```
+- npm ci
+- npm test
+- npm run test:batch
+- npm run validate:matching
+- npm run validate:catalog
+- npm run build
+- npm run build:batch
 
-## Verification
+The batch browser suite is partitioned into twelve cases per browser profile, thirty-six total. Execution requires the scoped verification guard and exactly one --project=NAME. Listing starts no browser. Workflows retain clean automated screenshots, postcard exports, geometry and failure evidence with short retention.
 
-```bash
-npm test
-npm run build
-npx playwright install --with-deps webkit chromium
-npm run test:e2e
-```
+## Preservation
 
-The first playable is being developed on `work/fresh-moticos-playable`. It is a fresh implementation based on the supplied React component, not a resurrection of the earlier experiment.
+The existing artwork, save keys, engine, input behavior and local save protections are preserved. New envelopes have distinct save keys. No different-object recipes, paid services, timers or music were added. The new imagery is original AI-generated collage inspired by associative found-print methods; it is not a reproduction or endorsement by Ray Johnson.
 
-## Matching garden candidate
-
-The default route runs the corrected matching-piece garden: two five-step illustrated paths, a finite pair supply, and postcards from level 3. Match two identical pictures to make the next form. Open `?classic` for the unchanged eight-tier game and `?gallery` for its original gallery. The superseded recipe study remains isolated at `?recipe-study` for regression testing. See [matching design and verification](docs/MATCHING_CANDIDATE.md) and [engine contracts](docs/MATCHING_ENGINE.md).
-
-## Matching collection expansion (local candidate)
-
-The accepted version 3 contains Garden Correspondence and Moonlit Passage. This private candidate adds Riverside Reverie: three independent ten-piece envelopes and eighteen earnable postcards. The Envelopes control resumes each board and its own Undo history. Collection browsing does not change the active board. Both earlier envelopes and saves remain compatible. Live version 3 stays unchanged until the candidate passes its separate browser and publication gates. See [third-envelope scope and verification](docs/THIRD_ENVELOPE_CANDIDATE.md); [the accepted second-envelope record](docs/MATCHING_COLLECTION_EXPANSION.md) remains for provenance.
+A successful eighty-piece gate does not establish target-scale storage, performance or play experience for a future three-hundred-piece collection. No user history is pruned by this change.

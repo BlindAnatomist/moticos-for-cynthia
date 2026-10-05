@@ -13,3 +13,12 @@ preflight-report/
 prior-evidence/
 bounded-evidence/
 __pycache__/
+
+# Private forty-piece candidate verification output.
+dist-batch/
+batch-test-results/
+batch-playwright-report/
+
+# Raw local verification evidence lives in the private checkpoint.
+evidence/collage-batch/*
+!evidence/collage-batch/asset-receipt.json

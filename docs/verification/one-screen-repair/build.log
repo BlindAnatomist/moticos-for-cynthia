@@ -1,17 +1,0 @@
-
-> moticos-for-cynthia@0.1.0 build
-> vite build
-
-vite v8.1.5 building client environment for production...
-[2Ktransforming...✓ 2752 modules transformed.
-rendering chunks...
-computing gzip size...
-dist/index.html                              0.57 kB │ gzip:   0.33 kB
-dist/assets/CollectionGarden-B7L_3Qx8.css    9.23 kB │ gzip:   2.76 kB
-dist/assets/MoticosMerge-d5WeRR1G.css       12.92 kB │ gzip:   3.61 kB
-dist/assets/index-DUEL4igQ.css              22.40 kB │ gzip:   5.45 kB
-dist/assets/CollectionGarden-MJFn9MBp.js    20.72 kB │ gzip:   7.68 kB
-dist/assets/MoticosMerge-DqZ0IuZB.js        22.57 kB │ gzip:   7.95 kB
-dist/assets/index-DQyR9q3b.js              501.34 kB │ gzip: 145.00 kB
-
-✓ built in 323ms

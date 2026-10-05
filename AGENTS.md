@@ -18,9 +18,8 @@ Do not rely on conversation history alone when repository evidence is available.
 
 ## Product authority
 
-Moticos is a visual, collage-inspired game for Cynthia. It is not being designed as a VoiceOver game for the owner.
+Moticos is a visual, collage-inspired game for Cynthia. Visual verification belongs to the engineering and review process:
 
-The owner is blind. Therefore:
 
 - Perform as much functional, browser, responsive, visual, and screenshot testing as the available tools permit before asking the owner or Cynthia to test.
 - Inspect screenshots directly and describe material visual findings in words.
