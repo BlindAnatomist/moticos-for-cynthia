@@ -24,7 +24,7 @@
   "pinnedFiles": [
     {
       "path": "tests/live/collage-live.spec.js",
-      "sha256": "b57e1fea4947aa5aa30d236bdb1fa9c55b0d631979b85967f6c4440a7ddfd953"
+      "sha256": "0ec68dc52381c6bc1b4826d7743c47a46509c95afac87a7d758004fc9183ab54"
     },
     {
       "path": "tests/live/shared-helpers.js",

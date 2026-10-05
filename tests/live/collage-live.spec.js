@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
-import { readFile, mkdir } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { activate, boardIds, clearSelection, dragTo, idle, imagesReady, pieces, cell, closeDialog, assertMatchingViewportFit, shot } from './shared-helpers.js';
 const contract = JSON.parse(readFileSync('tests/verification/collage-live-contract.json', 'utf8'));
@@ -60,6 +60,30 @@ async function verifyCompactLayout(page, info) {
   await page.setViewportSize(original);
 }
 
+async function prepareReloadScreenshot(page, info, expectedBoard) {
+  await idle(page);
+  const images = page.locator('.cg-board img');
+  const expectedPieces = expectedBoard.filter(id => id !== 'empty');
+  expect(expectedPieces.length).toBeGreaterThan(0);
+  await expect(images).toHaveCount(expectedPieces.length);
+  await expect.poll(() => images.evaluateAll(nodes => nodes.length > 0 && nodes.every(image => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0))).toBe(true);
+  const readiness = await images.evaluateAll(async nodes => Promise.all(nodes.map(async image => {
+    const source = image.currentSrc;
+    let decoded = false, decodeError = null;
+    try { await image.decode(); decoded = true; } catch (error) { decodeError = String(error.message ?? error); }
+    return { pieceId: image.closest('[data-piece-id]')?.dataset.pieceId, source,
+      complete: image.complete, naturalWidth: image.naturalWidth, naturalHeight: image.naturalHeight,
+      decoded, decodeError, connected: image.isConnected, sameSource: image.currentSrc === source };
+  })));
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const path = `batch-test-results/screenshots/${info.project.name}-matching-hosted-real-play-readiness.json`;
+  await mkdir('batch-test-results/screenshots', { recursive: true });
+  await writeFile(path, JSON.stringify({ profile: info.project.name, stage: 'after-reload-before-screenshot', paintFrames: 2, images: readiness }, null, 2) + '\n');
+  await info.attach('hosted-real-play-readiness', { path, contentType: 'application/json' });
+  expect(readiness.map(image => image.pieceId).sort()).toEqual([...expectedPieces].sort());
+  expect(readiness.every(image => image.source && image.complete && image.naturalWidth > 0 && image.naturalHeight > 0 && image.decoded && image.connected && image.sameSource)).toBe(true);
+}
+
 async function verifyRealPlayAndReload(page, info) {
   await page.goto(newRoute); await earnPostcard(page, info);
   const before = await raw(page, newKey), saved = JSON.parse(before), board = await boardIds(page);
@@ -69,6 +93,7 @@ async function verifyRealPlayAndReload(page, info) {
   await activate(page.getByRole('button', { name: 'Undo', exact: true }), info);
   expect(JSON.parse(await raw(page, newKey)).round).toEqual(saved.round);
   await page.reload(); expect(await raw(page, newKey)).toBe(before); expect(await boardIds(page)).toEqual(board);
+  await prepareReloadScreenshot(page, info, board);
   await shot(page, info, 'hosted-real-play', { fullPage: false });
 }
 
