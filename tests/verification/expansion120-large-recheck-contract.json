@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "purpose": "one-large-profile-recheck-with-explicit-prior-profile-provenance",
+  "runtimeFingerprint": "4a1a82130f519282ca4634049ede94a8fb8ce34c930eab4cbe6df895a85d5848",
+  "priorRunId": "37378736660",
+  "priorRunCommit": "eae031dc11e3adb5176ef72806a6e9d59acc4ea7",
+  "priorTree": "af8cc16e2d34166326fda815b32bc2753777104b",
+  "priorContractSha256": "696d3e7c4f97cdf62d9f605a4c810ab772dd7139c73e934060b6adac0d632fa7",
+  "priorHarnessFingerprint": "18b231f20680af10f80ae9d2624863892ed737e4415cc93d667ea83b30cb004a",
+  "priorBuildFilesFingerprint": "56236cf4c68a4cdb7a699bccd395f60b839d082ebe1847cd5e2c7f97421f1850",
+  "retainedProfiles": [
+    "chromium-desktop",
+    "webkit-iphone-13"
+  ],
+  "recheckedProfile": "webkit-iphone-large",
+  "buildJobMinutes": 7,
+  "browserJobMinutes": 15,
+  "maxRunnerMinutes": 22,
+  "maxUploadBytes": 136314880,
+  "retentionDays": 1
+}

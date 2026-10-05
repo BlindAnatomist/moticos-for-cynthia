@@ -57,4 +57,21 @@ class ContentAddressedTests(unittest.TestCase):
         self.assertEqual(index['logicalFiles'],1);self.assertEqual(index['rawBytes'],0)
         self.assertEqual(index['source_members'][0]['sha256'],hashlib.sha256(b'').hexdigest())
 
+    def test_failure_route_preserves_all_generated_diagnostic_trace_and_image_bytes(self):
+        import io, zipfile
+        trace=io.BytesIO()
+        with zipfile.ZipFile(trace,'w') as archive:archive.writestr('test.trace','{"type":"before","apiName":"locator.tap"}\n')
+        files={
+            'batch-test-results/case/trace.zip':trace.getvalue(),
+            'batch-test-results/progress/webkit-iphone-large-collections.jsonl':b'{"event":"image-start","image":9}\n',
+            'batch-test-results/case/failure-diagnosis/failure-state.json':b'{"observations":[{"name":"after-image","value":{"modal":true}}]}',
+            'batch-test-results/case/failure-diagnosis/failure-view.png':b'exact raster fixture',
+            'batch-test-results/case/test-failed-1.png':b'exact raster fixture',
+            'batch-test-results/.playwright-artifacts-0/traces/raw.trace':b'raw action trace bytes',
+        }
+        for path,data in files.items():self.put(path,data)
+        proof=cas.pack(self.source,self.base/'package');self.assertEqual(proof['logicalFiles'],len(files))
+        cas.restore(self.base/'package/parts',self.base/'restored')
+        self.assertEqual({p.relative_to(self.base/'restored').as_posix():p.read_bytes() for p in (self.base/'restored').rglob('*') if p.is_file()},files)
+
 if __name__=='__main__':unittest.main()

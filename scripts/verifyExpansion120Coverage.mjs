@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {verifyCollectionJournal} from './collectionEvidence.mjs';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -186,6 +187,8 @@ function main() {
   Object.assign(proof, { runCommit: process.env.GITHUB_SHA ?? null, sourceFingerprint: manifest.sourceFingerprint,
     visualEvidence:verifyVisualEvidence(contract,profile,'batch-test-results'),
     exports: verifyExports(contract, profile, 'batch-test-results/review') });
+  const collectionJournal = readFileSync(`batch-test-results/progress/${profile}-collections.jsonl`, 'utf8').trim().split('\n').map(line => JSON.parse(line));
+  proof.collectionProgress = verifyCollectionJournal(collectionJournal, profile, contract.envelopeIds);
   writeFileSync(output, JSON.stringify(proof, null, 2) + '\n');
   console.log(`${profile}: exactly 18 terminal zero-retry passes and 24 actual postcard exports.`);
 }

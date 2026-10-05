@@ -31,11 +31,7 @@
   "testFiles": [
     {
       "path": "tests/expansion-browser/collage.spec.js",
-      "sha256": "9d23227c46e27b3c29f25eb3cf49ac5c6e18aea3ddf099200d52dac7268913de"
-    },
-    {
-      "path": "tests/expansion-browser/collection-evidence.js",
-      "sha256": "ff487bb7e6231db5961fe22e0a1a6989b512083bcba3a53cefd6faab15067615"
+      "sha256": "f4c3ece5c0da9d2693b30b3b4fa7f66d48111cd5578d8edaf4e14c8ed2e35745"
     },
     {
       "path": "tests/expansion-browser/fullDiscoveryFixture.js",
@@ -43,11 +39,11 @@
     },
     {
       "path": "tests/expansion-browser/save-capacity.spec.js",
-      "sha256": "c5c7b49974afc3932d52eeafe73374d3acf5f702ac3f0022a4157515557fcc9d"
+      "sha256": "998ffe41a2912b3ba1ec73b698d6b5e928acd74b856e4c293c53325a386cd063"
     },
     {
       "path": "tests/expansion-browser/shared-helpers.js",
-      "sha256": "51e0cf0ec7ac84ede20a9e86f56a947aaf6ba3f6a3f7f11ce1710106d2eb67a0"
+      "sha256": "6cba9d5c4c5eb3be4bb8873f03a3f62c7872d5e30f832a50ca6352c70b472ee1"
     }
   ],
   "cases": [

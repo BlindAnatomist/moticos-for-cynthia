@@ -633,7 +633,7 @@ export async function recordBrowserEnvironment(browser, info, scenarioFile) {
   const record={profile:info.project.name,scenarioFile,browserName:info.project.use.browserName,browserVersion:browser.version(),
     playwrightVersion:packageJson.version,nodeVersion:process.version,platform:process.platform,architecture:process.arch,
     viewport:info.project.use.viewport??null,deviceScaleFactor:info.project.use.deviceScaleFactor??1,
-    runCommit:process.env.GITHUB_SHA??null,guardedArguments:JSON.parse(process.env.MOTICOS_120_GUARDED_ARGV??'null'),
-    browserBudgetMs:Number(process.env.MOTICOS_120_BROWSER_BUDGET_MS??540000)};
+    runCommit:process.env.GITHUB_SHA??null,runId:process.env.GITHUB_RUN_ID??null,runAttempt:Number(process.env.GITHUB_RUN_ATTEMPT??0),guardedArguments:JSON.parse(process.env.MOTICOS_120_GUARDED_ARGV??'null'),
+    browserBudgetMs:Number(process.env.MOTICOS_120_BROWSER_BUDGET_MS??540000),tracePolicy:info.project.use.trace};
   await writeFile(`batch-test-results/environment/${info.project.name}-${scenarioFile}.json`,JSON.stringify(record,null,2)+'\n');
 }

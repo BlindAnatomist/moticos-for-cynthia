@@ -1,5 +1,7 @@
 # Bounded private 120-piece browser gate
 
+Historical initial three-profile plan. The focused continuation is specified in [expansion-120-large-recheck.md](expansion-120-large-recheck.md).
+
 Status: prepared locally; no browser run, public write, GitHub Action, merge or deployment is authorized by this file.
 
 ## Exact scope

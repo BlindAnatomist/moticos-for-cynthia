@@ -1,5 +1,6 @@
 import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import {test,expect} from '@playwright/test';
+import {preserveFailureDiagnosis} from './collection-evidence.js';
 import {readFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {ENVELOPES as BASE_ENVELOPES} from '../../src/matching/batch/registry.js';
@@ -35,7 +36,7 @@ async function exportCard(page,info,e,id){
  await expect(page.locator('.cg-export-status')).toContainText('Safari Downloads in the Files app');await info.attach(`${id}-actual-export`,{path,contentType:'image/png'});await shot(page,info,`${id}-postcard`);await closeDialog(page,info);return createHash('sha256').update(bytes).digest('hex');
 }
 test.beforeAll(async({browser},info)=>recordBrowserEnvironment(browser,info,'collage'));
-const errors=new WeakMap();test.beforeEach(async({page})=>{errors.set(page,[]);page.on('pageerror',e=>errors.get(page).push(e.message));});test.afterEach(async({page})=>expect(errors.get(page)).toEqual([]));
+const errors=new WeakMap();test.beforeEach(async({page})=>{errors.set(page,[]);page.on('pageerror',e=>errors.get(page).push(e.message));});test.afterEach(async({page},info)=>{try{expect(errors.get(page)).toEqual([]);}finally{await preserveFailureDiagnosis(page,info,errors.get(page).length > 0);}});
 
 // Run the uncertain stale-tab gate first, before expensive picture journeys.
 test('corrupt/future bytes, quota and stale-tab failure keep existing saves',async({page},info)=>{

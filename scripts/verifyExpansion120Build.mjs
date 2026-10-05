@@ -69,6 +69,8 @@ export function harnessInventory(root) {
   const files = ['playwright.expansion120.config.js','.github/workflows/verify-expansion-120.yml',
     'scripts/verifyExpansion120Coverage.mjs','scripts/verifyExpansion120Build.mjs','scripts/serveExpansion120.mjs',
     'scripts/stampExpansion.mjs','scripts/playwrightInvocation.mjs','scripts/checkWorkerReload.mjs',
+    'scripts/collectionEvidence.mjs','scripts/verifyExpansion120Recheck.mjs',
+    'tests/verification/expansion120-prior-coverage-contract.json','tests/verification/expansion120-large-recheck-contract.json',
     'scripts/progress-reporter.mjs','scripts/batch-progress-reporter.mjs','scripts/preserveExpansion120Evidence.py',
     'scripts/preserveEvidence.py','scripts/restoreCollageEvidence.py','scripts/contentAddressedEvidence.py','scripts/packEvidenceDiagnosis.py',
     'tests/verification/expansion120-coverage-contract.json','evidence/expansion-assets/asset-receipt.json',

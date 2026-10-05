@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { COLLECTION_TIMEOUT_MS, openCollectionJournal, collectionStateViolations } from '../../scripts/collectionEvidence.mjs';
+import { preserveFailureDiagnosis, collectionState } from './collection-evidence.js';
 import { mkdir } from 'node:fs/promises';
 import { ENVELOPES, getMatchingEngine } from '../../src/matching/expansion/registry.js';
 import { fullDiscoveryDenseSave } from './fullDiscoveryFixture.js';
@@ -21,7 +23,7 @@ async function expectBoard(page, save) { await expect.poll(() => boardIds(page))
 test.beforeAll(async({browser},info)=>recordBrowserEnvironment(browser,info,'save-capacity'));
 const errors = new WeakMap();
 test.beforeEach(({ page }) => { errors.set(page, []); page.on('pageerror', error => errors.get(page).push(error.message)); });
-test.afterEach(({ page }) => expect(errors.get(page)).toEqual([]));
+test.afterEach(async ({ page }, info) => { try { expect(errors.get(page)).toEqual([]); } finally { await preserveFailureDiagnosis(page, info, errors.get(page).length > 0); } });
 
 test('legacy history loads without migration, then exact Undo survives compact reload', async ({ page }, info) => {
   await seed(page, legacy); await expectBoard(page, dense); expect(await raw(page)).toBe(legacy);
@@ -34,25 +36,40 @@ test('legacy history loads without migration, then exact Undo survives compact r
 });
 
 test('all twelve envelope histories and read-only collection survive compact loading', async ({ page }, info) => {
+  test.setTimeout(COLLECTION_TIMEOUT_MS);
+  const record = openCollectionJournal(`batch-test-results/progress/${info.project.name}-collections.jsonl`, info.project.name, ENVELOPES.map(e => e.id));
   const entries = ENVELOPES.map((envelope, index) => { const engine = getMatchingEngine(envelope.id), save = fullDiscoveryDenseSave(engine, index + 90); return { id: envelope.id, key: engine.STORAGE_KEY, raw: engine.serializeStoredSave(save), save }; });
-  await page.goto('/'); await page.evaluate(entries => { for (const entry of entries) localStorage.setItem(entry.key, entry.raw); }, entries);
+  await page.goto('/'); await page.evaluate(entries => { for (const entry of entries) localStorage.setItem(entry.key, entry.raw); }, entries); record('seeded');
   const measurements = [];
   for (const entry of entries) {
-    const start = performance.now(); await page.goto(`/?envelope=${entry.id}`); await expectBoard(page, entry.save);
-    await activate(page.getByRole('button', { name: 'Collection', exact: true }), info); await expect(page.getByRole('dialog')).toBeVisible();
-    const openedMs = performance.now() - start;
-    const dialog = page.getByRole('dialog'), pictures = dialog.locator('.cg-collection-piece img');
+    const details = {envelope: entry.id}, start = performance.now(); record('navigation-start', details);
+    await page.goto(`/?envelope=${entry.id}`); await expectBoard(page, entry.save); record('board-ready', details);
+    record('open-start', details); await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
+    const dialog = page.getByRole('dialog'); await expect(dialog).toBeVisible(); await expect(dialog).toHaveJSProperty('open', true);
+    record('dialog-open', details); const openedMs = performance.now() - start;
+    const pictures = dialog.locator('.cg-collection-piece img');
     expect(await pictures.count()).toBe(10);
     expect(await dialog.getByRole('button', { name: 'Open postcard', exact: true }).count()).toBe(6);
-    // Lazy artwork must actually load before inspecting the visible collection.
-    for (const picture of await pictures.all()) { await picture.scrollIntoViewIfNeeded(); await imagesReady(picture); await picture.evaluate(image => image.decode()); }
+    // Preserve every real lazy-image decode, with the last in-flight image on disk.
+    for (const [image, picture] of (await pictures.all()).entries()) {
+      record('image-start', {...details, image}); await picture.scrollIntoViewIfNeeded(); await imagesReady(picture);
+      const decoded = await picture.evaluate(async image => { await image.decode(); return {source:image.currentSrc || image.src,naturalWidth:image.naturalWidth,naturalHeight:image.naturalHeight}; });
+      record('image-decoded', {...details, image, ...decoded});
+    }
     await pictures.first().scrollIntoViewIfNeeded(); await expect(dialog).toBeVisible();
+    const before = await collectionState(page); record('capture-before', {...details, state: before});
+    expect(collectionStateViolations(before, entry.id), `Before capture: ${entry.id}`).toEqual([]);
     await capture(page,info,`collection-${entry.id}`);
-    await closeDialog(page, info); measurements.push({ envelope: entry.id, navigationAndCollectionOpenWallMs: openedMs });
+    const after = await collectionState(page); record('capture-after', {...details, state: after, path:`batch-test-results/storage-views/${info.project.name}-collection-${entry.id}.png`});
+    expect(collectionStateViolations(after, entry.id), `After capture: ${entry.id}`).toEqual([]);
+    expect(after.images).toEqual(before.images); expect(after.rect).toEqual(before.rect); expect(after.scrollTop).toBe(before.scrollTop);
+    await closeDialog(page, info); record('closed', details);
+    measurements.push({ envelope: entry.id, navigationAndCollectionOpenWallMs: openedMs, completeEnvelopeWallMs: performance.now() - start });
   }
   const actual = await page.evaluate(entries => entries.map(e => localStorage.getItem(e.key)), entries);
-  expect(actual).toEqual(entries.map(e => e.raw));
+  expect(actual).toEqual(entries.map(e => e.raw)); record('saved-bytes-verified', {count: entries.length});
   await info.attach('collection-measurements', { body: JSON.stringify(measurements, null, 2), contentType: 'application/json' });
+  record('complete');
 });
 
 test('quota failure keeps original bytes and the current temporary Undo board', async ({ page }, info) => {

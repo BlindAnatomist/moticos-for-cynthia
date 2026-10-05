@@ -1,9 +1,9 @@
-name: Verify private 120-piece Moticos candidate
+name: Verify large-iPhone 120-piece Moticos recheck
 
 # One authorized public branch only. No PR, manual-dispatch, or generic trigger.
 on:
   push:
-    branches: [verify/expansion-120-20261005]
+    branches: [verify/expansion-120-large-20261005]
 
 permissions:
   contents: read
@@ -13,7 +13,7 @@ defaults:
     shell: bash
 
 concurrency:
-  group: moticos-expansion-120-20261005
+  group: moticos-expansion-120-large-20261005
   cancel-in-progress: false
 
 jobs:
@@ -38,13 +38,13 @@ jobs:
           npm run build 2>&1 | tee preflight-results/build-normal.log
           npm run build:batch 2>&1 | tee preflight-results/build-batch.log
           npm run build:expansion 2>&1 | tee preflight-results/build-expansion.log
-          MOTICOS_120_BROWSER_APPROVED=1 MOTICOS_120_BROWSER_BUDGET_MS=480000 node scripts/checkWorkerReload.mjs playwright.expansion120.config.js pass preflight-results/worker-reload-proof.json
+          MOTICOS_120_LARGE_RECHECK_APPROVED=1 MOTICOS_120_BROWSER_BUDGET_MS=480000 node scripts/checkWorkerReload.mjs playwright.expansion120.config.js pass preflight-results/worker-reload-proof.json webkit-iphone-large
           npm test 2>&1 | tee preflight-results/unit.log
           npm run test:batch 2>&1 | tee preflight-results/batch-unit.log
           npm run test:expansion 2>&1 | tee preflight-results/expansion-unit.log
           npx vitest run tests/saveCapacity.test.js 2>&1 | tee preflight-results/capacity-unit.log
           VITE_COLLAGE_EXPANSION=1 npx vitest run tests/expansion120Storage.test.js 2>&1 | tee preflight-results/integration-unit.log
-          npx vitest run tests/expansion120Coverage.test.js tests/expansion120Build.test.js tests/expansion120Fixtures.test.js tests/expansion120Guard.test.js tests/expansion120VisualEvidence.test.js 2>&1 | tee preflight-results/gate-unit.log
+          npx vitest run tests/expansion120Coverage.test.js tests/expansion120Build.test.js tests/expansion120Fixtures.test.js tests/expansion120Guard.test.js tests/expansion120VisualEvidence.test.js tests/expansion120CollectionEvidence.test.js tests/expansion120Recheck.test.js 2>&1 | tee preflight-results/gate-unit.log
           PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*evidence.py' 2>&1 | tee preflight-results/evidence-unit.log
           npm run validate:matching 2>&1 | tee preflight-results/matching.log
           npm run validate:catalog > preflight-results/catalog.json
@@ -81,15 +81,11 @@ jobs:
     if: github.run_attempt == 1
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 1
       matrix:
         include:
-          - profile: webkit-iphone-13
-            browser: webkit
           - profile: webkit-iphone-large
             browser: webkit
-          - profile: chromium-desktop
-            browser: chromium
     name: Browser ${{ matrix.profile }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -131,7 +127,7 @@ jobs:
       - name: Run eighteen cases once in clean browser contexts
         id: browser
         env:
-          MOTICOS_120_BROWSER_APPROVED: '1'
+          MOTICOS_120_LARGE_RECHECK_APPROVED: '1'
           PROFILE: ${{ matrix.profile }}
         run: |
           # Reserve two full minutes for coverage proof and lossless upload,
@@ -153,6 +149,7 @@ jobs:
         run: |
           node scripts/verifyExpansion120Coverage.mjs completed "$PROFILE" batch-test-results/results.json batch-test-results/progress/browser-events.jsonl preflight-results/completed-proof.json
           node scripts/verifyExpansion120Build.mjs verify
+          node scripts/verifyExpansion120Recheck.mjs profile . > preflight-results/recheck-profile-proof.json
       - name: Package independent bounded diagnosis and failure screenshots
         id: diagnosis
         if: always() && steps.checkout.outcome == 'success'

@@ -45,4 +45,15 @@ class DiagnosisEvidenceTests(unittest.TestCase):
   self.put('batch-test-results/a',b'raw');out=self.base/'diagnosis.zip';out.write_bytes(b'keep')
   with self.assertRaises(diagnosis.evidence.EvidenceError):diagnosis.make_archive(self.source,out)
   self.assertEqual(out.read_bytes(),b'keep')
+ def test_collection_progress_and_bracketed_failure_state_survive_full_archive_overflow(self):
+  files={
+   'batch-test-results/progress/webkit-iphone-large-collections.jsonl':b'{"event":"image-start","envelope":"return-mail","image":9}\n',
+   'batch-test-results/case/failure-diagnosis/failure-state.json':b'{"purpose":"diagnostic-only-not-release-acceptance","observations":[{"name":"before-image","value":{"modal":true}}]}',
+   'batch-test-results/case/failure-diagnosis/failure-view.png':b'\x89PNG exact failure raster',
+  }
+  for name,data in files.items():self.put(name,data)
+  proof=diagnosis.make_archive(self.source,self.base/'diagnosis.zip');self.assertFalse(proof['completeRawEvidence'])
+  with zipfile.ZipFile(self.base/'diagnosis.zip') as archive:
+   for name,data in files.items():self.assertEqual(archive.read(name),data)
+
 if __name__=='__main__':unittest.main()

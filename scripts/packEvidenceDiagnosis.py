@@ -29,6 +29,9 @@ def make_archive(source, output):
         record={'path':name,'bytes':size,'sha256':digest};records.append(record);paths[name]=(path,record)
     chosen=[]
     priority=['batch-test-results/results.json','batch-test-results/progress/browser-events.jsonl']
+    priority += sorted(name for name in paths if name.endswith('-collections.jsonl'))
+    priority += sorted(name for name in paths if name.endswith('/failure-diagnosis/failure-state.json'))
+    priority += sorted(name for name in paths if name.endswith('/failure-diagnosis/failure-view.png'))
     priority += sorted(name for name in paths if name.endswith('error-context.md'))
     priority += sorted(name for name in paths if Path(name).name.startswith('test-failed-') and name.endswith('.png'))
     priority += ['preflight-results/browser.log','preflight-results/build-proof.json','preflight-results/browser-budget.json']
