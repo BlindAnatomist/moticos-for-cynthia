@@ -1,0 +1,7 @@
+.mr-page { box-sizing: border-box; width: min(100%, 58rem); margin: 0 auto; padding: 1.5rem; color: #302e29; background: #f8f3e9; line-height: 1.55; overflow-wrap: anywhere; }
+.mr-page h1 { font-size: 1.7rem; }.mr-page h2 { font-size: 1.2rem; }.mr-page h2 small { display: inline-block; font-size: .85rem; font-weight: 400; }
+.mr-controls { display: flex; flex-wrap: wrap; gap: .65rem; }.mr-page button, .mr-recovery-link { min-height: 44px; padding: .5rem .85rem; border: 1px solid #575449; border-radius: .35rem; background: #fffaf0; color: #302e29; font: inherit; cursor: pointer; }
+.mr-page button:focus-visible, .mr-page summary:focus-visible, .mr-page pre:focus-visible, .mr-recovery-link:focus-visible { outline: 3px solid #345d8a; outline-offset: 3px; }
+.mr-entries section { margin-block: 1rem; padding: .85rem 1rem; border: 1px solid #928d80; border-radius: .4rem; }.mr-page summary { cursor: pointer; min-height: 44px; padding-block: .5rem; }
+.mr-page pre { white-space: pre-wrap; max-height: 28rem; overflow: auto; font-size: .8rem; background: #fffdf8; padding: .75rem; }.mr-page ul { padding-inline-start: 1.25rem; }.mr-recovery-notice { line-height: 1.45; }
+@media (max-width: 430px) { .mr-page { padding: 1rem; }.mr-controls button { width: 100%; }.mr-entries section { padding: .75rem; } }

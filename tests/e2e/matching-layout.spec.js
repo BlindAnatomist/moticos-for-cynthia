@@ -1,4 +1,3 @@
-import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import { test, expect } from '@playwright/test';
 import {
   MATCHING_KEY, PHONE_VIEWPORTS, cell, pieces, occupied, supply, activate,
@@ -259,7 +258,7 @@ test('viewport changes cancel an unfinished drag and retarget a committed flight
   await page.keyboard.press('Enter');
   await expect(page.locator('.cg-floating.is-flying')).toHaveCount(1);
   const committed = await rawSave(page);
-  expect(decodeMatchingSave(committed).round).toMatchObject({ moves: 1, merges: 1 });
+  expect(JSON.parse(committed).round).toMatchObject({ moves: 1, merges: 1 });
   for (const viewport of [PHONE_VIEWPORTS[0], { width: 380, height: 664 }, { width: 381, height: 664 }, PHONE_VIEWPORTS[2]]) {
     await page.setViewportSize(viewport);
     await page.clock.runFor(32);
@@ -287,7 +286,7 @@ test('viewport changes cancel an unfinished drag and retarget a committed flight
   await assertMatchingViewportFit(page, info, 'resize-during-flight-committed');
   await activate(page.getByRole('button', { name: 'Undo', exact: true }), info);
   expect(await boardIds(page)).toEqual(initialBoard);
-  expect(decodeMatchingSave(await rawSave(page)).round).toEqual(decodeMatchingSave(initialSave).round);
+  expect(JSON.parse(await rawSave(page)).round).toEqual(JSON.parse(initialSave).round);
   await mergeId(page, 'b1', info);
   await expect(pieces(page, 'b2')).toHaveCount(1);
 });

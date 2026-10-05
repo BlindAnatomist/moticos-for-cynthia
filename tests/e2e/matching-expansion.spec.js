@@ -1,4 +1,3 @@
-import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import { test, expect } from '@playwright/test';
 import {
   selectCollectionEnvelope, MATCHING_KEY, NAMES, pieces, cell, occupied, supply, activate, boardIds, rawSave,
@@ -35,7 +34,7 @@ test('second envelope starts with two readable identities and the same finite ma
   expect(await rawSave(page, MOON_KEY)).toBeNull(); expect(await rawSave(page)).toBeNull();
   await mergeAt(page, 6, 7, info, 'drag'); await mergeId(page, 'k1', info); await mergeId(page, 'k2', info);
   await expect(pieces(page, 'k3')).toHaveCount(1); await expect(page.getByRole('button', { name: 'Open your postcard', exact: true })).toBeEnabled();
-  expect(decodeMatchingSave(await rawSave(page, MOON_KEY), MOON_KEY).round.merges).toBe(3); expect(await rawSave(page)).toBeNull();
+  expect(JSON.parse(await rawSave(page, MOON_KEY)).round.merges).toBe(3); expect(await rawSave(page)).toBeNull();
   await assertLiveArtAtPhoneWidths(page); await shot(page, info, 'moonlit-first-postcard');
 });
 
@@ -45,7 +44,7 @@ for (const order of [['key', 'moon'], ['moon', 'key']]) {
     for (const family of order) await finishFamily(page, family, info, 'drag', async id => {
       if (Number(id[1]) >= 3 || order[0] === 'key') { await assertLiveArtAtPhoneWidths(page, order[0] === 'key' ? info : null, `moonlit-round-${id}`); await shot(page, info, `moonlit-${prefix}-${id}`); }
     });
-    const save = decodeMatchingSave(await rawSave(page, MOON_KEY), MOON_KEY);
+    const save = JSON.parse(await rawSave(page, MOON_KEY));
     expect(save.round).toMatchObject({ moves: 42, merges: 30, supply: { key: 0, moon: 0 } });
     expect(save.discoveries).toHaveLength(10); await expect(occupied(page)).toHaveCount(2);
     await expect(pieces(page, 'k5')).toHaveCount(1); await expect(pieces(page, 'm5')).toHaveCount(1);
@@ -100,7 +99,7 @@ test('fresh envelope names its target and resets only that board', async ({ page
   await expect(page.getByRole('dialog')).toContainText('Moonlit Passage'); await closeDialog(page, info); await expect(pieces(page, 'k2')).toHaveCount(1);
   await activate(page.getByRole('button', { name: 'Fresh envelope', exact: true }), info); await activate(page.getByRole('button', { name: 'Start fresh', exact: true }), info);
   await expect(pieces(page, 'k1')).toHaveCount(4); expect(await rawSave(page)).toBe(gardenBefore);
-  const reset = decodeMatchingSave(await rawSave(page, MOON_KEY), MOON_KEY); expect(reset.history).toEqual([]); expect(reset.discoveries).toContain('k2');
+  const reset = JSON.parse(await rawSave(page, MOON_KEY)); expect(reset.history).toEqual([]); expect(reset.discoveries).toContain('k2');
 });
 
 for (const key of [MATCHING_KEY, MOON_KEY]) {
@@ -147,7 +146,7 @@ test('mute choice stays muted on switching and reloading the destination', async
   await activate(page.getByRole('button', { name: 'Mute sound', exact: true }), info); await moon(page, info);
   await expect(page.getByRole('button', { name: 'Enable sound', exact: true })).toBeVisible();
   await page.reload(); await expect(page.getByRole('button', { name: 'Enable sound', exact: true })).toBeVisible();
-  await activate(supply(page, 'moon'), info); expect(decodeMatchingSave(await rawSave(page, MOON_KEY), MOON_KEY).sound).toBe(false);
+  await activate(supply(page, 'moon'), info); expect(JSON.parse(await rawSave(page, MOON_KEY)).sound).toBe(false);
 });
 
 test('chooser, collection selector, help and long family labels fit compact phone geometry', async ({ page }, info) => {

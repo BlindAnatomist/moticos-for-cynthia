@@ -1,4 +1,3 @@
-import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import { test, expect } from '@playwright/test';
 import {
   selectCollectionEnvelope, selectEnvelopeFilter, MATCHING_KEY, PHONE_VIEWPORTS, pieces, occupied, supply, activate, boardIds, rawSave,
@@ -71,7 +70,7 @@ test('fourth envelope has distinct starters, finite pair supply and a third-merg
   await assertLiveArtAtPhoneWidths(page, info, 'lantern-starters');
   for (const id of ['l1', 'l1', 'l2']) await mergeId(page, id, info, 'drag');
   await expect(pieces(page, 'l3')).toHaveCount(1);
-  expect(decodeMatchingSave(await rawSave(page, LANTERN_KEY), LANTERN_KEY).round.merges).toBe(3);
+  expect(JSON.parse(await rawSave(page, LANTERN_KEY)).round.merges).toBe(3);
   await expect(page.getByRole('button', { name: 'Open your postcard', exact: true })).toBeEnabled();
   for (const [, key] of envelopes.slice(0, 3)) expect(await rawSave(page, key)).toBeNull();
   await collection(page, info);
@@ -87,7 +86,7 @@ for (const order of [['lantern', 'spool'], ['spool', 'lantern']]) {
     for (const family of order) await finishFamily(page, family, info, order[0] === 'lantern' ? 'drag' : 'tap', async id => {
       await assertLiveArtAtPhoneWidths(page, order[0] === 'lantern' ? info : null, `lantern-round-${id}`);
     });
-    const save = decodeMatchingSave(await rawSave(page, LANTERN_KEY), LANTERN_KEY);
+    const save = JSON.parse(await rawSave(page, LANTERN_KEY));
     expect(save.round).toMatchObject({ moves: 42, merges: 30, supply: { lantern: 0, spool: 0 } });
     expect(save.discoveries).toHaveLength(10); await expect(occupied(page)).toHaveCount(2);
     const board = await boardIds(page), hashes = [];
@@ -98,7 +97,7 @@ for (const order of [['lantern', 'spool'], ['spool', 'lantern']]) {
     }
     if (hashes.length) expect(new Set(hashes).size).toBe(6);
     await activate(page.getByRole('button', { name: 'Undo', exact: true }), info);
-    expect(decodeMatchingSave(await rawSave(page, LANTERN_KEY), LANTERN_KEY).round.merges).toBe(29);
+    expect(JSON.parse(await rawSave(page, LANTERN_KEY)).round.merges).toBe(29);
     await collection(page, info); await expect(total(page, 'Worlds')).toHaveText('2 / 8');
     await expect(page.locator('.mg-collected-label')).toHaveCount(2);
     await closeDialog(page, info);

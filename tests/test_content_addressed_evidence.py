@@ -53,7 +53,7 @@ class ContentAddressedTests(unittest.TestCase):
     def test_empty_file_and_unavailable_roots_remain_explicit(self):
         self.put('preflight-results/empty.log',b'')
         stage=self.base/'stage';stage.mkdir();index=cas.build_payload(self.source,stage)
-        self.assertEqual(index['missing_directories'],['batch-test-results','test-results'])
+        self.assertEqual(index['missing_directories'],['batch-test-results','rollback-test-results','test-results'])
         self.assertEqual(index['logicalFiles'],1);self.assertEqual(index['rawBytes'],0)
         self.assertEqual(index['source_members'][0]['sha256'],hashlib.sha256(b'').hexdigest())
 

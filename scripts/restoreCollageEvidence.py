@@ -41,7 +41,7 @@ def restore(parts, output):
                 name = PurePosixPath(member.name)
                 assert member.isfile() and not name.is_absolute() and ".." not in name.parts
                 assert str(name) == member.name, "Noncanonical archive path"
-                assert name.parts and name.parts[0] in ("preflight-results", "test-results", "batch-test-results")
+                assert name.parts and name.parts[0] in ("preflight-results", "test-results", "batch-test-results", "rollback-test-results")
                 assert member.name in expected and member.name not in seen
                 record = expected[member.name]
                 assert member.size == record["bytes"]

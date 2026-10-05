@@ -1,0 +1,212 @@
+name: Verify decoder-compatible 80-piece Moticos rollback
+
+# Staging never runs this gate. A separately authorized push to this exact
+# branch is the sole trigger. No dispatch, PR, schedule or reusable trigger.
+on:
+  push:
+    branches: [verify/rollback-browser-80-20261005]
+
+env:
+  PYTHONDONTWRITEBYTECODE: 1
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: moticos-rollback-browser-80-20261005
+  cancel-in-progress: false
+
+# Standard included runners only. The owner's confirmed automatic zero-dollar
+# stop remains enabled. Never adjust billing, budgets, overages or that stop.
+# If it blocks a job, stop and report the incomplete gate; do not rerun.
+jobs:
+  build:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install exact dependencies
+        timeout-minutes: 1
+        run: |
+          mkdir -p preflight-results
+          npm ci --no-audit --no-fund 2>&1 | tee preflight-results/dependencies.log
+      - name: Verify authority, offline checks, exact cases, and the sole build
+        timeout-minutes: 4
+        run: |
+          node scripts/verifyRollbackInventory.mjs source 2>&1 | tee preflight-results/source-identity.log
+          npm test 2>&1 | tee preflight-results/unit.log
+          npm run test:batch 2>&1 | tee preflight-results/batch-unit.log
+          npm run test:rollback 2>&1 | tee preflight-results/rollback-unit.log
+          npx vitest run tests/rollbackBrowserPlan.test.js tests/rollbackGate.test.js tests/rollbackCoverage.test.js tests/playwrightInvocation.test.js 2>&1 | tee preflight-results/gate-unit.log
+          PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*evidence.py' 2>&1 | tee preflight-results/evidence-unit.log
+          for profile in chromium-desktop webkit-iphone-13 webkit-iphone-large; do
+            MOTICOS_ROLLBACK_BROWSER_APPROVED=1 node scripts/checkWorkerReload.mjs playwright.rollback.config.js pass "preflight-results/worker-${profile}.json" "$profile"
+          done
+          npm run validate:matching 2>&1 | tee preflight-results/matching.log
+          npm run validate:catalog > preflight-results/catalog.json
+          npm run build:rollback 2>&1 | tee preflight-results/build.log
+          node scripts/verifyRollbackBuild.mjs dist-rollback preflight-results/build-proof.json
+          npx playwright test --config=playwright.rollback.config.js --list --reporter=json > preflight-results/collected-all.json
+          node scripts/verifyRollbackCoverage.mjs collected all preflight-results/collected-all.json
+          for profile in chromium-desktop webkit-iphone-13 webkit-iphone-large; do
+            npx playwright test --config=playwright.rollback.config.js --list --reporter=json --project="$profile" > "preflight-results/collected-${profile}.json"
+            node scripts/verifyRollbackCoverage.mjs collected "$profile" "preflight-results/collected-${profile}.json"
+          done
+          mkdir -p preflight-results/build
+          cp -a dist-rollback preflight-results/build/dist-rollback
+          cp tests/verification/rollback-*.json preflight-results/
+      - name: Preserve and fully restore the preflight and sole exact build
+        id: package
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: |
+          python3 scripts/preserveRollbackEvidence.py preflight --github-output "$GITHUB_OUTPUT"
+          python3 scripts/restoreCollageEvidence.py --parts bounded-evidence/parts --out bounded-evidence/restored-preflight
+      - name: Upload at most 32 MiB preflight for one day
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-rollback-preflight
+          path: |
+            bounded-evidence/parts/part-000.bin
+            bounded-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+
+  browser:
+    needs: build
+    if: github.run_attempt == 1
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - profile: chromium-desktop
+            browser: chromium
+          - profile: webkit-iphone-13
+            browser: webkit
+          - profile: webkit-iphone-large
+            browser: webkit
+    name: Browser ${{ matrix.profile }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Start the bounded profile clock
+        run: echo "MOTICOS_JOB_EPOCH=$(date +%s)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        id: checkout
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install exact dependencies
+        timeout-minutes: 1
+        run: |
+          mkdir -p preflight-results
+          npm ci --no-audit --no-fund 2>&1 | tee preflight-results/dependencies.log
+      - name: Download the sole build from this run
+        uses: actions/download-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-rollback-preflight
+          path: .batch-input-parts
+      - name: Verify every restored byte and this profile's exact collection
+        timeout-minutes: 1
+        env:
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          python3 scripts/restoreCollageEvidence.py --parts .batch-input-parts --out .batch-input > preflight-results/restored-proof.json
+          cp -a .batch-input/preflight-results/build/dist-rollback dist-rollback
+          node scripts/verifyRollbackInventory.mjs all > preflight-results/identity.json
+          node scripts/verifyRollbackBuild.mjs dist-rollback preflight-results/build-proof.json
+          npx playwright test --config=playwright.rollback.config.js --list --reporter=json --project="$PROFILE" > preflight-results/collected-profile.json
+          node scripts/verifyRollbackCoverage.mjs collected "$PROFILE" preflight-results/collected-profile.json
+      - name: Install only the profile's standard browser
+        timeout-minutes: 3
+        run: npx playwright install --with-deps "${{ matrix.browser }}" 2>&1 | tee preflight-results/browser-install.log
+      - name: Run sixteen cases once in fresh browser contexts
+        id: browser
+        timeout-minutes: 10
+        env:
+          MOTICOS_ROLLBACK_BROWSER_APPROVED: '1'
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          # Reserve three minutes for terminal verification, diagnosis, complete
+          # packaging, full restoration, and uploads, plus 15 seconds margin.
+          remaining=$((900 - ($(date +%s) - MOTICOS_JOB_EPOCH) - 180 - 15))
+          if [ "$remaining" -lt 480 ]; then
+            echo "::error::Fewer than eight browser minutes remain. No browser started; gate incomplete."
+            exit 1
+          fi
+          if [ "$remaining" -gt 540 ]; then remaining=540; fi
+          export MOTICOS_ROLLBACK_BROWSER_BUDGET_MS=$((remaining * 1000))
+          printf '{"browserBudgetMs":%s,"evidenceReserveSeconds":180,"profile":"%s"}\n' "$MOTICOS_ROLLBACK_BROWSER_BUDGET_MS" "$PROFILE" > preflight-results/browser-budget.json
+          npx playwright test --config=playwright.rollback.config.js --project="$PROFILE" 2>&1 | tee preflight-results/browser.log
+      - name: Require complete terminal passes, native downloads, and screenshot journals
+        if: success() && steps.browser.outcome == 'success'
+        timeout-minutes: 1
+        env:
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          node scripts/verifyRollbackCoverage.mjs completed "$PROFILE" . > preflight-results/completed-proof.json
+          node scripts/verifyRollbackInventory.mjs all > preflight-results/final-identity.json
+      - name: Package independent failure diagnosis
+        id: diagnosis
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: python3 scripts/packEvidenceDiagnosis.py --source . --output bounded-evidence/diagnosis.zip
+      - name: Keep diagnosis even if complete evidence exceeds its budget
+        if: always() && steps.diagnosis.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-rollback-${{ matrix.profile }}-diagnosis
+          path: bounded-evidence/diagnosis.zip
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+      - name: Preserve and fully restore every raw profile byte
+        id: package
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: |
+          python3 scripts/contentAddressedEvidence.py pack --source . --output bounded-evidence/object-evidence --github-output "$GITHUB_OUTPUT"
+          python3 scripts/contentAddressedEvidence.py restore --parts bounded-evidence/object-evidence/parts --output bounded-evidence/restored-profile
+      - name: Upload complete profile part 000
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-rollback-${{ matrix.profile }}-000
+          path: |
+            bounded-evidence/object-evidence/parts/part-000.bin
+            bounded-evidence/object-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+      - name: Upload complete profile part 001
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_001 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-rollback-${{ matrix.profile }}-001
+          path: |
+            bounded-evidence/object-evidence/parts/part-001.bin
+            bounded-evidence/object-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1

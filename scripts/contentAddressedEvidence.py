@@ -15,7 +15,7 @@ import tempfile
 import preserveEvidence as bounded
 import restoreCollageEvidence as bounded_restore
 
-DIRECTORIES = ('preflight-results', 'batch-test-results', 'test-results')
+DIRECTORIES = ('preflight-results', 'batch-test-results', 'rollback-test-results', 'test-results')
 INDEX = 'preflight-results/objects-index.json'
 ENCODING = 'moticos-lossless-sha256-objects-v1'
 MIB = 1024 * 1024
@@ -96,10 +96,16 @@ def restore(parts, output):
         bounded_restore.restore(parts, payload)
         index = json.loads((payload/INDEX).read_text())
         if index.get('encoding') != ENCODING or index.get('complete') is not True: raise bounded.EvidenceError('Not complete lossless evidence')
+        if index.get('included_directories') != list(DIRECTORIES): raise bounded.EvidenceError('Logical root inventory changed')
+        missing=index.get('missing_directories',[])
+        if len(missing)!=len(set(missing)) or any(name not in DIRECTORIES for name in missing): raise bounded.EvidenceError('Invalid missing-root inventory')
+        if index['rawBytes'] != sum(record['bytes'] for record in index['source_members']): raise bounded.EvidenceError('Incorrect raw byte total')
+        if index['duplicateBytes'] != index['rawBytes']-index['uniqueBytes']: raise bounded.EvidenceError('Incorrect deduplication total')
         seen, hashes = set(), set(); stage=Path(temp)/'logical';stage.mkdir()
         for record in index['source_members']:
             path=safe_path(record['path']);sha=record['sha256']
             if path in seen or len(sha)!=64 or any(c not in '0123456789abcdef' for c in sha): raise bounded.EvidenceError('Duplicate path or invalid SHA')
+            if path.parts[0] in missing: raise bounded.EvidenceError('A missing root contains logical files')
             seen.add(path); hashes.add(sha)
             blob=payload/'preflight-results/objects'/f'{sha}.bin'
             with bounded._open_regular(blob) as stream:
@@ -110,6 +116,7 @@ def restore(parts, output):
         actual_blobs={p.stem for p in (payload/'preflight-results/objects').iterdir()}
         if actual_blobs!=hashes or len(seen)!=index['logicalFiles'] or len(hashes)!=index['uniquePayloads']:
             raise bounded.EvidenceError('Omitted/extra payloads or inconsistent inventory')
+        if sum(blob.stat().st_size for blob in (payload/'preflight-results/objects').iterdir()) != index['uniqueBytes']: raise bounded.EvidenceError('Incorrect unique byte total')
         shutil.copytree(stage,output)
         return {'complete':True,'logicalFiles':len(seen),'uniquePayloads':len(hashes),'rawBytes':index['rawBytes']}
 

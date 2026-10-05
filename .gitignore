@@ -23,7 +23,6 @@ batch-playwright-report/
 evidence/collage-batch/*
 !evidence/collage-batch/asset-receipt.json
 
-# Isolated 120-piece candidate outputs.
-dist-expansion/
-expansion-test-results/
-expansion-playwright-report/
+# Private rollback verification output.
+dist-rollback/
+rollback-test-results/

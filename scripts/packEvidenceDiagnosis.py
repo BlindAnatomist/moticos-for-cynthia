@@ -13,7 +13,7 @@ import tempfile
 import zipfile
 import preserveEvidence as evidence
 
-DIRECTORIES=('preflight-results','batch-test-results','test-results')
+DIRECTORIES=('preflight-results','batch-test-results','rollback-test-results','test-results')
 LIMIT=8*1024*1024
 
 def make_archive(source, output):
@@ -28,7 +28,8 @@ def make_archive(source, output):
         if evidence._signature(path.stat())!=signature:raise evidence.EvidenceError('Source changed during inventory')
         record={'path':name,'bytes':size,'sha256':digest};records.append(record);paths[name]=(path,record)
     chosen=[]
-    priority=['batch-test-results/results.json','batch-test-results/progress/browser-events.jsonl']
+    priority=['rollback-test-results/evidence-manifest.json','rollback-test-results/results.json','rollback-test-results/progress/browser-events.jsonl','batch-test-results/results.json','batch-test-results/progress/browser-events.jsonl']
+    priority += sorted(name for name in paths if name.endswith('/observations.jsonl'))
     priority += sorted(name for name in paths if name.endswith('-collections.jsonl'))
     priority += sorted(name for name in paths if name.endswith('/failure-diagnosis/failure-state.json'))
     priority += sorted(name for name in paths if name.endswith('/failure-diagnosis/failure-view.png'))
