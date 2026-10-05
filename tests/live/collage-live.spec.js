@@ -42,7 +42,7 @@ async function verifyLiveIdentity(page) {
   // Four concurrent read-only requests bound network time without adding test workers.
   for (let index = 0; index < contract.files.length; index += 4) {
     await Promise.all(contract.files.slice(index, index + 4).map(async file => {
-      const url = new URL(file.file.slice('dist-batch/'.length), `${contract.liveUrl}/`);
+      const url = new URL(file.file === 'dist-batch/index.html' ? '/' : file.file.slice('dist-batch/'.length), `${contract.liveUrl}/`);
       expect(url.origin).toBe(contract.liveUrl);
       const asset = await page.request.get(url.href, { maxRetries: 0, timeout: 15000 });
       expect(asset.ok(), file.file).toBe(true); expect(asset.url()).toBe(url.href);
