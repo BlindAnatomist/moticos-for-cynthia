@@ -258,11 +258,11 @@ describe('bounded envelope registry and garden compatibility', () => {
     expect(Object.keys(save)).toEqual(['version', 'round', 'history', 'discoveries', 'sound']);
     expect(Object.keys(save.round)).toEqual(['board', 'supply', 'moves', 'merges', 'nextInstanceId']);
   });
-  it('has three immutable descriptors, thirty unique IDs and three independent save keys', () => {
-    expect(ENVELOPES.map(envelope => envelope.id)).toEqual(['matching-garden', 'moonlit-passage', 'riverside-reverie']);
+  it('has four immutable descriptors, forty unique IDs and four independent save keys', () => {
+    expect(ENVELOPES.map(envelope => envelope.id)).toEqual(['matching-garden', 'moonlit-passage', 'riverside-reverie', 'lantern-studio']);
     expect(getEnvelope('moonlit-passage').title).toBe('Moonlit Passage');
     expect(moonlit.STORAGE_KEY).toBe('moticos.matching.moonlit-passage.v1');
-    expect(new Set(ENVELOPES.map(envelope => envelope.storageKey)).size).toBe(3);
+    expect(new Set(ENVELOPES.map(envelope => envelope.storageKey)).size).toBe(4);
     expect(Object.isFrozen(ENVELOPES)).toBe(true);
     for (const envelope of ENVELOPES) {
       const engine = getMatchingEngine(envelope.id);
@@ -273,8 +273,8 @@ describe('bounded envelope registry and garden compatibility', () => {
       expect(engine.HISTORY_LIMIT).toBe(100); expect(engine.MAX_SAVE_BYTES).toBe(512 * 1024);
     }
     const pieces = engines.flatMap(engine => engine.PIECES);
-    expect(new Set(pieces.map(piece => piece.id)).size).toBe(30);
-    expect(new Set(pieces.map(piece => piece.art)).size).toBe(30);
+    expect(new Set(pieces.map(piece => piece.id)).size).toBe(40);
+    expect(new Set(pieces.map(piece => piece.art)).size).toBe(40);
     for (const id of ['__proto__', 'constructor', 'toString', 'missing', undefined, null, 1, {}]) {
       expect(getEnvelope(id)).toBeNull(); expect(getMatchingEngine(id)).toBeNull();
     }
@@ -283,7 +283,7 @@ describe('bounded envelope registry and garden compatibility', () => {
     expect(moonlit.CATALOG.m1.art).toContain('/art/garden/s05_cobalt_moon.webp');
     expect(moonlit.CATALOG.m2.art).toContain('/art/garden/e04_crescent_courier.webp');
   });
-  it('checks all 900 collection pairings against each active envelope without cross-envelope recipes', () => {
+  it('checks all 1600 collection pairings against each active envelope without cross-envelope recipes', () => {
     const pieces = engines.flatMap(engine => engine.PIECES);
     let pairings = 0;
     for (const a of pieces) for (const b of pieces) {
@@ -294,7 +294,7 @@ describe('bounded envelope registry and garden compatibility', () => {
         expect(engine.compatible({ pieceId: a.id }, { pieceId: b.id })).toBe(expected);
       }
     }
-    expect(pairings).toBe(900);
+    expect(pairings).toBe(1600);
   });
   it('follows explicit routes even when IDs have no prefix or numeric-tier convention', () => {
     const routes = [

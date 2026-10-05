@@ -216,7 +216,7 @@ describe('independent collection and resource audit', () => {
     const element = page.find(node => node.type?.name === 'EnvelopeChooser'), chooser = renderer(element.type, element.props);
     const previews = [];
     walk(chooser.tree(), node => { if (node.type?.name === 'Art') previews.push(node.props); });
-    expect(previews.map(props => props.id).sort()).toEqual(['b1', 'f1', 'k1', 'm1', 'r1', 't1']);
+    expect(previews.map(props => props.id).sort()).toEqual(['b1', 'f1', 'k1', 'l1', 'm1', 'r1', 's1', 't1']);
     expect(previews.every(props => props.lazy === true)).toBe(true);
   });
 });

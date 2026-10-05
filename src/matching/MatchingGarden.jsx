@@ -7,6 +7,7 @@ import { DEFAULT_ENVELOPE_ID, ENVELOPES, getEnvelope, getMatchingEngine } from '
 import { openEnvelopeSession, commitEnvelopeSession, observeEnvelopeStorage } from './session.js';
 import { createCollectionPostcard } from './postcard.js';
 import { BOARD_ART_BOUNDS, COMPACT_BOARD_LABELS } from './boardArt.js';
+import { readAlbumProgress } from './progress.js';
 import CollectionDialog from '../collection/CollectionDialog.jsx';
 import './matching.css';
 
@@ -75,6 +76,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
   const [storageWarning, setStorageWarning] = useState(initial.unavailable);
   const [storageConflict, setStorageConflict] = useState(initial.conflict);
   const [collectionEnvelopeId, setCollectionEnvelopeId] = useState(envelopeId);
+  const [, refreshCollection] = useState(0);
   const [hint, setHint] = useState([]);
   const [largeText, setLargeText] = useState(false);
   const shellRef = useRef(null);
@@ -119,6 +121,7 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
     document.addEventListener('visibilitychange', cancel);
     const changed = event => {
       if (observeEnvelopeStorage(engine, initial, event)) setStorageConflict(true);
+      if (event.key === null || ENVELOPES.some(item => item.storageKey === event.key)) refreshCollection(value => value + 1);
     };
     window.addEventListener('storage', changed);
     window.addEventListener('blur', cancelGesture);
@@ -339,38 +342,52 @@ export default function MatchingGarden({ envelopeId = DEFAULT_ENVELOPE_ID, sessi
       {overlay.type === 'postcard' && <PostcardContent key={overlay.pieceId} pieceId={overlay.pieceId} envelope={getEnvelope(overlay.envelopeId ?? envelopeId)} />}
       {overlay.type === 'help' && <div className="cg-help"><div className="mg-help-equation"><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><span>+</span><Art catalog={CATALOG} id={FAMILIES[0].starterId} /><ArrowRight /><Art catalog={CATALOG} id={FAMILIES[0].pieceIds[1]} /></div><p>Two identical pictures make one new piece. {FAMILIES[0].shortName} matches {FAMILIES[0].shortName.toLowerCase()}, {FAMILIES[1].shortName.toLowerCase()} matches {FAMILIES[1].shortName.toLowerCase()}, and two {CATALOG[FAMILIES[0].pieceIds[1]].name} pieces make {CATALOG[FAMILIES[0].pieceIds[2]].name}.</p><ol><li>Drag one piece onto its match, or tap a piece and then its match. Matching pieces glow.</li><li>The two buttons below the board add a matching pair from your envelope. Each path has enough pieces to reach level 5. There is no waiting or payment.</li><li>Keep matching your new pieces. Level 3 earns your first postcard; levels 4 and 5 reveal more. Open a postcard whenever you like, then return to the same board.</li><li>Undo takes back a move, including a supplied pair. Cut turns a selected made piece into two of its previous level when there is space.</li></ol><p>Invalid matches cost nothing. Every discovered picture stays in your collection, including its postcard, even after a merge, Cut, Undo or fresh envelope.</p><p>Each envelope has ten distinct pieces and six postcards to discover. Use Envelopes to visit another journey; each board and its Undo history wait for you. More of the collection is still being made.</p><h3>Keyboard</h3><p>Tab to the board, use arrow keys, and press Enter or Space to select and match. Escape clears the selection.</p></div>}
       {overlay.type === 'reset' && <div className="cg-help"><p>This starts {envelope.title} again with a full envelope and clears the current board and Undo history. Your discovered art and postcards stay in the collection.</p><button className="cg-button cg-primary" onClick={resetRound}><RotateCcw size={18} /> Start fresh</button></div>}
-      {overlay.type === 'envelopes' && <EnvelopeChooser currentId={envelopeId} sessionCache={sessionCache} onChoose={id => { if (id === envelopeId) setOverlay(null); else onChooseEnvelope?.(id); }} />}
+      {overlay.type === 'envelopes' && <EnvelopeChooser currentId={envelopeId} activeSave={save} sessionCache={sessionCache} onChoose={id => { if (id === envelopeId) setOverlay(null); else onChooseEnvelope?.(id); }} />}
       {overlay.type === 'collection' && <CollectionContent envelopeId={collectionEnvelopeId} sessionCache={sessionCache} activeSave={save} activeId={envelopeId} onSelect={setCollectionEnvelopeId} onPostcard={id => setOverlay({ type: 'postcard', pieceId: id, envelopeId: collectionEnvelopeId })} />}
 
     </CollectionDialog>}
   </main>;
 }
 
-function snapshot(envelope, cache) {
-  const session = cache.get(envelope.storageKey);
-  if (session) return { save: session.save, temporary: session.blocked, unread: session.invalid };
-  try {
-    const engine = getMatchingEngine(envelope.id), result = engine.readSave(localStorage.getItem(engine.STORAGE_KEY));
-    return { save: result.save ?? engine.newSave(), temporary: result.status === 'invalid' || result.status === 'unsupported', unread: result.status === 'invalid' || result.status === 'unsupported' };
-  } catch { return { save: getMatchingEngine(envelope.id).newSave(), temporary: true, unread: true }; }
+function AlbumSummary({ album }) {
+  return <section className="mg-album-summary" aria-label="Whole collection progress">
+    <h3>Your growing collection</h3>
+    <dl><div><dt>Pieces</dt><dd>{album.discovered}<span> / {album.totalPieces}</span></dd></div><div><dt>Worlds</dt><dd>{album.worlds}<span> / {album.totalWorlds}</span></dd></div><div><dt>Postcards</dt><dd>{album.postcards}<span> / {album.totalPostcards}</span></dd></div></dl>
+    <p>Discovered worlds stay collected after Undo, Cut or a fresh envelope.</p>
+    {album.temporary && <p className="mg-album-caution" role="status">Some progress is temporary or unreadable. Totals include discoveries in this tab; unread saved collections are not counted.</p>}
+  </section>;
 }
-function EnvelopeChooser({ currentId, sessionCache, onChoose }) {
-  return <div className="mg-envelope-list"><p className="cg-collection-intro">Two matching journeys in every envelope. Your boards, Undo history, and discoveries stay where you leave them.</p>{ENVELOPES.map(envelope => {
-    const { save, temporary, unread } = snapshot(envelope, sessionCache);
-    const catalog = envelope.catalog, complete = catalog.FINALS.filter(id => save.round.board.some(tile => tile?.pieceId === id)).length;
-    return <article className="mg-envelope-card" key={envelope.id}>
+function NextDiscovery({ entry }) {
+  if (entry.complete) return <p className="mg-next-discovery">Both worlds collected. Your postcards are ready to revisit.</p>;
+  if (!entry.opened) return <p className="mg-next-discovery">{entry.unread ? 'Open for temporary play without changing the original save.' : 'A new pair of journeys to begin.'}</p>;
+  const { nextFamily } = entry;
+  return <p className="mg-next-discovery">Next discovery: {nextFamily.next.name}. {nextFamily.previous ? `Match two ${nextFamily.previous.name} pieces.` : 'Open this envelope to find your first pieces.'}</p>;
+}
+function EnvelopeChooser({ currentId, activeSave, sessionCache, onChoose }) {
+  const [filter, setFilter] = useState('all');
+  const album = readAlbumProgress(sessionCache, browserStorage, { id: currentId, save: activeSave });
+  const entries = album.entries.filter(entry => filter === 'all' || (filter === 'complete' ? entry.complete : filter === 'unopened' ? !entry.opened && !entry.unread : entry.opened && !entry.complete));
+  return <div className="mg-envelope-list"><AlbumSummary album={album} /><p className="cg-collection-intro">Choose any envelope. Each board and its Undo history wait for you.</p>
+    <label className="mg-album-picker">Show envelopes<select value={filter} onChange={event => setFilter(event.target.value)}><option value="all">All envelopes</option><option value="progress">In progress</option><option value="complete">Worlds collected</option><option value="unopened">Unopened</option></select></label>
+    <p className="mg-album-results" role="status">{entries.length} {entries.length === 1 ? 'envelope' : 'envelopes'}</p>
+    {entries.map(entry => {
+    const { envelope, temporary, unread } = entry, catalog = envelope.catalog;
+    return <article className="mg-envelope-card" key={envelope.id} data-envelope-id={envelope.id}>
       <div className="mg-envelope-art" aria-hidden="true">{catalog.STARTERS.map(id => <Art key={id} catalog={catalog.CATALOG} id={id} lazy />)}</div>
-      <div><h3>{envelope.title}</h3><p>{envelope.description}</p><small>{unread ? 'Saved board left untouched' : `${save.discoveries.length} / ${catalog.PIECES.length} discovered · ${complete} / 2 worlds complete`}{temporary ? ' · temporary play kept in this tab' : ''}</small></div>
+      <div><h3>{envelope.title}</h3><p>{envelope.description}</p><small>{entry.opened ? `${entry.discovered} / ${entry.totalPieces} pieces · ${entry.worlds} / ${entry.totalWorlds} worlds collected · ${entry.postcards} postcards` : unread ? 'Saved collection unreadable' : 'Not opened yet'}{temporary ? ' · temporary play' : ''}</small></div>
+      <div className="mg-envelope-paths">{entry.families.map(family => <div key={family.id}><span>{family.shortName}</span><span className="mg-path-dots" role="img" aria-label={`${family.discovered} of ${family.pieceIds.length} ${family.id} pieces discovered`}>{family.pieceIds.map((id, index) => <i key={id} aria-hidden="true" className={entry.save?.discoveries.includes(id) ? 'is-found' : ''}>{index + 1}</i>)}</span>{family.complete && <span className="mg-path-complete">Collected</span>}</div>)}<NextDiscovery entry={entry} /></div>
       <button className="cg-button" aria-current={currentId === envelope.id ? 'true' : undefined} onClick={() => onChoose(envelope.id)}>{currentId === envelope.id ? 'Back to this board' : `Open ${envelope.title}`}</button>
     </article>;
-  })}<p className="cg-collection-note">{ENVELOPES.reduce((total, item) => total + item.catalog.PIECES.length, 0)} distinct artworks across {ENVELOPES.length} envelopes. This is the next part of a growing collection.</p></div>;
+  })}{!entries.length && <p className="cg-collection-intro">No envelopes in this view yet. Choose All envelopes to explore.</p>}<p className="cg-collection-note">{album.totalPieces} distinct artworks across {ENVELOPES.length} envelopes. This is the next part of a growing collection.</p></div>;
 }
 function CollectionContent({ envelopeId, sessionCache, activeSave, activeId, onSelect, onPostcard }) {
   const envelope = getEnvelope(envelopeId), { CATALOG, PIECES, FAMILIES } = envelope.catalog;
-  const observed = snapshot(envelope, sessionCache), save = envelopeId === activeId ? activeSave : observed.save;
-  return <><nav className="mg-collection-tabs" aria-label="Collection envelopes">{ENVELOPES.map(item => <button key={item.id} className="cg-button" aria-pressed={item.id === envelopeId} onClick={() => onSelect(item.id)}>{item.title}</button>)}</nav>
-    <p className="cg-collection-intro">{save.discoveries.length} of {PIECES.length} discovered in {envelope.title}. Each step is made by matching two identical pieces from the step before it.</p>
+  const album = readAlbumProgress(sessionCache, browserStorage, { id: activeId, save: activeSave });
+  const observed = album.entries.find(entry => entry.envelope.id === envelopeId), discoveries = observed.save?.discoveries ?? [];
+  return <><AlbumSummary album={album} /><label className="mg-album-picker">Browse envelope<select value={envelopeId} onChange={event => onSelect(event.target.value)}>{ENVELOPES.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+    <p className="cg-collection-intro">{discoveries.length} of {PIECES.length} discovered in {envelope.title}. Each step is made by matching two identical pieces from the step before it.</p>
     {observed.unread && <p className="cg-save-warning" role="status">This envelope’s saved collection cannot be read. Its original save is untouched; temporary discoveries are shown here.</p>}
-    {FAMILIES.map(family => <section className="mg-family-collection" key={family.id}><h3>{family.name}</h3><div className="mg-chain">{family.pieceIds.map(id => { const piece = CATALOG[id], known = save.discoveries.includes(id); return <article className={`cg-collection-piece${known ? '' : ' is-undiscovered'}`} key={id}><span className="mg-chain-level">Level {piece.tier}</span>{known ? <Art catalog={CATALOG} id={id} description lazy /> : <div className="cg-mystery" aria-hidden="true">?</div>}<h4>{known ? piece.name : `A new ${family.id} discovery`}</h4><p>{piece.tier === 1 ? 'From your envelope' : `2 × ${CATALOG[family.pieceIds[piece.tier - 2]].name}`}</p>{known && piece.tier >= 3 && <button className="cg-button" onClick={() => onPostcard(id)}>Open postcard</button>}</article>; })}</div></section>)}
+    <NextDiscovery entry={observed} />
+    {FAMILIES.map(family => <section className="mg-family-collection" key={family.id}><h3>{family.name}{discoveries.includes(family.finalId) && <span className="mg-collected-label">World collected</span>}</h3><div className="mg-chain">{family.pieceIds.map(id => { const piece = CATALOG[id], known = discoveries.includes(id); return <article className={`cg-collection-piece${known ? '' : ' is-undiscovered'}`} key={id}><span className="mg-chain-level">Level {piece.tier}</span>{known ? <Art catalog={CATALOG} id={id} description lazy /> : <div className="cg-mystery" aria-hidden="true">?</div>}<h4>{known ? piece.name : `A new ${family.id} discovery`}</h4><p>{piece.tier === 1 ? 'From your envelope' : `2 × ${CATALOG[family.pieceIds[piece.tier - 2]].name}`}</p>{known && piece.tier >= 3 && <button className="cg-button" onClick={() => onPostcard(id)}>Open postcard</button>}</article>; })}</div></section>)}
     <p className="cg-collection-note">Every discovered artwork stays here. Your earlier postcards are always available.</p></>;
 }

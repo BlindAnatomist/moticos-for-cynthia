@@ -13,6 +13,7 @@ const ENVELOPES = [
   { id: 'matching-garden', key: MATCHING_KEY, families: ['bird', 'fern'], prefixes: ['b', 'f'] },
   { id: 'moonlit-passage', key: 'moticos.matching.moonlit-passage.v1', families: ['key', 'moon'], prefixes: ['k', 'm'] },
   { id: 'riverside-reverie', key: 'moticos.matching.riverside-reverie.v1', families: ['map', 'teacup'], prefixes: ['r', 't'] },
+  { id: 'lantern-studio', key: 'moticos.matching.lantern-studio.v1', families: ['lantern', 'spool'], prefixes: ['l', 's'] },
 ];
 const url = envelope => envelope.id === 'matching-garden' ? '/' : `/?envelope=${envelope.id}`;
 const errors = new WeakMap();
@@ -218,8 +219,8 @@ for (const viewport of PHONE_VIEWPORTS) {
         documentFocused: document.hasFocus(),
       }));
       expect(focus, 'modal focus diagnostics after backward boundary').toMatchObject({ insideDialog: true, onBoard: false });
-      const dialogButtons = page.getByRole('dialog').locator('button:visible:not([disabled])');
-      await expect(dialogButtons.last(), 'Shift+Tab wraps to the last enabled modal control').toBeFocused();
+      const dialogControls = page.getByRole('dialog').locator('button:visible:not([disabled]), select:visible:not([disabled])');
+      await expect(dialogControls.last(), 'Shift+Tab wraps to the last enabled modal control').toBeFocused();
       await page.keyboard.press('Tab');
       await expect(page.getByRole('button', { name: 'Back to board', exact: true }), 'Tab wraps back to the first modal control').toBeFocused();
       await page.keyboard.press('Escape');

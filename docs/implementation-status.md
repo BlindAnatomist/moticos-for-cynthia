@@ -8,6 +8,14 @@ Default branch: `main`
 
 Status date: 2026-07-31
 
+## Current local collection checkpoint — 2026-10-04
+
+Accepted live baseline: Site version 4, exact source `d4c98b265dc29d627371aa6d9771765343f834b4`, public counterpart `0fcd3a3792d35fbedc7b5f94bbd5acb2bccf56ea`. That release has thirty authored pieces across three envelopes, 139 passing local checks and 213 passing browser cases with zero retries. Its repaired compact crops, synchronized labels, modal focus loops and one-screen phone layout remain the baseline.
+
+Local branch `work/atelier-progression-20261004` adds Lantern Studio and an album that retains discovery/world credit across boards. See `LANTERN_ALBUM_CANDIDATE.md` for the bounded forty-piece checkpoint, scalable collection navigation, validation and open release gates. No new public release or Actions run is authorized by this local checkpoint. The larger professional target remains well above two hundred authored pieces.
+
+The sections below are historical records; their version 3 and third-envelope candidate statements do not replace the accepted version 4 baseline above.
+
 ## Current preserved matching baseline — 2026-10-04
 
 The accepted matching preview is Site version 3 at `https://moticos-garden-preview.blind-anatomist.chatgpt.site`.

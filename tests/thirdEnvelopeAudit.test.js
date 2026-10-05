@@ -38,8 +38,8 @@ function perform(engine, session, storage, action) {
 
 describe('independent three-envelope boundaries', () => {
   it('binds three descriptors to three exact save keys and keeps all routes envelope-local', () => {
-    expect(ENVELOPES.map(envelope => envelope.id)).toEqual(envelopeIds);
-    expect(new Set(ENVELOPES.map(envelope => envelope.id)).size).toBe(3);
+    expect(ENVELOPES.filter(envelope => envelopeIds.includes(envelope.id)).map(envelope => envelope.id)).toEqual(envelopeIds);
+    expect(new Set(ENVELOPES.filter(envelope => envelopeIds.includes(envelope.id)).map(envelope => envelope.id)).size).toBe(3);
     expect(engines.map(engine => engine.STORAGE_KEY)).toEqual([
       'moticos.matching.garden.v1',
       'moticos.matching.moonlit-passage.v1',

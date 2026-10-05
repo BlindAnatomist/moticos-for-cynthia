@@ -22,7 +22,7 @@ async function moon(page, info) { await choose(page, info, 'Moonlit Passage'); }
 async function garden(page, info) { await choose(page, info, 'Garden Correspondence'); }
 async function collected(page, info, envelope) {
   await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
-  await activate(page.getByRole('button', { name: envelope, exact: true }), info);
+  await page.getByLabel('Browse envelope', { exact: true }).selectOption({ label: envelope });
 }
 
 test('second envelope starts with two readable identities and the same finite matching loop', async ({ page }, info) => {
@@ -149,10 +149,10 @@ test('mute choice stays muted on switching and reloading the destination', async
   await activate(supply(page, 'moon'), info); expect(JSON.parse(await rawSave(page, MOON_KEY)).sound).toBe(false);
 });
 
-test('chooser, collection tabs, help and long family labels fit compact phone geometry', async ({ page }, info) => {
+test('chooser, collection selector, help and long family labels fit compact phone geometry', async ({ page }, info) => {
   await page.setViewportSize({ width: 320, height: 780 }); await moon(page, info); await imagesReady(page.locator('.cg-board img'));
   await assertNoOverflow(page); await assertControls(page, '.cg-footer button, .cg-header button, .cg-tools button');
   await activate(page.getByRole('button', { name: 'Envelopes', exact: true }), info); await assertNoOverflow(page); await shot(page, info, 'moonlit-compact-chooser'); await closeDialog(page, info);
-  await collected(page, info, 'Moonlit Passage'); await assertControls(page, '.mg-collection-tabs button'); await shot(page, info, 'moonlit-compact-collection'); await closeDialog(page, info);
+  await collected(page, info, 'Moonlit Passage'); await assertControls(page, '.mg-album-picker select'); await shot(page, info, 'moonlit-compact-collection'); await closeDialog(page, info);
   await activate(page.getByRole('button', { name: 'How to play', exact: true }), info); await expect(page.getByRole('dialog')).toContainText('key'); await shot(page, info, 'moonlit-compact-help'); await closeDialog(page, info);
 });

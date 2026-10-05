@@ -26,7 +26,7 @@ async function choose(page, info, title) {
 async function river(page, info) { await choose(page, info, 'Riverside Reverie'); }
 async function collection(page, info, title) {
   await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
-  await activate(page.getByRole('button', { name: title, exact: true }), info);
+  await page.getByLabel('Browse envelope', { exact: true }).selectOption({ label: title });
 }
 
 test('third envelope starts with readable map and teacup identities and finite matching pairs', async ({ page }, info) => {
@@ -166,18 +166,18 @@ test('mute and denied storage survive all three envelope switches', async ({ pag
   expect(await boardIds(page)).toEqual(board); await expect(saveWarning(page)).toBeVisible();
 });
 
-test('all three chooser cards and tabs fit at 320px and scrolled header covers its top edge', async ({ page }, info) => {
+test('all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge', async ({ page }, info) => {
   await page.setViewportSize({ width: 320, height: 780 });
   await activate(page.getByRole('button', { name: 'Envelopes', exact: true }), info);
-  await expect(page.locator('.mg-envelope-card')).toHaveCount(3);
-  await expect(page.locator('.mg-envelope-list')).toContainText('30 distinct artworks across 3 envelopes');
+  await expect(page.locator('.mg-envelope-card')).toHaveCount(4);
+  await expect(page.locator('.mg-envelope-list')).toContainText('40 distinct artworks across 4 envelopes');
   const boxes = await page.locator('.mg-envelope-card h3').evaluateAll(nodes => nodes.map(node => ({ scroll: node.scrollWidth, width: node.clientWidth })));
   for (const box of boxes) expect(box.scroll).toBeLessThanOrEqual(box.width + 1);
-  await page.getByRole('button', { name: 'Open Riverside Reverie', exact: true }).scrollIntoViewIfNeeded();
+  await page.getByRole('button', { name: 'Open Lantern Studio', exact: true }).scrollIntoViewIfNeeded();
   await imagesReady(page.locator('.mg-envelope-card').last().locator('img')); await assertNoOverflow(page);
   await assertControls(page, '.mg-envelope-card button, .cg-dialog-header button'); await shot(page, info, 'riverside-compact-chooser-visible-cards');
-  // The third button can already fit without scrolling. Deliberately reveal
-  // the actual trailing note before asserting the sticky header's scroll state.
+  // Deliberately reveal the trailing note before asserting the sticky header's
+  // scroll state, independently of card heights or lazy-image timing.
   const dialog = page.locator('.mg-dialog');
   await expect.poll(() => dialog.evaluate(node => node.scrollHeight - node.clientHeight)).toBeGreaterThan(0);
   await page.locator('.mg-envelope-list > .cg-collection-note').scrollIntoViewIfNeeded();
@@ -196,7 +196,7 @@ test('all three chooser cards and tabs fit at 320px and scrolled header covers i
   expect(geometry.noteTop).toBeGreaterThanOrEqual(geometry.headerBottom); expect(geometry.noteBottom).toBeLessThanOrEqual(geometry.bottom);
   await activate(page.getByRole('button', { name: 'Open Riverside Reverie', exact: true }), info);
   await assertLiveArtAtPhoneWidths(page); await shot(page, info, 'riverside-compact-board');
-  await collection(page, info, 'Riverside Reverie'); await assertControls(page, '.mg-collection-tabs button'); await assertNoOverflow(page); await shot(page, info, 'riverside-compact-collection');
+  await collection(page, info, 'Riverside Reverie'); await assertControls(page, '.mg-album-picker select'); await assertNoOverflow(page); await shot(page, info, 'riverside-compact-collection');
   await closeDialog(page, info); await activate(page.getByRole('button', { name: 'How to play', exact: true }), info);
   await expect(page.getByRole('dialog')).toContainText('teacup'); await shot(page, info, 'riverside-compact-help'); await closeDialog(page, info);
 });

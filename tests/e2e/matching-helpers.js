@@ -18,6 +18,8 @@ export const NAMES = {
   r1: 'River Map', r2: 'River Ridge', r3: 'River Crossing', r4: 'River Cascade', r5: 'River Citadel',
   t1: 'Cream Teacup', t2: 'Ribbon Sip', t3: 'Tea Chorus', t4: 'Pleated Steam', t5: 'Ribbon Reverie',
   m1: 'Cobalt Moon', m2: 'Crescent Courier', m3: 'Lunar Skiff', m4: 'Crescent Balloon', m5: 'Orbit Voyager',
+  l1: 'Paper Lantern', l2: 'Folded Glow', l3: 'Lantern House', l4: 'Lantern Tower', l5: 'Lantern Palace',
+  s1: 'Coral Spool', s2: 'Ribbon Spool', s3: 'Ribbon Bloom', s4: 'Ribbon Loom', s5: 'Ribbon Pavilion',
 };
 export const cell = (page, index) => page.locator(`[data-matching-cell="${index}"]`);
 export const pieces = (page, id) => page.locator(`[data-matching-cell][data-piece-id="${id}"]`);
@@ -102,7 +104,7 @@ export async function mergeId(page, id, info, method = 'tap') {
   return mergeAt(page, indices[0], indices[1], info, method);
 }
 export async function makeLevelThree(page, family, info, method = 'tap') {
-  const prefix = { bird: 'b', fern: 'f', key: 'k', moon: 'm', map: 'r', teacup: 't' }[family];
+  const prefix = { bird: 'b', fern: 'f', key: 'k', moon: 'm', map: 'r', teacup: 't', lantern: 'l', spool: 's' }[family];
   await mergeId(page, `${prefix}1`, info, method);
   await mergeId(page, `${prefix}1`, info, method);
   await mergeId(page, `${prefix}2`, info, method);
@@ -112,7 +114,7 @@ export async function makeLevelThree(page, family, info, method = 'tap') {
 // Read the real rendered board, then make every move through the real UI.
 // Do not seed a finale, import the reducer, or invoke application internals.
 export async function finishFamily(page, family, info, method = 'tap', onDiscovery = null) {
-  const prefix = { bird: 'b', fern: 'f', key: 'k', moon: 'm', map: 'r', teacup: 't' }[family];
+  const prefix = { bird: 'b', fern: 'f', key: 'k', moon: 'm', map: 'r', teacup: 't', lantern: 'l', spool: 's' }[family];
   const seen = new Set();
   const counts = { merges: 0, draws: 0, actions: 0 };
   while (!(await pieces(page, `${prefix}5`).count())) {

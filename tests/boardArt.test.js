@@ -4,9 +4,9 @@ import { ENVELOPES } from '../src/matching/registry.js';
 
 const pieces = ENVELOPES.flatMap(envelope => envelope.catalog.PIECES);
 describe('board-only artwork display metadata', () => {
-  it('covers all thirty original artworks without changing their identity', () => {
+  it('covers all forty authored artworks without changing their identity', () => {
     expect(Object.keys(BOARD_ART_BOUNDS).sort()).toEqual(pieces.map(piece => piece.id).sort());
-    expect(pieces).toHaveLength(30);
+    expect(pieces).toHaveLength(40);
   });
   it('contains painted ink within each source-preserving crop', () => {
     for (const piece of pieces) {

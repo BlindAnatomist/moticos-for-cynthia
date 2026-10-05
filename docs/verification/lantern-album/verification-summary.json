@@ -1,0 +1,375 @@
+{
+  "status": "local candidate; unpublished; browser execution pending approval",
+  "starting_commit": "d4c98b265dc29d627371aa6d9771765343f834b4",
+  "branch": "work/atelier-progression-20261004",
+  "unit_handler_checks": 225,
+  "unit_handler_result": "passed",
+  "production_build": "passed",
+  "browser_collection": {
+    "cases": 246,
+    "profiles": [
+      "webkit-iphone-13",
+      "webkit-iphone-large",
+      "chromium-desktop"
+    ],
+    "executed": false,
+    "reason": "Prior local loopback/browser denial preserved; no new Actions approval received."
+  },
+  "content": {
+    "envelopes": 4,
+    "pieces": 40,
+    "worlds": 8,
+    "postcards": 24,
+    "new_optimized_art_bytes": 1194920,
+    "total_active_art_bytes": 5723328,
+    "new_compact_painted_long_edge_range": [
+      30.463183198380566,
+      34.006681467828415
+    ]
+  },
+  "engine_validation": {
+    "matching-garden": {
+      "reachability": {
+        "perFamilyInventories": 116,
+        "fittingTwoFamilyStates": 13341,
+        "maxCompletionOperations": 42
+      },
+      "seededPlay": {
+        "seed": "0x4d4f5449",
+        "operations": 10000,
+        "successful": {
+          "merge": 1189,
+          "move": 2174,
+          "cut": 1064,
+          "supply": 348,
+          "undo": 1140,
+          "reset": 39
+        },
+        "reloads": 271,
+        "finalSaveBytes": 49819
+      }
+    },
+    "moonlit-passage": {
+      "reachability": {
+        "perFamilyInventories": 116,
+        "fittingTwoFamilyStates": 13341,
+        "maxCompletionOperations": 42
+      },
+      "seededPlay": {
+        "seed": "0x4d4f5449",
+        "operations": 10000,
+        "successful": {
+          "merge": 1189,
+          "move": 2174,
+          "cut": 1064,
+          "supply": 348,
+          "undo": 1140,
+          "reset": 39
+        },
+        "reloads": 271,
+        "finalSaveBytes": 49734
+      }
+    },
+    "riverside-reverie": {
+      "reachability": {
+        "perFamilyInventories": 116,
+        "fittingTwoFamilyStates": 13341,
+        "maxCompletionOperations": 42
+      },
+      "seededPlay": {
+        "seed": "0x4d4f5449",
+        "operations": 10000,
+        "successful": {
+          "merge": 1189,
+          "move": 2174,
+          "cut": 1064,
+          "supply": 348,
+          "undo": 1140,
+          "reset": 39
+        },
+        "reloads": 271,
+        "finalSaveBytes": 49904
+      }
+    },
+    "lantern-studio": {
+      "reachability": {
+        "perFamilyInventories": 116,
+        "fittingTwoFamilyStates": 13341,
+        "maxCompletionOperations": 42
+      },
+      "seededPlay": {
+        "seed": "0x4d4f5449",
+        "operations": 10000,
+        "successful": {
+          "merge": 1189,
+          "move": 2174,
+          "cut": 1064,
+          "supply": 348,
+          "undo": 1140,
+          "reset": 39
+        },
+        "reloads": 271,
+        "finalSaveBytes": 50159
+      }
+    }
+  },
+  "independent_review": {
+    "deterministic_checks": 78,
+    "source_art_test_review": "passed after stale chooser test count, lazy image target, and progress-dot semantics were corrected",
+    "actual_pixel_art_review": "all ten distinct at35/50/190px and smallest board-slot crop simulation; l2 more ornate than brief but distinct",
+    "rendered_browser_review": "not yet performed"
+  },
+  "external_actions": {
+    "push": false,
+    "actions_run": false,
+    "deployment": false,
+    "main_merge": false
+  },
+  "build_outputs": [
+    {
+      "path": "art/garden/e01_riverwing.webp",
+      "bytes": 56900,
+      "sha256": "c90dd8710d9c3e523871b85bf9ab9d3d0e8b9c5a6333b8b9943f64bbd3903c0c"
+    },
+    {
+      "path": "art/garden/e02_frond_key.webp",
+      "bytes": 73258,
+      "sha256": "cf9914516101110366d4e4df6f3eaae213fade6ee4a47269cc402cf1900d292c"
+    },
+    {
+      "path": "art/garden/e03_wayfinder_garden.webp",
+      "bytes": 99366,
+      "sha256": "d5399ce3dcad7edd43dd0b17772014dfc626da01ff089af8026f31563085bffb"
+    },
+    {
+      "path": "art/garden/e04_crescent_courier.webp",
+      "bytes": 50668,
+      "sha256": "f5a4c0bd9145e0309ab48a349d00640165edd14ddad1065304681ba0f0cba6f3"
+    },
+    {
+      "path": "art/garden/e05_fern_cup.webp",
+      "bytes": 76414,
+      "sha256": "b8788d67be4100d661e41d9884655ff7d6b88460d0647e9fb8eb763d0285d68c"
+    },
+    {
+      "path": "art/garden/e06_nightgarden_nest.webp",
+      "bytes": 82674,
+      "sha256": "111914f7b614042ba6a391794883b9531f86d2b5790f9f6117e6a54e22c840fc"
+    },
+    {
+      "path": "art/garden/s01_coral_bird.webp",
+      "bytes": 57368,
+      "sha256": "902153aa3aea6d0f828c02407820dcb77c7aab59dce17543592066e7a91d7b9c"
+    },
+    {
+      "path": "art/garden/s02_river_map.webp",
+      "bytes": 63344,
+      "sha256": "9e69877fe55bdd4a9d90aa8d5c2183327db74c12c2841db3866f7ae76e0208d6"
+    },
+    {
+      "path": "art/garden/s03_round_key.webp",
+      "bytes": 47208,
+      "sha256": "917c938f88e778a06334c6a3be219d91050a0f833cfc85905c2ecbc3b4380290"
+    },
+    {
+      "path": "art/garden/s04_teal_fern.webp",
+      "bytes": 93730,
+      "sha256": "08862a73c290cebf513fe9efd13b890c659b382eb1d190fd088b4cdf15b0d02c"
+    },
+    {
+      "path": "art/garden/s05_cobalt_moon.webp",
+      "bytes": 44962,
+      "sha256": "026816e6ae7a81e0d5aaa64eb49f650eb8ee8871752c59a11ab0f6f98cfdb6ab"
+    },
+    {
+      "path": "art/garden/s06_cream_teacup.webp",
+      "bytes": 48012,
+      "sha256": "dd88f7ab48a885fd456363b392442d11c7adffa62204ece7e3fc9470b784c8e8"
+    },
+    {
+      "path": "art/matching/b4.webp",
+      "bytes": 283434,
+      "sha256": "b63dae4664f703e634babd7e32989eb1b48c59aa972e133ddf2137e3a7157d73"
+    },
+    {
+      "path": "art/matching/b5.webp",
+      "bytes": 276930,
+      "sha256": "062af86696854a6fba6f91d08261288b5cc0c3696fd0dd3f6668828791225967"
+    },
+    {
+      "path": "art/matching/f4.webp",
+      "bytes": 226220,
+      "sha256": "37fa247790cfbdf97cd6893f46b9a18e78b982991e953350ab5a4ebf2bb2dc3f"
+    },
+    {
+      "path": "art/matching/f5.webp",
+      "bytes": 219106,
+      "sha256": "8a5a0fb3fc106534926480c6c6c4f40e1972dd49ee90f342a8a9a8ead1f7531b"
+    },
+    {
+      "path": "art/matching/k3.webp",
+      "bytes": 135936,
+      "sha256": "c96f2f342382c416014c2cd5d5818abf06970d2d8ae6051b60db905013a04485"
+    },
+    {
+      "path": "art/matching/k4.webp",
+      "bytes": 120154,
+      "sha256": "d3f96ba683167ffb2881b3dccae2af94b17635a168cd9fee9eaceb45c1f486bb"
+    },
+    {
+      "path": "art/matching/k5.webp",
+      "bytes": 155726,
+      "sha256": "d33c074fae2330b13c5a576b3e41aeae3b85cf0aae85e7c46f277ae7886ffc56"
+    },
+    {
+      "path": "art/matching/l1.webp",
+      "bytes": 119224,
+      "sha256": "ff7e39e4d4b7e59d4e367940d4c1dee305cd684eec2d3b43b00872cb1e57217d"
+    },
+    {
+      "path": "art/matching/l2.webp",
+      "bytes": 129832,
+      "sha256": "3ffd94cba2d62df2733322b9b97e6de23d9ffc0a841822f4c7f71adb82fa7034"
+    },
+    {
+      "path": "art/matching/l3.webp",
+      "bytes": 128036,
+      "sha256": "111c83cec83d13f358737fbe83566d6d5fc64c564cee7644c180be2a35a2e08c"
+    },
+    {
+      "path": "art/matching/l4.webp",
+      "bytes": 73206,
+      "sha256": "4f934406a340c610228a7b947bb0e3eb394946c360d7683e3d698b3caa53c2a3"
+    },
+    {
+      "path": "art/matching/l5.webp",
+      "bytes": 115644,
+      "sha256": "ff9d9e3bbaaf70c3c6e0115291e67d176800cf41512b70d2eb6d9e75d2e21ae8"
+    },
+    {
+      "path": "art/matching/m3.webp",
+      "bytes": 122768,
+      "sha256": "b7bafc09d8ac6f25236e3f6afabb8559c70f9fd761ac59bef176ece61dd55638"
+    },
+    {
+      "path": "art/matching/m4.webp",
+      "bytes": 116972,
+      "sha256": "f1e25fb9fc5a6fe619840ffff83a65556ab99a973845ebdcf352775ffada90f8"
+    },
+    {
+      "path": "art/matching/m5.webp",
+      "bytes": 156160,
+      "sha256": "31599da7665b9e9574d5c68b33dcf2db2f38e9e30ce4d0f906fe03459a8a2540"
+    },
+    {
+      "path": "art/matching/r1.webp",
+      "bytes": 252330,
+      "sha256": "eb70a3d942a333d851588721f2ed072205fe624b3e082a3f76d8e4e55f2d26b4"
+    },
+    {
+      "path": "art/matching/r2.webp",
+      "bytes": 201404,
+      "sha256": "62cfe1bba10af1039fdcf4fd331e372473ea20ea53865904bef997c73c8808b7"
+    },
+    {
+      "path": "art/matching/r3.webp",
+      "bytes": 147280,
+      "sha256": "08ffd4bba3b55eec704fd6d70621bb1b5bbb65dfa54f55ebbb446f28a83fbda7"
+    },
+    {
+      "path": "art/matching/r4.webp",
+      "bytes": 191480,
+      "sha256": "9b5d88918324e8435753ff9cc83b28a78b350cff11350830ad10368a3579c4d8"
+    },
+    {
+      "path": "art/matching/r5.webp",
+      "bytes": 208520,
+      "sha256": "06bd45793605b5d296e69c3ca536108f5f8ec8b9cd4f4e52dfec60cae0b50da6"
+    },
+    {
+      "path": "art/matching/s1.webp",
+      "bytes": 155012,
+      "sha256": "cf4030b0a90641ac18cf6fabe2b7253ca81bd0911d57ee90b34573d9364c2403"
+    },
+    {
+      "path": "art/matching/s2.webp",
+      "bytes": 93956,
+      "sha256": "1839d37b49c1db76181c307c11f657a63caa2209b6dcac56c2b97cf50e896164"
+    },
+    {
+      "path": "art/matching/s3.webp",
+      "bytes": 130300,
+      "sha256": "c9329174cbc3732f36f3be4568682317cfdec287dfa56e06fc6b712d35ab5f58"
+    },
+    {
+      "path": "art/matching/s4.webp",
+      "bytes": 130962,
+      "sha256": "239425d0c05ce817003a87af6ec8f85e878bd65c1f04a1e020fa344e344fabf5"
+    },
+    {
+      "path": "art/matching/s5.webp",
+      "bytes": 118748,
+      "sha256": "6b49741987f5a13b8219890e0b53a23740a395d9a0b6aca9362ed37ee2befeb0"
+    },
+    {
+      "path": "art/matching/t1.webp",
+      "bytes": 167024,
+      "sha256": "35753f462ecb710618d8f4f6154389ba67c3cfaaaaeb9a6a2d58112002b514f9"
+    },
+    {
+      "path": "art/matching/t2.webp",
+      "bytes": 157438,
+      "sha256": "582550554c25d6785abaf4dfb73fa478332517a72b562f3f245e1b1bba94b88a"
+    },
+    {
+      "path": "art/matching/t3.webp",
+      "bytes": 214900,
+      "sha256": "0cdd49aaa4e355048ad935f5d36d6f629827705ad3e01b6e960cfae2693915f0"
+    },
+    {
+      "path": "art/matching/t4.webp",
+      "bytes": 261350,
+      "sha256": "5512600baec0c11c743f1721ed348e1d43a7e310d11a0edaa13198e03c59cb2f"
+    },
+    {
+      "path": "art/matching/t5.webp",
+      "bytes": 230728,
+      "sha256": "7b0f254d997d6fc2a98da324c02e56dc49d3ee388afc15708916654dd4e35967"
+    },
+    {
+      "path": "assets/CollectionGarden-B7L_3Qx8.css",
+      "bytes": 9230,
+      "sha256": "59b51491fe4a0e775850d0f489bb60556c968444ac335c5d6dad33a64bbbdfe1"
+    },
+    {
+      "path": "assets/CollectionGarden-C-8s5Xiy.js",
+      "bytes": 20724,
+      "sha256": "838ac0c00386f89148ffdd113dac20f63a350980e25043a4526944b421e9bb22"
+    },
+    {
+      "path": "assets/MoticosMerge-Dqp4dotf.js",
+      "bytes": 22570,
+      "sha256": "3bc2c73bd1461ddf206e0e182b8d37a32759bcfd53c22fe85d261a69b4de681d"
+    },
+    {
+      "path": "assets/MoticosMerge-d5WeRR1G.css",
+      "bytes": 12927,
+      "sha256": "8e5f0a3258ccf4541858525998bdb94411d1c2c82fc7ac5ac9c9d74692a42501"
+    },
+    {
+      "path": "assets/index-CEF5EcF5.js",
+      "bytes": 509054,
+      "sha256": "69a7e3251abc43d08ab12f6f530c07e9567945488d661faafc69a55912fc90fb"
+    },
+    {
+      "path": "assets/index-NwzSS41u.css",
+      "bytes": 24921,
+      "sha256": "5ee2e3ed8780324ec89d0a67beb3b508d2d6f7434465cb3447eec7913a6e3fef"
+    },
+    {
+      "path": "index.html",
+      "bytes": 570,
+      "sha256": "276fe627e34d6357eba96ef252ba42cf7dd810b9d49939c2362a29b6858a5ca8"
+    }
+  ]
+}

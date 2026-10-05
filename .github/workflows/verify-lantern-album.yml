@@ -1,0 +1,49 @@
+name: Verify Lantern Studio and album progression
+
+# This branch is inert until the owner explicitly approves the bounded run.
+on:
+  push:
+    branches: [verify/lantern-album-20261004]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moticos-lantern-album
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install exact dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify logic, handlers and read-only album
+        run: npm test
+      - name: Verify finite inventories and authored content
+        run: npm run validate:matching && npm run validate:catalog
+      - name: Build isolated candidate
+        run: npm run build
+      - name: Install standard WebKit and Chromium
+        run: npx playwright install --with-deps webkit chromium
+      - name: Verify four journeys, album and phone layout
+        run: npx playwright test tests/e2e/matching.spec.js tests/e2e/matching-expansion.spec.js tests/e2e/matching-riverside.spec.js tests/e2e/matching-lantern.spec.js tests/e2e/matching-layout.spec.js --workers=2 --retries=0
+      - name: Keep browser evidence for one day
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moticos-lantern-album-evidence
+          path: |
+            test-results/screenshots
+            test-results/geometry
+            test-results/progress
+            test-results/postcards
+            test-results/**/trace.zip
+            playwright-report
+          if-no-files-found: ignore
+          retention-days: 1

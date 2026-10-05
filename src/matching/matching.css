@@ -149,6 +149,8 @@
 .mg-dialog .cg-dialog-header h2 { min-width:0; }
 .mg-level.mg-map { color:#204d91; }
 .mg-level.mg-teacup { color:#795218; }
+.mg-level.mg-lantern { color:#795218; }
+.mg-level.mg-spool { color:#8f403b; }
 @media(max-width:380px) {
   .mg-dialog { --mg-dialog-padding:14px; }
   .mg-envelope-card { grid-template-columns:42px minmax(0,1fr); }
@@ -156,6 +158,32 @@
   .mg-envelope-art .cg-art { width:42px; height:42px; }
   .mg-envelope-card h3 { font-size:18px; }
 }
+
+/* Album controls live inside dialogs; no additional height on the play surface. */
+.mg-album-summary { padding:16px; margin:6px 0 20px; background:#e9eee5; border:1px solid #bdcbbc; border-radius:10px; }
+.mg-album-summary h3 { margin:0 0 12px; font:normal 23px/1.2 Georgia,serif; }
+.mg-album-summary dl { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,4.5rem),1fr)); gap:8px; margin:0; }
+.mg-album-summary dt { font-size:.875rem; color:#40564a; }
+.mg-album-summary dd { margin:3px 0 0; font:normal 29px/1.1 Georgia,serif; color:#214e48; }
+.mg-album-summary dd span { font:normal .875rem/1.3 system-ui,sans-serif; color:#40564a; white-space:nowrap; }
+.mg-album-summary p { font-size:.875rem; line-height:1.45; margin:12px 0 0; }
+.mg-album-summary .mg-album-caution { color:#69450d; border-top:1px solid #bdcbbc; padding-top:10px; }
+.mg-album-picker { display:grid; gap:6px; margin:16px 0; font-size:.875rem; font-weight:600; }
+.mg-album-picker select { width:100%; min-width:0; min-height:44px; padding:9px 28px 9px 10px; border:1px solid #758878; border-radius:6px; font:inherit; font-size:1rem; color:#254e44; background:#fffdf5; }
+.mg-album-picker select:focus-visible { outline:3px solid #916416; outline-offset:3px; }
+.mg-album-results { margin:0; font-size:.875rem; color:#40564a; }
+.mg-envelope-paths { grid-column:1 / -1; padding-top:10px; border-top:1px solid #d7ddce; }
+.mg-envelope-paths>div { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:6px 0; font-size:.875rem; }
+.mg-envelope-paths>div>span:first-child { min-width:58px; }
+.mg-path-dots { display:inline-flex; flex-wrap:wrap; max-width:100%; gap:5px; }
+.mg-path-dots i { display:grid; place-items:center; flex-shrink:0; width:1.375rem; height:1.375rem; border:1px solid #7d8c7f; border-radius:50%; font:normal .75rem/1 system-ui,sans-serif; color:#556457; background:#fffdf5; }
+.mg-path-dots i.is-found { background:#25554b; border-color:#25554b; color:#fff; }
+.mg-path-complete,.mg-collected-label { color:#25554b; font-size:.875rem; font-weight:600; }
+.mg-collected-label { display:block; margin-top:5px; font-family:system-ui,sans-serif; }
+.mg-envelope-card .mg-next-discovery,.mg-next-discovery { font-size:.875rem; line-height:1.5; color:#314f40; margin:10px 0 0; }
+.mg-envelope-card p { font-size:.875rem; }
+.mg-envelope-card small { font-size:.8125rem; }
+@media(max-width:380px) { .mg-album-summary { padding:12px; } .mg-album-summary h3 { font-size:21px; } .mg-album-summary dd { font-size:25px; } }
 
 /* A play surface, rather than a long document. The small viewport stays stable
    while Safari's toolbars expand/collapse. Text enlargement is allowed to make
