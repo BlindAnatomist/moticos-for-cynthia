@@ -8,8 +8,12 @@ import "./iphone.css";
 // download all of their art-generation and UI code on its first visit.
 const MoticosMerge = lazy(() => import("./MoticosMerge.jsx"));
 const CollectionGarden = lazy(() => import("./collection/CollectionGarden.jsx"));
+// The trial and its original private art are excluded from normal builds.
+const LightLetterTrial = import.meta.env.VITE_LIGHT_LETTER_TRIAL === '1'
+  ? lazy(() => import('./matching/trial/LightLetterTrial.jsx')) : null;
 const params = new URLSearchParams(window.location.search);
-const app = params.has("classic") || params.has("gallery")
+const app = LightLetterTrial && params.get('pilot') === 'light-letter'
+  ? <LightLetterTrial /> : params.has("classic") || params.has("gallery")
   ? <MoticosMerge />
   : params.has("recipe-study") ? <CollectionGarden /> : <MatchingCollection />;
 

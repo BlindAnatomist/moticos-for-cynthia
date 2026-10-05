@@ -26,7 +26,7 @@ UPLOAD_LIMIT_BYTES = 250 * 1024 * 1024
 UPLOAD_OVERHEAD_BYTES = 1024 * 1024
 READ_BYTES = 1024 * 1024
 SAFE_DIRECTORIES = (
-    "test-results", "playwright-report", "preflight-results", "preflight-report",
+    "test-results", "playwright-report", "preflight-results", "preflight-report", "trial-test-results",
 )
 
 

@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest run tests/gameLogic.test.js tests/collectionLogic.test.js tests/matchingLogic.test.js tests/matchingUi.test.jsx tests/matchingSession.test.js tests/expansionAudit.test.js tests/thirdEnvelopeAudit.test.js tests/boardArt.test.js tests/dialogFocus.test.js tests/albumProgress.test.js tests/fourthEnvelopeAudit.test.js tests/albumPicker.test.jsx",
+    "test": "vitest run tests/gameLogic.test.js tests/collectionLogic.test.js tests/matchingLogic.test.js tests/matchingUi.test.jsx tests/matchingSession.test.js tests/expansionAudit.test.js tests/thirdEnvelopeAudit.test.js tests/boardArt.test.js tests/dialogFocus.test.js tests/albumProgress.test.js tests/fourthEnvelopeAudit.test.js tests/albumPicker.test.jsx tests/lightLetterTrial.test.jsx",
     "test:e2e": "playwright test",
     "validate:matching": "node scripts/validateMatching.mjs",
-    "validate:catalog": "node scripts/validateCatalog.mjs"
+    "validate:catalog": "node scripts/validateCatalog.mjs",
+    "build:trial": "VITE_LIGHT_LETTER_TRIAL=1 vite build --outDir dist-trial && node scripts/stampLightLetterTrial.mjs",
+    "dev:trial": "VITE_LIGHT_LETTER_TRIAL=1 vite",
+    "validate:trial-build": "node scripts/validateLightLetterBuild.mjs"
   },
   "dependencies": {
     "lucide-react": "1.27.0",

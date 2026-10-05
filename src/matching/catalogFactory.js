@@ -7,13 +7,27 @@ const safeId = id => typeof id === 'string' && /^[a-z][a-z0-9-]*$/.test(id) && !
 // Exactly two authored five-picture journeys form an envelope. Routes use
 // explicit pieceIds, so unrelated names or non-sequential IDs are safe.
 export function createMatchingCatalog({ id, rows, families }) {
-  if (!safeId(id) || !Array.isArray(rows) || rows.length !== 10 || !Array.isArray(families) || families.length !== 2 ||
-      new Set(families.map(family => family.id)).size !== 2 ||
+  return createCatalog({ id, rows, families }, 2);
+}
+
+// Private, build-gated art trials use one real family, never visually identical
+// aliases masquerading as two families. Public envelope admission stays strict.
+export function createSingleFamilyTrialCatalog(options) {
+  if (options.id !== 'trial-light-letter' || typeof options.artUrl !== 'function') {
+    throw new TypeError('Only the isolated Light / Letter trial is supported.');
+  }
+  return createCatalog(options, 1);
+}
+
+function createCatalog({ id, rows, families, artUrl = asset => `${base}art/${asset}.webp` }, familyCount) {
+  const pieceCount = familyCount * 5;
+  if (!safeId(id) || !Array.isArray(rows) || rows.length !== pieceCount || !Array.isArray(families) || families.length !== familyCount ||
+      new Set(families.map(family => family.id)).size !== familyCount ||
       !families.every(family => safeId(family.id) && Array.isArray(family.pieceIds) && family.pieceIds.length === 5)) {
     throw new TypeError('An envelope must contain exactly two distinct five-tier families.');
   }
   const routeIds = families.flatMap(family => family.pieceIds);
-  if (new Set(routeIds).size !== 10 || !routeIds.every(safeId) || new Set(rows.map(row => row[0])).size !== 10 ||
+  if (new Set(routeIds).size !== pieceCount || !routeIds.every(safeId) || new Set(rows.map(row => row[0])).size !== pieceCount ||
       !rows.every(row => {
         if (!Array.isArray(row) || row.length !== 7) return false;
         const [pieceId, familyId, tier, name, shortName, description, asset] = row;
@@ -25,7 +39,7 @@ export function createMatchingCatalog({ id, rows, families }) {
   }
   const PIECES = Object.freeze(rows.map(([pieceId, familyId, tier, name, shortName, description, asset]) => Object.freeze({
     id: pieceId, familyId, tier, rank: tier - 1, name, shortName, description, packId: id,
-    mass: 2 ** (tier - 1), art: `${base}art/${asset}.webp`,
+    mass: 2 ** (tier - 1), art: artUrl(asset),
   })));
   const CATALOG = Object.freeze(Object.fromEntries(PIECES.map(piece => [piece.id, piece])));
   const FAMILIES = Object.freeze(families.map(({ id: familyId, name, shortName, color, pieceIds }) => Object.freeze({

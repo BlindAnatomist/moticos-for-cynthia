@@ -233,3 +233,52 @@ describe('second envelope component handlers', () => {
     expect(returned.save().round.supply).toEqual({ key: 10, moon: 12 }); expect(raw).toBe('unread moon save');
   });
 });
+
+// The trial runs these very same input handlers with a one-family descriptor.
+// This is deterministic handler coverage, not a browser-rendering claim.
+import { LIGHT_LETTER_TRIAL } from '../src/matching/trial/LightLetterTrial.jsx';
+import { LIGHT_LETTER_ENGINE as trialEngine } from '../src/matching/trial/catalog.js';
+describe('private Light / Letter component handlers', () => {
+  beforeEach(() => {
+    storage.setItem = vi.fn((key, value) => { expect(key).toBe(trialEngine.STORAGE_KEY); if (writeError) throw Error('Unavailable'); raw = value; });
+  });
+  const trialProps = () => ({ envelopeId: 'trial-light-letter', trial: LIGHT_LETTER_TRIAL, sessionCache: new Map() });
+  it('reaches all five tiers through actual shared handlers with one supply, then reloads and undoes', () => {
+    const props = trialProps(), page = harness(props);
+    for (let actions = 0; !page.save().round.board.some(tile => tile?.pieceId === 'll5'); actions++) {
+      expect(actions).toBeLessThan(21);
+      const pair = trialEngine.mergePairs(page.save().round.board).sort((a, b) => trialEngine.pieceOf(page.save().round.board[b[0]].pieceId).tier - trialEngine.pieceOf(page.save().round.board[a[0]].pieceId).tier)[0];
+      if (pair) {
+        const selected = page.save().round.board;
+        // Clear selection left by the prior landing without invoking a second click.
+        page.cell(pair[0]).props.onKeyDown({ key: 'Escape' }); page.render();
+        page.activate(pair[0]).activate(pair[1]); vi.advanceTimersByTime(1000); page.render();
+        expect(page.save().round.board).not.toBe(selected);
+      } else page.add('light-letter');
+    }
+    expect(page.save().round).toMatchObject({ moves: 21, merges: 15, supply: { 'light-letter': 0 } });
+    expect(page.save().discoveries).toEqual(['ll1', 'll2', 'll3', 'll4', 'll5']);
+    expect(trialEngine.readSave(raw).status).toBe('loaded');
+    const expected = structuredClone(page.save()); page.destroy();
+    const reloaded = harness(trialProps()); expect(reloaded.save()).toEqual(expected);
+    reloaded.tool('Undo').props.onClick(); reloaded.render();
+    expect(reloaded.save().round.merges).toBe(14); expect(reloaded.save().discoveries).toEqual(expected.discoveries);
+  });
+  it('preserves corrupt trial bytes while handling real merges and supply', () => {
+    raw = '{"version":33,"future":"preserve"}'; const original = raw;
+    const page = harness(trialProps()).activate(6).activate(7);
+    vi.advanceTimersByTime(1000); page.render().add('light-letter');
+    expect(page.save().round.moves).toBe(2); expect(raw).toBe(original); expect(storage.setItem).not.toHaveBeenCalled();
+  });
+  it('uses the same magnetic drag, wrong-level rejection and Cut rules', () => {
+    const page = harness(trialProps()); page.down(6).move(6, 297, 145).up(6, { clientX: 297, clientY: 145 });
+    expect(page.save().round.board[7].pieceId).toBe('ll2');
+    vi.advanceTimersByTime(1000); page.render();
+    const prior = trialEngine.serializeSave(page.save());
+    page.down(7).move(7, 245, 245).up(7, { clientX: 245, clientY: 245 });
+    vi.advanceTimersByTime(1000); page.render(); expect(trialEngine.serializeSave(page.save())).toBe(prior);
+    page.tool('Cut').props.onClick(); page.render();
+    expect(page.save().round.board.filter(Boolean).every(tile => tile.pieceId === 'll1')).toBe(true);
+    expect(page.save().discoveries).toEqual(['ll1', 'll2']);
+  });
+});

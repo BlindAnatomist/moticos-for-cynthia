@@ -1,0 +1,43 @@
+{
+  "baselineCommit": "3739e1d4eb38ef03eac7badec1821dfb4e6d1d01",
+  "canonicalSelection": [
+    "P1-v1",
+    "P2-v2",
+    "P3-v1",
+    "P4-v1",
+    "P5-v1"
+  ],
+  "status": "Unmodified reviewed artwork; private runtime trial only. No new generation.",
+  "assets": [
+    {
+      "id": "ll1",
+      "canonicalSource": "optimized/p1.webp",
+      "file": "src/matching/trial/art/p1.webp",
+      "sourceSha256": "b267da0b30864b9c4cd6f413d5e0c94f9376c32f584b4e8f9eddca5dfe253f84"
+    },
+    {
+      "id": "ll2",
+      "canonicalSource": "optimized/p2.webp",
+      "file": "src/matching/trial/art/p2.webp",
+      "sourceSha256": "0e74ed2c037f041f3f62b9950301b4f8b9c55ddaeae5f46043474b16be38c121"
+    },
+    {
+      "id": "ll3",
+      "canonicalSource": "optimized/p3.webp",
+      "file": "src/matching/trial/art/p3.webp",
+      "sourceSha256": "52809215eea4e43b157f3f4d919a33763fb78bd6fc8b6ae717b3f80118e53394"
+    },
+    {
+      "id": "ll4",
+      "canonicalSource": "optimized/p4.webp",
+      "file": "src/matching/trial/art/p4.webp",
+      "sourceSha256": "31a16480dd288fb80cd3dc0fcc536ac215256f438343b274b0d0b36ac5873278"
+    },
+    {
+      "id": "ll5",
+      "canonicalSource": "optimized/p5.webp",
+      "file": "src/matching/trial/art/p5.webp",
+      "sourceSha256": "18cb3046531ec174e1496501ebd9b10080833b3e27849e6bb708a2ce6dd2c4eb"
+    }
+  ]
+}

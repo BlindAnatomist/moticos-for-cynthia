@@ -203,7 +203,7 @@ export async function assertControls(page, selector) {
 
 // Inspect every real, currently live tier at compact and standard phone widths.
 // The round itself still plays at the project's original viewport and engine.
-export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live-art') {
+export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live-art', options = {}) {
   await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
   const original = page.viewportSize();
   try {
@@ -211,7 +211,7 @@ export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live
       const { width } = viewport;
       await page.setViewportSize(viewport);
       await imagesReady(page.locator('.cg-board img'));
-      await assertMatchingViewportFit(page, info, `${name}-${width}x${viewport.height}`);
+      await assertMatchingViewportFit(page, info, `${name}-${width}x${viewport.height}`, options);
       await assertControls(page, '.cg-header button, .cg-tools button, .mg-supply button, .cg-postcard-button, .cg-footer button');
       const tiles = await occupied(page).evaluateAll(nodes => nodes.map(node => {
         const label = node.querySelector('.cg-cell-name');
@@ -227,7 +227,7 @@ export async function assertLiveArtAtPhoneWidths(page, info = null, name = 'live
           artWidth: art.width, artHeight: art.height,
         };
       }));
-      expect(matchingArtViolations(tiles, width), `live artwork remains readable at ${width}px`).toEqual([]);
+      expect(matchingArtViolations(tiles, width, options.names), `live artwork remains readable at ${width}px`).toEqual([]);
     }
   } finally {
     await page.setViewportSize(original);
@@ -373,7 +373,7 @@ function checkUnclippedText(text, check) {
 // Playwright expectation records the result, instead of tracing ~1,000 tiny
 // assertions per screen (the previous gate spent 116–143 seconds per round
 // inside the geometry assertion blocks). Conditions remain unchanged.
-export function matchingViewportViolations(geometry, requestedViewport) {
+export function matchingViewportViolations(geometry, requestedViewport, { minControls = 36 } = {}) {
   const violations = [], check = collectChecks(violations);
   const { viewport, controls, regions, text, artwork } = geometry;
   check({ width: viewport.width, height: viewport.height }, 'actual CSS viewport equals the requested test viewport').toEqual(requestedViewport);
@@ -389,7 +389,7 @@ export function matchingViewportViolations(geometry, requestedViewport) {
     bottom: viewport.visual.offsetTop + viewport.visual.height,
   } : { left: 0, top: 0, right: viewport.width, bottom: viewport.height };
   check(controls.filter(control => control.cell !== null)).toHaveLength(25);
-  check(controls.length, '25 cells, two header controls, two supplies, four tools and three secondary actions').toBeGreaterThanOrEqual(36);
+  check(controls.length, `at least ${minControls} required board controls`).toBeGreaterThanOrEqual(minControls);
   for (const box of [...controls, ...regions]) {
     check(box.hiddenBy, `${box.name} is not hidden by CSS, aria-hidden or inert`).toEqual([]);
     check(box.clippedBy, `${box.name} is not clipped by an ancestor`).toEqual([]);
@@ -434,37 +434,36 @@ export function matchingViewportViolations(geometry, requestedViewport) {
   return violations;
 }
 
-export async function assertMatchingViewportFit(page, info = null, name = 'fit') {
+export async function assertMatchingViewportFit(page, info = null, name = 'fit', { controlNames = ['Undo', 'Cut', 'Hint', 'Collection', 'Envelopes', 'Fresh envelope', 'How to play'], supplyCount = 2, minControls = 36 } = {}) {
   await idle(page);
   await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
   await imagesReady(page.locator('.cg-board img'));
   const geometry = await matchingGeometry(page);
   if (info) await attachMatchingGeometry(page, info, name, geometry);
   const identities = [
-    ...['Undo', 'Cut', 'Hint', 'Collection', 'Envelopes', 'Fresh envelope', 'How to play']
-      .map(name => ({ name, locator: page.getByRole('button', { name, exact: true }), count: 1 })),
+    ...controlNames.map(name => ({ name, locator: page.getByRole('button', { name, exact: true }), count: 1 })),
     ...['.cg-header', '.cg-board', '.mg-supply', '.cg-tools', '.cg-footer', '.cg-postcard-button']
       .map(selector => ({ name: selector, locator: page.locator(selector), count: 1 })),
-    { name: '.mg-supply button', locator: page.locator('.mg-supply button'), count: 2 },
+    { name: '.mg-supply button', locator: page.locator('.mg-supply button'), count: supplyCount },
   ];
   // Preserve toHaveCount's retry behavior and role-based visibility semantics.
   await expect.poll(async () => Promise.all(identities.map(async item => ({
     name: item.name, count: await item.locator.count(),
   }))), { message: 'all named controls and required regions remain present' })
     .toEqual(identities.map(({ name, count }) => ({ name, count })));
-  expect(matchingViewportViolations(geometry, page.viewportSize()), `unclipped one-screen layout: ${name}`).toEqual([]);
+  expect(matchingViewportViolations(geometry, page.viewportSize(), { minControls }), `unclipped one-screen layout: ${name}`).toEqual([]);
   return geometry;
 }
 
 // Only the explicitly labelled accessibility/tiny-height fallback allows page
 // scrolling. It still rejects hidden/clipped controls, horizontal overflow,
 // smaller targets, and internal scrollboxes used to conceal the game.
-export async function assertMatchingScrollableFallback(page, info, name) {
+export async function assertMatchingScrollableFallback(page, info, name, { minControls = 36 } = {}) {
   await idle(page);
   await expect(page.locator('.cg-cell.is-pasted')).toHaveCount(0);
   const initial = await matchingGeometry(page);
   await attachMatchingGeometry(page, info, `${name}-top`, initial);
-  const violations = matchingFallbackViolations(initial);
+  const violations = matchingFallbackViolations(initial, { minControls });
   for (let index = 0; index < initial.controls.length; index++) {
     const control = page.locator('.mg-page > .cg-shell button').nth(index);
     await expect(control).toBeVisible();
@@ -487,13 +486,13 @@ export function matchingControlViolations(sizes) {
   }
   return violations;
 }
-export function matchingArtViolations(tiles, width) {
+export function matchingArtViolations(tiles, width, names = NAMES) {
   const violations = [], check = collectChecks(violations);
   for (const tile of tiles) {
     check(tile.name, `${tile.id} has a visible short label at ${width}px`).toBeTruthy();
     check(tile.clipped, `${tile.id} label must not be truncated at ${width}px`).toBe(false);
     check(tile.font).toBeGreaterThanOrEqual(8);
-    check(tile.accessibleName).toContain(NAMES[tile.id]);
+    check(tile.accessibleName).toContain(names[tile.id]);
     check(tile.width).toBeGreaterThanOrEqual(44);
     check(tile.height).toBeGreaterThanOrEqual(44);
     check(tile.artWidth).toBeGreaterThan(30);
@@ -501,10 +500,10 @@ export function matchingArtViolations(tiles, width) {
   }
   return violations;
 }
-export function matchingFallbackViolations(initial) {
+export function matchingFallbackViolations(initial, { minControls = 36 } = {}) {
   const violations = [], check = collectChecks(violations);
   check(initial.controls.filter(control => control.cell !== null)).toHaveLength(25);
-  check(initial.controls.length).toBeGreaterThanOrEqual(36);
+  check(initial.controls.length).toBeGreaterThanOrEqual(minControls);
   check(initial.document.width).toBeLessThanOrEqual(initial.viewport.width);
   check(initial.body.width).toBeLessThanOrEqual(initial.viewport.width);
   check(initial.document.height, 'this fixture genuinely exercises the scrolling fallback').toBeGreaterThan(initial.viewport.height);
