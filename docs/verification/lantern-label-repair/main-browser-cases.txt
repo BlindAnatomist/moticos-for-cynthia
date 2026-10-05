@@ -1,0 +1,245 @@
+Listing tests:
+  [webkit-iphone-13] › matching-expansion.spec.js:28:1 › second envelope starts with two readable identities and the same finite matching loop
+  [webkit-iphone-13] › matching-expansion.spec.js:42:3 › complete Moonlit Passage key-moon with real merges and six postcards
+  [webkit-iphone-13] › matching-expansion.spec.js:42:3 › complete Moonlit Passage moon-key with real merges and six postcards
+  [webkit-iphone-13] › matching-expansion.spec.js:72:1 › switches preserve both partial boards and independent Undo, including browser Back and Forward
+  [webkit-iphone-13] › matching-expansion.spec.js:84:1 › other-envelope postcards return to unchanged active board and collection view does not switch play
+  [webkit-iphone-13] › matching-expansion.spec.js:96:1 › fresh envelope names its target and resets only that board
+  [webkit-iphone-13] › matching-expansion.spec.js:106:3 › corrupt moticos.matching.garden.v1 retains temporary board across switches and exports exact original bytes
+  [webkit-iphone-13] › matching-expansion.spec.js:106:3 › corrupt moticos.matching.moonlit-passage.v1 retains temporary board across switches and exports exact original bytes
+  [webkit-iphone-13] › matching-expansion.spec.js:122:1 › storage quota failure does not lose temporary state when switching envelopes
+  [webkit-iphone-13] › matching-expansion.spec.js:130:1 › a denied localStorage property permits temporary play and safe switching
+  [webkit-iphone-13] › matching-expansion.spec.js:136:1 › inactive envelope changed elsewhere is protected when resumed
+  [webkit-iphone-13] › matching-expansion.spec.js:145:1 › mute choice stays muted on switching and reloading the destination
+  [webkit-iphone-13] › matching-expansion.spec.js:152:1 › chooser, collection selector, help and long family labels fit compact phone geometry
+  [webkit-iphone-13] › matching-lantern.spec.js:65:1 › fourth envelope has distinct starters, finite pair supply and a third-merge postcard
+  [webkit-iphone-13] › matching-lantern.spec.js:84:3 › Lantern Studio completes lantern-spool with six distinct postcards and retained world credit
+  [webkit-iphone-13] › matching-lantern.spec.js:84:3 › Lantern Studio completes spool-lantern with six distinct postcards and retained world credit
+  [webkit-iphone-13] › matching-lantern.spec.js:120:1 › four boards and independent Undo survive navigation and both history directions
+  [webkit-iphone-13] › matching-lantern.spec.js:132:1 › envelope filters and collection selector remain usable at compact widths and enlarged text
+  [webkit-iphone-13] › matching-lantern.spec.js:160:1 › corrupt and future fourth-envelope saves are never credited as new discoveries or overwritten
+  [webkit-iphone-13] › matching-lantern.spec.js:177:1 › album refreshes an inactive external save without overwriting either branch
+  [webkit-iphone-13] › matching-layout.spec.js:54:3 › matching-garden: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-13] › matching-layout.spec.js:93:3 › matching-garden: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-13] › matching-layout.spec.js:133:3 › matching-garden: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-13] › matching-layout.spec.js:54:3 › moonlit-passage: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-13] › matching-layout.spec.js:93:3 › moonlit-passage: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-13] › matching-layout.spec.js:133:3 › moonlit-passage: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-13] › matching-layout.spec.js:54:3 › riverside-reverie: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-13] › matching-layout.spec.js:93:3 › riverside-reverie: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-13] › matching-layout.spec.js:133:3 › riverside-reverie: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-13] › matching-layout.spec.js:54:3 › lantern-studio: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-13] › matching-layout.spec.js:93:3 › lantern-studio: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-13] › matching-layout.spec.js:133:3 › lantern-studio: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-13] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 320x568
+  [webkit-iphone-13] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 390x664
+  [webkit-iphone-13] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 430x752
+  [webkit-iphone-13] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 430x932
+  [webkit-iphone-13] › matching-layout.spec.js:236:1 › viewport changes cancel an unfinished drag and retarget a committed flight without data loss
+  [webkit-iphone-13] › matching-layout.spec.js:294:1 › 320x480 tiny portrait falls back to reachable scrolling without hiding controls or shrinking targets
+  [webkit-iphone-13] › matching-layout.spec.js:306:3 › 125 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [webkit-iphone-13] › matching-layout.spec.js:306:3 › 150 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [webkit-iphone-13] › matching-layout.spec.js:306:3 › 200 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [webkit-iphone-13] › matching-layout.spec.js:328:1 › 430x752 safe-area budget simulation preserves the entire play surface
+  [webkit-iphone-13] › matching-riverside.spec.js:32:1 › third envelope starts with readable map and teacup identities and finite matching pairs
+  [webkit-iphone-13] › matching-riverside.spec.js:47:3 › complete Riverside Reverie map-teacup with thirty real merges and six postcards
+  [webkit-iphone-13] › matching-riverside.spec.js:47:3 › complete Riverside Reverie teacup-map with thirty real merges and six postcards
+  [webkit-iphone-13] › matching-riverside.spec.js:82:1 › three partial boards retain independent Undo and URL history in both directions
+  [webkit-iphone-13] › matching-riverside.spec.js:98:1 › third collection and its postcard can be browsed without changing the active first board
+  [webkit-iphone-13] › matching-riverside.spec.js:112:1 › fresh Riverside resets only its board and retains discovered art
+  [webkit-iphone-13] › matching-riverside.spec.js:124:1 › unread third save retains exact bytes through temporary play, all envelopes and original export
+  [webkit-iphone-13] › matching-riverside.spec.js:139:1 › third quota failure preserves temporary play without affecting the other two saves
+  [webkit-iphone-13] › matching-riverside.spec.js:150:1 › inactive third-envelope external edit cannot be overwritten on resuming or playing
+  [webkit-iphone-13] › matching-riverside.spec.js:159:1 › mute and denied storage survive all three envelope switches
+  [webkit-iphone-13] › matching-riverside.spec.js:169:1 › all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge
+  [webkit-iphone-13] › matching.spec.js:23:1 › default board is matching-first, with eight clippings and two finite envelopes
+  [webkit-iphone-13] › matching.spec.js:70:1 › bird matches bird and fern matches fern, with higher identical tiers continuing each chain
+  [webkit-iphone-13] › matching.spec.js:89:1 › cross-family equal levels and same-family unequal levels are rejected without a cost
+  [webkit-iphone-13] › matching.spec.js:110:1 › a direct wrong-picture drop is never stolen by a nearby matching magnet
+  [webkit-iphone-13] › matching.spec.js:135:1 › an open-space near miss still accepts the matching piece and Undo is exact
+  [webkit-iphone-13] › matching.spec.js:150:1 › move to empty space, Cut, and multistep Undo preserve pieces and discovery
+  [webkit-iphone-13] › matching.spec.js:174:1 › supply adds exactly one pair, decreases the visible count, and is wholly reversible
+  [webkit-iphone-13] › matching.spec.js:194:1 › one empty cell refuses supply atomically and a merge makes room again
+  [webkit-iphone-13] › matching.spec.js:220:3 › full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)
+  [webkit-iphone-13] › matching.spec.js:220:3 › full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)
+  [webkit-iphone-13] › matching.spec.js:300:1 › Help and Collection are on demand, keep the board untouched, and restore keyboard focus
+  [webkit-iphone-13] › matching.spec.js:327:1 › postcard survives native file-share cancellation and board return
+  [webkit-iphone-13] › matching.spec.js:358:1 › rapid keyboard focus and merge work without animation-frame callbacks
+  [webkit-iphone-13] › matching.spec.js:380:3 › an interrupted drag (pointercancel) changes nothing and allows the next gesture
+  [webkit-iphone-13] › matching.spec.js:380:3 › an interrupted drag (lostpointercapture) changes nothing and allows the next gesture
+  [webkit-iphone-13] › matching.spec.js:380:3 › an interrupted drag (blur) changes nothing and allows the next gesture
+  [webkit-iphone-13] › matching.spec.js:397:1 › rapid supply and duplicate merge activations do not lose or double-consume material
+  [webkit-iphone-13] › matching.spec.js:412:1 › a merge saves before its decorative flight and reload retains exact Undo history and sound
+  [webkit-iphone-13] › matching.spec.js:434:1 › fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards
+  [webkit-iphone-13] › matching.spec.js:464:3 › malformed JSON stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:464:3 › empty stored string stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:464:3 › invalid current schema stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:464:3 › future version stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-13] › matching.spec.js:493:1 › matching leaves the prior recipe study save untouched and both older routes remain separate
+  [webkit-iphone-13] › matching.spec.js:520:1 › reduced motion keeps matching, hints, touch controls, and postcard navigation usable
+  [webkit-iphone-13] › matching.spec.js:539:1 › an unreadable existing save is never overwritten, even if storage later recovers
+  [webkit-iphone-13] › matching.spec.js:574:1 › a genuinely stale second tab cannot overwrite the newer saved garden
+  [webkit-iphone-13] › matching.spec.js:606:1 › non-primary and non-left pointer-up cannot move a selected piece into empty space
+  [webkit-iphone-large] › matching-expansion.spec.js:28:1 › second envelope starts with two readable identities and the same finite matching loop
+  [webkit-iphone-large] › matching-expansion.spec.js:42:3 › complete Moonlit Passage key-moon with real merges and six postcards
+  [webkit-iphone-large] › matching-expansion.spec.js:42:3 › complete Moonlit Passage moon-key with real merges and six postcards
+  [webkit-iphone-large] › matching-expansion.spec.js:72:1 › switches preserve both partial boards and independent Undo, including browser Back and Forward
+  [webkit-iphone-large] › matching-expansion.spec.js:84:1 › other-envelope postcards return to unchanged active board and collection view does not switch play
+  [webkit-iphone-large] › matching-expansion.spec.js:96:1 › fresh envelope names its target and resets only that board
+  [webkit-iphone-large] › matching-expansion.spec.js:106:3 › corrupt moticos.matching.garden.v1 retains temporary board across switches and exports exact original bytes
+  [webkit-iphone-large] › matching-expansion.spec.js:106:3 › corrupt moticos.matching.moonlit-passage.v1 retains temporary board across switches and exports exact original bytes
+  [webkit-iphone-large] › matching-expansion.spec.js:122:1 › storage quota failure does not lose temporary state when switching envelopes
+  [webkit-iphone-large] › matching-expansion.spec.js:130:1 › a denied localStorage property permits temporary play and safe switching
+  [webkit-iphone-large] › matching-expansion.spec.js:136:1 › inactive envelope changed elsewhere is protected when resumed
+  [webkit-iphone-large] › matching-expansion.spec.js:145:1 › mute choice stays muted on switching and reloading the destination
+  [webkit-iphone-large] › matching-expansion.spec.js:152:1 › chooser, collection selector, help and long family labels fit compact phone geometry
+  [webkit-iphone-large] › matching-lantern.spec.js:65:1 › fourth envelope has distinct starters, finite pair supply and a third-merge postcard
+  [webkit-iphone-large] › matching-lantern.spec.js:84:3 › Lantern Studio completes lantern-spool with six distinct postcards and retained world credit
+  [webkit-iphone-large] › matching-lantern.spec.js:84:3 › Lantern Studio completes spool-lantern with six distinct postcards and retained world credit
+  [webkit-iphone-large] › matching-lantern.spec.js:120:1 › four boards and independent Undo survive navigation and both history directions
+  [webkit-iphone-large] › matching-lantern.spec.js:132:1 › envelope filters and collection selector remain usable at compact widths and enlarged text
+  [webkit-iphone-large] › matching-lantern.spec.js:160:1 › corrupt and future fourth-envelope saves are never credited as new discoveries or overwritten
+  [webkit-iphone-large] › matching-lantern.spec.js:177:1 › album refreshes an inactive external save without overwriting either branch
+  [webkit-iphone-large] › matching-layout.spec.js:54:3 › matching-garden: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-large] › matching-layout.spec.js:93:3 › matching-garden: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-large] › matching-layout.spec.js:133:3 › matching-garden: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-large] › matching-layout.spec.js:54:3 › moonlit-passage: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-large] › matching-layout.spec.js:93:3 › moonlit-passage: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-large] › matching-layout.spec.js:133:3 › moonlit-passage: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-large] › matching-layout.spec.js:54:3 › riverside-reverie: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-large] › matching-layout.spec.js:93:3 › riverside-reverie: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-large] › matching-layout.spec.js:133:3 › riverside-reverie: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-large] › matching-layout.spec.js:54:3 › lantern-studio: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [webkit-iphone-large] › matching-layout.spec.js:93:3 › lantern-studio: protected-save warning and recovery fit all four viewports
+  [webkit-iphone-large] › matching-layout.spec.js:133:3 › lantern-studio: quota and stale-tab warning variants retain the same one-screen shell
+  [webkit-iphone-large] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 320x568
+  [webkit-iphone-large] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 390x664
+  [webkit-iphone-large] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 430x752
+  [webkit-iphone-large] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 430x932
+  [webkit-iphone-large] › matching-layout.spec.js:236:1 › viewport changes cancel an unfinished drag and retarget a committed flight without data loss
+  [webkit-iphone-large] › matching-layout.spec.js:294:1 › 320x480 tiny portrait falls back to reachable scrolling without hiding controls or shrinking targets
+  [webkit-iphone-large] › matching-layout.spec.js:306:3 › 125 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [webkit-iphone-large] › matching-layout.spec.js:306:3 › 150 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [webkit-iphone-large] › matching-layout.spec.js:306:3 › 200 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [webkit-iphone-large] › matching-layout.spec.js:328:1 › 430x752 safe-area budget simulation preserves the entire play surface
+  [webkit-iphone-large] › matching-riverside.spec.js:32:1 › third envelope starts with readable map and teacup identities and finite matching pairs
+  [webkit-iphone-large] › matching-riverside.spec.js:47:3 › complete Riverside Reverie map-teacup with thirty real merges and six postcards
+  [webkit-iphone-large] › matching-riverside.spec.js:47:3 › complete Riverside Reverie teacup-map with thirty real merges and six postcards
+  [webkit-iphone-large] › matching-riverside.spec.js:82:1 › three partial boards retain independent Undo and URL history in both directions
+  [webkit-iphone-large] › matching-riverside.spec.js:98:1 › third collection and its postcard can be browsed without changing the active first board
+  [webkit-iphone-large] › matching-riverside.spec.js:112:1 › fresh Riverside resets only its board and retains discovered art
+  [webkit-iphone-large] › matching-riverside.spec.js:124:1 › unread third save retains exact bytes through temporary play, all envelopes and original export
+  [webkit-iphone-large] › matching-riverside.spec.js:139:1 › third quota failure preserves temporary play without affecting the other two saves
+  [webkit-iphone-large] › matching-riverside.spec.js:150:1 › inactive third-envelope external edit cannot be overwritten on resuming or playing
+  [webkit-iphone-large] › matching-riverside.spec.js:159:1 › mute and denied storage survive all three envelope switches
+  [webkit-iphone-large] › matching-riverside.spec.js:169:1 › all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge
+  [webkit-iphone-large] › matching.spec.js:23:1 › default board is matching-first, with eight clippings and two finite envelopes
+  [webkit-iphone-large] › matching.spec.js:70:1 › bird matches bird and fern matches fern, with higher identical tiers continuing each chain
+  [webkit-iphone-large] › matching.spec.js:89:1 › cross-family equal levels and same-family unequal levels are rejected without a cost
+  [webkit-iphone-large] › matching.spec.js:110:1 › a direct wrong-picture drop is never stolen by a nearby matching magnet
+  [webkit-iphone-large] › matching.spec.js:135:1 › an open-space near miss still accepts the matching piece and Undo is exact
+  [webkit-iphone-large] › matching.spec.js:150:1 › move to empty space, Cut, and multistep Undo preserve pieces and discovery
+  [webkit-iphone-large] › matching.spec.js:174:1 › supply adds exactly one pair, decreases the visible count, and is wholly reversible
+  [webkit-iphone-large] › matching.spec.js:194:1 › one empty cell refuses supply atomically and a merge makes room again
+  [webkit-iphone-large] › matching.spec.js:220:3 › full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)
+  [webkit-iphone-large] › matching.spec.js:220:3 › full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)
+  [webkit-iphone-large] › matching.spec.js:300:1 › Help and Collection are on demand, keep the board untouched, and restore keyboard focus
+  [webkit-iphone-large] › matching.spec.js:327:1 › postcard survives native file-share cancellation and board return
+  [webkit-iphone-large] › matching.spec.js:358:1 › rapid keyboard focus and merge work without animation-frame callbacks
+  [webkit-iphone-large] › matching.spec.js:380:3 › an interrupted drag (pointercancel) changes nothing and allows the next gesture
+  [webkit-iphone-large] › matching.spec.js:380:3 › an interrupted drag (lostpointercapture) changes nothing and allows the next gesture
+  [webkit-iphone-large] › matching.spec.js:380:3 › an interrupted drag (blur) changes nothing and allows the next gesture
+  [webkit-iphone-large] › matching.spec.js:397:1 › rapid supply and duplicate merge activations do not lose or double-consume material
+  [webkit-iphone-large] › matching.spec.js:412:1 › a merge saves before its decorative flight and reload retains exact Undo history and sound
+  [webkit-iphone-large] › matching.spec.js:434:1 › fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards
+  [webkit-iphone-large] › matching.spec.js:464:3 › malformed JSON stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:464:3 › empty stored string stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:464:3 › invalid current schema stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:464:3 › future version stays byte-for-byte untouched while temporary play and original-save download work
+  [webkit-iphone-large] › matching.spec.js:493:1 › matching leaves the prior recipe study save untouched and both older routes remain separate
+  [webkit-iphone-large] › matching.spec.js:520:1 › reduced motion keeps matching, hints, touch controls, and postcard navigation usable
+  [webkit-iphone-large] › matching.spec.js:539:1 › an unreadable existing save is never overwritten, even if storage later recovers
+  [webkit-iphone-large] › matching.spec.js:574:1 › a genuinely stale second tab cannot overwrite the newer saved garden
+  [webkit-iphone-large] › matching.spec.js:606:1 › non-primary and non-left pointer-up cannot move a selected piece into empty space
+  [chromium-desktop] › matching-expansion.spec.js:28:1 › second envelope starts with two readable identities and the same finite matching loop
+  [chromium-desktop] › matching-expansion.spec.js:42:3 › complete Moonlit Passage key-moon with real merges and six postcards
+  [chromium-desktop] › matching-expansion.spec.js:42:3 › complete Moonlit Passage moon-key with real merges and six postcards
+  [chromium-desktop] › matching-expansion.spec.js:72:1 › switches preserve both partial boards and independent Undo, including browser Back and Forward
+  [chromium-desktop] › matching-expansion.spec.js:84:1 › other-envelope postcards return to unchanged active board and collection view does not switch play
+  [chromium-desktop] › matching-expansion.spec.js:96:1 › fresh envelope names its target and resets only that board
+  [chromium-desktop] › matching-expansion.spec.js:106:3 › corrupt moticos.matching.garden.v1 retains temporary board across switches and exports exact original bytes
+  [chromium-desktop] › matching-expansion.spec.js:106:3 › corrupt moticos.matching.moonlit-passage.v1 retains temporary board across switches and exports exact original bytes
+  [chromium-desktop] › matching-expansion.spec.js:122:1 › storage quota failure does not lose temporary state when switching envelopes
+  [chromium-desktop] › matching-expansion.spec.js:130:1 › a denied localStorage property permits temporary play and safe switching
+  [chromium-desktop] › matching-expansion.spec.js:136:1 › inactive envelope changed elsewhere is protected when resumed
+  [chromium-desktop] › matching-expansion.spec.js:145:1 › mute choice stays muted on switching and reloading the destination
+  [chromium-desktop] › matching-expansion.spec.js:152:1 › chooser, collection selector, help and long family labels fit compact phone geometry
+  [chromium-desktop] › matching-lantern.spec.js:65:1 › fourth envelope has distinct starters, finite pair supply and a third-merge postcard
+  [chromium-desktop] › matching-lantern.spec.js:84:3 › Lantern Studio completes lantern-spool with six distinct postcards and retained world credit
+  [chromium-desktop] › matching-lantern.spec.js:84:3 › Lantern Studio completes spool-lantern with six distinct postcards and retained world credit
+  [chromium-desktop] › matching-lantern.spec.js:120:1 › four boards and independent Undo survive navigation and both history directions
+  [chromium-desktop] › matching-lantern.spec.js:132:1 › envelope filters and collection selector remain usable at compact widths and enlarged text
+  [chromium-desktop] › matching-lantern.spec.js:160:1 › corrupt and future fourth-envelope saves are never credited as new discoveries or overwritten
+  [chromium-desktop] › matching-lantern.spec.js:177:1 › album refreshes an inactive external save without overwriting either branch
+  [chromium-desktop] › matching-layout.spec.js:54:3 › matching-garden: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [chromium-desktop] › matching-layout.spec.js:93:3 › matching-garden: protected-save warning and recovery fit all four viewports
+  [chromium-desktop] › matching-layout.spec.js:133:3 › matching-garden: quota and stale-tab warning variants retain the same one-screen shell
+  [chromium-desktop] › matching-layout.spec.js:54:3 › moonlit-passage: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [chromium-desktop] › matching-layout.spec.js:93:3 › moonlit-passage: protected-save warning and recovery fit all four viewports
+  [chromium-desktop] › matching-layout.spec.js:133:3 › moonlit-passage: quota and stale-tab warning variants retain the same one-screen shell
+  [chromium-desktop] › matching-layout.spec.js:54:3 › riverside-reverie: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [chromium-desktop] › matching-layout.spec.js:93:3 › riverside-reverie: protected-save warning and recovery fit all four viewports
+  [chromium-desktop] › matching-layout.spec.js:133:3 › riverside-reverie: quota and stale-tab warning variants retain the same one-screen shell
+  [chromium-desktop] › matching-layout.spec.js:54:3 › lantern-studio: all controls and 25 cells fit four real phone viewports through full-board recovery
+  [chromium-desktop] › matching-layout.spec.js:93:3 › lantern-studio: protected-save warning and recovery fit all four viewports
+  [chromium-desktop] › matching-layout.spec.js:133:3 › lantern-studio: quota and stale-tab warning variants retain the same one-screen shell
+  [chromium-desktop] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 320x568
+  [chromium-desktop] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 390x664
+  [chromium-desktop] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 430x752
+  [chromium-desktop] › matching-layout.spec.js:184:3 › keyboard, modal return and live viewport resizing preserve geometry at 430x932
+  [chromium-desktop] › matching-layout.spec.js:236:1 › viewport changes cancel an unfinished drag and retarget a committed flight without data loss
+  [chromium-desktop] › matching-layout.spec.js:294:1 › 320x480 tiny portrait falls back to reachable scrolling without hiding controls or shrinking targets
+  [chromium-desktop] › matching-layout.spec.js:306:3 › 125 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [chromium-desktop] › matching-layout.spec.js:306:3 › 150 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [chromium-desktop] › matching-layout.spec.js:306:3 › 200 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls
+  [chromium-desktop] › matching-layout.spec.js:328:1 › 430x752 safe-area budget simulation preserves the entire play surface
+  [chromium-desktop] › matching-riverside.spec.js:32:1 › third envelope starts with readable map and teacup identities and finite matching pairs
+  [chromium-desktop] › matching-riverside.spec.js:47:3 › complete Riverside Reverie map-teacup with thirty real merges and six postcards
+  [chromium-desktop] › matching-riverside.spec.js:47:3 › complete Riverside Reverie teacup-map with thirty real merges and six postcards
+  [chromium-desktop] › matching-riverside.spec.js:82:1 › three partial boards retain independent Undo and URL history in both directions
+  [chromium-desktop] › matching-riverside.spec.js:98:1 › third collection and its postcard can be browsed without changing the active first board
+  [chromium-desktop] › matching-riverside.spec.js:112:1 › fresh Riverside resets only its board and retains discovered art
+  [chromium-desktop] › matching-riverside.spec.js:124:1 › unread third save retains exact bytes through temporary play, all envelopes and original export
+  [chromium-desktop] › matching-riverside.spec.js:139:1 › third quota failure preserves temporary play without affecting the other two saves
+  [chromium-desktop] › matching-riverside.spec.js:150:1 › inactive third-envelope external edit cannot be overwritten on resuming or playing
+  [chromium-desktop] › matching-riverside.spec.js:159:1 › mute and denied storage survive all three envelope switches
+  [chromium-desktop] › matching-riverside.spec.js:169:1 › all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge
+  [chromium-desktop] › matching.spec.js:23:1 › default board is matching-first, with eight clippings and two finite envelopes
+  [chromium-desktop] › matching.spec.js:70:1 › bird matches bird and fern matches fern, with higher identical tiers continuing each chain
+  [chromium-desktop] › matching.spec.js:89:1 › cross-family equal levels and same-family unequal levels are rejected without a cost
+  [chromium-desktop] › matching.spec.js:110:1 › a direct wrong-picture drop is never stolen by a nearby matching magnet
+  [chromium-desktop] › matching.spec.js:135:1 › an open-space near miss still accepts the matching piece and Undo is exact
+  [chromium-desktop] › matching.spec.js:150:1 › move to empty space, Cut, and multistep Undo preserve pieces and discovery
+  [chromium-desktop] › matching.spec.js:174:1 › supply adds exactly one pair, decreases the visible count, and is wholly reversible
+  [chromium-desktop] › matching.spec.js:194:1 › one empty cell refuses supply atomically and a merge makes room again
+  [chromium-desktop] › matching.spec.js:220:3 › full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)
+  [chromium-desktop] › matching.spec.js:220:3 › full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)
+  [chromium-desktop] › matching.spec.js:300:1 › Help and Collection are on demand, keep the board untouched, and restore keyboard focus
+  [chromium-desktop] › matching.spec.js:327:1 › postcard survives native file-share cancellation and board return
+  [chromium-desktop] › matching.spec.js:358:1 › rapid keyboard focus and merge work without animation-frame callbacks
+  [chromium-desktop] › matching.spec.js:380:3 › an interrupted drag (pointercancel) changes nothing and allows the next gesture
+  [chromium-desktop] › matching.spec.js:380:3 › an interrupted drag (lostpointercapture) changes nothing and allows the next gesture
+  [chromium-desktop] › matching.spec.js:380:3 › an interrupted drag (blur) changes nothing and allows the next gesture
+  [chromium-desktop] › matching.spec.js:397:1 › rapid supply and duplicate merge activations do not lose or double-consume material
+  [chromium-desktop] › matching.spec.js:412:1 › a merge saves before its decorative flight and reload retains exact Undo history and sound
+  [chromium-desktop] › matching.spec.js:434:1 › fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards
+  [chromium-desktop] › matching.spec.js:464:3 › malformed JSON stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:464:3 › empty stored string stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:464:3 › invalid current schema stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:464:3 › future version stays byte-for-byte untouched while temporary play and original-save download work
+  [chromium-desktop] › matching.spec.js:493:1 › matching leaves the prior recipe study save untouched and both older routes remain separate
+  [chromium-desktop] › matching.spec.js:520:1 › reduced motion keeps matching, hints, touch controls, and postcard navigation usable
+  [chromium-desktop] › matching.spec.js:539:1 › an unreadable existing save is never overwritten, even if storage later recovers
+  [chromium-desktop] › matching.spec.js:574:1 › a genuinely stale second tab cannot overwrite the newer saved garden
+  [chromium-desktop] › matching.spec.js:606:1 › non-primary and non-left pointer-up cannot move a selected piece into empty space
+Total: 243 tests in 5 files

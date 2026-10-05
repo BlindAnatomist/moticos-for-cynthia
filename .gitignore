@@ -6,3 +6,10 @@ test-results/
 
 # Dependency directory may be linked in an isolated review workspace.
 node_modules
+
+# Bounded verification artifacts remain outside source commits.
+preflight-results/
+preflight-report/
+prior-evidence/
+bounded-evidence/
+__pycache__/

@@ -8,6 +8,7 @@ import { openEnvelopeSession, commitEnvelopeSession, observeEnvelopeStorage } fr
 import { createCollectionPostcard } from './postcard.js';
 import { BOARD_ART_BOUNDS, COMPACT_BOARD_LABELS } from './boardArt.js';
 import { readAlbumProgress } from './progress.js';
+import AlbumPicker from './AlbumPicker.jsx';
 import CollectionDialog from '../collection/CollectionDialog.jsx';
 import './matching.css';
 
@@ -368,7 +369,7 @@ function EnvelopeChooser({ currentId, activeSave, sessionCache, onChoose }) {
   const album = readAlbumProgress(sessionCache, browserStorage, { id: currentId, save: activeSave });
   const entries = album.entries.filter(entry => filter === 'all' || (filter === 'complete' ? entry.complete : filter === 'unopened' ? !entry.opened && !entry.unread : entry.opened && !entry.complete));
   return <div className="mg-envelope-list"><AlbumSummary album={album} /><p className="cg-collection-intro">Choose any envelope. Each board and its Undo history wait for you.</p>
-    <label className="mg-album-picker">Show envelopes<select value={filter} onChange={event => setFilter(event.target.value)}><option value="all">All envelopes</option><option value="progress">In progress</option><option value="complete">Worlds collected</option><option value="unopened">Unopened</option></select></label>
+    <AlbumPicker id="mg-album-filter" label="Show envelopes" value={filter} onChange={setFilter}><option value="all">All envelopes</option><option value="progress">In progress</option><option value="complete">Worlds collected</option><option value="unopened">Unopened</option></AlbumPicker>
     <p className="mg-album-results" role="status">{entries.length} {entries.length === 1 ? 'envelope' : 'envelopes'}</p>
     {entries.map(entry => {
     const { envelope, temporary, unread } = entry, catalog = envelope.catalog;
@@ -384,7 +385,7 @@ function CollectionContent({ envelopeId, sessionCache, activeSave, activeId, onS
   const envelope = getEnvelope(envelopeId), { CATALOG, PIECES, FAMILIES } = envelope.catalog;
   const album = readAlbumProgress(sessionCache, browserStorage, { id: activeId, save: activeSave });
   const observed = album.entries.find(entry => entry.envelope.id === envelopeId), discoveries = observed.save?.discoveries ?? [];
-  return <><AlbumSummary album={album} /><label className="mg-album-picker">Browse envelope<select value={envelopeId} onChange={event => onSelect(event.target.value)}>{ENVELOPES.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+  return <><AlbumSummary album={album} /><AlbumPicker id="mg-album-envelope" label="Browse envelope" value={envelopeId} onChange={onSelect}>{ENVELOPES.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</AlbumPicker>
     <p className="cg-collection-intro">{discoveries.length} of {PIECES.length} discovered in {envelope.title}. Each step is made by matching two identical pieces from the step before it.</p>
     {observed.unread && <p className="cg-save-warning" role="status">This envelope’s saved collection cannot be read. Its original save is untouched; temporary discoveries are shown here.</p>}
     <NextDiscovery entry={observed} />

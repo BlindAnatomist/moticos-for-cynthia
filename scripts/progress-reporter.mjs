@@ -5,7 +5,7 @@ import { join } from 'node:path';
 // completed/failed/interrupted distinctions before the final HTML report exists.
 export default class ProgressReporter {
   constructor(options = {}) {
-    this.directory = options.directory ?? 'test-results/progress';
+    this.directory = options.directory ?? process.env.MOTICOS_PROGRESS_DIR ?? 'test-results/progress';
     this.file = join(this.directory, 'browser-events.jsonl');
   }
   record(event) {

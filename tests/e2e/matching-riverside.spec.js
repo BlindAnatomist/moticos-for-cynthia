@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
-  MATCHING_KEY, pieces, occupied, supply, activate, boardIds, rawSave, idle,
+  selectCollectionEnvelope, MATCHING_KEY, pieces, occupied, supply, activate, boardIds, rawSave, idle,
   mergeAt, mergeId, finishFamily, closeDialog, imagesReady, shot, downloadPNG,
   openCollectedPostcard, assertNoOverflow, assertControls, assertLiveArtAtPhoneWidths,
   openSaveWarning, assertSaveWarning, saveWarning,
@@ -26,7 +26,7 @@ async function choose(page, info, title) {
 async function river(page, info) { await choose(page, info, 'Riverside Reverie'); }
 async function collection(page, info, title) {
   await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
-  await page.getByLabel('Browse envelope', { exact: true }).selectOption({ label: title });
+  await selectCollectionEnvelope(page, title);
 }
 
 test('third envelope starts with readable map and teacup identities and finite matching pairs', async ({ page }, info) => {

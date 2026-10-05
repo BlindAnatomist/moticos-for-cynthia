@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
-  MATCHING_KEY, NAMES, pieces, cell, occupied, supply, activate, boardIds, rawSave,
+  selectCollectionEnvelope, MATCHING_KEY, NAMES, pieces, cell, occupied, supply, activate, boardIds, rawSave,
   idle, mergeAt, mergeId, finishFamily, closeDialog, imagesReady, shot, downloadPNG,
   openCollectedPostcard, assertNoOverflow, assertControls, assertLiveArtAtPhoneWidths,
   openSaveWarning, assertSaveWarning, saveWarning,
@@ -22,7 +22,7 @@ async function moon(page, info) { await choose(page, info, 'Moonlit Passage'); }
 async function garden(page, info) { await choose(page, info, 'Garden Correspondence'); }
 async function collected(page, info, envelope) {
   await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
-  await page.getByLabel('Browse envelope', { exact: true }).selectOption({ label: envelope });
+  await selectCollectionEnvelope(page, envelope);
 }
 
 test('second envelope starts with two readable identities and the same finite matching loop', async ({ page }, info) => {

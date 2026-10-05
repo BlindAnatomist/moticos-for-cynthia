@@ -247,3 +247,23 @@ Keep expected pack-local inventories explicit or derived from a pack-local fixtu
 #### Scope
 
 Matching test-fixture design.
+
+### MOT-008 — Native select options polluted an exact label lookup
+
+Status: `proven diagnosis; local repair pending browser verification`
+
+First observed: 2026-10-05
+
+Run `37247073900` printed 21 selection timeouts before its 35-minute cancellation. Both album selects wrapped their options inside their labels. Playwright 1.61.1 included the option text in its label lookup, so exact caption-only locators never matched. A deterministic reproduction using the installed selector functions confirms the cause.
+
+The local repair uses an explicit sibling label/select ID relationship. Structural markup tests guard it. A three-profile selector preflight now precedes the remaining 243 cases, and shared selection helpers have 7.5-second checks/action limits. Do not let a missing short-form control inherit a long progression test's entire timeout. Browser verification remains required.
+
+### MOT-009 — Successful artifact upload exceeded the download connector's limit
+
+Status: `proven transport limit; recovery pending approval`
+
+First observed: 2026-10-05
+
+The same run uploaded a 654,533,926-byte ZIP successfully, but the connected downloader rejected it above 536,870,912 bytes. Upload success alone is not proof that the agent can retrieve or preserve the evidence. Complete text logs were saved; raw screenshots/traces remain unavailable.
+
+Proposed next-run prevention: losslessly package all evidence into ordered 200 MiB parts, each uploaded separately with reconstruction and SHA-256 manifests. An explicitly approved, read-only same-job rescue may retrieve and split the old ZIP after verifying its exact identity. Never retry the oversized call, claim raw evidence was saved, initiate new CI without approval, or discard coverage to hide the transport failure.

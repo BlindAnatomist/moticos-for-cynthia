@@ -147,6 +147,19 @@ export async function closeDialog(page, info) {
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
 }
+// Bound selector failures independently of full-round 240–300s test budgets.
+// Role and exact visible-label lookups must agree before a long journey starts.
+async function albumSelect(page, label, option) {
+  const control = page.getByLabel(label, { exact: true });
+  await expect(control).toHaveCount(1, { timeout: 7_500 });
+  await expect(control).toBeVisible({ timeout: 7_500 });
+  await expect(control).toBeEnabled({ timeout: 7_500 });
+  await expect(control).toHaveAccessibleName(label, { timeout: 7_500 });
+  await expect(page.getByRole('combobox', { name: label, exact: true })).toHaveCount(1, { timeout: 7_500 });
+  await control.selectOption(option, { timeout: 7_500 });
+}
+export async function selectCollectionEnvelope(page, title) { await albumSelect(page, 'Browse envelope', { label: title }); }
+export async function selectEnvelopeFilter(page, value) { await albumSelect(page, 'Show envelopes', value); }
 export async function openCollectedPostcard(page, id, info) {
   await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
   const article = page.locator('.cg-collection-piece').filter({ has: page.getByRole('heading', { name: NAMES[id], exact: true }) });

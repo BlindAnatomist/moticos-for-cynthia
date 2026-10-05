@@ -1,0 +1,5 @@
+Listing tests:
+  [webkit-iphone-13] › matching-lantern.spec.js:40:1 › album browsing credits only opened envelopes and never writes or changes a board
+  [webkit-iphone-large] › matching-lantern.spec.js:40:1 › album browsing credits only opened envelopes and never writes or changes a board
+  [chromium-desktop] › matching-lantern.spec.js:40:1 › album browsing credits only opened envelopes and never writes or changes a board
+Total: 3 tests in 1 file

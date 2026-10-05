@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {
-  MATCHING_KEY, PHONE_VIEWPORTS, pieces, occupied, supply, activate, boardIds, rawSave,
+  selectCollectionEnvelope, selectEnvelopeFilter, MATCHING_KEY, PHONE_VIEWPORTS, pieces, occupied, supply, activate, boardIds, rawSave,
   idle, mergeId, finishFamily, closeDialog, imagesReady, shot, downloadPNG,
   openCollectedPostcard, assertNoOverflow, assertControls, assertLiveArtAtPhoneWidths,
 } from './matching-helpers.js';
@@ -25,7 +25,7 @@ async function choose(page, info, title) {
 }
 async function collection(page, info, title = 'Lantern Studio') {
   await activate(page.getByRole('button', { name: 'Collection', exact: true }), info);
-  await page.getByLabel('Browse envelope', { exact: true }).selectOption({ label: title });
+  await selectCollectionEnvelope(page, title);
 }
 function total(page, name) {
   return page.getByRole('region', { name: 'Whole collection progress' }).locator('dl > div').filter({ has: page.locator('dt', { hasText: new RegExp(`^${name}$`) }) }).locator('dd');
@@ -37,15 +37,26 @@ async function assertAlbumReadable(page) {
   for (const box of boxes) expect(box.scroll, `album content wraps without horizontal clipping: ${box.text}`).toBeLessThanOrEqual(box.width + 1);
 }
 
-test('album browsing credits only opened envelopes and never writes or changes a board', async ({ page }, info) => {
+test('album browsing credits only opened envelopes and never writes or changes a board', { tag: '@selector-preflight' }, async ({ page }, info) => {
+  test.setTimeout(45_000);
   const board = await boardIds(page);
   await collection(page, info, 'Lantern Studio');
+  for (const [title] of envelopes) {
+    await selectCollectionEnvelope(page, title);
+    await expect(page.getByLabel('Browse envelope', { exact: true })).toHaveValue({ 'Garden Correspondence': 'matching-garden', 'Moonlit Passage': 'moonlit-passage', 'Riverside Reverie': 'riverside-reverie', 'Lantern Studio': 'lantern-studio' }[title]);
+  }
   await expect(total(page, 'Pieces')).toHaveText('2 / 40');
   await expect(total(page, 'Worlds')).toHaveText('0 / 8');
   await expect(total(page, 'Postcards')).toHaveText('0 / 24');
   await expect(page.locator('.cg-collection-intro')).toContainText('0 of 10 discovered in Lantern Studio');
   await expect(page.locator('.cg-mystery')).toHaveCount(10);
   await expect(page.getByRole('button', { name: 'Open postcard', exact: true })).toHaveCount(0);
+  await closeDialog(page, info);
+  await activate(page.getByRole('button', { name: 'Envelopes', exact: true }), info);
+  for (const filter of ['progress', 'complete', 'unopened', 'all']) {
+    await selectEnvelopeFilter(page, filter);
+    await expect(page.getByLabel('Show envelopes', { exact: true })).toHaveValue(filter);
+  }
   await closeDialog(page, info);
   for (const [, key] of envelopes) expect(await rawSave(page, key)).toBeNull();
   expect(await boardIds(page)).toEqual(board); await expect(page).not.toHaveURL(/envelope=/);
@@ -95,7 +106,7 @@ for (const order of [['lantern', 'spool'], ['spool', 'lantern']]) {
     await expect(occupied(page)).toHaveCount(8);
     await activate(page.getByRole('button', { name: 'Envelopes', exact: true }), info);
     await expect(total(page, 'Worlds')).toHaveText('2 / 8');
-    await page.getByLabel('Show envelopes', { exact: true }).selectOption('complete');
+    await selectEnvelopeFilter(page, 'complete');
     await expect(page.locator('.mg-envelope-card')).toHaveCount(1);
     await expect(page.locator('.mg-envelope-card')).toHaveAttribute('data-envelope-id', 'lantern-studio');
     await expect(page.locator('.mg-envelope-card small')).toContainText('2 / 2 worlds collected');
@@ -123,13 +134,13 @@ test('envelope filters and collection selector remain usable at compact widths a
   for (const viewport of PHONE_VIEWPORTS.slice(0, 3)) {
     await page.setViewportSize(viewport);
     await activate(page.getByRole('button', { name: 'Envelopes', exact: true }), info);
-    await page.getByLabel('Show envelopes', { exact: true }).selectOption('unopened');
+    await selectEnvelopeFilter(page, 'unopened');
     await expect(page.locator('.mg-envelope-card')).toHaveCount(3);
     const lantern = page.locator('[data-envelope-id="lantern-studio"]');
     await lantern.scrollIntoViewIfNeeded(); await imagesReady(lantern.locator('img'));
     await assertNoOverflow(page); await assertAlbumReadable(page); await assertControls(page, '.mg-album-picker select, .mg-envelope-card button, .cg-dialog-header button');
     await shot(page, info, `album-unopened-${viewport.width}`);
-    await page.getByLabel('Show envelopes', { exact: true }).selectOption('complete');
+    await selectEnvelopeFilter(page, 'complete');
     await expect(page.locator('.mg-envelope-card')).toHaveCount(0);
     await expect(page.getByRole('dialog')).toContainText('No envelopes in this view yet');
     await closeDialog(page, info);

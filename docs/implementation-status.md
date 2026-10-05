@@ -8,6 +8,12 @@ Default branch: `main`
 
 Status date: 2026-07-31
 
+## Current local browser-gate repair — 2026-10-05
+
+The first Lantern Studio public checkpoint is `bf612a858e33563e0c7deebd4f792a404adfec47`. Its single approved run `37247073900` reached the 35-minute cap after 115 of 246 cases started. All 21 printed failures are exact-label selector timeouts. The accepted live Site remains version 4; no Lantern Studio deployment has occurred.
+
+Local branch `work/lantern-album-label-repair-20261005` fixes the semantic select labels, adds fail-fast selector checks while preserving all 246 unique cases, and prepares bounded evidence packaging plus a scoped recovery of the oversized prior artifact. See `LANTERN_ALBUM_BROWSER_REPAIR.md`. A new Actions run requires fresh approval; local tests and source review do not replace browser/pixel verification.
+
 ## Current local collection checkpoint — 2026-10-04
 
 Accepted live baseline: Site version 4, exact source `d4c98b265dc29d627371aa6d9771765343f834b4`, public counterpart `0fcd3a3792d35fbedc7b5f94bbd5acb2bccf56ea`. That release has thirty authored pieces across three envelopes, 139 passing local checks and 213 passing browser cases with zero retries. Its repaired compact crops, synchronized labels, modal focus loops and one-screen phone layout remain the baseline.
