@@ -35,6 +35,7 @@ jobs:
       - name: Verify logic, isolated builds and frozen case identities
         timeout-minutes: 2
         run: |
+          node scripts/checkWorkerReload.mjs playwright.batch.config.js pass preflight-results/worker-reload-proof.json
           npm test 2>&1 | tee preflight-results/unit.log
           npm run test:batch 2>&1 | tee preflight-results/batch-unit.log
           npx vitest run tests/collageCoverage.test.js tests/collageBuild.test.js 2>&1 | tee preflight-results/gate-unit.log

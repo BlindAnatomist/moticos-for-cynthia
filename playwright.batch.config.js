@@ -1,7 +1,9 @@
+import { readPlaywrightInvocation, preservePlaywrightInvocation } from './scripts/playwrightInvocation.mjs';
 import { defineConfig, devices } from '@playwright/test';
 // Operator guard only. This flag is not approval and never overrides a denied
 // preview endpoint. Collecting the suite is read-only and starts no browser.
-const args = process.argv.slice(2);
+const invocation = readPlaywrightInvocation('MOTICOS_BATCH_GUARDED_ARGV');
+const args = invocation.args;
 const listing = args.includes('--list');
 const allowedProfiles = ['webkit-iphone-13', 'webkit-iphone-large', 'chromium-desktop'];
 const selectedProfiles = args.filter(arg => arg.startsWith('--project=')).map(arg => arg.slice(10));
@@ -14,6 +16,7 @@ const browserBudget = Number(process.env.MOTICOS_BATCH_BROWSER_BUDGET_MS ?? 4800
 if (!Number.isSafeInteger(browserBudget) || browserBudget < 360000 || browserBudget > 480000) {
  throw new Error('The browser budget must be six to eight minutes, leaving the job evidence reserve intact.');
 }
+preservePlaywrightInvocation('MOTICOS_BATCH_GUARDED_ARGV', invocation);
 export default defineConfig({
  testDir:'./tests/batch',testMatch:'collage.spec.js',timeout:60000,globalTimeout:browserBudget,expect:{timeout:7500},
  workers:1,fullyParallel:false,retries:0,maxFailures:1,forbidOnly:true,outputDir:'batch-test-results',
