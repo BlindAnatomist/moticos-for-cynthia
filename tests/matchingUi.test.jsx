@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { act, newSave, serializeSave, STORAGE_KEY } from '../src/matching/game.js';
+import { act, newSave, serializeSave, readSave, STORAGE_KEY } from '../src/matching/game.js';
 
 // These tests exercise the actual component handlers with deterministic hooks
 // and hit geometry. They do not simulate React scheduling, native pointer
@@ -35,6 +35,7 @@ vi.mock('react', async importOriginal => {
 vi.mock('../src/useMoticosAudio.js', () => ({ default: () => new Proxy({}, { get: () => () => {} }) }));
 import MatchingGarden from '../src/matching/MatchingGarden.jsx';
 import { getMatchingEngine } from '../src/matching/registry.js';
+import { denseSave } from './capacity/fixtures.js';
 
 let raw, readError, writeError, storage, documentListeners, windowListeners, activeCells, mounted;
 const listen = (listeners, name, callback) => {
@@ -120,6 +121,21 @@ beforeEach(() => {
 afterEach(() => { mounted.forEach(instance => instance.destroy()); vi.useRealTimers(); vi.unstubAllGlobals(); runtime.active = null; });
 
 describe('matching component save boundaries', () => {
+  it('preserves the full save while the existing inherited sound choice migrates differing legacy bytes', () => {
+    const engine = getMatchingEngine('matching-garden'), original = denseSave(engine);
+    raw = serializeSave(original);
+    const page = harness({ sharedSound: false });
+    expect(storage.setItem).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(raw).version).toBe(2);
+    expect(readSave(raw).save).toEqual({ ...original, sound: false });
+    expect(page.save()).toEqual({ ...original, sound: false });
+    expect(page.save().history).toHaveLength(100);
+  });
+  it('keeps matching inherited sound and original legacy bytes unchanged on component open', () => {
+    const original = serializeSave(denseSave(getMatchingEngine('matching-garden')));
+    raw = original; harness({ sharedSound: true });
+    expect(storage.setItem).not.toHaveBeenCalled(); expect(raw).toBe(original);
+  });
   it('never overwrites an unread existing save after a transient initial read error', () => {
     const original = serializeSave(act(newSave(), { type: 'merge', from: 6, to: 7 }));
     raw = original; readError = true; const page = harness(); readError = false;
@@ -146,7 +162,7 @@ describe('matching component save boundaries', () => {
   });
   it('ignores storage events for unrelated saves and keeps normal writes working', () => {
     const page = harness(); emit(windowListeners, 'storage', { key: 'moticos.collection.garden.v1', newValue: 'unrelated' });
-    page.add('bird').add('fern'); expect(JSON.parse(raw)).toEqual(page.save());
+    page.add('bird').add('fern'); expect(readSave(raw).save).toEqual(page.save());
   });
   it.each(['read', 'write'])('preserves prior bytes and remains write-blocked after a later %s error', failure => {
     raw = serializeSave(newSave()); const page = harness(), original = raw;
@@ -179,7 +195,7 @@ describe('matching component input boundaries', () => {
   });
   it('accepts a genuine gap near-miss and persists before its decorative flight', () => {
     const page = harness(); page.down(6).move(6, 297, 145).up(6, { clientX: 297, clientY: 145 });
-    expect(page.save().round.board[7].pieceId).toBe('b2'); expect(JSON.parse(raw)).toEqual(page.save());
+    expect(page.save().round.board[7].pieceId).toBe('b2'); expect(readSave(raw).save).toEqual(page.save());
   });
   it('blocks repeated board actions during a flight, without depending on animation frames', () => {
     vi.stubGlobal('requestAnimationFrame', () => 1);

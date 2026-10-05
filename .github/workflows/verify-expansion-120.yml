@@ -1,0 +1,199 @@
+name: Verify private 120-piece Moticos candidate
+
+# One authorized public branch only. No PR, manual-dispatch, or generic trigger.
+on:
+  push:
+    branches: [verify/expansion-120-20261005]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: moticos-expansion-120-20261005
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install exact dependencies
+        timeout-minutes: 1
+        run: |
+          mkdir -p preflight-results
+          npm ci --no-audit --no-fund 2>&1 | tee preflight-results/dependencies.log
+      - name: Verify logic, isolated builds and frozen case identities
+        timeout-minutes: 4
+        run: |
+          npm run build 2>&1 | tee preflight-results/build-normal.log
+          npm run build:batch 2>&1 | tee preflight-results/build-batch.log
+          npm run build:expansion 2>&1 | tee preflight-results/build-expansion.log
+          MOTICOS_120_BROWSER_APPROVED=1 MOTICOS_120_BROWSER_BUDGET_MS=480000 node scripts/checkWorkerReload.mjs playwright.expansion120.config.js pass preflight-results/worker-reload-proof.json
+          npm test 2>&1 | tee preflight-results/unit.log
+          npm run test:batch 2>&1 | tee preflight-results/batch-unit.log
+          npm run test:expansion 2>&1 | tee preflight-results/expansion-unit.log
+          npx vitest run tests/saveCapacity.test.js 2>&1 | tee preflight-results/capacity-unit.log
+          VITE_COLLAGE_EXPANSION=1 npx vitest run tests/expansion120Storage.test.js 2>&1 | tee preflight-results/integration-unit.log
+          npx vitest run tests/expansion120Coverage.test.js tests/expansion120Build.test.js tests/expansion120Fixtures.test.js tests/expansion120Guard.test.js tests/expansion120VisualEvidence.test.js 2>&1 | tee preflight-results/gate-unit.log
+          PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*evidence.py' 2>&1 | tee preflight-results/evidence-unit.log
+          npm run validate:matching 2>&1 | tee preflight-results/matching.log
+          npm run validate:catalog > preflight-results/catalog.json
+          node scripts/verifyExpansion120Build.mjs freeze 2>&1 | tee preflight-results/build-isolation.log
+          npx playwright test --config=playwright.expansion120.config.js --list --reporter=json > preflight-results/collected-all.json
+          node scripts/verifyExpansion120Coverage.mjs collected all preflight-results/collected-all.json
+          for profile in webkit-iphone-13 webkit-iphone-large chromium-desktop; do
+            npx playwright test --config=playwright.expansion120.config.js --list --reporter=json --project="$profile" > "preflight-results/collected-${profile}.json"
+            node scripts/verifyExpansion120Coverage.mjs collected "$profile" "preflight-results/collected-${profile}.json"
+          done
+          cp dist-expansion/expansion-manifest.json preflight-results/expansion-manifest.json
+          mkdir -p preflight-results/build
+          cp -a dist-expansion preflight-results/build/dist-expansion
+      - name: Preserve complete preflight plus the single exact build
+        id: package
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: python3 scripts/preserveExpansion120Evidence.py preflight --github-output "$GITHUB_OUTPUT"
+      - name: Upload at most 32 MiB preflight for one day
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-120-preflight
+          path: |
+            bounded-evidence/parts/part-000.bin
+            bounded-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+
+  browser:
+    needs: build
+    if: github.run_attempt == 1
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - profile: webkit-iphone-13
+            browser: webkit
+          - profile: webkit-iphone-large
+            browser: webkit
+          - profile: chromium-desktop
+            browser: chromium
+    name: Browser ${{ matrix.profile }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Start the bounded profile clock
+        run: echo "MOTICOS_JOB_EPOCH=$(date +%s)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        id: checkout
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install exact dependencies
+        timeout-minutes: 1
+        run: |
+          mkdir -p preflight-results
+          npm ci --no-audit --no-fund 2>&1 | tee preflight-results/dependencies.log
+      - name: Download the sole preflight build from this run
+        uses: actions/download-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-120-preflight
+          path: .batch-input-parts
+      - name: Verify every restored byte and this profile's exact collection
+        timeout-minutes: 1
+        env:
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          python3 scripts/restoreCollageEvidence.py --parts .batch-input-parts --out .batch-input > preflight-results/restored-proof.json
+          cp -a .batch-input/preflight-results/build/dist-expansion dist-expansion
+          cp .batch-input/preflight-results/build-proof.json preflight-results/build-proof.json
+          cp .batch-input/preflight-results/expansion-manifest.json preflight-results/expansion-manifest.json
+          cp .batch-input/preflight-results/collected-all.json preflight-results/collected-all.json
+          node scripts/verifyExpansion120Build.mjs verify 2>&1 | tee preflight-results/build-identity.log
+          npx playwright test --config=playwright.expansion120.config.js --list --reporter=json --project="$PROFILE" > preflight-results/collected-profile.json
+          node scripts/verifyExpansion120Coverage.mjs collected "$PROFILE" preflight-results/collected-profile.json
+      - name: Install only the profile's standard browser
+        timeout-minutes: 3
+        run: npx playwright install --with-deps "${{ matrix.browser }}" 2>&1 | tee preflight-results/browser-install.log
+      - name: Run eighteen cases once in clean browser contexts
+        id: browser
+        env:
+          MOTICOS_120_BROWSER_APPROVED: '1'
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          # Reserve two full minutes for coverage proof and lossless upload,
+          # plus fifteen seconds of scheduling margin. Never start under 8m.
+          remaining=$((900 - ($(date +%s) - MOTICOS_JOB_EPOCH) - 120 - 15))
+          if [ "$remaining" -lt 480 ]; then
+            echo "::error::Fewer than eight browser minutes remain. No browser started; gate incomplete."
+            exit 1
+          fi
+          if [ "$remaining" -gt 540 ]; then remaining=540; fi
+          export MOTICOS_120_BROWSER_BUDGET_MS=$((remaining * 1000))
+          printf '{"browserBudgetMs":%s,"evidenceReserveSeconds":120,"profile":"%s"}\n' "$MOTICOS_120_BROWSER_BUDGET_MS" "$PROFILE" > preflight-results/browser-budget.json
+          # The config admits this exact project selector, no CLI overrides.
+          npx playwright test --config=playwright.expansion120.config.js --project="$PROFILE" 2>&1 | tee preflight-results/browser.log
+      - name: Require eighteen terminal zero-retry passes and 24 actual exports
+        if: success() && steps.browser.outcome == 'success'
+        env:
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          node scripts/verifyExpansion120Coverage.mjs completed "$PROFILE" batch-test-results/results.json batch-test-results/progress/browser-events.jsonl preflight-results/completed-proof.json
+          node scripts/verifyExpansion120Build.mjs verify
+      - name: Package independent bounded diagnosis and failure screenshots
+        id: diagnosis
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: python3 scripts/packEvidenceDiagnosis.py --source . --output bounded-evidence/diagnosis.zip
+      - name: Keep diagnosis even if complete evidence exceeds its budget
+        if: always() && steps.diagnosis.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-120-${{ matrix.profile }}-diagnosis
+          path: bounded-evidence/diagnosis.zip
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+      - name: Package every raw profile byte with lossless object deduplication
+        id: package
+        if: always() && steps.checkout.outcome == 'success'
+        timeout-minutes: 1
+        run: python3 scripts/contentAddressedEvidence.py pack --source . --output bounded-evidence/object-evidence --github-output "$GITHUB_OUTPUT"
+      - name: Upload complete profile part 000
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-120-${{ matrix.profile }}-000
+          path: |
+            bounded-evidence/object-evidence/parts/part-000.bin
+            bounded-evidence/object-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+      - name: Upload complete profile part 001
+        if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_001 == 'true'
+        uses: actions/upload-artifact@v4
+        timeout-minutes: 1
+        with:
+          name: moticos-120-${{ matrix.profile }}-001
+          path: |
+            bounded-evidence/object-evidence/parts/part-001.bin
+            bounded-evidence/object-evidence/parts/manifest.json
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1

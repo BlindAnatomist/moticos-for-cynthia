@@ -22,3 +22,8 @@ batch-playwright-report/
 # Raw local verification evidence lives in the private checkpoint.
 evidence/collage-batch/*
 !evidence/collage-batch/asset-receipt.json
+
+# Isolated 120-piece candidate outputs.
+dist-expansion/
+expansion-test-results/
+expansion-playwright-report/

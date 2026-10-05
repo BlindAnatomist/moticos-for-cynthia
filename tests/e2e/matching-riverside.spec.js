@@ -1,3 +1,4 @@
+import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import { test, expect } from '@playwright/test';
 import {
   selectCollectionEnvelope, MATCHING_KEY, pieces, occupied, supply, activate, boardIds, rawSave, idle,
@@ -38,7 +39,7 @@ test('third envelope starts with readable map and teacup identities and finite m
   for (const envelope of ENVELOPES) expect(await rawSave(page, envelope.key)).toBeNull();
   await mergeAt(page, 6, 7, info, 'drag'); await mergeId(page, 'r1', info); await mergeId(page, 'r2', info);
   await expect(pieces(page, 'r3')).toHaveCount(1); await expect(page.getByRole('button', { name: 'Open your postcard', exact: true })).toBeEnabled();
-  expect(JSON.parse(await rawSave(page, RIVER_KEY)).round.merges).toBe(3);
+  expect(decodeMatchingSave(await rawSave(page, RIVER_KEY), RIVER_KEY).round.merges).toBe(3);
   expect(await rawSave(page)).toBeNull(); expect(await rawSave(page, MOON_KEY)).toBeNull();
   await assertLiveArtAtPhoneWidths(page); await shot(page, info, 'riverside-first-postcard');
 });
@@ -49,7 +50,7 @@ for (const order of [['map', 'teacup'], ['teacup', 'map']]) {
     for (const family of order) await finishFamily(page, family, info, 'drag', async id => {
       await assertLiveArtAtPhoneWidths(page, order[0] === 'map' ? info : null, `riverside-round-${id}`); await shot(page, info, `riverside-${prefix}-${id}`);
     });
-    const save = JSON.parse(await rawSave(page, RIVER_KEY));
+    const save = decodeMatchingSave(await rawSave(page, RIVER_KEY), RIVER_KEY);
     expect(save.round).toMatchObject({ moves: 42, merges: 30, supply: { map: 0, teacup: 0 } });
     expect(save.discoveries).toHaveLength(10); await expect(occupied(page)).toHaveCount(2);
     await expect(pieces(page, 'r5')).toHaveCount(1); await expect(pieces(page, 't5')).toHaveCount(1);
@@ -74,8 +75,8 @@ for (const order of [['map', 'teacup'], ['teacup', 'map']]) {
     expect(await boardIds(page)).toEqual(board);
     if (order[0] === 'map') await assertLiveArtAtPhoneWidths(page, info, 'riverside-round-done-reloaded');
     await activate(page.getByRole('button', { name: 'Undo', exact: true }), info);
-    expect(JSON.parse(await rawSave(page, RIVER_KEY)).round.merges).toBe(29);
-    expect(JSON.parse(await rawSave(page, RIVER_KEY)).discoveries).toHaveLength(10);
+    expect(decodeMatchingSave(await rawSave(page, RIVER_KEY), RIVER_KEY).round.merges).toBe(29);
+    expect(decodeMatchingSave(await rawSave(page, RIVER_KEY), RIVER_KEY).discoveries).toHaveLength(10);
   });
 }
 
@@ -117,7 +118,7 @@ test('fresh Riverside resets only its board and retains discovered art', async (
   await expect(page.getByRole('dialog')).toContainText('Riverside Reverie'); await closeDialog(page, info); await expect(pieces(page, 'r2')).toHaveCount(1);
   await activate(page.getByRole('button', { name: 'Fresh envelope', exact: true }), info); await activate(page.getByRole('button', { name: 'Start fresh', exact: true }), info);
   await expect(pieces(page, 'r1')).toHaveCount(4);
-  const saved = JSON.parse(await rawSave(page, RIVER_KEY)); expect(saved.history).toEqual([]); expect(saved.discoveries).toContain('r2');
+  const saved = decodeMatchingSave(await rawSave(page, RIVER_KEY), RIVER_KEY); expect(saved.history).toEqual([]); expect(saved.discoveries).toContain('r2');
   expect(await rawSave(page)).toBe(first); expect(await rawSave(page, MOON_KEY)).toBe(second);
 });
 

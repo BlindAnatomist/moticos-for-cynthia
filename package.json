@@ -11,7 +11,9 @@
     "validate:matching": "node scripts/validateMatching.mjs",
     "validate:catalog": "node scripts/validateCatalog.mjs",
     "build:batch": "VITE_COLLAGE_BATCH=1 vite build --outDir dist-batch && node scripts/stampCollageBatch.mjs",
-    "test:batch": "vitest run tests/collageBatch.test.js"
+    "test:batch": "vitest run tests/collageBatch.test.js",
+    "build:expansion": "VITE_COLLAGE_EXPANSION=1 vite build --outDir dist-expansion && node scripts/stampExpansion.mjs",
+    "test:expansion": "vitest run tests/expansion120.test.js tests/expansion120Assets.test.js"
   },
   "dependencies": {
     "lucide-react": "1.27.0",

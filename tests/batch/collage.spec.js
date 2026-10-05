@@ -1,3 +1,4 @@
+import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import {test,expect} from '@playwright/test';
 import {readFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -7,7 +8,7 @@ import {activate,boardIds,clearSelection,dragTo,idle,imagesReady,pieces,cell,clo
 const route=e=>`/?envelope=${e.id}`;
 const publicKeys=['moticos.matching.garden.v1','moticos.matching.moonlit-passage.v1','moticos.matching.riverside-reverie.v1','moticos.matching.lantern-studio.v1'];
 const raw=(page,e)=>page.evaluate(key=>localStorage.getItem(key),e.storageKey);
-const saved=async(page,e)=>JSON.parse(await raw(page,e));
+const saved=async(page,e)=>decodeMatchingSave(await raw(page,e),e.storageKey);
 const supply=(page,f)=>page.getByRole('button',{name:new RegExp(`^Add ${f.id} pair,`)});
 async function shot(page,info,name){await mkdir('batch-test-results/review',{recursive:true});const path=`batch-test-results/review/${info.project.name}-${name}.png`;await page.screenshot({path,fullPage:false,animations:'disabled'});await info.attach(name,{path,contentType:'image/png'});}
 async function merge(page,info,e,id,method='tap'){

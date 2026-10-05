@@ -1,5 +1,30 @@
 import { ENVELOPES, getMatchingEngine } from './registry.js';
 
+// One validated snapshot per envelope and storage interface, separate from play
+// sessions. Rechecking bytes on every read still detects inactive/stale tabs.
+// Weak ownership allows discarded storage interfaces and all their data to go.
+const validatedReads = new WeakMap();
+function freezeData(value) {
+  if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+    Object.values(value).forEach(freezeData); Object.freeze(value);
+  }
+  return value;
+}
+export function readObservedSave(engine, storage) {
+  const raw = storage.getItem(engine.STORAGE_KEY);
+  let reads = validatedReads.get(storage);
+  const prior = reads?.get(engine.STORAGE_KEY);
+  if (prior && prior.raw === raw && prior.engine === engine) return prior.result;
+  const result = engine.readSave(raw);
+  if (!reads) { reads = new Map(); validatedReads.set(storage, reads); }
+  // Never retain stale parsed history after a change or cache storage failures.
+  reads.delete(engine.STORAGE_KEY);
+  if (result.status === 'loaded' || result.status === 'empty') {
+    reads.set(engine.STORAGE_KEY, { raw, engine, result: freezeData(result) });
+  }
+  return result;
+}
+
 // Album views never create sessions or write storage. An unopened envelope is
 // not credited with starter discoveries just because somebody browsed it.
 export function readEnvelopeProgress(envelope, cache, storage) {
@@ -12,7 +37,7 @@ export function readEnvelopeProgress(envelope, cache, storage) {
       unread: Boolean(session.invalid), conflict: Boolean(session.conflict || changed), unavailable };
   }
   try {
-    const result = engine.readSave(storage.getItem(envelope.storageKey));
+    const result = readObservedSave(engine, storage);
     const unread = result.status === 'invalid' || result.status === 'unsupported';
     return { save: result.save, opened: result.status === 'loaded', temporary: unread, unread, conflict: false, unavailable: false };
   } catch {

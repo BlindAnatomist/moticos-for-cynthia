@@ -1,3 +1,4 @@
+import { decodeMatchingSave } from '../capacity/readStoredSave.js';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
@@ -38,7 +39,7 @@ export async function rawSave(page, key = MATCHING_KEY) {
   return page.evaluate(key => localStorage.getItem(key), key);
 }
 export async function saved(page) {
-  return JSON.parse(await rawSave(page));
+  return decodeMatchingSave(await rawSave(page));
 }
 export async function idle(page) {
   await expect(page.locator('.cg-floating')).toHaveCount(0);

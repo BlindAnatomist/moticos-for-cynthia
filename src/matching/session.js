@@ -30,10 +30,12 @@ export function commitEnvelopeSession(engine, session, next, storage) {
   if (!next) return false;
   if (!session.blocked) {
     try {
+      // Finish all CPU work before the final read/compare/write. There is no
+      // async compression, migration on open, or destructive quota fallback.
+      const raw = engine.serializeStoredSave(next);
       if (storage.getItem(engine.STORAGE_KEY) !== session.raw) {
         session.blocked = true; session.conflict = true;
       } else {
-        const raw = engine.serializeSave(next);
         storage.setItem(engine.STORAGE_KEY, raw);
         session.raw = raw; session.unavailable = false;
       }

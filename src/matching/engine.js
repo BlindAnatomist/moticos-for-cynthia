@@ -1,3 +1,5 @@
+import { STORAGE_FORMAT, STORAGE_VERSION, encodeStoredSave, decodeStoredSave } from './storageCodec.js';
+
 export const HISTORY_LIMIT = 100;
 export const MAX_SAVE_BYTES = 512 * 1024;
 export const MAX_MOVES = 1_000_000;
@@ -164,14 +166,27 @@ export function createMatchingEngine({ catalog, storageKey }) {
     if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES) throw new RangeError('Matching save exceeds the storage size limit.');
     return raw;
   }
+  // Choose the transport only after validating the complete, unchanged save.
+  // No history is discarded and no background compression can race a new move.
+  function serializeStoredSave(save) {
+    const legacy = serializeSave(save);
+    const compact = encodeStoredSave(save, FAMILY_IDS);
+    return compact.length < legacy.length ? compact : legacy;
+  }
   function readSave(raw) {
     const result = (status, save = null) => ({ status, save, sourceRaw: raw });
     if (raw === null || raw === undefined) return result('empty');
     if (typeof raw !== 'string' || raw.length > MAX_SAVE_BYTES || new TextEncoder().encode(raw).length > MAX_SAVE_BYTES) return result('invalid');
     try {
-      const save = JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      const compact = parsed?.version === STORAGE_VERSION && parsed?.format === STORAGE_FORMAT;
+      const save = compact ? decodeStoredSave(parsed, { familyIds: FAMILY_IDS, cells: CELLS, historyLimit: HISTORY_LIMIT }) : parsed;
       if (save && typeof save === 'object' && !Array.isArray(save) && own(save, 'version') && integer(save.version, PACK_VERSION + 1, Number.MAX_SAFE_INTEGER)) return result('unsupported');
-      return validSave(save) ? result('loaded', save) : result('invalid');
+      if (!validSave(save)) return result('invalid');
+      // Bound the reconstructed v1 representation exactly like the writer.
+      // Validate first so unknown large IDs never trigger repeated expansion.
+      if (compact && new TextEncoder().encode(JSON.stringify(save)).length > MAX_SAVE_BYTES) return result('invalid');
+      return result('loaded', save);
     } catch { return result('invalid'); }
   }
   function actionOK(action) {
@@ -203,7 +218,7 @@ export function createMatchingEngine({ catalog, storageKey }) {
 
   return Object.freeze({
     ...catalog, STORAGE_KEY, HISTORY_LIMIT, MAX_SAVE_BYTES, MAX_MOVES, INITIAL_POSITIONS,
-    createRound, newSave, validRound, validSave, readSave, serializeSave, act,
+    createRound, newSave, validRound, validSave, readSave, serializeSave, serializeStoredSave, act,
     compatible, mergePairs, completedFinals,
   });
 }

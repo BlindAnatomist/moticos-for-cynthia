@@ -193,7 +193,7 @@ describe('third-envelope persistence pressure and recovery', () => {
       expect(sessions[i].save.history).toHaveLength(100);
       const raw = f.bytes.get(engine.STORAGE_KEY);
       expect(new TextEncoder().encode(raw).length).toBeLessThan(engine.MAX_SAVE_BYTES);
-      expect(engine.serializeSave(engine.readSave(raw).save)).toBe(raw);
+      expect(engine.serializeStoredSave(engine.readSave(raw).save)).toBe(raw);
       expect(openEnvelopeSession(engine, new Map(), f.storage).save).toEqual(sessions[i].save);
     }
     const olderBytes = engines.slice(0, 2).map(engine => f.bytes.get(engine.STORAGE_KEY));
