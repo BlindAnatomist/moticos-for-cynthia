@@ -8,6 +8,12 @@ Default branch: `main`
 
 Status date: 2026-07-31
 
+## Current browser continuation — 2026-10-05
+
+The corrected public checkpoint `b1d8aef0d5d3dea04fef9ef265ffaffc70b4a33c` completed 170 distinct browser cases successfully in run `37254210619`. The 25-minute browser ceiling interrupted two cases and left 74 unstarted. There were no individual assertion failures. Both native select-label preflights and the relevant phone album/progression/focus cases passed. All current and rescued prior evidence has been retrieved and independently checksum-verified.
+
+The continuation branch runs only those 76 unresolved identities. Runtime, artwork, dependencies and every browser test remain byte-identical to the corrected source. A fail-closed coverage guard checks the exact collected identity sets and requires 76 zero-retry terminal passes before declaring the union of 246 complete. See `LANTERN_BROWSER_CONTINUATION.md`. The existing live Site remains version 4 until that final gate and visual review pass.
+
 ## Current local browser-gate repair — 2026-10-05
 
 The first Lantern Studio public checkpoint is `bf612a858e33563e0c7deebd4f792a404adfec47`. Its single approved run `37247073900` reached the 35-minute cap after 115 of 246 cases started. All 21 printed failures are exact-label selector timeouts. The accepted live Site remains version 4; no Lantern Studio deployment has occurred.

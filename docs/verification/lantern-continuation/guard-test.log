@@ -1,0 +1,8 @@
+
+ RUN  v4.1.10 <checkout>
+
+
+ Test Files  1 passed (1)
+      Tests  18 passed (18)
+   Start at  22:05:38
+   Duration  283ms (transform 39ms, setup 0ms, import 56ms, tests 67ms, environment 0ms)

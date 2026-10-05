@@ -1,0 +1,12 @@
+
+> moticos-for-cynthia@0.1.0 test
+> vitest run tests/gameLogic.test.js tests/collectionLogic.test.js tests/matchingLogic.test.js tests/matchingUi.test.jsx tests/matchingSession.test.js tests/expansionAudit.test.js tests/thirdEnvelopeAudit.test.js tests/boardArt.test.js tests/dialogFocus.test.js tests/albumProgress.test.js tests/fourthEnvelopeAudit.test.js tests/albumPicker.test.jsx
+
+
+ RUN  v4.1.10 <checkout>
+
+
+ Test Files  12 passed (12)
+      Tests  229 passed (229)
+   Start at  22:04:01
+   Duration  33.02s (transform 3.23s, setup 0ms, import 4.51s, tests 59.51s, environment 2ms)

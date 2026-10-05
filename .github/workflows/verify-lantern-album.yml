@@ -1,22 +1,21 @@
-name: Verify Lantern Studio labels and album progression
+name: Complete the remaining Lantern Studio verification
 
-# Inert until a fresh approval covers this corrected gate and the scoped rescue.
+# This branch starts exactly one explicitly approved 76-case continuation.
 on:
   push:
-    branches: [verify/lantern-album-labels-20261005]
+    branches: [verify/lantern-album-remaining-20261005]
 
 permissions:
   contents: read
-  actions: read
 
 concurrency:
-  group: moticos-lantern-album-labels
+  group: moticos-lantern-album-remaining
   cancel-in-progress: true
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 25
     steps:
       - name: Record the verification time budget
         run: echo "MOTICOS_JOB_EPOCH=$(date +%s)" >> "$GITHUB_ENV"
@@ -25,97 +24,33 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Recover the exact prior evidence archive without rerunning its tests
-        id: recover_prior
-        continue-on-error: true
-        timeout-minutes: 3
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          test "$GITHUB_REPOSITORY" = "BlindAnatomist/moticos-for-cynthia"
-          mkdir -p prior-evidence
-          gh api --method GET -H "Accept: application/vnd.github+json" "/repos/$GITHUB_REPOSITORY/actions/artifacts/11320307306/zip" > prior-evidence/original.zip
-          python3 scripts/preserveEvidence.py split --archive prior-evidence/original.zip --out prior-evidence/parts --expected-bytes 654533926 --expected-sha256 075aae2f23f379516eaae1eff75a88298280fe7452a715c7d0edd06454ffc750 --github-output "$GITHUB_OUTPUT"
-      - name: Preserve moticos-prior-37247073900 part 000
-        continue-on-error: true
-        if: always() && steps.recover_prior.outcome == 'success' && steps.recover_prior.outputs.part_000 == 'true'
-        uses: actions/upload-artifact@v4
-        timeout-minutes: 1
-        with:
-          name: moticos-prior-37247073900-000
-          path: |
-            prior-evidence/parts/part-000.bin
-            prior-evidence/parts/manifest.json
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 1
-      - name: Preserve moticos-prior-37247073900 part 001
-        continue-on-error: true
-        if: always() && steps.recover_prior.outcome == 'success' && steps.recover_prior.outputs.part_001 == 'true'
-        uses: actions/upload-artifact@v4
-        timeout-minutes: 1
-        with:
-          name: moticos-prior-37247073900-001
-          path: |
-            prior-evidence/parts/part-001.bin
-            prior-evidence/parts/manifest.json
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 1
-      - name: Preserve moticos-prior-37247073900 part 002
-        continue-on-error: true
-        if: always() && steps.recover_prior.outcome == 'success' && steps.recover_prior.outputs.part_002 == 'true'
-        uses: actions/upload-artifact@v4
-        timeout-minutes: 1
-        with:
-          name: moticos-prior-37247073900-002
-          path: |
-            prior-evidence/parts/part-002.bin
-            prior-evidence/parts/manifest.json
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 1
-      - name: Preserve moticos-prior-37247073900 part 003
-        continue-on-error: true
-        if: always() && steps.recover_prior.outcome == 'success' && steps.recover_prior.outputs.part_003 == 'true'
-        uses: actions/upload-artifact@v4
-        timeout-minutes: 1
-        with:
-          name: moticos-prior-37247073900-003
-          path: |
-            prior-evidence/parts/part-003.bin
-            prior-evidence/parts/manifest.json
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 1
       - name: Install exact dependencies
         run: npm ci --no-audit --no-fund
-      - name: Verify logic, handlers, labels and evidence packaging
-        run: npm test && PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p test_preserve_evidence.py
-      - name: Verify finite inventories and authored content
-        run: npm run validate:matching && npm run validate:catalog
-      - name: Build isolated candidate
+      - name: Check continuation guard and unchanged runtime identity
+        run: npx vitest run tests/remainingCoverage.test.js
+      - name: Collect and prove the exact remaining identity set without running browsers
+        run: |
+          mkdir -p preflight-results
+          npx playwright test tests/e2e/matching.spec.js tests/e2e/matching-expansion.spec.js tests/e2e/matching-riverside.spec.js tests/e2e/matching-lantern.spec.js tests/e2e/matching-layout.spec.js --list --reporter=json > preflight-results/all-collected.json
+          npx playwright test --test-list=tests/verification/lantern-remaining-tests.txt --list --reporter=json > preflight-results/remaining-collected.json
+          node scripts/verifyRemainingCoverage.mjs collected preflight-results/all-collected.json preflight-results/remaining-collected.json preflight-results/collection-proof.json
+      - name: Build the unchanged candidate
         run: npm run build
       - name: Install standard WebKit and Chromium
         run: npx playwright install --with-deps webkit chromium
-      - name: Verify selectors first in all three browser profiles
-        env:
-          MOTICOS_PROGRESS_DIR: preflight-results/progress
-          PLAYWRIGHT_HTML_OUTPUT_DIR: preflight-report
-        run: npx playwright test tests/e2e/matching-lantern.spec.js --grep @selector-preflight --workers=2 --retries=0 --max-failures=1 --global-timeout=120000 --output=preflight-results
-      - name: Verify the remaining 243 journeys, album and phone-layout cases
+      - name: Run only the 76 unfinished cases with no retries
         run: |
-          # Reserve six minutes for packaging/uploads inside the same job cap.
-          # Account for all elapsed rescue, setup and preflight time, plus a
-          # conservative allowance for runner setup before our first step.
-          remaining=$((2100 - 15 - ($(date +%s) - MOTICOS_JOB_EPOCH) - 360))
+          # Keep six minutes for evidence preservation within the 25-minute cap.
+          remaining=$((1500 - 15 - ($(date +%s) - MOTICOS_JOB_EPOCH) - 360))
           if [ "$remaining" -lt 60 ]; then
-            echo "::error::Insufficient verification time remains after reserving evidence preservation."
+            echo "::error::Insufficient browser time remains after reserving evidence preservation."
             exit 1
           fi
-          if [ "$remaining" -gt 1500 ]; then remaining=1500; fi
-          echo "Main browser ceiling: ${remaining}s; evidence reserve: 360s"
-          npx playwright test tests/e2e/matching.spec.js tests/e2e/matching-expansion.spec.js tests/e2e/matching-riverside.spec.js tests/e2e/matching-lantern.spec.js tests/e2e/matching-layout.spec.js --grep-invert @selector-preflight --workers=2 --retries=0 --global-timeout="$((remaining * 1000))"
+          if [ "$remaining" -gt 900 ]; then remaining=900; fi
+          echo "Continuation browser ceiling: ${remaining}s; evidence reserve: 360s"
+          npx playwright test --test-list=tests/verification/lantern-remaining-tests.txt --workers=2 --retries=0 --global-timeout="$((remaining * 1000))"
+      - name: Prove all 246 distinct cases passed across the unchanged source
+        run: node scripts/verifyRemainingCoverage.mjs completed test-results/progress/browser-events.jsonl preflight-results/completed-union-proof.json
       - name: Package every browser evidence file into bounded parts
         id: package
         if: always() && steps.checkout.outcome == 'success'
@@ -123,192 +58,192 @@ jobs:
         run: |
           mkdir -p bounded-evidence
           python3 scripts/preserveEvidence.py pack --archive bounded-evidence/browser-evidence.tar.gz --out bounded-evidence/parts --root . --include test-results --include playwright-report --include preflight-results --include preflight-report --github-output "$GITHUB_OUTPUT"
-      - name: Preserve moticos-lantern-label-browser part 000
+      - name: Preserve moticos-lantern-completion-browser part 000
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-000
+          name: moticos-lantern-completion-browser-000
           path: |
             bounded-evidence/parts/part-000.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 001
+      - name: Preserve moticos-lantern-completion-browser part 001
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_001 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-001
+          name: moticos-lantern-completion-browser-001
           path: |
             bounded-evidence/parts/part-001.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 002
+      - name: Preserve moticos-lantern-completion-browser part 002
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_002 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-002
+          name: moticos-lantern-completion-browser-002
           path: |
             bounded-evidence/parts/part-002.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 003
+      - name: Preserve moticos-lantern-completion-browser part 003
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_003 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-003
+          name: moticos-lantern-completion-browser-003
           path: |
             bounded-evidence/parts/part-003.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 004
+      - name: Preserve moticos-lantern-completion-browser part 004
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_004 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-004
+          name: moticos-lantern-completion-browser-004
           path: |
             bounded-evidence/parts/part-004.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 005
+      - name: Preserve moticos-lantern-completion-browser part 005
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_005 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-005
+          name: moticos-lantern-completion-browser-005
           path: |
             bounded-evidence/parts/part-005.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 006
+      - name: Preserve moticos-lantern-completion-browser part 006
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_006 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-006
+          name: moticos-lantern-completion-browser-006
           path: |
             bounded-evidence/parts/part-006.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 007
+      - name: Preserve moticos-lantern-completion-browser part 007
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_007 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-007
+          name: moticos-lantern-completion-browser-007
           path: |
             bounded-evidence/parts/part-007.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 008
+      - name: Preserve moticos-lantern-completion-browser part 008
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_008 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-008
+          name: moticos-lantern-completion-browser-008
           path: |
             bounded-evidence/parts/part-008.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 009
+      - name: Preserve moticos-lantern-completion-browser part 009
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_009 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-009
+          name: moticos-lantern-completion-browser-009
           path: |
             bounded-evidence/parts/part-009.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 010
+      - name: Preserve moticos-lantern-completion-browser part 010
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_010 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-010
+          name: moticos-lantern-completion-browser-010
           path: |
             bounded-evidence/parts/part-010.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 011
+      - name: Preserve moticos-lantern-completion-browser part 011
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_011 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-011
+          name: moticos-lantern-completion-browser-011
           path: |
             bounded-evidence/parts/part-011.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 012
+      - name: Preserve moticos-lantern-completion-browser part 012
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_012 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-012
+          name: moticos-lantern-completion-browser-012
           path: |
             bounded-evidence/parts/part-012.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 013
+      - name: Preserve moticos-lantern-completion-browser part 013
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_013 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-013
+          name: moticos-lantern-completion-browser-013
           path: |
             bounded-evidence/parts/part-013.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 014
+      - name: Preserve moticos-lantern-completion-browser part 014
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_014 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-014
+          name: moticos-lantern-completion-browser-014
           path: |
             bounded-evidence/parts/part-014.bin
             bounded-evidence/parts/manifest.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
-      - name: Preserve moticos-lantern-label-browser part 015
+      - name: Preserve moticos-lantern-completion-browser part 015
         if: always() && steps.package.outcome == 'success' && steps.package.outputs.part_015 == 'true'
         uses: actions/upload-artifact@v4
         timeout-minutes: 1
         with:
-          name: moticos-lantern-label-browser-015
+          name: moticos-lantern-completion-browser-015
           path: |
             bounded-evidence/parts/part-015.bin
             bounded-evidence/parts/manifest.json

@@ -1,0 +1,2000 @@
+{
+  "schemaVersion": 1,
+  "priorRunId": 37254210619,
+  "validatedPublicCommit": "b1d8aef0d5d3dea04fef9ef265ffaffc70b4a33c",
+  "validatedLocalCommit": "95659a66ab2ae957faad0ea1355af67a9872c293",
+  "evidenceArchiveSha256": "2040258ea7eff9942bbd66ae9912eaf74f85bb4906b65efd2e3f4d724fe3ae5c",
+  "eventFiles": [
+    {
+      "path": "selected/preflight-results/progress/browser-events.jsonl",
+      "sha256": "0269b400a873e93989e9704a626ab4220bce92938a903bc75584badb5de58bc3"
+    },
+    {
+      "path": "selected/test-results/progress/browser-events.jsonl",
+      "sha256": "88f0116380208fd5afdf40d1a0a093fb6f758f9a1422d541b8f51a7152915359"
+    }
+  ],
+  "expectedTotal": 246,
+  "priorPassed": [
+    {
+      "id": "db4fe2360db47c695d12-d18fc9d33a07f51dc974",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "second envelope starts with two readable identities and the same finite matching loop"
+    },
+    {
+      "id": "db4fe2360db47c695d12-b134ab4e268822efafde",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "complete Moonlit Passage key-moon with real merges and six postcards"
+    },
+    {
+      "id": "db4fe2360db47c695d12-d75f3a5fb81833007d97",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "complete Moonlit Passage moon-key with real merges and six postcards"
+    },
+    {
+      "id": "db4fe2360db47c695d12-4b1503cd857eb93f5d75",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "switches preserve both partial boards and independent Undo, including browser Back and Forward"
+    },
+    {
+      "id": "db4fe2360db47c695d12-611d7bc2d61cf3a18d9b",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "other-envelope postcards return to unchanged active board and collection view does not switch play"
+    },
+    {
+      "id": "db4fe2360db47c695d12-4e044bfa0f75b043fdfd",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "fresh envelope names its target and resets only that board"
+    },
+    {
+      "id": "db4fe2360db47c695d12-196ac1165941b24aad2e",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "corrupt moticos.matching.garden.v1 retains temporary board across switches and exports exact original bytes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-8badba8d404f4d528e7f",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "corrupt moticos.matching.moonlit-passage.v1 retains temporary board across switches and exports exact original bytes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-9f97d199f8b2df5c35d8",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "storage quota failure does not lose temporary state when switching envelopes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-567b1d937d40a09a2219",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "a denied localStorage property permits temporary play and safe switching"
+    },
+    {
+      "id": "db4fe2360db47c695d12-ae32a94adcebd4faed80",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "inactive envelope changed elsewhere is protected when resumed"
+    },
+    {
+      "id": "db4fe2360db47c695d12-304fccff9b747f5f2e3b",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "mute choice stays muted on switching and reloading the destination"
+    },
+    {
+      "id": "db4fe2360db47c695d12-14ef73cdb3ce3b2871b9",
+      "project": "webkit-iphone-13",
+      "file": "matching-expansion.spec.js",
+      "title": "chooser, collection selector, help and long family labels fit compact phone geometry"
+    },
+    {
+      "id": "db4fe2360db47c695d12-1c30f6f1366770b4bbd3",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "second envelope starts with two readable identities and the same finite matching loop"
+    },
+    {
+      "id": "db4fe2360db47c695d12-d2d2baa5964df46c7465",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "complete Moonlit Passage key-moon with real merges and six postcards"
+    },
+    {
+      "id": "db4fe2360db47c695d12-845bcfeb727becb47c8c",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "complete Moonlit Passage moon-key with real merges and six postcards"
+    },
+    {
+      "id": "db4fe2360db47c695d12-828946d5f5367daf0952",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "switches preserve both partial boards and independent Undo, including browser Back and Forward"
+    },
+    {
+      "id": "db4fe2360db47c695d12-1e289de0ccc18134283b",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "other-envelope postcards return to unchanged active board and collection view does not switch play"
+    },
+    {
+      "id": "db4fe2360db47c695d12-de2e64189320dbbe6ec8",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "fresh envelope names its target and resets only that board"
+    },
+    {
+      "id": "db4fe2360db47c695d12-884a446032c749883ed6",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "corrupt moticos.matching.garden.v1 retains temporary board across switches and exports exact original bytes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-4fbe2648c3836fc5954d",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "corrupt moticos.matching.moonlit-passage.v1 retains temporary board across switches and exports exact original bytes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-27dfbf8855f141399ef1",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "storage quota failure does not lose temporary state when switching envelopes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-0c3326c683a67ace7ce2",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "a denied localStorage property permits temporary play and safe switching"
+    },
+    {
+      "id": "db4fe2360db47c695d12-7fb32310e38843d6343b",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "inactive envelope changed elsewhere is protected when resumed"
+    },
+    {
+      "id": "db4fe2360db47c695d12-b14eb08ffec6af037ad2",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "mute choice stays muted on switching and reloading the destination"
+    },
+    {
+      "id": "db4fe2360db47c695d12-5fa678f1164e4257108a",
+      "project": "webkit-iphone-large",
+      "file": "matching-expansion.spec.js",
+      "title": "chooser, collection selector, help and long family labels fit compact phone geometry"
+    },
+    {
+      "id": "db4fe2360db47c695d12-8873993a8a798ddbd532",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "second envelope starts with two readable identities and the same finite matching loop"
+    },
+    {
+      "id": "db4fe2360db47c695d12-f7607d40f8a61aef621f",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "complete Moonlit Passage key-moon with real merges and six postcards"
+    },
+    {
+      "id": "db4fe2360db47c695d12-822965ca7c08f71b9c3d",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "complete Moonlit Passage moon-key with real merges and six postcards"
+    },
+    {
+      "id": "db4fe2360db47c695d12-13ba63234e3b77bb5aa7",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "switches preserve both partial boards and independent Undo, including browser Back and Forward"
+    },
+    {
+      "id": "db4fe2360db47c695d12-6fd16d3adc1ad2f404b3",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "other-envelope postcards return to unchanged active board and collection view does not switch play"
+    },
+    {
+      "id": "db4fe2360db47c695d12-8ac6540dacc7682f7886",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "fresh envelope names its target and resets only that board"
+    },
+    {
+      "id": "db4fe2360db47c695d12-7ffd323ea4310da191d4",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "corrupt moticos.matching.garden.v1 retains temporary board across switches and exports exact original bytes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-76eadab4e57819d73e4c",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "corrupt moticos.matching.moonlit-passage.v1 retains temporary board across switches and exports exact original bytes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-5d19fbae69731589b343",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "storage quota failure does not lose temporary state when switching envelopes"
+    },
+    {
+      "id": "db4fe2360db47c695d12-c73a3469c587850b69eb",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "a denied localStorage property permits temporary play and safe switching"
+    },
+    {
+      "id": "db4fe2360db47c695d12-8482255c55d99e2d5af6",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "inactive envelope changed elsewhere is protected when resumed"
+    },
+    {
+      "id": "db4fe2360db47c695d12-c281a64de658b00e8c4d",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "mute choice stays muted on switching and reloading the destination"
+    },
+    {
+      "id": "db4fe2360db47c695d12-8d8c1adb9e9e64814a26",
+      "project": "chromium-desktop",
+      "file": "matching-expansion.spec.js",
+      "title": "chooser, collection selector, help and long family labels fit compact phone geometry"
+    },
+    {
+      "id": "2d254b816c10d673ac30-ecb36ef6c16d0a138f9d",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "album browsing credits only opened envelopes and never writes or changes a board"
+    },
+    {
+      "id": "2d254b816c10d673ac30-bc0f81fd98962157e52f",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "fourth envelope has distinct starters, finite pair supply and a third-merge postcard"
+    },
+    {
+      "id": "2d254b816c10d673ac30-a6564a51772284bd56df",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "Lantern Studio completes lantern-spool with six distinct postcards and retained world credit"
+    },
+    {
+      "id": "2d254b816c10d673ac30-c7d2c7a2f9bf078f6a09",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "Lantern Studio completes spool-lantern with six distinct postcards and retained world credit"
+    },
+    {
+      "id": "2d254b816c10d673ac30-ef91ddfe1f84498a656c",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "four boards and independent Undo survive navigation and both history directions"
+    },
+    {
+      "id": "2d254b816c10d673ac30-f8ede9fb0260ce2548af",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "envelope filters and collection selector remain usable at compact widths and enlarged text"
+    },
+    {
+      "id": "2d254b816c10d673ac30-2613436ee70784f31b38",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "corrupt and future fourth-envelope saves are never credited as new discoveries or overwritten"
+    },
+    {
+      "id": "2d254b816c10d673ac30-6d316eddcbf7cdea210e",
+      "project": "webkit-iphone-13",
+      "file": "matching-lantern.spec.js",
+      "title": "album refreshes an inactive external save without overwriting either branch"
+    },
+    {
+      "id": "2d254b816c10d673ac30-0b6eb085d379c96bf42b",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "album browsing credits only opened envelopes and never writes or changes a board"
+    },
+    {
+      "id": "2d254b816c10d673ac30-c8dc514950b072c0e687",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "fourth envelope has distinct starters, finite pair supply and a third-merge postcard"
+    },
+    {
+      "id": "2d254b816c10d673ac30-2c7b62adb57274225786",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "Lantern Studio completes lantern-spool with six distinct postcards and retained world credit"
+    },
+    {
+      "id": "2d254b816c10d673ac30-bedc780e6a443df411bb",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "Lantern Studio completes spool-lantern with six distinct postcards and retained world credit"
+    },
+    {
+      "id": "2d254b816c10d673ac30-21822cffd823406bb6a3",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "four boards and independent Undo survive navigation and both history directions"
+    },
+    {
+      "id": "2d254b816c10d673ac30-b897181ca5f10e2f226c",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "envelope filters and collection selector remain usable at compact widths and enlarged text"
+    },
+    {
+      "id": "2d254b816c10d673ac30-5c9e40cf85ce922a5765",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "corrupt and future fourth-envelope saves are never credited as new discoveries or overwritten"
+    },
+    {
+      "id": "2d254b816c10d673ac30-9585dd696d04fdd1b407",
+      "project": "webkit-iphone-large",
+      "file": "matching-lantern.spec.js",
+      "title": "album refreshes an inactive external save without overwriting either branch"
+    },
+    {
+      "id": "2d254b816c10d673ac30-4948ed290cfa6be14bad",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "album browsing credits only opened envelopes and never writes or changes a board"
+    },
+    {
+      "id": "2d254b816c10d673ac30-c22e36bd3e812ebfd50f",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "fourth envelope has distinct starters, finite pair supply and a third-merge postcard"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-88af140f17ffacd00899",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-28d56574443932554b7f",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-4669899cd1c774e620ba",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-8ddab054f333a6a39a59",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-c4965e055ab573182fa1",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-d4a241f65981f0094bab",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-787f9d8e90aae6716882",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-c803df8b78232c8ad305",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-6e71935f30b4cd45151b",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-caf7ed4d9f268696a737",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-a0bd2e2dc39983115468",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-d547a812c1981a6efaa1",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-34559f1923797bc44f68",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 320x568"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-b341f170c2df93f11fd8",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 390x664"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-122ff3e3213eb8794054",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 430x752"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-09762e60eb3fc30c95cb",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 430x932"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-23603020a6b905a08611",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "viewport changes cancel an unfinished drag and retarget a committed flight without data loss"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-0942436399fbf8e5abf1",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "320x480 tiny portrait falls back to reachable scrolling without hiding controls or shrinking targets"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-803d5a738bb43baf827e",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "125 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-447fd19f214c9bb8172d",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "150 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-e247e3f7ea986af357d2",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "200 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-ecad0277002e654b7bd5",
+      "project": "webkit-iphone-13",
+      "file": "matching-layout.spec.js",
+      "title": "430x752 safe-area budget simulation preserves the entire play surface"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-a72b69e3217570200001",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-d1c935df0fd69c1adff0",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-70874a1d7909968f2554",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-c542cfc14e30f696f1c4",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-451a9f7fd3eac6af99e0",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-98da31bf33a269174cab",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-92ba7e725cb7fa7a5eda",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-1b9d4448144f2eb00ca0",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-7359c052e09d7887079c",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-e6ca051bf2309c43d20b",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-a932afd897cfaf4c7122",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-436af6fe3701dce12857",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-d709fcf73f140d45703f",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 320x568"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-7a189e0710c80b868350",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 390x664"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-ec6caba68bcaa932dceb",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 430x752"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-17c974e4a5c51dfdf769",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 430x932"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-f2895406c85516039eb2",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "viewport changes cancel an unfinished drag and retarget a committed flight without data loss"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-a28120a9becf786fb4bb",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "320x480 tiny portrait falls back to reachable scrolling without hiding controls or shrinking targets"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-1d76446af5c4438bb333",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "125 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-6edf4d11ee664a7ba403",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "150 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-8faff50ac18197659d2a",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "200 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-f4267bf0a715e6ef9eda",
+      "project": "webkit-iphone-large",
+      "file": "matching-layout.spec.js",
+      "title": "430x752 safe-area budget simulation preserves the entire play surface"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-81908aa43fbbe3bd1a9e",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "third envelope starts with readable map and teacup identities and finite matching pairs"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-380c6f08b942ce0464dd",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "complete Riverside Reverie map-teacup with thirty real merges and six postcards"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-1d4ebb117dce9ea24252",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "complete Riverside Reverie teacup-map with thirty real merges and six postcards"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-ccb0908ca4cd2e480185",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "three partial boards retain independent Undo and URL history in both directions"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-fdbcba98b5df46041533",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "third collection and its postcard can be browsed without changing the active first board"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-797f8546d955b58dd632",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "fresh Riverside resets only its board and retains discovered art"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-06b5a1ac58b5688de29c",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "unread third save retains exact bytes through temporary play, all envelopes and original export"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-a4ace459459998a7638f",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "third quota failure preserves temporary play without affecting the other two saves"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-4b3987faa5c15da9b40f",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "inactive third-envelope external edit cannot be overwritten on resuming or playing"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-c48bef3a9d140bd83d96",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "mute and denied storage survive all three envelope switches"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-e733f4f51af458973533",
+      "project": "webkit-iphone-13",
+      "file": "matching-riverside.spec.js",
+      "title": "all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-af0cd2c2afa53ddcb1c9",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "third envelope starts with readable map and teacup identities and finite matching pairs"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-f34b27d7b6344738206f",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "complete Riverside Reverie map-teacup with thirty real merges and six postcards"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-b9330ecd26ff09713ea8",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "complete Riverside Reverie teacup-map with thirty real merges and six postcards"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-f3e9b705a3e889c0e813",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "three partial boards retain independent Undo and URL history in both directions"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-5617624a393f6e82ef23",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "third collection and its postcard can be browsed without changing the active first board"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-9ba3e906a37479cd9f45",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "fresh Riverside resets only its board and retains discovered art"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-228530ab235637c527b3",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "unread third save retains exact bytes through temporary play, all envelopes and original export"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-4c702a50a856a49c1e1c",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "third quota failure preserves temporary play without affecting the other two saves"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-23beeea5bfcb1ba872ee",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "inactive third-envelope external edit cannot be overwritten on resuming or playing"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-e6c088aec6ef3c0332e6",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "mute and denied storage survive all three envelope switches"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-5cf08a12c2d9a781ed3b",
+      "project": "webkit-iphone-large",
+      "file": "matching-riverside.spec.js",
+      "title": "all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-7b53c9d7fdaf3baa4b66",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "default board is matching-first, with eight clippings and two finite envelopes"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-452b75f23524f06e3fbc",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "bird matches bird and fern matches fern, with higher identical tiers continuing each chain"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-105646d7c1bb87144c6f",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "cross-family equal levels and same-family unequal levels are rejected without a cost"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-8b0fedc39c91a573481a",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "a direct wrong-picture drop is never stolen by a nearby matching magnet"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-1867dcb4deaa3ef57b62",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "an open-space near miss still accepts the matching piece and Undo is exact"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-448c49fd41642120f4af",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "move to empty space, Cut, and multistep Undo preserve pieces and discovery"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-9e2abc06129c7a558c9c",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "supply adds exactly one pair, decreases the visible count, and is wholly reversible"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-9b7fc453df46d02301a2",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "one empty cell refuses supply atomically and a merge makes room again"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-fb62e4caf4abde628158",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-a95e6e0d04700065d22e",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-9208f659aed7ac575da3",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "Help and Collection are on demand, keep the board untouched, and restore keyboard focus"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-b1e82769292bb0bf9525",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "postcard survives native file-share cancellation and board return"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-089d844f4696a5277d1c",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "rapid keyboard focus and merge work without animation-frame callbacks"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-982e88902b4a2fd2ba4e",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (pointercancel) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-e4c3e82996169efe3d06",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (lostpointercapture) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-bcd2a5c41b36f9e8d8bb",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (blur) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-a611beb2cb9c2abc5746",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "rapid supply and duplicate merge activations do not lose or double-consume material"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-d4e222d5594edd34bd38",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "a merge saves before its decorative flight and reload retains exact Undo history and sound"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-6d249c6866e3fe7bc1d6",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-38bd109f38f88405afcc",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "malformed JSON stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-a6b3a4ca24fb48fcb8d9",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "empty stored string stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-ad35a7566de69358dc90",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "invalid current schema stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-78ae6cf2e719e9d9937d",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "future version stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-1d957139941df6f6c450",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "matching leaves the prior recipe study save untouched and both older routes remain separate"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-77b26be56633112cf378",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "reduced motion keeps matching, hints, touch controls, and postcard navigation usable"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-8a06f164780b718159d9",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "an unreadable existing save is never overwritten, even if storage later recovers"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-a5acda4b68c775e67d3a",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "a genuinely stale second tab cannot overwrite the newer saved garden"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-67edb8b9577220848dd8",
+      "project": "webkit-iphone-13",
+      "file": "matching.spec.js",
+      "title": "non-primary and non-left pointer-up cannot move a selected piece into empty space"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-98b5c3576124bbbb01d4",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "default board is matching-first, with eight clippings and two finite envelopes"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-e6d5a5d82cb6663e2131",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "bird matches bird and fern matches fern, with higher identical tiers continuing each chain"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-220cfe25c42c74a608b1",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "cross-family equal levels and same-family unequal levels are rejected without a cost"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-cfb5212b1f142ca78dd3",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "a direct wrong-picture drop is never stolen by a nearby matching magnet"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-f13c27e4b4152a4fca48",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "an open-space near miss still accepts the matching piece and Undo is exact"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-a82d40e5819dcdfa58c2",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "move to empty space, Cut, and multistep Undo preserve pieces and discovery"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-0893150aa636dcc65495",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "supply adds exactly one pair, decreases the visible count, and is wholly reversible"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-7b9dae4e95159b544e03",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "one empty cell refuses supply atomically and a merge makes room again"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-82e10150199fd5e48948",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-9bd1a0fa3989017742eb",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-24cb7523515cdbd8eb88",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "Help and Collection are on demand, keep the board untouched, and restore keyboard focus"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-690fed07821c00628233",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "postcard survives native file-share cancellation and board return"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-3a096c454976533a3684",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "rapid keyboard focus and merge work without animation-frame callbacks"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-94d0a2e6f14430a8f206",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (pointercancel) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-4c3664c581be9b72a058",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (lostpointercapture) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-7574e01c571013c21d9e",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (blur) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-037a6dabd5a43ac89948",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "rapid supply and duplicate merge activations do not lose or double-consume material"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-7fffbc0605e965e9d8fb",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "a merge saves before its decorative flight and reload retains exact Undo history and sound"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-c888b3e4bc9ddd995933",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "2d254b816c10d673ac30-9cff8bafcef0916abd50",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "Lantern Studio completes lantern-spool with six distinct postcards and retained world credit"
+    },
+    {
+      "id": "2d254b816c10d673ac30-07502eedbd247a4e1f00",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "Lantern Studio completes spool-lantern with six distinct postcards and retained world credit"
+    },
+    {
+      "id": "2d254b816c10d673ac30-c9ed093d147e3a457cdb",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "four boards and independent Undo survive navigation and both history directions"
+    },
+    {
+      "id": "2d254b816c10d673ac30-37cd358d0aeb860e05fc",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "envelope filters and collection selector remain usable at compact widths and enlarged text"
+    },
+    {
+      "id": "2d254b816c10d673ac30-5f1b28bb143858635ea4",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "corrupt and future fourth-envelope saves are never credited as new discoveries or overwritten"
+    },
+    {
+      "id": "2d254b816c10d673ac30-4d9792268ad0364cbb4d",
+      "project": "chromium-desktop",
+      "file": "matching-lantern.spec.js",
+      "title": "album refreshes an inactive external save without overwriting either branch"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-1f973d7b499881fe687d",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-9af9e92bc47928cd7461",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-9d288fb3531e2f01a27f",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "matching-garden: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-dd7c54fe5a95df353967",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-d84109a1312b35f15160",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-898a70cdd018ab8e741a",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "moonlit-passage: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-5647be1f826537ca61f3",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-c2040fcf9499ac95336e",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-fd0a831315ea1a9dce76",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "riverside-reverie: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-edee26e98fc3fbd7d435",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: all controls and 25 cells fit four real phone viewports through full-board recovery"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-ffa79903eaa72f4f2a1f",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: protected-save warning and recovery fit all four viewports"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-e5e35f58ec158c8cbca7",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "lantern-studio: quota and stale-tab warning variants retain the same one-screen shell"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-542d740ff11f21fea02f",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 320x568"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-52bdc8e37d53f6c90ac4",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 390x664"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-80f3c0e4044c82d51cb4",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 430x752"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-fb8dc998370e0dc73954",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "keyboard, modal return and live viewport resizing preserve geometry at 430x932"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-fc4e1ebb74cd805e7039",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "viewport changes cancel an unfinished drag and retarget a committed flight without data loss"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-726be56060d178cf07fe",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "320x480 tiny portrait falls back to reachable scrolling without hiding controls or shrinking targets"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-5396416ada21119bb3fd",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "125 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-8ad668101fb70f578fb2",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "150 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-40eef41f5845008784fe",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "200 percent text-only zoom uses honest scrolling with unclipped labels and reachable 44px controls"
+    },
+    {
+      "id": "5372a7b413ebabbf2b1b-843be9f95baec0bed86c",
+      "project": "chromium-desktop",
+      "file": "matching-layout.spec.js",
+      "title": "430x752 safe-area budget simulation preserves the entire play surface"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-88473df80f6a3f1524aa",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "third envelope starts with readable map and teacup identities and finite matching pairs"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-617576ea4288390e5113",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "complete Riverside Reverie map-teacup with thirty real merges and six postcards"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-f0d8750eca8afa71bdbb",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "complete Riverside Reverie teacup-map with thirty real merges and six postcards"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-75300192829155c19824",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "three partial boards retain independent Undo and URL history in both directions"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-8ac2fd6e816fedd341f0",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "third collection and its postcard can be browsed without changing the active first board"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-f886d4083de8c43d1a3e",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "fresh Riverside resets only its board and retains discovered art"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-f33c383d2b24d7dd2e51",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "unread third save retains exact bytes through temporary play, all envelopes and original export"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-fb443ff1158482eb17f7",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "third quota failure preserves temporary play without affecting the other two saves"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-9278dfaba79a14668f34",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "inactive third-envelope external edit cannot be overwritten on resuming or playing"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-b8ae632d7773ed7dbec8",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "mute and denied storage survive all three envelope switches"
+    },
+    {
+      "id": "62b4e43d0ff908f2cf67-915fadce4c8133097cec",
+      "project": "chromium-desktop",
+      "file": "matching-riverside.spec.js",
+      "title": "all four chooser cards and the collection selector fit at 320px and the scrolled header covers its top edge"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-123889391d86b46e5327",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "malformed JSON stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-bdf6276e1480deea34d5",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "empty stored string stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-73bcd34675cc54301b2c",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "invalid current schema stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-7bf0c4c29e1fe7e8375b",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "future version stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-b5061a6ee8995ba05852",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "matching leaves the prior recipe study save untouched and both older routes remain separate"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-fa9f3b69d8cbd19905a2",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "reduced motion keeps matching, hints, touch controls, and postcard navigation usable"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-6b5d202d6ce2d4bdac54",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "an unreadable existing save is never overwritten, even if storage later recovers"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-8fd218a0ac0bf50c67e4",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "a genuinely stale second tab cannot overwrite the newer saved garden"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-dc7558fd4d873bcf00ce",
+      "project": "webkit-iphone-large",
+      "file": "matching.spec.js",
+      "title": "non-primary and non-left pointer-up cannot move a selected piece into empty space"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-c93a30ee49249106f89d",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "default board is matching-first, with eight clippings and two finite envelopes"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-8f0a195b4d53be2f30b4",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "bird matches bird and fern matches fern, with higher identical tiers continuing each chain"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-023961d418ba8059d732",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "cross-family equal levels and same-family unequal levels are rejected without a cost"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-e8c9f24fc90714d8b02c",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "a direct wrong-picture drop is never stolen by a nearby matching magnet"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-77672c29a3ebac1bb0d6",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "an open-space near miss still accepts the matching piece and Undo is exact"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-8aa1e4f0b75cc5e674e2",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "move to empty space, Cut, and multistep Undo preserve pieces and discovery"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-5d89eef6af92ae8ca312",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "supply adds exactly one pair, decreases the visible count, and is wholly reversible"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-93e26c5a98d568403bd8",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "one empty cell refuses supply atomically and a merge makes room again"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-d59364a8d6483a1f2d7f",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "full real-UI round: bird then fern, 30 merges and 12 pair taps (drag)"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-ffae9bbf0559051dd349",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "full real-UI round: fern then bird, 30 merges and 12 pair taps (tap)"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-3081f8b299e0881b75b9",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "Help and Collection are on demand, keep the board untouched, and restore keyboard focus"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-f727269c2e8cdb67a5e3",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "postcard survives native file-share cancellation and board return"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-bc5fb8d8793b93709af1",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "rapid keyboard focus and merge work without animation-frame callbacks"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-0d4579e2193dcee7dd77",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (pointercancel) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-24a062f2c46eb9932dfd",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (lostpointercapture) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-d2fad89a7ce29f413284",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "an interrupted drag (blur) changes nothing and allows the next gesture"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-1df96913ac29f301d51a",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "rapid supply and duplicate merge activations do not lose or double-consume material"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-7fdc1e22d109e2023464",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "a merge saves before its decorative flight and reload retains exact Undo history and sound"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-85fd1a33bd6db1fc16ed",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "fresh-envelope cancellation preserves the board; confirmed reset retains earned postcards"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-6a1933df7afe217b4e31",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "malformed JSON stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-b050a754de76f2f3c3b2",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "empty stored string stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-de8c7402ba9650d574ca",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "invalid current schema stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-a98caaa6d352f3291aa1",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "future version stays byte-for-byte untouched while temporary play and original-save download work"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-28893c38ac3d255bc1d3",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "matching leaves the prior recipe study save untouched and both older routes remain separate"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-cfded2b0b64671f625e7",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "reduced motion keeps matching, hints, touch controls, and postcard navigation usable"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-2af272c86e7324244ff4",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "an unreadable existing save is never overwritten, even if storage later recovers"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-48d9ab937d89db0d2642",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "a genuinely stale second tab cannot overwrite the newer saved garden"
+    },
+    {
+      "id": "44c5b42b8e5e8438523c-203ff5be20c44b60c156",
+      "project": "chromium-desktop",
+      "file": "matching.spec.js",
+      "title": "non-primary and non-left pointer-up cannot move a selected piece into empty space"
+    }
+  ],
+  "remainingManifest": {
+    "path": "tests/verification/lantern-remaining-tests.txt",
+    "bytes": 10619,
+    "sha256": "c48a82e3585a70761dc785a97247af68a0f6c9105963a13f3872cb0d47b718dc"
+  },
+  "pinnedFiles": [
+    {
+      "path": "index.html",
+      "bytes": 472,
+      "sha256": "e51582639a867b9476b3ccbc1a067564423168d46e3cfd92c427f1fbd511ec7d"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 47824,
+      "sha256": "87024cf798a4b1f18febace90041a9580c9391ec788028966264181f3a0b0869"
+    },
+    {
+      "path": "package.json",
+      "bytes": 953,
+      "sha256": "ca45c4dcc751a4496928ff66a9c8f585ecedd23b75b52dcd94c8a2ccbae34a16"
+    },
+    {
+      "path": "playwright.config.js",
+      "bytes": 1095,
+      "sha256": "29499c03159d926d87e859bd24c73fd6640c4e26aa653084097876b42ae484c2"
+    },
+    {
+      "path": "public/art/garden/e01_riverwing.webp",
+      "bytes": 56900,
+      "sha256": "c90dd8710d9c3e523871b85bf9ab9d3d0e8b9c5a6333b8b9943f64bbd3903c0c"
+    },
+    {
+      "path": "public/art/garden/e02_frond_key.webp",
+      "bytes": 73258,
+      "sha256": "cf9914516101110366d4e4df6f3eaae213fade6ee4a47269cc402cf1900d292c"
+    },
+    {
+      "path": "public/art/garden/e03_wayfinder_garden.webp",
+      "bytes": 99366,
+      "sha256": "d5399ce3dcad7edd43dd0b17772014dfc626da01ff089af8026f31563085bffb"
+    },
+    {
+      "path": "public/art/garden/e04_crescent_courier.webp",
+      "bytes": 50668,
+      "sha256": "f5a4c0bd9145e0309ab48a349d00640165edd14ddad1065304681ba0f0cba6f3"
+    },
+    {
+      "path": "public/art/garden/e05_fern_cup.webp",
+      "bytes": 76414,
+      "sha256": "b8788d67be4100d661e41d9884655ff7d6b88460d0647e9fb8eb763d0285d68c"
+    },
+    {
+      "path": "public/art/garden/e06_nightgarden_nest.webp",
+      "bytes": 82674,
+      "sha256": "111914f7b614042ba6a391794883b9531f86d2b5790f9f6117e6a54e22c840fc"
+    },
+    {
+      "path": "public/art/garden/s01_coral_bird.webp",
+      "bytes": 57368,
+      "sha256": "902153aa3aea6d0f828c02407820dcb77c7aab59dce17543592066e7a91d7b9c"
+    },
+    {
+      "path": "public/art/garden/s02_river_map.webp",
+      "bytes": 63344,
+      "sha256": "9e69877fe55bdd4a9d90aa8d5c2183327db74c12c2841db3866f7ae76e0208d6"
+    },
+    {
+      "path": "public/art/garden/s03_round_key.webp",
+      "bytes": 47208,
+      "sha256": "917c938f88e778a06334c6a3be219d91050a0f833cfc85905c2ecbc3b4380290"
+    },
+    {
+      "path": "public/art/garden/s04_teal_fern.webp",
+      "bytes": 93730,
+      "sha256": "08862a73c290cebf513fe9efd13b890c659b382eb1d190fd088b4cdf15b0d02c"
+    },
+    {
+      "path": "public/art/garden/s05_cobalt_moon.webp",
+      "bytes": 44962,
+      "sha256": "026816e6ae7a81e0d5aaa64eb49f650eb8ee8871752c59a11ab0f6f98cfdb6ab"
+    },
+    {
+      "path": "public/art/garden/s06_cream_teacup.webp",
+      "bytes": 48012,
+      "sha256": "dd88f7ab48a885fd456363b392442d11c7adffa62204ece7e3fc9470b784c8e8"
+    },
+    {
+      "path": "public/art/matching/b4.webp",
+      "bytes": 283434,
+      "sha256": "b63dae4664f703e634babd7e32989eb1b48c59aa972e133ddf2137e3a7157d73"
+    },
+    {
+      "path": "public/art/matching/b5.webp",
+      "bytes": 276930,
+      "sha256": "062af86696854a6fba6f91d08261288b5cc0c3696fd0dd3f6668828791225967"
+    },
+    {
+      "path": "public/art/matching/f4.webp",
+      "bytes": 226220,
+      "sha256": "37fa247790cfbdf97cd6893f46b9a18e78b982991e953350ab5a4ebf2bb2dc3f"
+    },
+    {
+      "path": "public/art/matching/f5.webp",
+      "bytes": 219106,
+      "sha256": "8a5a0fb3fc106534926480c6c6c4f40e1972dd49ee90f342a8a9a8ead1f7531b"
+    },
+    {
+      "path": "public/art/matching/k3.webp",
+      "bytes": 135936,
+      "sha256": "c96f2f342382c416014c2cd5d5818abf06970d2d8ae6051b60db905013a04485"
+    },
+    {
+      "path": "public/art/matching/k4.webp",
+      "bytes": 120154,
+      "sha256": "d3f96ba683167ffb2881b3dccae2af94b17635a168cd9fee9eaceb45c1f486bb"
+    },
+    {
+      "path": "public/art/matching/k5.webp",
+      "bytes": 155726,
+      "sha256": "d33c074fae2330b13c5a576b3e41aeae3b85cf0aae85e7c46f277ae7886ffc56"
+    },
+    {
+      "path": "public/art/matching/l1.webp",
+      "bytes": 119224,
+      "sha256": "ff7e39e4d4b7e59d4e367940d4c1dee305cd684eec2d3b43b00872cb1e57217d"
+    },
+    {
+      "path": "public/art/matching/l2.webp",
+      "bytes": 129832,
+      "sha256": "3ffd94cba2d62df2733322b9b97e6de23d9ffc0a841822f4c7f71adb82fa7034"
+    },
+    {
+      "path": "public/art/matching/l3.webp",
+      "bytes": 128036,
+      "sha256": "111c83cec83d13f358737fbe83566d6d5fc64c564cee7644c180be2a35a2e08c"
+    },
+    {
+      "path": "public/art/matching/l4.webp",
+      "bytes": 73206,
+      "sha256": "4f934406a340c610228a7b947bb0e3eb394946c360d7683e3d698b3caa53c2a3"
+    },
+    {
+      "path": "public/art/matching/l5.webp",
+      "bytes": 115644,
+      "sha256": "ff9d9e3bbaaf70c3c6e0115291e67d176800cf41512b70d2eb6d9e75d2e21ae8"
+    },
+    {
+      "path": "public/art/matching/m3.webp",
+      "bytes": 122768,
+      "sha256": "b7bafc09d8ac6f25236e3f6afabb8559c70f9fd761ac59bef176ece61dd55638"
+    },
+    {
+      "path": "public/art/matching/m4.webp",
+      "bytes": 116972,
+      "sha256": "f1e25fb9fc5a6fe619840ffff83a65556ab99a973845ebdcf352775ffada90f8"
+    },
+    {
+      "path": "public/art/matching/m5.webp",
+      "bytes": 156160,
+      "sha256": "31599da7665b9e9574d5c68b33dcf2db2f38e9e30ce4d0f906fe03459a8a2540"
+    },
+    {
+      "path": "public/art/matching/r1.webp",
+      "bytes": 252330,
+      "sha256": "eb70a3d942a333d851588721f2ed072205fe624b3e082a3f76d8e4e55f2d26b4"
+    },
+    {
+      "path": "public/art/matching/r2.webp",
+      "bytes": 201404,
+      "sha256": "62cfe1bba10af1039fdcf4fd331e372473ea20ea53865904bef997c73c8808b7"
+    },
+    {
+      "path": "public/art/matching/r3.webp",
+      "bytes": 147280,
+      "sha256": "08ffd4bba3b55eec704fd6d70621bb1b5bbb65dfa54f55ebbb446f28a83fbda7"
+    },
+    {
+      "path": "public/art/matching/r4.webp",
+      "bytes": 191480,
+      "sha256": "9b5d88918324e8435753ff9cc83b28a78b350cff11350830ad10368a3579c4d8"
+    },
+    {
+      "path": "public/art/matching/r5.webp",
+      "bytes": 208520,
+      "sha256": "06bd45793605b5d296e69c3ca536108f5f8ec8b9cd4f4e52dfec60cae0b50da6"
+    },
+    {
+      "path": "public/art/matching/s1.webp",
+      "bytes": 155012,
+      "sha256": "cf4030b0a90641ac18cf6fabe2b7253ca81bd0911d57ee90b34573d9364c2403"
+    },
+    {
+      "path": "public/art/matching/s2.webp",
+      "bytes": 93956,
+      "sha256": "1839d37b49c1db76181c307c11f657a63caa2209b6dcac56c2b97cf50e896164"
+    },
+    {
+      "path": "public/art/matching/s3.webp",
+      "bytes": 130300,
+      "sha256": "c9329174cbc3732f36f3be4568682317cfdec287dfa56e06fc6b712d35ab5f58"
+    },
+    {
+      "path": "public/art/matching/s4.webp",
+      "bytes": 130962,
+      "sha256": "239425d0c05ce817003a87af6ec8f85e878bd65c1f04a1e020fa344e344fabf5"
+    },
+    {
+      "path": "public/art/matching/s5.webp",
+      "bytes": 118748,
+      "sha256": "6b49741987f5a13b8219890e0b53a23740a395d9a0b6aca9362ed37ee2befeb0"
+    },
+    {
+      "path": "public/art/matching/t1.webp",
+      "bytes": 167024,
+      "sha256": "35753f462ecb710618d8f4f6154389ba67c3cfaaaaeb9a6a2d58112002b514f9"
+    },
+    {
+      "path": "public/art/matching/t2.webp",
+      "bytes": 157438,
+      "sha256": "582550554c25d6785abaf4dfb73fa478332517a72b562f3f245e1b1bba94b88a"
+    },
+    {
+      "path": "public/art/matching/t3.webp",
+      "bytes": 214900,
+      "sha256": "0cdd49aaa4e355048ad935f5d36d6f629827705ad3e01b6e960cfae2693915f0"
+    },
+    {
+      "path": "public/art/matching/t4.webp",
+      "bytes": 261350,
+      "sha256": "5512600baec0c11c743f1721ed348e1d43a7e310d11a0edaa13198e03c59cb2f"
+    },
+    {
+      "path": "public/art/matching/t5.webp",
+      "bytes": 230728,
+      "sha256": "7b0f254d997d6fc2a98da324c02e56dc49d3ee388afc15708916654dd4e35967"
+    },
+    {
+      "path": "scripts/preserveEvidence.py",
+      "bytes": 16224,
+      "sha256": "5db3f376281bf7d7ac5c43574ec7867ea5b3d5b8c96ef1bfbaf5a0f0618817b3"
+    },
+    {
+      "path": "scripts/progress-reporter.mjs",
+      "bytes": 1527,
+      "sha256": "370696bd3a9d2d888b8a2d82e4e30774838c82fe14618eb94a36aaaafb60c0e8"
+    },
+    {
+      "path": "src/Burst.jsx",
+      "bytes": 1147,
+      "sha256": "7966302b62e44b3af1952ffe361407fb9ba163edd1f9c6617f22ae91967bdd62"
+    },
+    {
+      "path": "src/CollageGallery.jsx",
+      "bytes": 1740,
+      "sha256": "3a346977406c51ed08ea39468660507dc1372c17f1ea5c55666d9af196dfca9a"
+    },
+    {
+      "path": "src/MoticoArrival.jsx",
+      "bytes": 1719,
+      "sha256": "64a5f2fbcb4156623a82f800de4e82adee5af7f193f91f549e19c73baa39289b"
+    },
+    {
+      "path": "src/MoticosBoard.jsx",
+      "bytes": 4287,
+      "sha256": "775be79992a3bf919bfc5c94bd70dc16dc4b80bebc50f740929319c0079454b9"
+    },
+    {
+      "path": "src/MoticosMerge.jsx",
+      "bytes": 23298,
+      "sha256": "4eaf8be11ea612dc4c1e2ef9164aeeb0f661e6f4ab8fe77cb8075afc1c58a19e"
+    },
+    {
+      "path": "src/ResidueMark.jsx",
+      "bytes": 710,
+      "sha256": "6d9ea0dcfc5b0c206ff4406df9984814c233f82be747e450fce1886ca2bc257b"
+    },
+    {
+      "path": "src/TileArtwork.jsx",
+      "bytes": 8303,
+      "sha256": "f1ca966efc885e133a7fb317c832f845dc9d416f29c2ab5a9e3ab38b6a9d4211"
+    },
+    {
+      "path": "src/audioProfile.js",
+      "bytes": 644,
+      "sha256": "62707576e4492eed2dd460d588c7f42b2a9b7d35e1440b58ed62ecdb7b839acc"
+    },
+    {
+      "path": "src/collageArt.js",
+      "bytes": 11640,
+      "sha256": "268ab6b90e2aa4ad66caf4b8ada144771e81d0b7c706b6fad6c730d144803ce8"
+    },
+    {
+      "path": "src/collageCanvas.js",
+      "bytes": 7974,
+      "sha256": "42ca6066738ce8e77d25dccd2e3b6fb7a4798e8f45bafddf77d822b80932db38"
+    },
+    {
+      "path": "src/collection/CollectionDialog.jsx",
+      "bytes": 1025,
+      "sha256": "bc0a00ce51ecc730c33be484fe47d2782563cb730d9efaa95b85321f663d9d66"
+    },
+    {
+      "path": "src/collection/CollectionGarden.jsx",
+      "bytes": 21834,
+      "sha256": "db0aeed955c7443ba8af8f79ded62370808e59a57a7232387ff37ab9b904ff63"
+    },
+    {
+      "path": "src/collection/catalog.js",
+      "bytes": 3132,
+      "sha256": "17b63c0080a245d2949c560294b051eb499049f72ab16bb9bfe4ce136b0ba9d5"
+    },
+    {
+      "path": "src/collection/collection.css",
+      "bytes": 9985,
+      "sha256": "a1f2ca392f4fa1fb5f7039fe2f0efc5ed98e45dea9d5650687f341d50dca3152"
+    },
+    {
+      "path": "src/collection/collectionLogic.js",
+      "bytes": 4081,
+      "sha256": "b38f87d60588899b179e4bfedcd0271f6e7fa6d016452c309b3b993f15cf2399"
+    },
+    {
+      "path": "src/collection/dialogFocus.js",
+      "bytes": 1073,
+      "sha256": "4c33381e25bd9f68c6075f64f1e7970477ab636419a6feea99dfeda19aadcfee"
+    },
+    {
+      "path": "src/collection/postcard.js",
+      "bytes": 1082,
+      "sha256": "d755d8f1ce490fb2dae99a02db536ab1be3d4c071c1d39a4fcb6d21d849a7d37"
+    },
+    {
+      "path": "src/exportPostcard.js",
+      "bytes": 3666,
+      "sha256": "ad429cc31a7025d0f9b3d19f4faa53276411faf8ba9aebab780a3bf78d06e442"
+    },
+    {
+      "path": "src/foundComposition.css",
+      "bytes": 6046,
+      "sha256": "acaa8ce0461cb5e1c016b617351dd861dceca685d4cb1abb229ed49717d45875"
+    },
+    {
+      "path": "src/gameLogic.js",
+      "bytes": 5545,
+      "sha256": "14a2fbe2ece241f5a022901b6aec663ca7d01c6bf97f00912180b797b8321331"
+    },
+    {
+      "path": "src/iphone.css",
+      "bytes": 1244,
+      "sha256": "9b2c47333787d7839f3e9c6e29910385422df4770d125ce2d64d000a9e180e6b"
+    },
+    {
+      "path": "src/main.jsx",
+      "bytes": 915,
+      "sha256": "60c808b26df3bd7341ad2da127343e436013c638028979bc1dbf295309f1af0d"
+    },
+    {
+      "path": "src/matching/AlbumPicker.jsx",
+      "bytes": 429,
+      "sha256": "21427110c5352aa3f1ddda775c2896d4210ed2130421bd0f0e8941b6708beaf2"
+    },
+    {
+      "path": "src/matching/MatchingCollection.jsx",
+      "bytes": 1284,
+      "sha256": "af671c5c2b1205d5d9c826b674b254b5510f7a97b73b3e37a32c4d0b1bb27bf0"
+    },
+    {
+      "path": "src/matching/MatchingGarden.jsx",
+      "bytes": 37377,
+      "sha256": "55ca0ccbb7b5fecc3aaad21729443556478726dd2dafc147ac8dfd16df0bb6af"
+    },
+    {
+      "path": "src/matching/boardArt.js",
+      "bytes": 7793,
+      "sha256": "716350b37fa0ba524afa69ba28a48ea7dcf3d15d72ad0ba72359c5e26e2057bd"
+    },
+    {
+      "path": "src/matching/catalog.js",
+      "bytes": 1952,
+      "sha256": "9996f3f88691192cb4fefebc5bad280abf382c0924a4fdb4277780f757b8b126"
+    },
+    {
+      "path": "src/matching/catalogFactory.js",
+      "bytes": 3716,
+      "sha256": "c49fe0e3880a095d6b443579a232b9c79e732843e19e90426bd900602ab0c24d"
+    },
+    {
+      "path": "src/matching/engine.js",
+      "bytes": 12906,
+      "sha256": "a19c27beaf74e8473b545aa5ac0366a75ad227ceca0e10fe7167533f636cf4b4"
+    },
+    {
+      "path": "src/matching/game.js",
+      "bytes": 555,
+      "sha256": "38d85e458647b93ec73976b7b99d165081f6979381b56ae2f842d360e3bfcb9a"
+    },
+    {
+      "path": "src/matching/lanternCatalog.js",
+      "bytes": 1820,
+      "sha256": "3a22683aaa608435737d4aeaf207bb31b4f060c8a8c3f44409baf86bb89c3d16"
+    },
+    {
+      "path": "src/matching/matching.css",
+      "bytes": 26017,
+      "sha256": "ff58e0e4785267882a3396d547a0e21d38019122189e899242ab2cf903a0225d"
+    },
+    {
+      "path": "src/matching/moonlitCatalog.js",
+      "bytes": 1785,
+      "sha256": "72f2045866b2f563ad6601c43d009ef7d79dffa522aa43d40a86bf5d39ae66d6"
+    },
+    {
+      "path": "src/matching/postcard.js",
+      "bytes": 1225,
+      "sha256": "364e1e13d1caea63f64e0c02d5ef100531758252b9c0b27009a9dd1eed110eca"
+    },
+    {
+      "path": "src/matching/progress.js",
+      "bytes": 3397,
+      "sha256": "8c5720fb45ff601476a0181f91b197dcd01784b702347537c62d542e97e1aa56"
+    },
+    {
+      "path": "src/matching/registry.js",
+      "bytes": 3062,
+      "sha256": "415516fc2297016893ad18336d6ddfdaff78243c63a01e9a45a4a2b782d14f3e"
+    },
+    {
+      "path": "src/matching/riversideCatalog.js",
+      "bytes": 1750,
+      "sha256": "0fb18416260649e170e284045ee05750f2ec4fdb4284bdd7b7147b4a8c67fda9"
+    },
+    {
+      "path": "src/matching/session.js",
+      "bytes": 2010,
+      "sha256": "a9c64e84839b2f2c10876036e620c014735c96fa48405510cfcbf043b7e5925a"
+    },
+    {
+      "path": "src/moticos.css",
+      "bytes": 10803,
+      "sha256": "dd70cf1caab61733e6884cad19e41db55980e74188cdb8a0b2ffb1f8d303b094"
+    },
+    {
+      "path": "src/moticosConstants.js",
+      "bytes": 3304,
+      "sha256": "9213c4518674cc44d9b71a2488ba4a4132c097278e8b58bec18a3e5ce8542d81"
+    },
+    {
+      "path": "src/styles.css",
+      "bytes": 1694,
+      "sha256": "2e1d9f65eb7b6d4818b8d382aa4ed8adc40d19b9897cb4050066d8ba9caeb958"
+    },
+    {
+      "path": "src/useMoticosAudio.js",
+      "bytes": 5086,
+      "sha256": "92c3b260153f48231533fc5f66832bb40dcca8311e2e37c3bf2f02909a3bf217"
+    },
+    {
+      "path": "tests/e2e/collection.spec.js",
+      "bytes": 12880,
+      "sha256": "002c514068d73942afd52ff229aadda06d053f982ac379776887a5c2fb20d39c"
+    },
+    {
+      "path": "tests/e2e/matching-expansion.spec.js",
+      "bytes": 13647,
+      "sha256": "d839632d47effbd947e8f222e9a22ffee449473681c4a19bf31892939460f2ce"
+    },
+    {
+      "path": "tests/e2e/matching-helpers.js",
+      "bytes": 38018,
+      "sha256": "3658b499656d31e00d9f51c26c4aaf67683849e0b136b4e609d6f19e4eb1fb79"
+    },
+    {
+      "path": "tests/e2e/matching-lantern.spec.js",
+      "bytes": 12969,
+      "sha256": "a4fab53268a460866c6d8f9ed13dcf7bc5ef30c55dc7f753e157bcdd6526531d"
+    },
+    {
+      "path": "tests/e2e/matching-layout.spec.js",
+      "bytes": 19747,
+      "sha256": "82122d0514e3086c4fa927376477cd2ccbbc5edec4b6d46bf15088711c5b3840"
+    },
+    {
+      "path": "tests/e2e/matching-riverside.spec.js",
+      "bytes": 17084,
+      "sha256": "5529ae7a9cc1dd83af70f14142f02c8ee2e1093cd869f1cb39b5f920c65eda53"
+    },
+    {
+      "path": "tests/e2e/matching.spec.js",
+      "bytes": 35294,
+      "sha256": "2067aa90d7318760b3c4e8639a5ee753eacbe5ddda6dbb0fd9e06e44803f31f2"
+    },
+    {
+      "path": "tests/e2e/moticos.spec.js",
+      "bytes": 12264,
+      "sha256": "efb6e9c0cb51bd0be32f4e1c5a8f31ecf5ffbcf45537fae36e8d6b94b982ef08"
+    },
+    {
+      "path": "vite.config.js",
+      "bytes": 136,
+      "sha256": "eca485c281977125366d4800553256e419f364984e615f75a2d2bae54f7857fd"
+    }
+  ]
+}
