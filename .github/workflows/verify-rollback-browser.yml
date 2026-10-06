@@ -45,6 +45,9 @@ jobs:
         timeout-minutes: 4
         run: |
           node scripts/verifyRollbackInventory.mjs source 2>&1 | tee preflight-results/source-identity.log
+          # A fresh runner has no dist-rollback. Build before gate tests read it.
+          npm run build:rollback 2>&1 | tee preflight-results/build.log
+          node scripts/verifyRollbackBuild.mjs dist-rollback preflight-results/build-proof.json
           npm test 2>&1 | tee preflight-results/unit.log
           npm run test:batch 2>&1 | tee preflight-results/batch-unit.log
           npm run test:rollback 2>&1 | tee preflight-results/rollback-unit.log
@@ -55,8 +58,6 @@ jobs:
           done
           npm run validate:matching 2>&1 | tee preflight-results/matching.log
           npm run validate:catalog > preflight-results/catalog.json
-          npm run build:rollback 2>&1 | tee preflight-results/build.log
-          node scripts/verifyRollbackBuild.mjs dist-rollback preflight-results/build-proof.json
           npx playwright test --config=playwright.rollback.config.js --list --reporter=json > preflight-results/collected-all.json
           node scripts/verifyRollbackCoverage.mjs collected all preflight-results/collected-all.json
           for profile in chromium-desktop webkit-iphone-13 webkit-iphone-large; do

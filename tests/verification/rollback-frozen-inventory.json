@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "selfExclusion": "tests/verification/rollback-frozen-inventory.json",
-  "sourceFingerprint": "a1d0c77f12df5aaaf936ad190f59d8b5d2adf4c27b535e5ce3ca7fa4c857088f",
+  "sourceFingerprint": "d963bf9153e6cd75316b9061b5ea284b2efca982181385222a5e54071e13c8d0",
   "files": [
     {
       "file": ".github/AUTOMATION_POLICY.md",
@@ -50,8 +50,8 @@
     },
     {
       "file": ".github/workflows/verify-rollback-browser.yml",
-      "bytes": 10256,
-      "sha256": "b82facfa80cef09f6404d65e98a0388392c0b3050057e6392886eef744de4c2a"
+      "bytes": 10338,
+      "sha256": "875a63e6bf60ca922bf6e0d6b103e7c5af8083950b758cb7fb2eae870c937e3c"
     },
     {
       "file": ".github/workflows/verify-third-envelope.yml",
