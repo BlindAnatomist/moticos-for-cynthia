@@ -1,0 +1,22 @@
+import {COLLECTION_CASE_TIMEOUT_MS,JOURNEY_CASE_TIMEOUT_MS} from '../scripts/expansion160Scope.mjs';
+export function collectionEvents(envelope,profile='profile') {
+ let t=0;const out=[],add=(event,more={})=>out.push({event,elapsedMs:t++,...more});
+ const images=envelope.pieceIds.map((id,i)=>({source:`http://127.0.0.1:4197/${id}.webp`,complete:true,naturalWidth:768,naturalHeight:768,rect:{x:20+(i%5)*40,y:i<5?100:800,width:30,height:80},centerHit:i<5,hitPoints:Array.from({length:5},()=>({hit:true}))}));
+ const state={dialogCount:1,open:true,modal:true,visible:true,bodyOverflow:'hidden',envelope:envelope.id,images,hitTests:Array.from({length:3},()=>({insideDialog:true})),rect:{x:0,y:0,width:350,height:600},scrollTop:0,occlusionRect:{x:0,y:0,width:350,height:70},viewport:{width:350,height:600}};
+ add('begin',{profile,envelope:envelope.id,timeoutMs:COLLECTION_CASE_TIMEOUT_MS});add('seeded',{count:16});add('board-ready',{history:100});add('open-start');add('dialog-open');images.forEach((image,i)=>{add('image-start',{image:i});add('image-decoded',{image:i,source:image.source,naturalWidth:768,naturalHeight:768});});
+ for(let capture=0;capture<2;capture++){const s=structuredClone(state);s.scrollTop=capture*700;s.images.forEach((image,i)=>{image.rect.y=Math.floor(i/5)===capture?100:800;image.centerHit=Math.floor(i/5)===capture;});add('capture-before',{capture,target:capture*5,state:s});add('capture-after',{capture,target:capture*5,state:structuredClone(s),path:`expansion160-test-results/storage-views/${profile}-collection-${envelope.id}-${capture}.png`});}
+ add('visual-coverage-complete',{images:Array.from({length:10},(_,i)=>i),captures:2,pieceIds:envelope.pieceIds});add('closed');const chooser=structuredClone(state);chooser.images=envelope.starters.map((id,i)=>({...images[envelope.pieceIds.indexOf(id)],rect:{x:20+i*50,y:100,width:40,height:70},centerHit:true}));add('chooser-before',{state:chooser,pieceIds:envelope.starters});add('chooser-after',{state:structuredClone(chooser),path:`expansion160-test-results/storage-views/${profile}-chooser-${envelope.id}.png`});add('chooser-closed');add('read-only-bytes-verified',{count:16});add('undo-verified',{history:99});add('reload-verified');add('second-undo-verified',{history:98});add('other-saved-bytes-verified',{count:15});add('complete');return out;
+}
+export function journeyEvents(envelope,profile='profile'){
+ let t=0;const out=[],add=(event,more={})=>out.push({event,elapsedMs:t++,...more});add('begin',{profile,envelope:envelope.id,timeoutMs:JOURNEY_CASE_TIMEOUT_MS});add('fresh-save',{raw:null});
+ const stage=(id,label=id)=>{add('stage-start',{id,label});add('stage-complete',{id,label,sizes:['native','320x568']});};
+ for(const starter of envelope.starters){const family=envelope.pieceIds.filter(id=>id.slice(0,-1)===starter.slice(0,-1));stage(starter);for(let tier=0;tier<4;tier++){for(let i=0;i<2**(3-tier);i++)add('merge',{from:family[tier],to:family[tier+1],method:'tap'});stage(family[tier+1]);if(tier>=1){add('export-start',{id:family[tier+1]});add('export-complete',{id:family[tier+1],sha256:'a'.repeat(64),bytes:20000});}}for(let i=0;i<6;i++)add('supply',{starter});stage(family[4],`idle-${family[4]}`);}
+ add('complete',{merges:30,draws:12,discoveries:10,postcards:6});return out;
+}
+export function geometryFixture(viewport,id){
+ const box={name:'fixture',left:0,top:100,right:44,bottom:144,width:44,height:44,hiddenBy:[],clippedBy:[],hitTests:Array.from({length:5},()=>({clear:true})),scrollWidth:44,clientWidth:44,scrollHeight:44,clientHeight:44};
+ const cells=Array.from({length:25},(_,i)=>({...box,name:`Cell ${i}`,cell:String(i),piece:i===0?id:'empty'}));
+ const controls=[...cells,...['Undo','Cut','Hint','Collection','Envelopes','Fresh envelope','How to play','Sound','Supply a','Supply b','Postcard'].map(name=>({...box,name,cell:null,piece:null}))];
+ const regions=Array.from({length:8},(_,i)=>({...box,name:`Region ${i}`,top:i*10,bottom:i*10+9,height:9,scrollHeight:9,clientHeight:9,cell:null,piece:null}));
+ return {viewport:{...viewport,scrollX:0,scrollY:0,visual:null},document:viewport,body:viewport,shell:box,controls,regions,text:[{...box,name:'Visible label',display:'block',visibility:'visible',opacity:1,block:true,font:12,textBox:{left:0,right:44,top:100,bottom:144}}],artwork:[{...box,pieceId:id,source:`http://127.0.0.1:4197/${id}.webp`,complete:true,naturalWidth:768,naturalHeight:768,cropped:false}]};
+}
