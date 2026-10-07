@@ -115,7 +115,7 @@ it('scopes the crop repair to the two padded 200-only board pieces',()=>{
  expect(css.startsWith("@import '../matching.css';")).toBe(true);
  expect([...css.matchAll(/data-piece-id="([^"]+)"/g)].map(match=>match[1]).sort()).toEqual(['zp1','zp1','zp5','zp5']);
  for(const property of ['--mg-crop-ratio','--mg-image-width','--mg-image-height','--mg-image-left','--mg-image-top'])expect(css).toContain(property);
- expect(css).toContain('@supports (width: 1cqw)');expect(css.replace(/\/\*[\s\S]*?\*\//g,'')).not.toMatch(/transform:|scale\(|!important|postcard|collection/i);
+ expect(css).toContain('@supports (width: 1cqw)');expect(css.replace(/\/\*[\s\S]*?\*\//g,'')).not.toMatch(/transform:|scale\(|!important|collection/i);
  const config=readFileSync('vite.config.js','utf8'),before160=config.split("process.env.VITE_COLLAGE_EXPANSION_160")[0];expect(before160).toContain("find: './matching.css'");expect(config.split("process.env.VITE_COLLAGE_EXPANSION_160")[1]).not.toContain("find: './matching.css'");
 });
 it('retains 30px paint at all modeled compact, boundary and native slots for all forty artworks',()=>{

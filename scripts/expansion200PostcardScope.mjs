@@ -1,0 +1,9 @@
+export const PROFILES=Object.freeze(['webkit-iphone-13','webkit-iphone-large','chromium-desktop']);
+export const NEW_ENVELOPE_IDS=Object.freeze(['expansion-small-impressions','expansion-second-look','expansion-loose-ends','expansion-short-measure']);
+export const CASES_PER_PROFILE=4;
+export const TOTAL_CASES=12;
+export const MIN_BROWSER_BUDGET_MS=360000;
+export const MAX_BROWSER_BUDGET_MS=480000;
+export const PROFILE_JOB_SECONDS=840;
+export const EVIDENCE_RESERVE_SECONDS=180;
+export const PROFILE_PART_CAPS=Object.freeze({'chromium-desktop':2,'webkit-iphone-13':6,'webkit-iphone-large':6});

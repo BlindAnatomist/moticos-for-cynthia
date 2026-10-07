@@ -1,0 +1,437 @@
+{
+  "name": "Verify Moticos 200 postcard presentation",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/postcards-200-20261007"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "concurrency": {
+    "group": "moticos-postcards-200-20261007",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "build": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/postcards-200-20261007' && github.event_name == 'push' && github.run_attempt == 1",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 8,
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "id": "checkout",
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 1
+          }
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Install exact locked dependencies",
+          "timeout-minutes": 1,
+          "run": "npm ci --no-audit --no-fund 2>&1 | tee dependency-install.log"
+        },
+        {
+          "name": "Test current behavior and build each variant once",
+          "id": "preflight",
+          "timeout-minutes": 4,
+          "run": "bash scripts/preflightExpansion200Postcards.sh 2>&1 | tee ci-preflight.log"
+        },
+        {
+          "name": "Preserve and restore every preflight byte even after failure",
+          "id": "package",
+          "if": "always() && steps.checkout.outcome == 'success'",
+          "timeout-minutes": 2,
+          "run": "bash scripts/packageExpansion200GatePreflight.sh"
+        },
+        {
+          "name": "Upload complete preflight part 000",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-preflight-000",
+            "path": "bounded-evidence/preflight/parts/part-000.bin\nbounded-evidence/preflight/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_000"
+        },
+        {
+          "name": "Upload complete preflight part 001",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_001 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-preflight-001",
+            "path": "bounded-evidence/preflight/parts/part-001.bin\nbounded-evidence/preflight/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_001"
+        },
+        {
+          "name": "Upload complete preflight part 002",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_002 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-preflight-002",
+            "path": "bounded-evidence/preflight/parts/part-002.bin\nbounded-evidence/preflight/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_002"
+        },
+        {
+          "name": "Upload complete preflight part 003",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_003 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-preflight-003",
+            "path": "bounded-evidence/preflight/parts/part-003.bin\nbounded-evidence/preflight/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_003"
+        },
+        {
+          "name": "Record actual uploaded artifact identities",
+          "if": "always()",
+          "id": "artifact_receipt",
+          "env": {
+            "MOTICOS_ARTIFACT_RESULTS": "[{\"name\": \"moticos-current-preflight-000\", \"id\": \"${{ steps.part_000.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_000.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_000.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_000.outcome }}\"}, {\"name\": \"moticos-current-preflight-001\", \"id\": \"${{ steps.part_001.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_001.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_001.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_001.outcome }}\"}, {\"name\": \"moticos-current-preflight-002\", \"id\": \"${{ steps.part_002.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_002.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_002.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_002.outcome }}\"}, {\"name\": \"moticos-current-preflight-003\", \"id\": \"${{ steps.part_003.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_003.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_003.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_003.outcome }}\"}]"
+          },
+          "run": "node scripts/recordCurrentArtifacts200Postcards.mjs"
+        },
+        {
+          "name": "Upload artifact identity receipt",
+          "if": "always() && steps.artifact_receipt.outcome == 'success'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-preflight-receipt",
+            "path": "current-artifact-receipt.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          }
+        }
+      ]
+    },
+    "browser": {
+      "needs": "build",
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/postcards-200-20261007' && github.event_name == 'push' && github.run_attempt == 1",
+      "strategy": {
+        "fail-fast": true,
+        "max-parallel": 1,
+        "matrix": {
+          "include": [
+            {
+              "profile": "webkit-iphone-13",
+              "browser": "webkit"
+            },
+            {
+              "profile": "webkit-iphone-large",
+              "browser": "webkit"
+            },
+            {
+              "profile": "chromium-desktop",
+              "browser": "chromium"
+            }
+          ]
+        }
+      },
+      "name": "Postcards ${{ matrix.profile }}",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 14,
+      "steps": [
+        {
+          "name": "Start bounded profile clock",
+          "run": "echo \"MOTICOS_JOB_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\""
+        },
+        {
+          "uses": "actions/checkout@v4",
+          "id": "checkout",
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 1
+          }
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Install exact locked dependencies",
+          "timeout-minutes": 1,
+          "run": "npm ci --no-audit --no-fund 2>&1 | tee dependency-install.log"
+        },
+        {
+          "name": "Download each sole-build artifact separately",
+          "uses": "actions/download-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "pattern": "moticos-current-preflight-00*",
+            "path": ".expansion200-downloads",
+            "merge-multiple": false
+          }
+        },
+        {
+          "name": "Verify manifests, restore exact build, and collect exact profile",
+          "timeout-minutes": 1,
+          "env": {
+            "PROFILE": "${{ matrix.profile }}"
+          },
+          "run": "python3 scripts/assembleExpansion200GateParts.py --downloads .expansion200-downloads --output .expansion200-parts --kind preflight\nbash scripts/prepareExpansion200PostcardProfile.sh .expansion200-parts \"$PROFILE\"\ncp dependency-install.log preflight-results/dependency-install.log"
+        },
+        {
+          "name": "Install only this profile browser",
+          "timeout-minutes": 3,
+          "run": "./node_modules/.bin/playwright install --with-deps \"${{ matrix.browser }}\" 2>&1 | tee preflight-results/browser-install.log"
+        },
+        {
+          "name": "Run exactly four fixture-driven presentation cases once",
+          "id": "browser",
+          "env": {
+            "MOTICOS_200_POSTCARDS_BROWSER_APPROVED": "1",
+            "PROFILE": "${{ matrix.profile }}"
+          },
+          "run": "bash scripts/runExpansion200PostcardProfile.sh \"$PROFILE\""
+        },
+        {
+          "name": "Preserve bounded failure diagnosis independently",
+          "id": "diagnosis",
+          "if": "always() && steps.checkout.outcome == 'success'",
+          "timeout-minutes": 1,
+          "run": "python3 scripts/packExpansion200GateDiagnosis.py --source . --output bounded-evidence/diagnosis.zip"
+        },
+        {
+          "name": "Upload diagnostic salvage",
+          "id": "diagnosis_upload",
+          "if": "always() && steps.diagnosis.outcome == 'success'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-diagnosis",
+            "path": "bounded-evidence/diagnosis.zip",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          }
+        },
+        {
+          "name": "Package all raw profile bytes losslessly",
+          "id": "package",
+          "if": "always() && steps.checkout.outcome == 'success'",
+          "timeout-minutes": 1,
+          "run": "python3 scripts/expansion200GateEvidence.py pack --source . --kind browser --output bounded-evidence/profile --github-output \"$GITHUB_OUTPUT\"\nnode scripts/verifyExpansion200PostcardProfileBudget.mjs \"$PROFILE\" bounded-evidence/profile/proof.json",
+          "env": {
+            "PROFILE": "${{ matrix.profile }}"
+          }
+        },
+        {
+          "name": "Upload complete profile part 000",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_000 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-000",
+            "path": "bounded-evidence/profile/parts/part-000.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_000"
+        },
+        {
+          "name": "Upload complete profile part 001",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_001 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-001",
+            "path": "bounded-evidence/profile/parts/part-001.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_001"
+        },
+        {
+          "name": "Upload complete profile part 002",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_002 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-002",
+            "path": "bounded-evidence/profile/parts/part-002.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_002"
+        },
+        {
+          "name": "Upload complete profile part 003",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_003 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-003",
+            "path": "bounded-evidence/profile/parts/part-003.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_003"
+        },
+        {
+          "name": "Upload complete profile part 004",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_004 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-004",
+            "path": "bounded-evidence/profile/parts/part-004.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_004"
+        },
+        {
+          "name": "Upload complete profile part 005",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_005 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-005",
+            "path": "bounded-evidence/profile/parts/part-005.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_005"
+        },
+        {
+          "name": "Upload complete profile part 006",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_006 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-006",
+            "path": "bounded-evidence/profile/parts/part-006.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_006"
+        },
+        {
+          "name": "Upload complete profile part 007",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_007 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-007",
+            "path": "bounded-evidence/profile/parts/part-007.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_007"
+        },
+        {
+          "name": "Upload complete profile part 008",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_008 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-008",
+            "path": "bounded-evidence/profile/parts/part-008.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_008"
+        },
+        {
+          "name": "Upload complete profile part 009",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_009 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-009",
+            "path": "bounded-evidence/profile/parts/part-009.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_009"
+        },
+        {
+          "name": "Upload complete profile part 010",
+          "if": "always() && steps.package.outcome == 'success' && steps.package.outputs.part_010 == 'true'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-010",
+            "path": "bounded-evidence/profile/parts/part-010.bin\nbounded-evidence/profile/parts/manifest.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          },
+          "id": "part_010"
+        },
+        {
+          "name": "Record actual uploaded artifact identities",
+          "if": "always()",
+          "id": "artifact_receipt",
+          "env": {
+            "MOTICOS_ARTIFACT_RESULTS": "[{\"name\": \"moticos-current-${{ matrix.profile }}-000\", \"id\": \"${{ steps.part_000.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_000.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_000.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_000.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-001\", \"id\": \"${{ steps.part_001.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_001.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_001.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_001.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-002\", \"id\": \"${{ steps.part_002.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_002.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_002.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_002.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-003\", \"id\": \"${{ steps.part_003.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_003.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_003.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_003.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-004\", \"id\": \"${{ steps.part_004.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_004.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_004.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_004.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-005\", \"id\": \"${{ steps.part_005.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_005.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_005.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_005.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-006\", \"id\": \"${{ steps.part_006.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_006.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_006.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_006.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-007\", \"id\": \"${{ steps.part_007.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_007.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_007.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_007.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-008\", \"id\": \"${{ steps.part_008.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_008.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_008.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_008.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-009\", \"id\": \"${{ steps.part_009.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_009.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_009.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_009.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-010\", \"id\": \"${{ steps.part_010.outputs.artifact-id }}\", \"digest\": \"${{ steps.part_010.outputs.artifact-digest }}\", \"url\": \"${{ steps.part_010.outputs.artifact-url }}\", \"outcome\": \"${{ steps.part_010.outcome }}\"}, {\"name\": \"moticos-current-${{ matrix.profile }}-diagnosis\", \"id\": \"${{ steps.diagnosis_upload.outputs.artifact-id }}\", \"digest\": \"${{ steps.diagnosis_upload.outputs.artifact-digest }}\", \"url\": \"${{ steps.diagnosis_upload.outputs.artifact-url }}\", \"outcome\": \"${{ steps.diagnosis_upload.outcome }}\"}]"
+          },
+          "run": "node scripts/recordCurrentArtifacts200Postcards.mjs"
+        },
+        {
+          "name": "Upload artifact identity receipt",
+          "if": "always() && steps.artifact_receipt.outcome == 'success'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-current-${{ matrix.profile }}-receipt",
+            "path": "current-artifact-receipt.json",
+            "compression-level": 0,
+            "if-no-files-found": "error",
+            "retention-days": 1
+          }
+        }
+      ]
+    }
+  },
+  "env": {
+    "NPM_CONFIG_UPDATE_NOTIFIER": "false",
+    "NPM_CONFIG_AUDIT": "false",
+    "NPM_CONFIG_FUND": "false"
+  }
+}

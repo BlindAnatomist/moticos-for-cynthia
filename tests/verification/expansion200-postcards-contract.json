@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "scope": "fixture-driven-postcard-presentation",
+  "expectedTotal": 12,
+  "envelopes": [
+    {
+      "id": "expansion-small-impressions",
+      "postcards": [
+        {
+          "id": "im3",
+          "name": "Offset"
+        },
+        {
+          "id": "im4",
+          "name": "Countermark"
+        },
+        {
+          "id": "im5",
+          "name": "Lasting Impression"
+        },
+        {
+          "id": "pn3",
+          "name": "Underline"
+        },
+        {
+          "id": "pn4",
+          "name": "Written Through"
+        },
+        {
+          "id": "pn5",
+          "name": "Pen Again"
+        }
+      ]
+    },
+    {
+      "id": "expansion-second-look",
+      "postcards": [
+        {
+          "id": "sg3",
+          "name": "Overlook"
+        },
+        {
+          "id": "sg4",
+          "name": "Through"
+        },
+        {
+          "id": "sg5",
+          "name": "Look Again"
+        },
+        {
+          "id": "cm3",
+          "name": "Shutter"
+        },
+        {
+          "id": "cm4",
+          "name": "Viewfinder"
+        },
+        {
+          "id": "cm5",
+          "name": "Still Life"
+        }
+      ]
+    },
+    {
+      "id": "expansion-loose-ends",
+      "postcards": [
+        {
+          "id": "sp3",
+          "name": "Crooked Point"
+        },
+        {
+          "id": "sp4",
+          "name": "Loopback"
+        },
+        {
+          "id": "sp5",
+          "name": "Pinned Down"
+        },
+        {
+          "id": "zp3",
+          "name": "Zigzag"
+        },
+        {
+          "id": "zp4",
+          "name": "Interleave"
+        },
+        {
+          "id": "zp5",
+          "name": "Zip Through"
+        }
+      ]
+    },
+    {
+      "id": "expansion-short-measure",
+      "postcards": [
+        {
+          "id": "ru3",
+          "name": "Right Angle"
+        },
+        {
+          "id": "ru4",
+          "name": "Out of Line"
+        },
+        {
+          "id": "ru5",
+          "name": "Rule Out"
+        },
+        {
+          "id": "th3",
+          "name": "Measure"
+        },
+        {
+          "id": "th4",
+          "name": "Open Top"
+        },
+        {
+          "id": "th5",
+          "name": "Little Measure"
+        }
+      ]
+    }
+  ],
+  "postcardIds": [
+    "im3",
+    "im4",
+    "im5",
+    "pn3",
+    "pn4",
+    "pn5",
+    "sg3",
+    "sg4",
+    "sg5",
+    "cm3",
+    "cm4",
+    "cm5",
+    "sp3",
+    "sp4",
+    "sp5",
+    "zp3",
+    "zp4",
+    "zp5",
+    "ru3",
+    "ru4",
+    "ru5",
+    "th3",
+    "th4",
+    "th5"
+  ],
+  "testFiles": [
+    "postcard-evidence.js",
+    "postcards.spec.js"
+  ],
+  "cases": [
+    {
+      "id": "0beb2f163ff3c3cd989b-d0159559c8d44a0c00a3",
+      "project": "webkit-iphone-13",
+      "file": "postcards.spec.js",
+      "title": "Small Impressions: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-4bab64ab36debbfd78b0",
+      "project": "webkit-iphone-13",
+      "file": "postcards.spec.js",
+      "title": "Second Look: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-0f8d07de71b793116332",
+      "project": "webkit-iphone-13",
+      "file": "postcards.spec.js",
+      "title": "Loose Ends: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-e8038741e8a8d8fd5683",
+      "project": "webkit-iphone-13",
+      "file": "postcards.spec.js",
+      "title": "Short Measure: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-2f6cf852eed69e51ff6a",
+      "project": "webkit-iphone-large",
+      "file": "postcards.spec.js",
+      "title": "Small Impressions: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-11519d7209b42c5af150",
+      "project": "webkit-iphone-large",
+      "file": "postcards.spec.js",
+      "title": "Second Look: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-35c3e64c28ce95bb03f0",
+      "project": "webkit-iphone-large",
+      "file": "postcards.spec.js",
+      "title": "Loose Ends: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-c01cc8c2a74adc4251dc",
+      "project": "webkit-iphone-large",
+      "file": "postcards.spec.js",
+      "title": "Short Measure: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-f7516f737571d6769aa6",
+      "project": "chromium-desktop",
+      "file": "postcards.spec.js",
+      "title": "Small Impressions: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-9cadacfd5a6adabfa415",
+      "project": "chromium-desktop",
+      "file": "postcards.spec.js",
+      "title": "Second Look: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-6433894a1c43d8ad6334",
+      "project": "chromium-desktop",
+      "file": "postcards.spec.js",
+      "title": "Loose Ends: six earned postcards, complete headers and protected saves"
+    },
+    {
+      "id": "0beb2f163ff3c3cd989b-c01ddaf6bc9551c5ac03",
+      "project": "chromium-desktop",
+      "file": "postcards.spec.js",
+      "title": "Short Measure: six earned postcards, complete headers and protected saves"
+    }
+  ]
+}

@@ -13,7 +13,9 @@
     "test:200:native": "node --loader ./tests/expansion200/alias-loader.mjs --test tests/expansion200/native.test.mjs",
     "test:200": "bash scripts/testExpansion200.sh",
     "test:200:gate": "./node_modules/.bin/vitest run tests/expansion200Gate.test.js",
-    "collect:200": "./node_modules/.bin/playwright test --config=playwright.expansion200.config.js --list --reporter=json"
+    "collect:200": "./node_modules/.bin/playwright test --config=playwright.expansion200.config.js --list --reporter=json",
+    "test:200:postcards": "vitest run tests/expansion200Postcards.test.js",
+    "collect:200:postcards": "playwright test --config=playwright.expansion200-postcards.config.js --list --reporter=json"
   },
   "dependencies": {
     "lucide-react": "1.27.0",
