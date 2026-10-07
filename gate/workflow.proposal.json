@@ -1,0 +1,108 @@
+{
+  "name": "Verify bounded Moticos campaign",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/campaign-20261007"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "moticos-campaign-bounded",
+    "cancel-in-progress": false
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "jobs": {
+    "campaign": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/campaign-20261007' && github.event_name == 'push' && github.run_attempt == 1",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 18,
+      "steps": [
+        {
+          "name": "Start job clock",
+          "run": "echo \"MOTICOS_JOB_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\""
+        },
+        {
+          "uses": "actions/checkout@v4",
+          "id": "checkout",
+          "timeout-minutes": 1,
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 1
+          }
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Locked dependencies",
+          "timeout-minutes": 2,
+          "run": "npm ci --no-audit --no-fund"
+        },
+        {
+          "name": "Only Chromium and WebKit",
+          "timeout-minutes": 3,
+          "run": "./node_modules/.bin/playwright install --with-deps chromium webkit"
+        },
+        {
+          "name": "Exact source contracts collection and separate production builds",
+          "timeout-minutes": 2,
+          "run": "mkdir -p campaign-results; bash gate/preflight.sh 2>&1 | tee campaign-results/preflight.log"
+        },
+        {
+          "name": "Fourteen Chromium cases once",
+          "timeout-minutes": 7,
+          "env": {
+            "MOTICOS_CAMPAIGN_BROWSER_APPROVED": "1"
+          },
+          "run": "bash gate/run-group.sh campaign-chromium"
+        },
+        {
+          "name": "Seven touch-WebKit cases once",
+          "timeout-minutes": 5,
+          "env": {
+            "MOTICOS_CAMPAIGN_BROWSER_APPROVED": "1"
+          },
+          "run": "bash gate/run-group.sh campaign-webkit-phone"
+        },
+        {
+          "name": "Bound and preserve actual evidence",
+          "id": "package",
+          "if": "always() && steps.checkout.outcome == 'success'",
+          "timeout-minutes": 1,
+          "run": "node gate/package.mjs"
+        },
+        {
+          "name": "Upload bounded synthetic evidence",
+          "if": "always() && steps.package.outcome == 'success'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-campaign-browser-evidence",
+            "path": "campaign-results/",
+            "if-no-files-found": "error",
+            "retention-days": 1,
+            "compression-level": 6,
+            "include-hidden-files": true
+          }
+        },
+        {
+          "name": "Require complete evidence",
+          "if": "always() && steps.package.outcome == 'success'",
+          "run": "node --input-type=module -e \"import fs from 'node:fs';const m=JSON.parse(fs.readFileSync('campaign-results/evidence-manifest.json'));if(m.status!=='passed'||m.binding.status!=='verified')throw Error('Incomplete campaign gate');\""
+        }
+      ]
+    }
+  }
+}

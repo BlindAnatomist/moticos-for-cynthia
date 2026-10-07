@@ -1,0 +1,9 @@
+import {defineConfig,devices} from '@playwright/test';
+import {readPlaywrightInvocation,preservePlaywrightInvocation} from './gate/invocation.mjs';
+import {validateInvocation,eligibleBudget,BUDGETS,ORIGIN} from './gate/scope.mjs';
+import {verifyBuild} from './gate/binding.mjs';
+const invocation=readPlaywrightInvocation('MOTICOS_CAMPAIGN_GUARDED_ARGV');
+const {listing,profile}=validateInvocation(invocation.args,process.env.MOTICOS_CAMPAIGN_BROWSER_APPROVED==='1');
+if(!listing){if(process.env.MOTICOS_CAMPAIGN_PROFILE!==profile)throw Error('Only bounded launcher profile allowed');if(!invocation.worker){if(!/^\d+$/.test(process.env.MOTICOS_JOB_EPOCH??''))throw Error('Job clock required');eligibleBudget(profile,Math.floor(Date.now()/1000)-Number(process.env.MOTICOS_JOB_EPOCH));verifyBuild(true);}}
+preservePlaywrightInvocation('MOTICOS_CAMPAIGN_GUARDED_ARGV',invocation);
+export default defineConfig({testDir:'./tests/campaign-browser',testMatch:'*.spec.mjs',timeout:30000,expect:{timeout:7500},globalTimeout:listing?0:BUDGETS[profile],workers:1,fullyParallel:false,retries:0,maxFailures:1,forbidOnly:true,outputDir:`campaign-results/${profile??'collection'}/raw`,reporter:listing?[['json']]:[['line'],['json',{outputFile:`campaign-results/${profile}/results.json`}],['./gate/reporter.mjs']],use:{baseURL:ORIGIN,actionTimeout:7500,navigationTimeout:15000,trace:{mode:'retain-on-failure',screenshots:false,snapshots:true,sources:false},screenshot:'only-on-failure',video:'off'},webServer:listing?undefined:{command:'node gate/serve.mjs',url:`${ORIGIN}/career.html`,reuseExistingServer:false,timeout:15000},projects:[{name:'campaign-chromium',testMatch:'chromium.spec.mjs',use:{...devices['Desktop Chrome'],browserName:'chromium',viewport:{width:1366,height:768}}},{name:'campaign-webkit-phone',testMatch:'phone.spec.mjs',use:{...devices['iPhone 13'],browserName:'webkit',viewport:{width:390,height:664}}}]});
