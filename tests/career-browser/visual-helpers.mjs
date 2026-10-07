@@ -1,0 +1,13 @@
+import {expect} from '@playwright/test';
+import {CATALOG} from '../../src/career/content.js';
+import {BOARD_ART_BOUNDS} from '../../src/matching/cohesion/boardArt.js';
+import {gridViolations,gridMovement,countViolations} from '../../scripts/careerVisualGeometry.mjs';
+import * as h from './helpers.mjs';
+export async function geometry(page,{baseline=null,mode='desktop',touch=false}={}){
+ const normal=await h.noOverflow(page,{desktop:mode==='desktop',touch,mode});
+ const state=await h.read(page),tiers=Object.fromEntries(CATALOG.PIECES.map(p=>[p.id,p.tier]));
+ const proof=await page.evaluate(({state,tiers})=>{const box=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom};};const visible=e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden';const board=box(document.querySelector('.career-board')),cells=[...document.querySelectorAll('[data-career-cell]')].map(box);const strip=document.querySelector('.career-mobile-order-strip'),order=state.orders.find(o=>o.id===strip?.dataset.orderId),labels=[];if(strip&&visible(strip)){const art=[...strip.querySelectorAll('img')].map(box);for(const e of strip.querySelectorAll('.career-mobile-target small')){const target=e.closest('.career-mobile-target'),pieceId=target.dataset.targetPieceId,required=order.requirements.find(r=>r.pieceId===pieceId),owned=state.board.filter(t=>t?.pieceId===pieceId).length,range=document.createRange();range.selectNodeContents(e);labels.push({pieceId,text:e.textContent,expected:`L${tiers[pieceId]} · ${Math.min(owned,required.quantity)}/${required.quantity}`,box:box(e),target:box(target),button:box(e.closest('button')),glyphs:[...range.getClientRects()].filter(r=>r.width>0&&r.height>0).map(r=>({x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom})),art});}}return{board,cells,labels,expectedLabels:strip&&visible(strip)?order?.requirements.length??0:0};},{state,tiers});
+ expect(gridViolations(proof.cells,proof.board)).toEqual([]);if(baseline)expect(gridMovement(baseline.cells,proof.cells)).toEqual([]);expect(countViolations(proof.labels,proof.expectedLabels)).toEqual([]);return{...proof,core:normal};
+}
+export async function art(page){const records=await h.imageProof(page);for(const r of records.filter(r=>r.board)){const b=BOARD_ART_BOUNDS[r.pieceId],ink=Math.max(b.ink[2]/b.source[0]*r.display,b.ink[3]/b.source[1]*r.displayHeight);expect(ink,'Equal rows must keep board art readable').toBeGreaterThanOrEqual(28);}return records;}
+export async function instrument(context,page){await h.instrumentation(context);const errors=[];context.on('page',p=>p.on('pageerror',e=>errors.push(String(e))));page.on('pageerror',e=>errors.push(String(e)));return errors;}

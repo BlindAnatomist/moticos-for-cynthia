@@ -10,5 +10,5 @@ export default defineConfig({testDir:'./tests/career-browser',testMatch:'*.spec.
  outputDir:`career-results/${profile??'collection'}/raw`,reporter:listing?[['json']]:[['line'],['json',{outputFile:`career-results/${profile}/results.json`}],['./scripts/careerGateReporter.mjs']],
  use:{baseURL:ORIGIN,actionTimeout:7500,navigationTimeout:15000,trace:{mode:'retain-on-failure',screenshots:false,snapshots:true,sources:false},screenshot:'only-on-failure',video:'off'},
  webServer:listing?undefined:{command:'node scripts/serveCareer.mjs',url:`${ORIGIN}/career.html`,reuseExistingServer:false,timeout:20000},
- projects:[{name:'career-chromium',testMatch:'chromium.spec.js',use:{...devices['Desktop Chrome'],browserName:'chromium',viewport:{width:1366,height:768}}},{name:'career-webkit-phone',testMatch:'phone.spec.js',use:{...devices['iPhone 13'],browserName:'webkit',viewport:{width:390,height:844}}}],
+ projects:[{name:'career-chromium',testMatch:'desktop-geometry.spec.js',use:{...devices['Desktop Chrome'],browserName:'chromium',viewport:{width:1366,height:768}}},{name:'career-webkit-phone',testMatch:'phone-geometry.spec.js',use:{...devices['iPhone 13'],browserName:'webkit',viewport:{width:390,height:844}}}],
 });

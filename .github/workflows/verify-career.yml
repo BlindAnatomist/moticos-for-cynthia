@@ -1,5 +1,5 @@
 {
-  "name": "Verify Moticos career slice",
+  "name": "Verify Moticos desktop geometry",
   "on": {
     "push": {
       "branches": [
@@ -23,7 +23,7 @@
     "career": {
       "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/career-20261007' && github.event_name == 'push' && github.run_attempt == 1",
       "runs-on": "ubuntu-latest",
-      "timeout-minutes": 20,
+      "timeout-minutes": 10,
       "steps": [
         {
           "name": "Start bounded job clock",
@@ -56,22 +56,22 @@
           "run": "./node_modules/.bin/playwright install --with-deps chromium webkit"
         },
         {
-          "name": "Check exact source and fourteen cases; build once",
+          "name": "Check exact source and four visual cases; build once",
           "id": "preflight",
           "timeout-minutes": 2,
           "run": "bash scripts/preflightCareer.sh 2>&1 | tee career-preflight.log"
         },
         {
-          "name": "Run eight Chromium career cases once",
-          "timeout-minutes": 9,
+          "name": "Run two desktop geometry cases once",
+          "timeout-minutes": 3,
           "env": {
             "MOTICOS_CAREER_BROWSER_APPROVED": "1"
           },
           "run": "bash scripts/runCareerGroup.sh career-chromium"
         },
         {
-          "name": "Run six touch-WebKit career cases once",
-          "timeout-minutes": 7,
+          "name": "Run two phone geometry cases once",
+          "timeout-minutes": 3,
           "env": {
             "MOTICOS_CAREER_BROWSER_APPROVED": "1"
           },
