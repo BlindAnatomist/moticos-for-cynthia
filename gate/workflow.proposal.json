@@ -90,7 +90,7 @@
           "timeout-minutes": 1,
           "with": {
             "name": "moticos-campaign-browser-evidence",
-            "path": "campaign-results/",
+            "path": "campaign-upload/",
             "if-no-files-found": "error",
             "retention-days": 1,
             "compression-level": 6,
@@ -100,7 +100,7 @@
         {
           "name": "Require complete evidence",
           "if": "always() && steps.package.outcome == 'success'",
-          "run": "node --input-type=module -e \"import fs from 'node:fs';const m=JSON.parse(fs.readFileSync('campaign-results/evidence-manifest.json'));if(m.status!=='passed'||m.binding.status!=='verified')throw Error('Incomplete campaign gate');\""
+          "run": "node --input-type=module -e \"import fs from 'node:fs';const m=JSON.parse(fs.readFileSync('campaign-upload/evidence-manifest.json'));if(m.status!=='passed'||m.binding.status!=='verified')throw Error('Incomplete campaign gate');\""
         }
       ]
     }

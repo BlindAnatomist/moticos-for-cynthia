@@ -5,10 +5,11 @@
   "externalAuthorization": false,
   "applicationFingerprint": "4da4a68857059ded575be8afad5d095d263c7bfba421d7d9d2018cff83ba4ce1",
   "reviewedRoles": [
-    "runtime-owner",
+    "runtime-owner-unchanged",
     "independent-quality",
-    "independent-release"
+    "independent-release-application-unchanged"
   ],
+  "repairOf": "ea2b0457c46f46b83bdff1107f0107c17b27f352e508e46bf1c1b520a01de4df",
   "files": [
     {
       "file": "application-provisional.json",
@@ -27,8 +28,8 @@
     },
     {
       "file": "gate/binding.mjs",
-      "bytes": 6103,
-      "sha256": "bf48e6e4e1e427ba5febb034192cd86788b492788bb5a53a9077c805ef146c29"
+      "bytes": 6121,
+      "sha256": "ba6c0193d6a1ea5f5c54b0b86e610e54e5b3df04024652803a145fcfeec71962"
     },
     {
       "file": "gate/invocation.mjs",
@@ -41,9 +42,14 @@
       "sha256": "2fa80b955da2edeceb9cb0451a8ea41f69e62984dbf98857b3376bab7f5f2661"
     },
     {
+      "file": "gate/package-full.mjs",
+      "bytes": 5657,
+      "sha256": "bee813781cc66b5f66868fd5ac51cda5ec7c878411de9958fb0cef23bf45a59b"
+    },
+    {
       "file": "gate/package.mjs",
-      "bytes": 5721,
-      "sha256": "c5d1083e637ac547ca1779c7ae8756fb6f197006e1e382e3d08f578ce4f804db"
+      "bytes": 10126,
+      "sha256": "794196b7bac5369ca346478092b6146ba3f0418533cc3e0d8a6e9de091fdf2c8"
     },
     {
       "file": "gate/png.mjs",
@@ -97,8 +103,8 @@
     },
     {
       "file": "gate/workflow.proposal.json",
-      "bytes": 3396,
-      "sha256": "e17cf1e60566890904c86d6262eca9365eaadcedb248f92945dda54d8d12ed5d"
+      "bytes": 3394,
+      "sha256": "ccf445b209ae059ba287105f579576d45b9648556e1a41b8268b9ef2696dec26"
     },
     {
       "file": "package-lock.json",
@@ -112,8 +118,8 @@
     },
     {
       "file": "playwright.campaign.config.mjs",
-      "bytes": 1914,
-      "sha256": "06a0fb10c5ff1d7990b7b1ebfff1526a5485e20bf04fa2b4802a59f09ae82e68"
+      "bytes": 1933,
+      "sha256": "edfb7839e17b9ef0f935c942dc521abaf5c97bcb5f8cbb4cf66c94eb3b808291"
     },
     {
       "file": "probe/index.html",
@@ -337,8 +343,8 @@
     },
     {
       "file": "README.txt",
-      "bytes": 3375,
-      "sha256": "2a1515aa3a83173319d007c88715da70308cedba3f5e626acdf4fd7a6c371746"
+      "bytes": 3924,
+      "sha256": "e426243f5b6b3dfeefe19328e5152451e136c4df6b887e530a0818af41af8352"
     },
     {
       "file": "src/audioProfile.js",
@@ -1382,13 +1388,13 @@
     },
     {
       "file": "tests/campaign-browser/adopted-journeys.mjs",
-      "bytes": 9792,
-      "sha256": "bb672d46ad84b41b951a6583a7f09356d5de997e151c496dbfc65a4426dd03f0"
+      "bytes": 9942,
+      "sha256": "7a5e6da18b469e1bdad74486df6b7f37e1f8bd1da0d729b5c71f925341b2b89e"
     },
     {
       "file": "tests/campaign-browser/chromium.spec.mjs",
-      "bytes": 23425,
-      "sha256": "88731c6c976527d8a0095d156d7198efe16c451f2f27fcba98400410ccc27719"
+      "bytes": 23806,
+      "sha256": "fb1df9ba031b92e59d47e7678c4c24dc5d8dd265b6451199169180af123f7228"
     },
     {
       "file": "tests/campaign-browser/fixtures.mjs",
@@ -1402,8 +1408,8 @@
     },
     {
       "file": "tests/campaign-browser/phone.spec.mjs",
-      "bytes": 6688,
-      "sha256": "1098018ef4e68b46ff341eac5406e9e42fb4b9d2cb480bb1e8d96847aaffb37c"
+      "bytes": 6842,
+      "sha256": "8caaddd4b8a7b4f3ed7e899afde0dafc5b696fa566df69efc3565691bcc2fa40"
     },
     {
       "file": "tests/campaign-browser/save-fixtures.mjs",
@@ -1419,6 +1425,11 @@
       "file": "tests/campaign-contract/cache.test.mjs",
       "bytes": 11219,
       "sha256": "9ee79fd1030752e6c4a021577cc300063bf1e5ffec453cc88c04c2ad4ba9f3e6"
+    },
+    {
+      "file": "tests/campaign-contract/failure-evidence.test.mjs",
+      "bytes": 8890,
+      "sha256": "bd97598ea0e3d50b114975496ed057e9eb11275818036a085a219c8f3661d221"
     },
     {
       "file": "tests/campaign-contract/gate.test.mjs",

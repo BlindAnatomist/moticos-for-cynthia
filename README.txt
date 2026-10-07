@@ -24,8 +24,14 @@ No browser is launched during read-only collection or Node contract checks.
 
 Artifacts: at most 23 planned original screenshots + 2 original downloaded
 postcard PNGs + 1 failure screenshot, one failure trace, total 60 MiB including
-manifests and hidden runner metadata. Video off. Trace screenshots/source off.
-All artifact retention is one day. Original PNG streams, hashes, dimensions and
+manifests and hidden runner metadata. Video off. Trace screenshots, DOM/network snapshots, source files and embedded
+attachments are off; original screenshots and error context remain separate.
+All artifact retention is one day. If full evidence exceeds the cap or fails
+validation, a separate diagnostic-only upload is bounded to2MiB. It retains
+source identity, available raw reports/progress, a derived case-status summary,
+and small valid failure images/error context when they fit. Every omitted file
+is identified by size, hash and reason. Raw originals are never modified or
+recompressed. Diagnostic-only uploads remain incomplete and fail the final gate. Original PNG streams, hashes, dimensions and
 bytes are checked. No screenshot recompression or omitted failure evidence may
 be used to make a failed cap look passing. Source/build and case/ledger results
 must match; incomplete, skipped, flaky, changed source or excess evidence fails.
