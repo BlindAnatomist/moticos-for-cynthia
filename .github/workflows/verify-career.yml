@@ -56,7 +56,7 @@
           "run": "./node_modules/.bin/playwright install --with-deps chromium webkit"
         },
         {
-          "name": "Check exact source and twelve cases; build once",
+          "name": "Check exact source and fourteen cases; build once",
           "id": "preflight",
           "timeout-minutes": 2,
           "run": "bash scripts/preflightCareer.sh 2>&1 | tee career-preflight.log"
@@ -70,8 +70,8 @@
           "run": "bash scripts/runCareerGroup.sh career-chromium"
         },
         {
-          "name": "Run four touch-WebKit career cases once",
-          "timeout-minutes": 5,
+          "name": "Run six touch-WebKit career cases once",
+          "timeout-minutes": 7,
           "env": {
             "MOTICOS_CAREER_BROWSER_APPROVED": "1"
           },

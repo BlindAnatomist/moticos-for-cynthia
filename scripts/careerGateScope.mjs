@@ -14,11 +14,13 @@ export const CASES = Object.freeze({
   ['P02','target sorter supply with touch and survive interruption',60000],
   ['P03','keep all core play visible in four standard phone viewports',75000],
   ['P04','keep larger text and modal return usable on a phone',60000],
+  ['P05','explain phone unlocks and persist chapter completion',90000],
+  ['P06','show large-text actions errors and unsaved purchase feedback',90000],
  ]),
 });
-export const BUDGETS = Object.freeze({'career-chromium':480000,'career-webkit-phone':240000});
+export const BUDGETS = Object.freeze({'career-chromium':480000,'career-webkit-phone':360000});
 export const ORIGIN='http://127.0.0.1:4199';
-export const JOB_SECONDS=1200,RESERVE_SECONDS=135,MAX_SCREENSHOTS=20,MAX_ARTIFACT_BYTES=60*1024*1024;
+export const JOB_SECONDS=1200,RESERVE_SECONDS=135,MAX_PNG_FILES=24,MAX_ARTIFACT_BYTES=60*1024*1024;
 export const titleFor=(id,title)=>`${id} ${title}`;
 export function validateInvocation(args, approved=false) {
  const config='--config=playwright.career.config.js';
