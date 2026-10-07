@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: process.env.VITE_COLLAGE_EXPANSION_200 === '1' ? { alias: [
     { find: './registry.js', replacement: fileURLToPath(new URL('./src/matching/expansion200/registry.js', import.meta.url)) },
     { find: './boardArt.js', replacement: fileURLToPath(new URL('./src/matching/expansion200/boardArt.js', import.meta.url)) },
+    { find: './matching.css', replacement: fileURLToPath(new URL('./src/matching/expansion200/matching.css', import.meta.url)) },
   ] } : process.env.VITE_COLLAGE_EXPANSION_160 === '1' ? { alias: [
     { find: './registry.js', replacement: fileURLToPath(new URL('./src/matching/cohesion/registry.js', import.meta.url)) },
     { find: './boardArt.js', replacement: fileURLToPath(new URL('./src/matching/cohesion/boardArt.js', import.meta.url)) },

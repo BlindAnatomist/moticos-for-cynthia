@@ -108,3 +108,27 @@ it.each(['selected','hint'])('rejects missing, corrupt and mismatched mixed-stag
  for(const mutate of [s=>delete s.board,s=>s.board.pop(),s=>s.board[0]='bad',s=>s.board[0]=mixedEnvelope.finals[0],s=>s.saveSha256='bad',s=>s.viewport.width=390,s=>s.kind='other',s=>s[kind==='selected'?'selected':'hints']=[],s=>s[kind==='selected'?'pressed':'hints'][0].index=24,s=>s[kind==='selected'?'matches':'hints'][0].id=mixedEnvelope.starters[1]]){const state=mixedFixture(kind);mutate(state);expect(()=>verifyMixedInteractionState(state,mixedEnvelope,kind)).toThrow();}
 });
 it('requires selected and hint JSON evidence during the offline visual recheck',()=>{const source=readFileSync('scripts/verifyExpansion200GateCoverage.mjs','utf8');expect(source).toContain("readFileSync(join(root,path+'.json'))");expect(source).toContain('verifyMixedInteractionState(state,envelope,kind)');expect(source).toContain('assert.deepEqual(proof.board,board)');expect(source).toContain('assert.equal(proof.saveSha256,prior.saveSha256');});
+
+import {EXPANSION200_BOUNDS as readabilityBounds} from '../src/matching/expansion200/bounds.js';
+it('scopes the crop repair to the two padded 200-only board pieces',()=>{
+ const css=readFileSync('src/matching/expansion200/matching.css','utf8');
+ expect(css.startsWith("@import '../matching.css';")).toBe(true);
+ expect([...css.matchAll(/data-piece-id="([^"]+)"/g)].map(match=>match[1]).sort()).toEqual(['zp1','zp1','zp5','zp5']);
+ for(const property of ['--mg-crop-ratio','--mg-image-width','--mg-image-height','--mg-image-left','--mg-image-top'])expect(css).toContain(property);
+ expect(css).toContain('@supports (width: 1cqw)');expect(css.replace(/\/\*[\s\S]*?\*\//g,'')).not.toMatch(/transform:|scale\(|!important|postcard|collection/i);
+ const config=readFileSync('vite.config.js','utf8'),before160=config.split("process.env.VITE_COLLAGE_EXPANSION_160")[0];expect(before160).toContain("find: './matching.css'");expect(config.split("process.env.VITE_COLLAGE_EXPANSION_160")[1]).not.toContain("find: './matching.css'");
+});
+it('retains 30px paint at all modeled compact, boundary and native slots for all forty artworks',()=>{
+ const viewports=[[320,568],[379,664],[380,664],[381,664],[390,664],[430,664],[430,752],[430,932],[1280,720]];
+ for(const [width,height]of viewports){const cell=(Math.min(width-18,580,height-278.4)-32)/5,availableWidth=cell-4,availableHeight=cell-15;
+  for(const [id,b]of Object.entries(readabilityBounds)){const long=Math.max(b.ink[2],b.ink[3]);const scale=width<=380||['zp1','zp5'].includes(id)?Math.min((availableWidth-2)/b.crop[2],(availableHeight-2)/b.crop[3]):Math.min(availableWidth,availableHeight)/768;expect(long*scale,`${id} at ${width}x${height}; analytical regression, not rendered acceptance`).toBeGreaterThanOrEqual(30);}
+ }
+});
+it('copies every existing compact crop declaration exactly for the two native-size repairs',()=>{
+ const original=readFileSync('src/matching/matching.css','utf8');
+ const compact=original.match(/@media \(max-width: 380px\) \{\s+\.mg-page \.mg-art-fit \{([\s\S]*?)\}\s+\.mg-page \.cg-cell \.mg-cropped-art \{([^}]+)\}/);
+ expect(compact).not.toBeNull();
+ const repaired=readFileSync('src/matching/expansion200/matching.css','utf8').replace(/\s+/g,' ');
+ const declarations=[compact[1],compact[2]].flatMap(block=>block.split(';').map(value=>value.trim().replace(/\s+/g,' ')).filter(Boolean));
+ expect(declarations).toHaveLength(6);for(const declaration of declarations)expect(repaired).toContain(declaration+';');
+});

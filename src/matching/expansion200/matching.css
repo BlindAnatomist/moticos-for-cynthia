@@ -1,0 +1,20 @@
+@import '../matching.css';
+
+/* These two approved bitmaps have unusually generous transparent margins.
+   Reuse their existing board-only crop at every supported size. The rules are
+   identical to the compact crop, so <=380px behavior and all other art stay as
+   before. Collection, inspector, supply and postcard images remain untouched. */
+@supports (width: 1cqw) {
+  .mg-page [data-piece-id="zp1"] .mg-art-fit,
+  .mg-page [data-piece-id="zp5"] .mg-art-fit {
+    width: min(calc(100cqw - 2px), calc((100cqh - 2px) * var(--mg-crop-ratio)));
+    height: min(calc(100cqh - 2px), calc((100cqw - 2px) / var(--mg-crop-ratio)));
+  }
+  .mg-page .cg-cell[data-piece-id="zp1"] .mg-cropped-art,
+  .mg-page .cg-cell[data-piece-id="zp5"] .mg-cropped-art {
+    width: var(--mg-image-width);
+    height: var(--mg-image-height);
+    left: var(--mg-image-left);
+    top: var(--mg-image-top);
+  }
+}

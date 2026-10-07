@@ -35,7 +35,7 @@ export function runIdentity(env = process.env) {
   return {repository:env.GITHUB_REPOSITORY,runCommit:env.GITHUB_SHA,runId:env.GITHUB_RUN_ID,runAttempt:1,workflowRef:env.GITHUB_WORKFLOW_REF};
 }
 const publicFileManifest=JSON.parse(readFileSync(new URL('../tests/verification/public200-files.json',import.meta.url),'utf8'));
-assert.equal(publicFileManifest.schemaVersion,1);assert.equal(publicFileManifest.files.length,441);assert.equal(new Set(publicFileManifest.files).size,441);
+assert.equal(publicFileManifest.schemaVersion,1);assert.equal(publicFileManifest.files.length,442);assert.equal(new Set(publicFileManifest.files).size,442);
 const PUBLIC_FILES_200=new Set(publicFileManifest.files);
 export function publicPathAllowed200(file) {
   if(!PUBLIC_FILES_200.has(file))return false;

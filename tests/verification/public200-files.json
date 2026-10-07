@@ -365,6 +365,7 @@
     "src/matching/expansion200/boardArt.js",
     "src/matching/expansion200/bounds.js",
     "src/matching/expansion200/definitions.js",
+    "src/matching/expansion200/matching.css",
     "src/matching/expansion200/registry.js",
     "src/matching/game.js",
     "src/matching/lanternCatalog.js",
