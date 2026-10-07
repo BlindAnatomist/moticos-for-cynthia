@@ -1,0 +1,30 @@
+{
+  "name": "moticos-for-cynthia",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "VITE_COLLAGE_EXPANSION_160=1 vite build --outDir dist-expansion160 && node scripts/stampExpansion160.mjs",
+    "test": "bash scripts/testCurrentCandidate.sh",
+    "test:e2e": "playwright test --config=playwright.expansion160.config.js",
+    "verify:current": "bash scripts/preflightExpansion160.sh",
+    "build:200": "bash scripts/buildExpansion200.sh",
+    "test:200:native": "node --loader ./tests/expansion200/alias-loader.mjs --test tests/expansion200/native.test.mjs",
+    "test:200": "bash scripts/testExpansion200.sh",
+    "test:200:gate": "./node_modules/.bin/vitest run tests/expansion200Gate.test.js",
+    "collect:200": "./node_modules/.bin/playwright test --config=playwright.expansion200.config.js --list --reporter=json"
+  },
+  "dependencies": {
+    "lucide-react": "1.27.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tone": "15.1.22"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "@vitejs/plugin-react": "6.0.4",
+    "vite": "8.1.5",
+    "vitest": "4.1.10"
+  }
+}

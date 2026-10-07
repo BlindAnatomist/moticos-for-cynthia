@@ -1,0 +1,7 @@
+import {deflateSync} from 'node:zlib';
+const crcTable=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
+function crc(bytes){let n=0xffffffff;for(const b of bytes)n=crcTable[(n^b)&255]^(n>>>8);return (n^0xffffffff)>>>0;}
+function chunk(kind,data){const out=Buffer.alloc(data.length+12);out.writeUInt32BE(data.length,0);out.write(kind,4);data.copy(out,8);out.writeUInt32BE(crc(out.subarray(4,8+data.length)),8+data.length);return out;}
+export function makePng(width,height,seed=0){const header=Buffer.alloc(13);header.writeUInt32BE(width,0);header.writeUInt32BE(height,4);header[8]=8;header[9]=6;const rows=Buffer.alloc((width*4+1)*height),rowData=Buffer.alloc(width*4+1);let n=seed+1;for(let col=1;col<=width*4;col++){n=(Math.imul(n,1664525)+1013904223)>>>0;rowData[col]=n>>>24;}for(let row=0;row<height;row++)rowData.copy(rows,row*(width*4+1));return Buffer.concat([Buffer.from('89504e470d0a1a0a','hex'),chunk('IHDR',header),chunk('IDAT',deflateSync(rows,{level:1})),chunk('IEND',Buffer.alloc(0))]);}
+
+export function appendIdatPayload(png,trailing){let offset=8;const out=[png.subarray(0,8)];while(offset<png.length){const length=png.readUInt32BE(offset),end=offset+length+12,kind=png.toString('ascii',offset+4,offset+8);out.push(kind==='IDAT'?chunk(kind,Buffer.concat([png.subarray(offset+8,offset+8+length),trailing])):png.subarray(offset,end));offset=end;}return Buffer.concat(out);}

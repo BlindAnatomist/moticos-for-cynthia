@@ -1,0 +1,39 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+.DS_Store
+
+# Dependency directory may be linked in an isolated review workspace.
+node_modules
+
+# Bounded verification artifacts remain outside source commits.
+preflight-results/
+preflight-report/
+prior-evidence/
+bounded-evidence/
+__pycache__/
+
+# Private forty-piece candidate verification output.
+dist-batch/
+batch-test-results/
+batch-playwright-report/
+
+# Raw local verification evidence lives in the private checkpoint.
+evidence/collage-batch/*
+!evidence/collage-batch/asset-receipt.json
+
+# Isolated 120-piece candidate outputs.
+dist-expansion/
+expansion-test-results/
+expansion-playwright-report/
+
+# Isolated 160-piece candidate outputs.
+dist-expansion160/
+expansion160-test-results/
+expansion160-playwright-report/
+
+# Isolated private 200-piece outputs; never source or publication.
+dist-expansion200/
+expansion200-test-results/
+expansion200-playwright-report/
