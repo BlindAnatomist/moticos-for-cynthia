@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';
+export function verifyRenderedArt(record,id,assets){
+ assert(Array.isArray(assets));const matches=assets.filter(asset=>asset.id===id);assert.equal(matches.length,1,`Missing/duplicate manifest art identity: ${id}`);const asset=matches[0];assert.match(asset.sha256,/^[a-f0-9]{64}$/);const url=new URL(record.source);assert.equal(url.origin,'http://127.0.0.1:4197','Rendered artwork must come from the exact tested origin');assert.equal(url.search,'');assert.equal(url.hash,'');assert.equal(url.pathname,`/${asset.file}`,`Rendered art differs from source-pinned piece: ${id}`);assert(record.naturalWidth>0&&record.naturalHeight>0);if(record.pieceId!==undefined)assert.equal(record.pieceId,id);if(record.assetSha256!==undefined)assert.equal(record.assetSha256,asset.sha256);if(record.observedSha256!==undefined){assert.equal(record.observedSha256,asset.sha256);assert.equal(record.observedBytes,asset.bytes);}return asset;
+}
