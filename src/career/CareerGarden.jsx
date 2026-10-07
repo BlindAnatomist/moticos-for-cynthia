@@ -1,0 +1,144 @@
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, BookOpen, Check, Coins, HelpCircle, Lightbulb, Mail, Scissors, ShoppingBag, Trash2, Undo2, Volume2, VolumeX, X } from 'lucide-react';
+import useMoticosAudio from '../useMoticosAudio.js';
+import { wrapDialogFocus } from '../collection/dialogFocus.js';
+import { createCollectionPostcard } from '../matching/postcard.js';
+import { downloadPostcard, sharePostcard } from '../exportPostcard.js';
+import { BOARD_ART_BOUNDS } from '../matching/cohesion/boardArt.js';
+import { CATALOG, CHAPTER, FAMILIES, LEVELS, STORY_ORDERS, UPGRADES, STORAGE_KEY, levelDefinition, coinBalance, orderCapacity } from './content.js';
+import { chapterComplete, commandFor, compatiblePairs, createReplay, matchingTiles, nextOutput, reduceCareer } from './engine.js';
+import { createCareerSession } from './session.js';
+import './career.css';
+
+function Artwork({ pieceId, cropped = false }) {
+  const piece = CATALOG.pieceOf(pieceId), bounds = BOARD_ART_BOUNDS[pieceId];
+  if (!piece) return null;
+  if (!cropped || !bounds) return <img className="career-art" src={piece.art} alt="" draggable="false" width="768" height="768" />;
+  const { source: [w, h], crop: [x, y, cw, ch] } = bounds;
+  return <span className="career-art-crop" aria-hidden="true"><span style={{ aspectRatio: `${cw} / ${ch}` }}><img src={piece.art} alt="" draggable="false" style={{ width: `${w / cw * 100}%`, height: `${h / ch * 100}%`, left: `${-x / cw * 100}%`, top: `${-y / ch * 100}%` }} /></span></span>;
+}
+function Dialog({ title, close, children, className = '' }) {
+  const ref = useRef(null);
+  useEffect(() => { const previous = document.activeElement, dialog = ref.current; dialog.showModal(); return () => { dialog.close(); previous?.focus?.(); }; }, []);
+  return <dialog className={`career-dialog ${className}`} ref={ref} aria-labelledby="career-dialog-title" onKeyDown={wrapDialogFocus} onCancel={e => { e.preventDefault(); close(); }}>
+    <header><h2 id="career-dialog-title">{title}</h2><button autoFocus onClick={close} aria-label="Close and return to board"><X size={20} /></button></header>{children}
+  </dialog>;
+}
+function Postcard({ pieceId }) {
+  const [postcard, setPostcard] = useState(null), [message, setMessage] = useState('Preparing your postcard…');
+  useEffect(() => { let current = true; createCollectionPostcard(pieceId, CATALOG.CATALOG, CHAPTER.title).then(p => { if (current) { setPostcard(p); setMessage('A small picture, ready to keep.'); } }).catch(() => { if (current) setMessage('The export could not be prepared. Your collected picture is still here.'); }); return () => { current = false; }; }, [pieceId]);
+  async function share() { try { const result = await sharePostcard(postcard); setMessage(result.shared ? 'Share sheet opened.' : 'Use Download to keep this postcard.'); } catch (error) { setMessage(error.name === 'AbortError' ? 'Sharing canceled.' : 'Sharing is unavailable. Try Download instead.'); } }
+  return <><figure className="career-postcard"><Artwork pieceId={pieceId} /><figcaption>{CATALOG.pieceOf(pieceId).name}<small>MOTICOS · GARDEN CORRESPONDENCE</small></figcaption></figure><p role="status">{message}</p><div className="career-dialog-actions"><button disabled={!postcard} onClick={() => { downloadPostcard(postcard); setMessage('Postcard downloaded.'); }}>Download postcard</button><button disabled={!postcard} onClick={share}>Share postcard</button></div></>;
+}
+function OrderCard({ order, state, busy, complete }) {
+  const template = STORY_ORDERS.find(t => t.id === order.templateId), ready = matchingTiles(state, order);
+  const storyNumber = template ? STORY_ORDERS.indexOf(template) + 1 : null;
+  return <article className={`career-order ${ready ? 'is-ready' : ''}`} data-order-id={order.id}>
+    <div className="career-order-heading"><span>{order.origin === 'practice' ? 'PRACTICE LETTER' : storyNumber ? `LETTER ${String(storyNumber).padStart(2, '0')} / 09` : 'OPEN CORRESPONDENCE'}</span>{ready && <span className="career-ready"><Check size={12} />Ready</span>}</div>
+    <h3>{template?.title ?? 'Another paper hello'}</h3>
+    <div className="career-targets">{order.requirements.map(r => { const piece = CATALOG.pieceOf(r.pieceId), owned = state.board.filter(t => t?.pieceId === r.pieceId).length; return <div className="career-target" key={r.pieceId}><div className="career-target-art"><Artwork pieceId={r.pieceId} /><span className={owned >= r.quantity ? 'is-owned' : ''}>{Math.min(owned, r.quantity)}/{r.quantity}</span></div><div><strong>{piece.name}</strong><small>{piece.familyId === 'bird' ? 'Bird' : 'Fern'} · level {piece.tier}</small></div></div>; })}</div>
+    <div className="career-order-footer"><span className="career-rewards">{order.xp > 0 ? <><b>+{order.xp}</b> XP · </> : state.mode === 'replay' ? '0 XP · ' : 'Coins only · '}<b>{order.coins ? `+${order.coins}` : '0'}</b> coins</span><button className="career-send" disabled={!ready || busy} onClick={() => complete(order)} aria-label={`Complete order: ${template?.title ?? 'Another paper hello'}`}>{ready ? 'Send' : 'Make pieces'}<ArrowRight size={15} /></button></div>
+  </article>;
+}
+function CareerGame({ session, initial, replay = false, exitReplay = null }) {
+  const [state, setState] = useState(initial.state), stateRef = useRef(initial.state);
+  const [saveStatus, setSaveStatus] = useState(initial.status), [warning, setWarning] = useState(initial.warning);
+  const [busy, setBusy] = useState(false), busyRef = useRef(false);
+  const [selected, setSelected] = useState(null), [hint, setHint] = useState([]), [overlay, setOverlay] = useState(null), [practice, setPractice] = useState(null);
+  const [notice, setNotice] = useState(initial.state.revision ? 'Welcome back. Your requests and paper pieces are where you left them.' : 'Start with the two coral birds. Tap one, then tap its matching picture.');
+  const [celebration, setCelebration] = useState(null), [focusIndex, setFocusIndex] = useState(0);
+  const cells = useRef([]), drag = useRef(null), audio = useMoticosAudio(state.sound);
+  const apply = result => { if (result.state) { stateRef.current = result.state; setState(result.state); } setSaveStatus(result.status ?? 'replay'); setWarning(result.warning ?? null); };
+  useEffect(() => {
+    if (!session) return;
+    const unsubscribe = session.subscribe(apply);
+    const changed = event => { if (event.key === STORAGE_KEY || event.key === null) { drag.current = null; setSelected(null); setHint([]); session.refresh().then(result => { if (result.ok) setNotice('The latest saved board from your other tab is now shown.'); }); } };
+    window.addEventListener('storage', changed); return () => { unsubscribe(); window.removeEventListener('storage', changed); };
+  }, [session]);
+  const level = levelDefinition(state), nextLevel = LEVELS.find(l => l.level === level.level + 1);
+  const selectedTile = state.board[selected], selectedPiece = CATALOG.pieceOf(selectedTile?.pieceId);
+  const finished = chapterComplete(state), emptyCount = state.board.filter(t => !t).length;
+  const lastDelivery = state.receipts.findLast(r => r.type === 'delivery' || r.type === 'practice');
+  const lastDeliveryLetter = STORY_ORDERS.find(o => o.id === lastDelivery?.storyLetterId);
+  async function perform(action, success) {
+    if (busyRef.current) return null;
+    busyRef.current = true; setBusy(true); setHint([]);
+    const previous = stateRef.current;
+    const result = session ? await session.commit(commandFor(previous, action)) : { ...reduceCareer(previous, commandFor(previous, action)), status: 'replay', warning: null };
+    apply(result); busyRef.current = false; setBusy(false);
+    if (!result.ok) { setNotice(result.message ?? 'That action could not be completed.'); audio.playDenied(); return result; }
+    setSelected(null);
+    if (action.type === 'complete') {
+      const delivery = result.state.receipts.at(-1), durable = result.saved;
+      setCelebration(result.state.revision);
+      setNotice(replay ? 'Practice letter complete. 0 XP and 0 coins; your career is unchanged.' : durable ? `Letter sent. ${delivery.xp ? `+${delivery.xp} XP and ` : ''}+${delivery.coins} coins saved. The art stays in your collection.` : `Practice delivery only. ${delivery.xp} XP and ${delivery.coins} coins are temporary, not saved.`);
+      if (durable || replay) audio.playReward();
+    } else if (action.type === 'purchase') { setNotice(result.saved ? `${UPGRADES.find(u => u.id === action.upgradeId).name} is yours. Its effect is active now.` : 'Practice purchase only. This upgrade and its coins are not saved.'); if (result.saved) audio.playReward(); }
+    else { setNotice(success ?? 'Done.'); if (action.type === 'move') { previous.board[action.to] ? audio.playMerge() : audio.playPickup(); } else if (action.type === 'cut') audio.playCut(); else if (action.type === 'supply') audio.playPickup(); }
+    return result;
+  }
+  function move(from, to) { const board = stateRef.current.board; return perform({ type: 'move', from, to, tileId: board[from]?.id, targetTileId: board[to]?.id ?? null }, board[to] ? `${CATALOG.nextPiece(board[from]?.pieceId)?.name ?? 'Picture'} made. Art discoveries stay collected, even after Undo.` : 'Piece moved.'); }
+  function clickCell(index) {
+    if (busy) return;
+    const tile = state.board[index];
+    if (selected === index) { setSelected(null); return; }
+    if (selected !== null && selectedTile) { if (tile && tile.pieceId !== selectedTile.pieceId) { setSelected(index); setNotice(`${CATALOG.pieceOf(tile.pieceId).name} selected. Match its identical picture or choose an empty space.`); } else move(selected, index); }
+    else { setSelected(index); setNotice(tile ? `${CATALOG.pieceOf(tile.pieceId).name} selected. Tap its matching picture to merge.` : 'Empty space selected. Choose a free supply to put a piece here.'); }
+  }
+  function supply(familyId, basic = false) { const piece = nextOutput(state, familyId, basic); perform({ type: 'supply', familyId, basic, to: selected !== null && !selectedTile ? selected : null }, `${piece.name} added for free. ${state.sources[familyId].sorter && !basic ? 'The source now shows its next output.' : 'Supplies never run out.'}`); }
+  function complete(order) { const tileIds = matchingTiles(stateRef.current, order); if (tileIds) perform({ type: 'complete', orderId: order.id, tileIds }); }
+  function recycle() {
+    if (!selectedPiece) { setNotice('Select a piece to Recycle.'); return; }
+    if (selectedPiece.tier >= 3) setOverlay({ type: 'recycle', tileId: selectedTile.id, at: selected, pieceId: selectedPiece.id });
+    else perform({ type: 'recycle', at: selected, tileId: selectedTile.id }, 'Piece recycled. No XP or coins earned. Undo can bring it back.');
+  }
+  function showHint() { const pair = compatiblePairs(state)[0]; setHint(pair ?? []); if (pair) { setNotice(`Match the two highlighted ${CATALOG.pieceOf(state.board[pair[0]].pieceId).name} pieces.`); cells.current[pair[0]]?.focus(); } else setNotice(emptyCount ? 'No matching pair yet. Choose a free Bird or Fern supply, or Cut a larger piece.' : 'The board is full with no matching pair. Recycle any piece to make room; valuable pieces ask first.'); }
+  function boardKey(event, index) {
+    const shifts = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -5, ArrowDown: 5 };
+    if (event.key === 'Escape') { setSelected(null); setHint([]); drag.current = null; return; }
+    if (shifts[event.key]) { event.preventDefault(); const next = Math.max(0, Math.min(24, index + shifts[event.key])); setFocusIndex(next); cells.current[next]?.focus(); }
+  }
+  function dropOn(event, index) {
+    event.preventDefault(); const started = drag.current; drag.current = null;
+    if (!started || started.from === index) return;
+    const current = stateRef.current;
+    if (current.revision !== started.revision || current.board[started.from]?.id !== started.tileId) { setNotice('The board changed during that drag. Select the piece again.'); return; }
+    move(started.from, index);
+  }
+  if (practice) return <CareerGame key={practice.careerId} initial={{ state: practice, status: 'replay', warning: null }} replay exitReplay={() => setPractice(null)} />;
+  return <main className={`career-shell ${replay ? 'is-practice' : ''} ${state.largeText ? 'is-large-text' : ''}`} data-save-status={saveStatus}>
+    <header className="career-header"><div className="career-brand"><span className="career-wordmark">moticos<span>✳</span></span><span className="career-edition">a little correspondence game</span></div><div className="career-header-actions"><button className="career-icon-button" aria-label="How to play" onClick={() => setOverlay({ type: 'help' })}><HelpCircle size={20} /></button><button className="career-icon-button" aria-label={state.sound ? 'Turn sound off' : 'Turn sound on'} aria-pressed={state.sound} disabled={busy} onClick={() => perform({ type: 'sound', enabled: !state.sound }, state.sound ? 'Sound off.' : 'Sound on.')} >{state.sound ? <Volume2 size={20} /> : <VolumeX size={20} />}</button><button className="career-collection-button" onClick={() => setOverlay({ type: 'collection' })}><BookOpen size={17} /><span>Collection</span><small>{state.discoveries.length}/10</small></button></div></header>
+    {replay ? <div className="career-practice-banner"><strong>Isolated letter practice · 0 XP · 0 coins</strong><button onClick={exitReplay}>Return to career</button></div> : saveStatus === 'practice' ? <div className="career-save-warning" role="alert"><strong>Unsaved practice</strong><p>{warning}</p></div> : null}
+    <div className="career-chapter-row"><div><span className="career-eyebrow">CHAPTER 01 · A PAPER GARDEN</span><h1>{CHAPTER.title}</h1></div><span className="career-private-label">PRIVATE PLAYTEST</span></div>
+    <section className="career-progress" aria-label="Career progress"><div className="career-level"><span>{replay ? 'Practice' : `Level ${level.level}`}</span>{!replay && <strong>{level.level === 4 ? 'A chapter milestone' : level.level === 1 ? 'A first correspondence' : level.level === 2 ? 'Two letters, your choice' : 'A wider correspondence'}</strong>}</div><div className="career-xp">{replay ? <span>No career rewards</span> : nextLevel ? <><div><span>{state.xp - level.xp} / {nextLevel.xp - level.xp} XP</span><span>Level {nextLevel.level} at {nextLevel.xp} total</span></div><progress max={nextLevel.xp - level.xp} value={state.xp - level.xp} aria-label={`Progress to player level ${nextLevel.level}`} /></> : <div><span>{state.xp} total XP kept</span><span>{finished ? 'Chapter complete' : 'Finish the remaining story letters'}</span></div>}</div><div className="career-wallet"><Coins size={20} /><strong>{coinBalance(state)}</strong><span>{saveStatus === 'practice' ? 'practice coins' : 'coins'}</span></div><button className="career-shop-button" onClick={() => setOverlay({ type: 'shop' })} disabled={replay}><ShoppingBag size={17} /><span>Upgrades</span>{level.level === 1 && <small>Level 2</small>}</button></section>
+    <div className="career-workspace" data-order-count={state.orders.length}><section className="career-studio" aria-labelledby="career-board-title"><div className="career-section-heading"><h2 id="career-board-title">Your paper table</h2><span>{emptyCount} free {emptyCount === 1 ? 'space' : 'spaces'}</span></div>
+      <div className="career-board" role="group" aria-label="Five by five merge board. Arrow keys move focus. Enter or Space selects a piece or its matching destination.">{state.board.map((tile, index) => { const piece = CATALOG.pieceOf(tile?.pieceId), matching = selectedTile && index !== selected && tile?.pieceId === selectedTile.pieceId && CATALOG.nextPiece(tile.pieceId); return <button ref={el => { cells.current[index] = el; }} key={index} className={`career-cell ${piece ? 'has-piece' : ''} ${selected === index ? 'is-selected' : ''} ${matching ? 'is-compatible' : ''} ${hint.includes(index) ? 'is-hint' : ''}`} data-career-cell={index} data-piece-id={tile?.pieceId ?? ''} aria-label={piece ? `${piece.name}, ${piece.familyId}, level ${piece.tier}. Row ${Math.floor(index / 5) + 1}, column ${index % 5 + 1}` : `Empty space, row ${Math.floor(index / 5) + 1}, column ${index % 5 + 1}`} aria-pressed={selected === index} tabIndex={focusIndex === index ? 0 : -1} onFocus={() => setFocusIndex(index)} onKeyDown={e => boardKey(e, index)} onClick={() => clickCell(index)} disabled={busy} draggable={!!tile && !busy} onDragStart={e => { drag.current = { from: index, tileId: tile.id, revision: state.revision }; e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', 'moticos-piece'); }} onDragEnd={() => { drag.current = null; }} onDragOver={e => { if (drag.current !== null) e.preventDefault(); }} onDrop={e => dropOn(e, index)}>{piece ? <><Artwork pieceId={piece.id} cropped /><span className="career-cell-label">{piece.shortName}</span><span className="career-tier" aria-hidden="true">{piece.tier}</span></> : <span className="career-empty-dot" aria-hidden="true">·</span>}</button>; })}</div>
+      <div className="career-producers" aria-label="Free renewable supplies">{FAMILIES.map(family => { const output = nextOutput(state, family.id), source = state.sources[family.id]; return <div className={`career-producer ${family.id}`} key={family.id}><button className="career-supply" disabled={busy} onClick={() => supply(family.id)} aria-label={`Add free ${family.shortName} supply: next ${output.name}, level ${output.tier}`}><span className="career-source-art"><Artwork pieceId={output.id} /></span><span><strong>{family.shortName} {source.sorter ? 'sorter I' : 'supply'}</strong><small>Next: level {output.tier} · free</small>{source.sorter ? <span className="career-cycle" aria-label={`Repeating levels 1, 1, 2. Next is step ${source.cursor + 1}`}>{[1, 1, 2].map((tier, i) => <i key={i} className={i === source.cursor ? 'is-next' : ''}>{tier}</i>)}</span> : <span className="career-source-note">Always available</span>}</span><span className="career-plus" aria-hidden="true">+</span></button>{source.sorter > 0 && <button className="career-basic-supply" disabled={busy} onClick={() => supply(family.id, true)}>Need level 1? Add free scrap</button>}</div>; })}</div>
+      <nav className="career-tools" aria-label="Board tools"><button disabled={busy || !state.history.length} onClick={() => perform({ type: 'undo' }, 'Undone. Source, pieces and material restored. Discoveries stay collected.')}><Undo2 size={17} />Undo</button><button disabled={busy || !selectedPiece || selectedPiece.tier === 1} onClick={() => perform({ type: 'cut', at: selected, tileId: selectedTile.id }, 'Cut into two matching pieces. No material or rewards lost.')}><Scissors size={17} />Cut</button><button disabled={busy || !selectedPiece} onClick={recycle}><Trash2 size={17} />Recycle</button><button disabled={busy} onClick={showHint}><Lightbulb size={17} />Hint</button>{selectedPiece && <button className="career-inspect" onClick={() => setOverlay({ type: 'postcard', pieceId: selectedPiece.id })}>View art</button>}</nav>
+    </section><aside className="career-orders" aria-labelledby="career-orders-title"><div className="career-section-heading"><h2 id="career-orders-title">On the desk</h2><span>{state.orders.length}/{replay ? 1 : orderCapacity(state)} {state.orders.length === 1 ? 'request' : 'requests'}</span></div>
+      <p className="career-desk-note">Make the pictured pieces. Send a letter. Keep the art.</p>
+      <div className="career-order-list">{state.orders.map(order => <OrderCard key={order.id} order={order} state={state} busy={busy} complete={complete} />)}</div>
+      {!state.orders.length && <p className="career-empty-orders">{replay ? 'Practice letter complete. Return to your career whenever you’re ready.' : 'No distinct eligible request is available for this slot yet.'}</p>}
+      {!replay && level.level === 1 && <div className="career-next-step"><span className="career-eyebrow">YOUR NEXT CHAPTER STEP</span><p>Reach <b>80 XP</b> to choose between two letters and open the sorter shop.</p></div>}
+      {!replay && level.level === 2 && !state.upgrades['bird-sorter'] && !state.upgrades['fern-sorter'] && <button className="career-upgrade-nudge" onClick={() => setOverlay({ type: 'shop' })}><ShoppingBag size={20} /><span><strong>{coinBalance(state) >= 50 ? 'Your first sorter is within reach' : 'Save 50 coins for a sorter'}</strong><small>A level-2 piece every third draw.</small></span><ArrowRight size={16} /></button>}
+      {lastDelivery && <div className="career-postmark" key={celebration ?? 'resume'}><span>✓ {replay ? 'PRACTICED' : saveStatus === 'saved' ? 'SENT & SAVED' : 'PRACTICE ONLY'}</span><p>{lastDeliveryLetter?.title ?? 'Another paper hello'}</p><small>{lastDelivery.xp} XP · {lastDelivery.coins} coins{saveStatus === 'practice' ? ' · temporary' : ''}</small>{lastDeliveryLetter && <button className="career-receipt-postcard" onClick={() => setOverlay({ type: 'postcard', pieceId: lastDeliveryLetter.requirements[0].pieceId })}>View postcard</button>}</div>}
+      {!replay && <button className="career-correspondence-link" onClick={() => setOverlay({ type: 'letters' })}><Mail size={17} />{state.milestones.length}/9 letters sent <ArrowRight size={14} /></button>}
+    </aside></div>
+    <div className="career-status" role="status" aria-live="polite"><span className={`career-status-dot ${saveStatus === 'practice' ? 'is-warning' : ''}`} />{notice}</div>
+    {finished && <section className="career-finished"><div className="career-finish-stamp">GARDEN<br />COMPLETE</div><div><span className="career-eyebrow">ALL NINE LETTERS SENT</span><h2>A whole garden, sent into the world.</h2><p>This first chapter is complete. Keep your collection, replay a letter, or make optional coin orders.</p><button onClick={() => setOverlay({ type: 'letters' })}>Open your correspondence</button></div></section>}
+    <footer className="career-footer"><span>Inspired by the playful correspondence of mail art.</span><span>{replay ? 'Isolated practice' : saveStatus === 'saved' ? 'Saved on this browser' : 'Temporary session'} · No timers. No energy.</span></footer>
+    {overlay && <Dialog title={overlay.type === 'shop' ? 'A useful little upgrade' : overlay.type === 'collection' ? 'Your collected garden' : overlay.type === 'letters' ? 'Your correspondence' : overlay.type === 'recycle' ? 'Recycle this picture?' : overlay.type === 'postcard' ? CATALOG.pieceOf(overlay.pieceId).name : 'A few ways to play'} close={() => setOverlay(null)}>
+      {overlay.type === 'help' && <div className="career-help"><button className="career-text-size" aria-pressed={state.largeText} disabled={busy} onClick={() => perform({ type: 'large-text', enabled: !state.largeText }, state.largeText ? 'Standard text size.' : 'Larger text is on. The page can scroll so nothing is clipped.')}>{state.largeText ? 'Use standard text' : 'Use larger text'}</button><p>Make collages for the requests on your desk. Two identical pictures become the next picture in that family.</p><ol><li>Tap a piece, then its matching piece. You can also drag with a mouse.</li><li>Use the free Bird and Fern supplies whenever you need material. Select an empty space first to put it there.</li><li>When a request is ready, Send consumes those pieces and awards its displayed XP and coins together. Its art remains collected.</li><li>Spend coins on useful sorters or a third order. Supply itself is always free.</li></ol><p>Cut turns a picture into two of its previous level and needs one empty space. Recycle frees any space and pays nothing. Undo reverses either, and also restores a supply’s cursor. Sending a letter or buying an upgrade clears Undo.</p><p>Keyboard: use arrow keys on the board, Enter or Space to select and merge, and Escape to clear selection. Reduced motion follows your device setting. Sound starts off.</p><p>Career progress is local to this browser. No in-game letter sends a real message.</p></div>}
+      {overlay.type === 'shop' && <><p className="career-shop-intro">Choose a family to specialize in, or save for more choice on your desk. Every order is possible with free supplies.</p><div className="career-shop-balance"><Coins size={20} />{coinBalance(state)} {saveStatus === 'practice' ? 'temporary practice coins' : 'coins to spend'}</div><div className="career-upgrades">{UPGRADES.map(u => { const owned = state.upgrades[u.id], locked = level.level < u.level, short = coinBalance(state) < u.price; return <article key={u.id}><span className="career-upgrade-symbol">{u.familyId ? <Artwork pieceId={FAMILIES.find(f => f.id === u.familyId).pieceIds[1]} /> : <Mail size={38} />}</span><div><h3>{u.name}</h3><p>{u.description}</p><small>{u.familyId ? 'Free level-1 scraps remain available. Existing pieces stay as they are.' : 'Starts with a Bird level 2 + Fern level 2 request.'}</small></div><button disabled={busy || owned || locked || short} onClick={() => perform({ type: 'purchase', upgradeId: u.id, expectedLevel: 0 })}>{owned ? 'Owned ✓' : locked ? `At level ${u.level}` : `Buy · ${u.price} coins`}</button>{!owned && !locked && short && <small className="career-price-gap">{u.price - coinBalance(state)} more coins to go</small>}</article>; })}</div><p className="career-dialog-footnote">Purchases are final for this career and begin a new Undo history.</p></>}
+      {overlay.type === 'collection' && <><p>Every discovery stays here after you Send, Cut, Recycle or Undo. Select a picture to open its postcard.</p><div className="career-collection-grid">{CATALOG.PIECES.map(p => { const found = state.discoveries.includes(p.id); return <button key={p.id} disabled={!found} onClick={() => setOverlay({ type: 'postcard', pieceId: p.id })}>{found ? <Artwork pieceId={p.id} /> : <span className="career-undiscovered">?</span>}<strong>{found ? p.name : `${p.familyId === 'bird' ? 'Bird' : 'Fern'} · level ${p.tier}`}</strong><small>{found ? `Level ${p.tier} · collected` : 'Waiting to be found'}</small></button>; })}</div></>}
+      {overlay.type === 'postcard' && <Postcard key={overlay.pieceId} pieceId={overlay.pieceId} />}
+      {overlay.type === 'recycle' && <div className="career-recycle-confirm"><Artwork pieceId={overlay.pieceId} /><p>Recycle <b>{CATALOG.pieceOf(overlay.pieceId).name}</b> to free its space? You’ll earn no XP or coins. Its art stays collected, and you can Undo until your next delivery or purchase.</p><div className="career-dialog-actions"><button onClick={() => setOverlay(null)}>Keep picture</button><button className="career-danger" onClick={() => { perform({ type: 'recycle', at: overlay.at, tileId: overlay.tileId, confirmed: true }, 'Picture recycled. Its art stays collected. Undo is available.'); setOverlay(null); }}>Recycle picture</button></div></div>}
+      {overlay.type === 'letters' && <><p>{finished ? 'The first correspondence is complete. Thank you for making a garden.' : 'Nine small letters make this first chapter. Finish them at your own pace.'}</p><div className="career-letter-list">{STORY_ORDERS.map((letter, index) => { const sent = state.milestones.includes(letter.id); return <article key={letter.id}><span className={sent ? 'is-sent' : ''}>{String(index + 1).padStart(2, '0')}</span><div><h3>{letter.title}</h3><p>{sent ? letter.letter : state.orders.some(o => o.storyLetterId === letter.id) ? 'On your desk now.' : 'A letter still to come.'}</p></div>{sent && <button onClick={() => { setOverlay(null); setPractice({ ...createReplay(letter.id), sound: state.sound, largeText: state.largeText }); }}>Practice<small>0 XP · 0 coins</small></button>}</article>; })}</div><div className="career-next-chapter"><span className="career-eyebrow">NEXT CHAPTER PREVIEW</span><h3>{CHAPTER.nextTitle}</h3><p>{CHAPTER.nextPreview}</p></div></>}
+    </Dialog>}
+  </main>;
+}
+export default function CareerGarden() {
+  const [session] = useState(() => createCareerSession()), [initial, setInitial] = useState(null);
+  useEffect(() => { let mounted = true; session.open().then(result => { if (mounted) setInitial(result); }); return () => { mounted = false; }; }, [session]);
+  return initial ? <CareerGame session={session} initial={initial} /> : <main className="career-opening" role="status">Opening your paper garden…</main>;
+}

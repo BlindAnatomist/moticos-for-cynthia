@@ -1,0 +1,108 @@
+{
+  "name": "Verify Moticos career slice",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/career-20261007"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "concurrency": {
+    "group": "moticos-career-20261007",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "career": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/career-20261007' && github.event_name == 'push' && github.run_attempt == 1",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 20,
+      "steps": [
+        {
+          "name": "Start bounded job clock",
+          "run": "echo \"MOTICOS_JOB_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\""
+        },
+        {
+          "uses": "actions/checkout@v4",
+          "id": "checkout",
+          "timeout-minutes": 1,
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 1
+          }
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Restore locked dependencies",
+          "timeout-minutes": 2,
+          "run": "npm ci --no-audit --no-fund"
+        },
+        {
+          "name": "Prepare only Chromium and WebKit",
+          "timeout-minutes": 3,
+          "run": "./node_modules/.bin/playwright install --with-deps chromium webkit"
+        },
+        {
+          "name": "Check exact source and twelve cases; build once",
+          "id": "preflight",
+          "timeout-minutes": 2,
+          "run": "bash scripts/preflightCareer.sh 2>&1 | tee career-preflight.log"
+        },
+        {
+          "name": "Run eight Chromium career cases once",
+          "timeout-minutes": 9,
+          "env": {
+            "MOTICOS_CAREER_BROWSER_APPROVED": "1"
+          },
+          "run": "bash scripts/runCareerGroup.sh career-chromium"
+        },
+        {
+          "name": "Run four touch-WebKit career cases once",
+          "timeout-minutes": 5,
+          "env": {
+            "MOTICOS_CAREER_BROWSER_APPROVED": "1"
+          },
+          "run": "bash scripts/runCareerGroup.sh career-webkit-phone"
+        },
+        {
+          "name": "Preserve complete or explicitly incomplete evidence",
+          "id": "package",
+          "if": "always() && steps.checkout.outcome == 'success'",
+          "timeout-minutes": 1,
+          "run": "node scripts/packageCareerEvidence.mjs"
+        },
+        {
+          "name": "Upload bounded synthetic evidence",
+          "if": "always() && steps.package.outcome == 'success'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-career-browser-evidence",
+            "path": "career-results/",
+            "if-no-files-found": "error",
+            "compression-level": 6,
+            "retention-days": 1
+          }
+        },
+        {
+          "name": "Require a complete source-bound gate result",
+          "if": "always() && steps.package.outcome == 'success'",
+          "run": "node --input-type=module -e \"import fs from 'node:fs';const m=JSON.parse(fs.readFileSync('career-results/evidence-manifest.json'));if(m.status!=='passed'||m.binding.status!=='verified')throw Error('Career gate incomplete; see preserved evidence');\""
+        }
+      ]
+    }
+  }
+}

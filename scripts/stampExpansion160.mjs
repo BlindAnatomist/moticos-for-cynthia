@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {currentBuildManifest} from './currentCandidate.mjs';
+const manifest=await currentBuildManifest();
+const file='dist-expansion160/index.html';let index=readFileSync(file,'utf8');
+assert(!index.includes('moticos-current-source'),'Refusing to stamp twice');
+assert.equal(index.split('</head>').length,2);
+index=index.replace('</head>',`<meta name="moticos-current-source" content="${manifest.sourceFingerprint}" />\n</head>`);
+writeFileSync(file,index);
+writeFileSync('dist-expansion160/expansion160-manifest.json',JSON.stringify(manifest,null,2)+'\n');
+console.log('Bound current build to this run and all 160 current source artwork identities.');

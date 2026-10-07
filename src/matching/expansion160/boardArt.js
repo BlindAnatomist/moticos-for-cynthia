@@ -1,0 +1,4 @@
+import { BOARD_ART_BOUNDS as PREVIOUS_BOUNDS, COMPACT_BOARD_LABELS as PREVIOUS_LABELS } from '../expansion/boardArt.js';
+import { EXPANSION160_BOUNDS, EXPANSION160_LABELS } from './bounds.js';
+export const BOARD_ART_BOUNDS = Object.freeze({ ...PREVIOUS_BOUNDS, ...EXPANSION160_BOUNDS });
+export const COMPACT_BOARD_LABELS = Object.freeze({ ...PREVIOUS_LABELS, ...EXPANSION160_LABELS });
