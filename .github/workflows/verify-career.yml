@@ -94,7 +94,8 @@
             "path": "career-results/",
             "if-no-files-found": "error",
             "compression-level": 6,
-            "retention-days": 1
+            "retention-days": 1,
+            "include-hidden-files": true
           }
         },
         {

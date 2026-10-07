@@ -5,50 +5,50 @@
   "application": [
     {
       "file": "career.html",
-      "sha256": "120524e6acf047d8528458a0749b299a5f3fd830c8dfe08673d4d8f105a2ad57",
-      "bytes": 354
+      "bytes": 354,
+      "sha256": "120524e6acf047d8528458a0749b299a5f3fd830c8dfe08673d4d8f105a2ad57"
     },
     {
       "file": "career.vite.config.js",
-      "sha256": "77560a321d4afd4d6b704f10cfdd681af7ef57cc26fe0f9f3cc302a26a075731",
-      "bytes": 292
+      "bytes": 292,
+      "sha256": "77560a321d4afd4d6b704f10cfdd681af7ef57cc26fe0f9f3cc302a26a075731"
     },
     {
       "file": "src/career/CareerGarden.jsx",
-      "sha256": "c3f6050675a5dd9a67ad393ddc77f6b9b719654927e9bfa3c69c0d958a8e44fd",
-      "bytes": 28251
+      "bytes": 37239,
+      "sha256": "0605a9dc56670e47d142e2675121138177ece61b96b90b746cb9e5a65a6fc1f9"
     },
     {
       "file": "src/career/career.css",
-      "sha256": "94749e165bab4821426ec02b6a85bce6bc133db15ff76f1b32b71db407a3193a",
-      "bytes": 30532
+      "bytes": 40903,
+      "sha256": "6a6c02557fa7be560cd522e8465f58f0e2efbe67e8a68655978bfd2ee1e914c7"
     },
     {
       "file": "src/career/content.js",
-      "sha256": "15a1bdd896094c42bc423a88aa18d1266a26e194e33d8e6eb2a1ed7dfefa3070",
-      "bytes": 4844
+      "bytes": 4844,
+      "sha256": "15a1bdd896094c42bc423a88aa18d1266a26e194e33d8e6eb2a1ed7dfefa3070"
     },
     {
       "file": "src/career/engine.js",
-      "sha256": "62e3d09e7770dd0760d3bdf1857a479bd71e268e56928951d288314a6f1b19c3",
-      "bytes": 19575
+      "bytes": 19575,
+      "sha256": "62e3d09e7770dd0760d3bdf1857a479bd71e268e56928951d288314a6f1b19c3"
     },
     {
       "file": "src/career/main.jsx",
-      "sha256": "c5d37ca1264c4bd39e25715b64b717dcfa81d029ae06c7145e9bd892da9bba53",
-      "bytes": 225
+      "bytes": 225,
+      "sha256": "c5d37ca1264c4bd39e25715b64b717dcfa81d029ae06c7145e9bd892da9bba53"
     },
     {
       "file": "src/career/session.js",
-      "sha256": "9caedc73a2b423dbebc4e20d083dc47044f5e79c0cb114cc8d098b440dd3e1a1",
-      "bytes": 5081
+      "bytes": 5081,
+      "sha256": "9caedc73a2b423dbebc4e20d083dc47044f5e79c0cb114cc8d098b440dd3e1a1"
     }
   ],
   "files": [
     {
       "file": ".github/workflows/verify-career.yml",
-      "bytes": 3445,
-      "sha256": "dc7416ecb2dc0b26fbde0d6ae85315f834c6878b4f8a34a0070b658983d7bbb7"
+      "bytes": 3487,
+      "sha256": "c77ecc1fcf8f8e623f8444870da08a77da942cd6cbba7c898a6c7b013b341e61"
     },
     {
       "file": ".github/workflows/verify-expansion-160.yml",
@@ -317,8 +317,13 @@
     },
     {
       "file": "scripts/careerGateScope.mjs",
-      "bytes": 2250,
-      "sha256": "b210fa84edce066e5f82838844531bcfd488d5b28d1498aea3c463efabf6c7ef"
+      "bytes": 2257,
+      "sha256": "a5aa9002c4082b744189636c6f2e4ca6a9103de773a8dd096f8f282f34c41b2d"
+    },
+    {
+      "file": "scripts/careerLayoutContract.mjs",
+      "bytes": 2553,
+      "sha256": "3a08319d3e45ab37c54ab4e7c4e6457f0d51a12ab899d9828f3ad0cddd2600d7"
     },
     {
       "file": "scripts/checkWorkerReload.mjs",
@@ -387,8 +392,8 @@
     },
     {
       "file": "scripts/packageCareerEvidence.mjs",
-      "bytes": 4337,
-      "sha256": "9737c7c1f1bd707e6d61df870687cdca6002d273420ef9c12333ad78bce57f3d"
+      "bytes": 4457,
+      "sha256": "e74474da3d240fc99f6b6392179b0eac9fd38fa27ea60346e480c8140d9f3734"
     },
     {
       "file": "scripts/packageExpansion160Preflight.sh",
@@ -547,13 +552,13 @@
     },
     {
       "file": "src/career/CareerGarden.jsx",
-      "bytes": 28251,
-      "sha256": "c3f6050675a5dd9a67ad393ddc77f6b9b719654927e9bfa3c69c0d958a8e44fd"
+      "bytes": 37239,
+      "sha256": "0605a9dc56670e47d142e2675121138177ece61b96b90b746cb9e5a65a6fc1f9"
     },
     {
       "file": "src/career/career.css",
-      "bytes": 30532,
-      "sha256": "94749e165bab4821426ec02b6a85bce6bc133db15ff76f1b32b71db407a3193a"
+      "bytes": 40903,
+      "sha256": "6a6c02557fa7be560cd522e8465f58f0e2efbe67e8a68655978bfd2ee1e914c7"
     },
     {
       "file": "src/career/content.js",
@@ -1662,8 +1667,8 @@
     },
     {
       "file": "tests/career-browser/chromium.spec.js",
-      "bytes": 15082,
-      "sha256": "80ec4d6a0b51debe5424560599f7a5b685dfb20c842d9c329bd7415bfd41eca0"
+      "bytes": 15102,
+      "sha256": "24fdabb9089ccb2de67f8dd60a884cf0567d439429882e59f48af35657adee1d"
     },
     {
       "file": "tests/career-browser/fixtures.mjs",
@@ -1672,13 +1677,13 @@
     },
     {
       "file": "tests/career-browser/helpers.mjs",
-      "bytes": 14708,
-      "sha256": "436139584647a1202bb8f7a173909974c213b41c6873cd83c7c8f09226570275"
+      "bytes": 17264,
+      "sha256": "07d52b7870e3d967266c9ba3121a67c4409a3641c20988cea3779a55273358c2"
     },
     {
       "file": "tests/career-browser/phone.spec.js",
-      "bytes": 4444,
-      "sha256": "c64492817953b505453917957af60e8606edd09956880344e6f7d0d813bf0bd1"
+      "bytes": 7411,
+      "sha256": "65e31ee20686ffc90926430383dbbc19708d3ce56d31a0f28e1b7bbf70a67ca4"
     },
     {
       "file": "tests/career/expected-contract.mjs",
@@ -1687,8 +1692,8 @@
     },
     {
       "file": "tests/career/gate-contract.test.mjs",
-      "bytes": 7158,
-      "sha256": "f9c6d98c9d09e911f2a814c97344451fd1e0828ddddf882e3bb29f580bc682fd"
+      "bytes": 9555,
+      "sha256": "56d628779f44f9ff62b43f04e6412b8c8ddbd6d2d8ae410f0e191726abd48eb3"
     },
     {
       "file": "tests/career/state-contract.test.mjs",

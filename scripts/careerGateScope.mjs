@@ -12,7 +12,7 @@ export const CASES = Object.freeze({
  'career-webkit-phone': Object.freeze([
   ['P01','complete the first request with touch and resume',60000],
   ['P02','target sorter supply with touch and survive interruption',60000],
-  ['P03','fit three narrow viewports with usable touch targets',75000],
+  ['P03','keep all core play visible in four standard phone viewports',75000],
   ['P04','keep larger text and modal return usable on a phone',60000],
  ]),
 });
