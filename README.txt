@@ -67,3 +67,18 @@ exact hidden recorder directory are excluded from upload. Their hashes, sizes
 and omission reasons are retained; raw files remain untouched. Canonical final
 trace.zip, screenshots, error context, raw results, progress and runner metadata
 remain eligible. This does not alter the60MiB cap or make an incomplete run pass.
+
+Repair-v4 candidate (pending independent review)
+Responsive classification waits for exactly one rendered mobile HUD or desktop
+progress surface after reload, using the existing action timeout. It does not
+infer desktop from a mobile control that has not appeared yet.
+The evidence policy additionally excludes only direct, 32-lowercase-hex GUID
+PNG files in campaign-{chromium,webkit-phone}/raw/.playwright-artifacts-N/ when
+both readable raw reports contain no attachment with that basename.
+Missing/malformed reports, referenced images and unknown paths remain eligible.
+Content duplication is not an exclusion criterion. The same eligibility function
+is used for byte sizing, full verification and upload copying; every exclusion
+records the original path, byte size, SHA-256 and reason in the omission ledger.
+Canonical failure PNG and final trace attachments must be present for an observed
+failure. All original bytes and existing caps are retained. Diagnostic fallback
+remains incomplete. No final source seal or browser acceptance is asserted here.

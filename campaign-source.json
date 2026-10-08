@@ -9,7 +9,7 @@
     "independent-quality",
     "independent-release-application-unchanged"
   ],
-  "repairOf": "45252ea9352ca9d471e6f9c49e9a5d79583135964d388449efcfac781c8ba06c",
+  "repairOf": "002ac9a73be1b15717ed0e5b2188f1b7b83a9aec147bc0ab6b3426d354482ee6",
   "files": [
     {
       "file": "application-provisional.json",
@@ -33,8 +33,8 @@
     },
     {
       "file": "gate/evidence-policy.mjs",
-      "bytes": 517,
-      "sha256": "b11d18dedd2bff6a1d6e8b9df1030eeff6e90ad37b80c0d081ab94622b9e7171"
+      "bytes": 3596,
+      "sha256": "4c8d78eeff0d51b6194bfd9db0ffb43683b8ae32e3f1250cb076e90fd785fbda"
     },
     {
       "file": "gate/invocation.mjs",
@@ -48,13 +48,13 @@
     },
     {
       "file": "gate/package-full.mjs",
-      "bytes": 6103,
-      "sha256": "5f3878b5a26eac120131085d219c6cface493a33e590332f944ee34754ea6ae4"
+      "bytes": 6220,
+      "sha256": "916366364ab2d377f3bed08d7be490b0582031dec85342c2e2e8eb3663b61050"
     },
     {
       "file": "gate/package.mjs",
-      "bytes": 11087,
-      "sha256": "f268ae0c751931f5f1ae5cf737afa78d8e9692192f00fea3b06843c2315a0a8b"
+      "bytes": 11360,
+      "sha256": "7f6145dd1101cdc404c03146875ade83ea63b87743de4c0ec3fec98fb4a8a202"
     },
     {
       "file": "gate/png.mjs",
@@ -75,6 +75,11 @@
       "file": "gate/reporter.mjs",
       "bytes": 570,
       "sha256": "00dfba217c2ae92a4b38387d4a7bc58abc136d36c9d248c1b4ebfbc12a913b8d"
+    },
+    {
+      "file": "gate/responsive-surface.mjs",
+      "bytes": 397,
+      "sha256": "1c0fc7ef58323dadfe6308a8944649a0fbf8d7e3e7693846f8eda5cb932e5b63"
     },
     {
       "file": "gate/results.mjs",
@@ -348,8 +353,8 @@
     },
     {
       "file": "README.txt",
-      "bytes": 4619,
-      "sha256": "a2b5bdaf453d34c24ee8dfb387bf979c21071cb5975fdf7993cea8e62e1cd6e0"
+      "bytes": 5678,
+      "sha256": "d4a66476c37cc1951fdc0061d55d69758c9df5a2872fc3319abb07732c30ee14"
     },
     {
       "file": "src/audioProfile.js",
@@ -1408,8 +1413,8 @@
     },
     {
       "file": "tests/campaign-browser/helpers.mjs",
-      "bytes": 20467,
-      "sha256": "ed767a790a0763899ddbafd18cf3cb7f8501fe7d2c3e700d74691fe1122d393e"
+      "bytes": 20507,
+      "sha256": "33e9e69d7ffcf2873aa4aafaee64c4ff5670f836a3ab6e86e497e128efc9ab1d"
     },
     {
       "file": "tests/campaign-browser/phone.spec.mjs",
@@ -1445,6 +1450,16 @@
       "file": "tests/campaign-contract/modal-evidence.test.mjs",
       "bytes": 7650,
       "sha256": "becedb4b28674313ef6622f4b006ea9a5854460a9c6f64c6ad659134daffd614"
+    },
+    {
+      "file": "tests/campaign-contract/recorder-png.test.mjs",
+      "bytes": 7199,
+      "sha256": "3aa7872a1ee2c3c475bdc315c04a120fa4fae8e5411ebc886eeb5451ba407499"
+    },
+    {
+      "file": "tests/campaign-contract/repair-readiness.test.mjs",
+      "bytes": 1215,
+      "sha256": "f3f0ec4b8d0fe86731f00e1c7856e5d6cb65c66f1040834532382082074fb455"
     }
   ]
 }

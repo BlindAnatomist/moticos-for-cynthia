@@ -6,7 +6,7 @@ import {inspectFullEvidence} from './package-full.mjs';
 import {verifyBuild} from './binding.mjs';
 import {flatten} from './results.mjs';
 import {verifyPng} from './png.mjs';
-import {isWorkingTrace} from './evidence-policy.mjs';
+import {isWorkingTrace,evidenceEligibility,readEvidenceReports} from './evidence-policy.mjs';
 import {MAX_ARTIFACT_BYTES,CASES} from './scope.mjs';
 export {verifyCaps,validateOriginalPng,verifyRequiredEvidence} from './package-full.mjs';
 export const DIAGNOSTIC_CAP=2*1024*1024;
@@ -47,16 +47,17 @@ export function stageDiagnostic({inputRoot='campaign-results',outputRoot='campai
 }
 export function packageEvidence(){
  mkdirSync('campaign-results',{recursive:true});for(const name of['campaign-source.json','campaign-build.json'])if(existsSync(name))copyFileSync(name,`campaign-results/${name}`);
- let rows=scanSizes('campaign-results'),measured=rows.reduce((n,r)=>n+r.bytes,0),working=rows.filter(row=>isWorkingTrace(row.file));
+ const reports=readEvidenceReports(),include=evidenceEligibility(reports);
+ let rows=scanSizes('campaign-results'),measured=rows.reduce((n,r)=>n+r.bytes,0),working=rows.filter(row=>!include(row.file));
  let manifest,reason,binding;try{binding={status:'verified',sourceFingerprint:verifyBuild(true).sourceFingerprint};}catch(error){binding={status:'failed',error:error.message.slice(0,4096)};}
- const omissions={kind:'unfinalized-playwright-working-traces',reason:'Canonical case trace.zip, raw results, progress, original images and runner metadata remain eligible; only exact known recorder working-file paths are excluded.',sourceFingerprint:binding.sourceFingerprint??null,files:working.map(row=>({...row,sha256:hashFile(join('campaign-results',row.file))})),bytes:working.reduce((n,row)=>n+row.bytes,0),originalsModified:false};
+ const omissions={kind:'unfinalized-playwright-recorder-files',reason:'Canonical case trace.zip, raw results, progress, original images and runner metadata remain eligible; only exact known recorder working-file paths are excluded.',sourceFingerprint:binding.sourceFingerprint??null,files:working.map(row=>({...row,sha256:hashFile(join('campaign-results',row.file)),reason:isWorkingTrace(row.file)?'unfinalized recorder trace/network working file':'unreferenced canonical GUID recorder PNG; raw result attachments cross-checked'})),bytes:working.reduce((n,row)=>n+row.bytes,0),originalsModified:false};
  if(working.length)writeFileSync('campaign-results/working-trace-omissions.json',JSON.stringify(omissions,null,2)+'\n');
- rows=scanSizes('campaign-results');const eligible=rows.filter(row=>!isWorkingTrace(row.file)),eligibleBytes=eligible.reduce((n,row)=>n+row.bytes,0);
+ rows=scanSizes('campaign-results');const eligible=rows.filter(row=>include(row.file)),eligibleBytes=eligible.reduce((n,row)=>n+row.bytes,0);
  console.log(JSON.stringify({event:'evidence-size-precheck',bytes:measured,eligibleBytes,workingTraceBytes:omissions.bytes,cap:MAX_ARTIFACT_BYTES,largestFiles:rows.slice().sort((a,b)=>b.bytes-a.bytes).slice(0,12)}));
  if(eligibleBytes+MANIFEST_RESERVE>MAX_ARTIFACT_BYTES)reason=`Eligible full evidence is ${eligibleBytes} bytes before final manifest; capped diagnostic fallback selected`;
- else try{manifest=inspectFullEvidence();}catch(error){reason=`Full evidence verification failed: ${error.message}`;}
+ else try{manifest=inspectFullEvidence({reports,include});}catch(error){reason=`Full evidence verification failed: ${error.message}`;}
  if(reason){manifest=stageDiagnostic({reason,rows,binding});}
- else{mkdirSync('campaign-upload',{recursive:true});assert.equal(scanSizes('campaign-upload').length,0);for(const row of scanSizes('campaign-results').filter(row=>!isWorkingTrace(row.file))){const dest=join('campaign-upload',row.file);mkdirSync(dirname(dest),{recursive:true});copyFileSync(join('campaign-results',row.file),dest);}assert(scanSizes('campaign-upload').reduce((n,r)=>n+r.bytes,0)<=MAX_ARTIFACT_BYTES);}
+ else{mkdirSync('campaign-upload',{recursive:true});assert.equal(scanSizes('campaign-upload').length,0);for(const row of scanSizes('campaign-results').filter(row=>include(row.file))){const dest=join('campaign-upload',row.file);mkdirSync(dirname(dest),{recursive:true});copyFileSync(join('campaign-results',row.file),dest);}assert(scanSizes('campaign-upload').reduce((n,r)=>n+r.bytes,0)<=MAX_ARTIFACT_BYTES);}
  console.log(JSON.stringify({event:'evidence-ready',status:manifest.status,kind:manifest.kind??'full',files:scanSizes('campaign-upload').length,bytes:scanSizes('campaign-upload').reduce((n,r)=>n+r.bytes,0)}));return manifest;
 }
 if(process.argv[1]&&resolve(process.argv[1])===resolve('gate/package.mjs'))packageEvidence();
