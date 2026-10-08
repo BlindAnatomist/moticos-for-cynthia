@@ -1,0 +1,2559 @@
+{
+  "method": "Actual basic-supply reducer route, no purchases/repeats; retained stock used when present.",
+  "state": {
+    "schemaVersion": 4,
+    "rulesVersion": 2,
+    "contentVersion": 4,
+    "mode": "career",
+    "careerId": "full-authored-false",
+    "chapterId": "sound-advice",
+    "enteredChapters": [
+      "garden-correspondence",
+      "moonlit-correspondence",
+      "riverside-correspondence",
+      "lantern-correspondence",
+      "wrong-address",
+      "quiet-company",
+      "namesakes",
+      "useful-gaps",
+      "small-talk",
+      "hello-again",
+      "off-beat",
+      "return-mail",
+      "fair-weather",
+      "double-meaning",
+      "fine-print",
+      "sound-advice"
+    ],
+    "chapterEntryVersions": {
+      "garden-correspondence": 4,
+      "moonlit-correspondence": 4,
+      "riverside-correspondence": 4,
+      "lantern-correspondence": 4,
+      "wrong-address": 4,
+      "quiet-company": 4,
+      "namesakes": 4,
+      "useful-gaps": 4,
+      "small-talk": 4,
+      "hello-again": 4,
+      "off-beat": 4,
+      "return-mail": 4,
+      "fair-weather": 4,
+      "double-meaning": 4,
+      "fine-print": 4,
+      "sound-advice": 4
+    },
+    "unlockedSources": [
+      "bird",
+      "fern",
+      "key",
+      "moon",
+      "map",
+      "teacup",
+      "lantern",
+      "spool",
+      "wing",
+      "shoe",
+      "chair",
+      "cup",
+      "pear",
+      "fish",
+      "scissors",
+      "button",
+      "hand",
+      "profile",
+      "telephone",
+      "hat",
+      "comb",
+      "watch",
+      "letter",
+      "shell",
+      "umbrella",
+      "anchor",
+      "bee",
+      "domino",
+      "book",
+      "matchbook",
+      "handbell",
+      "typewriter"
+    ],
+    "activeSourceIds": [
+      "handbell",
+      "typewriter"
+    ],
+    "focusedOrderId": "full-authored-false:order:114",
+    "revision": 1927,
+    "nextTileSeq": 1695,
+    "nextOrderSeq": 116,
+    "board": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "sources": {
+      "bird": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "fern": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "key": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "moon": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "map": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "teacup": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "lantern": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "spool": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "wing": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "shoe": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "chair": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "cup": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "pear": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "fish": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "scissors": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "button": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "hand": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "profile": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "telephone": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "hat": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "comb": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "watch": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "letter": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "shell": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "umbrella": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "anchor": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "bee": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "domino": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "book": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "matchbook": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "handbell": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "typewriter": {
+        "sorter": 0,
+        "cursor": 0
+      }
+    },
+    "upgrades": {
+      "bird-sorter": 0,
+      "fern-sorter": 0,
+      "order-desk": 0,
+      "key-sorter": 0,
+      "moon-sorter": 0,
+      "map-sorter": 0,
+      "teacup-sorter": 0,
+      "lantern-sorter": 0,
+      "spool-sorter": 0,
+      "wing-sorter": 0,
+      "shoe-sorter": 0,
+      "chair-sorter": 0,
+      "cup-sorter": 0,
+      "pear-sorter": 0,
+      "fish-sorter": 0,
+      "scissors-sorter": 0,
+      "button-sorter": 0,
+      "hand-sorter": 0,
+      "profile-sorter": 0,
+      "telephone-sorter": 0,
+      "hat-sorter": 0,
+      "comb-sorter": 0,
+      "watch-sorter": 0,
+      "letter-sorter": 0,
+      "shell-sorter": 0,
+      "umbrella-sorter": 0,
+      "anchor-sorter": 0,
+      "bee-sorter": 0,
+      "domino-sorter": 0,
+      "book-sorter": 0,
+      "matchbook-sorter": 0,
+      "handbell-sorter": 0,
+      "typewriter-sorter": 0
+    },
+    "purchases": {},
+    "orders": [
+      {
+        "id": "full-authored-false:order:114",
+        "slot": 0,
+        "templateId": "sound-advice-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:115",
+        "slot": 1,
+        "templateId": "sound-advice-repeat-2",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      }
+    ],
+    "heldOrders": [],
+    "suspendedStory": null,
+    "resumedOptionalId": null,
+    "xp": 6495,
+    "coinsEarned": 2745,
+    "coinsSpent": 0,
+    "milestones": [
+      "garden-letter-1",
+      "garden-letter-2",
+      "garden-letter-3",
+      "garden-letter-4",
+      "garden-letter-5",
+      "garden-letter-6",
+      "garden-letter-7",
+      "garden-letter-8",
+      "garden-letter-9",
+      "moon-letter-1",
+      "moon-letter-2",
+      "moon-letter-3",
+      "moon-letter-4",
+      "moon-letter-5",
+      "moon-letter-6",
+      "moon-letter-7",
+      "riverside-letter-1",
+      "riverside-letter-2",
+      "riverside-letter-3",
+      "riverside-letter-4",
+      "riverside-letter-5",
+      "riverside-letter-6",
+      "riverside-letter-7",
+      "lantern-letter-1",
+      "lantern-letter-2",
+      "lantern-letter-3",
+      "lantern-letter-4",
+      "lantern-letter-5",
+      "lantern-letter-6",
+      "lantern-letter-7",
+      "wrong-address-letter-1",
+      "wrong-address-letter-2",
+      "wrong-address-letter-3",
+      "wrong-address-letter-4",
+      "wrong-address-letter-5",
+      "wrong-address-letter-6",
+      "wrong-address-letter-7",
+      "quiet-company-letter-1",
+      "quiet-company-letter-2",
+      "quiet-company-letter-3",
+      "quiet-company-letter-4",
+      "quiet-company-letter-5",
+      "quiet-company-letter-6",
+      "namesakes-letter-1",
+      "namesakes-letter-2",
+      "namesakes-letter-3",
+      "namesakes-letter-4",
+      "namesakes-letter-5",
+      "namesakes-letter-6",
+      "namesakes-letter-7",
+      "useful-gaps-letter-1",
+      "useful-gaps-letter-2",
+      "useful-gaps-letter-3",
+      "useful-gaps-letter-4",
+      "useful-gaps-letter-5",
+      "useful-gaps-letter-6",
+      "useful-gaps-letter-7",
+      "small-talk-letter-1",
+      "small-talk-letter-2",
+      "small-talk-letter-3",
+      "small-talk-letter-4",
+      "small-talk-letter-5",
+      "small-talk-letter-6",
+      "hello-again-letter-1",
+      "hello-again-letter-2",
+      "hello-again-letter-3",
+      "hello-again-letter-4",
+      "hello-again-letter-5",
+      "hello-again-letter-6",
+      "hello-again-letter-7",
+      "off-beat-letter-1",
+      "off-beat-letter-2",
+      "off-beat-letter-3",
+      "off-beat-letter-4",
+      "off-beat-letter-5",
+      "off-beat-letter-6",
+      "off-beat-letter-7",
+      "return-mail-letter-1",
+      "return-mail-letter-2",
+      "return-mail-letter-3",
+      "return-mail-letter-4",
+      "return-mail-letter-5",
+      "return-mail-letter-6",
+      "return-mail-letter-7",
+      "return-mail-letter-8",
+      "fair-weather-letter-1",
+      "fair-weather-letter-2",
+      "fair-weather-letter-3",
+      "fair-weather-letter-4",
+      "fair-weather-letter-5",
+      "fair-weather-letter-6",
+      "fair-weather-letter-7",
+      "double-meaning-letter-1",
+      "double-meaning-letter-2",
+      "double-meaning-letter-3",
+      "double-meaning-letter-4",
+      "double-meaning-letter-5",
+      "double-meaning-letter-6",
+      "double-meaning-letter-7",
+      "fine-print-letter-1",
+      "fine-print-letter-2",
+      "fine-print-letter-3",
+      "fine-print-letter-4",
+      "fine-print-letter-5",
+      "fine-print-letter-6",
+      "sound-advice-letter-1",
+      "sound-advice-letter-2",
+      "sound-advice-letter-3",
+      "sound-advice-letter-4",
+      "sound-advice-letter-5",
+      "sound-advice-letter-6",
+      "sound-advice-letter-7",
+      "sound-advice-letter-8"
+    ],
+    "storyCompletions": {
+      "garden-letter-1": {
+        "contentVersion": 4
+      },
+      "garden-letter-2": {
+        "contentVersion": 4
+      },
+      "garden-letter-3": {
+        "contentVersion": 4
+      },
+      "garden-letter-4": {
+        "contentVersion": 4
+      },
+      "garden-letter-5": {
+        "contentVersion": 4
+      },
+      "garden-letter-6": {
+        "contentVersion": 4
+      },
+      "garden-letter-7": {
+        "contentVersion": 4
+      },
+      "garden-letter-8": {
+        "contentVersion": 4
+      },
+      "garden-letter-9": {
+        "contentVersion": 4
+      },
+      "moon-letter-1": {
+        "contentVersion": 4
+      },
+      "moon-letter-2": {
+        "contentVersion": 4
+      },
+      "moon-letter-3": {
+        "contentVersion": 4
+      },
+      "moon-letter-4": {
+        "contentVersion": 4
+      },
+      "moon-letter-5": {
+        "contentVersion": 4
+      },
+      "moon-letter-6": {
+        "contentVersion": 4
+      },
+      "moon-letter-7": {
+        "contentVersion": 4
+      },
+      "riverside-letter-1": {
+        "contentVersion": 4
+      },
+      "riverside-letter-2": {
+        "contentVersion": 4
+      },
+      "riverside-letter-3": {
+        "contentVersion": 4
+      },
+      "riverside-letter-4": {
+        "contentVersion": 4
+      },
+      "riverside-letter-5": {
+        "contentVersion": 4
+      },
+      "riverside-letter-6": {
+        "contentVersion": 4
+      },
+      "riverside-letter-7": {
+        "contentVersion": 4
+      },
+      "lantern-letter-1": {
+        "contentVersion": 4
+      },
+      "lantern-letter-2": {
+        "contentVersion": 4
+      },
+      "lantern-letter-3": {
+        "contentVersion": 4
+      },
+      "lantern-letter-4": {
+        "contentVersion": 4
+      },
+      "lantern-letter-5": {
+        "contentVersion": 4
+      },
+      "lantern-letter-6": {
+        "contentVersion": 4
+      },
+      "lantern-letter-7": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-1": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-2": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-3": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-4": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-5": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-6": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-7": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-1": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-2": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-3": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-4": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-5": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-1": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-2": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-3": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-4": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-5": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-7": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-1": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-2": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-3": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-4": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-5": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-6": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-7": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-1": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-2": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-3": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-4": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-5": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-1": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-2": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-3": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-4": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-5": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-7": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-1": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-2": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-3": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-4": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-5": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-6": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-1": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-2": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-3": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-4": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-5": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-6": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-8": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-1": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-2": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-3": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-4": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-5": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-6": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-7": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-1": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-2": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-3": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-4": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-5": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-6": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-7": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-1": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-2": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-3": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-4": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-5": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-1": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-2": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-3": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-4": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-5": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-7": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-8": {
+        "contentVersion": 4
+      }
+    },
+    "ordinaryCursor": 0,
+    "ordinaryChapterCursors": {
+      "garden-correspondence": 0,
+      "moonlit-correspondence": 0,
+      "riverside-correspondence": 0,
+      "lantern-correspondence": 0,
+      "wrong-address": 0,
+      "quiet-company": 0,
+      "namesakes": 0,
+      "useful-gaps": 0,
+      "small-talk": 0,
+      "hello-again": 0,
+      "off-beat": 0,
+      "return-mail": 0,
+      "fair-weather": 0,
+      "double-meaning": 0,
+      "fine-print": 0,
+      "sound-advice": 2
+    },
+    "discoveries": [
+      "b1",
+      "f1",
+      "b2",
+      "f2",
+      "b3",
+      "f3",
+      "b4",
+      "f4",
+      "b5",
+      "k1",
+      "k2",
+      "k3",
+      "m1",
+      "m2",
+      "k4",
+      "m3",
+      "m4",
+      "k5",
+      "r1",
+      "r2",
+      "r3",
+      "t1",
+      "t2",
+      "r4",
+      "t3",
+      "t4",
+      "r5",
+      "l1",
+      "l2",
+      "l3",
+      "l4",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "wr1",
+      "wr2",
+      "wr3",
+      "wa1",
+      "wa2",
+      "wr4",
+      "wa3",
+      "wa4",
+      "wr5",
+      "ec1",
+      "ec2",
+      "ec3",
+      "ce1",
+      "ce2",
+      "ce3",
+      "ce4",
+      "ec4",
+      "pp1",
+      "pp2",
+      "pp3",
+      "ss1",
+      "ss2",
+      "pp4",
+      "ss3",
+      "ss4",
+      "cj1",
+      "cj2",
+      "cj3",
+      "bh1",
+      "bh2",
+      "cj4",
+      "bh3",
+      "bh4",
+      "hs1",
+      "hs2",
+      "hs3",
+      "fv1",
+      "fv2",
+      "fv3",
+      "fv4",
+      "hs4",
+      "la1",
+      "la2",
+      "la3",
+      "ht1",
+      "ht2",
+      "la4",
+      "ht3",
+      "ht4",
+      "la5",
+      "ft1",
+      "ft2",
+      "ft3",
+      "ct1",
+      "ct2",
+      "ft4",
+      "ct3",
+      "ct4",
+      "rp1",
+      "rp2",
+      "rp3",
+      "sh1",
+      "sh2",
+      "sh3",
+      "rp4",
+      "sh4",
+      "sh5",
+      "rc1",
+      "rc2",
+      "rc3",
+      "hp1",
+      "hp2",
+      "rc4",
+      "rc5",
+      "hp3",
+      "hp4",
+      "bb1",
+      "bb2",
+      "bb3",
+      "ds1",
+      "ds2",
+      "bb4",
+      "ds3",
+      "ds4",
+      "ob1",
+      "ob2",
+      "ob3",
+      "sm1",
+      "sm2",
+      "ob4",
+      "sm3",
+      "sm4",
+      "bt1",
+      "bt2",
+      "bt3",
+      "tw1",
+      "tw2",
+      "bt4",
+      "tw3",
+      "tw4",
+      "tw5"
+    ],
+    "material": {
+      "bird": {
+        "initial": 4,
+        "generated": 50,
+        "delivered": 54,
+        "recycled": 0
+      },
+      "fern": {
+        "initial": 4,
+        "generated": 48,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "key": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "moon": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "map": {
+        "initial": 0,
+        "generated": 50,
+        "delivered": 50,
+        "recycled": 0
+      },
+      "teacup": {
+        "initial": 0,
+        "generated": 44,
+        "delivered": 44,
+        "recycled": 0
+      },
+      "lantern": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "spool": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "wing": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "shoe": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "chair": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "cup": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "pear": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "fish": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "scissors": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "button": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "hand": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "profile": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "telephone": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "hat": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "comb": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "watch": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "letter": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "shell": {
+        "initial": 0,
+        "generated": 38,
+        "delivered": 38,
+        "recycled": 0
+      },
+      "umbrella": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "anchor": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "bee": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "domino": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "book": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "matchbook": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "handbell": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "typewriter": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      }
+    },
+    "receipts": [
+      {
+        "id": "full-authored-false:order:74",
+        "type": "delivery",
+        "storyLetterId": "off-beat-letter-4",
+        "templateId": "off-beat-letter-4",
+        "xp": 60,
+        "coins": 25,
+        "contentVersion": 4,
+        "revision": 1248
+      },
+      {
+        "id": "full-authored-false:order:75",
+        "type": "delivery",
+        "storyLetterId": "off-beat-letter-5",
+        "templateId": "off-beat-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 4,
+        "revision": 1260
+      },
+      {
+        "id": "full-authored-false:order:76",
+        "type": "delivery",
+        "storyLetterId": "off-beat-letter-6",
+        "templateId": "off-beat-letter-6",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 4,
+        "revision": 1284
+      },
+      {
+        "id": "full-authored-false:order:77",
+        "type": "delivery",
+        "storyLetterId": "off-beat-letter-7",
+        "templateId": "off-beat-letter-7",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1300
+      },
+      {
+        "id": "full-authored-false:order:78",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-1",
+        "templateId": "return-mail-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 4,
+        "revision": 1309
+      },
+      {
+        "id": "full-authored-false:order:79",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-2",
+        "templateId": "return-mail-letter-2",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1325
+      },
+      {
+        "id": "full-authored-false:order:80",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-3",
+        "templateId": "return-mail-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 4,
+        "revision": 1337
+      },
+      {
+        "id": "full-authored-false:order:81",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-4",
+        "templateId": "return-mail-letter-4",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1353
+      },
+      {
+        "id": "full-authored-false:order:82",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-5",
+        "templateId": "return-mail-letter-5",
+        "xp": 120,
+        "coins": 50,
+        "contentVersion": 4,
+        "revision": 1385
+      },
+      {
+        "id": "full-authored-false:order:83",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-6",
+        "templateId": "return-mail-letter-6",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 4,
+        "revision": 1409
+      },
+      {
+        "id": "full-authored-false:order:84",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-7",
+        "templateId": "return-mail-letter-7",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1429
+      },
+      {
+        "id": "full-authored-false:order:85",
+        "type": "delivery",
+        "storyLetterId": "return-mail-letter-8",
+        "templateId": "return-mail-letter-8",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 4,
+        "revision": 1462
+      },
+      {
+        "id": "full-authored-false:order:86",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-1",
+        "templateId": "fair-weather-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 4,
+        "revision": 1471
+      },
+      {
+        "id": "full-authored-false:order:87",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-2",
+        "templateId": "fair-weather-letter-2",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1487
+      },
+      {
+        "id": "full-authored-false:order:88",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-3",
+        "templateId": "fair-weather-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 4,
+        "revision": 1499
+      },
+      {
+        "id": "full-authored-false:order:89",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-4",
+        "templateId": "fair-weather-letter-4",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 4,
+        "revision": 1532
+      },
+      {
+        "id": "full-authored-false:order:90",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-5",
+        "templateId": "fair-weather-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 4,
+        "revision": 1544
+      },
+      {
+        "id": "full-authored-false:order:91",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-6",
+        "templateId": "fair-weather-letter-6",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 4,
+        "revision": 1568
+      },
+      {
+        "id": "full-authored-false:order:92",
+        "type": "delivery",
+        "storyLetterId": "fair-weather-letter-7",
+        "templateId": "fair-weather-letter-7",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1584
+      },
+      {
+        "id": "full-authored-false:order:93",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-1",
+        "templateId": "double-meaning-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 4,
+        "revision": 1593
+      },
+      {
+        "id": "full-authored-false:order:94",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-2",
+        "templateId": "double-meaning-letter-2",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1609
+      },
+      {
+        "id": "full-authored-false:order:95",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-3",
+        "templateId": "double-meaning-letter-3",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 4,
+        "revision": 1617
+      },
+      {
+        "id": "full-authored-false:order:96",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-4",
+        "templateId": "double-meaning-letter-4",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1633
+      },
+      {
+        "id": "full-authored-false:order:97",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-5",
+        "templateId": "double-meaning-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1653
+      },
+      {
+        "id": "full-authored-false:order:98",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-6",
+        "templateId": "double-meaning-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1669
+      },
+      {
+        "id": "full-authored-false:order:99",
+        "type": "delivery",
+        "storyLetterId": "double-meaning-letter-7",
+        "templateId": "double-meaning-letter-7",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1689
+      },
+      {
+        "id": "full-authored-false:order:100",
+        "type": "delivery",
+        "storyLetterId": "fine-print-letter-1",
+        "templateId": "fine-print-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 4,
+        "revision": 1698
+      },
+      {
+        "id": "full-authored-false:order:101",
+        "type": "delivery",
+        "storyLetterId": "fine-print-letter-2",
+        "templateId": "fine-print-letter-2",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1714
+      },
+      {
+        "id": "full-authored-false:order:102",
+        "type": "delivery",
+        "storyLetterId": "fine-print-letter-3",
+        "templateId": "fine-print-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 4,
+        "revision": 1726
+      },
+      {
+        "id": "full-authored-false:order:103",
+        "type": "delivery",
+        "storyLetterId": "fine-print-letter-4",
+        "templateId": "fine-print-letter-4",
+        "xp": 60,
+        "coins": 25,
+        "contentVersion": 4,
+        "revision": 1745
+      },
+      {
+        "id": "full-authored-false:order:104",
+        "type": "delivery",
+        "storyLetterId": "fine-print-letter-5",
+        "templateId": "fine-print-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1765
+      },
+      {
+        "id": "full-authored-false:order:105",
+        "type": "delivery",
+        "storyLetterId": "fine-print-letter-6",
+        "templateId": "fine-print-letter-6",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1785
+      },
+      {
+        "id": "full-authored-false:order:106",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-1",
+        "templateId": "sound-advice-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 4,
+        "revision": 1794
+      },
+      {
+        "id": "full-authored-false:order:107",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-2",
+        "templateId": "sound-advice-letter-2",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1810
+      },
+      {
+        "id": "full-authored-false:order:108",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-3",
+        "templateId": "sound-advice-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 4,
+        "revision": 1822
+      },
+      {
+        "id": "full-authored-false:order:109",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-4",
+        "templateId": "sound-advice-letter-4",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1842
+      },
+      {
+        "id": "full-authored-false:order:110",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-5",
+        "templateId": "sound-advice-letter-5",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1858
+      },
+      {
+        "id": "full-authored-false:order:111",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-6",
+        "templateId": "sound-advice-letter-6",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 4,
+        "revision": 1878
+      },
+      {
+        "id": "full-authored-false:order:112",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-7",
+        "templateId": "sound-advice-letter-7",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 4,
+        "revision": 1894
+      },
+      {
+        "id": "full-authored-false:order:113",
+        "type": "delivery",
+        "storyLetterId": "sound-advice-letter-8",
+        "templateId": "sound-advice-letter-8",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 4,
+        "revision": 1927
+      }
+    ],
+    "history": [],
+    "sound": false,
+    "largeText": false
+  },
+  "records": [
+    {
+      "chapter": 1,
+      "letter": "garden-letter-1",
+      "makes": 1,
+      "outputs": [],
+      "balance": 0,
+      "purchases": {},
+      "retained": 6
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-2",
+      "makes": 1,
+      "outputs": [],
+      "balance": 5,
+      "purchases": {},
+      "retained": 4
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-3",
+      "makes": 5,
+      "outputs": [],
+      "balance": 10,
+      "purchases": {},
+      "retained": 2
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-4",
+      "makes": 8,
+      "outputs": [],
+      "balance": 20,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-5",
+      "makes": 15,
+      "outputs": [],
+      "balance": 35,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-6",
+      "makes": 7,
+      "outputs": [],
+      "balance": 60,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-7",
+      "makes": 22,
+      "outputs": [],
+      "balance": 70,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-8",
+      "makes": 30,
+      "outputs": [],
+      "balance": 105,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 1,
+      "letter": "garden-letter-9",
+      "makes": 31,
+      "outputs": [],
+      "balance": 155,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 215,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 225,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-3",
+      "makes": 3,
+      "outputs": [],
+      "balance": 245,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-4",
+      "makes": 15,
+      "outputs": [],
+      "balance": 250,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-5",
+      "makes": 14,
+      "outputs": [],
+      "balance": 275,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-6",
+      "makes": 30,
+      "outputs": [],
+      "balance": 295,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 2,
+      "letter": "moon-letter-7",
+      "makes": 46,
+      "outputs": [],
+      "balance": 345,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-1",
+      "makes": 3,
+      "outputs": [],
+      "balance": 430,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 435,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-3",
+      "makes": 6,
+      "outputs": [],
+      "balance": 455,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-4",
+      "makes": 22,
+      "outputs": [],
+      "balance": 465,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-5",
+      "makes": 22,
+      "outputs": [],
+      "balance": 500,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-6",
+      "makes": 30,
+      "outputs": [],
+      "balance": 535,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 3,
+      "letter": "riverside-letter-7",
+      "makes": 31,
+      "outputs": [],
+      "balance": 585,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 645,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-2",
+      "makes": 10,
+      "outputs": [],
+      "balance": 655,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-3",
+      "makes": 14,
+      "outputs": [],
+      "balance": 670,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-4",
+      "makes": 18,
+      "outputs": [],
+      "balance": 690,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-5",
+      "makes": 6,
+      "outputs": [],
+      "balance": 720,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-6",
+      "makes": 10,
+      "outputs": [],
+      "balance": 730,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 4,
+      "letter": "lantern-letter-7",
+      "makes": 30,
+      "outputs": [],
+      "balance": 745,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 795,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 805,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 825,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-4",
+      "makes": 18,
+      "outputs": [],
+      "balance": 840,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-5",
+      "makes": 22,
+      "outputs": [],
+      "balance": 870,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-6",
+      "makes": 14,
+      "outputs": [],
+      "balance": 905,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 5,
+      "letter": "wrong-address-letter-7",
+      "makes": 31,
+      "outputs": [],
+      "balance": 925,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 6,
+      "letter": "quiet-company-letter-1",
+      "makes": 3,
+      "outputs": [],
+      "balance": 985,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 6,
+      "letter": "quiet-company-letter-2",
+      "makes": 10,
+      "outputs": [],
+      "balance": 990,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 6,
+      "letter": "quiet-company-letter-3",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1005,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 6,
+      "letter": "quiet-company-letter-4",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1035,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 6,
+      "letter": "quiet-company-letter-5",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1055,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 6,
+      "letter": "quiet-company-letter-6",
+      "makes": 22,
+      "outputs": [],
+      "balance": 1085,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1120,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-2",
+      "makes": 10,
+      "outputs": [],
+      "balance": 1130,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 1145,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-4",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1160,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-5",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1180,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-6",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1210,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 7,
+      "letter": "namesakes-letter-7",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1230,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1260,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1270,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-3",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1290,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-4",
+      "makes": 22,
+      "outputs": [],
+      "balance": 1300,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-5",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1335,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-6",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1355,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 8,
+      "letter": "useful-gaps-letter-7",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1385,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 9,
+      "letter": "small-talk-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1405,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 9,
+      "letter": "small-talk-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1415,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 9,
+      "letter": "small-talk-letter-3",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1435,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 9,
+      "letter": "small-talk-letter-4",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1445,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 9,
+      "letter": "small-talk-letter-5",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1465,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 9,
+      "letter": "small-talk-letter-6",
+      "makes": 22,
+      "outputs": [],
+      "balance": 1495,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1530,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1540,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 1560,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-4",
+      "makes": 22,
+      "outputs": [],
+      "balance": 1575,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-5",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1610,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-6",
+      "makes": 18,
+      "outputs": [],
+      "balance": 1630,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 10,
+      "letter": "hello-again-letter-7",
+      "makes": 34,
+      "outputs": [],
+      "balance": 1660,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-1",
+      "makes": 3,
+      "outputs": [],
+      "balance": 1725,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1730,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-3",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1750,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-4",
+      "makes": 15,
+      "outputs": [],
+      "balance": 1760,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-5",
+      "makes": 10,
+      "outputs": [],
+      "balance": 1785,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-6",
+      "makes": 22,
+      "outputs": [],
+      "balance": 1800,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 11,
+      "letter": "off-beat-letter-7",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1835,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 1855,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1865,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 1885,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-4",
+      "makes": 14,
+      "outputs": [],
+      "balance": 1900,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-5",
+      "makes": 30,
+      "outputs": [],
+      "balance": 1920,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-6",
+      "makes": 22,
+      "outputs": [],
+      "balance": 1970,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-7",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2005,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 12,
+      "letter": "return-mail-letter-8",
+      "makes": 31,
+      "outputs": [],
+      "balance": 2035,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 2095,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2105,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 2125,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-4",
+      "makes": 31,
+      "outputs": [],
+      "balance": 2140,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-5",
+      "makes": 10,
+      "outputs": [],
+      "balance": 2200,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-6",
+      "makes": 22,
+      "outputs": [],
+      "balance": 2215,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 13,
+      "letter": "fair-weather-letter-7",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2250,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 2270,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2280,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-3",
+      "makes": 6,
+      "outputs": [],
+      "balance": 2300,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-4",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2310,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-5",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2330,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-6",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2360,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 14,
+      "letter": "double-meaning-letter-7",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2380,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 15,
+      "letter": "fine-print-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 2410,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 15,
+      "letter": "fine-print-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2420,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 15,
+      "letter": "fine-print-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 2440,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 15,
+      "letter": "fine-print-letter-4",
+      "makes": 17,
+      "outputs": [],
+      "balance": 2455,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 15,
+      "letter": "fine-print-letter-5",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2480,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 15,
+      "letter": "fine-print-letter-6",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2510,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-1",
+      "makes": 6,
+      "outputs": [],
+      "balance": 2540,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-2",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2550,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-3",
+      "makes": 10,
+      "outputs": [],
+      "balance": 2570,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-4",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2585,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-5",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2615,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-6",
+      "makes": 18,
+      "outputs": [],
+      "balance": 2635,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-7",
+      "makes": 14,
+      "outputs": [],
+      "balance": 2665,
+      "purchases": {},
+      "retained": 0
+    },
+    {
+      "chapter": 16,
+      "letter": "sound-advice-letter-8",
+      "makes": 31,
+      "outputs": [],
+      "balance": 2685,
+      "purchases": {},
+      "retained": 0
+    }
+  ]
+}

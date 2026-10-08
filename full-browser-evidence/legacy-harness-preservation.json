@@ -1,0 +1,166 @@
+{
+  "baseline": "fe271372b4ec739ae61496885374a64e5466f793",
+  "purpose": "Original 21-case harness/evidence retained; not full-campaign acceptance.",
+  "files": [
+    {
+      "file": "gate/THIRD-PARTY-NOTICES.txt",
+      "bytes": 13722,
+      "sha256": "5109b0b6c501013b228509ad3e57e427f23a550d25d187ad7c9546725281b5fa"
+    },
+    {
+      "file": "gate/binding.mjs",
+      "bytes": 6195,
+      "sha256": "0856a0308ffba70977ffc2838171892510a04d6e5cf62b7d528886674b59f723"
+    },
+    {
+      "file": "gate/evidence-policy.mjs",
+      "bytes": 3596,
+      "sha256": "4c8d78eeff0d51b6194bfd9db0ffb43683b8ae32e3f1250cb076e90fd785fbda"
+    },
+    {
+      "file": "gate/invocation.mjs",
+      "bytes": 1543,
+      "sha256": "21ba771255a758107f80de3ac1d814c90f0f319b70c40c16268bef2712bb1968"
+    },
+    {
+      "file": "gate/layout.mjs",
+      "bytes": 3153,
+      "sha256": "2fa80b955da2edeceb9cb0451a8ea41f69e62984dbf98857b3376bab7f5f2661"
+    },
+    {
+      "file": "gate/package-full.mjs",
+      "bytes": 6220,
+      "sha256": "916366364ab2d377f3bed08d7be490b0582031dec85342c2e2e8eb3663b61050"
+    },
+    {
+      "file": "gate/package.mjs",
+      "bytes": 11360,
+      "sha256": "7f6145dd1101cdc404c03146875ade83ea63b87743de4c0ec3fec98fb4a8a202"
+    },
+    {
+      "file": "gate/png.mjs",
+      "bytes": 2739,
+      "sha256": "00dd38f8e4d3efdf26dc11b063fa1ab3b543d9b732c169d3253923644d5202d2"
+    },
+    {
+      "file": "gate/preflight.sh",
+      "bytes": 609,
+      "sha256": "625a5353e5ae686cec756d769e6ee7e14b936ba96158e68dc2e4fb9b82701bb2"
+    },
+    {
+      "file": "gate/progress-base.mjs",
+      "bytes": 1527,
+      "sha256": "370696bd3a9d2d888b8a2d82e4e30774838c82fe14618eb94a36aaaafb60c0e8"
+    },
+    {
+      "file": "gate/reporter.mjs",
+      "bytes": 570,
+      "sha256": "00dfba217c2ae92a4b38387d4a7bc58abc136d36c9d248c1b4ebfbc12a913b8d"
+    },
+    {
+      "file": "gate/responsive-surface.mjs",
+      "bytes": 397,
+      "sha256": "1c0fc7ef58323dadfe6308a8944649a0fbf8d7e3e7693846f8eda5cb932e5b63"
+    },
+    {
+      "file": "gate/results.mjs",
+      "bytes": 3774,
+      "sha256": "59fd1b40ca0f1c7ffca301e8d3166aea4c1055f5fa8dd14a0fe5374a0b2875f0"
+    },
+    {
+      "file": "gate/run-group.sh",
+      "bytes": 1066,
+      "sha256": "cb3e6314fbf6bd14af62f1b98ed920ace0fc1542fe0db8601036ab787206751f"
+    },
+    {
+      "file": "gate/scope.mjs",
+      "bytes": 4779,
+      "sha256": "fa1724dadeca417b21f319d33c70430e01937859353a5d672571bd5987f50569"
+    },
+    {
+      "file": "gate/serve.mjs",
+      "bytes": 1262,
+      "sha256": "7d3dbe23a7241f0addf4d20552ecbe72e05588e5ec7a0e763e0586ea84bf70bf"
+    },
+    {
+      "file": "gate/vite.config.mjs",
+      "bytes": 333,
+      "sha256": "cd50e0f9910e489aec3286063793b714d54c998b616630eb06ac3fb043a67734"
+    },
+    {
+      "file": "gate/workflow.proposal.json",
+      "bytes": 3394,
+      "sha256": "ccf445b209ae059ba287105f579576d45b9648556e1a41b8268b9ef2696dec26"
+    },
+    {
+      "file": "playwright.campaign.config.mjs",
+      "bytes": 1933,
+      "sha256": "edfb7839e17b9ef0f935c942dc521abaf5c97bcb5f8cbb4cf66c94eb3b808291"
+    },
+    {
+      "file": "tests/campaign-browser/adopted-journeys.mjs",
+      "bytes": 10122,
+      "sha256": "5a8f4a608fff598e539ca7010eb59f4ab585430c4f42e9c5497a97022ae74781"
+    },
+    {
+      "file": "tests/campaign-browser/chromium.spec.mjs",
+      "bytes": 24408,
+      "sha256": "478ecb07fc5dfbaf650061e93d3f542b14b63116b4fcd3c801791b6c74e27d03"
+    },
+    {
+      "file": "tests/campaign-browser/fixtures.mjs",
+      "bytes": 2685,
+      "sha256": "94c680132177967ba0c887a299da27fdf87e18273153eb09a69c68e2d1003dcc"
+    },
+    {
+      "file": "tests/campaign-browser/helpers.mjs",
+      "bytes": 20507,
+      "sha256": "33e9e69d7ffcf2873aa4aafaee64c4ff5670f836a3ab6e86e497e128efc9ab1d"
+    },
+    {
+      "file": "tests/campaign-browser/phone.spec.mjs",
+      "bytes": 6934,
+      "sha256": "c8b93902212f0bec7c5e8ae811fc394e7b514183946db163f80df06b71c4889c"
+    },
+    {
+      "file": "tests/campaign-browser/save-fixtures.mjs",
+      "bytes": 6562,
+      "sha256": "0793cd2268bebc85a6af07fea1d065ab07ac08dacc9c28670e57bc8a5a3097b7"
+    },
+    {
+      "file": "tests/campaign-contract/audio.test.mjs",
+      "bytes": 12667,
+      "sha256": "5e43399c28bd135b2c6cf53db21ef0ff7527f56395b7aa69fd64cb2e3dff1f6d"
+    },
+    {
+      "file": "tests/campaign-contract/cache.test.mjs",
+      "bytes": 11219,
+      "sha256": "9ee79fd1030752e6c4a021577cc300063bf1e5ffec453cc88c04c2ad4ba9f3e6"
+    },
+    {
+      "file": "tests/campaign-contract/failure-evidence.test.mjs",
+      "bytes": 8890,
+      "sha256": "bd97598ea0e3d50b114975496ed057e9eb11275818036a085a219c8f3661d221"
+    },
+    {
+      "file": "tests/campaign-contract/gate.test.mjs",
+      "bytes": 10910,
+      "sha256": "9f01cad389ecd03503a853183744c5175ab59c656587faf926bb96d81e286579"
+    },
+    {
+      "file": "tests/campaign-contract/modal-evidence.test.mjs",
+      "bytes": 7650,
+      "sha256": "becedb4b28674313ef6622f4b006ea9a5854460a9c6f64c6ad659134daffd614"
+    },
+    {
+      "file": "tests/campaign-contract/recorder-png.test.mjs",
+      "bytes": 7199,
+      "sha256": "3aa7872a1ee2c3c475bdc315c04a120fa4fae8e5411ebc886eeb5451ba407499"
+    },
+    {
+      "file": "tests/campaign-contract/repair-readiness.test.mjs",
+      "bytes": 1215,
+      "sha256": "f3f0ec4b8d0fe86731f00e1c7856e5d6cb65c66f1040834532382082074fb455"
+    }
+  ]
+}

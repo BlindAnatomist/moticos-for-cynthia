@@ -1,20 +1,41 @@
 {
   "schemaVersion": 1,
-  "status": "reviewed-frozen",
-  "browserExecuted": false,
-  "externalAuthorization": false,
-  "applicationFingerprint": "4da4a68857059ded575be8afad5d095d263c7bfba421d7d9d2018cff83ba4ce1",
-  "reviewedRoles": [
-    "runtime-owner-unchanged",
-    "independent-quality",
-    "independent-release-application-unchanged"
-  ],
-  "repairOf": "002ac9a73be1b15717ed0e5b2188f1b7b83a9aec147bc0ab6b3426d354482ee6",
+  "status": "private-provisional-not-run-approved",
   "files": [
     {
-      "file": "application-provisional.json",
-      "bytes": 42988,
-      "sha256": "3764d2934d6ee5eeadb81b37c65618c2e2bf055fbdeeefd94ec52e724736cb9a"
+      "file": ".github/workflows/verify-campaign.yml",
+      "bytes": 3394,
+      "sha256": "ccf445b209ae059ba287105f579576d45b9648556e1a41b8268b9ef2696dec26"
+    },
+    {
+      "file": ".github/workflows/verify-full-campaign.yml",
+      "bytes": 4051,
+      "sha256": "152f900b810233f4c92a68624d95257d6e845986730a6ac49088baa50e5b3c83"
+    },
+    {
+      "file": "campaign-evidence/content-pack-2.frozen.json",
+      "bytes": 19667,
+      "sha256": "28d0d795cb30f100192d49317f4aeb914d8c78a421c810a6d5e14d70812165a8"
+    },
+    {
+      "file": "campaign-evidence/content-pack-3.frozen.json",
+      "bytes": 31835,
+      "sha256": "565e4116cb18e7627e91ee71fcdef9f0f5bf838c8fb010adc27f1ba307adaa85"
+    },
+    {
+      "file": "campaign-evidence/full-basic-journey.json",
+      "bytes": 54850,
+      "sha256": "b13556a7e4f051c3cacb84e20c9db8d36371bfa194376b66f73df684db8d626b"
+    },
+    {
+      "file": "campaign-evidence/full-campaign.test.mjs",
+      "bytes": 14782,
+      "sha256": "62899b3a92930bd65e69b28bdaea6304ecd9992bdb5bc056f7d0ec15d61728c4"
+    },
+    {
+      "file": "campaign-evidence/full-recovery.test.mjs",
+      "bytes": 3246,
+      "sha256": "2e0743f2885fd161c4b183b3f448bdd22d88c68f4220fdf511e5a8dc4d839fb7"
     },
     {
       "file": "career.html",
@@ -25,6 +46,171 @@
       "file": "career.vite.config.js",
       "bytes": 292,
       "sha256": "77560a321d4afd4d6b704f10cfdd681af7ef57cc26fe0f9f3cc302a26a075731"
+    },
+    {
+      "file": "full-browser-evidence/evidence-guard.test.mjs",
+      "bytes": 3455,
+      "sha256": "a6fbb03c47da8635edcabaa520b3d9c81933fa733c0fec4138c4c7e7a3936855"
+    },
+    {
+      "file": "full-browser-evidence/fixtures.test.mjs",
+      "bytes": 3438,
+      "sha256": "03a34fbf89db7e078573d0402dd986b9fe3835a3d7dca8ca4f42b317a83fb40f"
+    },
+    {
+      "file": "full-browser-evidence/geometry.test.mjs",
+      "bytes": 1184,
+      "sha256": "9515aad65f99b75b121fee7e868ab9c38b0eb62c289c87246a4c42cbbe85baf8"
+    },
+    {
+      "file": "full-browser-evidence/legacy-harness-preservation.json",
+      "bytes": 5396,
+      "sha256": "23d72d20be71365fbb08f26099fdc93ff07dffae0293c0d6a008b2eca3a4c49a"
+    },
+    {
+      "file": "full-browser-evidence/old-reader-contract.test.mjs",
+      "bytes": 1136,
+      "sha256": "a60eb1e6719ba04ba9ff33a62d26055a71b0d449d90a1299b0d098cffb241b2a"
+    },
+    {
+      "file": "full-browser-evidence/package-guard.test.mjs",
+      "bytes": 5384,
+      "sha256": "ce39abcf028358d7607442a471b090212a6f6ac66d7b05d4adf69ae207f36361"
+    },
+    {
+      "file": "full-browser-evidence/PREPARATION.md",
+      "bytes": 1600,
+      "sha256": "e21f6e9a4de1cbfbbf5a02bf22f7ec87a16f9d30807a818e483e31b2c0c4215b"
+    },
+    {
+      "file": "full-browser-evidence/results-guard.test.mjs",
+      "bytes": 2330,
+      "sha256": "b1fc6caf91ca297d950f14944f86427c5d93c52883ae16fd1fdd529ce988fa00"
+    },
+    {
+      "file": "full-browser-evidence/RUN-PROPOSAL.md",
+      "bytes": 7678,
+      "sha256": "a8b32a60e7f80462633ff4644fc2f8f8a6433f5413d0ddf80544b1c2047722ac"
+    },
+    {
+      "file": "full-browser-evidence/source-closure.test.mjs",
+      "bytes": 1624,
+      "sha256": "b41dbddccf825963685fb084bd776ed7dc8fdc2af7df6f02728f90eb974659ef"
+    },
+    {
+      "file": "full-browser-evidence/workflow.test.mjs",
+      "bytes": 8146,
+      "sha256": "c55bce66be7b628a7cd709c640ae90baa6612e7d33a07afaa7c8eb02ed00136f"
+    },
+    {
+      "file": "full-browser-fixtures/reviewed-campaign-oracle.json",
+      "bytes": 129157,
+      "sha256": "680f57a37eb9fbb75c27500de70d892c11a9e5e30a234f9ea76feaa8112414c8"
+    },
+    {
+      "file": "full-campaign-gate/authorize.mjs",
+      "bytes": 980,
+      "sha256": "e4deffde0c525bf71554c8c70ef789500a3e0969a54105f9b63debd631e45c2a"
+    },
+    {
+      "file": "full-campaign-gate/binding.mjs",
+      "bytes": 5817,
+      "sha256": "055fccb490182a7dc55e3c26a172428cb9138da563b54756f1941fa754524b7b"
+    },
+    {
+      "file": "full-campaign-gate/bounded-process.mjs",
+      "bytes": 2136,
+      "sha256": "1a4d862ff31e1f2448aa5dd5cc70053cb589e1901f9652d40ba93e1095a00c2d"
+    },
+    {
+      "file": "full-campaign-gate/dispatch.mjs",
+      "bytes": 1956,
+      "sha256": "276e067f4854695c727435caca306996814c33d6ec52d0f05814ac51dca9be00"
+    },
+    {
+      "file": "full-campaign-gate/evidence.mjs",
+      "bytes": 2709,
+      "sha256": "229e3b0734180a0bd53f79d0791f40e2e5e5fca4ba100ba29888f936c5947230"
+    },
+    {
+      "file": "full-campaign-gate/finalize.mjs",
+      "bytes": 472,
+      "sha256": "6af8b46df80cabc1abe9630c3f9e8083c6ead8ec789952730665e1c61c9305c9"
+    },
+    {
+      "file": "full-campaign-gate/geometry.mjs",
+      "bytes": 554,
+      "sha256": "d67f13dfc6d87a73ecf2f5ecb99c7bdf044becfd53c7af6de246e09288332584"
+    },
+    {
+      "file": "full-campaign-gate/package.mjs",
+      "bytes": 4303,
+      "sha256": "95ec80ae06f7cdd441f93c1096e5073b859356c691dd688455bc8a309775ce2a"
+    },
+    {
+      "file": "full-campaign-gate/preflight.mjs",
+      "bytes": 3111,
+      "sha256": "f33b443c5f65472cfa8ae93505eadad0e719bda85c0df27075a3b8a9c20e6ac5"
+    },
+    {
+      "file": "full-campaign-gate/projection.mjs",
+      "bytes": 1324,
+      "sha256": "1ed3baad89d5ee702a3af0493fa7f8022e1fcdc0fd575ca7e66a342eee2aadb8"
+    },
+    {
+      "file": "full-campaign-gate/reporter.mjs",
+      "bytes": 837,
+      "sha256": "0942150db2070109c378131a61606be82d3afc8bb9ff7f2af1f0fb83f520bd0b"
+    },
+    {
+      "file": "full-campaign-gate/results.mjs",
+      "bytes": 3027,
+      "sha256": "20dbe9d2f98fe855b8ab931eb8a1b42079fc5eeff2cfe67bee19a04b6bee61e6"
+    },
+    {
+      "file": "full-campaign-gate/run-group.mjs",
+      "bytes": 1704,
+      "sha256": "9b731ad15ff3e870a25ad16fb9d0b96556bec3842feb76b680d10696fb371fcc"
+    },
+    {
+      "file": "full-campaign-gate/scope.mjs",
+      "bytes": 4081,
+      "sha256": "b1257f98f5f181864d7d62267057274842de9e50beff25e85702081d62e970cf"
+    },
+    {
+      "file": "full-campaign-gate/serve.mjs",
+      "bytes": 1216,
+      "sha256": "ce4134f48fd2bdd2709d9523b99368db3badb8742afc0348e68f11820aa08b73"
+    },
+    {
+      "file": "full-campaign-gate/setup.mjs",
+      "bytes": 981,
+      "sha256": "be48e0bda7f0f8482fa42c1bdd4dc517606c47ae4e8cf350f2ee9293c40d161f"
+    },
+    {
+      "file": "full-campaign-gate/stage.mjs",
+      "bytes": 2400,
+      "sha256": "5f53e59bd33705892a9fa2569e380556ce33e927f36df2b20738250d4a69c170"
+    },
+    {
+      "file": "full-campaign-gate/vite.config.mjs",
+      "bytes": 273,
+      "sha256": "1c375f98b0e847e01921282ba4d80f01f2547e15e43cf1769d52f85a1f133308"
+    },
+    {
+      "file": "full-campaign-probe/index.html",
+      "bytes": 240,
+      "sha256": "91c82658de6688c9c021230648d84a4388c09f23c5d9014d672cacbd70726489"
+    },
+    {
+      "file": "full-campaign-probe/old-session.v3.js",
+      "bytes": 5859,
+      "sha256": "5ab5e47b6532331d0c81fb999db458c7c31f5ea4031bf1653a6fc5dae0d4583d"
+    },
+    {
+      "file": "full-campaign-probe/probe.mjs",
+      "bytes": 1712,
+      "sha256": "4a6c972b9a5d7c53a101e4b866c0896084e8a58f6de3de83d990aa1b649b23b9"
     },
     {
       "file": "gate/binding.mjs",
@@ -132,14 +318,9 @@
       "sha256": "edfb7839e17b9ef0f935c942dc521abaf5c97bcb5f8cbb4cf66c94eb3b808291"
     },
     {
-      "file": "probe/index.html",
-      "bytes": 251,
-      "sha256": "452466ffb1f55e6dcbed096eaac978e44d828fed6a4ebd3d2588b734e1e7dcb0"
-    },
-    {
-      "file": "probe/probe.mjs",
-      "bytes": 3637,
-      "sha256": "4d7656efd6d95b5b5356599fab92f99f24923873c767fe59eae833e84ba3e1e9"
+      "file": "playwright.full-campaign.config.mjs",
+      "bytes": 2053,
+      "sha256": "f9f97778891daaabb6dff7b6e3a21c07bc6db12b2579453a101649e72a1412b4"
     },
     {
       "file": "public/art/garden/e01_riverwing.webp",
@@ -352,11 +533,6 @@
       "sha256": "7b0f254d997d6fc2a98da324c02e56dc49d3ee388afc15708916654dd4e35967"
     },
     {
-      "file": "README.txt",
-      "bytes": 5678,
-      "sha256": "d4a66476c37cc1951fdc0061d55d69758c9df5a2872fc3319abb07732c30ee14"
-    },
-    {
       "file": "src/audioProfile.js",
       "bytes": 644,
       "sha256": "62707576e4492eed2dd460d588c7f42b2a9b7d35e1440b58ed62ecdb7b839acc"
@@ -368,23 +544,43 @@
     },
     {
       "file": "src/career/career.css",
-      "bytes": 51083,
-      "sha256": "7954e628b999d34127f73d9db54ef34d0b4ad65da88e8ca9888a479e428e59d8"
+      "bytes": 51676,
+      "sha256": "f19d8f35aa8ae0bf91da99287c05588355eec9fcf958d3cffaaa3fabc7ec4f95"
     },
     {
       "file": "src/career/CareerGarden.jsx",
-      "bytes": 60159,
-      "sha256": "4c448ab17b68e8ba2d1bffa03aa67e0f2997b498a9592a0d1cf6d2a33ec53f99"
+      "bytes": 62660,
+      "sha256": "66bd0deacfc2d81b4caa3574d3193b2760dfea7e1d73c812f7448c08b61534da"
     },
     {
       "file": "src/career/content.js",
-      "bytes": 9567,
-      "sha256": "739b5739f871fefb3e74ca2ed51efbf6d31303dd4cf038cbae4b1a248b6c89a2"
+      "bytes": 7482,
+      "sha256": "fc1e10611733cc8cedb53c78288a5dba9ea625fcfeb93ec0ad28386b4ffcaa95"
     },
     {
       "file": "src/career/content.v1.js",
       "bytes": 4844,
       "sha256": "15a1bdd896094c42bc423a88aa18d1266a26e194e33d8e6eb2a1ed7dfefa3070"
+    },
+    {
+      "file": "src/career/content.v2.js",
+      "bytes": 9567,
+      "sha256": "739b5739f871fefb3e74ca2ed51efbf6d31303dd4cf038cbae4b1a248b6c89a2"
+    },
+    {
+      "file": "src/career/content.v3.js",
+      "bytes": 7004,
+      "sha256": "73bf59e9e273395769ce58a58bee8c3d59c9a09308ca00428a7ae61b4fb3a51f"
+    },
+    {
+      "file": "src/career/continuation.v3.js",
+      "bytes": 15483,
+      "sha256": "e6f6ededb356665944baa80200cb9a3c2a1dde275b5c4d32a42ae6a775500bc9"
+    },
+    {
+      "file": "src/career/continuation.v4.js",
+      "bytes": 130029,
+      "sha256": "7d610dd2b259729adf349cfbba710246cd22980437680b94872d31480e3566d5"
     },
     {
       "file": "src/career/correspondence.js",
@@ -393,8 +589,8 @@
     },
     {
       "file": "src/career/engine.js",
-      "bytes": 29971,
-      "sha256": "4aa307c701f38249b4687794319b9692f70715e1adbb617bb22c08ad7ab15540"
+      "bytes": 33022,
+      "sha256": "bd8d80b13fa3ec9cd58f6617ec7fb6aa799f357fcf287315920c0ba7bb9d6c10"
     },
     {
       "file": "src/career/engine.v1.js",
@@ -402,9 +598,19 @@
       "sha256": "253286c7e0e7ef8ec10da772a170b8379d7119720056db53fd3ef547600d71b2"
     },
     {
+      "file": "src/career/engine.v2.js",
+      "bytes": 29974,
+      "sha256": "1f631db6d9b05a823d0e5c448766c7772fad6c6791a07b70ca26f2f4adcb67dd"
+    },
+    {
+      "file": "src/career/engine.v3.js",
+      "bytes": 31901,
+      "sha256": "e127827a9261e54b1e0063a061a133d684190304267ed4f6075cb63f7a5a431f"
+    },
+    {
       "file": "src/career/feedback.js",
-      "bytes": 12730,
-      "sha256": "595437f9318f5149b6b72fa02243acbd10d3a496c65ec43299b06d10b599d379"
+      "bytes": 13906,
+      "sha256": "167efd33f8efda48572398cb81d921f6c107367f1b5eed786a95858d8a0e5f1f"
     },
     {
       "file": "src/career/main.jsx",
@@ -1460,6 +1666,26 @@
       "file": "tests/campaign-contract/repair-readiness.test.mjs",
       "bytes": 1215,
       "sha256": "f3f0ec4b8d0fe86731f00e1c7856e5d6cb65c66f1040834532382082074fb455"
+    },
+    {
+      "file": "tests/full-campaign-browser/desktop.spec.mjs",
+      "bytes": 14279,
+      "sha256": "7079d144a343ed2719c7147f390650c1e1d442aead241a16463fd8d740287d98"
+    },
+    {
+      "file": "tests/full-campaign-browser/fixtures.mjs",
+      "bytes": 4054,
+      "sha256": "f91fe6a9bcc713e47c5a9f2af8e4a7c305e53d1e6f9ff98f2a36bb75ce00565e"
+    },
+    {
+      "file": "tests/full-campaign-browser/helpers.mjs",
+      "bytes": 10699,
+      "sha256": "36f19a2d799b3068d61d8a90c61f23e1b73a9d750ea16b7c3e7037307fded777"
+    },
+    {
+      "file": "tests/full-campaign-browser/phone.spec.mjs",
+      "bytes": 8508,
+      "sha256": "49f7a53bbb0dcd66a493b4b24151df4a2386d49464f3ebe4cfc3de10ec687ce9"
     }
   ]
 }

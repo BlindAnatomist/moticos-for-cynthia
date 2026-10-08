@@ -1,0 +1,4064 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Minimal independent reviewed-value test oracle; excludes planning bundles, author notes and archive records.",
+  "economy": {
+    "chapters": [
+      {
+        "id": "wrong-address",
+        "endXp": 2330,
+        "cumulativeCoins": 985,
+        "secondSource": "shoe",
+        "endingLevel": {
+          "level": 12,
+          "xp": 2310
+        },
+        "letters": [
+          {
+            "id": "wrong-address-letter-1",
+            "requirements": [
+              {
+                "familyId": "wing",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "wr2"
+              },
+              {
+                "familyId": "map",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "r2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "wrong-address-letter-2",
+            "requirements": [
+              {
+                "familyId": "wing",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "wr3"
+              },
+              {
+                "familyId": "spool",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "s3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "wrong-address-letter-3",
+            "requirements": [
+              {
+                "familyId": "shoe",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "wa2"
+              },
+              {
+                "familyId": "teacup",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "t3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "wrong-address-letter-1",
+              "wrong-address-letter-2"
+            ]
+          },
+          {
+            "id": "wrong-address-letter-4",
+            "requirements": [
+              {
+                "familyId": "wing",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "wr4"
+              },
+              {
+                "familyId": "shoe",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "wa2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "wrong-address-letter-1",
+              "wrong-address-letter-2"
+            ]
+          },
+          {
+            "id": "wrong-address-letter-5",
+            "requirements": [
+              {
+                "familyId": "wing",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "wr3"
+              },
+              {
+                "familyId": "shoe",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "wa4"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "wrong-address-letter-1",
+              "wrong-address-letter-2"
+            ]
+          },
+          {
+            "id": "wrong-address-letter-6",
+            "requirements": [
+              {
+                "familyId": "shoe",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "wa3"
+              },
+              {
+                "familyId": "lantern",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "l3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "wrong-address-letter-1",
+              "wrong-address-letter-2"
+            ]
+          },
+          {
+            "id": "wrong-address-letter-7",
+            "requirements": [
+              {
+                "familyId": "wing",
+                "tier": 5,
+                "quantity": 1,
+                "pieceId": "wr5"
+              }
+            ],
+            "xp": 140,
+            "coins": 60,
+            "requiresMilestones": [
+              "wrong-address-letter-1",
+              "wrong-address-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "wing-sorter",
+            "price": 95,
+            "level": 10
+          },
+          {
+            "id": "shoe-sorter",
+            "price": 65,
+            "level": 11
+          }
+        ]
+      },
+      {
+        "id": "quiet-company",
+        "endXp": 2650,
+        "cumulativeCoins": 1120,
+        "secondSource": "cup",
+        "endingLevel": {
+          "level": 14,
+          "xp": 2630
+        },
+        "letters": [
+          {
+            "id": "quiet-company-letter-1",
+            "requirements": [
+              {
+                "familyId": "chair",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ec2"
+              }
+            ],
+            "xp": 10,
+            "coins": 5,
+            "requiresMilestones": []
+          },
+          {
+            "id": "quiet-company-letter-2",
+            "requirements": [
+              {
+                "familyId": "chair",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ec3"
+              },
+              {
+                "familyId": "fern",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "f2"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": []
+          },
+          {
+            "id": "quiet-company-letter-3",
+            "requirements": [
+              {
+                "familyId": "cup",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ce2"
+              },
+              {
+                "familyId": "teacup",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "t4"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "quiet-company-letter-1",
+              "quiet-company-letter-2"
+            ]
+          },
+          {
+            "id": "quiet-company-letter-4",
+            "requirements": [
+              {
+                "familyId": "chair",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ec3"
+              },
+              {
+                "familyId": "cup",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ce3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "quiet-company-letter-1",
+              "quiet-company-letter-2"
+            ]
+          },
+          {
+            "id": "quiet-company-letter-5",
+            "requirements": [
+              {
+                "familyId": "cup",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ce4"
+              },
+              {
+                "familyId": "chair",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ec2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "quiet-company-letter-1",
+              "quiet-company-letter-2"
+            ]
+          },
+          {
+            "id": "quiet-company-letter-6",
+            "requirements": [
+              {
+                "familyId": "chair",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ec4"
+              },
+              {
+                "familyId": "spool",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "s3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "quiet-company-letter-1",
+              "quiet-company-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "chair-sorter",
+            "price": 85,
+            "level": 12
+          },
+          {
+            "id": "cup-sorter",
+            "price": 65,
+            "level": 13
+          }
+        ]
+      },
+      {
+        "id": "namesakes",
+        "endXp": 2980,
+        "cumulativeCoins": 1260,
+        "secondSource": "fish",
+        "endingLevel": {
+          "level": 16,
+          "xp": 2960
+        },
+        "letters": [
+          {
+            "id": "namesakes-letter-1",
+            "requirements": [
+              {
+                "familyId": "pear",
+                "tier": 2,
+                "quantity": 2,
+                "pieceId": "pp2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "namesakes-letter-2",
+            "requirements": [
+              {
+                "familyId": "pear",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "pp3"
+              },
+              {
+                "familyId": "cup",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ce2"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": []
+          },
+          {
+            "id": "namesakes-letter-3",
+            "requirements": [
+              {
+                "familyId": "fish",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ss2"
+              },
+              {
+                "familyId": "moon",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "m3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "namesakes-letter-1",
+              "namesakes-letter-2"
+            ]
+          },
+          {
+            "id": "namesakes-letter-4",
+            "requirements": [
+              {
+                "familyId": "pear",
+                "tier": 3,
+                "quantity": 2,
+                "pieceId": "pp3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "namesakes-letter-1",
+              "namesakes-letter-2"
+            ]
+          },
+          {
+            "id": "namesakes-letter-5",
+            "requirements": [
+              {
+                "familyId": "pear",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "pp4"
+              },
+              {
+                "familyId": "fish",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ss2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "namesakes-letter-1",
+              "namesakes-letter-2"
+            ]
+          },
+          {
+            "id": "namesakes-letter-6",
+            "requirements": [
+              {
+                "familyId": "fish",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ss3"
+              },
+              {
+                "familyId": "shoe",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "wa3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "namesakes-letter-1",
+              "namesakes-letter-2"
+            ]
+          },
+          {
+            "id": "namesakes-letter-7",
+            "requirements": [
+              {
+                "familyId": "fish",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ss4"
+              },
+              {
+                "familyId": "pear",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "pp2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "namesakes-letter-1",
+              "namesakes-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "pear-sorter",
+            "price": 85,
+            "level": 14
+          },
+          {
+            "id": "fish-sorter",
+            "price": 65,
+            "level": 15
+          }
+        ]
+      },
+      {
+        "id": "useful-gaps",
+        "endXp": 3325,
+        "cumulativeCoins": 1405,
+        "secondSource": "button",
+        "endingLevel": {
+          "level": 18,
+          "xp": 3305
+        },
+        "letters": [
+          {
+            "id": "useful-gaps-letter-1",
+            "requirements": [
+              {
+                "familyId": "scissors",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "cj2"
+              },
+              {
+                "familyId": "spool",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "s2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "useful-gaps-letter-2",
+            "requirements": [
+              {
+                "familyId": "scissors",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "cj3"
+              },
+              {
+                "familyId": "key",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "k3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "useful-gaps-letter-3",
+            "requirements": [
+              {
+                "familyId": "button",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "bh2"
+              },
+              {
+                "familyId": "shoe",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "wa2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": [
+              "useful-gaps-letter-1",
+              "useful-gaps-letter-2"
+            ]
+          },
+          {
+            "id": "useful-gaps-letter-4",
+            "requirements": [
+              {
+                "familyId": "scissors",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "cj4"
+              },
+              {
+                "familyId": "button",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "bh3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "useful-gaps-letter-1",
+              "useful-gaps-letter-2"
+            ]
+          },
+          {
+            "id": "useful-gaps-letter-5",
+            "requirements": [
+              {
+                "familyId": "button",
+                "tier": 3,
+                "quantity": 2,
+                "pieceId": "bh3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "useful-gaps-letter-1",
+              "useful-gaps-letter-2"
+            ]
+          },
+          {
+            "id": "useful-gaps-letter-6",
+            "requirements": [
+              {
+                "familyId": "button",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "bh4"
+              },
+              {
+                "familyId": "scissors",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "cj2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "useful-gaps-letter-1",
+              "useful-gaps-letter-2"
+            ]
+          },
+          {
+            "id": "useful-gaps-letter-7",
+            "requirements": [
+              {
+                "familyId": "scissors",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "cj3"
+              },
+              {
+                "familyId": "teacup",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "t3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "useful-gaps-letter-1",
+              "useful-gaps-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "scissors-sorter",
+            "price": 85,
+            "level": 16
+          },
+          {
+            "id": "button-sorter",
+            "price": 70,
+            "level": 17
+          }
+        ]
+      },
+      {
+        "id": "small-talk",
+        "endXp": 3620,
+        "cumulativeCoins": 1530,
+        "secondSource": "profile",
+        "endingLevel": {
+          "level": 20,
+          "xp": 3600
+        },
+        "letters": [
+          {
+            "id": "small-talk-letter-1",
+            "requirements": [
+              {
+                "familyId": "hand",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "hs2"
+              },
+              {
+                "familyId": "button",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "bh2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "small-talk-letter-2",
+            "requirements": [
+              {
+                "familyId": "hand",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "hs3"
+              },
+              {
+                "familyId": "chair",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ec3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "small-talk-letter-3",
+            "requirements": [
+              {
+                "familyId": "profile",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "fv2"
+              },
+              {
+                "familyId": "cup",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ce2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": [
+              "small-talk-letter-1",
+              "small-talk-letter-2"
+            ]
+          },
+          {
+            "id": "small-talk-letter-4",
+            "requirements": [
+              {
+                "familyId": "hand",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "hs3"
+              },
+              {
+                "familyId": "profile",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "fv3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "small-talk-letter-1",
+              "small-talk-letter-2"
+            ]
+          },
+          {
+            "id": "small-talk-letter-5",
+            "requirements": [
+              {
+                "familyId": "profile",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "fv4"
+              },
+              {
+                "familyId": "hand",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "hs2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "small-talk-letter-1",
+              "small-talk-letter-2"
+            ]
+          },
+          {
+            "id": "small-talk-letter-6",
+            "requirements": [
+              {
+                "familyId": "hand",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "hs4"
+              },
+              {
+                "familyId": "fish",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ss3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "small-talk-letter-1",
+              "small-talk-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "hand-sorter",
+            "price": 65,
+            "level": 18
+          },
+          {
+            "id": "profile-sorter",
+            "price": 60,
+            "level": 19
+          }
+        ]
+      },
+      {
+        "id": "hello-again",
+        "endXp": 4080,
+        "cumulativeCoins": 1725,
+        "secondSource": "hat",
+        "endingLevel": {
+          "level": 22,
+          "xp": 4060
+        },
+        "letters": [
+          {
+            "id": "hello-again-letter-1",
+            "requirements": [
+              {
+                "familyId": "telephone",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "la2"
+              },
+              {
+                "familyId": "wing",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "wr2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "hello-again-letter-2",
+            "requirements": [
+              {
+                "familyId": "telephone",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "la3"
+              },
+              {
+                "familyId": "map",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "r3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "hello-again-letter-3",
+            "requirements": [
+              {
+                "familyId": "hat",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ht2"
+              },
+              {
+                "familyId": "shoe",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "wa3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "hello-again-letter-1",
+              "hello-again-letter-2"
+            ]
+          },
+          {
+            "id": "hello-again-letter-4",
+            "requirements": [
+              {
+                "familyId": "telephone",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "la4"
+              },
+              {
+                "familyId": "hat",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ht3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "hello-again-letter-1",
+              "hello-again-letter-2"
+            ]
+          },
+          {
+            "id": "hello-again-letter-5",
+            "requirements": [
+              {
+                "familyId": "hat",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ht3"
+              },
+              {
+                "familyId": "profile",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "fv3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "hello-again-letter-1",
+              "hello-again-letter-2"
+            ]
+          },
+          {
+            "id": "hello-again-letter-6",
+            "requirements": [
+              {
+                "familyId": "hat",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ht4"
+              },
+              {
+                "familyId": "telephone",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "la2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "hello-again-letter-1",
+              "hello-again-letter-2"
+            ]
+          },
+          {
+            "id": "hello-again-letter-7",
+            "requirements": [
+              {
+                "familyId": "telephone",
+                "tier": 5,
+                "quantity": 1,
+                "pieceId": "la5"
+              },
+              {
+                "familyId": "hat",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ht2"
+              }
+            ],
+            "xp": 150,
+            "coins": 65,
+            "requiresMilestones": [
+              "hello-again-letter-1",
+              "hello-again-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "telephone-sorter",
+            "price": 105,
+            "level": 20
+          },
+          {
+            "id": "hat-sorter",
+            "price": 80,
+            "level": 21
+          }
+        ]
+      },
+      {
+        "id": "off-beat",
+        "endXp": 4390,
+        "cumulativeCoins": 1855,
+        "secondSource": "watch",
+        "endingLevel": {
+          "level": 24,
+          "xp": 4370
+        },
+        "letters": [
+          {
+            "id": "off-beat-letter-1",
+            "requirements": [
+              {
+                "familyId": "comb",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ft2"
+              }
+            ],
+            "xp": 10,
+            "coins": 5,
+            "requiresMilestones": []
+          },
+          {
+            "id": "off-beat-letter-2",
+            "requirements": [
+              {
+                "familyId": "comb",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ft3"
+              },
+              {
+                "familyId": "spool",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "s3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "off-beat-letter-3",
+            "requirements": [
+              {
+                "familyId": "watch",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ct2"
+              },
+              {
+                "familyId": "button",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "bh2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": [
+              "off-beat-letter-1",
+              "off-beat-letter-2"
+            ]
+          },
+          {
+            "id": "off-beat-letter-4",
+            "requirements": [
+              {
+                "familyId": "comb",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ft4"
+              }
+            ],
+            "xp": 60,
+            "coins": 25,
+            "requiresMilestones": [
+              "off-beat-letter-1",
+              "off-beat-letter-2"
+            ]
+          },
+          {
+            "id": "off-beat-letter-5",
+            "requirements": [
+              {
+                "familyId": "watch",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ct3"
+              },
+              {
+                "familyId": "comb",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ft2"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "off-beat-letter-1",
+              "off-beat-letter-2"
+            ]
+          },
+          {
+            "id": "off-beat-letter-6",
+            "requirements": [
+              {
+                "familyId": "watch",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ct4"
+              },
+              {
+                "familyId": "hat",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ht3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "off-beat-letter-1",
+              "off-beat-letter-2"
+            ]
+          },
+          {
+            "id": "off-beat-letter-7",
+            "requirements": [
+              {
+                "familyId": "comb",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ft3"
+              },
+              {
+                "familyId": "watch",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ct3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "off-beat-letter-1",
+              "off-beat-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "comb-sorter",
+            "price": 70,
+            "level": 22
+          },
+          {
+            "id": "watch-sorter",
+            "price": 65,
+            "level": 23
+          }
+        ]
+      },
+      {
+        "id": "return-mail",
+        "endXp": 4960,
+        "cumulativeCoins": 2095,
+        "secondSource": "shell",
+        "endingLevel": {
+          "level": 26,
+          "xp": 4940
+        },
+        "letters": [
+          {
+            "id": "return-mail-letter-1",
+            "requirements": [
+              {
+                "familyId": "letter",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "rp2"
+              },
+              {
+                "familyId": "bird",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "b2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "return-mail-letter-2",
+            "requirements": [
+              {
+                "familyId": "letter",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "rp3"
+              },
+              {
+                "familyId": "telephone",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "la3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "return-mail-letter-3",
+            "requirements": [
+              {
+                "familyId": "shell",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "sh2"
+              },
+              {
+                "familyId": "fish",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ss3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "return-mail-letter-1",
+              "return-mail-letter-2"
+            ]
+          },
+          {
+            "id": "return-mail-letter-4",
+            "requirements": [
+              {
+                "familyId": "letter",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "rp3"
+              },
+              {
+                "familyId": "shell",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "sh3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "return-mail-letter-1",
+              "return-mail-letter-2"
+            ]
+          },
+          {
+            "id": "return-mail-letter-5",
+            "requirements": [
+              {
+                "familyId": "letter",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "rp4"
+              },
+              {
+                "familyId": "teacup",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "t4"
+              }
+            ],
+            "xp": 120,
+            "coins": 50,
+            "requiresMilestones": [
+              "return-mail-letter-1",
+              "return-mail-letter-2"
+            ]
+          },
+          {
+            "id": "return-mail-letter-6",
+            "requirements": [
+              {
+                "familyId": "shell",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "sh4"
+              },
+              {
+                "familyId": "moon",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "m3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "return-mail-letter-1",
+              "return-mail-letter-2"
+            ]
+          },
+          {
+            "id": "return-mail-letter-7",
+            "requirements": [
+              {
+                "familyId": "letter",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "rp2"
+              },
+              {
+                "familyId": "spool",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "s4"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "return-mail-letter-1",
+              "return-mail-letter-2"
+            ]
+          },
+          {
+            "id": "return-mail-letter-8",
+            "requirements": [
+              {
+                "familyId": "shell",
+                "tier": 5,
+                "quantity": 1,
+                "pieceId": "sh5"
+              }
+            ],
+            "xp": 140,
+            "coins": 60,
+            "requiresMilestones": [
+              "return-mail-letter-1",
+              "return-mail-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "letter-sorter",
+            "price": 110,
+            "level": 24
+          },
+          {
+            "id": "shell-sorter",
+            "price": 100,
+            "level": 25
+          }
+        ]
+      },
+      {
+        "id": "fair-weather",
+        "endXp": 5375,
+        "cumulativeCoins": 2270,
+        "secondSource": "anchor",
+        "endingLevel": {
+          "level": 28,
+          "xp": 5355
+        },
+        "letters": [
+          {
+            "id": "fair-weather-letter-1",
+            "requirements": [
+              {
+                "familyId": "umbrella",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "rc2"
+              },
+              {
+                "familyId": "hat",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ht2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "fair-weather-letter-2",
+            "requirements": [
+              {
+                "familyId": "umbrella",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "rc3"
+              },
+              {
+                "familyId": "letter",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "rp3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "fair-weather-letter-3",
+            "requirements": [
+              {
+                "familyId": "anchor",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "hp2"
+              },
+              {
+                "familyId": "map",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "r3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "fair-weather-letter-1",
+              "fair-weather-letter-2"
+            ]
+          },
+          {
+            "id": "fair-weather-letter-4",
+            "requirements": [
+              {
+                "familyId": "umbrella",
+                "tier": 5,
+                "quantity": 1,
+                "pieceId": "rc5"
+              }
+            ],
+            "xp": 140,
+            "coins": 60,
+            "requiresMilestones": [
+              "fair-weather-letter-1",
+              "fair-weather-letter-2"
+            ]
+          },
+          {
+            "id": "fair-weather-letter-5",
+            "requirements": [
+              {
+                "familyId": "anchor",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "hp3"
+              },
+              {
+                "familyId": "umbrella",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "rc2"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "fair-weather-letter-1",
+              "fair-weather-letter-2"
+            ]
+          },
+          {
+            "id": "fair-weather-letter-6",
+            "requirements": [
+              {
+                "familyId": "anchor",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "hp4"
+              },
+              {
+                "familyId": "shell",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "sh3"
+              }
+            ],
+            "xp": 85,
+            "coins": 35,
+            "requiresMilestones": [
+              "fair-weather-letter-1",
+              "fair-weather-letter-2"
+            ]
+          },
+          {
+            "id": "fair-weather-letter-7",
+            "requirements": [
+              {
+                "familyId": "umbrella",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "rc3"
+              },
+              {
+                "familyId": "anchor",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "hp3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "fair-weather-letter-1",
+              "fair-weather-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "umbrella-sorter",
+            "price": 105,
+            "level": 26
+          },
+          {
+            "id": "anchor-sorter",
+            "price": 90,
+            "level": 27
+          }
+        ]
+      },
+      {
+        "id": "double-meaning",
+        "endXp": 5705,
+        "cumulativeCoins": 2410,
+        "secondSource": "domino",
+        "endingLevel": {
+          "level": 30,
+          "xp": 5685
+        },
+        "letters": [
+          {
+            "id": "double-meaning-letter-1",
+            "requirements": [
+              {
+                "familyId": "bee",
+                "tier": 2,
+                "quantity": 2,
+                "pieceId": "bb2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "double-meaning-letter-2",
+            "requirements": [
+              {
+                "familyId": "bee",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "bb3"
+              },
+              {
+                "familyId": "fern",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "f3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "double-meaning-letter-3",
+            "requirements": [
+              {
+                "familyId": "domino",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ds2"
+              },
+              {
+                "familyId": "watch",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ct2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": [
+              "double-meaning-letter-1",
+              "double-meaning-letter-2"
+            ]
+          },
+          {
+            "id": "double-meaning-letter-4",
+            "requirements": [
+              {
+                "familyId": "bee",
+                "tier": 3,
+                "quantity": 2,
+                "pieceId": "bb3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "double-meaning-letter-1",
+              "double-meaning-letter-2"
+            ]
+          },
+          {
+            "id": "double-meaning-letter-5",
+            "requirements": [
+              {
+                "familyId": "bee",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "bb4"
+              },
+              {
+                "familyId": "domino",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ds2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "double-meaning-letter-1",
+              "double-meaning-letter-2"
+            ]
+          },
+          {
+            "id": "double-meaning-letter-6",
+            "requirements": [
+              {
+                "familyId": "domino",
+                "tier": 3,
+                "quantity": 2,
+                "pieceId": "ds3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "double-meaning-letter-1",
+              "double-meaning-letter-2"
+            ]
+          },
+          {
+            "id": "double-meaning-letter-7",
+            "requirements": [
+              {
+                "familyId": "domino",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ds4"
+              },
+              {
+                "familyId": "bee",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "bb2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "double-meaning-letter-1",
+              "double-meaning-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "bee-sorter",
+            "price": 75,
+            "level": 28
+          },
+          {
+            "id": "domino-sorter",
+            "price": 70,
+            "level": 29
+          }
+        ]
+      },
+      {
+        "id": "fine-print",
+        "endXp": 6010,
+        "cumulativeCoins": 2540,
+        "secondSource": "matchbook",
+        "endingLevel": {
+          "level": 32,
+          "xp": 5990
+        },
+        "letters": [
+          {
+            "id": "fine-print-letter-1",
+            "requirements": [
+              {
+                "familyId": "book",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ob2"
+              },
+              {
+                "familyId": "letter",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "rp2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "fine-print-letter-2",
+            "requirements": [
+              {
+                "familyId": "book",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ob3"
+              },
+              {
+                "familyId": "profile",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "fv3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "fine-print-letter-3",
+            "requirements": [
+              {
+                "familyId": "matchbook",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "sm2"
+              },
+              {
+                "familyId": "lantern",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "l3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "fine-print-letter-1",
+              "fine-print-letter-2"
+            ]
+          },
+          {
+            "id": "fine-print-letter-4",
+            "requirements": [
+              {
+                "familyId": "book",
+                "tier": 3,
+                "quantity": 2,
+                "pieceId": "ob3"
+              },
+              {
+                "familyId": "matchbook",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "sm2"
+              }
+            ],
+            "xp": 60,
+            "coins": 25,
+            "requiresMilestones": [
+              "fine-print-letter-1",
+              "fine-print-letter-2"
+            ]
+          },
+          {
+            "id": "fine-print-letter-5",
+            "requirements": [
+              {
+                "familyId": "book",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "ob4"
+              },
+              {
+                "familyId": "cup",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ce2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "fine-print-letter-1",
+              "fine-print-letter-2"
+            ]
+          },
+          {
+            "id": "fine-print-letter-6",
+            "requirements": [
+              {
+                "familyId": "matchbook",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "sm4"
+              },
+              {
+                "familyId": "book",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ob2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "fine-print-letter-1",
+              "fine-print-letter-2"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "book-sorter",
+            "price": 75,
+            "level": 30
+          },
+          {
+            "id": "matchbook-sorter",
+            "price": 65,
+            "level": 31
+          }
+        ]
+      },
+      {
+        "id": "sound-advice",
+        "endXp": 6495,
+        "cumulativeCoins": 2745,
+        "secondSource": "typewriter",
+        "endingLevel": {
+          "level": 34,
+          "xp": 6475
+        },
+        "letters": [
+          {
+            "id": "sound-advice-letter-1",
+            "requirements": [
+              {
+                "familyId": "handbell",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "bt2"
+              },
+              {
+                "familyId": "comb",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "ft2"
+              }
+            ],
+            "xp": 20,
+            "coins": 10,
+            "requiresMilestones": []
+          },
+          {
+            "id": "sound-advice-letter-2",
+            "requirements": [
+              {
+                "familyId": "handbell",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "bt3"
+              },
+              {
+                "familyId": "telephone",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "la3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": []
+          },
+          {
+            "id": "sound-advice-letter-3",
+            "requirements": [
+              {
+                "familyId": "typewriter",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "tw2"
+              },
+              {
+                "familyId": "book",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "ob3"
+              }
+            ],
+            "xp": 35,
+            "coins": 15,
+            "requiresMilestones": [
+              "sound-advice-letter-1",
+              "sound-advice-letter-2"
+            ]
+          },
+          {
+            "id": "sound-advice-letter-4",
+            "requirements": [
+              {
+                "familyId": "handbell",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "bt4"
+              },
+              {
+                "familyId": "typewriter",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "tw2"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "sound-advice-letter-1",
+              "sound-advice-letter-2"
+            ]
+          },
+          {
+            "id": "sound-advice-letter-5",
+            "requirements": [
+              {
+                "familyId": "typewriter",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "tw3"
+              },
+              {
+                "familyId": "shell",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "sh3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "sound-advice-letter-1",
+              "sound-advice-letter-2"
+            ]
+          },
+          {
+            "id": "sound-advice-letter-6",
+            "requirements": [
+              {
+                "familyId": "handbell",
+                "tier": 2,
+                "quantity": 1,
+                "pieceId": "bt2"
+              },
+              {
+                "familyId": "matchbook",
+                "tier": 4,
+                "quantity": 1,
+                "pieceId": "sm4"
+              }
+            ],
+            "xp": 70,
+            "coins": 30,
+            "requiresMilestones": [
+              "sound-advice-letter-1",
+              "sound-advice-letter-2"
+            ]
+          },
+          {
+            "id": "sound-advice-letter-7",
+            "requirements": [
+              {
+                "familyId": "typewriter",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "tw3"
+              },
+              {
+                "familyId": "bird",
+                "tier": 3,
+                "quantity": 1,
+                "pieceId": "b3"
+              }
+            ],
+            "xp": 50,
+            "coins": 20,
+            "requiresMilestones": [
+              "sound-advice-letter-1",
+              "sound-advice-letter-2"
+            ]
+          },
+          {
+            "id": "sound-advice-letter-8",
+            "requirements": [
+              {
+                "familyId": "typewriter",
+                "tier": 5,
+                "quantity": 1,
+                "pieceId": "tw5"
+              }
+            ],
+            "xp": 140,
+            "coins": 60,
+            "requiresMilestones": [
+              "sound-advice-letter-1",
+              "sound-advice-letter-2",
+              "sound-advice-letter-3",
+              "sound-advice-letter-4",
+              "sound-advice-letter-5",
+              "sound-advice-letter-6",
+              "sound-advice-letter-7"
+            ]
+          }
+        ],
+        "upgrades": [
+          {
+            "id": "handbell-sorter",
+            "price": 55,
+            "level": 32
+          },
+          {
+            "id": "typewriter-sorter",
+            "price": 80,
+            "level": 33
+          }
+        ]
+      }
+    ]
+  },
+  "prose": {
+    "letters": [
+      {
+        "id": "wrong-address-letter-1",
+        "targets": [
+          {
+            "familyId": "wing",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "wr2"
+          },
+          {
+            "familyId": "map",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "r2"
+          }
+        ],
+        "title": "A route in the feathers",
+        "letter": "The new wing has turned its feather lines into roads. The old river map has supplied two peaks. Put them together; an address might be a place between pictures.",
+        "goal": "Make and send River Wing and River Ridge.",
+        "sentCaption": "The river recognized a road in the wing."
+      },
+      {
+        "id": "wrong-address-letter-2",
+        "targets": [
+          {
+            "familyId": "wing",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "wr3"
+          },
+          {
+            "familyId": "spool",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "s3"
+          }
+        ],
+        "title": "A window receives a flower",
+        "letter": "The bird is looking through its address window. Send the ribbon bloom to that little opening. A flower can be a perfectly good way of saying where you are.",
+        "goal": "Make and send Address Window and Ribbon Bloom.",
+        "sentCaption": "A ribbon flower reached the window."
+      },
+      {
+        "id": "wrong-address-letter-3",
+        "targets": [
+          {
+            "familyId": "shoe",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "wa2"
+          },
+          {
+            "familyId": "teacup",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "t3"
+          }
+        ],
+        "title": "Tea along the route",
+        "letter": "The shoe has a route between heel and toe. The cups are sending steam in opposite directions. They can disagree about the journey and still share an envelope.",
+        "goal": "Make and send Route and Tea Chorus.",
+        "sentCaption": "The route travelled in good company."
+      },
+      {
+        "id": "wrong-address-letter-4",
+        "targets": [
+          {
+            "familyId": "wing",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "wr4"
+          },
+          {
+            "familyId": "shoe",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "wa2"
+          }
+        ],
+        "title": "Between here and there",
+        "letter": "Two map-wings stand apart, with a red line between them. The shoe brings a whole walking route. Which sort of distance fits on this piece of paper?",
+        "goal": "Make and send Here and There and Route.",
+        "sentCaption": "The wings and the sole compared routes."
+      },
+      {
+        "id": "wrong-address-letter-5",
+        "targets": [
+          {
+            "familyId": "wing",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "wr3"
+          },
+          {
+            "familyId": "shoe",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "wa4"
+          }
+        ],
+        "title": "A small place to stay",
+        "letter": "The long shoe-strip has met an upright little doorway. The bird is still at its window. Send these two addresses together, with the space between them left open.",
+        "goal": "Make and send Address Window and Stay.",
+        "sentCaption": "A doorway answered a window."
+      },
+      {
+        "id": "wrong-address-letter-6",
+        "targets": [
+          {
+            "familyId": "shoe",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "wa3"
+          },
+          {
+            "familyId": "lantern",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "l3"
+          }
+        ],
+        "title": "Go, with a roof",
+        "letter": "GO sits beneath an arch of shoe fragments. The lantern house offers a large roof and a window. They make a fine travelling address, even if the roof stays behind.",
+        "goal": "Make and send Go and Lantern House.",
+        "sentCaption": "The shoe found a roof to write to."
+      },
+      {
+        "id": "wrong-address-letter-7",
+        "targets": [
+          {
+            "familyId": "wing",
+            "tier": 5,
+            "quantity": 1,
+            "pieceId": "wr5"
+          }
+        ],
+        "title": "The shape of arrival",
+        "letter": "The bird has reached a window shaped like a bird. The route between them is all angles. Send this arrival whenever it is ready; other addresses can still have their turn.",
+        "goal": "Make and send Arrival.",
+        "sentCaption": "A bird-shaped space received the bird."
+      },
+      {
+        "id": "quiet-company-letter-1",
+        "targets": [
+          {
+            "familyId": "chair",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ec2"
+          }
+        ],
+        "title": "A chair with a view",
+        "letter": "The chair back has spread into three little windows. Send the view when you like. There will be time to decide who sits beside it.",
+        "goal": "Make and send Window.",
+        "sentCaption": "Three openings made a quiet beginning."
+      },
+      {
+        "id": "quiet-company-letter-2",
+        "targets": [
+          {
+            "familyId": "chair",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ec3"
+          },
+          {
+            "familyId": "fern",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "f2"
+          }
+        ],
+        "title": "The fern takes a seat",
+        "letter": "SIT is printed under the chair’s open seat. The fern has brought its own cup. Leave the two pictures together, as if a visit could be that simple.",
+        "goal": "Make and send Invitation and Fern Cup.",
+        "sentCaption": "The fern arrived with its cup."
+      },
+      {
+        "id": "quiet-company-letter-3",
+        "targets": [
+          {
+            "familyId": "cup",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ce2"
+          },
+          {
+            "familyId": "teacup",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "t4"
+          }
+        ],
+        "title": "A handle full of steam",
+        "letter": "The new cup has given most of its room to the handle. The old cup has made a fan of steam. One has an opening; the other has something light to put beside it.",
+        "goal": "Make and send Full and Pleated Steam.",
+        "sentCaption": "The steam found room beside the handle."
+      },
+      {
+        "id": "quiet-company-letter-4",
+        "targets": [
+          {
+            "familyId": "chair",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ec3"
+          },
+          {
+            "familyId": "cup",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ce3"
+          }
+        ],
+        "title": "No need to fill it",
+        "letter": "The chair leaves its seat open. The two cup fragments meet at a narrow red waist. Send the empty places together, without finding anything to fill them.",
+        "goal": "Make and send Invitation and Empty.",
+        "sentCaption": "The empty places kept one another company."
+      },
+      {
+        "id": "quiet-company-letter-5",
+        "targets": [
+          {
+            "familyId": "cup",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ce4"
+          },
+          {
+            "familyId": "chair",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ec2"
+          }
+        ],
+        "title": "An answer with windows",
+        "letter": "The cup’s answer has a round gap in its middle. The chair replies with three windows. This conversation seems to need very little ink.",
+        "goal": "Make and send Answer and Window.",
+        "sentCaption": "The round answer met the open view."
+      },
+      {
+        "id": "quiet-company-letter-6",
+        "targets": [
+          {
+            "familyId": "chair",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ec4"
+          },
+          {
+            "familyId": "spool",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "s3"
+          }
+        ],
+        "title": "Flowers while we wait",
+        "letter": "The chair fragments face each other across a red strip. Bring the ribbon bloom from the studio. Waiting is part of this picture, never a task for you.",
+        "goal": "Make and send Wait and Ribbon Bloom.",
+        "sentCaption": "A ribbon bloom sat beside the gap."
+      },
+      {
+        "id": "namesakes-letter-1",
+        "targets": [
+          {
+            "familyId": "pear",
+            "tier": 2,
+            "quantity": 2,
+            "pieceId": "pp2"
+          }
+        ],
+        "title": "A pair of pairs",
+        "letter": "PAIR sits at the hinge of each picture. This letter needs two separate Pair Hinges. Keep them side by side for the envelope instead of merging them into Seed Leaf.",
+        "goal": "Make and send 2 separate Pair Hinge pieces.",
+        "sentCaption": "Two Pair Hinges travelled as a pair."
+      },
+      {
+        "id": "namesakes-letter-2",
+        "targets": [
+          {
+            "familyId": "pear",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "pp3"
+          },
+          {
+            "familyId": "cup",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ce2"
+          }
+        ],
+        "title": "A seed and a handle",
+        "letter": "The pear has become a frame around its seed. The cup has made its handle much larger. Send these two ways of keeping a small thing in sight.",
+        "goal": "Make and send Seed Leaf and Full.",
+        "sentCaption": "The seed and the cup each kept their opening."
+      },
+      {
+        "id": "namesakes-letter-3",
+        "targets": [
+          {
+            "familyId": "fish",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ss2"
+          },
+          {
+            "familyId": "moon",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "m3"
+          }
+        ],
+        "title": "A tide for the skiff",
+        "letter": "The fish has a blue wave between head and tail. The moon’s little skiff has a sail. Put their waters in the same envelope and let the paper do the floating.",
+        "goal": "Make and send Tide and Lunar Skiff.",
+        "sentCaption": "The skiff met a tide made of fish."
+      },
+      {
+        "id": "namesakes-letter-4",
+        "targets": [
+          {
+            "familyId": "pear",
+            "tier": 3,
+            "quantity": 2,
+            "pieceId": "pp3"
+          }
+        ],
+        "title": "Two seeds, separately",
+        "letter": "Two Seed Leaves belong in this reply. The next picture would be Split, but these two are staying separate for the journey. Count the pictures, even if their names start a game.",
+        "goal": "Make and send 2 separate Seed Leaf pieces.",
+        "sentCaption": "Two seeds kept their own frames."
+      },
+      {
+        "id": "namesakes-letter-5",
+        "targets": [
+          {
+            "familyId": "pear",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "pp4"
+          },
+          {
+            "familyId": "fish",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ss2"
+          }
+        ],
+        "title": "A bridge above the tide",
+        "letter": "The pear curve and leaf stand apart on a red bridge. The fish sends a blue wave below its head. These pieces have found a crossing without becoming a map.",
+        "goal": "Make and send Split and Tide.",
+        "sentCaption": "The pear’s bridge met the fish’s tide."
+      },
+      {
+        "id": "namesakes-letter-6",
+        "targets": [
+          {
+            "familyId": "fish",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ss3"
+          },
+          {
+            "familyId": "shoe",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "wa3"
+          }
+        ],
+        "title": "See where to go",
+        "letter": "SEE has an eye above it. GO has an arch above it. Send the two pictures together. The words can offer advice; the exact pieces are all the letter needs.",
+        "goal": "Make and send Lookout and Go.",
+        "sentCaption": "SEE and GO went by the same post."
+      },
+      {
+        "id": "namesakes-letter-7",
+        "targets": [
+          {
+            "familyId": "fish",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ss4"
+          },
+          {
+            "familyId": "pear",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "pp2"
+          }
+        ],
+        "title": "Facing a pair",
+        "letter": "The fish head looks across a wide gap toward its tail. The pear halves open from their hinge. Send these two conversations between parts of the same picture.",
+        "goal": "Make and send Facing and Pair Hinge.",
+        "sentCaption": "The fish and pear recognized their other halves."
+      },
+      {
+        "id": "useful-gaps-letter-1",
+        "targets": [
+          {
+            "familyId": "scissors",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "cj2"
+          },
+          {
+            "familyId": "spool",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "s2"
+          }
+        ],
+        "title": "Loops in company",
+        "letter": "The scissors have spread their handles into unequal loops. The ribbon rises in a loop of its own. Send them together; neither needs to hold anything shut.",
+        "goal": "Make and send Loops and Ribbon Spool.",
+        "sentCaption": "Three loops shared a small envelope."
+      },
+      {
+        "id": "useful-gaps-letter-2",
+        "targets": [
+          {
+            "familyId": "scissors",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "cj3"
+          },
+          {
+            "familyId": "key",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "k3"
+          }
+        ],
+        "title": "A join and a crossing",
+        "letter": "A red bar joins the two scissor strips. The key lifts its shaft into a bridge. Both leave a gap beneath the part that reaches across.",
+        "goal": "Make and send Join and Drawbridge Key.",
+        "sentCaption": "The join and the bridge left their gaps open."
+      },
+      {
+        "id": "useful-gaps-letter-3",
+        "targets": [
+          {
+            "familyId": "button",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "bh2"
+          },
+          {
+            "familyId": "shoe",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "wa2"
+          }
+        ],
+        "title": "One stitch on the route",
+        "letter": "The button’s two halves are held at the left by a red stitch. The shoe has a red route of its own. They can travel together without being sewn to each other.",
+        "goal": "Make and send Clasp and Route.",
+        "sentCaption": "A stitch kept pace with the walking route."
+      },
+      {
+        "id": "useful-gaps-letter-4",
+        "targets": [
+          {
+            "familyId": "scissors",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "cj4"
+          },
+          {
+            "familyId": "button",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "bh3"
+          }
+        ],
+        "title": "Over the windows",
+        "letter": "A long scissor blade runs above two handles. The button has opened four windows in a row. Lay their two kinds of line beside each other for this reply.",
+        "goal": "Make and send Overcut and Threadway.",
+        "sentCaption": "The blade and the windows made two lines."
+      },
+      {
+        "id": "useful-gaps-letter-5",
+        "targets": [
+          {
+            "familyId": "button",
+            "tier": 3,
+            "quantity": 2,
+            "pieceId": "bh3"
+          }
+        ],
+        "title": "Eight windows, two pictures",
+        "letter": "This envelope needs two Threadways, each with its own four windows. Keep the two pieces separate. A larger button picture would answer a different letter.",
+        "goal": "Make and send 2 separate Threadway pieces.",
+        "sentCaption": "Two Threadways kept all eight windows."
+      },
+      {
+        "id": "useful-gaps-letter-6",
+        "targets": [
+          {
+            "familyId": "button",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "bh4"
+          },
+          {
+            "familyId": "scissors",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "cj2"
+          }
+        ],
+        "title": "An opening and its company",
+        "letter": "The button stitches surround a tilted diamond. The scissor handles have made two rounder openings. Send them together as a small collection of useful spaces.",
+        "goal": "Make and send Open and Loops.",
+        "sentCaption": "A diamond travelled beside two loops."
+      },
+      {
+        "id": "useful-gaps-letter-7",
+        "targets": [
+          {
+            "familyId": "scissors",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "cj3"
+          },
+          {
+            "familyId": "teacup",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "t3"
+          }
+        ],
+        "title": "A quiet join",
+        "letter": "The scissors hold their gap with a red bar. The cups have a HUSH scrap between their steam curls. A join can be a quiet thing.",
+        "goal": "Make and send Join and Tea Chorus.",
+        "sentCaption": "The cups kept the join quiet."
+      },
+      {
+        "id": "small-talk-letter-1",
+        "targets": [
+          {
+            "familyId": "hand",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "hs2"
+          },
+          {
+            "familyId": "button",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "bh2"
+          }
+        ],
+        "title": "A wave and a clasp",
+        "letter": "The hand is waving. The button is holding two halves together with one stitch. Send a greeting that can travel without anyone having to let go.",
+        "goal": "Make and send Wave and Clasp.",
+        "sentCaption": "The wave reached the little clasp."
+      },
+      {
+        "id": "small-talk-letter-2",
+        "targets": [
+          {
+            "familyId": "hand",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "hs3"
+          },
+          {
+            "familyId": "chair",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ec3"
+          }
+        ],
+        "title": "A greeting with a seat",
+        "letter": "Two thumbs have met between their cuffs. The chair has left a seat open. Send the introduction and the invitation together.",
+        "goal": "Make and send Meet and Invitation.",
+        "sentCaption": "The greeting found a place to sit."
+      },
+      {
+        "id": "small-talk-letter-3",
+        "targets": [
+          {
+            "familyId": "profile",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "fv2"
+          },
+          {
+            "familyId": "cup",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ce2"
+          }
+        ],
+        "title": "An introduction over a cup",
+        "letter": "Two profiles face a slim line of light. The cup has brought its large handle. A little space and something to drink from: that is enough for an introduction.",
+        "goal": "Make and send Introduction and Full.",
+        "sentCaption": "The profiles met beside the cup."
+      },
+      {
+        "id": "small-talk-letter-4",
+        "targets": [
+          {
+            "familyId": "hand",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "hs3"
+          },
+          {
+            "familyId": "profile",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "fv3"
+          }
+        ],
+        "title": "Inside the greeting",
+        "letter": "The hands meet at their thumbs. The face opens around an eye-shaped gap. There is someone in this conversation, even where the paper is missing.",
+        "goal": "Make and send Meet and Inside.",
+        "sentCaption": "The open face received the joined hands."
+      },
+      {
+        "id": "small-talk-letter-5",
+        "targets": [
+          {
+            "familyId": "profile",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "fv4"
+          },
+          {
+            "familyId": "hand",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "hs2"
+          }
+        ],
+        "title": "An aside, with a wave",
+        "letter": "The nose and jaw have made an open corner. Add the waving hand, as if one small remark had caught your attention on the way past.",
+        "goal": "Make and send Aside and Wave.",
+        "sentCaption": "The aside caught a wave."
+      },
+      {
+        "id": "small-talk-letter-6",
+        "targets": [
+          {
+            "familyId": "hand",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "hs4"
+          },
+          {
+            "familyId": "fish",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ss3"
+          }
+        ],
+        "title": "A direction worth seeing",
+        "letter": "The pointing finger and palm leave a corner between them. The fish has put SEE under its eye. Perhaps the hand is showing the eye where to look.",
+        "goal": "Make and send Between and Lookout.",
+        "sentCaption": "The hand offered the eye a direction."
+      },
+      {
+        "id": "hello-again-letter-1",
+        "targets": [
+          {
+            "familyId": "telephone",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "la2"
+          },
+          {
+            "familyId": "wing",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "wr2"
+          }
+        ],
+        "title": "The wing calls back",
+        "letter": "The receiver has stood up on its cord. The map-wing is here again, with roads among its feathers. Let the old route answer this new shape.",
+        "goal": "Make and send Off Hook and River Wing.",
+        "sentCaption": "The wing answered the upright receiver."
+      },
+      {
+        "id": "hello-again-letter-2",
+        "targets": [
+          {
+            "familyId": "telephone",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "la3"
+          },
+          {
+            "familyId": "map",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "r3"
+          }
+        ],
+        "title": "A crossed connection",
+        "letter": "A black-and-ivory receiver crosses the dial beside a red BUSY scrap. The river drops through a broken crossing. Send their crossed lines together, without asking either to straighten out.",
+        "goal": "Make and send Busy and River Crossing.",
+        "sentCaption": "The dial and the river crossed paths."
+      },
+      {
+        "id": "hello-again-letter-3",
+        "targets": [
+          {
+            "familyId": "hat",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ht2"
+          },
+          {
+            "familyId": "shoe",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "wa3"
+          }
+        ],
+        "title": "A hat for GO",
+        "letter": "The bowler tips its crown. The shoe has left GO beneath its arch. One is a greeting; the other may already be on its way.",
+        "goal": "Make and send Tip and Go.",
+        "sentCaption": "The tipped hat caught the passing shoe."
+      },
+      {
+        "id": "hello-again-letter-4",
+        "targets": [
+          {
+            "familyId": "telephone",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "la4"
+          },
+          {
+            "familyId": "hat",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ht3"
+          }
+        ],
+        "title": "Listening to a salute",
+        "letter": "The receiver ends face a diamond of air. The hat brim spreads like a broad greeting. The hat has plenty to say without making a sound.",
+        "goal": "Make and send Listening and Salute.",
+        "sentCaption": "The receivers listened to the spread brim."
+      },
+      {
+        "id": "hello-again-letter-5",
+        "targets": [
+          {
+            "familyId": "hat",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ht3"
+          },
+          {
+            "familyId": "profile",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "fv3"
+          }
+        ],
+        "title": "A familiar face",
+        "letter": "The greeting made from a hat returns to the open face. Send them together. An introduction can become familiar without needing a longer speech.",
+        "goal": "Make and send Salute and Inside.",
+        "sentCaption": "The hat greeted the face again."
+      },
+      {
+        "id": "hello-again-letter-6",
+        "targets": [
+          {
+            "familyId": "hat",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ht4"
+          },
+          {
+            "familyId": "telephone",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "la2"
+          }
+        ],
+        "title": "Hello from above",
+        "letter": "The crown strip sits high above its brim. The receiver has stretched upward too. Send these two pictures reaching out of their ordinary shapes.",
+        "goal": "Make and send Overhead and Off Hook.",
+        "sentCaption": "The receiver and crown reached up together."
+      },
+      {
+        "id": "hello-again-letter-7",
+        "targets": [
+          {
+            "familyId": "telephone",
+            "tier": 5,
+            "quantity": 1,
+            "pieceId": "la5"
+          },
+          {
+            "familyId": "hat",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ht2"
+          }
+        ],
+        "title": "Until another time",
+        "letter": "The telephone cord curls into a question. The hat gives one more small tip. Send them when you are ready; the question belongs to the drawing.",
+        "goal": "Make and send Call Again and Tip.",
+        "sentCaption": "A tipped hat answered the curled question."
+      },
+      {
+        "id": "off-beat-letter-1",
+        "targets": [
+          {
+            "familyId": "comb",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ft2"
+          }
+        ],
+        "title": "A small part",
+        "letter": "The comb has opened into two banks of teeth. The red hinge keeps them near each other. A short reply is quite enough for this picture.",
+        "goal": "Make and send Part.",
+        "sentCaption": "The teeth left a little part between them."
+      },
+      {
+        "id": "off-beat-letter-2",
+        "targets": [
+          {
+            "familyId": "comb",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ft3"
+          },
+          {
+            "familyId": "spool",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "s3"
+          }
+        ],
+        "title": "Three loops, uneven teeth",
+        "letter": "The comb’s teeth take turns down a stepped spine. The ribbon bloom has three broad loops. Put their different rhythms on one sheet.",
+        "goal": "Make and send Rhythm and Ribbon Bloom.",
+        "sentCaption": "The loops and teeth kept different rhythms."
+      },
+      {
+        "id": "off-beat-letter-3",
+        "targets": [
+          {
+            "familyId": "watch",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ct2"
+          },
+          {
+            "familyId": "button",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "bh2"
+          }
+        ],
+        "title": "A tick held by a stitch",
+        "letter": "The watch has become two upright arcs. The button holds its halves with one stitch. Neither picture needs you to count seconds.",
+        "goal": "Make and send Tick and Clasp.",
+        "sentCaption": "A small stitch travelled beside a tick."
+      },
+      {
+        "id": "off-beat-letter-4",
+        "targets": [
+          {
+            "familyId": "comb",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ft4"
+          }
+        ],
+        "title": "Room for a pause",
+        "letter": "The comb makes a low arch above its red line. One tooth sits apart. Send the space they leave; you need not wait to make a pause.",
+        "goal": "Make and send Pause.",
+        "sentCaption": "The pause was already in the paper."
+      },
+      {
+        "id": "off-beat-letter-5",
+        "targets": [
+          {
+            "familyId": "watch",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ct3"
+          },
+          {
+            "familyId": "comb",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ft2"
+          }
+        ],
+        "title": "Between the parts",
+        "letter": "A minute hand reaches between the watch’s distant halves. The comb leaves a narrower part between its teeth. Send these two measures of empty space.",
+        "goal": "Make and send Interval and Part.",
+        "sentCaption": "The long interval met the narrow part."
+      },
+      {
+        "id": "off-beat-letter-6",
+        "targets": [
+          {
+            "familyId": "watch",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ct4"
+          },
+          {
+            "familyId": "hat",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ht3"
+          }
+        ],
+        "title": "After the greeting",
+        "letter": "The broken watch face steps downward. The hat still holds its greeting wide. Put them together without deciding how much time has passed.",
+        "goal": "Make and send After and Salute.",
+        "sentCaption": "The greeting travelled beside the broken clock."
+      },
+      {
+        "id": "off-beat-letter-7",
+        "targets": [
+          {
+            "familyId": "comb",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ft3"
+          },
+          {
+            "familyId": "watch",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ct3"
+          }
+        ],
+        "title": "A rhythm with room",
+        "letter": "The comb’s steps and the watch’s far-apart halves fit in one reply. Some marks gather; others leave room. The rhythm is in how you look at them.",
+        "goal": "Make and send Rhythm and Interval.",
+        "sentCaption": "The teeth and dial left room for each other."
+      },
+      {
+        "id": "return-mail-letter-1",
+        "targets": [
+          {
+            "familyId": "letter",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "rp2"
+          },
+          {
+            "familyId": "bird",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "b2"
+          }
+        ],
+        "title": "The river returns",
+        "letter": "The envelope has opened into a diamond. The first bird still carries its river under a wing. Send them together; an opening makes a fine return address.",
+        "goal": "Make and send Open Letter and Riverwing.",
+        "sentCaption": "The river-winged bird found an open letter."
+      },
+      {
+        "id": "return-mail-letter-2",
+        "targets": [
+          {
+            "familyId": "letter",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "rp3"
+          },
+          {
+            "familyId": "telephone",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "la3"
+          }
+        ],
+        "title": "Forward, around the dial",
+        "letter": "The folded letter points onward. The telephone dial has finger holes around its ivory center. This reply can have both a direction and a place to turn around.",
+        "goal": "Make and send Forward and Busy.",
+        "sentCaption": "The arrow passed the ring of finger holes."
+      },
+      {
+        "id": "return-mail-letter-3",
+        "targets": [
+          {
+            "familyId": "shell",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "sh2"
+          },
+          {
+            "familyId": "fish",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ss3"
+          }
+        ],
+        "title": "An ear beside an eye",
+        "letter": "The shell has curled around a listening space. The fish brings its eye above SEE. Send these two small ways of paying attention.",
+        "goal": "Make and send Ear and Lookout.",
+        "sentCaption": "The shell listened beside the fish’s eye."
+      },
+      {
+        "id": "return-mail-letter-4",
+        "targets": [
+          {
+            "familyId": "letter",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "rp3"
+          },
+          {
+            "familyId": "shell",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "sh3"
+          }
+        ],
+        "title": "Sound goes forward",
+        "letter": "The postal folds make a zigzag arrow. The shell halves hold a shallow wave-shaped opening. Send the direction beside the sound it might carry.",
+        "goal": "Make and send Forward and Sound.",
+        "sentCaption": "The shell’s wave went with the folded arrow."
+      },
+      {
+        "id": "return-mail-letter-5",
+        "targets": [
+          {
+            "familyId": "letter",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "rp4"
+          },
+          {
+            "familyId": "teacup",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "t4"
+          }
+        ],
+        "title": "A reply with steam",
+        "letter": "Two letter flaps face a gap between them. The cup returns with its fan of steam. Perhaps the old tea conversation has found another page.",
+        "goal": "Make and send Reply and Pleated Steam.",
+        "sentCaption": "The steam rose beside a paper reply."
+      },
+      {
+        "id": "return-mail-letter-6",
+        "targets": [
+          {
+            "familyId": "shell",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "sh4"
+          },
+          {
+            "familyId": "moon",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "m3"
+          }
+        ],
+        "title": "A whisper for the skiff",
+        "letter": "The shell offers a quiet right-angle corner. The moon brings its small sailboat back. A long journey can receive a very short message.",
+        "goal": "Make and send Whisper and Lunar Skiff.",
+        "sentCaption": "The skiff received the shell’s quiet corner."
+      },
+      {
+        "id": "return-mail-letter-7",
+        "targets": [
+          {
+            "familyId": "letter",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "rp2"
+          },
+          {
+            "familyId": "spool",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "s4"
+          }
+        ],
+        "title": "The loom gets a letter",
+        "letter": "The open envelope and the ribbon loom both leave room inside. Send the two frames together, like a note to the studio where the ribbons began.",
+        "goal": "Make and send Open Letter and Ribbon Loom.",
+        "sentCaption": "An open letter visited the loom."
+      },
+      {
+        "id": "return-mail-letter-8",
+        "targets": [
+          {
+            "familyId": "shell",
+            "tier": 5,
+            "quantity": 1,
+            "pieceId": "sh5"
+          }
+        ],
+        "title": "What the shell kept",
+        "letter": "The shell ribs rise into a broad crest, with an open bite beneath the edge. Send the shape it has made from listening. The other replies can still find their own order.",
+        "goal": "Make and send Resonance.",
+        "sentCaption": "The shell sent the space it had kept."
+      },
+      {
+        "id": "fair-weather-letter-1",
+        "targets": [
+          {
+            "familyId": "umbrella",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "rc2"
+          },
+          {
+            "familyId": "hat",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ht2"
+          }
+        ],
+        "title": "A hat beside a folded sky",
+        "letter": "The umbrella has folded around its hooked handle. The bowler gives a small tip. They look ready to pass each other in a very narrow doorway.",
+        "goal": "Make and send Furled and Tip.",
+        "sentCaption": "The folded umbrella passed the tipped hat."
+      },
+      {
+        "id": "fair-weather-letter-2",
+        "targets": [
+          {
+            "familyId": "umbrella",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "rc3"
+          },
+          {
+            "familyId": "letter",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "rp3"
+          }
+        ],
+        "title": "A gust goes forward",
+        "letter": "The umbrella has turned inside out. The letter still points forward through its zigzag folds. Send their two directions without asking the wind to agree.",
+        "goal": "Make and send Gust and Forward.",
+        "sentCaption": "The gust and the letter went onward together."
+      },
+      {
+        "id": "fair-weather-letter-3",
+        "targets": [
+          {
+            "familyId": "anchor",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "hp2"
+          },
+          {
+            "familyId": "map",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "r3"
+          }
+        ],
+        "title": "A crossing for an anchor",
+        "letter": "The tilted anchor has one long fluke. The river map leaves a broken crossing. Put the two beside each other; this anchor can visit the river on paper.",
+        "goal": "Make and send Afloat and River Crossing.",
+        "sentCaption": "The anchor reached the river crossing."
+      },
+      {
+        "id": "fair-weather-letter-4",
+        "targets": [
+          {
+            "familyId": "umbrella",
+            "tier": 5,
+            "quantity": 1,
+            "pieceId": "rc5"
+          }
+        ],
+        "title": "A larger piece of weather",
+        "letter": "The umbrella folds rise in three steps, with the broad hook curling below. This is a longer picture to make. It can keep its place while you choose another available letter.",
+        "goal": "Make and send Fair Weather.",
+        "sentCaption": "Three folds carried their own weather."
+      },
+      {
+        "id": "fair-weather-letter-5",
+        "targets": [
+          {
+            "familyId": "anchor",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "hp3"
+          },
+          {
+            "familyId": "umbrella",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "rc2"
+          }
+        ],
+        "title": "A crescent and a fold",
+        "letter": "Two anchor flukes make a low crescent. The umbrella keeps its canopy folded tight. Send these two compact shapes between the larger weather reports.",
+        "goal": "Make and send Moor and Furled.",
+        "sentCaption": "The flukes and the folded canopy fitted together."
+      },
+      {
+        "id": "fair-weather-letter-6",
+        "targets": [
+          {
+            "familyId": "anchor",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "hp4"
+          },
+          {
+            "familyId": "shell",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "sh3"
+          }
+        ],
+        "title": "Drift with a sound",
+        "letter": "The anchor stock turns a corner above its fluke. The shell holds a wave of empty space. Let the drifting picture have something quiet to travel beside.",
+        "goal": "Make and send Drift and Sound.",
+        "sentCaption": "The drift went beside the shell’s wave."
+      },
+      {
+        "id": "fair-weather-letter-7",
+        "targets": [
+          {
+            "familyId": "umbrella",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "rc3"
+          },
+          {
+            "familyId": "anchor",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "hp3"
+          }
+        ],
+        "title": "Upward, with a mooring",
+        "letter": "The gust lifts the umbrella ribs. The anchor flukes hold their low curve. Send the lifted and the low picture in one envelope.",
+        "goal": "Make and send Gust and Moor.",
+        "sentCaption": "The gust had a low crescent for company."
+      },
+      {
+        "id": "double-meaning-letter-1",
+        "targets": [
+          {
+            "familyId": "bee",
+            "tier": 2,
+            "quantity": 2,
+            "pieceId": "bb2"
+          }
+        ],
+        "title": "Two bees, still separate",
+        "letter": "This letter needs two separate Be Still pictures. Each bee keeps its folded wing. Merging them would make In Between, which belongs to another request.",
+        "goal": "Make and send 2 separate Be Still pieces.",
+        "sentCaption": "Two resting bees shared the envelope."
+      },
+      {
+        "id": "double-meaning-letter-2",
+        "targets": [
+          {
+            "familyId": "bee",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "bb3"
+          },
+          {
+            "familyId": "fern",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "f3"
+          }
+        ],
+        "title": "Between the leaves and moon",
+        "letter": "The bee’s striped body crosses its uneven wings. The old fern cup holds a moon. Send a garden visit made from these two pictures.",
+        "goal": "Make and send In Between and Nightgarden.",
+        "sentCaption": "The bee visited the little night garden."
+      },
+      {
+        "id": "double-meaning-letter-3",
+        "targets": [
+          {
+            "familyId": "domino",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ds2"
+          },
+          {
+            "familyId": "watch",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ct2"
+          }
+        ],
+        "title": "A double and a tick",
+        "letter": "The domino faces meet at a right angle. The watch arcs rise on their stem. Their names sound short; their shapes have room for a conversation.",
+        "goal": "Make and send Double and Tick.",
+        "sentCaption": "The double met the upright tick."
+      },
+      {
+        "id": "double-meaning-letter-4",
+        "targets": [
+          {
+            "familyId": "bee",
+            "tier": 3,
+            "quantity": 2,
+            "pieceId": "bb3"
+          }
+        ],
+        "title": "Two ways of being between",
+        "letter": "Keep two In Between pictures separate for this envelope. Their wings can face one another on the table. A single Be Side would be a different reply.",
+        "goal": "Make and send 2 separate In Between pieces.",
+        "sentCaption": "Two striped crossings stayed separate."
+      },
+      {
+        "id": "double-meaning-letter-5",
+        "targets": [
+          {
+            "familyId": "bee",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "bb4"
+          },
+          {
+            "familyId": "domino",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ds2"
+          }
+        ],
+        "title": "Beside the double",
+        "letter": "The bee steps upward beside its broad wing. The domino turns a low corner. Send the two shapes together and let each keep its own direction.",
+        "goal": "Make and send Be Side and Double.",
+        "sentCaption": "The bee stood beside the domino corner."
+      },
+      {
+        "id": "double-meaning-letter-6",
+        "targets": [
+          {
+            "familyId": "domino",
+            "tier": 3,
+            "quantity": 2,
+            "pieceId": "ds3"
+          }
+        ],
+        "title": "Two tumbles",
+        "letter": "Each Tumble has its own diagonal of pips. This letter needs two of them, kept separate. The envelope can hold two falling lines without turning them into a bracket.",
+        "goal": "Make and send 2 separate Tumble pieces.",
+        "sentCaption": "Two lines of pips made the journey."
+      },
+      {
+        "id": "double-meaning-letter-7",
+        "targets": [
+          {
+            "familyId": "domino",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ds4"
+          },
+          {
+            "familyId": "bee",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "bb2"
+          }
+        ],
+        "title": "Pause here, little bee",
+        "letter": "The domino leaves a bracket open at its side. The bee is resting beneath a folded wing. Send a place to pause beside a picture already quite good at it.",
+        "goal": "Make and send Pause Here and Be Still.",
+        "sentCaption": "The bee rested beside the open bracket."
+      },
+      {
+        "id": "fine-print-letter-1",
+        "targets": [
+          {
+            "familyId": "book",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ob2"
+          },
+          {
+            "familyId": "letter",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "rp2"
+          }
+        ],
+        "title": "A page receives a letter",
+        "letter": "One page stands up from the book. The letter opens its middle. Slip the two pictures into the same envelope, like a note left at a useful page.",
+        "goal": "Make and send Turn and Open Letter.",
+        "sentCaption": "The open letter found the turning page."
+      },
+      {
+        "id": "fine-print-letter-2",
+        "targets": [
+          {
+            "familyId": "book",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ob3"
+          },
+          {
+            "familyId": "profile",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "fv3"
+          }
+        ],
+        "title": "A face in the folds",
+        "letter": "The book has become a diagonal accordion. The profile leaves an eye-shaped space. Send the reader and the folded pages without filling in the missing face.",
+        "goal": "Make and send Fold and Inside.",
+        "sentCaption": "The folded pages met the open eye."
+      },
+      {
+        "id": "fine-print-letter-3",
+        "targets": [
+          {
+            "familyId": "matchbook",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "sm2"
+          },
+          {
+            "familyId": "lantern",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "l3"
+          }
+        ],
+        "title": "A little fan at the window",
+        "letter": "Three printed matches spread from their cover. The lantern house brings its familiar window. These paper shapes can share their small light.",
+        "goal": "Make and send Fan and Lantern House.",
+        "sentCaption": "The matchbook fan visited the lantern window."
+      },
+      {
+        "id": "fine-print-letter-4",
+        "targets": [
+          {
+            "familyId": "book",
+            "tier": 3,
+            "quantity": 2,
+            "pieceId": "ob3"
+          },
+          {
+            "familyId": "matchbook",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "sm2"
+          }
+        ],
+        "title": "Two folds, one small fan",
+        "letter": "Keep two folded books separate for this envelope. The matchbook spreads its three printed matches beside them. Send both Folds and the little Fan, with every page still its own.",
+        "goal": "Make and send 2 separate Fold pieces and Fan.",
+        "sentCaption": "Two folded books shared an envelope with the little fan."
+      },
+      {
+        "id": "fine-print-letter-5",
+        "targets": [
+          {
+            "familyId": "book",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "ob4"
+          },
+          {
+            "familyId": "cup",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ce2"
+          }
+        ],
+        "title": "A passage beside the handle",
+        "letter": "The book’s pages fan away from their binding. The cup gives most of its room to a tall handle. Send the sweep of pages beside that generous opening.",
+        "goal": "Make and send Passage and Full.",
+        "sentCaption": "The fanned pages found room beside the handle."
+      },
+      {
+        "id": "fine-print-letter-6",
+        "targets": [
+          {
+            "familyId": "matchbook",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "sm4"
+          },
+          {
+            "familyId": "book",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ob2"
+          }
+        ],
+        "title": "After the small light",
+        "letter": "The matchbook keeps its spent match. The book has another page ready to turn. Send them together; there is still one more chapter to read.",
+        "goal": "Make and send Spent and Turn.",
+        "sentCaption": "The spent match rested beside the turning page."
+      },
+      {
+        "id": "sound-advice-letter-1",
+        "targets": [
+          {
+            "familyId": "handbell",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "bt2"
+          },
+          {
+            "familyId": "comb",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "ft2"
+          }
+        ],
+        "title": "A bell opens the exchange",
+        "letter": "The bell tips its mouth sideways. The comb has left a part between its teeth. Send a small opening to this last conversation.",
+        "goal": "Make and send Tilt and Part.",
+        "sentCaption": "The tilted bell met the parted comb."
+      },
+      {
+        "id": "sound-advice-letter-2",
+        "targets": [
+          {
+            "familyId": "handbell",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "bt3"
+          },
+          {
+            "familyId": "telephone",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "la3"
+          }
+        ],
+        "title": "A peal for the telephone",
+        "letter": "Two bell halves spread around their handle. The telephone carries its red BUSY scrap. Send the two ways of calling, with no need for either to ring.",
+        "goal": "Make and send Peal and Busy.",
+        "sentCaption": "The bell and the telephone called on paper."
+      },
+      {
+        "id": "sound-advice-letter-3",
+        "targets": [
+          {
+            "familyId": "typewriter",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "tw2"
+          },
+          {
+            "familyId": "book",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "ob3"
+          }
+        ],
+        "title": "Paper for the folds",
+        "letter": "A tall sheet rises from the typewriter. The book returns as its folded accordion. They have enough paper between them for a generous reply.",
+        "goal": "Make and send Paper and Fold.",
+        "sentCaption": "The fresh sheet met the folded pages."
+      },
+      {
+        "id": "sound-advice-letter-4",
+        "targets": [
+          {
+            "familyId": "handbell",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "bt4"
+          },
+          {
+            "familyId": "typewriter",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "tw2"
+          }
+        ],
+        "title": "Tell it on paper",
+        "letter": "The bell lip has become a low bowl. The typewriter holds up its sheet. Put the telling picture beside somewhere for the words to go.",
+        "goal": "Make and send Tell and Paper.",
+        "sentCaption": "The bell’s bowl received a sheet of paper."
+      },
+      {
+        "id": "sound-advice-letter-5",
+        "targets": [
+          {
+            "familyId": "typewriter",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "tw3"
+          },
+          {
+            "familyId": "shell",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "sh3"
+          }
+        ],
+        "title": "Return to the sound",
+        "letter": "The typewriter carriage reaches across its keys. The shell sends its shallow wave again. A return can bring an old sound into a new line.",
+        "goal": "Make and send Return and Sound.",
+        "sentCaption": "The carriage returned beside the shell’s wave."
+      },
+      {
+        "id": "sound-advice-letter-6",
+        "targets": [
+          {
+            "familyId": "handbell",
+            "tier": 2,
+            "quantity": 1,
+            "pieceId": "bt2"
+          },
+          {
+            "familyId": "matchbook",
+            "tier": 4,
+            "quantity": 1,
+            "pieceId": "sm4"
+          }
+        ],
+        "title": "A small last light",
+        "letter": "The tilted bell visits the matchbook with its spent match. A picture can keep the trace of something without asking you to make it happen again.",
+        "goal": "Make and send Tilt and Spent.",
+        "sentCaption": "The bell kept company with the spent match."
+      },
+      {
+        "id": "sound-advice-letter-7",
+        "targets": [
+          {
+            "familyId": "typewriter",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "tw3"
+          },
+          {
+            "familyId": "bird",
+            "tier": 3,
+            "quantity": 1,
+            "pieceId": "b3"
+          }
+        ],
+        "title": "A return for the wayfinder",
+        "letter": "The typewriter carriage reaches beyond its keys. The old bird still has its key and its river feather. Send the traveller beside the returning carriage.",
+        "goal": "Make and send Return and Wayfinder.",
+        "sentCaption": "The wayfinder travelled beside the returning carriage."
+      },
+      {
+        "id": "sound-advice-letter-8",
+        "targets": [
+          {
+            "familyId": "typewriter",
+            "tier": 5,
+            "quantity": 1,
+            "pieceId": "tw5"
+          }
+        ],
+        "title": "The last line is written",
+        "letter": "The paper strips gather above the typewriter’s keys. Cynthia, send Written as the last line of the campaign. There is room around it for everything you chose to keep.",
+        "goal": "Make and send Written.",
+        "sentCaption": "The last line is sent. The table is yours."
+      }
+    ]
+  },
+  "extra": {
+    "discoveryCaptions": {
+      "wr1": "A river bend caught in a printed wing.",
+      "wr2": "The feather lines have taken to drawing roads.",
+      "wr3": "An address with room to look out.",
+      "wr4": "A red route holds two far-apart wings together.",
+      "wr5": "The bird reaches a window shaped like itself.",
+      "wa1": "Three eyelets, one red arch, somewhere to begin.",
+      "wa2": "A whole route between heel and toe.",
+      "wa3": "The shoe leaves an arch for GO to pass through.",
+      "wa4": "A travelling strip meets a little place to stay.",
+      "wa5": "The shoe is missing. Its shape still knows the way.",
+      "ec1": "A small red patch marks a place to sit.",
+      "ec2": "The chair back lets the view through.",
+      "ec3": "SIT has left the seat open.",
+      "ec4": "The red strip reaches across the wait.",
+      "ec5": "One long seat turns an empty corner into company.",
+      "ce1": "A cup with a small red thought at its rim.",
+      "ce2": "The handle has more room than the cup.",
+      "ce3": "Two cup fragments meet where the red strip narrows.",
+      "ce4": "The answer keeps a round space in its middle.",
+      "ce5": "The handle returns as a hollow inside the bowl.",
+      "pp1": "A crooked stem leans over one very definite seed.",
+      "pp2": "PAIR sits on the hinge between unequal halves.",
+      "pp3": "The seed stays while the pear becomes a frame.",
+      "pp4": "The leaf and the curve leave the seed hanging.",
+      "pp5": "Two pear-shaped spaces share a leaf.",
+      "ss1": "One round eye above three little gill cuts.",
+      "ss2": "The blue wave passes between head and tail.",
+      "ss3": "SEE stands beneath an eye with a view.",
+      "ss4": "Head and tail consider each other across the water.",
+      "ss5": "The fish has become the space the wave leaves open.",
+      "cj1": "A red offcut stays near the nearly closed blades.",
+      "cj2": "The handles spread into two unequal loops.",
+      "cj3": "A red bar joins the space between the scissors.",
+      "cj4": "A long blade passes over its curled handles.",
+      "cj5": "Blunt blades and loose handles meet in an open X.",
+      "bh1": "Four holes, with a red thread taking the left route.",
+      "bh2": "One stitch holds the two halves beside their slit.",
+      "bh3": "Four windows give the thread a longer journey.",
+      "bh4": "The stitches surround an opening shaped like a tilted diamond.",
+      "bh5": "The button opens its wings, still held by thread.",
+      "hs1": "The printed finger offers a direction.",
+      "hs2": "The same cuff now carries a wave.",
+      "hs3": "Two thumbs meet between far-apart cuffs.",
+      "hs4": "A finger and a palm leave an open corner.",
+      "hs5": "The cuff gathers five fingers around the absent palm.",
+      "fv1": "A blue slip interrupts a very decided profile.",
+      "fv2": "Two faces leave a slim line of light between them.",
+      "fv3": "The eye is a gap you can look into.",
+      "fv4": "The nose and jaw make room for an aside.",
+      "fv5": "Two profiles hold the space for someone.",
+      "la1": "A receiver waits above a large quiet dial.",
+      "la2": "The receiver has stood up to listen.",
+      "la3": "A red BUSY scrap crosses the receiver beside the dial’s ivory center.",
+      "la4": "Two receiver ends keep a space between them.",
+      "la5": "The cord leaves a question for another time.",
+      "ht1": "A red band runs round the bowler.",
+      "ht2": "The crown rises in a small paper courtesy.",
+      "ht3": "Two brim fragments spread the greeting wider.",
+      "ht4": "The crown and brim are keeping separate heights.",
+      "ht5": "A tall hat remembers the bowler by its empty shape.",
+      "ft1": "A row of broad teeth in a small pocket comb.",
+      "ft2": "The red hinge leaves a part between the teeth.",
+      "ft3": "The teeth take turns along a stepped spine.",
+      "ft4": "One tooth sits outside the pause.",
+      "ft5": "The comb curls around a generous open space.",
+      "ct1": "Two hands and a red minute strip.",
+      "ct2": "The winding loop holds a tall pair of arcs.",
+      "ct3": "A minute hand reaches between distant dial halves.",
+      "ct4": "The hand points down the broken stair of the face.",
+      "ct5": "A missing clock face leaves room for elsewhere.",
+      "rp1": "A red stamp sits a little off the corner.",
+      "rp2": "An open middle turns the letter into a window.",
+      "rp3": "The folds point onward from the stamp.",
+      "rp4": "Two flaps face each other across a reply.",
+      "rp5": "The envelope returns as the space inside its folds.",
+      "sh1": "Bold shell ribs open above a blue hinge.",
+      "sh2": "The shell curls around a place to listen.",
+      "sh3": "Two ribbed halves hold a shallow wave of air.",
+      "sh4": "A fan and a rib make a quiet corner.",
+      "sh5": "The crest rises around a deep open bite.",
+      "rc1": "A blue band keeps company with a hooked handle.",
+      "rc2": "The canopy folds close around its handle.",
+      "rc3": "The ribs go where the gust takes them.",
+      "rc4": "Two canopy halves make an uneven roof.",
+      "rc5": "The folds rise while the broad hook curls below.",
+      "hp1": "A red splice crosses the anchor beneath its ring.",
+      "hp2": "One fluke reaches further than the other.",
+      "hp3": "Two flukes make a low crescent.",
+      "hp4": "The stock turns a corner above the descending fluke.",
+      "hp5": "Crossed stocks and curved flukes hold an uneven crest.",
+      "bb1": "Four ivory wings above a small ochre splice.",
+      "bb2": "The bee rests sideways beneath a folded wing.",
+      "bb3": "A striped body crosses the space between wings.",
+      "bb4": "The segments step upward beside a broad wing.",
+      "bb5": "The bee keeps its antennae through every rearrangement.",
+      "ds1": "Large black pips on a divided ivory face.",
+      "ds2": "Two faces meet at a blue paper elbow.",
+      "ds3": "The pips take a falling diagonal route.",
+      "ds4": "A tall face leaves a bracket open at its side.",
+      "ds5": "The spots climb a solid stair, ready for another look.",
+      "ob1": "Two page fans share one dark spine.",
+      "ob2": "One page stands up to turn.",
+      "ob3": "The pages make a diagonal accordion.",
+      "ob4": "Unequal fans sweep away from the binding.",
+      "ob5": "The page blocks rise toward an afterword.",
+      "sm1": "Four thick matches beneath an open cover.",
+      "sm2": "Three matches spread sideways from their pocket.",
+      "sm3": "One printed flame beside the bent cover.",
+      "sm4": "The pocket keeps its spent match.",
+      "sm5": "A broad paper flame above three radiating heads.",
+      "bt1": "A round clapper waits below the bell lip.",
+      "bt2": "The tilted bell shows its open mouth.",
+      "bt3": "Two uneven bell halves spread around the handle.",
+      "bt4": "The lip becomes a bowl with the clapper at its edge.",
+      "bt5": "Three bell bodies step from handle to clapper.",
+      "tw1": "Six large keys beneath a short sheet.",
+      "tw2": "A tall sheet rises from a narrow carriage.",
+      "tw3": "The carriage reaches across the keys.",
+      "tw4": "Two key banks leave room for a fold of paper.",
+      "tw5": "The keys remain beneath everything that has been written."
+    },
+    "optionalPostscripts": [
+      {
+        "id": "postscript-shoe",
+        "pieceId": "wa5",
+        "companionPieceId": "wr3",
+        "title": "The traveller leaves a shape",
+        "goal": "Merge two Stay pieces to discover Walkaway.",
+        "caption": "The shoe is missing. Its shape still knows the way.",
+        "reverse": "The shoe has opened into an X, leaving its own outline behind. The address window from these letters has another traveller to look for.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-chair",
+        "pieceId": "ec5",
+        "companionPieceId": "ce3",
+        "title": "Room for company",
+        "goal": "Merge two Wait pieces to discover Company.",
+        "caption": "One long seat turns an empty corner into company.",
+        "reverse": "The chair fragments share a long seat across a corner. The empty cups can stay nearby; they have been good company all along.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-cup",
+        "pieceId": "ce5",
+        "companionPieceId": "ec2",
+        "title": "An answer comes around",
+        "goal": "Merge two Answer pieces to discover Echo.",
+        "caption": "The handle returns as a hollow inside the bowl.",
+        "reverse": "The handle has become a space inside the bowl. The chair’s windows can keep it company without needing a reply.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-pear",
+        "pieceId": "pp5",
+        "companionPieceId": "pp2",
+        "title": "What a pair can become",
+        "goal": "Merge two Split pieces to discover Namesake.",
+        "caption": "Two pear-shaped spaces share a leaf.",
+        "reverse": "The pear-shaped openings have kept the leaf and seed between them. The earlier hinge was one way to be a pair; this is another.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-fish",
+        "pieceId": "ss5",
+        "companionPieceId": "ss3",
+        "title": "An eye on the water",
+        "goal": "Merge two Facing pieces to discover Seesaw.",
+        "caption": "The fish has become the space the wave leaves open.",
+        "reverse": "The wave leaves a fish-shaped space. The old lookout still has its eye; there is more water to look into now.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-scissors",
+        "pieceId": "cj5",
+        "companionPieceId": "cj3",
+        "title": "A wider join",
+        "goal": "Merge two Overcut pieces to discover Crossjoin.",
+        "caption": "Blunt blades and loose handles meet in an open X.",
+        "reverse": "The scissor fragments spread into an X. Their earlier red join is still part of the conversation, though the handles have moved apart.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-button",
+        "pieceId": "bh5",
+        "companionPieceId": "bh3",
+        "title": "The thread opens out",
+        "goal": "Merge two Open pieces to discover Unfold.",
+        "caption": "The button opens its wings, still held by thread.",
+        "reverse": "The button wings spread around crossed stitches. The four-window Threadway was a straight journey; this one opens to either side.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-hand",
+        "pieceId": "hs5",
+        "companionPieceId": "fv2",
+        "title": "A greeting in pieces",
+        "goal": "Merge two Between pieces to discover Handwritten.",
+        "caption": "The cuff gathers five fingers around the absent palm.",
+        "reverse": "The fingers gather round an absent palm. The profiles from the introduction can still recognize a greeting.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-profile",
+        "pieceId": "fv5",
+        "companionPieceId": "hs2",
+        "title": "Someone in the opening",
+        "goal": "Merge two Aside pieces to discover Someone.",
+        "caption": "Two profiles hold the space for someone.",
+        "reverse": "The two profiles leave a face-shaped middle. The waving hand has someone to greet, without deciding who that someone must be.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-hat",
+        "pieceId": "ht5",
+        "companionPieceId": "la2",
+        "title": "A hat remembers",
+        "goal": "Merge two Overhead pieces to discover Hats Off.",
+        "caption": "A tall hat remembers the bowler by its empty shape.",
+        "reverse": "The tall hat carries the bowler as an empty shape. The upright receiver can hear this greeting as well as any other.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-comb",
+        "pieceId": "ft5",
+        "companionPieceId": "ct3",
+        "title": "Room to untangle",
+        "goal": "Merge two Pause pieces to discover Untangle.",
+        "caption": "The comb curls around a generous open space.",
+        "reverse": "The comb curls its spine around an opening. Beside the watch’s interval, there is room for the eye to take its time.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-watch",
+        "pieceId": "ct5",
+        "companionPieceId": "ft4",
+        "title": "A different noon",
+        "goal": "Merge two After pieces to discover Noon Elsewhere.",
+        "caption": "A missing clock face leaves room for elsewhere.",
+        "reverse": "The clock face has become an open square. The comb’s pause belongs nearby. Neither picture sets the time for your next visit.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-letter",
+        "pieceId": "rp5",
+        "companionPieceId": "b2",
+        "title": "The outline comes home",
+        "goal": "Merge two Reply pieces to discover Returned.",
+        "caption": "The envelope returns as the space inside its folds.",
+        "reverse": "The folded chain keeps an envelope-shaped space inside. The river-winged bird from the beginning would know what to carry there.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-anchor",
+        "pieceId": "hp5",
+        "companionPieceId": "rc3",
+        "title": "A place to hold",
+        "goal": "Merge two Drift pieces to discover Hold Fast.",
+        "caption": "Crossed stocks and curved flukes hold an uneven crest.",
+        "reverse": "The anchor stocks cross among their broad flukes. The gust can stay a gust beside them; these pictures do not need to settle the weather.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-bee",
+        "pieceId": "bb5",
+        "companionPieceId": "ds2",
+        "title": "Still becoming",
+        "goal": "Merge two Be Side pieces to discover Becoming.",
+        "caption": "The bee keeps its antennae through every rearrangement.",
+        "reverse": "The bee has rearranged its stripes and wings while keeping its antennae. The double beside it can remain exactly as it was.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-domino",
+        "pieceId": "ds5",
+        "companionPieceId": "bb2",
+        "title": "Another arrangement",
+        "goal": "Merge two Pause Here pieces to discover Again.",
+        "caption": "The spots climb a solid stair, ready for another look.",
+        "reverse": "The domino faces have made a stair. A resting bee can sit beside this new arrangement without starting it all over again.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-book",
+        "pieceId": "ob5",
+        "companionPieceId": "rp2",
+        "title": "A place for the afterword",
+        "goal": "Merge two Passage pieces to discover Afterword.",
+        "caption": "The page blocks rise toward an afterword.",
+        "reverse": "The page blocks rise toward their broad fan. The open letter can stay beside them like a note from an earlier chapter.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-matchbook",
+        "pieceId": "sm5",
+        "companionPieceId": "l3",
+        "title": "Light in the margins",
+        "goal": "Merge two Spent pieces to discover Spark.",
+        "caption": "A broad paper flame above three radiating heads.",
+        "reverse": "A broad printed flame rises from the matchbook. The lantern house can keep this paper light in its window.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      },
+      {
+        "id": "postscript-handbell",
+        "pieceId": "bt5",
+        "companionPieceId": "tw4",
+        "title": "After the telling",
+        "goal": "Merge two Tell pieces to discover Told.",
+        "caption": "Three bell bodies step from handle to clapper.",
+        "reverse": "The bell bodies step from handle to clapper. There is still space beside the typewriter for a picture kept after the last line.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined export. Never mark chapter complete from this discovery."
+      }
+    ]
+  }
+}

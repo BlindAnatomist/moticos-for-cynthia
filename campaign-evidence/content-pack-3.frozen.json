@@ -1,0 +1,1101 @@
+{
+  "sourceSha256": "73bf59e9e273395769ce58a58bee8c3d59c9a09308ca00428a7ae61b4fb3a51f",
+  "pack": {
+    "story": [
+      {
+        "id": "garden-letter-1",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A river under one wing",
+        "letter": "The bird has tucked a river under its wing. Send this small beginning; there is room for the rest to follow.",
+        "goal": "Make and send Riverwing.",
+        "sentCaption": "A small beginning, carried by a wing."
+      },
+      {
+        "id": "garden-letter-2",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A cup with other plans",
+        "letter": "A fern has moved into the teacup. It seems to have mistaken the handle for a garden gate.",
+        "goal": "Make and send Fern Cup.",
+        "sentCaption": "Tea was expected. A garden arrived."
+      },
+      {
+        "id": "garden-letter-3",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "The bird finds a key",
+        "letter": "A key has slipped between the feathers. Perhaps the bird is a map. Perhaps the map is learning to fly.",
+        "goal": "Make and send Wayfinder.",
+        "sentCaption": "A feather, a key, a way through."
+      },
+      {
+        "id": "garden-letter-4",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Two ways to carry water",
+        "letter": "A river under a wing; a moon above a cup. Put these two small journeys in the same envelope.",
+        "goal": "Make and send Riverwing and Nightgarden.",
+        "sentCaption": "The river and the cup met by post."
+      },
+      {
+        "id": "garden-letter-5",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "The opening is the picture",
+        "letter": "The bird has opened in the middle. Leave that little gap for whatever might arrive next.",
+        "goal": "Make and send Aviary Gate.",
+        "sentCaption": "A gate made from the space between wings."
+      },
+      {
+        "id": "garden-letter-6",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "A short note after dark",
+        "letter": "The fern has leaned sideways to make room for the moon. A small night garden can travel in a very short letter.",
+        "goal": "Make and send Nightgarden.",
+        "sentCaption": "One cup was enough room for the night."
+      },
+      {
+        "id": "garden-letter-7",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "A way through the arbor",
+        "letter": "The bird brings its key to the fern's open arch. Neither picture quite explains the other. They seem pleased to meet.",
+        "goal": "Make and send Wayfinder and Moonlit Arbor.",
+        "sentCaption": "A key visited a garden with no door."
+      },
+      {
+        "id": "garden-letter-8",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "Two openings, one address",
+        "letter": "The wing leaves a gap. The fern makes an arch. Send the two openings together and let the paper between them be a path.",
+        "goal": "Make and send Aviary Gate and Moonlit Arbor.",
+        "sentCaption": "The space between two pictures became a path."
+      },
+      {
+        "id": "garden-letter-9",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "A garden, by air",
+        "letter": "The feathers have become a field. A small leaf has found the key. Let the whole unlikely garden travel by air.",
+        "goal": "Make and send Wandering Aviary.",
+        "sentCaption": "A garden folded itself into a wing."
+      },
+      {
+        "id": "moon-letter-1",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "The key writes back",
+        "letter": "Here is the key again, carrying a frond this time. Send it beside the river-winged bird, as if they have something to tell each other.",
+        "goal": "Make and send Frond Key and Riverwing.",
+        "sentCaption": "The key returned with a leaf."
+      },
+      {
+        "id": "moon-letter-2",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A crossing after dark",
+        "letter": "The key lifts a bridge toward the night garden. OVER is written on it. What is on the other side can wait.",
+        "goal": "Make and send Drawbridge Key and Nightgarden.",
+        "sentCaption": "A bridge crossed the edge of a cup."
+      },
+      {
+        "id": "moon-letter-3",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "m2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A crescent, by bird",
+        "letter": "The moon needed a lift. The bird offered its back. This seems as good a postal arrangement as any.",
+        "goal": "Make and send Crescent Courier.",
+        "sentCaption": "The bird agreed to carry the moon."
+      },
+      {
+        "id": "moon-letter-4",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Up, by another route",
+        "letter": "The key has become a staircase. Its little UP scrap points the other way. Send the question along with the steps.",
+        "goal": "Make and send Stairway Key.",
+        "sentCaption": "The staircase kept the question open."
+      },
+      {
+        "id": "moon-letter-5",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A bridge meets a boat",
+        "letter": "The moon has folded itself into a skiff. The key offers a bridge. Two ways across, with no agreement about the water.",
+        "goal": "Make and send Lunar Skiff and Drawbridge Key.",
+        "sentCaption": "The same crossing, answered twice."
+      },
+      {
+        "id": "moon-letter-6",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "m4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "A place to come down",
+        "letter": "The balloon says DOWN; the garden leaves a space beneath its moon. Send them together. Perhaps one has found a place in the other.",
+        "goal": "Make and send Crescent Balloon and Moonlit Arbor.",
+        "sentCaption": "The sky found a gap in the garden."
+      },
+      {
+        "id": "moon-letter-7",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k5",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m4",
+            "quantity": 1
+          }
+        ],
+        "xp": 200,
+        "coins": 85,
+        "title": "Here, with room for elsewhere",
+        "letter": "The key has made a route from HERE to ELSE. The balloon has brought its own direction. Leave room in the envelope for both.",
+        "goal": "Make and send Elsewhere Key and Crescent Balloon.",
+        "sentCaption": "Here and elsewhere fitted in one envelope."
+      },
+      {
+        "id": "riverside-letter-1",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "r2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "The higher low point",
+        "letter": "The river has folded a hill into the map. LOW sits at the higher summit. Let the small disagreement travel.",
+        "goal": "Make and send River Ridge.",
+        "sentCaption": "The map sent a hill and kept its question."
+      },
+      {
+        "id": "riverside-letter-2",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "r3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A crossing with a passenger",
+        "letter": "The map leaves a gap where the river crosses. The moon has brought its skiff. Send two answers to the same water.",
+        "goal": "Make and send River Crossing and Lunar Skiff.",
+        "sentCaption": "A gap in the map met a boat from the sky."
+      },
+      {
+        "id": "riverside-letter-3",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A small sip by air",
+        "letter": "The cup lets one ribbon rise. The bird carries one strip of river. Both have found a small way out.",
+        "goal": "Make and send Ribbon Sip and Riverwing.",
+        "sentCaption": "A sip and a river travelled lightly."
+      },
+      {
+        "id": "riverside-letter-4",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "r4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "t3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "Still water, quiet steam",
+        "letter": "The river says STILL while falling down the paper. The divided cup says HUSH. Send the two conversations together.",
+        "goal": "Make and send River Cascade and Tea Chorus.",
+        "sentCaption": "The water moved. The steam kept its own counsel."
+      },
+      {
+        "id": "riverside-letter-5",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "The cup visits its garden",
+        "letter": "The cup has split into two voices. The old garden remembers its handle. Let the familiar shape arrive by another route.",
+        "goal": "Make and send Tea Chorus and Moonlit Arbor.",
+        "sentCaption": "The cup found its handle in an older letter."
+      },
+      {
+        "id": "riverside-letter-6",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "Two ways to fold a river",
+        "letter": "One picture opens upward. The other steps down. Send the fan of steam beside the river, with room between their directions.",
+        "goal": "Make and send Pleated Steam and River Cascade.",
+        "sentCaption": "The folds disagreed about which way was up."
+      },
+      {
+        "id": "riverside-letter-7",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "r5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "Inland, with a way out",
+        "letter": "The map has gathered three small towers. INLAND and OUT share the river. There is room for both addresses on this picture.",
+        "goal": "Make and send River Citadel.",
+        "sentCaption": "The river reached a place with more than one address."
+      },
+      {
+        "id": "lantern-letter-1",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "l2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A fold answers a fold",
+        "letter": "The lantern has opened like a small accordion. The map has kept its two peaks. Send one fold to visit another.",
+        "goal": "Make and send Folded Glow and River Ridge.",
+        "sentCaption": "Two folded papers found different ways to stand."
+      },
+      {
+        "id": "lantern-letter-2",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "l3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A visitor at the window",
+        "letter": "The roof has slipped sideways. INSIDE sits outside. The bird arrives carrying its crescent, without asking which side is home.",
+        "goal": "Make and send Lantern House and Crescent Courier.",
+        "sentCaption": "A moon-bearing bird found a window."
+      },
+      {
+        "id": "lantern-letter-3",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "l3",
+            "quantity": 2
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Two houses, one envelope",
+        "letter": "Keep the two houses side by side for this letter. Their roofs need not become a tower to have something to say.",
+        "goal": "Make and send 2 copies of Lantern House.",
+        "sentCaption": "Two houses travelled without becoming one."
+      },
+      {
+        "id": "lantern-letter-4",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "l4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A tower with a loose end",
+        "letter": "The windows have become a tower. The ribbon loops back toward its spool. ABOVE and AGAIN can share the same envelope.",
+        "goal": "Make and send Lantern Tower and Ribbon Spool.",
+        "sentCaption": "One shape rose; the other came round again."
+      },
+      {
+        "id": "lantern-letter-5",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "k2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A short note through the door",
+        "letter": "A sip of steam and a leafy key make a small reply. The larger pictures can stay on the table a little longer.",
+        "goal": "Make and send Ribbon Sip and Frond Key.",
+        "sentCaption": "The cup and the key made a brief visit."
+      },
+      {
+        "id": "lantern-letter-6",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "s3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "l2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Three loops and a fold",
+        "letter": "The ribbon has opened into three loops. The lantern spreads its paper windows. Send these two ways of opening together.",
+        "goal": "Make and send Ribbon Bloom and Folded Glow.",
+        "sentCaption": "A loop became a bloom beside a fold."
+      },
+      {
+        "id": "lantern-letter-7",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "l4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "A window beside a weave",
+        "letter": "The tower has windows. The loom has crossings. Let the light and the ribbon take turns filling the spaces between them.",
+        "goal": "Make and send Lantern Tower and Ribbon Loom.",
+        "sentCaption": "The window and the weave left room for the paper."
+      }
+    ],
+    "ordinary": [
+      {
+        "id": "garden-repeat-1",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-2",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-3",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-4",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-5",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-6",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-7",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-8",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "f5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "moon-repeat-1",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "k2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10
+      },
+      {
+        "id": "moon-repeat-2",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "moon-repeat-3",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15
+      },
+      {
+        "id": "moon-repeat-4",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "m4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25
+      },
+      {
+        "id": "moon-repeat-5",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "k4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35
+      }
+    ],
+    "upgrades": [
+      {
+        "id": "bird-sorter",
+        "familyId": "bird",
+        "name": "Bird sorter I",
+        "level": 2,
+        "price": 50,
+        "description": "Bird draws repeat level 1, level 1, level 2. Six draws make a fresh level 4 instead of eight.",
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "fern-sorter",
+        "familyId": "fern",
+        "name": "Fern sorter I",
+        "level": 2,
+        "price": 50,
+        "description": "Fern draws repeat level 1, level 1, level 2. Six draws make a fresh level 4 instead of eight.",
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "order-desk",
+        "familyId": null,
+        "name": "Order desk",
+        "level": 3,
+        "price": 100,
+        "description": "A third active request gives you one more order to choose from.",
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "key-sorter",
+        "familyId": "key",
+        "chapterId": "moonlit-correspondence",
+        "name": "Key sorter I",
+        "level": 4,
+        "price": 50,
+        "description": "Key draws repeat level 1, level 1, level 2. Keep your Key pieces for longer letters with fewer draws."
+      },
+      {
+        "id": "moon-sorter",
+        "familyId": "moon",
+        "chapterId": "moonlit-correspondence",
+        "name": "Moon sorter I",
+        "level": 5,
+        "price": 50,
+        "description": "Moon draws repeat level 1, level 1, level 2. Choose a second specialty, or keep saving for your order desk."
+      },
+      {
+        "id": "map-sorter",
+        "familyId": "map",
+        "chapterId": "riverside-correspondence",
+        "name": "Map sorter I",
+        "level": 6,
+        "price": 90,
+        "description": "Map draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "teacup-sorter",
+        "familyId": "teacup",
+        "chapterId": "riverside-correspondence",
+        "name": "Teacup sorter I",
+        "level": 7,
+        "price": 90,
+        "description": "Teacup draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "lantern-sorter",
+        "familyId": "lantern",
+        "chapterId": "lantern-correspondence",
+        "name": "Lantern sorter I",
+        "level": 8,
+        "price": 95,
+        "description": "Lantern draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "spool-sorter",
+        "familyId": "spool",
+        "chapterId": "lantern-correspondence",
+        "name": "Spool sorter I",
+        "level": 9,
+        "price": 95,
+        "description": "Spool draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      }
+    ],
+    "familyIds": [
+      "bird",
+      "fern",
+      "key",
+      "moon",
+      "map",
+      "teacup",
+      "lantern",
+      "spool"
+    ],
+    "chapters": [
+      {
+        "id": "garden-correspondence",
+        "number": 1,
+        "title": "Garden Correspondence",
+        "minimumLevel": 4,
+        "levelCap": 4,
+        "storyIds": [
+          "garden-letter-1",
+          "garden-letter-2",
+          "garden-letter-3",
+          "garden-letter-4",
+          "garden-letter-5",
+          "garden-letter-6",
+          "garden-letter-7",
+          "garden-letter-8",
+          "garden-letter-9"
+        ],
+        "entrySources": [
+          "bird",
+          "fern"
+        ],
+        "nextId": "moonlit-correspondence",
+        "nextTitle": "Moonlit Correspondence",
+        "nextPreview": "Keep your board and upgrades. The Key source opens when you enter Moonlit Correspondence; its first two letters open Moon."
+      },
+      {
+        "id": "moonlit-correspondence",
+        "number": 2,
+        "title": "Moonlit Correspondence",
+        "minimumLevel": 6,
+        "levelCap": 6,
+        "storyIds": [
+          "moon-letter-1",
+          "moon-letter-2",
+          "moon-letter-3",
+          "moon-letter-4",
+          "moon-letter-5",
+          "moon-letter-6",
+          "moon-letter-7"
+        ],
+        "entrySources": [
+          "key"
+        ],
+        "nextId": "riverside-correspondence",
+        "nextTitle": "Riverside Reverie",
+        "nextPreview": "The river finds a map; the cup sends steam. Keep your table and open the free Map source. The first two Riverside letters open Teacup."
+      },
+      {
+        "id": "riverside-correspondence",
+        "number": 3,
+        "title": "Riverside Reverie",
+        "catalogEnvelopeId": "riverside-reverie",
+        "entryXP": 1000,
+        "minimumLevel": 8,
+        "levelCap": 8,
+        "storyIds": [
+          "riverside-letter-1",
+          "riverside-letter-2",
+          "riverside-letter-3",
+          "riverside-letter-4",
+          "riverside-letter-5",
+          "riverside-letter-6",
+          "riverside-letter-7"
+        ],
+        "entrySources": [
+          "map"
+        ],
+        "nextId": "lantern-correspondence",
+        "nextTitle": "Lantern Studio",
+        "nextPreview": "A lantern answers the folds in the map. Keep your stock and upgrades; the first two Lantern letters open Spool."
+      },
+      {
+        "id": "lantern-correspondence",
+        "number": 4,
+        "title": "Lantern Studio",
+        "catalogEnvelopeId": "lantern-studio",
+        "entryXP": 1510,
+        "minimumLevel": 10,
+        "levelCap": 10,
+        "storyIds": [
+          "lantern-letter-1",
+          "lantern-letter-2",
+          "lantern-letter-3",
+          "lantern-letter-4",
+          "lantern-letter-5",
+          "lantern-letter-6",
+          "lantern-letter-7"
+        ],
+        "entrySources": [
+          "lantern"
+        ],
+        "nextId": null,
+        "nextTitle": "Your collection",
+        "nextPreview": "This four-chapter checkpoint is part of the sixteen-chapter campaign in development."
+      }
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "xp": 0,
+        "targetCeiling": 3,
+        "slots": 1
+      },
+      {
+        "level": 2,
+        "xp": 80,
+        "targetCeiling": 4,
+        "slots": 2
+      },
+      {
+        "level": 3,
+        "xp": 250,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 4,
+        "xp": 500,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 5,
+        "xp": 650,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 6,
+        "xp": 1000,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 7,
+        "xp": 1160,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 8,
+        "xp": 1510,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 9,
+        "xp": 1580,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 10,
+        "xp": 1860,
+        "targetCeiling": 5,
+        "slots": 2
+      }
+    ],
+    "sourceRules": [
+      {
+        "id": "bird",
+        "chapterId": "garden-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "fern",
+        "chapterId": "garden-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "key",
+        "chapterId": "moonlit-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "moon",
+        "chapterId": "moonlit-correspondence",
+        "milestones": [
+          "moon-letter-1",
+          "moon-letter-2"
+        ]
+      },
+      {
+        "id": "map",
+        "chapterId": "riverside-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "teacup",
+        "chapterId": "riverside-correspondence",
+        "milestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ]
+      },
+      {
+        "id": "lantern",
+        "chapterId": "lantern-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "spool",
+        "chapterId": "lantern-correspondence",
+        "milestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ]
+      }
+    ]
+  }
+}

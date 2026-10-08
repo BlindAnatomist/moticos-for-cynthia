@@ -89,3 +89,6 @@
 
 /* Optional request prose lives only in existing dialogs, never the play rows. */
 .career-request-letter{margin:6px 0}.career-request-toggle{display:flex;align-items:center;gap:8px;min-height:44px;min-width:44px;padding:10px 8px;border:0;background:transparent;color:#40563b;font-size:13px;text-decoration:underline;text-underline-offset:3px}.career-request-text p{margin:0 8px 12px}.career-request-text[hidden]{display:none}.is-large-text .career-request-toggle{font-size:15px;line-height:1.4}
+
+/* Secondary optional-letter surface; never expands the primary board. */
+.career-held-letters{padding:14px;border:1px solid #bcc8ad;border-radius:6px;margin-bottom:20px}.career-held-list{display:grid;gap:12px;max-height:50vh;overflow:auto;overscroll-behavior:contain;padding:4px}.career-held-list article{padding:12px;background:#fff9ed;border-radius:5px}.career-held-list h4{margin:0;font:18px Georgia,serif}.career-held-list p{overflow-wrap:break-word}.career-held-list button,.career-held-letters>button{display:block;min-height:44px;margin-top:10px;padding:10px 14px;white-space:normal}

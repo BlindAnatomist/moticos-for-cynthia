@@ -4,6 +4,20 @@ import { campaignComplete, canStartNextChapter, chapterComplete, goalHint, match
 // Presentation is derived from committed state. No animation or cue can award
 // rewards, unlock a source, change focus, or write a save.
 export const familyName = id => FAMILIES.find(f => f.id === id)?.shortName ?? id;
+// Resolve the actual upcoming chapter, rather than assuming the first transition.
+export function mobileGoalMode(state) {
+  if (state.orders.some(order => order.id === state.focusedOrderId)) return 'order';
+  return canStartNextChapter(state) ? 'chapter' : 'empty';
+}
+export function nextChapterEntryCue(state) {
+  const nextId = chapterDefinition(state)?.nextId;
+  const next = contentPack(state)?.chapters.find(chapter => chapter.id === nextId);
+  const names = next?.entrySources.map(familyName) ?? [];
+  if (!names.length) return '';
+  return names.length === 1
+    ? `Open a free ${names[0]} source. Keep your board.`
+    : `Open free ${names.join(' and ')} sources. Keep your board.`;
+}
 export function orderPresentation(order) {
   if (!order) return { title: 'Choose a request', label: 'YOUR NEXT LETTER', template: null };
   const template = orderTemplate(order.templateId, order.contentVersion, order.origin);
@@ -41,14 +55,15 @@ export function progressCue(state, status = 'saved') {
   const { chapter, sent, total, complete, canContinue, campaignComplete: allComplete } = chapterProgress(state);
   const level = levelDefinition(state), next = nextLevelDefinition(state);
   const heading = next ? `L${level.level} · ${state.xp - level.xp}/${next.xp - level.xp} XP` : `Level ${level.level} · ${state.xp} XP`;
-  if (canContinue) return { heading: 'Garden complete', cue: 'Open the next chapter', detail: `${chapter.title}: all ${total} letters sent. Open ${chapter.nextTitle} when you are ready. Your board, earned rewards, upgrades and collected art stay with you. A free Key source opens on entry.`, shop: true, complete: true };
-  if (allComplete) return { heading: 'Foundation complete', cue: `${state.discoveries.length}/${CATALOG.PIECES.length} pictures collected`, detail: `All ${STORY_ORDERS.length} authored letters are sent. Keep exploring the collection, practice a letter, or make optional coin orders. More chapters are not yet authored. ${availableUpgrades(state).every(u => state.upgrades[u.id]) ? 'Extra coins have no further use in this foundation.' : 'Extra coins can buy remaining authored upgrades; they do not open unwritten content.'}`, shop: true, complete: true };
+  if (canContinue) return { heading: `${chapter.title} complete`, cue: 'Open the next chapter', detail: `${chapter.title}: all ${total} letters sent. Open ${chapter.nextTitle} when you are ready. Your board, earned rewards, upgrades and collected art stay with you. A free ${familyName(CHAPTERS.find(c => c.id === chapter.nextId).entrySources[0])} source opens on entry.`, shop: true, complete: true };
+  if (allComplete) return { heading: 'Campaign complete', cue: `${state.discoveries.length}/${CATALOG.PIECES.length} pictures collected`, detail: `All ${STORY_ORDERS.length} authored letters are sent. Keep exploring the collection, practice a letter, or make optional coin orders. All sixteen chapters are complete. ${availableUpgrades(state).every(u => state.upgrades[u.id]) ? 'Extra coins have no further use in this campaign.' : 'Extra coins can buy remaining authored upgrades; they do not open unwritten content.'}`, shop: true, complete: true };
   if (level.level === 1) return { heading, cue: `Shop opens at ${next?.xp} XP`, detail: `Make the pictured target, then Send to earn XP and coins. At ${next?.xp} total XP, Level 2 opens two active requests, level-4 targets and the sorter shop. A sorter makes a level-2 piece every third draw; its price is shown in Upgrades.`, shop: false, complete: false };
-  if (chapter.number > 1 && !state.unlockedSources.includes('moon')) return { heading, cue: 'Two letters open Moon', detail: 'Your Key source is free. Finish the first two letters in this chapter to open the Moon source. Choosing a request brings its needed sources to your board; your other pieces stay where you left them.', shop: true, complete: false };
+  const pendingSource = contentPack(state).sourceRules.find(r => r.chapterId === chapter.id && !state.unlockedSources.includes(r.id));
+  if (pendingSource) return { heading, cue: `Two letters open ${familyName(pendingSource.id)}`, detail: `Finish both opening letters to open the free ${familyName(pendingSource.id)} source. Choosing a request brings its needed sources to your board; your other pieces stay where you left them.`, shop: true, complete: false };
   const available = availableUpgrades(state).filter(u => !state.upgrades[u.id] && u.level <= level.level);
   const cheapest = Math.min(...available.map(u => u.price));
   const cue = available.length ? coinBalance(state) >= cheapest ? 'Upgrade affordable' : `${cheapest - coinBalance(state)} coins to an upgrade` : `${sent}/${total} letters sent`;
-  const detail = level.level === 2 ? `Level 2 opens two active requests, level-4 targets and Bird and Fern sorters. Level 3 arrives at ${progressionLevels(state).find(l => l.level === 3)?.xp} total XP. Upgrade prices are shown before purchase.` : level.level === 3 ? 'Level 3 opens level-5 requests and the 100-coin order desk, which adds a third active request. Reach Level 4 and send this chapter’s remaining story letters to continue.' : next ? `${chapter.title}: ${sent}/${total} letters sent. Reach Level ${next.level} at ${next.xp} total XP. Choose between a quick letter and a longer picture; free supplies can always make either.` : `${chapter.title}: ${sent}/${total} letters sent. Finish the remaining story letters to ${chapter.nextId ? 'open the next chapter' : 'complete the authored foundation'}. New optional orders award coins; XP already promised on an active order will still be paid.`;
+  const detail = level.level === 2 ? `Level 2 opens two active requests, level-4 targets and Bird and Fern sorters. Level 3 arrives at ${progressionLevels(state).find(l => l.level === 3)?.xp} total XP. Upgrade prices are shown before purchase.` : level.level === 3 ? 'Level 3 opens level-5 requests and the 100-coin order desk, which adds a third active request. Reach Level 4 and send this chapter’s remaining story letters to continue.' : next ? `${chapter.title}: ${sent}/${total} letters sent. Reach Level ${next.level} at ${next.xp} total XP. Choose between a quick letter and a longer picture; free supplies can always make either.` : `${chapter.title}: ${sent}/${total} letters sent. Finish the remaining story letters to ${chapter.nextId ? 'open the next chapter' : 'complete the campaign'}. New optional orders award coins; XP already promised on an active order will still be paid.`;
   return { heading, cue, detail, shop: true, complete };
 }
 export function levelUnlock(previous, next) {
@@ -82,10 +97,11 @@ export function passiveGoalMessage(state) {
 export function returnOrientation(state) {
   if (state.mode === 'replay') return { brief: 'Practice · your career is unchanged', detail: `This is isolated letter practice: 0 XP and 0 coins. ${passiveGoalMessage(state)}` };
   if (!state.revision) return { brief: 'Match the birds for your first letter.', detail: 'Start with the coral birds. Tap one, then its matching picture to make the Riverwing requested above. Then Send your first letter.' };
-  if (canStartNextChapter(state)) return { brief: 'Garden complete · next chapter ready', detail: progressCue(state).detail };
-  if (campaignComplete(state)) return { brief: 'Letters complete · explore or practice', detail: progressCue(state).detail };
+  const selected = state.orders.find(o => o.id === state.focusedOrderId);
+  if (canStartNextChapter(state) && !selected) return { brief: `${chapterDefinition(state).title} complete · next chapter ready`, detail: progressCue(state).detail };
+  if (campaignComplete(state) && !selected) return { brief: 'Letters complete · explore or practice', detail: progressCue(state).detail };
   const order = state.orders.find(o => o.id === state.focusedOrderId), hint = goalHint(state);
-  return { brief: state.mode === 'replay' ? 'Practice · your career is unchanged' : hint.kind === 'send' ? 'Welcome back · your letter is ready' : `Chapter ${chapterDefinition(state).number} · continue your chosen letter`, detail: `Welcome back to ${chapterDefinition(state).title}.${order ? ` You were making “${orderPresentation(order).title}”.` : ''} ${passiveGoalMessage(state)}` };
+  return { brief: state.mode === 'replay' ? 'Practice · your career is unchanged' : hint.kind === 'send' ? 'Welcome back · your letter is ready' : `Chapter ${chapterDefinition(state).number} · continue your chosen letter`, detail: `Welcome back to ${chapterDefinition(state).title}.${order ? ` You were making “${orderPresentation(order).title}”. ${order.requirements.map(r => `${Math.min(r.quantity, state.board.filter(t => t?.pieceId === r.pieceId).length)} of ${r.quantity} ${CATALOG.pieceOf(r.pieceId).name} ready`).join('; ')}.` : ''} ${passiveGoalMessage(state)}` };
 }
 export function failureBrief(action, state, result) {
   if (result.stale || result.reason === 'stale' || result.code === 'stale' || /changed|newer|another tab/i.test(result.message ?? '')) return 'Board changed · choose the piece again';

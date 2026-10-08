@@ -1,0 +1,115 @@
+{
+  "name": "Review-only full Moticos campaign verification",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/full-campaign-20261008-r5"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "moticos-full-campaign-review-20261008-r5",
+    "cancel-in-progress": false
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "jobs": {
+    "full_campaign": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/full-campaign-20261008-r5' && github.event_name == 'push' && github.run_attempt == 1",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 30,
+      "steps": [
+        {
+          "name": "Start aggregate job clock",
+          "run": "echo \"MOTICOS_FULL_JOB_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\""
+        },
+        {
+          "name": "Exact reviewed source",
+          "id": "checkout",
+          "uses": "actions/checkout@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "ref": "${{ github.sha }}",
+            "persist-credentials": false,
+            "fetch-depth": 1
+          }
+        },
+        {
+          "name": "Require fresh authorization before dependency setup",
+          "run": "node --input-type=module -e \"import {verifyDispatch} from './full-campaign-gate/dispatch.mjs'; verifyDispatch();\"",
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Node 24",
+          "uses": "actions/setup-node@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Bounded locked dependency and two-browser setup",
+          "run": "node full-campaign-gate/setup.mjs",
+          "timeout-minutes": 5
+        },
+        {
+          "name": "Exact sealed guards collection and both builds",
+          "run": "node full-campaign-gate/preflight.mjs",
+          "timeout-minutes": 5
+        },
+        {
+          "name": "Verify fresh authorization trailers and exact reviewed build",
+          "run": "node full-campaign-gate/authorize.mjs"
+        },
+        {
+          "name": "Ten Chromium cases once",
+          "run": "node full-campaign-gate/run-group.mjs full-chromium",
+          "timeout-minutes": 11,
+          "env": {
+            "MOTICOS_FULL_BROWSER_APPROVED": "1"
+          }
+        },
+        {
+          "name": "Eight WebKit phone cases once",
+          "run": "node full-campaign-gate/run-group.mjs full-webkit-phone",
+          "timeout-minutes": 8,
+          "env": {
+            "MOTICOS_FULL_BROWSER_APPROVED": "1"
+          }
+        },
+        {
+          "name": "Preserve bounded evidence even on failure",
+          "id": "stage",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "run": "if [ -f full-campaign-gate/finalize.mjs ]; then\n  node full-campaign-gate/finalize.mjs\nelse\n  mkdir -p full-browser-upload\n  printf '%s\\n' '{\"status\":\"incomplete-or-failed\",\"error\":\"Checkout did not provide the reviewed wrapper\"}' > full-browser-upload/upload-manifest.json\nfi"
+        },
+        {
+          "name": "Upload original bounded evidence or explicit failure diagnostics",
+          "if": "always() && steps.stage.outcome == 'success'",
+          "uses": "actions/upload-artifact@v4",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-full-campaign-${{ github.run_id }}",
+            "path": "full-browser-upload/",
+            "if-no-files-found": "error",
+            "retention-days": 1,
+            "compression-level": 6,
+            "include-hidden-files": true
+          }
+        },
+        {
+          "name": "Require complete acceptance",
+          "if": "always() && steps.stage.outcome == 'success'",
+          "run": "node --input-type=module -e \"import fs from 'node:fs';const m=JSON.parse(fs.readFileSync('full-browser-upload/upload-manifest.json'));if(m.status!=='passed')throw Error('Full campaign evidence is incomplete or failed');\""
+        }
+      ]
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition, storyEligible, ordinaryTemplatesFor } from './content.js';
-import { upgradeCareer as upgradeV3 } from './engine.v3.js';
+import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition } from './content.v2.js';
+import { validateCareer as validateV1 } from './engine.v1.js';
 export const HISTORY_LIMIT=32, RECEIPT_LIMIT=40;
 const MAX=Number.MAX_SAFE_INTEGER-1000, clone=value=>structuredClone(value);
 const integer=(n,min=0,max=MAX)=>Number.isSafeInteger(n)&&n>=min&&n<=max;
@@ -17,27 +17,19 @@ export function nextOutput(s,familyId,basic=false){const source=s.sources[family
 function selectSourcesFor(s,order){if(!order)return;const needed=[...new Set(order.requirements.map(r=>CATALOG.pieceOf(r.pieceId).familyId))];s.activeSourceIds=[...new Set([...needed,...s.activeSourceIds,...s.unlockedSources])].filter(id=>s.unlockedSources.includes(id)).slice(0,2);}
 function reconcileFocus(s){if(!s.orders.some(o=>o.id===s.focusedOrderId)){const order=s.orders.find(o=>matchingTiles(s,o))??s.orders.find(o=>o.origin==='story')??s.orders[0];s.focusedOrderId=order?.id??null;selectSourcesFor(s,order);}}
 function issue(s,template,index,origin,version=CONTENT_VERSION){const xp=origin==='practice'||origin==='ordinary'&&levelDefinition(s).level>=enteredChapterDefinition(s).levelCap?0:template.xp;s.orders.push({id:`${s.careerId}:order:${s.nextOrderSeq++}`,slot:index,templateId:template.id,origin,storyLetterId:origin==='ordinary'?null:template.id,requirements:clone(template.requirements),xp,coins:origin==='practice'?0:template.coins,rulesVersion:RULES_VERSION,contentVersion:version});}
-// Location is mutable; every other issued promise field is retained exactly.
-// Only slot 0 can temporarily host a held optional letter. suspendedStory is
-// its sole displaced owner, never an ID graph or a second live copy.
-export const OPTIONAL_PROMISE_LIMIT=3;
-const outstanding=s=>[...s.orders,...s.heldOrders,...(s.suspendedStory?[s.suspendedStory]:[])];
-function restoreStory(s){if(s.suspendedStory){s.orders.push(s.suspendedStory);s.suspendedStory=null;}}
 export function refill(s){
  if(s.mode==='replay'){reconcileFocus(s);return;}
  s.unlockedSources=unlockedSourceIds(s);
  const capacity=orderCapacity(s),story=chapterStories(s),allStoryComplete=story.every(o=>s.milestones.includes(o.id));
  for(let index=0;index<capacity;index++){
   if(s.orders.some(o=>o.slot===index))continue;
-  if(index<2&&!allStoryComplete){const next=story.find(t=>!s.milestones.includes(t.id)&&!outstanding(s).some(o=>o.storyLetterId===t.id)&&storyEligible(s,t));if(next)issue(s,next,index,'story');continue;}
+  if(index<2&&!allStoryComplete){const next=story.find(t=>!s.milestones.includes(t.id)&&!s.orders.some(o=>o.storyLetterId===t.id)&&eligible(s,t.requirements));if(next)issue(s,next,index,'story');continue;}
   // A completed chapter offers its real transition, rather than filling the
   // principal slots with optional work which hides the next authored chapter.
   if(index<2&&canStartNextChapter(s))continue;
-  if(outstanding(s).filter(o=>o.origin==='ordinary').length>=OPTIONAL_PROMISE_LIMIT)continue;
-  const ordinary=ordinaryTemplatesFor(s);
-  for(let attempt=0;attempt<ordinary.length;attempt++){
-   const template=ordinary[s.ordinaryChapterCursors[s.chapterId]%ordinary.length];s.ordinaryChapterCursors[s.chapterId]=(s.ordinaryChapterCursors[s.chapterId]+1)%ordinary.length;
-   if(s.enteredChapters.includes(template.chapterId)&&eligible(s,template.requirements)&&!outstanding(s).some(o=>recipeKey(o.requirements)===recipeKey(template.requirements))){issue(s,template,index,'ordinary');break;}
+  for(let attempt=0;attempt<ORDINARY_ORDERS.length;attempt++){
+   const template=ORDINARY_ORDERS[s.ordinaryCursor%ORDINARY_ORDERS.length];s.ordinaryCursor=(s.ordinaryCursor+1)%ORDINARY_ORDERS.length;
+   if(s.enteredChapters.includes(template.chapterId)&&eligible(s,template.requirements)&&!s.orders.some(o=>recipeKey(o.requirements)===recipeKey(template.requirements))){issue(s,template,index,'ordinary');break;}
   }
  }
  s.orders.sort((a,b)=>a.slot-b.slot);reconcileFocus(s);
@@ -45,7 +37,7 @@ export function refill(s){
 export function newCareerId(){if(typeof globalThis.crypto?.randomUUID==='function')return globalThis.crypto.randomUUID();if(typeof globalThis.crypto?.getRandomValues==='function')return [...globalThis.crypto.getRandomValues(new Uint32Array(4))].map(n=>n.toString(16).padStart(8,'0')).join('-');return `local-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;}
 export function createCareer(careerId=newCareerId()){
  assert(typeof careerId==='string'&&/^[a-zA-Z0-9-]{1,80}$/.test(careerId),'Invalid career ID');
- const s={schemaVersion:SCHEMA_VERSION,rulesVersion:RULES_VERSION,contentVersion:CONTENT_VERSION,mode:'career',careerId,chapterId:CHAPTER.id,enteredChapters:[CHAPTER.id],chapterEntryVersions:{[CHAPTER.id]:CONTENT_VERSION},unlockedSources:[...STARTER_FAMILY_IDS],activeSourceIds:[...STARTER_FAMILY_IDS],focusedOrderId:null,revision:0,nextTileSeq:1,nextOrderSeq:1,board:Array(25).fill(null),sources:Object.fromEntries(FAMILIES.map(f=>[f.id,{sorter:0,cursor:0}])),upgrades:Object.fromEntries(UPGRADES.map(u=>[u.id,0])),purchases:{},orders:[],heldOrders:[],suspendedStory:null,resumedOptionalId:null,xp:0,coinsEarned:0,coinsSpent:0,milestones:[],storyCompletions:{},ordinaryCursor:0,ordinaryChapterCursors:Object.fromEntries(CHAPTERS.map(c=>[c.id,0])),discoveries:[],material:Object.fromEntries(FAMILIES.map(f=>[f.id,{initial:STARTER_FAMILY_IDS.includes(f.id)?4:0,generated:0,delivered:0,recycled:0}])),receipts:[],history:[],sound:false,largeText:false};
+ const s={schemaVersion:SCHEMA_VERSION,rulesVersion:RULES_VERSION,contentVersion:CONTENT_VERSION,mode:'career',careerId,chapterId:CHAPTER.id,enteredChapters:[CHAPTER.id],chapterEntryVersions:{[CHAPTER.id]:CONTENT_VERSION},unlockedSources:[...STARTER_FAMILY_IDS],activeSourceIds:[...STARTER_FAMILY_IDS],focusedOrderId:null,revision:0,nextTileSeq:1,nextOrderSeq:1,board:Array(25).fill(null),sources:Object.fromEntries(FAMILIES.map(f=>[f.id,{sorter:0,cursor:0}])),upgrades:Object.fromEntries(UPGRADES.map(u=>[u.id,0])),purchases:{},orders:[],xp:0,coinsEarned:0,coinsSpent:0,milestones:[],storyCompletions:{},ordinaryCursor:0,discoveries:[],material:Object.fromEntries(FAMILIES.map(f=>[f.id,{initial:STARTER_FAMILY_IDS.includes(f.id)?4:0,generated:0,delivered:0,recycled:0}])),receipts:[],history:[],sound:false,largeText:false};
  STARTER_FAMILY_IDS.forEach((id,fi)=>{for(let i=0;i<4;i++)s.board[fi*5+i]=allocateTile(s,familyOf(id).starterId);});refill(s);discover(s);validateCareer(s);return s;
 }
 export function createReplay(storyLetterId,careerId=newCareerId(),contentVersion=CONTENT_VERSION){
@@ -61,28 +53,21 @@ export function createReplay(storyLetterId,careerId=newCareerId(),contentVersion
 // Migration consumes caller-supplied bytes only. It never reads the old gameplay
 // namespace. Legacy rewards/recipes/prices remain bound to immutable content v1.
 export function upgradeCareer(input){
- // Same-schema packs are validated before append-only extension, too.
- let old;
- if(input?.schemaVersion===SCHEMA_VERSION){old=clone(input);validateCareer(old);if(old.contentVersion===CONTENT_VERSION)return old;}
- else old=upgradeV3(input); // Frozen old-schema reader runs before new fields exist.
- assert(old.mode==='career','Practice cannot become a saved campaign');
- const s=clone(old),oldUnlocked=[...old.unlockedSources];
- s.schemaVersion=SCHEMA_VERSION;s.contentVersion=CONTENT_VERSION;
- // Keep the historical global cursor and seed the new current-chapter cycle at
- // its next matching template. All later chapter cursors begin dormant at zero.
- if(!s.ordinaryChapterCursors){s.ordinaryChapterCursors=Object.fromEntries(CHAPTERS.map(c=>[c.id,0]));
-  const previous=contentPack(old).ordinary;const local=ordinaryTemplatesFor(old);
-  for(let i=0;i<previous.length;i++){const next=previous[(old.ordinaryCursor+i)%previous.length];const at=local.indexOf(next);if(at>=0){s.ordinaryChapterCursors[old.chapterId]=at;break;}}
- }else for(const chapter of CHAPTERS)if(!Object.hasOwn(s.ordinaryChapterCursors,chapter.id))s.ordinaryChapterCursors[chapter.id]=0;
- if(!Object.hasOwn(s,'heldOrders')){s.heldOrders=[];s.suspendedStory=null;s.resumedOptionalId=null;}
- if(input.schemaVersion===1)s.orders=s.orders.map((o,i)=>({...o,rulesVersion:input.orders[i].rulesVersion}));
- for(const u of UPGRADES)if(!(u.id in s.upgrades))s.upgrades[u.id]=0;
- for(const part of [s,...s.history])for(const f of FAMILIES){
-  if(!part.sources[f.id])part.sources[f.id]={sorter:0,cursor:0};
-  if(!part.material[f.id])part.material[f.id]={initial:0,generated:0,delivered:0,recycled:0};
+ if(input?.schemaVersion===SCHEMA_VERSION){
+  const candidate=clone(input);if(candidate.contentVersion===1&&!Object.hasOwn(candidate,'storyCompletions'))candidate.storyCompletions=Object.fromEntries(candidate.milestones.map(id=>[id,{contentVersion:1}]));
+  validateCareer(candidate);const s=candidate;if(s.contentVersion===CONTENT_VERSION)return s;
+  // Same-schema growth validates the saved immutable pack before extending it.
+  const oldUnlocked=[...s.unlockedSources];s.contentVersion=CONTENT_VERSION;
+  for(const u of UPGRADES)if(!(u.id in s.upgrades))s.upgrades[u.id]=0;
+  for(const f of FAMILIES){if(!s.sources[f.id])s.sources[f.id]={sorter:0,cursor:0};if(!s.material[f.id])s.material[f.id]={initial:0,generated:0,delivered:0,recycled:0};for(const h of s.history){if(!h.sources[f.id])h.sources[f.id]={sorter:0,cursor:0};if(!h.material[f.id])h.material[f.id]={initial:0,generated:0,delivered:0,recycled:0};}}
+  s.unlockedSources=unlockedSourceIds(s);assert(same([...s.unlockedSources].sort(),[...oldUnlocked].sort()),'Content update must not silently unlock or remove a source');validateCareer(s);return s;
  }
- s.unlockedSources=unlockedSourceIds(s);assert(same(s.unlockedSources,oldUnlocked),'Migration changed source access');
- validateCareer(s);return s;
+ validateV1(input);assert(input.mode==='career','Practice cannot become a saved campaign');
+ const s=clone(input);s.schemaVersion=SCHEMA_VERSION;s.rulesVersion=RULES_VERSION;s.contentVersion=CONTENT_VERSION;s.enteredChapters=[CHAPTER.id];s.chapterEntryVersions={[CHAPTER.id]:1};s.unlockedSources=[...STARTER_FAMILY_IDS];s.activeSourceIds=[...STARTER_FAMILY_IDS];s.focusedOrderId=s.orders[0]?.id??null;s.purchases={};s.storyCompletions=Object.fromEntries(s.milestones.map(id=>[id,{contentVersion:1}]));
+ for(const upgrade of UPGRADES){if(!(upgrade.id in s.upgrades))s.upgrades[upgrade.id]=0;if(s.upgrades[upgrade.id])s.purchases[upgrade.id]={price:upgradeDefinition(upgrade.id,1).price,contentVersion:1};}
+ for(const family of FAMILIES){if(!s.sources[family.id])s.sources[family.id]={sorter:0,cursor:0};if(!s.material[family.id])s.material[family.id]={initial:0,generated:0,delivered:0,recycled:0};}
+ for(const h of s.history)for(const f of FAMILIES){if(!h.sources[f.id])h.sources[f.id]={sorter:0,cursor:0};if(!h.material[f.id])h.material[f.id]={initial:0,generated:0,delivered:0,recycled:0};}
+ s.orders=s.orders.map(o=>({...o,rulesVersion:RULES_VERSION,contentVersion:1}));s.receipts=s.receipts.map(r=>({...r,contentVersion:1}));selectSourcesFor(s,s.orders[0]);validateCareer(s);return s;
 }
 function issuedOrderEligible(s,order){
  const pack=contentPack(order.contentVersion);
@@ -111,19 +96,11 @@ export function validateCareer(s){
  assert(Array.isArray(s.discoveries)&&new Set(s.discoveries).size===s.discoveries.length&&s.discoveries.every(id=>CATALOG.pieceOf(id)&&s.unlockedSources.includes(CATALOG.pieceOf(id).familyId))&&s.board.every(t=>!t||s.discoveries.includes(t.pieceId)),'Invalid discoveries');
  assert(Array.isArray(s.milestones)&&new Set(s.milestones).size===s.milestones.length&&s.milestones.every(id=>contentPack(s).story.some(t=>t.id===id&&s.enteredChapters.includes(t.chapterId??CHAPTER.id))),'Invalid story milestones');
  assert(exactKeys(s.storyCompletions,s.milestones)&&Object.entries(s.storyCompletions).every(([id,record])=>exactKeys(record,['contentVersion'])&&integer(record.contentVersion,1,s.contentVersion)&&!!orderTemplate(id,record.contentVersion,'story')),'Invalid completed-letter provenance');
- assert(integer(s.ordinaryCursor,0,contentPack(s).ordinary.length-1),'Invalid ordinary cursor');
- assert(exactKeys(s.ordinaryChapterCursors,contentPack(s).chapters.map(c=>c.id)),'Invalid chapter order cursors');
- for(const c of contentPack(s).chapters){const count=ordinaryTemplatesFor(s,c.id).length;assert(integer(s.ordinaryChapterCursors[c.id],0,Math.max(0,count-1)),'Invalid chapter order cursor');}assert(Array.isArray(s.orders)&&s.orders.length<=orderCapacity(s),'Invalid order capacity');
- assert(Array.isArray(s.heldOrders)&&s.heldOrders.length<=OPTIONAL_PROMISE_LIMIT&&s.heldOrders.every(o=>o?.origin==='ordinary'),'Invalid held letters');
- assert(s.suspendedStory===null||s.suspendedStory?.origin==='story'&&s.suspendedStory.slot===0,'Invalid displaced story');
- assert(s.resumedOptionalId===null||s.orders.some(o=>o.id===s.resumedOptionalId&&o.origin==='ordinary'&&o.slot===0),'Invalid resumed letter');
- assert(!s.suspendedStory||s.resumedOptionalId!==null,'Dangling displaced story');
- if(s.mode==='replay')assert(!s.heldOrders.length&&!s.suspendedStory&&!s.resumedOptionalId,'Practice cannot hold promises');
- assert(outstanding(s).filter(o=>o.origin==='ordinary').length<=OPTIONAL_PROMISE_LIMIT,'Too many optional promises');
+ assert(integer(s.ordinaryCursor,0,contentPack(s).ordinary.length-1),'Invalid ordinary cursor');assert(Array.isArray(s.orders)&&s.orders.length<=orderCapacity(s),'Invalid order capacity');
  const orderIds=new Set,orderSlots=new Set,storyIds=new Set;
- for(const o of outstanding(s)){const prefix=`${s.careerId}:order:`,n=Number(o?.id?.slice(prefix.length));assert(typeof o?.id==='string'&&o.id===`${prefix}${n}`&&integer(n,1)&&n<s.nextOrderSeq&&!orderIds.has(o.id),'Invalid order identity');orderIds.add(o.id);assert(integer(o.slot,0,orderCapacity(s)-1),'Invalid promise slot');if(s.orders.includes(o)){assert(!orderSlots.has(o.slot),'Invalid order slot');orderSlots.add(o.slot);}assert((o.rulesVersion===RULES_VERSION||o.rulesVersion===1&&o.contentVersion===1)&&integer(o.contentVersion,1,s.contentVersion)&&['story','ordinary','practice'].includes(o.origin),'Invalid order origin');const template=orderTemplate(o.templateId,o.contentVersion,o.origin);assert(template&&same(o.requirements,template.requirements)&&issuedOrderEligible(s,o),'Invalid pinned order recipe');
+ for(const o of s.orders){const prefix=`${s.careerId}:order:`,n=Number(o?.id?.slice(prefix.length));assert(typeof o?.id==='string'&&o.id===`${prefix}${n}`&&integer(n,1)&&n<s.nextOrderSeq&&!orderIds.has(o.id),'Invalid order identity');orderIds.add(o.id);assert(integer(o.slot,0,orderCapacity(s)-1)&&!orderSlots.has(o.slot),'Invalid order slot');orderSlots.add(o.slot);assert(o.rulesVersion===RULES_VERSION&&integer(o.contentVersion,1,s.contentVersion)&&['story','ordinary','practice'].includes(o.origin),'Invalid order origin');const template=orderTemplate(o.templateId,o.contentVersion,o.origin);assert(template&&same(o.requirements,template.requirements)&&issuedOrderEligible(s,o),'Invalid pinned order recipe');
   if(o.origin==='ordinary')assert(o.storyLetterId===null&&o.coins===template.coins&&(o.xp===template.xp||o.xp===0),'Invalid ordinary reward');else{assert(o.storyLetterId===template.id&&!s.milestones.includes(template.id)&&!storyIds.has(template.id),'Completed or duplicated story');storyIds.add(template.id);assert(o.xp===(o.origin==='practice'?0:template.xp)&&o.coins===(o.origin==='practice'?0:template.coins),'Invalid pinned story reward');}assert((s.mode==='replay')===(o.origin==='practice'),'Practice cannot enter career');if(s.mode==='replay')assert(o.storyLetterId===s.replayLetterId&&o.contentVersion===s.replayContentVersion,'Wrong practice letter version');}
- assert(s.focusedOrderId===null?s.orders.length===0:s.orders.some(o=>o.id===s.focusedOrderId),'Invalid focused order');
+ assert(s.focusedOrderId===null?s.orders.length===0:orderIds.has(s.focusedOrderId),'Invalid focused order');
  if(s.mode==='replay')assert(s.xp===0&&s.coinsEarned===0&&s.coinsSpent===0&&s.milestones.length===0&&integer(s.replayContentVersion,1,s.contentVersion)&&!!orderTemplate(s.replayLetterId,s.replayContentVersion,'story'),'Replay cannot reward');
  assert(Array.isArray(s.history)&&s.history.length<=HISTORY_LIMIT,'Invalid history');s.history.forEach(h=>{assert(['move','merge','cut','recycle','supply'].includes(h.label),'Invalid history label');validateReversible(h,s);});
  assert(Array.isArray(s.receipts)&&s.receipts.length<=RECEIPT_LIMIT,'Invalid receipts');const receiptIds=new Set;let receiptRevision=0;
@@ -143,7 +120,7 @@ export function goalHint(s,orderId=s.focusedOrderId){
  if(!order){
   if(s.mode==='replay')return {kind:'practice-complete',message:'This practice letter is complete. Return to your career whenever you are ready; its progress is unchanged.'};
   if(canStartNextChapter(s))return {kind:'chapter',message:`${chapterDefinition(s).title} is complete. Open ${chapterDefinition(s).nextTitle} when you are ready.`};
-  if(campaignComplete(s))return {kind:'complete',message:'The campaign is complete. Keep exploring your collection at your own pace.'};
+  if(campaignComplete(s))return {kind:'complete',message:'The authored foundation is complete. Keep exploring your collection at your own pace.'};
   return {kind:'unavailable',message:'No eligible request is available right now. Your saved progress is intact; check your correspondence for unfinished goals.'};
  }
  if(matchingTiles(s,order))return {kind:'send',orderId:order.id,message:s.mode==='replay'?'Your practice letter is ready. Send it to finish with 0 XP and 0 coins.':'Your chosen request is ready. Send it to earn its displayed rewards.'};
@@ -166,24 +143,11 @@ export function reduceCareer(state,action){
   case 'cut':{const tile=s.board[action.at];assert(slot(action.at)&&tile?.id===action.tileId,'Select a piece to Cut');const previous=CATALOG.previousPiece(tile.pieceId),empty=s.board.indexOf(null);assert(previous,'Level 1 is already a single scrap');assert(empty!==-1,'Cut needs one empty space. Recycle a piece to make room.');s.board[action.at]=allocateTile(s,previous.id);s.board[empty]=allocateTile(s,previous.id);pushHistory(s,state,'cut');break;}
   case 'recycle':{const tile=s.board[action.at];assert(slot(action.at)&&tile?.id===action.tileId,'Select a piece to Recycle');const piece=CATALOG.pieceOf(tile.pieceId);assert(piece.tier<3||action.confirmed===true,'Confirm recycling this valuable picture');s.material[piece.familyId].recycled+=piece.mass;s.board[action.at]=null;pushHistory(s,state,'recycle');break;}
   case 'undo':{const previous=s.history.pop();assert(previous,'Nothing to Undo. A completed order, purchase or chapter entry begins a new page.');s.board=previous.board;s.sources=previous.sources;s.material=previous.material;break;}
-  case 'complete':{const order=s.orders.find(o=>o.id===action.orderId);assert(order,'That order is no longer active');assert(Array.isArray(action.tileIds)&&new Set(action.tileIds).size===action.tileIds.length&&action.tileIds.length===order.requirements.reduce((n,r)=>n+r.quantity,0),'Choose each requested piece exactly once');const tiles=action.tileIds.map(id=>s.board.find(t=>t?.id===id));assert(tiles.every(Boolean),'The requested pieces are no longer here');assert(recipeKey(tiles.map(t=>({pieceId:t.pieceId,quantity:1})))===recipeKey(order.requirements),'These pieces do not match the order');if(order.origin==='story')assert(!s.milestones.includes(order.storyLetterId),'This letter has already been completed');const ids=new Set(action.tileIds);s.board=s.board.map(t=>{if(!t||!ids.has(t.id))return t;const p=CATALOG.pieceOf(t.pieceId);s.material[p.familyId].delivered+=p.mass;return null;});s.xp+=order.xp;s.coinsEarned+=order.coins;if(order.origin==='story'){s.milestones.push(order.storyLetterId);s.storyCompletions[order.storyLetterId]={contentVersion:order.contentVersion};}s.orders=s.orders.filter(o=>o.id!==order.id);if(order.id===s.resumedOptionalId){s.resumedOptionalId=null;restoreStory(s);}s.history=[];receipt(s,{id:order.id,type:order.origin==='practice'?'practice':'delivery',storyLetterId:order.storyLetterId,templateId:order.templateId,xp:order.xp,coins:order.coins,contentVersion:order.contentVersion});refill(s);break;}
+  case 'complete':{const order=s.orders.find(o=>o.id===action.orderId);assert(order,'That order is no longer active');assert(Array.isArray(action.tileIds)&&new Set(action.tileIds).size===action.tileIds.length&&action.tileIds.length===order.requirements.reduce((n,r)=>n+r.quantity,0),'Choose each requested piece exactly once');const tiles=action.tileIds.map(id=>s.board.find(t=>t?.id===id));assert(tiles.every(Boolean),'The requested pieces are no longer here');assert(recipeKey(tiles.map(t=>({pieceId:t.pieceId,quantity:1})))===recipeKey(order.requirements),'These pieces do not match the order');if(order.origin==='story')assert(!s.milestones.includes(order.storyLetterId),'This letter has already been completed');const ids=new Set(action.tileIds);s.board=s.board.map(t=>{if(!t||!ids.has(t.id))return t;const p=CATALOG.pieceOf(t.pieceId);s.material[p.familyId].delivered+=p.mass;return null;});s.xp+=order.xp;s.coinsEarned+=order.coins;if(order.origin==='story'){s.milestones.push(order.storyLetterId);s.storyCompletions[order.storyLetterId]={contentVersion:order.contentVersion};}s.orders=s.orders.filter(o=>o.id!==order.id);s.history=[];receipt(s,{id:order.id,type:order.origin==='practice'?'practice':'delivery',storyLetterId:order.storyLetterId,templateId:order.templateId,xp:order.xp,coins:order.coins,contentVersion:order.contentVersion});refill(s);break;}
   case 'purchase':{const upgrade=UPGRADES.find(u=>u.id===action.upgradeId);assert(upgrade,'Unknown upgrade');assert(s.mode==='career'&&action.expectedLevel===0&&s.upgrades[upgrade.id]===0,'This upgrade is already owned or unavailable');assert(availableUpgrades(s).some(u=>u.id===upgrade.id),'Open this chapter and source first');assert(levelDefinition(s).level>=upgrade.level,`Unlocks at player level ${upgrade.level}`);assert(coinBalance(s)>=upgrade.price,'Complete more orders to earn the coins for this upgrade');s.coinsSpent+=upgrade.price;s.upgrades[upgrade.id]=1;s.purchases[upgrade.id]={price:upgrade.price,contentVersion:CONTENT_VERSION};if(upgrade.familyId)s.sources[upgrade.familyId]={sorter:1,cursor:0};s.history=[];receipt(s,{id:upgrade.id,type:'purchase',xp:0,coins:upgrade.price,contentVersion:CONTENT_VERSION});if(upgrade.id==='order-desk')refill(s);break;}
-  case 'resume-optional':{
-   assert(s.mode==='career','Practice cannot resume saved letters');
-   const chosen=s.heldOrders.find(o=>o.id===action.orderId);assert(chosen,'That optional letter is no longer held');
-   s.heldOrders=s.heldOrders.filter(o=>o.id!==chosen.id);
-   const displaced=s.orders.find(o=>o.slot===0);
-   if(displaced){s.orders=s.orders.filter(o=>o.id!==displaced.id);if(displaced.origin==='ordinary')s.heldOrders.push(displaced);else{assert(!s.suspendedStory,'A story is already preserved');s.suspendedStory=displaced;}}
-   s.orders.push({...chosen,slot:0});s.orders.sort((a,b)=>a.slot-b.slot);s.resumedOptionalId=chosen.id;s.focusedOrderId=chosen.id;selectSourcesFor(s,chosen);break;
-  }
-  case 'return-to-story':{
-   assert(s.resumedOptionalId!==null,'You are already at your story');
-   const optional=s.orders.find(o=>o.id===s.resumedOptionalId);s.orders=s.orders.filter(o=>o.id!==optional.id);s.heldOrders.push(optional);s.resumedOptionalId=null;
-   const restored=s.suspendedStory;restoreStory(s);refill(s);const goal=restored??s.orders.find(o=>o.origin==='story')??s.orders[0];s.focusedOrderId=goal?.id??null;selectSourcesFor(s,goal);break;
-  }
   case 'focus-order':{const order=s.orders.find(o=>o.id===action.orderId);assert(order,'Choose an active request');s.focusedOrderId=order.id;selectSourcesFor(s,order);break;}
   case 'select-source':{assert(integer(action.sourceSlot,0,1)&&s.unlockedSources.includes(action.familyId),'Choose an unlocked source');const other=1-action.sourceSlot;if(s.activeSourceIds[other]===action.familyId)[s.activeSourceIds[other],s.activeSourceIds[action.sourceSlot]]=[s.activeSourceIds[action.sourceSlot],s.activeSourceIds[other]];else s.activeSourceIds[action.sourceSlot]=action.familyId;break;}
-  case 'start-next-chapter':{assert(canStartNextChapter(s),'Finish this chapter before opening the next');const next=CHAPTERS.find(c=>c.id===chapterDefinition(s).nextId);assert(action.chapterId===next.id,'The next chapter changed');assert(s.xp>=(next.entryXP??0),'Reach the chapter entry milestone first');assert(!s.suspendedStory,'Return to your story before chapter entry');s.resumedOptionalId=null;s.heldOrders.push(...s.orders.filter(o=>o.origin==='ordinary'&&o.slot<2));s.orders=s.orders.filter(o=>o.slot>=2);s.focusedOrderId=null;s.chapterId=next.id;s.enteredChapters.push(next.id);s.chapterEntryVersions[next.id]=CONTENT_VERSION;s.unlockedSources=unlockedSourceIds(s);s.activeSourceIds=[next.entrySources[0],s.activeSourceIds[0]];s.history=[];refill(s);const opening=s.orders.find(o=>o.origin==='story');s.focusedOrderId=opening?.id??s.orders[0]?.id??null;selectSourcesFor(s,opening);break;}
+  case 'start-next-chapter':{assert(canStartNextChapter(s),'Finish this chapter before opening the next');const next=CHAPTERS.find(c=>c.id===chapterDefinition(s).nextId);assert(action.chapterId===next.id,'The next chapter changed');s.chapterId=next.id;s.enteredChapters.push(next.id);s.chapterEntryVersions[next.id]=CONTENT_VERSION;s.unlockedSources=unlockedSourceIds(s);s.activeSourceIds=[next.entrySources[0],s.activeSourceIds[0]];s.history=[];refill(s);break;}
   case 'large-text':assert(typeof action.enabled==='boolean','Invalid text-size choice');s.largeText=action.enabled;break;
   case 'sound':assert(typeof action.enabled==='boolean','Invalid sound choice');s.sound=action.enabled;break;
   default:return fail(state,'unknown-action','Unknown action');

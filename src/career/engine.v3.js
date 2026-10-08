@@ -1,5 +1,5 @@
-import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition, storyEligible, ordinaryTemplatesFor } from './content.js';
-import { upgradeCareer as upgradeV3 } from './engine.v3.js';
+import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition, storyEligible } from './content.v3.js';
+import { upgradeCareer as upgradeV2 } from './engine.v2.js';
 export const HISTORY_LIMIT=32, RECEIPT_LIMIT=40;
 const MAX=Number.MAX_SAFE_INTEGER-1000, clone=value=>structuredClone(value);
 const integer=(n,min=0,max=MAX)=>Number.isSafeInteger(n)&&n>=min&&n<=max;
@@ -34,9 +34,8 @@ export function refill(s){
   // principal slots with optional work which hides the next authored chapter.
   if(index<2&&canStartNextChapter(s))continue;
   if(outstanding(s).filter(o=>o.origin==='ordinary').length>=OPTIONAL_PROMISE_LIMIT)continue;
-  const ordinary=ordinaryTemplatesFor(s);
-  for(let attempt=0;attempt<ordinary.length;attempt++){
-   const template=ordinary[s.ordinaryChapterCursors[s.chapterId]%ordinary.length];s.ordinaryChapterCursors[s.chapterId]=(s.ordinaryChapterCursors[s.chapterId]+1)%ordinary.length;
+  for(let attempt=0;attempt<ORDINARY_ORDERS.length;attempt++){
+   const template=ORDINARY_ORDERS[s.ordinaryCursor%ORDINARY_ORDERS.length];s.ordinaryCursor=(s.ordinaryCursor+1)%ORDINARY_ORDERS.length;
    if(s.enteredChapters.includes(template.chapterId)&&eligible(s,template.requirements)&&!outstanding(s).some(o=>recipeKey(o.requirements)===recipeKey(template.requirements))){issue(s,template,index,'ordinary');break;}
   }
  }
@@ -45,7 +44,7 @@ export function refill(s){
 export function newCareerId(){if(typeof globalThis.crypto?.randomUUID==='function')return globalThis.crypto.randomUUID();if(typeof globalThis.crypto?.getRandomValues==='function')return [...globalThis.crypto.getRandomValues(new Uint32Array(4))].map(n=>n.toString(16).padStart(8,'0')).join('-');return `local-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;}
 export function createCareer(careerId=newCareerId()){
  assert(typeof careerId==='string'&&/^[a-zA-Z0-9-]{1,80}$/.test(careerId),'Invalid career ID');
- const s={schemaVersion:SCHEMA_VERSION,rulesVersion:RULES_VERSION,contentVersion:CONTENT_VERSION,mode:'career',careerId,chapterId:CHAPTER.id,enteredChapters:[CHAPTER.id],chapterEntryVersions:{[CHAPTER.id]:CONTENT_VERSION},unlockedSources:[...STARTER_FAMILY_IDS],activeSourceIds:[...STARTER_FAMILY_IDS],focusedOrderId:null,revision:0,nextTileSeq:1,nextOrderSeq:1,board:Array(25).fill(null),sources:Object.fromEntries(FAMILIES.map(f=>[f.id,{sorter:0,cursor:0}])),upgrades:Object.fromEntries(UPGRADES.map(u=>[u.id,0])),purchases:{},orders:[],heldOrders:[],suspendedStory:null,resumedOptionalId:null,xp:0,coinsEarned:0,coinsSpent:0,milestones:[],storyCompletions:{},ordinaryCursor:0,ordinaryChapterCursors:Object.fromEntries(CHAPTERS.map(c=>[c.id,0])),discoveries:[],material:Object.fromEntries(FAMILIES.map(f=>[f.id,{initial:STARTER_FAMILY_IDS.includes(f.id)?4:0,generated:0,delivered:0,recycled:0}])),receipts:[],history:[],sound:false,largeText:false};
+ const s={schemaVersion:SCHEMA_VERSION,rulesVersion:RULES_VERSION,contentVersion:CONTENT_VERSION,mode:'career',careerId,chapterId:CHAPTER.id,enteredChapters:[CHAPTER.id],chapterEntryVersions:{[CHAPTER.id]:CONTENT_VERSION},unlockedSources:[...STARTER_FAMILY_IDS],activeSourceIds:[...STARTER_FAMILY_IDS],focusedOrderId:null,revision:0,nextTileSeq:1,nextOrderSeq:1,board:Array(25).fill(null),sources:Object.fromEntries(FAMILIES.map(f=>[f.id,{sorter:0,cursor:0}])),upgrades:Object.fromEntries(UPGRADES.map(u=>[u.id,0])),purchases:{},orders:[],heldOrders:[],suspendedStory:null,resumedOptionalId:null,xp:0,coinsEarned:0,coinsSpent:0,milestones:[],storyCompletions:{},ordinaryCursor:0,discoveries:[],material:Object.fromEntries(FAMILIES.map(f=>[f.id,{initial:STARTER_FAMILY_IDS.includes(f.id)?4:0,generated:0,delivered:0,recycled:0}])),receipts:[],history:[],sound:false,largeText:false};
  STARTER_FAMILY_IDS.forEach((id,fi)=>{for(let i=0;i<4;i++)s.board[fi*5+i]=allocateTile(s,familyOf(id).starterId);});refill(s);discover(s);validateCareer(s);return s;
 }
 export function createReplay(storyLetterId,careerId=newCareerId(),contentVersion=CONTENT_VERSION){
@@ -64,17 +63,11 @@ export function upgradeCareer(input){
  // Same-schema packs are validated before append-only extension, too.
  let old;
  if(input?.schemaVersion===SCHEMA_VERSION){old=clone(input);validateCareer(old);if(old.contentVersion===CONTENT_VERSION)return old;}
- else old=upgradeV3(input); // Frozen old-schema reader runs before new fields exist.
+ else old=upgradeV2(input); // Frozen old-schema reader runs before new fields exist.
  assert(old.mode==='career','Practice cannot become a saved campaign');
  const s=clone(old),oldUnlocked=[...old.unlockedSources];
  s.schemaVersion=SCHEMA_VERSION;s.contentVersion=CONTENT_VERSION;
- // Keep the historical global cursor and seed the new current-chapter cycle at
- // its next matching template. All later chapter cursors begin dormant at zero.
- if(!s.ordinaryChapterCursors){s.ordinaryChapterCursors=Object.fromEntries(CHAPTERS.map(c=>[c.id,0]));
-  const previous=contentPack(old).ordinary;const local=ordinaryTemplatesFor(old);
-  for(let i=0;i<previous.length;i++){const next=previous[(old.ordinaryCursor+i)%previous.length];const at=local.indexOf(next);if(at>=0){s.ordinaryChapterCursors[old.chapterId]=at;break;}}
- }else for(const chapter of CHAPTERS)if(!Object.hasOwn(s.ordinaryChapterCursors,chapter.id))s.ordinaryChapterCursors[chapter.id]=0;
- if(!Object.hasOwn(s,'heldOrders')){s.heldOrders=[];s.suspendedStory=null;s.resumedOptionalId=null;}
+ if(input.schemaVersion!==SCHEMA_VERSION){s.heldOrders=[];s.suspendedStory=null;s.resumedOptionalId=null;}
  if(input.schemaVersion===1)s.orders=s.orders.map((o,i)=>({...o,rulesVersion:input.orders[i].rulesVersion}));
  for(const u of UPGRADES)if(!(u.id in s.upgrades))s.upgrades[u.id]=0;
  for(const part of [s,...s.history])for(const f of FAMILIES){
@@ -111,9 +104,7 @@ export function validateCareer(s){
  assert(Array.isArray(s.discoveries)&&new Set(s.discoveries).size===s.discoveries.length&&s.discoveries.every(id=>CATALOG.pieceOf(id)&&s.unlockedSources.includes(CATALOG.pieceOf(id).familyId))&&s.board.every(t=>!t||s.discoveries.includes(t.pieceId)),'Invalid discoveries');
  assert(Array.isArray(s.milestones)&&new Set(s.milestones).size===s.milestones.length&&s.milestones.every(id=>contentPack(s).story.some(t=>t.id===id&&s.enteredChapters.includes(t.chapterId??CHAPTER.id))),'Invalid story milestones');
  assert(exactKeys(s.storyCompletions,s.milestones)&&Object.entries(s.storyCompletions).every(([id,record])=>exactKeys(record,['contentVersion'])&&integer(record.contentVersion,1,s.contentVersion)&&!!orderTemplate(id,record.contentVersion,'story')),'Invalid completed-letter provenance');
- assert(integer(s.ordinaryCursor,0,contentPack(s).ordinary.length-1),'Invalid ordinary cursor');
- assert(exactKeys(s.ordinaryChapterCursors,contentPack(s).chapters.map(c=>c.id)),'Invalid chapter order cursors');
- for(const c of contentPack(s).chapters){const count=ordinaryTemplatesFor(s,c.id).length;assert(integer(s.ordinaryChapterCursors[c.id],0,Math.max(0,count-1)),'Invalid chapter order cursor');}assert(Array.isArray(s.orders)&&s.orders.length<=orderCapacity(s),'Invalid order capacity');
+ assert(integer(s.ordinaryCursor,0,contentPack(s).ordinary.length-1),'Invalid ordinary cursor');assert(Array.isArray(s.orders)&&s.orders.length<=orderCapacity(s),'Invalid order capacity');
  assert(Array.isArray(s.heldOrders)&&s.heldOrders.length<=OPTIONAL_PROMISE_LIMIT&&s.heldOrders.every(o=>o?.origin==='ordinary'),'Invalid held letters');
  assert(s.suspendedStory===null||s.suspendedStory?.origin==='story'&&s.suspendedStory.slot===0,'Invalid displaced story');
  assert(s.resumedOptionalId===null||s.orders.some(o=>o.id===s.resumedOptionalId&&o.origin==='ordinary'&&o.slot===0),'Invalid resumed letter');
@@ -143,7 +134,7 @@ export function goalHint(s,orderId=s.focusedOrderId){
  if(!order){
   if(s.mode==='replay')return {kind:'practice-complete',message:'This practice letter is complete. Return to your career whenever you are ready; its progress is unchanged.'};
   if(canStartNextChapter(s))return {kind:'chapter',message:`${chapterDefinition(s).title} is complete. Open ${chapterDefinition(s).nextTitle} when you are ready.`};
-  if(campaignComplete(s))return {kind:'complete',message:'The campaign is complete. Keep exploring your collection at your own pace.'};
+  if(campaignComplete(s))return {kind:'complete',message:'The authored foundation is complete. Keep exploring your collection at your own pace.'};
   return {kind:'unavailable',message:'No eligible request is available right now. Your saved progress is intact; check your correspondence for unfinished goals.'};
  }
  if(matchingTiles(s,order))return {kind:'send',orderId:order.id,message:s.mode==='replay'?'Your practice letter is ready. Send it to finish with 0 XP and 0 coins.':'Your chosen request is ready. Send it to earn its displayed rewards.'};
