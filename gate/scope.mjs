@@ -45,6 +45,6 @@ export const REQUIRED_SCREENSHOTS=Object.freeze({
 });
 export const REQUIRED_POSTCARDS=Object.freeze(['campaign-results/campaign-chromium/postcards/C13-moon.png','campaign-results/campaign-chromium/postcards/C13-garden.png']);
 export const REQUIRED_RECORDS=Object.freeze({
- 'campaign-chromium':['C01-garden-ui-route','C02-moon-ui-route','C03-chosen-source-return','C03-late-goal-preserves-newer-panel','C04-sorter-final-errors','C05-native-board-races','C06-native-delivery-once','C07-native-purchase-races','C08-native-entry-conversion','C09-protected-faults','C10-compatible-browser-saves','C11-keyboard-large-text','C11-optional-audio-setting','C12-desktop-art-layout','C13-paired-labels-original-exports','C14-bounded-cache-byte-comparison'],
+ 'campaign-chromium':['C01-garden-ui-route','C02-moon-ui-route','C03-chosen-source-return','C03-late-goal-preserves-newer-panel','C04-sorter-final-errors','C05-native-board-races','C06-native-delivery-once','C07-native-purchase-races','C08-native-entry-conversion','C09-protected-faults','C10-compatible-browser-saves','C11-keyboard-large-text','C11-optional-audio-setting','C12-desktop-art-layout','C13-paired-labels-original-exports','C13-postcard-download-journal','C14-bounded-cache-byte-comparison'],
  'campaign-webkit-phone':['P01-opening-return','P02-touch-goal-return','P03-phone-core-geometry','P04-larger-text-geometry','P04-larger-text-source-panel','P05-isolated-replay','P06-protected-goal-hints','P07-temporary-feedback'],
 });

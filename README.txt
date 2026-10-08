@@ -56,3 +56,14 @@ attempt. It requires no main/default-branch workflow change or merge.
 No external upload, publication, install, spending or CI action is authorized by
 this document. If a zero-dollar spending stop blocks an authorized run, stop and
 notify the owner; never change budgets, disable the stop or enable paid overages.
+
+Repair-v3 evidence policy
+All modal actions are scoped to the active dialog and their actual container.
+Collection buttons use exact accessible names, with exact-one guards. Each
+actual postcard download is journaled immediately, so a later failed UI step
+cannot discard a valid partial export.
+Only unfinalized Playwright recorder *.trace/*.network working files under the
+exact hidden recorder directory are excluded from upload. Their hashes, sizes
+and omission reasons are retained; raw files remain untouched. Canonical final
+trace.zip, screenshots, error context, raw results, progress and runner metadata
+remain eligible. This does not alter the60MiB cap or make an incomplete run pass.
