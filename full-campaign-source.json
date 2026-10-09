@@ -604,8 +604,8 @@
     },
     {
       "file": "src/career/career.css",
-      "bytes": 53737,
-      "sha256": "8571b12a36e8050b77bce9f198a884531846fbb862047fb96618f3824d29b423"
+      "bytes": 54331,
+      "sha256": "25e032b999acfb04fe32d5cb7366307c4db7959ef90edad672be63e265d035da"
     },
     {
       "file": "src/career/CareerGarden.jsx",
@@ -2334,8 +2334,8 @@
     },
     {
       "file": "stage-b-evidence/execution/PROPOSAL.md",
-      "bytes": 9878,
-      "sha256": "5ebb9701b937d9b4400ff86b216bd8deb363e403c2bbf266891acb050fbd427f"
+      "bytes": 11026,
+      "sha256": "19e5e8c4ca7dc378aa093a9aaf5c97741585c352597c060c4fba099015590961"
     },
     {
       "file": "stage-b-evidence/execution/reporter.mjs",
