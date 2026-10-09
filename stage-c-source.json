@@ -2812,9 +2812,19 @@
       "sha256": "fecc18cd2818c7deb43f922a1aa6b40fb9b01bef81dacb6dee01c03f06278a2f"
     },
     {
+      "file": "stage-c-evidence/browser/scroll-endpoint.mjs",
+      "bytes": 2764,
+      "sha256": "8200dcd3e63974adfc032554c6996a1042766a63cd587684a2f690e1a58af643"
+    },
+    {
+      "file": "stage-c-evidence/browser/scroll-endpoint.test.mjs",
+      "bytes": 4523,
+      "sha256": "084fb7cee5227a4c2546d8885b46b44aebf94551aae4aa0b09f94367dcc737a7"
+    },
+    {
       "file": "stage-c-evidence/browser/text-polish.mjs",
-      "bytes": 8365,
-      "sha256": "d9aca3674a75a71e675ab839734884391b59c1bf7a238c27d05cc4a8f81706a4"
+      "bytes": 9075,
+      "sha256": "f605b58bb5cc645ef3021f0867f7b828d82da091f7b3ab1c128cc883c0d6a77a"
     },
     {
       "file": "stage-c-evidence/browser/text-polish.test.mjs",
@@ -2823,8 +2833,8 @@
     },
     {
       "file": "stage-c-evidence/execution/README.md",
-      "bytes": 13237,
-      "sha256": "02e5518cc8da0d04409598394ce76c3997a6f86a687ea86a210c162a02aad164"
+      "bytes": 15864,
+      "sha256": "87a6cdb92e2d5167d1e2ffe50b0a134c00eae7123bcfa1bf01bafcc650f52684"
     },
     {
       "file": "stage-c-evidence/execution/approved-scope.json",

@@ -1,5 +1,6 @@
 import {expect} from '@playwright/test';
 import {CATALOG} from '../../src/career/content.js';
+import {inspectScrollEndpoint,scrollSnapshotReady,reachScrollEndpoint} from './scroll-endpoint.mjs';
 
 // Actual DOM words may wrap at spaces, never inside a word. The catalog check
 // also measures all 280 names in the rendered font against the smallest tile.
@@ -34,6 +35,17 @@ export async function wholeWordBoardProof(page) {
   return proof;
 }
 
+async function settleScrollEndpoint(board, options) {
+  let observed;
+  await expect.poll(async () => {
+    const before = await board.evaluate(inspectScrollEndpoint);
+    await board.evaluate(() => new Promise(resolve => requestAnimationFrame(resolve)));
+    observed = await board.evaluate(inspectScrollEndpoint);
+    return scrollSnapshotReady(before, observed, options);
+  }, {message: 'Native scroll destination and accessible edge states must settle together'}).toBe(true);
+  return observed;
+}
+
 export async function boardScrollProof(page, touch = false) {
   const board = page.locator('.career-board');
   const first = page.locator('[data-career-cell="0"]');
@@ -54,12 +66,14 @@ export async function boardScrollProof(page, touch = false) {
   const left = page.getByRole('button', {name:'Scroll board left', exact:true});
   const overflow = await board.evaluate(el => el.scrollWidth > el.clientWidth + 1);
   if (overflow) {
+    // Keyboard reveal was independently checked above. Establish an exact
+    // zero-offset view before measuring native arrow routes, so a legitimate
+    // subpixel near-edge disabled state is not mistaken for a clamped end.
+    await board.evaluate(el => { el.scrollLeft = 0; });
+    await expect.poll(() => board.evaluate(el => el.scrollLeft)).toBe(0);
     await expect(right).toBeVisible(); await expect(right).toBeEnabled();
-    for (let presses = 0; await right.isEnabled(); presses++) {
-      expect(presses, 'Right arrow reaches the final column in a bounded number of presses').toBeLessThan(5);
-      if (touch) await right.tap(); else await right.click();
-      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(resolve)));
-    }
+    const nativeRight = await reachScrollEndpoint({settle: options => settleScrollEndpoint(board, options), activate: () => touch ? right.tap() : right.click()}, 1);
+    steps.push({nativeScrollControl:'right', ...nativeRight});
     await expect.poll(() => board.evaluate(el => Math.abs(el.scrollLeft - (el.scrollWidth - el.clientWidth)))).toBeLessThanOrEqual(1);
     await expect.poll(() => board.evaluate(el => el.scrollLeft)).toBeGreaterThan(start + 1);
     await expect(right).toBeDisabled();
@@ -74,28 +88,21 @@ export async function boardScrollProof(page, touch = false) {
     for(const rect of lastColumn.labelRects){expect(rect.left).toBeGreaterThanOrEqual(lastColumn.viewportLeft-1);expect(rect.right).toBeLessThanOrEqual(lastColumn.viewportRight+1);}
     steps.push({nativeRightEdge:lastColumn});
     await expect(left).toBeEnabled();
-    for (let presses = 0; await left.isEnabled(); presses++) {
-      expect(presses, 'Left arrow returns to the first column in a bounded number of presses').toBeLessThan(5);
-      if (touch) await left.tap(); else await left.click();
-      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(resolve)));
-    }
+    const nativeLeft = await reachScrollEndpoint({settle: options => settleScrollEndpoint(board, options), activate: () => touch ? left.tap() : left.click()}, -1);
+    steps.push({nativeScrollControl:'left', ...nativeLeft});
     await expect.poll(() => board.evaluate(el => el.scrollLeft)).toBeLessThanOrEqual(1);
     await first.focus();
     await expect(left).toBeDisabled();
     // Keyboard activation keeps focus on the same accessible button at an end.
     for (const [control, key, edge] of [[right,'Enter','right'],[left,'Space','left']]) {
       await control.focus();
-      for (let presses = 0; await control.isEnabled(); presses++) {
-        expect(presses).toBeLessThan(5);
-        await page.keyboard.press(key);
-        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(resolve)));
-      }
+      const keyboardRoute = await reachScrollEndpoint({settle: options => settleScrollEndpoint(board, options), activate: () => page.keyboard.press(key)}, edge === 'right' ? 1 : -1);
       await expect(control).toBeDisabled();
       await expect(control).toBeFocused();
       const offset = await board.evaluate(el => el.scrollLeft);
       await page.keyboard.press(key);
       expect(await board.evaluate(el => el.scrollLeft)).toBe(offset);
-      steps.push({keyboardScrollControl:edge,activation:key,focusedAtEnd:true,offset});
+      steps.push({keyboardScrollControl:edge,activation:key,focusedAtEnd:true,offset,route:keyboardRoute});
     }
     await first.focus();
   } else await expect(right).toHaveCount(0);
