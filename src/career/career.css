@@ -113,10 +113,9 @@
 /* Ending actions remain distinct and wrap without merging their labels. */
 .career-ending-actions{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 20px;margin-top:12px}.career-ending-actions button{min-height:44px;max-width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere}.career-ending-actions button:focus-visible{outline-offset:4px}
 
-/* Compact HUD: preserve the full progress title above an independent wallet/action row.
-   Auto-height is used by every portrait/short-window shell rule; no label is clipped. */
+/* Compact HUD: wrap full progress labels within their own column. Short titles
+   retain the single-row board budget; longer titles grow the header naturally. */
 @media(max-width:650px){
- .career-shell:not(.is-large-text) .career-mobile-hud{grid-template-columns:minmax(0,1fr) 72px 44px;grid-template-rows:auto 44px;gap:4px 6px}
- .career-shell:not(.is-large-text) .career-mobile-progress-button{grid-column:1/-1;height:auto;min-height:44px}
+ .career-shell:not(.is-large-text) .career-mobile-progress-button{height:auto;min-height:44px}
  .career-mobile-progress-button strong,.career-mobile-progress-button>span{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 }
