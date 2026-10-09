@@ -143,3 +143,6 @@
  .career-board-frame{grid-row:3;min-height:260px;height:100%}
  .career-shell.is-large-text .career-board-frame{height:auto;min-height:0}
 }
+
+/* Compact labels use the existing cell padding without changing art, type or hit areas. */
+@media(max-width:650px){.career-shell:not(.is-large-text) .career-cell-label{width:calc(100% + 6px)}}

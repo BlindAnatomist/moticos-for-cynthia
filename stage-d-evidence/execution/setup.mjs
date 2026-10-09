@@ -33,7 +33,8 @@ export function containerPreflight({env=process.env,nodeVersion=process.versions
   const info=JSON.parse(readFile(join(BROWSERS_PATH,'.docker-info'),'utf8'));
   assert.equal(info.driverVersion,'1.61.1','Pinned Playwright image driver required');
   assert.equal(info.dockerImageName,PLAYWRIGHT_IMAGE,'Exact official Playwright image required');
-  return {nodeVersion,driverVersion:info.driverVersion,dockerImageName:info.dockerImageName,browsersPath:BROWSERS_PATH};
+  const initProcess={pid:1,comm:String(readFile('/proc/1/comm','utf8')).trim().slice(0,80)};
+  return {nodeVersion,driverVersion:info.driverVersion,dockerImageName:info.dockerImageName,browsersPath:BROWSERS_PATH,initProcess};
 }
 
 export async function browserPreflight({env=process.env,containerCheck=containerPreflight,versionCheck=verifyVersions,loadPlaywright=()=>import('playwright'),stat=fs.statSync,access=fs.accessSync,realpath=fs.realpathSync}={}) {

@@ -29,8 +29,8 @@
     },
     {
       "file": ".github/workflows/verify-full-campaign-320.yml",
-      "bytes": 3188,
-      "sha256": "dc774ba1df996733258cbb4c33afbaec41b1a09218e795e00b6f1538a32ae3d4"
+      "bytes": 3217,
+      "sha256": "95af1464c5f43ac42c47df3858633e28d856202a049ecb5dc397bd9ca8a808b3"
     },
     {
       "file": ".github/workflows/verify-full-campaign.yml",
@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 7439,
-      "sha256": "dfb8f549f9446095f8f331bdfc1ac9d55b3b0c720847eda6794452abcc2c0018"
+      "bytes": 9371,
+      "sha256": "9a5010355458fa73d5c076ffce1402cb262e71d18f62b3a8fb1686e6db857d17"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -649,8 +649,8 @@
     },
     {
       "file": "src/career/career.css",
-      "bytes": 56778,
-      "sha256": "271b7fefb291ab3d14d6c522d34373fb11d69a05a2c25feac818e76830655021"
+      "bytes": 56973,
+      "sha256": "7900e5101b0cb827670456d775158fc2ae25e0ea61fa140f563b6b3c0b37a9a3"
     },
     {
       "file": "src/career/collectionNavigation.js",
@@ -3234,8 +3234,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 3509,
-      "sha256": "a47d420c7f737749136e4645a8be926c9e9e14622c9d2c9389b60e8bfabc7d78"
+      "bytes": 5441,
+      "sha256": "5c9049dc17c428d8bec4e3aad788e423767dd75620b4feb69b0c1b9efa4b3117"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3273,14 +3273,24 @@
       "sha256": "9197162ac52ac849df7f609244d2426d560a96a8f4d0932b85509a06e1c02d35"
     },
     {
+      "file": "stage-d-evidence/browser/compact-labels.mjs",
+      "bytes": 2794,
+      "sha256": "786cab9e6bbb6348d054cf9bf804a75057a820c8743d0aa8532cbe6225645ab7"
+    },
+    {
+      "file": "stage-d-evidence/browser/compact-labels.test.mjs",
+      "bytes": 1131,
+      "sha256": "32dc5a24ac9283fa26c240b6101a15d51505d7305c29da3261f49f4ac6fef692"
+    },
+    {
       "file": "stage-d-evidence/browser/early.spec.mjs",
-      "bytes": 15874,
-      "sha256": "ccdc0582ad16ed0acc88ecb53d845e1c60ae97a85aacd9613465ce92d1ce5b5b"
+      "bytes": 17668,
+      "sha256": "ee967fcf35b6382d6752dc66d9ab58ad01c53a34c6b902eae35474d67a39af84"
     },
     {
       "file": "stage-d-evidence/browser/fixtures.generated.json.gz",
-      "bytes": 647657,
-      "sha256": "3f179b0ff0c0fe96d5136c703d54bb518b2064669921a46755dd80078b2416d5"
+      "bytes": 647654,
+      "sha256": "ae05c40f4722c0423c2da9ca00ddb19252730bba5ade536a822b16fb218285eb"
     },
     {
       "file": "stage-d-evidence/browser/fixtures.mjs",
@@ -3299,8 +3309,8 @@
     },
     {
       "file": "stage-d-evidence/browser/late.spec.mjs",
-      "bytes": 15485,
-      "sha256": "18a36e45ada00a6a2dbf4f1327afeb04765ad1bd5f932dc0aa2ab701b4eb7c0d"
+      "bytes": 15629,
+      "sha256": "1f2367c9f4dbc75c8e50dfb7629ebd2c4ddf3f5c58b4dd5e1d9e9e26823d6d03"
     },
     {
       "file": "stage-d-evidence/browser/migration-load.mjs",
@@ -3524,13 +3534,13 @@
     },
     {
       "file": "stage-d-evidence/execution/setup.mjs",
-      "bytes": 9446,
-      "sha256": "e94cb3b4d01649ffa84df0be906785dcd0007925da4974f165dd5bae1f57785f"
+      "bytes": 9551,
+      "sha256": "6eeea304eae51152e0bb17297fcdacc713ac197a54b32d4db3092e07056c27ad"
     },
     {
       "file": "stage-d-evidence/execution/setup.test.mjs",
-      "bytes": 10068,
-      "sha256": "9f8a6917fe5623cd16b667d8e442448894d33788a3e68c04173f7e0634d12263"
+      "bytes": 10201,
+      "sha256": "8f04269e9f963a63cef5c5304822f810c0753c626ec92fb92925e45bdf197695"
     },
     {
       "file": "stage-d-evidence/execution/step-journal.mjs",
@@ -3559,8 +3569,8 @@
     },
     {
       "file": "stage-d-evidence/execution/workflow.test.mjs",
-      "bytes": 1570,
-      "sha256": "74a7f4781275a165ed88a873989b0d551bd35f7bac3c46897117176df2d5e3fa"
+      "bytes": 1593,
+      "sha256": "f51cb97e7937217b6734404fe2ea82f6b02ad91d0eb52002ecd0f25a666d81d7"
     },
     {
       "file": "stage-d-evidence/fixtures.mjs",
@@ -3574,8 +3584,8 @@
     },
     {
       "file": "stage-d-evidence/preservation.test.mjs",
-      "bytes": 3578,
-      "sha256": "ed6fe8fa3d6c13be48504c84ee671c039a58910e6084d9c80bcc614cb9784cc5"
+      "bytes": 4300,
+      "sha256": "962a7455f4c38133859e181d0fcafaeb974ab0922c053d2cc1917d88ea69c13b"
     },
     {
       "file": "stage-d-evidence/render-contract.mjs",

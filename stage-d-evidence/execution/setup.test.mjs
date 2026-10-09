@@ -22,8 +22,8 @@ function fixture(t,withClock=true) {
 const readState=f=>JSON.parse(fs.readFileSync(join(f.repoRoot,SETUP_ROOT,'setup.json')));
 
 test('container preflight requires exact Node image metadata and browser directory without launching',async()=>{
-  const options={env,nodeVersion:'24.19.0',readFile:(path)=>{assert.equal(path,'/ms-playwright/.docker-info');return JSON.stringify(dockerInfo);}};
-  assert.equal(containerPreflight(options).dockerImageName,PLAYWRIGHT_IMAGE);
+  const options={env,nodeVersion:'24.19.0',readFile:(path)=>{if(path==='/proc/1/comm')return 'docker-init\n';assert.equal(path,'/ms-playwright/.docker-info');return JSON.stringify(dockerInfo);}};
+  assert.equal(containerPreflight(options).dockerImageName,PLAYWRIGHT_IMAGE);assert.deepEqual(containerPreflight(options).initProcess,{pid:1,comm:'docker-init'});
   for(const change of [{nodeVersion:'22.0.0'},{env:{...env,PLAYWRIGHT_BROWSERS_PATH:'/tmp/browsers'}},{readFile:()=>JSON.stringify({...dockerInfo,driverVersion:'1.61.0'})},{readFile:()=>JSON.stringify({...dockerInfo,dockerImageName:'untrusted:1.61.1'})}])assert.throws(()=>containerPreflight({...options,...change}));
   let versions=0,loads=0;const accesses=[];
   const browserOptions={env,containerCheck:()=>containerPreflight(options),versionCheck:()=>{versions++;},loadPlaywright:async()=>{loads++;return Object.fromEntries(['chromium','webkit'].map(name=>[name,{executablePath:()=>`${BROWSERS_PATH}/${name}/browser`,launch:()=>assert.fail('No browser launch permitted')}]))},stat:()=>({isFile:()=>true}),realpath:path=>path,access:(path,mode)=>{assert.equal(mode,fs.constants.X_OK);accesses.push(path);}};
