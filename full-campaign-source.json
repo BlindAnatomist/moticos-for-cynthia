@@ -2289,8 +2289,8 @@
     },
     {
       "file": "stage-b-evidence/execution/contracts.test.mjs",
-      "bytes": 9881,
-      "sha256": "cd5d1c571313f93718b43c577d98ba15e6037f2ead0a21ca6255cd16364ff1d8"
+      "bytes": 15180,
+      "sha256": "0808377fd50d92e927b8a67e13c66c1b31e05d897598829f50103b78264361ab"
     },
     {
       "file": "stage-b-evidence/execution/ending-layout.mjs",
@@ -2299,8 +2299,8 @@
     },
     {
       "file": "stage-b-evidence/execution/finalize.mjs",
-      "bytes": 2033,
-      "sha256": "4ad39a5603a6940a4ba312d67f968042910e84e9d2ed3f54578190c7bb22c989"
+      "bytes": 3908,
+      "sha256": "13d11b30e3c1854e68541c51de86d872a3498c789f18931a84ece61ac9988b9c"
     },
     {
       "file": "stage-b-evidence/execution/measure-fixtures.mjs",
@@ -2308,9 +2308,14 @@
       "sha256": "819708c76bf7f9c6596116e7f9e1489f3d2699c4f74ef8cdc2dcadce5cbe7174"
     },
     {
+      "file": "stage-b-evidence/execution/paths.mjs",
+      "bytes": 1154,
+      "sha256": "1fd0fefe1122325f4aa0b6b9240b963c2b28d1144b2aae10eec7f732e1a0b145"
+    },
+    {
       "file": "stage-b-evidence/execution/playwright.config.mjs",
-      "bytes": 2157,
-      "sha256": "bc88a55c554931462f1d5c825505fb5da2392494d3abb8e5ff9e9eeb1258a89d"
+      "bytes": 2078,
+      "sha256": "a047bff3c6395a7efaf7ab036712a066c62222e0c845e12956c7a618c79d8e5f"
     },
     {
       "file": "stage-b-evidence/execution/policy.mjs",
@@ -2329,13 +2334,13 @@
     },
     {
       "file": "stage-b-evidence/execution/PROPOSAL.md",
-      "bytes": 8893,
-      "sha256": "cd2b84fa6ac93ece1b52a306f485050f35f4a944d2416cd1f10a1147f493d460"
+      "bytes": 9878,
+      "sha256": "5ebb9701b937d9b4400ff86b216bd8deb363e403c2bbf266891acb050fbd427f"
     },
     {
       "file": "stage-b-evidence/execution/reporter.mjs",
-      "bytes": 705,
-      "sha256": "872628dbbe2f0ad7a79fcdd0f351e005da48c255553baf6cfff0007553ff53a2"
+      "bytes": 749,
+      "sha256": "386b8f0ab07f7f7c2bf562371a8f423b2cf484e9a34b32583fcee1ba834188e8"
     },
     {
       "file": "stage-b-evidence/execution/run.mjs",
@@ -2344,8 +2349,13 @@
     },
     {
       "file": "stage-b-evidence/execution/serve.mjs",
-      "bytes": 1640,
-      "sha256": "3efd7b378481e0ebcc627584aad150c1e49121ce69fe345932db000b7b71d935"
+      "bytes": 620,
+      "sha256": "b67651e742479438a9e64384b3bab739dbb34a505c21d3c076880a5bbe707ed9"
+    },
+    {
+      "file": "stage-b-evidence/execution/server-core.mjs",
+      "bytes": 1550,
+      "sha256": "a0350a1cb855635952c29ed1bd257550b92af0f440834379ec1a178e7041dc3b"
     },
     {
       "file": "stage-b-evidence/execution/TRANSFER-PROCEDURE.md",
@@ -2355,7 +2365,7 @@
     {
       "file": "stage-b-evidence/execution/validate.mjs",
       "bytes": 6194,
-      "sha256": "a67df0d5ce6cd0509fbe6eab46cfde96c2c5dc924f0ec56bfad4269dca6aa0ad"
+      "sha256": "7d4a8445cad4467fe6394e2c9939a100bdb3cfd02d471b44d04745a3544b0046"
     },
     {
       "file": "stage-b-evidence/execution/workflow.proposal.json",

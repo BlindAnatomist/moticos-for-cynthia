@@ -1,3 +1,9 @@
+## Runtime-path correction status — 2026-10-09
+
+Corrected start 37879891982 passed setup, full preparation and authorization binding, then failed before browser cases began because Playwright resolved relative server/output paths from the nested config directory. The new local correction anchors server, reporter and raw-result paths to the repository root, retains strict source integrity, and preserves bounded failure diagnostics. Both previously approved starts are consumed. The owner subsequently explicitly approved uploading this path correction and starting one new 58-case GitHub run: one worker, zero automatic retries, a 108-minute hard job cap, a 124 MiB evidence cap, the standard public runner and unchanged spending protection. Bind this fresh approval to the final corrected source/core/probe identities in the commit trailers. No laptop work is authorized. Earlier status records below are historical; any further start would require new approval.
+
+---
+
 ## Correction status — 2026-10-09
 
 The first approved start, run 37879339607, failed before any runner job began. The local workflow correction moves runner-dependent paths from job-level expressions into the initial shell step. GitHub’s official schema excludes the runner context from job env. The exact server annotation was not retrieved. The earlier one-start approval is consumed. The owner subsequently explicitly approved uploading this correction and starting one new 58-case run with the same 108-minute limit, zero automatic retries and unchanged spending protection. The final corrected source/core/probe identities and this fresh approval must be bound in the commit trailers. The failed attempt must not be rerun, and any additional start would require new approval. The previous activation record below describes the first start only.
@@ -54,7 +60,7 @@ Acceptance requires exact collected and terminal case/event identities, one succ
 
 ## Review and activation
 
-Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 139 Node checks (99 historical, 17 runtime, 14 browser contracts, nine harness/presentation/collection/workflow contracts), subject to independent fresh collection.
+Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 141 Node checks (99 historical, 17 runtime, 14 browser contracts, eleven harness/presentation/collection/workflow/process contracts), subject to independent fresh collection.
 
 Confirm the repository remains public, standard GitHub-hosted runner eligibility and the owner’s zero-dollar spending stop before requesting publication; no billing setting is changed by this proposal.
 

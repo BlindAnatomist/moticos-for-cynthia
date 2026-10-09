@@ -1,11 +1,8 @@
-import http from 'node:http';
 import fs from 'node:fs';
-import assert from 'node:assert/strict';
-import {resolve} from 'node:path';
 import {requireApproval} from './binding.mjs';
-import {ROOT} from './policy.mjs';
-requireApproval();const core=JSON.parse(fs.readFileSync('full-campaign-build.json')),probe=JSON.parse(fs.readFileSync(`${ROOT}/probe-build.json`)),paths=new Map;
-for(const r of core.files){if(r.file.startsWith('dist-career/'))paths.set('/'+r.file.slice(12),r.file);if(r.file.startsWith('dist-full-probe/'))paths.set('/full-probe/'+r.file.slice(16),r.file);}paths.set('/full-probe/index.html','dist-full-probe/full-campaign-probe/index.html');
-for(const r of probe.files){const p=r.file,file=resolve(process.env.MOTICOS_STAGE_B_PROBE_OUTPUT,p);paths.set('/stage-b-probe/'+p,file);if(p==='stage-b-evidence/browser/probe/index.html')paths.set('/stage-b-probe/index.html',file);}assert(paths.has('/stage-b-probe/index.html'));
-const types={html:'text/html',js:'application/javascript',css:'text/css',webp:'image/webp',png:'image/png',json:'application/json'};
-const server=http.createServer((req,res)=>{if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);return res.end();}const p=paths.get(new URL(req.url,'http://127.0.0.1:4198').pathname);if(!p){res.writeHead(404);return res.end();}const b=fs.readFileSync(p);res.writeHead(200,{'Content-Type':types[p.split('.').at(-1)]??'application/octet-stream','Cache-Control':'no-store','Content-Length':b.length});res.end(req.method==='HEAD'?undefined:b);});server.listen(4198,'127.0.0.1');for(const s of ['SIGINT','SIGTERM'])process.on(s,()=>server.close(()=>process.exit(0)));
+import {REPO_ROOT,EXECUTION_ROOT,requireRepoCwd} from './paths.mjs';
+import {assetPaths,createAssetServer} from './server-core.mjs';
+requireRepoCwd();requireApproval();
+const core=JSON.parse(fs.readFileSync('full-campaign-build.json')),probe=JSON.parse(fs.readFileSync(`${EXECUTION_ROOT}/probe-build.json`));
+const server=createAssetServer(assetPaths(core,probe,REPO_ROOT,process.env.MOTICOS_STAGE_B_PROBE_OUTPUT));
+server.listen(4198,'127.0.0.1');for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>server.close(()=>process.exit(0)));
