@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 6755,
-      "sha256": "177341ef5878ff780e19ab39edf6e5e845c595f7dbc897de43cb8fc04ee47a71"
+      "bytes": 7439,
+      "sha256": "dfb8f549f9446095f8f331bdfc1ac9d55b3b0c720847eda6794452abcc2c0018"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -3234,8 +3234,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 2825,
-      "sha256": "b7e3c94cdd4c07e24b1e8eaaa1c7501e6709b1ad335bbda13da4b1a9b45d2722"
+      "bytes": 3509,
+      "sha256": "a47d420c7f737749136e4645a8be926c9e9e14622c9d2c9389b60e8bfabc7d78"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3274,8 +3274,8 @@
     },
     {
       "file": "stage-d-evidence/browser/early.spec.mjs",
-      "bytes": 15815,
-      "sha256": "64e601517cbae4bf51ebf3bbec2b01d3ff3cb2face871d121bad1707fe82311b"
+      "bytes": 15874,
+      "sha256": "ccdc0582ad16ed0acc88ecb53d845e1c60ae97a85aacd9613465ce92d1ce5b5b"
     },
     {
       "file": "stage-d-evidence/browser/fixtures.generated.json.gz",
@@ -3346,6 +3346,16 @@
       "file": "stage-d-evidence/browser/probe/vite.config.mjs",
       "bytes": 734,
       "sha256": "9f99effeb0d7489ffa5f892ef5685bebbcc8632eb9a847c6881ac4e3981e5d5c"
+    },
+    {
+      "file": "stage-d-evidence/browser/reward-label.mjs",
+      "bytes": 569,
+      "sha256": "5d6e69e6a17580d510e8c7921cf1a887a5c5c628453f38382e9a54931ab05e3a"
+    },
+    {
+      "file": "stage-d-evidence/browser/reward-label.test.mjs",
+      "bytes": 2415,
+      "sha256": "48d244eef820e0e8524f4ff2cf13e4aa5f48f03bb8df72b37803d8dd85c242f5"
     },
     {
       "file": "stage-d-evidence/browser/scope.mjs",
@@ -3569,8 +3579,8 @@
     },
     {
       "file": "stage-d-evidence/render-contract.mjs",
-      "bytes": 3175,
-      "sha256": "56c2e36e116d9b9c80f4e9d557706ce7ef4998fac29aed6fbf702874db2091fd"
+      "bytes": 3237,
+      "sha256": "b01a3b05588130626b8eb4b2babb2f2ac9b974b75f89175dcf40417f5f730054"
     },
     {
       "file": "stage-d-evidence/runtime.test.mjs",
