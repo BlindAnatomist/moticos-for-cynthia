@@ -1,0 +1,4677 @@
+{
+  "sourceSha256": "fc1e10611733cc8cedb53c78288a5dba9ea625fcfeb93ec0ad28386b4ffcaa95",
+  "pack": {
+    "story": [
+      {
+        "id": "garden-letter-1",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A river under one wing",
+        "letter": "The bird has tucked a river under its wing. Send this small beginning; there is room for the rest to follow.",
+        "goal": "Make and send Riverwing.",
+        "sentCaption": "A small beginning, carried by a wing."
+      },
+      {
+        "id": "garden-letter-2",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A cup with other plans",
+        "letter": "A fern has moved into the teacup. It seems to have mistaken the handle for a garden gate.",
+        "goal": "Make and send Fern Cup.",
+        "sentCaption": "Tea was expected. A garden arrived."
+      },
+      {
+        "id": "garden-letter-3",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "The bird finds a key",
+        "letter": "A key has slipped between the feathers. Perhaps the bird is a map. Perhaps the map is learning to fly.",
+        "goal": "Make and send Wayfinder.",
+        "sentCaption": "A feather, a key, a way through."
+      },
+      {
+        "id": "garden-letter-4",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Two ways to carry water",
+        "letter": "A river under a wing; a moon above a cup. Put these two small journeys in the same envelope.",
+        "goal": "Make and send Riverwing and Nightgarden.",
+        "sentCaption": "The river and the cup met by post."
+      },
+      {
+        "id": "garden-letter-5",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "The opening is the picture",
+        "letter": "The bird has opened in the middle. Leave that little gap for whatever might arrive next.",
+        "goal": "Make and send Aviary Gate.",
+        "sentCaption": "A gate made from the space between wings."
+      },
+      {
+        "id": "garden-letter-6",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "A short note after dark",
+        "letter": "The fern has leaned sideways to make room for the moon. A small night garden can travel in a very short letter.",
+        "goal": "Make and send Nightgarden.",
+        "sentCaption": "One cup was enough room for the night."
+      },
+      {
+        "id": "garden-letter-7",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "A way through the arbor",
+        "letter": "The bird brings its key to the fern's open arch. Neither picture quite explains the other. They seem pleased to meet.",
+        "goal": "Make and send Wayfinder and Moonlit Arbor.",
+        "sentCaption": "A key visited a garden with no door."
+      },
+      {
+        "id": "garden-letter-8",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "Two openings, one address",
+        "letter": "The wing leaves a gap. The fern makes an arch. Send the two openings together and let the paper between them be a path.",
+        "goal": "Make and send Aviary Gate and Moonlit Arbor.",
+        "sentCaption": "The space between two pictures became a path."
+      },
+      {
+        "id": "garden-letter-9",
+        "chapterId": "garden-correspondence",
+        "requirements": [
+          {
+            "pieceId": "b5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "A garden, by air",
+        "letter": "The feathers have become a field. A small leaf has found the key. Let the whole unlikely garden travel by air.",
+        "goal": "Make and send Wandering Aviary.",
+        "sentCaption": "A garden folded itself into a wing."
+      },
+      {
+        "id": "moon-letter-1",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "The key writes back",
+        "letter": "Here is the key again, carrying a frond this time. Send it beside the river-winged bird, as if they have something to tell each other.",
+        "goal": "Make and send Frond Key and Riverwing.",
+        "sentCaption": "The key returned with a leaf."
+      },
+      {
+        "id": "moon-letter-2",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A crossing after dark",
+        "letter": "The key lifts a bridge toward the night garden. OVER is written on it. What is on the other side can wait.",
+        "goal": "Make and send Drawbridge Key and Nightgarden.",
+        "sentCaption": "A bridge crossed the edge of a cup."
+      },
+      {
+        "id": "moon-letter-3",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "m2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A crescent, by bird",
+        "letter": "The moon needed a lift. The bird offered its back. This seems as good a postal arrangement as any.",
+        "goal": "Make and send Crescent Courier.",
+        "sentCaption": "The bird agreed to carry the moon."
+      },
+      {
+        "id": "moon-letter-4",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Up, by another route",
+        "letter": "The key has become a staircase. Its little UP scrap points the other way. Send the question along with the steps.",
+        "goal": "Make and send Stairway Key.",
+        "sentCaption": "The staircase kept the question open."
+      },
+      {
+        "id": "moon-letter-5",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A bridge meets a boat",
+        "letter": "The moon has folded itself into a skiff. The key offers a bridge. Two ways across, with no agreement about the water.",
+        "goal": "Make and send Lunar Skiff and Drawbridge Key.",
+        "sentCaption": "The same crossing, answered twice."
+      },
+      {
+        "id": "moon-letter-6",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "m4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "A place to come down",
+        "letter": "The balloon says DOWN; the garden leaves a space beneath its moon. Send them together. Perhaps one has found a place in the other.",
+        "goal": "Make and send Crescent Balloon and Moonlit Arbor.",
+        "sentCaption": "The sky found a gap in the garden."
+      },
+      {
+        "id": "moon-letter-7",
+        "chapterId": "moonlit-correspondence",
+        "requirements": [
+          {
+            "pieceId": "k5",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m4",
+            "quantity": 1
+          }
+        ],
+        "xp": 200,
+        "coins": 85,
+        "title": "Here, with room for elsewhere",
+        "letter": "The key has made a route from HERE to ELSE. The balloon has brought its own direction. Leave room in the envelope for both.",
+        "goal": "Make and send Elsewhere Key and Crescent Balloon.",
+        "sentCaption": "Here and elsewhere fitted in one envelope."
+      },
+      {
+        "id": "riverside-letter-1",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "r2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "The higher low point",
+        "letter": "The river has folded a hill into the map. LOW sits at the higher summit. Let the small disagreement travel.",
+        "goal": "Make and send River Ridge.",
+        "sentCaption": "The map sent a hill and kept its question."
+      },
+      {
+        "id": "riverside-letter-2",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "r3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A crossing with a passenger",
+        "letter": "The map leaves a gap where the river crosses. The moon has brought its skiff. Send two answers to the same water.",
+        "goal": "Make and send River Crossing and Lunar Skiff.",
+        "sentCaption": "A gap in the map met a boat from the sky."
+      },
+      {
+        "id": "riverside-letter-3",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A small sip by air",
+        "letter": "The cup lets one ribbon rise. The bird carries one strip of river. Both have found a small way out.",
+        "goal": "Make and send Ribbon Sip and Riverwing.",
+        "sentCaption": "A sip and a river travelled lightly."
+      },
+      {
+        "id": "riverside-letter-4",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "r4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "t3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "Still water, quiet steam",
+        "letter": "The river says STILL while falling down the paper. The divided cup says HUSH. Send the two conversations together.",
+        "goal": "Make and send River Cascade and Tea Chorus.",
+        "sentCaption": "The water moved. The steam kept its own counsel."
+      },
+      {
+        "id": "riverside-letter-5",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "The cup visits its garden",
+        "letter": "The cup has split into two voices. The old garden remembers its handle. Let the familiar shape arrive by another route.",
+        "goal": "Make and send Tea Chorus and Moonlit Arbor.",
+        "sentCaption": "The cup found its handle in an older letter."
+      },
+      {
+        "id": "riverside-letter-6",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "Two ways to fold a river",
+        "letter": "One picture opens upward. The other steps down. Send the fan of steam beside the river, with room between their directions.",
+        "goal": "Make and send Pleated Steam and River Cascade.",
+        "sentCaption": "The folds disagreed about which way was up."
+      },
+      {
+        "id": "riverside-letter-7",
+        "chapterId": "riverside-correspondence",
+        "requiresMilestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "r5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "Inland, with a way out",
+        "letter": "The map has gathered three small towers. INLAND and OUT share the river. There is room for both addresses on this picture.",
+        "goal": "Make and send River Citadel.",
+        "sentCaption": "The river reached a place with more than one address."
+      },
+      {
+        "id": "lantern-letter-1",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "l2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A fold answers a fold",
+        "letter": "The lantern has opened like a small accordion. The map has kept its two peaks. Send one fold to visit another.",
+        "goal": "Make and send Folded Glow and River Ridge.",
+        "sentCaption": "Two folded papers found different ways to stand."
+      },
+      {
+        "id": "lantern-letter-2",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "l3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A visitor at the window",
+        "letter": "The roof has slipped sideways. INSIDE sits outside. The bird arrives carrying its crescent, without asking which side is home.",
+        "goal": "Make and send Lantern House and Crescent Courier.",
+        "sentCaption": "A moon-bearing bird found a window."
+      },
+      {
+        "id": "lantern-letter-3",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "l3",
+            "quantity": 2
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Two houses, one envelope",
+        "letter": "Keep the two houses side by side for this letter. Their roofs need not become a tower to have something to say.",
+        "goal": "Make and send 2 copies of Lantern House.",
+        "sentCaption": "Two houses travelled without becoming one."
+      },
+      {
+        "id": "lantern-letter-4",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "l4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A tower with a loose end",
+        "letter": "The windows have become a tower. The ribbon loops back toward its spool. ABOVE and AGAIN can share the same envelope.",
+        "goal": "Make and send Lantern Tower and Ribbon Spool.",
+        "sentCaption": "One shape rose; the other came round again."
+      },
+      {
+        "id": "lantern-letter-5",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "t2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "k2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A short note through the door",
+        "letter": "A sip of steam and a leafy key make a small reply. The larger pictures can stay on the table a little longer.",
+        "goal": "Make and send Ribbon Sip and Frond Key.",
+        "sentCaption": "The cup and the key made a brief visit."
+      },
+      {
+        "id": "lantern-letter-6",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "s3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "l2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Three loops and a fold",
+        "letter": "The ribbon has opened into three loops. The lantern spreads its paper windows. Send these two ways of opening together.",
+        "goal": "Make and send Ribbon Bloom and Folded Glow.",
+        "sentCaption": "A loop became a bloom beside a fold."
+      },
+      {
+        "id": "lantern-letter-7",
+        "chapterId": "lantern-correspondence",
+        "requiresMilestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "l4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "A window beside a weave",
+        "letter": "The tower has windows. The loom has crossings. Let the light and the ribbon take turns filling the spaces between them.",
+        "goal": "Make and send Lantern Tower and Ribbon Loom.",
+        "sentCaption": "The window and the weave left room for the paper."
+      },
+      {
+        "id": "wrong-address-letter-1",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "wr2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A route in the feathers",
+        "letter": "The new wing has turned its feather lines into roads. The old river map has supplied two peaks. Put them together; an address might be a place between pictures.",
+        "goal": "Make and send River Wing and River Ridge.",
+        "sentCaption": "The river recognized a road in the wing."
+      },
+      {
+        "id": "wrong-address-letter-2",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "wr3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A window receives a flower",
+        "letter": "The bird is looking through its address window. Send the ribbon bloom to that little opening. A flower can be a perfectly good way of saying where you are.",
+        "goal": "Make and send Address Window and Ribbon Bloom.",
+        "sentCaption": "A ribbon flower reached the window."
+      },
+      {
+        "id": "wrong-address-letter-3",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "wa2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "t3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Tea along the route",
+        "letter": "The shoe has a route between heel and toe. The cups are sending steam in opposite directions. They can disagree about the journey and still share an envelope.",
+        "goal": "Make and send Route and Tea Chorus.",
+        "sentCaption": "The route travelled in good company."
+      },
+      {
+        "id": "wrong-address-letter-4",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "wr4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Between here and there",
+        "letter": "Two map-wings stand apart, with a red line between them. The shoe brings a whole walking route. Which sort of distance fits on this piece of paper?",
+        "goal": "Make and send Here and There and Route.",
+        "sentCaption": "The wings and the sole compared routes."
+      },
+      {
+        "id": "wrong-address-letter-5",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "wr3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa4",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "A small place to stay",
+        "letter": "The long shoe-strip has met an upright little doorway. The bird is still at its window. Send these two addresses together, with the space between them left open.",
+        "goal": "Make and send Address Window and Stay.",
+        "sentCaption": "A doorway answered a window."
+      },
+      {
+        "id": "wrong-address-letter-6",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "wa3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "l3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Go, with a roof",
+        "letter": "GO sits beneath an arch of shoe fragments. The lantern house offers a large roof and a window. They make a fine travelling address, even if the roof stays behind.",
+        "goal": "Make and send Go and Lantern House.",
+        "sentCaption": "The shoe found a roof to write to."
+      },
+      {
+        "id": "wrong-address-letter-7",
+        "chapterId": "wrong-address",
+        "requiresMilestones": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "wr5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "The shape of arrival",
+        "letter": "The bird has reached a window shaped like a bird. The route between them is all angles. Send this arrival whenever it is ready; other addresses can still have their turn.",
+        "goal": "Make and send Arrival.",
+        "sentCaption": "A bird-shaped space received the bird."
+      },
+      {
+        "id": "quiet-company-letter-1",
+        "chapterId": "quiet-company",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "ec2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A chair with a view",
+        "letter": "The chair back has spread into three little windows. Send the view when you like. There will be time to decide who sits beside it.",
+        "goal": "Make and send Window.",
+        "sentCaption": "Three openings made a quiet beginning."
+      },
+      {
+        "id": "quiet-company-letter-2",
+        "chapterId": "quiet-company",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "ec3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "The fern takes a seat",
+        "letter": "SIT is printed under the chair’s open seat. The fern has brought its own cup. Leave the two pictures together, as if a visit could be that simple.",
+        "goal": "Make and send Invitation and Fern Cup.",
+        "sentCaption": "The fern arrived with its cup."
+      },
+      {
+        "id": "quiet-company-letter-3",
+        "chapterId": "quiet-company",
+        "requiresMilestones": [
+          "quiet-company-letter-1",
+          "quiet-company-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ce2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "t4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A handle full of steam",
+        "letter": "The new cup has given most of its room to the handle. The old cup has made a fan of steam. One has an opening; the other has something light to put beside it.",
+        "goal": "Make and send Full and Pleated Steam.",
+        "sentCaption": "The steam found room beside the handle."
+      },
+      {
+        "id": "quiet-company-letter-4",
+        "chapterId": "quiet-company",
+        "requiresMilestones": [
+          "quiet-company-letter-1",
+          "quiet-company-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ec3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ce3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "No need to fill it",
+        "letter": "The chair leaves its seat open. The two cup fragments meet at a narrow red waist. Send the empty places together, without finding anything to fill them.",
+        "goal": "Make and send Invitation and Empty.",
+        "sentCaption": "The empty places kept one another company."
+      },
+      {
+        "id": "quiet-company-letter-5",
+        "chapterId": "quiet-company",
+        "requiresMilestones": [
+          "quiet-company-letter-1",
+          "quiet-company-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ce4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ec2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "An answer with windows",
+        "letter": "The cup’s answer has a round gap in its middle. The chair replies with three windows. This conversation seems to need very little ink.",
+        "goal": "Make and send Answer and Window.",
+        "sentCaption": "The round answer met the open view."
+      },
+      {
+        "id": "quiet-company-letter-6",
+        "chapterId": "quiet-company",
+        "requiresMilestones": [
+          "quiet-company-letter-1",
+          "quiet-company-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ec4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "Flowers while we wait",
+        "letter": "The chair fragments face each other across a red strip. Bring the ribbon bloom from the studio. Waiting is part of this picture, never a task for you.",
+        "goal": "Make and send Wait and Ribbon Bloom.",
+        "sentCaption": "A ribbon bloom sat beside the gap."
+      },
+      {
+        "id": "namesakes-letter-1",
+        "chapterId": "namesakes",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "pp2",
+            "quantity": 2
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A pair of pairs",
+        "letter": "PAIR sits at the hinge of each picture. This letter needs two separate Pair Hinges. Keep them side by side for the envelope instead of merging them into Seed Leaf.",
+        "goal": "Make and send 2 separate Pair Hinge pieces.",
+        "sentCaption": "Two Pair Hinges travelled as a pair."
+      },
+      {
+        "id": "namesakes-letter-2",
+        "chapterId": "namesakes",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "pp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ce2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A seed and a handle",
+        "letter": "The pear has become a frame around its seed. The cup has made its handle much larger. Send these two ways of keeping a small thing in sight.",
+        "goal": "Make and send Seed Leaf and Full.",
+        "sentCaption": "The seed and the cup each kept their opening."
+      },
+      {
+        "id": "namesakes-letter-3",
+        "chapterId": "namesakes",
+        "requiresMilestones": [
+          "namesakes-letter-1",
+          "namesakes-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ss2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A tide for the skiff",
+        "letter": "The fish has a blue wave between head and tail. The moon’s little skiff has a sail. Put their waters in the same envelope and let the paper do the floating.",
+        "goal": "Make and send Tide and Lunar Skiff.",
+        "sentCaption": "The skiff met a tide made of fish."
+      },
+      {
+        "id": "namesakes-letter-4",
+        "chapterId": "namesakes",
+        "requiresMilestones": [
+          "namesakes-letter-1",
+          "namesakes-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "pp3",
+            "quantity": 2
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Two seeds, separately",
+        "letter": "Two Seed Leaves belong in this reply. The next picture would be Split, but these two are staying separate for the journey. Count the pictures, even if their names start a game.",
+        "goal": "Make and send 2 separate Seed Leaf pieces.",
+        "sentCaption": "Two seeds kept their own frames."
+      },
+      {
+        "id": "namesakes-letter-5",
+        "chapterId": "namesakes",
+        "requiresMilestones": [
+          "namesakes-letter-1",
+          "namesakes-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "pp4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ss2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A bridge above the tide",
+        "letter": "The pear curve and leaf stand apart on a red bridge. The fish sends a blue wave below its head. These pieces have found a crossing without becoming a map.",
+        "goal": "Make and send Split and Tide.",
+        "sentCaption": "The pear’s bridge met the fish’s tide."
+      },
+      {
+        "id": "namesakes-letter-6",
+        "chapterId": "namesakes",
+        "requiresMilestones": [
+          "namesakes-letter-1",
+          "namesakes-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ss3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "See where to go",
+        "letter": "SEE has an eye above it. GO has an arch above it. Send the two pictures together. The words can offer advice; the exact pieces are all the letter needs.",
+        "goal": "Make and send Lookout and Go.",
+        "sentCaption": "SEE and GO went by the same post."
+      },
+      {
+        "id": "namesakes-letter-7",
+        "chapterId": "namesakes",
+        "requiresMilestones": [
+          "namesakes-letter-1",
+          "namesakes-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ss4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "pp2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Facing a pair",
+        "letter": "The fish head looks across a wide gap toward its tail. The pear halves open from their hinge. Send these two conversations between parts of the same picture.",
+        "goal": "Make and send Facing and Pair Hinge.",
+        "sentCaption": "The fish and pear recognized their other halves."
+      },
+      {
+        "id": "useful-gaps-letter-1",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "cj2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Loops in company",
+        "letter": "The scissors have spread their handles into unequal loops. The ribbon rises in a loop of its own. Send them together; neither needs to hold anything shut.",
+        "goal": "Make and send Loops and Ribbon Spool.",
+        "sentCaption": "Three loops shared a small envelope."
+      },
+      {
+        "id": "useful-gaps-letter-2",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "cj3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A join and a crossing",
+        "letter": "A red bar joins the two scissor strips. The key lifts its shaft into a bridge. Both leave a gap beneath the part that reaches across.",
+        "goal": "Make and send Join and Drawbridge Key.",
+        "sentCaption": "The join and the bridge left their gaps open."
+      },
+      {
+        "id": "useful-gaps-letter-3",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bh2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "One stitch on the route",
+        "letter": "The button’s two halves are held at the left by a red stitch. The shoe has a red route of its own. They can travel together without being sewn to each other.",
+        "goal": "Make and send Clasp and Route.",
+        "sentCaption": "A stitch kept pace with the walking route."
+      },
+      {
+        "id": "useful-gaps-letter-4",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "cj4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "bh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "Over the windows",
+        "letter": "A long scissor blade runs above two handles. The button has opened four windows in a row. Lay their two kinds of line beside each other for this reply.",
+        "goal": "Make and send Overcut and Threadway.",
+        "sentCaption": "The blade and the windows made two lines."
+      },
+      {
+        "id": "useful-gaps-letter-5",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bh3",
+            "quantity": 2
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Eight windows, two pictures",
+        "letter": "This envelope needs two Threadways, each with its own four windows. Keep the two pieces separate. A larger button picture would answer a different letter.",
+        "goal": "Make and send 2 separate Threadway pieces.",
+        "sentCaption": "Two Threadways kept all eight windows."
+      },
+      {
+        "id": "useful-gaps-letter-6",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bh4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "cj2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "An opening and its company",
+        "letter": "The button stitches surround a tilted diamond. The scissor handles have made two rounder openings. Send them together as a small collection of useful spaces.",
+        "goal": "Make and send Open and Loops.",
+        "sentCaption": "A diamond travelled beside two loops."
+      },
+      {
+        "id": "useful-gaps-letter-7",
+        "chapterId": "useful-gaps",
+        "requiresMilestones": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "cj3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "t3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A quiet join",
+        "letter": "The scissors hold their gap with a red bar. The cups have a HUSH scrap between their steam curls. A join can be a quiet thing.",
+        "goal": "Make and send Join and Tea Chorus.",
+        "sentCaption": "The cups kept the join quiet."
+      },
+      {
+        "id": "small-talk-letter-1",
+        "chapterId": "small-talk",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "hs2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "bh2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A wave and a clasp",
+        "letter": "The hand is waving. The button is holding two halves together with one stitch. Send a greeting that can travel without anyone having to let go.",
+        "goal": "Make and send Wave and Clasp.",
+        "sentCaption": "The wave reached the little clasp."
+      },
+      {
+        "id": "small-talk-letter-2",
+        "chapterId": "small-talk",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "hs3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ec3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A greeting with a seat",
+        "letter": "Two thumbs have met between their cuffs. The chair has left a seat open. Send the introduction and the invitation together.",
+        "goal": "Make and send Meet and Invitation.",
+        "sentCaption": "The greeting found a place to sit."
+      },
+      {
+        "id": "small-talk-letter-3",
+        "chapterId": "small-talk",
+        "requiresMilestones": [
+          "small-talk-letter-1",
+          "small-talk-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "fv2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ce2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "An introduction over a cup",
+        "letter": "Two profiles face a slim line of light. The cup has brought its large handle. A little space and something to drink from: that is enough for an introduction.",
+        "goal": "Make and send Introduction and Full.",
+        "sentCaption": "The profiles met beside the cup."
+      },
+      {
+        "id": "small-talk-letter-4",
+        "chapterId": "small-talk",
+        "requiresMilestones": [
+          "small-talk-letter-1",
+          "small-talk-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "hs3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "fv3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Inside the greeting",
+        "letter": "The hands meet at their thumbs. The face opens around an eye-shaped gap. There is someone in this conversation, even where the paper is missing.",
+        "goal": "Make and send Meet and Inside.",
+        "sentCaption": "The open face received the joined hands."
+      },
+      {
+        "id": "small-talk-letter-5",
+        "chapterId": "small-talk",
+        "requiresMilestones": [
+          "small-talk-letter-1",
+          "small-talk-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "fv4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "hs2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "An aside, with a wave",
+        "letter": "The nose and jaw have made an open corner. Add the waving hand, as if one small remark had caught your attention on the way past.",
+        "goal": "Make and send Aside and Wave.",
+        "sentCaption": "The aside caught a wave."
+      },
+      {
+        "id": "small-talk-letter-6",
+        "chapterId": "small-talk",
+        "requiresMilestones": [
+          "small-talk-letter-1",
+          "small-talk-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "hs4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ss3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "A direction worth seeing",
+        "letter": "The pointing finger and palm leave a corner between them. The fish has put SEE under its eye. Perhaps the hand is showing the eye where to look.",
+        "goal": "Make and send Between and Lookout.",
+        "sentCaption": "The hand offered the eye a direction."
+      },
+      {
+        "id": "hello-again-letter-1",
+        "chapterId": "hello-again",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "la2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wr2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "The wing calls back",
+        "letter": "The receiver has stood up on its cord. The map-wing is here again, with roads among its feathers. Let the old route answer this new shape.",
+        "goal": "Make and send Off Hook and River Wing.",
+        "sentCaption": "The wing answered the upright receiver."
+      },
+      {
+        "id": "hello-again-letter-2",
+        "chapterId": "hello-again",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "la3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A crossed connection",
+        "letter": "A black-and-ivory receiver crosses the dial beside a red BUSY scrap. The river drops through a broken crossing. Send their crossed lines together, without asking either to straighten out.",
+        "goal": "Make and send Busy and River Crossing.",
+        "sentCaption": "The dial and the river crossed paths."
+      },
+      {
+        "id": "hello-again-letter-3",
+        "chapterId": "hello-again",
+        "requiresMilestones": [
+          "hello-again-letter-1",
+          "hello-again-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ht2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A hat for GO",
+        "letter": "The bowler tips its crown. The shoe has left GO beneath its arch. One is a greeting; the other may already be on its way.",
+        "goal": "Make and send Tip and Go.",
+        "sentCaption": "The tipped hat caught the passing shoe."
+      },
+      {
+        "id": "hello-again-letter-4",
+        "chapterId": "hello-again",
+        "requiresMilestones": [
+          "hello-again-letter-1",
+          "hello-again-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "la4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ht3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "Listening to a salute",
+        "letter": "The receiver ends face a diamond of air. The hat brim spreads like a broad greeting. The hat has plenty to say without making a sound.",
+        "goal": "Make and send Listening and Salute.",
+        "sentCaption": "The receivers listened to the spread brim."
+      },
+      {
+        "id": "hello-again-letter-5",
+        "chapterId": "hello-again",
+        "requiresMilestones": [
+          "hello-again-letter-1",
+          "hello-again-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ht3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "fv3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A familiar face",
+        "letter": "The greeting made from a hat returns to the open face. Send them together. An introduction can become familiar without needing a longer speech.",
+        "goal": "Make and send Salute and Inside.",
+        "sentCaption": "The hat greeted the face again."
+      },
+      {
+        "id": "hello-again-letter-6",
+        "chapterId": "hello-again",
+        "requiresMilestones": [
+          "hello-again-letter-1",
+          "hello-again-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ht4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "la2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Hello from above",
+        "letter": "The crown strip sits high above its brim. The receiver has stretched upward too. Send these two pictures reaching out of their ordinary shapes.",
+        "goal": "Make and send Overhead and Off Hook.",
+        "sentCaption": "The receiver and crown reached up together."
+      },
+      {
+        "id": "hello-again-letter-7",
+        "chapterId": "hello-again",
+        "requiresMilestones": [
+          "hello-again-letter-1",
+          "hello-again-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "la5",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ht2",
+            "quantity": 1
+          }
+        ],
+        "xp": 150,
+        "coins": 65,
+        "title": "Until another time",
+        "letter": "The telephone cord curls into a question. The hat gives one more small tip. Send them when you are ready; the question belongs to the drawing.",
+        "goal": "Make and send Call Again and Tip.",
+        "sentCaption": "A tipped hat answered the curled question."
+      },
+      {
+        "id": "off-beat-letter-1",
+        "chapterId": "off-beat",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "ft2",
+            "quantity": 1
+          }
+        ],
+        "xp": 10,
+        "coins": 5,
+        "title": "A small part",
+        "letter": "The comb has opened into two banks of teeth. The red hinge keeps them near each other. A short reply is quite enough for this picture.",
+        "goal": "Make and send Part.",
+        "sentCaption": "The teeth left a little part between them."
+      },
+      {
+        "id": "off-beat-letter-2",
+        "chapterId": "off-beat",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "ft3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Three loops, uneven teeth",
+        "letter": "The comb’s teeth take turns down a stepped spine. The ribbon bloom has three broad loops. Put their different rhythms on one sheet.",
+        "goal": "Make and send Rhythm and Ribbon Bloom.",
+        "sentCaption": "The loops and teeth kept different rhythms."
+      },
+      {
+        "id": "off-beat-letter-3",
+        "chapterId": "off-beat",
+        "requiresMilestones": [
+          "off-beat-letter-1",
+          "off-beat-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ct2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "bh2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A tick held by a stitch",
+        "letter": "The watch has become two upright arcs. The button holds its halves with one stitch. Neither picture needs you to count seconds.",
+        "goal": "Make and send Tick and Clasp.",
+        "sentCaption": "A small stitch travelled beside a tick."
+      },
+      {
+        "id": "off-beat-letter-4",
+        "chapterId": "off-beat",
+        "requiresMilestones": [
+          "off-beat-letter-1",
+          "off-beat-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ft4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Room for a pause",
+        "letter": "The comb makes a low arch above its red line. One tooth sits apart. Send the space they leave; you need not wait to make a pause.",
+        "goal": "Make and send Pause.",
+        "sentCaption": "The pause was already in the paper."
+      },
+      {
+        "id": "off-beat-letter-5",
+        "chapterId": "off-beat",
+        "requiresMilestones": [
+          "off-beat-letter-1",
+          "off-beat-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ct3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ft2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Between the parts",
+        "letter": "A minute hand reaches between the watch’s distant halves. The comb leaves a narrower part between its teeth. Send these two measures of empty space.",
+        "goal": "Make and send Interval and Part.",
+        "sentCaption": "The long interval met the narrow part."
+      },
+      {
+        "id": "off-beat-letter-6",
+        "chapterId": "off-beat",
+        "requiresMilestones": [
+          "off-beat-letter-1",
+          "off-beat-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ct4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ht3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "After the greeting",
+        "letter": "The broken watch face steps downward. The hat still holds its greeting wide. Put them together without deciding how much time has passed.",
+        "goal": "Make and send After and Salute.",
+        "sentCaption": "The greeting travelled beside the broken clock."
+      },
+      {
+        "id": "off-beat-letter-7",
+        "chapterId": "off-beat",
+        "requiresMilestones": [
+          "off-beat-letter-1",
+          "off-beat-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ft3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ct3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A rhythm with room",
+        "letter": "The comb’s steps and the watch’s far-apart halves fit in one reply. Some marks gather; others leave room. The rhythm is in how you look at them.",
+        "goal": "Make and send Rhythm and Interval.",
+        "sentCaption": "The teeth and dial left room for each other."
+      },
+      {
+        "id": "return-mail-letter-1",
+        "chapterId": "return-mail",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "rp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "The river returns",
+        "letter": "The envelope has opened into a diamond. The first bird still carries its river under a wing. Send them together; an opening makes a fine return address.",
+        "goal": "Make and send Open Letter and Riverwing.",
+        "sentCaption": "The river-winged bird found an open letter."
+      },
+      {
+        "id": "return-mail-letter-2",
+        "chapterId": "return-mail",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "rp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "la3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Forward, around the dial",
+        "letter": "The folded letter points onward. The telephone dial has finger holes around its ivory center. This reply can have both a direction and a place to turn around.",
+        "goal": "Make and send Forward and Busy.",
+        "sentCaption": "The arrow passed the ring of finger holes."
+      },
+      {
+        "id": "return-mail-letter-3",
+        "chapterId": "return-mail",
+        "requiresMilestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "sh2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ss3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "An ear beside an eye",
+        "letter": "The shell has curled around a listening space. The fish brings its eye above SEE. Send these two small ways of paying attention.",
+        "goal": "Make and send Ear and Lookout.",
+        "sentCaption": "The shell listened beside the fish’s eye."
+      },
+      {
+        "id": "return-mail-letter-4",
+        "chapterId": "return-mail",
+        "requiresMilestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "rp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Sound goes forward",
+        "letter": "The postal folds make a zigzag arrow. The shell halves hold a shallow wave-shaped opening. Send the direction beside the sound it might carry.",
+        "goal": "Make and send Forward and Sound.",
+        "sentCaption": "The shell’s wave went with the folded arrow."
+      },
+      {
+        "id": "return-mail-letter-5",
+        "chapterId": "return-mail",
+        "requiresMilestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "rp4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "t4",
+            "quantity": 1
+          }
+        ],
+        "xp": 120,
+        "coins": 50,
+        "title": "A reply with steam",
+        "letter": "Two letter flaps face a gap between them. The cup returns with its fan of steam. Perhaps the old tea conversation has found another page.",
+        "goal": "Make and send Reply and Pleated Steam.",
+        "sentCaption": "The steam rose beside a paper reply."
+      },
+      {
+        "id": "return-mail-letter-6",
+        "chapterId": "return-mail",
+        "requiresMilestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "sh4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "A whisper for the skiff",
+        "letter": "The shell offers a quiet right-angle corner. The moon brings its small sailboat back. A long journey can receive a very short message.",
+        "goal": "Make and send Whisper and Lunar Skiff.",
+        "sentCaption": "The skiff received the shell’s quiet corner."
+      },
+      {
+        "id": "return-mail-letter-7",
+        "chapterId": "return-mail",
+        "requiresMilestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "rp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "s4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "The loom gets a letter",
+        "letter": "The open envelope and the ribbon loom both leave room inside. Send the two frames together, like a note to the studio where the ribbons began.",
+        "goal": "Make and send Open Letter and Ribbon Loom.",
+        "sentCaption": "An open letter visited the loom."
+      },
+      {
+        "id": "return-mail-letter-8",
+        "chapterId": "return-mail",
+        "requiresMilestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "sh5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "What the shell kept",
+        "letter": "The shell ribs rise into a broad crest, with an open bite beneath the edge. Send the shape it has made from listening. The other replies can still find their own order.",
+        "goal": "Make and send Resonance.",
+        "sentCaption": "The shell sent the space it had kept."
+      },
+      {
+        "id": "fair-weather-letter-1",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "rc2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ht2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A hat beside a folded sky",
+        "letter": "The umbrella has folded around its hooked handle. The bowler gives a small tip. They look ready to pass each other in a very narrow doorway.",
+        "goal": "Make and send Furled and Tip.",
+        "sentCaption": "The folded umbrella passed the tipped hat."
+      },
+      {
+        "id": "fair-weather-letter-2",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "rc3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "rp3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A gust goes forward",
+        "letter": "The umbrella has turned inside out. The letter still points forward through its zigzag folds. Send their two directions without asking the wind to agree.",
+        "goal": "Make and send Gust and Forward.",
+        "sentCaption": "The gust and the letter went onward together."
+      },
+      {
+        "id": "fair-weather-letter-3",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "hp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A crossing for an anchor",
+        "letter": "The tilted anchor has one long fluke. The river map leaves a broken crossing. Put the two beside each other; this anchor can visit the river on paper.",
+        "goal": "Make and send Afloat and River Crossing.",
+        "sentCaption": "The anchor reached the river crossing."
+      },
+      {
+        "id": "fair-weather-letter-4",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "rc5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "A larger piece of weather",
+        "letter": "The umbrella folds rise in three steps, with the broad hook curling below. This is a longer picture to make. It can keep its place while you choose another available letter.",
+        "goal": "Make and send Fair Weather.",
+        "sentCaption": "Three folds carried their own weather."
+      },
+      {
+        "id": "fair-weather-letter-5",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "hp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "rc2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A crescent and a fold",
+        "letter": "Two anchor flukes make a low crescent. The umbrella keeps its canopy folded tight. Send these two compact shapes between the larger weather reports.",
+        "goal": "Make and send Moor and Furled.",
+        "sentCaption": "The flukes and the folded canopy fitted together."
+      },
+      {
+        "id": "fair-weather-letter-6",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "hp4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "Drift with a sound",
+        "letter": "The anchor stock turns a corner above its fluke. The shell holds a wave of empty space. Let the drifting picture have something quiet to travel beside.",
+        "goal": "Make and send Drift and Sound.",
+        "sentCaption": "The drift went beside the shell’s wave."
+      },
+      {
+        "id": "fair-weather-letter-7",
+        "chapterId": "fair-weather",
+        "requiresMilestones": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "rc3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "hp3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Upward, with a mooring",
+        "letter": "The gust lifts the umbrella ribs. The anchor flukes hold their low curve. Send the lifted and the low picture in one envelope.",
+        "goal": "Make and send Gust and Moor.",
+        "sentCaption": "The gust had a low crescent for company."
+      },
+      {
+        "id": "double-meaning-letter-1",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "bb2",
+            "quantity": 2
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Two bees, still separate",
+        "letter": "This letter needs two separate Be Still pictures. Each bee keeps its folded wing. Merging them would make In Between, which belongs to another request.",
+        "goal": "Make and send 2 separate Be Still pieces.",
+        "sentCaption": "Two resting bees shared the envelope."
+      },
+      {
+        "id": "double-meaning-letter-2",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "bb3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Between the leaves and moon",
+        "letter": "The bee’s striped body crosses its uneven wings. The old fern cup holds a moon. Send a garden visit made from these two pictures.",
+        "goal": "Make and send In Between and Nightgarden.",
+        "sentCaption": "The bee visited the little night garden."
+      },
+      {
+        "id": "double-meaning-letter-3",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ds2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ct2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A double and a tick",
+        "letter": "The domino faces meet at a right angle. The watch arcs rise on their stem. Their names sound short; their shapes have room for a conversation.",
+        "goal": "Make and send Double and Tick.",
+        "sentCaption": "The double met the upright tick."
+      },
+      {
+        "id": "double-meaning-letter-4",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bb3",
+            "quantity": 2
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Two ways of being between",
+        "letter": "Keep two In Between pictures separate for this envelope. Their wings can face one another on the table. A single Be Side would be a different reply.",
+        "goal": "Make and send 2 separate In Between pieces.",
+        "sentCaption": "Two striped crossings stayed separate."
+      },
+      {
+        "id": "double-meaning-letter-5",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bb4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ds2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Beside the double",
+        "letter": "The bee steps upward beside its broad wing. The domino turns a low corner. Send the two shapes together and let each keep its own direction.",
+        "goal": "Make and send Be Side and Double.",
+        "sentCaption": "The bee stood beside the domino corner."
+      },
+      {
+        "id": "double-meaning-letter-6",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ds3",
+            "quantity": 2
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Two tumbles",
+        "letter": "Each Tumble has its own diagonal of pips. This letter needs two of them, kept separate. The envelope can hold two falling lines without turning them into a bracket.",
+        "goal": "Make and send 2 separate Tumble pieces.",
+        "sentCaption": "Two lines of pips made the journey."
+      },
+      {
+        "id": "double-meaning-letter-7",
+        "chapterId": "double-meaning",
+        "requiresMilestones": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ds4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "bb2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Pause here, little bee",
+        "letter": "The domino leaves a bracket open at its side. The bee is resting beneath a folded wing. Send a place to pause beside a picture already quite good at it.",
+        "goal": "Make and send Pause Here and Be Still.",
+        "sentCaption": "The bee rested beside the open bracket."
+      },
+      {
+        "id": "fine-print-letter-1",
+        "chapterId": "fine-print",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "ob2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "rp2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A page receives a letter",
+        "letter": "One page stands up from the book. The letter opens its middle. Slip the two pictures into the same envelope, like a note left at a useful page.",
+        "goal": "Make and send Turn and Open Letter.",
+        "sentCaption": "The open letter found the turning page."
+      },
+      {
+        "id": "fine-print-letter-2",
+        "chapterId": "fine-print",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "ob3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "fv3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A face in the folds",
+        "letter": "The book has become a diagonal accordion. The profile leaves an eye-shaped space. Send the reader and the folded pages without filling in the missing face.",
+        "goal": "Make and send Fold and Inside.",
+        "sentCaption": "The folded pages met the open eye."
+      },
+      {
+        "id": "fine-print-letter-3",
+        "chapterId": "fine-print",
+        "requiresMilestones": [
+          "fine-print-letter-1",
+          "fine-print-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "sm2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "l3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A little fan at the window",
+        "letter": "Three printed matches spread from their cover. The lantern house brings its familiar window. These paper shapes can share their small light.",
+        "goal": "Make and send Fan and Lantern House.",
+        "sentCaption": "The matchbook fan visited the lantern window."
+      },
+      {
+        "id": "fine-print-letter-4",
+        "chapterId": "fine-print",
+        "requiresMilestones": [
+          "fine-print-letter-1",
+          "fine-print-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ob3",
+            "quantity": 2
+          },
+          {
+            "pieceId": "sm2",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Two folds, one small fan",
+        "letter": "Keep two folded books separate for this envelope. The matchbook spreads its three printed matches beside them. Send both Folds and the little Fan, with every page still its own.",
+        "goal": "Make and send 2 separate Fold pieces and Fan.",
+        "sentCaption": "Two folded books shared an envelope with the little fan."
+      },
+      {
+        "id": "fine-print-letter-5",
+        "chapterId": "fine-print",
+        "requiresMilestones": [
+          "fine-print-letter-1",
+          "fine-print-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "ob4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ce2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A passage beside the handle",
+        "letter": "The book’s pages fan away from their binding. The cup gives most of its room to a tall handle. Send the sweep of pages beside that generous opening.",
+        "goal": "Make and send Passage and Full.",
+        "sentCaption": "The fanned pages found room beside the handle."
+      },
+      {
+        "id": "fine-print-letter-6",
+        "chapterId": "fine-print",
+        "requiresMilestones": [
+          "fine-print-letter-1",
+          "fine-print-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "sm4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ob2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "After the small light",
+        "letter": "The matchbook keeps its spent match. The book has another page ready to turn. Send them together; there is still one more chapter to read.",
+        "goal": "Make and send Spent and Turn.",
+        "sentCaption": "The spent match rested beside the turning page."
+      },
+      {
+        "id": "sound-advice-letter-1",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ft2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A bell opens the exchange",
+        "letter": "The bell tips its mouth sideways. The comb has left a part between its teeth. Send a small opening to this last conversation.",
+        "goal": "Make and send Tilt and Part.",
+        "sentCaption": "The tilted bell met the parted comb."
+      },
+      {
+        "id": "sound-advice-letter-2",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "bt3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "la3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A peal for the telephone",
+        "letter": "Two bell halves spread around their handle. The telephone carries its red BUSY scrap. Send the two ways of calling, with no need for either to ring.",
+        "goal": "Make and send Peal and Busy.",
+        "sentCaption": "The bell and the telephone called on paper."
+      },
+      {
+        "id": "sound-advice-letter-3",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ob3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "Paper for the folds",
+        "letter": "A tall sheet rises from the typewriter. The book returns as its folded accordion. They have enough paper between them for a generous reply.",
+        "goal": "Make and send Paper and Fold.",
+        "sentCaption": "The fresh sheet met the folded pages."
+      },
+      {
+        "id": "sound-advice-letter-4",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bt4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Tell it on paper",
+        "letter": "The bell lip has become a low bowl. The typewriter holds up its sheet. Put the telling picture beside somewhere for the words to go.",
+        "goal": "Make and send Tell and Paper.",
+        "sentCaption": "The bell’s bowl received a sheet of paper."
+      },
+      {
+        "id": "sound-advice-letter-5",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Return to the sound",
+        "letter": "The typewriter carriage reaches across its keys. The shell sends its shallow wave again. A return can bring an old sound into a new line.",
+        "goal": "Make and send Return and Sound.",
+        "sentCaption": "The carriage returned beside the shell’s wave."
+      },
+      {
+        "id": "sound-advice-letter-6",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sm4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A small last light",
+        "letter": "The tilted bell visits the matchbook with its spent match. A picture can keep the trace of something without asking you to make it happen again.",
+        "goal": "Make and send Tilt and Spent.",
+        "sentCaption": "The bell kept company with the spent match."
+      },
+      {
+        "id": "sound-advice-letter-7",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A return for the wayfinder",
+        "letter": "The typewriter carriage reaches beyond its keys. The old bird still has its key and its river feather. Send the traveller beside the returning carriage.",
+        "goal": "Make and send Return and Wayfinder.",
+        "sentCaption": "The wayfinder travelled beside the returning carriage."
+      },
+      {
+        "id": "sound-advice-letter-8",
+        "chapterId": "sound-advice",
+        "requiresMilestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2",
+          "sound-advice-letter-3",
+          "sound-advice-letter-4",
+          "sound-advice-letter-5",
+          "sound-advice-letter-6",
+          "sound-advice-letter-7"
+        ],
+        "requirements": [
+          {
+            "pieceId": "tw5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "The last line is written",
+        "letter": "The paper strips gather above the typewriter’s keys. Cynthia, send Written as the last line of the campaign. There is room around it for everything you chose to keep.",
+        "goal": "Make and send Written.",
+        "sentCaption": "The last line is sent. The table is yours."
+      }
+    ],
+    "ordinary": [
+      {
+        "id": "garden-repeat-1",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-2",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-3",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-4",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-5",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-6",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "f4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-7",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "b5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "garden-repeat-8",
+        "title": "Another paper hello",
+        "requirements": [
+          {
+            "pieceId": "f5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "moon-repeat-1",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "k2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "f2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10
+      },
+      {
+        "id": "moon-repeat-2",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "m3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "moon-repeat-3",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "k3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "m2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15
+      },
+      {
+        "id": "moon-repeat-4",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "m4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25
+      },
+      {
+        "id": "moon-repeat-5",
+        "chapterId": "moonlit-correspondence",
+        "title": "Another paper exchange",
+        "requirements": [
+          {
+            "pieceId": "k4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35
+      },
+      {
+        "id": "wrong-address-repeat-1",
+        "chapterId": "wrong-address",
+        "requirements": [
+          {
+            "pieceId": "wr2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "wrong-address-repeat-2",
+        "chapterId": "wrong-address",
+        "requirements": [
+          {
+            "pieceId": "wa3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "wrong-address-repeat-3",
+        "chapterId": "wrong-address",
+        "requirements": [
+          {
+            "pieceId": "wr3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "wa3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "wrong-address-repeat-4",
+        "chapterId": "wrong-address",
+        "requirements": [
+          {
+            "pieceId": "wr4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "wrong-address-repeat-5",
+        "chapterId": "wrong-address",
+        "requirements": [
+          {
+            "pieceId": "wa4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "quiet-company-repeat-1",
+        "chapterId": "quiet-company",
+        "requirements": [
+          {
+            "pieceId": "ec2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ce2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "quiet-company-repeat-2",
+        "chapterId": "quiet-company",
+        "requirements": [
+          {
+            "pieceId": "ce3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "quiet-company-repeat-3",
+        "chapterId": "quiet-company",
+        "requirements": [
+          {
+            "pieceId": "ec3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ce3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "quiet-company-repeat-4",
+        "chapterId": "quiet-company",
+        "requirements": [
+          {
+            "pieceId": "ec4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "quiet-company-repeat-5",
+        "chapterId": "quiet-company",
+        "requirements": [
+          {
+            "pieceId": "ce4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "namesakes-repeat-1",
+        "chapterId": "namesakes",
+        "requirements": [
+          {
+            "pieceId": "pp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ss2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "namesakes-repeat-2",
+        "chapterId": "namesakes",
+        "requirements": [
+          {
+            "pieceId": "ss3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "namesakes-repeat-3",
+        "chapterId": "namesakes",
+        "requirements": [
+          {
+            "pieceId": "pp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ss3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "namesakes-repeat-4",
+        "chapterId": "namesakes",
+        "requirements": [
+          {
+            "pieceId": "pp4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "namesakes-repeat-5",
+        "chapterId": "namesakes",
+        "requirements": [
+          {
+            "pieceId": "ss4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "useful-gaps-repeat-1",
+        "chapterId": "useful-gaps",
+        "requirements": [
+          {
+            "pieceId": "cj2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "bh2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "useful-gaps-repeat-2",
+        "chapterId": "useful-gaps",
+        "requirements": [
+          {
+            "pieceId": "bh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "useful-gaps-repeat-3",
+        "chapterId": "useful-gaps",
+        "requirements": [
+          {
+            "pieceId": "cj3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "bh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "useful-gaps-repeat-4",
+        "chapterId": "useful-gaps",
+        "requirements": [
+          {
+            "pieceId": "cj4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "useful-gaps-repeat-5",
+        "chapterId": "useful-gaps",
+        "requirements": [
+          {
+            "pieceId": "bh4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "small-talk-repeat-1",
+        "chapterId": "small-talk",
+        "requirements": [
+          {
+            "pieceId": "hs2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "fv2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "small-talk-repeat-2",
+        "chapterId": "small-talk",
+        "requirements": [
+          {
+            "pieceId": "fv3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "small-talk-repeat-3",
+        "chapterId": "small-talk",
+        "requirements": [
+          {
+            "pieceId": "hs3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "fv3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "small-talk-repeat-4",
+        "chapterId": "small-talk",
+        "requirements": [
+          {
+            "pieceId": "hs4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "small-talk-repeat-5",
+        "chapterId": "small-talk",
+        "requirements": [
+          {
+            "pieceId": "fv4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "hello-again-repeat-1",
+        "chapterId": "hello-again",
+        "requirements": [
+          {
+            "pieceId": "la2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ht2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "hello-again-repeat-2",
+        "chapterId": "hello-again",
+        "requirements": [
+          {
+            "pieceId": "ht3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "hello-again-repeat-3",
+        "chapterId": "hello-again",
+        "requirements": [
+          {
+            "pieceId": "la3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ht3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "hello-again-repeat-4",
+        "chapterId": "hello-again",
+        "requirements": [
+          {
+            "pieceId": "la4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "hello-again-repeat-5",
+        "chapterId": "hello-again",
+        "requirements": [
+          {
+            "pieceId": "ht4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "off-beat-repeat-1",
+        "chapterId": "off-beat",
+        "requirements": [
+          {
+            "pieceId": "ft2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ct2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "off-beat-repeat-2",
+        "chapterId": "off-beat",
+        "requirements": [
+          {
+            "pieceId": "ct3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "off-beat-repeat-3",
+        "chapterId": "off-beat",
+        "requirements": [
+          {
+            "pieceId": "ft3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ct3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "off-beat-repeat-4",
+        "chapterId": "off-beat",
+        "requirements": [
+          {
+            "pieceId": "ft4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "off-beat-repeat-5",
+        "chapterId": "off-beat",
+        "requirements": [
+          {
+            "pieceId": "ct4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "return-mail-repeat-1",
+        "chapterId": "return-mail",
+        "requirements": [
+          {
+            "pieceId": "rp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sh2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "return-mail-repeat-2",
+        "chapterId": "return-mail",
+        "requirements": [
+          {
+            "pieceId": "sh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "return-mail-repeat-3",
+        "chapterId": "return-mail",
+        "requirements": [
+          {
+            "pieceId": "rp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sh3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "return-mail-repeat-4",
+        "chapterId": "return-mail",
+        "requirements": [
+          {
+            "pieceId": "rp4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "return-mail-repeat-5",
+        "chapterId": "return-mail",
+        "requirements": [
+          {
+            "pieceId": "sh4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fair-weather-repeat-1",
+        "chapterId": "fair-weather",
+        "requirements": [
+          {
+            "pieceId": "rc2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "hp2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fair-weather-repeat-2",
+        "chapterId": "fair-weather",
+        "requirements": [
+          {
+            "pieceId": "hp3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fair-weather-repeat-3",
+        "chapterId": "fair-weather",
+        "requirements": [
+          {
+            "pieceId": "rc3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "hp3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fair-weather-repeat-4",
+        "chapterId": "fair-weather",
+        "requirements": [
+          {
+            "pieceId": "rc4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fair-weather-repeat-5",
+        "chapterId": "fair-weather",
+        "requirements": [
+          {
+            "pieceId": "hp4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "double-meaning-repeat-1",
+        "chapterId": "double-meaning",
+        "requirements": [
+          {
+            "pieceId": "bb2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ds2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "double-meaning-repeat-2",
+        "chapterId": "double-meaning",
+        "requirements": [
+          {
+            "pieceId": "ds3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "double-meaning-repeat-3",
+        "chapterId": "double-meaning",
+        "requirements": [
+          {
+            "pieceId": "bb3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ds3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "double-meaning-repeat-4",
+        "chapterId": "double-meaning",
+        "requirements": [
+          {
+            "pieceId": "bb4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "double-meaning-repeat-5",
+        "chapterId": "double-meaning",
+        "requirements": [
+          {
+            "pieceId": "ds4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fine-print-repeat-1",
+        "chapterId": "fine-print",
+        "requirements": [
+          {
+            "pieceId": "ob2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sm2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fine-print-repeat-2",
+        "chapterId": "fine-print",
+        "requirements": [
+          {
+            "pieceId": "sm3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fine-print-repeat-3",
+        "chapterId": "fine-print",
+        "requirements": [
+          {
+            "pieceId": "ob3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "sm3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fine-print-repeat-4",
+        "chapterId": "fine-print",
+        "requirements": [
+          {
+            "pieceId": "ob4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "fine-print-repeat-5",
+        "chapterId": "fine-print",
+        "requirements": [
+          {
+            "pieceId": "sm4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "sound-advice-repeat-1",
+        "chapterId": "sound-advice",
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "sound-advice-repeat-2",
+        "chapterId": "sound-advice",
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "sound-advice-repeat-3",
+        "chapterId": "sound-advice",
+        "requirements": [
+          {
+            "pieceId": "bt3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "sound-advice-repeat-4",
+        "chapterId": "sound-advice",
+        "requirements": [
+          {
+            "pieceId": "bt4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      },
+      {
+        "id": "sound-advice-repeat-5",
+        "chapterId": "sound-advice",
+        "requirements": [
+          {
+            "pieceId": "tw4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25,
+        "title": "Another paper exchange"
+      }
+    ],
+    "upgrades": [
+      {
+        "id": "bird-sorter",
+        "familyId": "bird",
+        "name": "Bird sorter I",
+        "level": 2,
+        "price": 50,
+        "description": "Bird draws repeat level 1, level 1, level 2. Six draws make a fresh level 4 instead of eight.",
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "fern-sorter",
+        "familyId": "fern",
+        "name": "Fern sorter I",
+        "level": 2,
+        "price": 50,
+        "description": "Fern draws repeat level 1, level 1, level 2. Six draws make a fresh level 4 instead of eight.",
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "order-desk",
+        "familyId": null,
+        "name": "Order desk",
+        "level": 3,
+        "price": 100,
+        "description": "A third active request gives you one more order to choose from.",
+        "chapterId": "garden-correspondence"
+      },
+      {
+        "id": "key-sorter",
+        "familyId": "key",
+        "chapterId": "moonlit-correspondence",
+        "name": "Key sorter I",
+        "level": 4,
+        "price": 50,
+        "description": "Key draws repeat level 1, level 1, level 2. Keep your Key pieces for longer letters with fewer draws."
+      },
+      {
+        "id": "moon-sorter",
+        "familyId": "moon",
+        "chapterId": "moonlit-correspondence",
+        "name": "Moon sorter I",
+        "level": 5,
+        "price": 50,
+        "description": "Moon draws repeat level 1, level 1, level 2. Choose a second specialty, or keep saving for your order desk."
+      },
+      {
+        "id": "map-sorter",
+        "familyId": "map",
+        "chapterId": "riverside-correspondence",
+        "name": "Map sorter I",
+        "level": 6,
+        "price": 90,
+        "description": "Map draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "teacup-sorter",
+        "familyId": "teacup",
+        "chapterId": "riverside-correspondence",
+        "name": "Teacup sorter I",
+        "level": 7,
+        "price": 90,
+        "description": "Teacup draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "lantern-sorter",
+        "familyId": "lantern",
+        "chapterId": "lantern-correspondence",
+        "name": "Lantern sorter I",
+        "level": 8,
+        "price": 95,
+        "description": "Lantern draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "spool-sorter",
+        "familyId": "spool",
+        "chapterId": "lantern-correspondence",
+        "name": "Spool sorter I",
+        "level": 9,
+        "price": 95,
+        "description": "Spool draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "wing-sorter",
+        "familyId": "wing",
+        "price": 95,
+        "level": 10,
+        "chapterId": "wrong-address",
+        "name": "Wing sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "shoe-sorter",
+        "familyId": "shoe",
+        "price": 65,
+        "level": 11,
+        "chapterId": "wrong-address",
+        "name": "Shoe sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "chair-sorter",
+        "familyId": "chair",
+        "price": 85,
+        "level": 12,
+        "chapterId": "quiet-company",
+        "name": "Chair sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "cup-sorter",
+        "familyId": "cup",
+        "price": 65,
+        "level": 13,
+        "chapterId": "quiet-company",
+        "name": "Cup sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "pear-sorter",
+        "familyId": "pear",
+        "price": 85,
+        "level": 14,
+        "chapterId": "namesakes",
+        "name": "Pear sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "fish-sorter",
+        "familyId": "fish",
+        "price": 65,
+        "level": 15,
+        "chapterId": "namesakes",
+        "name": "Fish sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "scissors-sorter",
+        "familyId": "scissors",
+        "price": 85,
+        "level": 16,
+        "chapterId": "useful-gaps",
+        "name": "Scissors sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "button-sorter",
+        "familyId": "button",
+        "price": 70,
+        "level": 17,
+        "chapterId": "useful-gaps",
+        "name": "Button sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "hand-sorter",
+        "familyId": "hand",
+        "price": 65,
+        "level": 18,
+        "chapterId": "small-talk",
+        "name": "Hand sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "profile-sorter",
+        "familyId": "profile",
+        "price": 60,
+        "level": 19,
+        "chapterId": "small-talk",
+        "name": "Profile sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "telephone-sorter",
+        "familyId": "telephone",
+        "price": 105,
+        "level": 20,
+        "chapterId": "hello-again",
+        "name": "Telephone sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "hat-sorter",
+        "familyId": "hat",
+        "price": 80,
+        "level": 21,
+        "chapterId": "hello-again",
+        "name": "Hat sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "comb-sorter",
+        "familyId": "comb",
+        "price": 70,
+        "level": 22,
+        "chapterId": "off-beat",
+        "name": "Comb sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "watch-sorter",
+        "familyId": "watch",
+        "price": 65,
+        "level": 23,
+        "chapterId": "off-beat",
+        "name": "Watch sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "letter-sorter",
+        "familyId": "letter",
+        "price": 110,
+        "level": 24,
+        "chapterId": "return-mail",
+        "name": "Letter sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "shell-sorter",
+        "familyId": "shell",
+        "price": 100,
+        "level": 25,
+        "chapterId": "return-mail",
+        "name": "Shell sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "umbrella-sorter",
+        "familyId": "umbrella",
+        "price": 105,
+        "level": 26,
+        "chapterId": "fair-weather",
+        "name": "Umbrella sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "anchor-sorter",
+        "familyId": "anchor",
+        "price": 90,
+        "level": 27,
+        "chapterId": "fair-weather",
+        "name": "Anchor sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "bee-sorter",
+        "familyId": "bee",
+        "price": 75,
+        "level": 28,
+        "chapterId": "double-meaning",
+        "name": "Bee sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "domino-sorter",
+        "familyId": "domino",
+        "price": 70,
+        "level": 29,
+        "chapterId": "double-meaning",
+        "name": "Domino sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "book-sorter",
+        "familyId": "book",
+        "price": 75,
+        "level": 30,
+        "chapterId": "fine-print",
+        "name": "Book sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "matchbook-sorter",
+        "familyId": "matchbook",
+        "price": 65,
+        "level": 31,
+        "chapterId": "fine-print",
+        "name": "Matchbook sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "handbell-sorter",
+        "familyId": "handbell",
+        "price": 55,
+        "level": 32,
+        "chapterId": "sound-advice",
+        "name": "Handbell sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      },
+      {
+        "id": "typewriter-sorter",
+        "familyId": "typewriter",
+        "price": 80,
+        "level": 33,
+        "chapterId": "sound-advice",
+        "name": "Typewriter sorter I",
+        "description": "Draws repeat level 1, level 1, level 2. Every third draw makes a larger piece; basic scraps stay free."
+      }
+    ],
+    "familyIds": [
+      "bird",
+      "fern",
+      "key",
+      "moon",
+      "map",
+      "teacup",
+      "lantern",
+      "spool",
+      "wing",
+      "shoe",
+      "chair",
+      "cup",
+      "pear",
+      "fish",
+      "scissors",
+      "button",
+      "hand",
+      "profile",
+      "telephone",
+      "hat",
+      "comb",
+      "watch",
+      "letter",
+      "shell",
+      "umbrella",
+      "anchor",
+      "bee",
+      "domino",
+      "book",
+      "matchbook",
+      "handbell",
+      "typewriter"
+    ],
+    "chapters": [
+      {
+        "id": "garden-correspondence",
+        "number": 1,
+        "title": "Garden Correspondence",
+        "minimumLevel": 4,
+        "levelCap": 4,
+        "storyIds": [
+          "garden-letter-1",
+          "garden-letter-2",
+          "garden-letter-3",
+          "garden-letter-4",
+          "garden-letter-5",
+          "garden-letter-6",
+          "garden-letter-7",
+          "garden-letter-8",
+          "garden-letter-9"
+        ],
+        "entrySources": [
+          "bird",
+          "fern"
+        ],
+        "nextId": "moonlit-correspondence",
+        "nextTitle": "Moonlit Correspondence",
+        "nextPreview": "Keep your board and upgrades. The Key source opens when you enter Moonlit Correspondence; its first two letters open Moon."
+      },
+      {
+        "id": "moonlit-correspondence",
+        "number": 2,
+        "title": "Moonlit Correspondence",
+        "minimumLevel": 6,
+        "levelCap": 6,
+        "storyIds": [
+          "moon-letter-1",
+          "moon-letter-2",
+          "moon-letter-3",
+          "moon-letter-4",
+          "moon-letter-5",
+          "moon-letter-6",
+          "moon-letter-7"
+        ],
+        "entrySources": [
+          "key"
+        ],
+        "nextId": "riverside-correspondence",
+        "nextTitle": "Riverside Reverie",
+        "nextPreview": "The river finds a map; the cup sends steam. Keep your table and open the free Map source. The first two Riverside letters open Teacup."
+      },
+      {
+        "id": "riverside-correspondence",
+        "number": 3,
+        "title": "Riverside Reverie",
+        "catalogEnvelopeId": "riverside-reverie",
+        "entryXP": 1000,
+        "minimumLevel": 8,
+        "levelCap": 8,
+        "storyIds": [
+          "riverside-letter-1",
+          "riverside-letter-2",
+          "riverside-letter-3",
+          "riverside-letter-4",
+          "riverside-letter-5",
+          "riverside-letter-6",
+          "riverside-letter-7"
+        ],
+        "entrySources": [
+          "map"
+        ],
+        "nextId": "lantern-correspondence",
+        "nextTitle": "Lantern Studio",
+        "nextPreview": "A lantern answers the folds in the map. Keep your stock and upgrades; the first two Lantern letters open Spool."
+      },
+      {
+        "id": "lantern-correspondence",
+        "number": 4,
+        "title": "Lantern Studio",
+        "catalogEnvelopeId": "lantern-studio",
+        "entryXP": 1510,
+        "minimumLevel": 10,
+        "levelCap": 10,
+        "storyIds": [
+          "lantern-letter-1",
+          "lantern-letter-2",
+          "lantern-letter-3",
+          "lantern-letter-4",
+          "lantern-letter-5",
+          "lantern-letter-6",
+          "lantern-letter-7"
+        ],
+        "entrySources": [
+          "lantern"
+        ],
+        "nextId": "wrong-address",
+        "nextTitle": "Wrong Address",
+        "nextPreview": "A bird has an address in its feathers. A shoe has a route in its sole. Neither has agreed where the letter should go."
+      },
+      {
+        "id": "wrong-address",
+        "number": 5,
+        "title": "Wrong Address",
+        "catalogEnvelopeId": "batch-wrong-address",
+        "entryXP": 1880,
+        "minimumLevel": 12,
+        "levelCap": 12,
+        "storyIds": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2",
+          "wrong-address-letter-3",
+          "wrong-address-letter-4",
+          "wrong-address-letter-5",
+          "wrong-address-letter-6",
+          "wrong-address-letter-7"
+        ],
+        "entrySources": [
+          "wing"
+        ],
+        "nextId": "quiet-company",
+        "nextTitle": "Quiet Company",
+        "nextPreview": "Pull up a chair. The cup has already made itself comfortable. There is no need to fill every space between them."
+      },
+      {
+        "id": "quiet-company",
+        "number": 6,
+        "title": "Quiet Company",
+        "catalogEnvelopeId": "batch-quiet-company",
+        "entryXP": 2330,
+        "minimumLevel": 14,
+        "levelCap": 14,
+        "storyIds": [
+          "quiet-company-letter-1",
+          "quiet-company-letter-2",
+          "quiet-company-letter-3",
+          "quiet-company-letter-4",
+          "quiet-company-letter-5",
+          "quiet-company-letter-6"
+        ],
+        "entrySources": [
+          "chair"
+        ],
+        "nextId": "namesakes",
+        "nextTitle": "Namesakes",
+        "nextPreview": "A pear has received a note addressed to a pair. A fish is looking into SEE. The pictures can enjoy the mix-up; the packing list stays exact."
+      },
+      {
+        "id": "namesakes",
+        "number": 7,
+        "title": "Namesakes",
+        "catalogEnvelopeId": "batch-namesakes",
+        "entryXP": 2650,
+        "minimumLevel": 16,
+        "levelCap": 16,
+        "storyIds": [
+          "namesakes-letter-1",
+          "namesakes-letter-2",
+          "namesakes-letter-3",
+          "namesakes-letter-4",
+          "namesakes-letter-5",
+          "namesakes-letter-6",
+          "namesakes-letter-7"
+        ],
+        "entrySources": [
+          "pear"
+        ],
+        "nextId": "useful-gaps",
+        "nextTitle": "Useful Gaps",
+        "nextPreview": "The scissors brought an offcut. The button brought four holes. Put the small absences to work, without asking them to become anything else."
+      },
+      {
+        "id": "useful-gaps",
+        "number": 8,
+        "title": "Useful Gaps",
+        "catalogEnvelopeId": "batch-useful-gaps",
+        "entryXP": 2980,
+        "minimumLevel": 18,
+        "levelCap": 18,
+        "storyIds": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2",
+          "useful-gaps-letter-3",
+          "useful-gaps-letter-4",
+          "useful-gaps-letter-5",
+          "useful-gaps-letter-6",
+          "useful-gaps-letter-7"
+        ],
+        "entrySources": [
+          "scissors"
+        ],
+        "nextId": "small-talk",
+        "nextTitle": "Small Talk",
+        "nextPreview": "A pointing hand has met a profile. One has a direction; the other has a nose. A short introduction may be enough."
+      },
+      {
+        "id": "small-talk",
+        "number": 9,
+        "title": "Small Talk",
+        "catalogEnvelopeId": "expansion-small-talk",
+        "entryXP": 3325,
+        "minimumLevel": 20,
+        "levelCap": 20,
+        "storyIds": [
+          "small-talk-letter-1",
+          "small-talk-letter-2",
+          "small-talk-letter-3",
+          "small-talk-letter-4",
+          "small-talk-letter-5",
+          "small-talk-letter-6"
+        ],
+        "entrySources": [
+          "hand"
+        ],
+        "nextId": "hello-again",
+        "nextTitle": "Hello Again",
+        "nextPreview": "The telephone is off its hook. The hat is halfway through a greeting. An old picture would be welcome in this conversation."
+      },
+      {
+        "id": "hello-again",
+        "number": 10,
+        "title": "Hello Again",
+        "catalogEnvelopeId": "expansion-hello-again",
+        "entryXP": 3620,
+        "minimumLevel": 22,
+        "levelCap": 22,
+        "storyIds": [
+          "hello-again-letter-1",
+          "hello-again-letter-2",
+          "hello-again-letter-3",
+          "hello-again-letter-4",
+          "hello-again-letter-5",
+          "hello-again-letter-6",
+          "hello-again-letter-7"
+        ],
+        "entrySources": [
+          "telephone"
+        ],
+        "nextId": "off-beat",
+        "nextTitle": "Off Beat",
+        "nextPreview": "The comb counts its teeth. The watch points between its numbers. You can give either picture the next turn; neither is timing you."
+      },
+      {
+        "id": "off-beat",
+        "number": 11,
+        "title": "Off Beat",
+        "catalogEnvelopeId": "expansion-off-beat",
+        "entryXP": 4080,
+        "minimumLevel": 24,
+        "levelCap": 24,
+        "storyIds": [
+          "off-beat-letter-1",
+          "off-beat-letter-2",
+          "off-beat-letter-3",
+          "off-beat-letter-4",
+          "off-beat-letter-5",
+          "off-beat-letter-6",
+          "off-beat-letter-7"
+        ],
+        "entrySources": [
+          "comb"
+        ],
+        "nextId": "return-mail",
+        "nextTitle": "Return Mail",
+        "nextPreview": "An envelope has come back with its folds rearranged. A shell is listening beside it. There may be room in the reply for something from the first letters."
+      },
+      {
+        "id": "return-mail",
+        "number": 12,
+        "title": "Return Mail",
+        "catalogEnvelopeId": "expansion-return-mail",
+        "entryXP": 4390,
+        "minimumLevel": 26,
+        "levelCap": 26,
+        "storyIds": [
+          "return-mail-letter-1",
+          "return-mail-letter-2",
+          "return-mail-letter-3",
+          "return-mail-letter-4",
+          "return-mail-letter-5",
+          "return-mail-letter-6",
+          "return-mail-letter-7",
+          "return-mail-letter-8"
+        ],
+        "entrySources": [
+          "letter"
+        ],
+        "nextId": "fair-weather",
+        "nextTitle": "Fair Weather",
+        "nextPreview": "An umbrella has turned inside out. An anchor has tilted toward the sky. A small reply can sit beside a longer one while they settle the weather between them."
+      },
+      {
+        "id": "fair-weather",
+        "number": 13,
+        "title": "Fair Weather",
+        "catalogEnvelopeId": "expansion-fair-weather",
+        "entryXP": 4960,
+        "minimumLevel": 28,
+        "levelCap": 28,
+        "storyIds": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2",
+          "fair-weather-letter-3",
+          "fair-weather-letter-4",
+          "fair-weather-letter-5",
+          "fair-weather-letter-6",
+          "fair-weather-letter-7"
+        ],
+        "entrySources": [
+          "umbrella"
+        ],
+        "nextId": "double-meaning",
+        "nextTitle": "Double Meaning",
+        "nextPreview": "A bee has paused beside a double. There are several ways to arrange the next reply, and a pair of pictures need not become a single larger one."
+      },
+      {
+        "id": "double-meaning",
+        "number": 14,
+        "title": "Double Meaning",
+        "catalogEnvelopeId": "expansion-double-meaning",
+        "entryXP": 5375,
+        "minimumLevel": 30,
+        "levelCap": 30,
+        "storyIds": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2",
+          "double-meaning-letter-3",
+          "double-meaning-letter-4",
+          "double-meaning-letter-5",
+          "double-meaning-letter-6",
+          "double-meaning-letter-7"
+        ],
+        "entrySources": [
+          "bee"
+        ],
+        "nextId": "fine-print",
+        "nextTitle": "Fine Print",
+        "nextPreview": "The book opens its pages; the matchbook opens its cover. A few familiar pictures can slip between them, like notes left by an earlier reader."
+      },
+      {
+        "id": "fine-print",
+        "number": 15,
+        "title": "Fine Print",
+        "catalogEnvelopeId": "expansion-fine-print",
+        "entryXP": 5705,
+        "minimumLevel": 32,
+        "levelCap": 32,
+        "storyIds": [
+          "fine-print-letter-1",
+          "fine-print-letter-2",
+          "fine-print-letter-3",
+          "fine-print-letter-4",
+          "fine-print-letter-5",
+          "fine-print-letter-6"
+        ],
+        "entrySources": [
+          "book"
+        ],
+        "nextId": "sound-advice",
+        "nextTitle": "Sound Advice",
+        "nextPreview": "A bell has brought its clapper. A typewriter has brought a fresh sheet. After all these folded replies, there is room for a clear last line."
+      },
+      {
+        "id": "sound-advice",
+        "number": 16,
+        "title": "Sound Advice",
+        "catalogEnvelopeId": "expansion-sound-advice",
+        "entryXP": 6010,
+        "minimumLevel": 34,
+        "levelCap": 34,
+        "storyIds": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2",
+          "sound-advice-letter-3",
+          "sound-advice-letter-4",
+          "sound-advice-letter-5",
+          "sound-advice-letter-6",
+          "sound-advice-letter-7",
+          "sound-advice-letter-8"
+        ],
+        "entrySources": [
+          "handbell"
+        ],
+        "nextId": null,
+        "nextTitle": "Your collection",
+        "nextPreview": "All sixteen chapters are sent. Explore your collection, reread a letter, or return to isolated practice whenever you like."
+      }
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "xp": 0,
+        "targetCeiling": 3,
+        "slots": 1
+      },
+      {
+        "level": 2,
+        "xp": 80,
+        "targetCeiling": 4,
+        "slots": 2
+      },
+      {
+        "level": 3,
+        "xp": 250,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 4,
+        "xp": 500,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 5,
+        "xp": 650,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 6,
+        "xp": 1000,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 7,
+        "xp": 1160,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 8,
+        "xp": 1510,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 9,
+        "xp": 1580,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 10,
+        "xp": 1860,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 11,
+        "xp": 1950,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 12,
+        "xp": 2310,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 13,
+        "xp": 2375,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 14,
+        "xp": 2630,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 15,
+        "xp": 2705,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 16,
+        "xp": 2960,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 17,
+        "xp": 3050,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 18,
+        "xp": 3305,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 19,
+        "xp": 3395,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 20,
+        "xp": 3600,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 21,
+        "xp": 3690,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 22,
+        "xp": 4060,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 23,
+        "xp": 4140,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 24,
+        "xp": 4370,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 25,
+        "xp": 4460,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 26,
+        "xp": 4940,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 27,
+        "xp": 5030,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 28,
+        "xp": 5355,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 29,
+        "xp": 5445,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 30,
+        "xp": 5685,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 31,
+        "xp": 5775,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 32,
+        "xp": 5990,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 33,
+        "xp": 6080,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 34,
+        "xp": 6475,
+        "targetCeiling": 5,
+        "slots": 2
+      }
+    ],
+    "sourceRules": [
+      {
+        "id": "bird",
+        "chapterId": "garden-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "fern",
+        "chapterId": "garden-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "key",
+        "chapterId": "moonlit-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "moon",
+        "chapterId": "moonlit-correspondence",
+        "milestones": [
+          "moon-letter-1",
+          "moon-letter-2"
+        ]
+      },
+      {
+        "id": "map",
+        "chapterId": "riverside-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "teacup",
+        "chapterId": "riverside-correspondence",
+        "milestones": [
+          "riverside-letter-1",
+          "riverside-letter-2"
+        ]
+      },
+      {
+        "id": "lantern",
+        "chapterId": "lantern-correspondence",
+        "milestones": []
+      },
+      {
+        "id": "spool",
+        "chapterId": "lantern-correspondence",
+        "milestones": [
+          "lantern-letter-1",
+          "lantern-letter-2"
+        ]
+      },
+      {
+        "id": "wing",
+        "chapterId": "wrong-address",
+        "milestones": []
+      },
+      {
+        "id": "shoe",
+        "chapterId": "wrong-address",
+        "milestones": [
+          "wrong-address-letter-1",
+          "wrong-address-letter-2"
+        ]
+      },
+      {
+        "id": "chair",
+        "chapterId": "quiet-company",
+        "milestones": []
+      },
+      {
+        "id": "cup",
+        "chapterId": "quiet-company",
+        "milestones": [
+          "quiet-company-letter-1",
+          "quiet-company-letter-2"
+        ]
+      },
+      {
+        "id": "pear",
+        "chapterId": "namesakes",
+        "milestones": []
+      },
+      {
+        "id": "fish",
+        "chapterId": "namesakes",
+        "milestones": [
+          "namesakes-letter-1",
+          "namesakes-letter-2"
+        ]
+      },
+      {
+        "id": "scissors",
+        "chapterId": "useful-gaps",
+        "milestones": []
+      },
+      {
+        "id": "button",
+        "chapterId": "useful-gaps",
+        "milestones": [
+          "useful-gaps-letter-1",
+          "useful-gaps-letter-2"
+        ]
+      },
+      {
+        "id": "hand",
+        "chapterId": "small-talk",
+        "milestones": []
+      },
+      {
+        "id": "profile",
+        "chapterId": "small-talk",
+        "milestones": [
+          "small-talk-letter-1",
+          "small-talk-letter-2"
+        ]
+      },
+      {
+        "id": "telephone",
+        "chapterId": "hello-again",
+        "milestones": []
+      },
+      {
+        "id": "hat",
+        "chapterId": "hello-again",
+        "milestones": [
+          "hello-again-letter-1",
+          "hello-again-letter-2"
+        ]
+      },
+      {
+        "id": "comb",
+        "chapterId": "off-beat",
+        "milestones": []
+      },
+      {
+        "id": "watch",
+        "chapterId": "off-beat",
+        "milestones": [
+          "off-beat-letter-1",
+          "off-beat-letter-2"
+        ]
+      },
+      {
+        "id": "letter",
+        "chapterId": "return-mail",
+        "milestones": []
+      },
+      {
+        "id": "shell",
+        "chapterId": "return-mail",
+        "milestones": [
+          "return-mail-letter-1",
+          "return-mail-letter-2"
+        ]
+      },
+      {
+        "id": "umbrella",
+        "chapterId": "fair-weather",
+        "milestones": []
+      },
+      {
+        "id": "anchor",
+        "chapterId": "fair-weather",
+        "milestones": [
+          "fair-weather-letter-1",
+          "fair-weather-letter-2"
+        ]
+      },
+      {
+        "id": "bee",
+        "chapterId": "double-meaning",
+        "milestones": []
+      },
+      {
+        "id": "domino",
+        "chapterId": "double-meaning",
+        "milestones": [
+          "double-meaning-letter-1",
+          "double-meaning-letter-2"
+        ]
+      },
+      {
+        "id": "book",
+        "chapterId": "fine-print",
+        "milestones": []
+      },
+      {
+        "id": "matchbook",
+        "chapterId": "fine-print",
+        "milestones": [
+          "fine-print-letter-1",
+          "fine-print-letter-2"
+        ]
+      },
+      {
+        "id": "handbell",
+        "chapterId": "sound-advice",
+        "milestones": []
+      },
+      {
+        "id": "typewriter",
+        "chapterId": "sound-advice",
+        "milestones": [
+          "sound-advice-letter-1",
+          "sound-advice-letter-2"
+        ]
+      }
+    ]
+  }
+}

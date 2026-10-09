@@ -1,0 +1,1377 @@
+// Exact reviewed Stage A authored additions. Candidate art acceptance remains separate.
+export default {
+  "levels": [
+    {
+      "level": 35,
+      "xp": 6545,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 36,
+      "xp": 6805,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 37,
+      "xp": 6845,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 38,
+      "xp": 7175,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 39,
+      "xp": 7235,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 40,
+      "xp": 7515,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 41,
+      "xp": 7590,
+      "targetCeiling": 5,
+      "slots": 2
+    },
+    {
+      "level": 42,
+      "xp": 7810,
+      "targetCeiling": 5,
+      "slots": 2
+    }
+  ],
+  "chapters": [
+    {
+      "id": "small-impressions",
+      "number": 17,
+      "title": "Small Impressions",
+      "catalogEnvelopeId": "expansion-small-impressions",
+      "entryXP": 6475,
+      "minimumLevel": 36,
+      "levelCap": 36,
+      "storyIds": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2",
+        "small-impressions-letter-3",
+        "small-impressions-letter-4",
+        "small-impressions-letter-5",
+        "small-impressions-letter-6",
+        "small-impressions-letter-7"
+      ],
+      "entrySources": [
+        "rubber-stamp"
+      ],
+      "nextId": "second-look",
+      "nextTitle": "Second Look",
+      "nextPreview": "The spectacles fold their rims. The camera extends its bellows. This envelope has room for a quick introduction and a longer still life."
+    },
+    {
+      "id": "second-look",
+      "number": 18,
+      "title": "Second Look",
+      "catalogEnvelopeId": "expansion-second-look",
+      "entryXP": 6805,
+      "minimumLevel": 38,
+      "levelCap": 38,
+      "storyIds": [
+        "second-look-letter-1",
+        "second-look-letter-2",
+        "second-look-letter-3",
+        "second-look-letter-4",
+        "second-look-letter-5",
+        "second-look-letter-6"
+      ],
+      "entrySources": [
+        "spectacles"
+      ],
+      "nextId": "loose-ends",
+      "nextTitle": "Loose Ends",
+      "nextPreview": "A pin and a zipper arrive together. Both free sources are open. Keep a pair of small bends, make a larger loop, or finish the other available reply first."
+    },
+    {
+      "id": "loose-ends",
+      "number": 19,
+      "title": "Loose Ends",
+      "catalogEnvelopeId": "expansion-loose-ends",
+      "entryXP": 7175,
+      "minimumLevel": 40,
+      "levelCap": 40,
+      "storyIds": [
+        "loose-ends-letter-1",
+        "loose-ends-letter-2",
+        "loose-ends-letter-3",
+        "loose-ends-letter-4",
+        "loose-ends-letter-5",
+        "loose-ends-letter-6",
+        "loose-ends-letter-7"
+      ],
+      "entrySources": [
+        "safety-pin",
+        "zipper"
+      ],
+      "nextId": "short-measure",
+      "nextTitle": "Short Measure",
+      "nextPreview": "The ruler has only a few broad marks. The thimble is small enough to sit beside them. These last replies leave the measures modest."
+    },
+    {
+      "id": "short-measure",
+      "number": 20,
+      "title": "Short Measure",
+      "catalogEnvelopeId": "expansion-short-measure",
+      "entryXP": 7515,
+      "minimumLevel": 42,
+      "levelCap": 42,
+      "storyIds": [
+        "short-measure-letter-1",
+        "short-measure-letter-2",
+        "short-measure-letter-3",
+        "short-measure-letter-4",
+        "short-measure-letter-5",
+        "short-measure-letter-6"
+      ],
+      "entrySources": [
+        "ruler"
+      ],
+      "nextId": null,
+      "nextTitle": "Your collection",
+      "nextPreview": "These four extra correspondences are complete. Explore your collection or practice a sent letter. Further content is not required to keep this ending."
+    }
+  ],
+  "story": [
+    {
+      "id": "small-impressions-letter-1",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "im2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "rp2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "A mark for an open letter",
+      "letter": "The stamp has turned on its side. The old letter has opened its folds. There is room for a mark along that waiting edge.",
+      "goal": "Make and send Sideways and Open Letter.",
+      "sentCaption": "The sideways stamp reached the open letter."
+    },
+    {
+      "id": "small-impressions-letter-2",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "im3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "tw2",
+          "quantity": 1
+        }
+      ],
+      "xp": 35,
+      "coins": 15,
+      "title": "A little off the line",
+      "letter": "The printing block has slipped into two steps beneath its handle. A fresh sheet rises from the typewriter. Put the offset mark beside the straight paper.",
+      "goal": "Make and send Offset and Paper.",
+      "sentCaption": "The stepped block met the fresh sheet."
+    },
+    {
+      "id": "small-impressions-letter-3",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "pn2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "im2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "An inkling at the margin",
+      "letter": "The pen points sideways too, with a small opening between its tines. Its bent barrel and the turned stamp make a pair of unusual margins.",
+      "goal": "Make and send Inkling and Sideways.",
+      "sentCaption": "The nib and the stamp kept their sideways company."
+    },
+    {
+      "id": "small-impressions-letter-4",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "im3",
+          "quantity": 2
+        }
+      ],
+      "xp": 50,
+      "coins": 20,
+      "title": "Two separate impressions",
+      "letter": "Keep two Offset pictures separate for this reply. Each has its own red join and stepped printing block. One Countermark is a different picture, even though it holds the same amount of paper.",
+      "goal": "Make and send 2 separate Offset pictures.",
+      "sentCaption": "Two Offset pictures travelled as a pair."
+    },
+    {
+      "id": "small-impressions-letter-5",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "im4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "pn2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30,
+      "title": "A mark around a gap",
+      "letter": "The stamp leaves a long open rectangle between its printing strips. Set the split pen nib beside that space. A mark can be interesting for what it leaves untouched.",
+      "goal": "Make and send Countermark and Inkling.",
+      "sentCaption": "The open rectangle received the split nib."
+    },
+    {
+      "id": "small-impressions-letter-6",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "pn3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "tw3",
+          "quantity": 1
+        }
+      ],
+      "xp": 50,
+      "coins": 20,
+      "title": "Under the returning carriage",
+      "letter": "The pen bends into an underline. The typewriter carriage reaches beyond its keys. These two long edges can share a letter without agreeing on where the line should end.",
+      "goal": "Make and send Underline and Return.",
+      "sentCaption": "The underline went beside the returning carriage."
+    },
+    {
+      "id": "small-impressions-letter-7",
+      "chapterId": "small-impressions",
+      "requiresMilestones": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2",
+        "small-impressions-letter-3",
+        "small-impressions-letter-4",
+        "small-impressions-letter-5",
+        "small-impressions-letter-6"
+      ],
+      "requirements": [
+        {
+          "pieceId": "pn4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "im3",
+          "quantity": 1
+        }
+      ],
+      "xp": 85,
+      "coins": 35,
+      "title": "Writing through",
+      "letter": "The pen has opened an oval in its nib. The stamp keeps its small offset step. Let the last reply in this envelope have a space at its center.",
+      "goal": "Make and send Written Through and Offset.",
+      "sentCaption": "The open nib kept a place for the offset mark."
+    },
+    {
+      "id": "second-look-letter-1",
+      "chapterId": "second-look",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "sg2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "pn2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "A sideways introduction",
+      "letter": "The spectacle lenses have folded into a tall pair. The pen is still pointing sideways. Put the two directions together, then make room for a camera.",
+      "goal": "Make and send Side Glance and Inkling.",
+      "sentCaption": "The folded lenses met the sideways nib."
+    },
+    {
+      "id": "second-look-letter-2",
+      "chapterId": "second-look",
+      "requiresMilestones": [
+        "second-look-letter-1"
+      ],
+      "requirements": [
+        {
+          "pieceId": "cm2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "sg2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "A longer view",
+      "letter": "The camera stretches its bellows toward the lens. The spectacles keep their two rings close together. One view reaches out; the other folds in.",
+      "goal": "Make and send Exposure and Side Glance.",
+      "sentCaption": "The long camera stood beside the folded glasses."
+    },
+    {
+      "id": "second-look-letter-3",
+      "chapterId": "second-look",
+      "requiresMilestones": [
+        "second-look-letter-1",
+        "second-look-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "sg3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "cm3",
+          "quantity": 1
+        }
+      ],
+      "xp": 50,
+      "coins": 20,
+      "title": "Two offsets",
+      "letter": "One spectacle rim opens at its edge. The camera has shifted into two stepped blocks. These are two different ways to leave a picture slightly unsettled.",
+      "goal": "Make and send Overlook and Shutter.",
+      "sentCaption": "The open rim and the stepped camera shared a reply."
+    },
+    {
+      "id": "second-look-letter-4",
+      "chapterId": "second-look",
+      "requiresMilestones": [
+        "second-look-letter-1",
+        "second-look-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "sg4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "cm2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30,
+      "title": "Through the lower edge",
+      "letter": "The lenses hang open beneath a broad bar. The camera extends its bellows along the table. Keep the lifted line and the long line together.",
+      "goal": "Make and send Through and Exposure.",
+      "sentCaption": "The hanging rims received the extended camera."
+    },
+    {
+      "id": "second-look-letter-5",
+      "chapterId": "second-look",
+      "requiresMilestones": [
+        "second-look-letter-1",
+        "second-look-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "cm4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "sg2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30,
+      "title": "A window in the camera",
+      "letter": "The camera frame has opened a square window beside its round lens. The folded spectacles bring another pair of openings. Leave the spaces clear.",
+      "goal": "Make and send Viewfinder and Side Glance.",
+      "sentCaption": "The camera window kept company with the folded lenses."
+    },
+    {
+      "id": "second-look-letter-6",
+      "chapterId": "second-look",
+      "requiresMilestones": [
+        "second-look-letter-1",
+        "second-look-letter-2",
+        "second-look-letter-3",
+        "second-look-letter-4",
+        "second-look-letter-5"
+      ],
+      "requirements": [
+        {
+          "pieceId": "cm5",
+          "quantity": 1
+        }
+      ],
+      "xp": 140,
+      "coins": 60,
+      "title": "A still life to keep",
+      "letter": "The camera panels spread across one another, with the round lens resting at the left. Nothing needs to move for this last picture. Send Still Life when it is ready.",
+      "goal": "Make and send Still Life.",
+      "sentCaption": "The camera settled into its still life."
+    },
+    {
+      "id": "loose-ends-letter-1",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "sp2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "bh2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "An open pin and a clasp",
+      "letter": "The pin has opened into a wide V. The old button still holds its two halves with a stitch. They can travel together without either having to close.",
+      "goal": "Make and send Unfasten and Clasp.",
+      "sentCaption": "The open pin visited the button clasp."
+    },
+    {
+      "id": "loose-ends-letter-2",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "zp2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "sp2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "Room between the teeth",
+      "letter": "The zipper tapes part into a Y, with their large teeth facing inward. Add the open pin. Both pictures have left plenty of room for the reply.",
+      "goal": "Make and send Parted and Unfasten.",
+      "sentCaption": "The parted zipper received the open pin."
+    },
+    {
+      "id": "loose-ends-letter-3",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [
+        "loose-ends-letter-1",
+        "loose-ends-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "sp3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "zp2",
+          "quantity": 1
+        }
+      ],
+      "xp": 35,
+      "coins": 15,
+      "title": "A crooked approach",
+      "letter": "The pin takes an S-shaped turn between its coil and clasp. The zipper offers two straight sides. Put the crooked route beside the parted one.",
+      "goal": "Make and send Crooked Point and Parted.",
+      "sentCaption": "The crooked pin reached the parted zipper."
+    },
+    {
+      "id": "loose-ends-letter-4",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [
+        "loose-ends-letter-1",
+        "loose-ends-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "sp2",
+          "quantity": 2
+        },
+        {
+          "pieceId": "zp3",
+          "quantity": 1
+        }
+      ],
+      "xp": 45,
+      "coins": 20,
+      "title": "Two open pins and a zigzag",
+      "letter": "Keep two Unfasten pictures for the two sides of this reply, with one Zigzag between them. The zipper picture may also fit another available letter. Choose where you want that bend to go first.",
+      "goal": "Make and send 2 separate Unfasten pictures and Zigzag.",
+      "sentCaption": "Two open pins travelled with one zipper bend."
+    },
+    {
+      "id": "loose-ends-letter-5",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [
+        "loose-ends-letter-1",
+        "loose-ends-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "zp3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "cj3",
+          "quantity": 1
+        }
+      ],
+      "xp": 50,
+      "coins": 20,
+      "title": "Join at the bend",
+      "letter": "The zipper changes direction at a green paper joint. The old scissors have made Join from their printed loops. Let the two joins answer each other.",
+      "goal": "Make and send Zigzag and Join.",
+      "sentCaption": "The zipper joint met the scissors join."
+    },
+    {
+      "id": "loose-ends-letter-6",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [
+        "loose-ends-letter-1",
+        "loose-ends-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "sp4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "zp3",
+          "quantity": 1
+        }
+      ],
+      "xp": 85,
+      "coins": 35,
+      "title": "A loop takes the long way",
+      "letter": "The pin has drawn its coil into a large open circle. The zipper keeps its stepped bend. You can finish this loop before the two open pins, or leave it for later.",
+      "goal": "Make and send Loopback and Zigzag.",
+      "sentCaption": "The large coil travelled beside the zipper bend."
+    },
+    {
+      "id": "loose-ends-letter-7",
+      "chapterId": "loose-ends",
+      "requiresMilestones": [
+        "loose-ends-letter-1",
+        "loose-ends-letter-2",
+        "loose-ends-letter-3",
+        "loose-ends-letter-4",
+        "loose-ends-letter-5",
+        "loose-ends-letter-6"
+      ],
+      "requirements": [
+        {
+          "pieceId": "zp4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "bh3",
+          "quantity": 1
+        }
+      ],
+      "xp": 85,
+      "coins": 35,
+      "title": "Held by a thread",
+      "letter": "The zipper tapes cross at their green join. Threadway returns with its button holes and connecting thread. These small fastenings are enough to close this envelope.",
+      "goal": "Make and send Interleave and Threadway.",
+      "sentCaption": "The crossed tapes met the threaded button."
+    },
+    {
+      "id": "short-measure-letter-1",
+      "chapterId": "short-measure",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "ru2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "ob2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "A short rule for a page",
+      "letter": "Two ruler strips stand around a tall gap. The book is turning its pages. Leave a little space between the marks and the page edge.",
+      "goal": "Make and send Short Rule and Turn.",
+      "sentCaption": "The short rule found a place beside the turning book."
+    },
+    {
+      "id": "short-measure-letter-2",
+      "chapterId": "short-measure",
+      "requiresMilestones": [],
+      "requirements": [
+        {
+          "pieceId": "ru3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "sp2",
+          "quantity": 1
+        }
+      ],
+      "xp": 35,
+      "coins": 15,
+      "title": "An angle left open",
+      "letter": "The ruler has made a right angle. The pin still opens wider than its clasp. Neither picture needs to make a closed frame.",
+      "goal": "Make and send Right Angle and Unfasten.",
+      "sentCaption": "The right angle received the open pin."
+    },
+    {
+      "id": "short-measure-letter-3",
+      "chapterId": "short-measure",
+      "requiresMilestones": [
+        "short-measure-letter-1",
+        "short-measure-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "th2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "ru2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10,
+      "title": "A small measure",
+      "letter": "The thimble has settled into two low dotted panels. The ruler keeps its narrow upright gap. A short reply will do for these ordinary pieces.",
+      "goal": "Make and send Tilted and Short Rule.",
+      "sentCaption": "The low thimble sat beside the short rule."
+    },
+    {
+      "id": "short-measure-letter-4",
+      "chapterId": "short-measure",
+      "requiresMilestones": [
+        "short-measure-letter-1",
+        "short-measure-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "ru3",
+          "quantity": 2
+        }
+      ],
+      "xp": 50,
+      "coins": 20,
+      "title": "Two corners",
+      "letter": "Keep two Right Angle pictures separate. One Out of Line picture would use the same paper, but this request has a place for two corners.",
+      "goal": "Make and send 2 separate Right Angle pictures.",
+      "sentCaption": "Two right angles kept their own corners."
+    },
+    {
+      "id": "short-measure-letter-5",
+      "chapterId": "short-measure",
+      "requiresMilestones": [
+        "short-measure-letter-1",
+        "short-measure-letter-2"
+      ],
+      "requirements": [
+        {
+          "pieceId": "th3",
+          "quantity": 1
+        },
+        {
+          "pieceId": "ru4",
+          "quantity": 1
+        }
+      ],
+      "xp": 85,
+      "coins": 35,
+      "title": "Outside the line",
+      "letter": "The ruler strips almost make a triangle, leaving a break near the top. The thimble joins a tall dotted wall to an open oval. Their openings do not have to match.",
+      "goal": "Make and send Measure and Out of Line.",
+      "sentCaption": "The broken triangle met the open thimble rim."
+    },
+    {
+      "id": "short-measure-letter-6",
+      "chapterId": "short-measure",
+      "requiresMilestones": [
+        "short-measure-letter-1",
+        "short-measure-letter-2",
+        "short-measure-letter-3",
+        "short-measure-letter-4",
+        "short-measure-letter-5"
+      ],
+      "requirements": [
+        {
+          "pieceId": "th4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "ru3",
+          "quantity": 1
+        }
+      ],
+      "xp": 85,
+      "coins": 35,
+      "title": "Enough room for a small reply",
+      "letter": "The thimble leaves a broad opening above its rim. Put the ruler corner beside it. There is enough room here to close these four envelopes and keep the table for whatever comes next.",
+      "goal": "Make and send Open Top and Right Angle.",
+      "sentCaption": "The open thimble and the ruler corner finished the four envelopes."
+    }
+  ],
+  "sourceRules": [
+    {
+      "id": "rubber-stamp",
+      "chapterId": "small-impressions",
+      "milestones": []
+    },
+    {
+      "id": "fountain-pen",
+      "chapterId": "small-impressions",
+      "milestones": [
+        "small-impressions-letter-1",
+        "small-impressions-letter-2"
+      ]
+    },
+    {
+      "id": "spectacles",
+      "chapterId": "second-look",
+      "milestones": []
+    },
+    {
+      "id": "camera",
+      "chapterId": "second-look",
+      "milestones": [
+        "second-look-letter-1"
+      ]
+    },
+    {
+      "id": "safety-pin",
+      "chapterId": "loose-ends",
+      "milestones": []
+    },
+    {
+      "id": "zipper",
+      "chapterId": "loose-ends",
+      "milestones": []
+    },
+    {
+      "id": "ruler",
+      "chapterId": "short-measure",
+      "milestones": []
+    },
+    {
+      "id": "thimble",
+      "chapterId": "short-measure",
+      "milestones": [
+        "short-measure-letter-1",
+        "short-measure-letter-2"
+      ]
+    }
+  ],
+  "upgrades": [
+    {
+      "id": "rubber-stamp-sorter",
+      "familyId": "rubber-stamp",
+      "chapterId": "small-impressions",
+      "name": "Stamp sorter I",
+      "level": 34,
+      "price": 85,
+      "description": "Stamp draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "fountain-pen-sorter",
+      "familyId": "fountain-pen",
+      "chapterId": "small-impressions",
+      "name": "Pen sorter I",
+      "level": 35,
+      "price": 90,
+      "description": "Pen draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "spectacles-sorter",
+      "familyId": "spectacles",
+      "chapterId": "second-look",
+      "name": "Spectacles sorter I",
+      "level": 36,
+      "price": 85,
+      "description": "Spectacles draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "camera-sorter",
+      "familyId": "camera",
+      "chapterId": "second-look",
+      "name": "Camera sorter I",
+      "level": 37,
+      "price": 85,
+      "description": "Camera draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "safety-pin-sorter",
+      "familyId": "safety-pin",
+      "chapterId": "loose-ends",
+      "name": "Pin sorter I",
+      "level": 38,
+      "price": 95,
+      "description": "Pin draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "zipper-sorter",
+      "familyId": "zipper",
+      "chapterId": "loose-ends",
+      "name": "Zipper sorter I",
+      "level": 38,
+      "price": 80,
+      "description": "Zipper draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "ruler-sorter",
+      "familyId": "ruler",
+      "chapterId": "short-measure",
+      "name": "Ruler sorter I",
+      "level": 40,
+      "price": 80,
+      "description": "Ruler draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    },
+    {
+      "id": "thimble-sorter",
+      "familyId": "thimble",
+      "chapterId": "short-measure",
+      "name": "Thimble sorter I",
+      "level": 41,
+      "price": 50,
+      "description": "Thimble draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+    }
+  ],
+  "ordinary": [
+    {
+      "id": "small-impressions-repeat-1",
+      "chapterId": "small-impressions",
+      "title": "Another small impressions reply",
+      "requirements": [
+        {
+          "pieceId": "im2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "pn2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10
+    },
+    {
+      "id": "small-impressions-repeat-2",
+      "chapterId": "small-impressions",
+      "title": "Another small impressions reply",
+      "requirements": [
+        {
+          "pieceId": "im3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "small-impressions-repeat-3",
+      "chapterId": "small-impressions",
+      "title": "Another small impressions reply",
+      "requirements": [
+        {
+          "pieceId": "pn3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "small-impressions-repeat-4",
+      "chapterId": "small-impressions",
+      "title": "Another small impressions reply",
+      "requirements": [
+        {
+          "pieceId": "im4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "pn2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "small-impressions-repeat-5",
+      "chapterId": "small-impressions",
+      "title": "Another small impressions reply",
+      "requirements": [
+        {
+          "pieceId": "im2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "pn4",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "second-look-repeat-1",
+      "chapterId": "second-look",
+      "title": "Another second look reply",
+      "requirements": [
+        {
+          "pieceId": "sg2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "cm2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10
+    },
+    {
+      "id": "second-look-repeat-2",
+      "chapterId": "second-look",
+      "title": "Another second look reply",
+      "requirements": [
+        {
+          "pieceId": "sg3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "second-look-repeat-3",
+      "chapterId": "second-look",
+      "title": "Another second look reply",
+      "requirements": [
+        {
+          "pieceId": "cm3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "second-look-repeat-4",
+      "chapterId": "second-look",
+      "title": "Another second look reply",
+      "requirements": [
+        {
+          "pieceId": "sg4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "cm2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "second-look-repeat-5",
+      "chapterId": "second-look",
+      "title": "Another second look reply",
+      "requirements": [
+        {
+          "pieceId": "sg2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "cm4",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "loose-ends-repeat-1",
+      "chapterId": "loose-ends",
+      "title": "Another loose ends reply",
+      "requirements": [
+        {
+          "pieceId": "sp2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "zp2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10
+    },
+    {
+      "id": "loose-ends-repeat-2",
+      "chapterId": "loose-ends",
+      "title": "Another loose ends reply",
+      "requirements": [
+        {
+          "pieceId": "sp3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "loose-ends-repeat-3",
+      "chapterId": "loose-ends",
+      "title": "Another loose ends reply",
+      "requirements": [
+        {
+          "pieceId": "zp3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "loose-ends-repeat-4",
+      "chapterId": "loose-ends",
+      "title": "Another loose ends reply",
+      "requirements": [
+        {
+          "pieceId": "sp4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "zp2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "loose-ends-repeat-5",
+      "chapterId": "loose-ends",
+      "title": "Another loose ends reply",
+      "requirements": [
+        {
+          "pieceId": "sp2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "zp4",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "short-measure-repeat-1",
+      "chapterId": "short-measure",
+      "title": "Another short measure reply",
+      "requirements": [
+        {
+          "pieceId": "ru2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "th2",
+          "quantity": 1
+        }
+      ],
+      "xp": 20,
+      "coins": 10
+    },
+    {
+      "id": "short-measure-repeat-2",
+      "chapterId": "short-measure",
+      "title": "Another short measure reply",
+      "requirements": [
+        {
+          "pieceId": "ru3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "short-measure-repeat-3",
+      "chapterId": "short-measure",
+      "title": "Another short measure reply",
+      "requirements": [
+        {
+          "pieceId": "th3",
+          "quantity": 1
+        }
+      ],
+      "xp": 25,
+      "coins": 10
+    },
+    {
+      "id": "short-measure-repeat-4",
+      "chapterId": "short-measure",
+      "title": "Another short measure reply",
+      "requirements": [
+        {
+          "pieceId": "ru4",
+          "quantity": 1
+        },
+        {
+          "pieceId": "th2",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    },
+    {
+      "id": "short-measure-repeat-5",
+      "chapterId": "short-measure",
+      "title": "Another short measure reply",
+      "requirements": [
+        {
+          "pieceId": "ru2",
+          "quantity": 1
+        },
+        {
+          "pieceId": "th4",
+          "quantity": 1
+        }
+      ],
+      "xp": 70,
+      "coins": 30
+    }
+  ],
+  "chapterCopy": {
+    "small-impressions": {
+      "number": 17,
+      "id": "small-impressions",
+      "title": "Small Impressions",
+      "familyIds": [
+        "rubber-stamp",
+        "fountain-pen"
+      ],
+      "opening": "The first sixteen correspondences are complete. A stamp and a pen have brought four more envelopes to the table. Open this one when you want another reply.",
+      "ending": "The stamp and pen have left their marks, with room between them. This envelope is finished. The pictures you discovered remain on the table or in your collection.",
+      "goal": "Send every story letter in Small Impressions. Supplies are free; purchases and optional discoveries are not required.",
+      "sourceNotice": "Stamp opens on entry. Both opening letters open Pen and the later replies.",
+      "optionalInvitation": "The final pictures listed in your collection are optional discoveries. You never need to send them to keep this chapter complete.",
+      "returnCueContract": "Name the real selected request and its exact matching stock, including quantity. Preserve selected sources and partial sorter cursors.",
+      "scopeNotice": "This is one of four additional correspondences following the completed original sixteen. Collection discovery is separate from letter completion."
+    },
+    "second-look": {
+      "number": 18,
+      "id": "second-look",
+      "title": "Second Look",
+      "familyIds": [
+        "spectacles",
+        "camera"
+      ],
+      "opening": "The spectacles fold their rims. The camera extends its bellows. This envelope has room for a quick introduction and a longer still life.",
+      "ending": "The camera has settled into its still life. The lenses can stay open. This envelope is finished, and the next one brings a pin and a zipper.",
+      "goal": "Send every story letter in Second Look. Supplies are free; purchases and optional discoveries are not required.",
+      "sourceNotice": "Spectacles opens on entry. The first letter opens Camera; the second completes the introduction.",
+      "optionalInvitation": "The final pictures listed in your collection are optional discoveries. You never need to send them to keep this chapter complete.",
+      "returnCueContract": "Name the real selected request and its exact matching stock, including quantity. Preserve selected sources and partial sorter cursors.",
+      "scopeNotice": "This is one of four additional correspondences following the completed original sixteen. Collection discovery is separate from letter completion."
+    },
+    "loose-ends": {
+      "number": 19,
+      "id": "loose-ends",
+      "title": "Loose Ends",
+      "familyIds": [
+        "safety-pin",
+        "zipper"
+      ],
+      "opening": "A pin and a zipper arrive together. Both free sources are open. Keep a pair of small bends, make a larger loop, or finish the other available reply first.",
+      "ending": "The pin kept its coil, the zipper kept its teeth, and the replies found different ways to join. There is one small envelope left in this continuation.",
+      "goal": "Send every story letter in Loose Ends. Supplies are free; purchases and optional discoveries are not required.",
+      "sourceNotice": "Both Pin and Zipper open on entry. Both opening letters lead to the later replies.",
+      "optionalInvitation": "The final pictures listed in your collection are optional discoveries. You never need to send them to keep this chapter complete.",
+      "returnCueContract": "Name the real selected request and its exact matching stock, including quantity. Preserve selected sources and partial sorter cursors.",
+      "scopeNotice": "This is one of four additional correspondences following the completed original sixteen. Collection discovery is separate from letter completion."
+    },
+    "short-measure": {
+      "number": 20,
+      "id": "short-measure",
+      "title": "Short Measure",
+      "familyIds": [
+        "ruler",
+        "thimble"
+      ],
+      "opening": "The ruler has only a few broad marks. The thimble is small enough to sit beside them. These last replies leave the measures modest.",
+      "ending": "These four extra correspondences are sent. The first sixteen remain complete too. Your pictures are yours to keep, revisit and rearrange at your own pace.",
+      "goal": "Send every story letter in Short Measure. Supplies are free; purchases and optional discoveries are not required.",
+      "sourceNotice": "Ruler opens on entry. Both opening letters open Thimble and the later replies.",
+      "optionalInvitation": "The final pictures listed in your collection are optional discoveries. You never need to send them to keep this chapter complete.",
+      "returnCueContract": "Name the real selected request and its exact matching stock, including quantity. Preserve selected sources and partial sorter cursors.",
+      "scopeNotice": "This is one of four additional correspondences following the completed original sixteen. Collection discovery is separate from letter completion."
+    }
+  },
+  "discoveryCaptions": {
+    "im1": "A tall printed rubber stamp has a bulbous ivory-and-black handle, a red band around its neck and a broad black rectangular printing block.",
+    "im2": "A sideways rubber-stamp handle spreads left of its broad upright printing block, joined at the neck by a red paper splice.",
+    "im3": "A tall slanted stamp handle sits over two offset rectangular printing-block fragments, with red paper joining the stepped base.",
+    "im4": "Two long stamp-block strips extend to the right from a bulbous red-banded handle, leaving a large open rectangular gap between them.",
+    "im5": "A broad rising staircase of three printing-block fragments carries a large red-banded handle left of center and a short handle remnant at the right.",
+    "pn1": "A broad ivory fountain-pen nib with a black slit and round breather mark rises from a stout black barrel joined by a blue paper band.",
+    "pn2": "A left-pointing nib splits into two broad tines above and below a clear wedge, while its blue-banded barrel bends down at the right.",
+    "pn3": "An ivory pen nib rises diagonally at the left from a thick horizontal black barrel, with a blue paper band across the bent join.",
+    "pn4": "A split nib surrounds a large open oval, with two pointed tips above, a black barrel descending at the left and a blue tab at the right.",
+    "pn5": "A large nib points upper left while a smaller nib extends to the right, both joined by blue paper to a black barrel slanting down left.",
+    "sg1": "Two unequal open round spectacle lenses join at an ochre bridge, with a bent black temple projecting at the right.",
+    "sg2": "Two open spectacle lenses fold into a tall offset pair, with an ochre hinge and a bent temple at the lower right.",
+    "sg3": "A large closed lens ring at lower left joins a smaller open rim at upper right through an ochre diagonal bridge.",
+    "sg4": "Two thick unequal lens rims hang open at the bottom beneath a broad horizontal temple bar and ochre bridge.",
+    "sg5": "A small round lens joins a much larger open oval rim while two unequal temple arms fan upward from the ochre splice.",
+    "cm1": "A squat black camera body has an ivory circular lens, a square viewfinder above the left shoulder and a teal lower-right splice.",
+    "cm2": "A black camera back at the left narrows through broad accordion bellows to a round lens at the right, with a teal lower band.",
+    "cm3": "Two camera-body blocks form a tall offset step, with a viewfinder on top, a large ivory lens below and a teal waist.",
+    "cm4": "A broad black camera frame surrounds an open rectangular window, with a solid ivory lens at lower left and a viewfinder above.",
+    "cm5": "Three overlapping black camera-body slabs rise toward the right, with one ivory lens at lower left and a teal diagonal join.",
+    "sp1": "A closed safety pin has broad engraved black arms around a long open center, one circular spring coil, a hooded clasp and red paper band.",
+    "sp2": "An open safety pin forms a wide V above a round spring coil, with a hooded clasp on the left arm and a pointed right arm.",
+    "sp3": "A continuous safety-pin arm bends into an S between a round coil at lower left and a hooded clasp at upper right, with a red band at the kink.",
+    "sp4": "A large open coil sits above a low bent pin arm ending in a hooded clasp at the right, joined with red paper.",
+    "sp5": "A low pin collage links an open coil at the left to a hooded clasp at the right through broad angular arms and a red central join.",
+    "zp1": "A stout vertical zipper carries broad black tapes, large ivory teeth and a teardrop pull with an open round hole above a green splice.",
+    "zp2": "Two broad zipper tapes open into a wide Y above a short stem, with large inward-facing teeth and a pull hanging to the left.",
+    "zp3": "Three zipper-tape sections form a bent diagonal step, with large ivory teeth, a teardrop pull near the top and a green paper joint.",
+    "zp4": "Short zipper tapes cross in a broad uneven plus shape, with big interlocking teeth, a green central join and a pull at the right.",
+    "zp5": "A broad zipper tape curls into an open C, with large ivory teeth along its inner edge and a teardrop pull hanging into the opening.",
+    "ru1": "A short stout ivory ruler has a heavy black border, a large open hanging hole, three broad measurement marks and an ochre end splice.",
+    "ru2": "Two unequal upright ruler strips join at an ochre bottom hinge around a tall open slot, with a hanging hole in the longer strip.",
+    "ru3": "Two thick ruler strips form a right-angle L, retaining a hanging hole, large black ticks and an ochre elbow.",
+    "ru4": "Broad measuring strips form an open triangular frame, with a round hanging hole at lower left and a gap near the top.",
+    "ru5": "Three stout ruler strips fan upward and rightward from an ochre hinge, with large open wedges between their marked ivory faces.",
+    "th1": "An ivory thimble dome carries oversized black punch dots above a thick double rim band interrupted by a dusty-rose splice.",
+    "th2": "Two unequal dotted thimble panels sit low and side by side, joined by a rose splice across their dark rim bands.",
+    "th3": "A tall dotted thimble wall joins a large open oval rim on its lower right, with a dusty-rose paper splice between them.",
+    "th4": "A broad thimble rim supports two short dotted sidewalls around an open U-shaped gap, with a displaced half-dome above the right joint.",
+    "th5": "Unequal dotted thimble shell pieces spread above a slanting double-rim strip, joined by rose paper around large open gaps."
+  },
+  "postscripts": [
+    {
+      "id": "postscript-rubber-stamp",
+      "pieceId": "im5",
+      "companionPieceId": "rp2",
+      "title": "A lasting impression",
+      "goal": "Merge two Countermark pictures to discover Lasting Impression.",
+      "caption": "Three printing blocks step upward beneath the red-banded handle.",
+      "reverse": "The stamp has kept its printing blocks and changed their arrangement. The open letter can stay beside it as a place a mark might go.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    },
+    {
+      "id": "postscript-fountain-pen",
+      "pieceId": "pn5",
+      "companionPieceId": "tw5",
+      "title": "Another line",
+      "goal": "Merge two Written Through pictures to discover Pen Again.",
+      "caption": "Two nibs point away from the blue paper join.",
+      "reverse": "One nib starts toward the upper left; another points across the table. Written can remain nearby without needing another delivery.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    },
+    {
+      "id": "postscript-spectacles",
+      "pieceId": "sg5",
+      "companionPieceId": "cm4",
+      "title": "Look again",
+      "goal": "Merge two Through pictures to discover Look Again.",
+      "caption": "Unequal lens rims and lifted temple arms open around their ochre join.",
+      "reverse": "The larger opening has room beside the camera window. This is a picture to keep, with no need to turn it into a request.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    },
+    {
+      "id": "postscript-safety-pin",
+      "pieceId": "sp5",
+      "companionPieceId": "bh5",
+      "title": "Pinned down",
+      "goal": "Merge two Loopback pictures to discover Pinned Down.",
+      "caption": "The pin coil and clasp meet through low angular arms.",
+      "reverse": "The pin has become a low shape between its coil and clasp. Unfold can stand beside it, keeping the button family in the conversation.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    },
+    {
+      "id": "postscript-zipper",
+      "pieceId": "zp5",
+      "companionPieceId": "cj5",
+      "title": "Through the opening",
+      "goal": "Merge two Interleave pictures to discover Zip Through.",
+      "caption": "A zipper curls around a wide open center.",
+      "reverse": "The teeth follow a new edge and the pull hangs inside it. The old Crossjoin is a possible companion, not another requirement.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    },
+    {
+      "id": "postscript-ruler",
+      "pieceId": "ru5",
+      "companionPieceId": "r5",
+      "title": "A rule left open",
+      "goal": "Merge two Out of Line pictures to discover Rule Out.",
+      "caption": "Three marked ruler strips fan from one ochre hinge.",
+      "reverse": "The ruler has more than one direction now. River Citadel may sit beside the fan, with its own stepped paper routes.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    },
+    {
+      "id": "postscript-thimble",
+      "pieceId": "th5",
+      "companionPieceId": "f5",
+      "title": "A little measure kept",
+      "goal": "Merge two Open Top pictures to discover Little Measure.",
+      "caption": "Dotted thimble panels spread above their slanted rim.",
+      "reverse": "The little rim has opened into separate dotted panels. Lunar Conservatory is another picture you may place beside it in thought; neither needs to be sent.",
+      "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+      "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a promised combined layout or export. Never mark a chapter or volume complete from this discovery."
+    }
+  ]
+};

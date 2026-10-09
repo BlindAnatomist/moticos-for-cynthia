@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';import {verifySource} from './binding.mjs';import {execFileSync} from 'node:child_process';
-export const PROPOSED_DESTINATION=Object.freeze({repository:'BlindAnatomist/moticos-for-cynthia',ref:'refs/heads/verify/full-campaign-20261008-r5',status:'proposed-not-user-approved'});
+export const PROPOSED_DESTINATION=Object.freeze({repository:'BlindAnatomist/moticos-for-cynthia',ref:'refs/heads/verify/full-campaign-20261008-r15',status:'proposed-not-user-approved'});
 export function verifyDispatch(env=process.env,commit=()=>({head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),message:execFileSync('git',['log','-1','--format=%B'],{encoding:'utf8'})}),source=verifySource){
  assert.equal(env.GITHUB_ACTIONS,'true');assert.equal(env.GITHUB_REPOSITORY,PROPOSED_DESTINATION.repository);assert.equal(env.GITHUB_REF,PROPOSED_DESTINATION.ref);assert.equal(env.GITHUB_EVENT_NAME,'push');assert.equal(env.GITHUB_RUN_ATTEMPT,'1');assert.match(env.GITHUB_RUN_ID??'',/^\d+$/);assert.match(env.GITHUB_SHA??'',/^[a-f0-9]{40}$/);const actual=commit();assert.equal(actual.head,env.GITHUB_SHA);
  const field=name=>{const rows=actual.message.split('\n').filter(s=>s.startsWith(name+': '));assert.equal(rows.length,1,'Missing or duplicate reviewed run trailer: '+name);return rows[0].slice(name.length+2).trim();};

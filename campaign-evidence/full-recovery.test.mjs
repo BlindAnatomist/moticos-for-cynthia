@@ -9,6 +9,6 @@ test('a suspended schema-3 story and held optional promises migrate intact under
  const failed=storageHarness(old,{failWrite:true});const before=failed.map.get(C.STORAGE_KEY);assert.equal((await createCareerSession(failed).open()).saved,false);assert.equal(failed.map.get(C.STORAGE_KEY),before);
 });
 test('a full table of distinct retained pictures has free reversible recovery and keeps discoveries',()=>{
- let s=JSON.parse(fs.readFileSync(new URL('full-basic-journey.json',import.meta.url))).state;for(let i=0;i<25;i++)if(s.board[i])s=d.act(s,{type:'recycle',at:i,tileId:s.board[i].id,confirmed:true});const kept=new Set;
+ let s=E.upgradeCareer(JSON.parse(fs.readFileSync(new URL('full-basic-journey.json',import.meta.url))).state);for(let i=0;i<25;i++)if(s.board[i])s=d.act(s,{type:'recycle',at:i,tileId:s.board[i].id,confirmed:true});const kept=new Set;
  for(const [i,f] of C.FAMILIES.slice(0,25).entries()){let id;[s,id]=d.acquire(s,f.pieceIds[i<5?4:0],kept);kept.add(id);}assert(!s.board.includes(null));assert.equal(E.goalHint(s).kind,'recover');const before=structuredClone(s);s=d.act(s,{type:'recycle',at:0,tileId:s.board[0].id,confirmed:true});assert(s.board.includes(null));assert.equal(s.xp,before.xp);assert.equal(s.coinsEarned,before.coinsEarned);assert.equal(s.coinsSpent,0);assert.deepEqual(s.discoveries,before.discoveries);s=d.act(s,{type:'undo'});assert.deepEqual(s.board,before.board);assert.deepEqual(s.material,before.material);assert.deepEqual(s.sources,before.sources);
 });

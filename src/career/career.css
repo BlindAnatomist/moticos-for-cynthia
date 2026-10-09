@@ -92,3 +92,20 @@
 
 /* Secondary optional-letter surface; never expands the primary board. */
 .career-held-letters{padding:14px;border:1px solid #bcc8ad;border-radius:6px;margin-bottom:20px}.career-held-list{display:grid;gap:12px;max-height:50vh;overflow:auto;overscroll-behavior:contain;padding:4px}.career-held-list article{padding:12px;background:#fff9ed;border-radius:5px}.career-held-list h4{margin:0;font:18px Georgia,serif}.career-held-list p{overflow-wrap:break-word}.career-held-list button,.career-held-letters>button{display:block;min-height:44px;margin-top:10px;padding:10px 14px;white-space:normal}
+
+/* Private polish: the compact HUD budgets real wallet text; large text uses
+   a separate progress row instead of squeezing four controls together.
+   The board dimensions, cell targets and full accessible names are unchanged. */
+@media(max-width:650px){
+ .career-mobile-hud{grid-template-columns:minmax(0,1fr) max-content 72px 44px;gap:6px}
+ .career-shell.is-large-text .career-mobile-hud{grid-template-columns:minmax(0,1fr) minmax(82px,1fr) minmax(64px,1fr);gap:8px;padding:4px 0 8px}
+ .career-shell.is-large-text .career-mobile-progress-button{grid-column:1/-1;min-height:52px}
+ .career-shell.is-large-text .career-mobile-progress-button strong,.career-shell.is-large-text .career-mobile-progress-button>span{font-size:14px;line-height:18px}
+ .career-shell.is-large-text .career-mobile-hud button{font-size:14px;line-height:18px}
+ .career-shell.is-large-text .career-mobile-coins{column-gap:6px}
+ .career-shell.is-large-text .career-mobile-coins small{font-size:12px;line-height:15px}
+}
+
+.career-page-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}.career-page-controls button,.career-volume-collection select,.career-correspondence-browser select{min-height:44px;padding:9px;max-width:100%;font:inherit}.career-volume-collection label,.career-correspondence-browser label{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.career-correspondence-browser .career-letter-chapter>h3:focus,.career-volume-collection>h3:focus{outline:2px solid #426d5d;outline-offset:3px}
+
+.career-collection-navigation{display:grid;gap:12px;margin:14px 0}.career-collection-navigation label{align-items:flex-start}.career-collection-navigation select{min-width:0;width:100%}

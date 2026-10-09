@@ -1,14 +1,15 @@
 // Append-only packs. The independent v2 module remains the historical reader.
-import { getEnvelope } from '../matching/cohesion/registry.js';
-import * as V2 from './content.v3.js';
-import additions from './continuation.v4.js';
+import { createMatchingCatalog } from '../matching/catalogFactory.js';
+import { EXPANSION200_DEFINITIONS } from '../matching/expansion200/definitions.js';
+import * as V2 from './content.v4.js';
+import additions from './continuation.v5.js';
 const freeze=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
 freeze(additions);
-export const SCHEMA_VERSION=4, RULES_VERSION=2, CONTENT_VERSION=4;
+export const SCHEMA_VERSION=5, RULES_VERSION=2, CONTENT_VERSION=5;
 export const STORAGE_KEY=V2.STORAGE_KEY, LOCK_NAME=V2.LOCK_NAME;
-const catalogs=['matching-garden','moonlit-passage','riverside-reverie','lantern-studio',...additions.chapters.map(c=>c.catalogEnvelopeId)].map(id=>getEnvelope(id).catalog);
-export const FAMILIES=freeze(catalogs.flatMap(c=>c.FAMILIES));
-const pieces=freeze(catalogs.flatMap(c=>c.PIECES)), pieceMap=freeze(Object.fromEntries(pieces.map(p=>[p.id,p])));
+const catalogs=EXPANSION200_DEFINITIONS.map(d=>createMatchingCatalog(d.catalog));
+export const FAMILIES=freeze([...V2.FAMILIES,...catalogs.flatMap(c=>c.FAMILIES)]);
+const pieces=freeze([...V2.CATALOG.PIECES,...catalogs.flatMap(c=>c.PIECES)]),pieceMap=freeze(Object.fromEntries(pieces.map(p=>[p.id,p])));
 const pieceOf=id=>typeof id==='string'&&Object.hasOwn(pieceMap,id)?pieceMap[id]:null;
 const neighbor=(id,delta)=>{const p=pieceOf(id),f=FAMILIES.find(f=>f.id===p?.familyId);return pieceOf(f?.pieceIds[p.tier-1+delta]);};
 export const CATALOG=freeze({PIECES:pieces,CATALOG:pieceMap,FAMILIES,pieceOf,nextPiece:id=>neighbor(id,1),previousPiece:id=>neighbor(id,-1)});
@@ -17,13 +18,13 @@ export function target(familyId,tier,quantity=1){const f=FAMILIES.find(f=>f.id==
 export function rewardsFor(requirements){return requirements.reduce((n,r)=>({xp:n.xp+REWARDS[pieceOf(r.pieceId).tier].xp*r.quantity,coins:n.coins+REWARDS[pieceOf(r.pieceId).tier].coins*r.quantity}),{xp:0,coins:0});}
 export const LEVELS=freeze([...V2.LEVELS,...additions.levels]);
 export const STORY_ORDERS=freeze([...V2.STORY_ORDERS,...additions.story]);
-export const CHAPTERS=freeze([...V2.CHAPTERS.map(c=>c.number===4?{...c,nextId:additions.chapters[0].id,nextTitle:additions.chapters[0].title,nextPreview:additions.chapterCopy[additions.chapters[0].id].opening}:c),...additions.chapters]);
+export const CHAPTERS=freeze([...V2.CHAPTERS,...additions.chapters]);
 export const CHAPTER=CHAPTERS[0], ORDINARY_ORDERS=freeze([...V2.ORDINARY_ORDERS,...additions.ordinary]);
 export const UPGRADES=freeze([...V2.UPGRADES,...additions.upgrades]);
 export const CHAPTER_COPY=freeze({...V2.CHAPTER_COPY,...additions.chapterCopy});
 export const DISCOVERY_CAPTIONS=freeze({...V2.DISCOVERY_CAPTIONS,...additions.discoveryCaptions});
 export const POSTCARD_POSTSCRIPTS=freeze([...V2.POSTCARD_POSTSCRIPTS,...additions.postscripts]);
-export const CONTENT_PACKS=freeze({...V2.CONTENT_PACKS,4:{story:STORY_ORDERS,ordinary:ORDINARY_ORDERS,upgrades:UPGRADES,familyIds:FAMILIES.map(f=>f.id),chapters:CHAPTERS,levels:LEVELS,sourceRules:[...V2.CONTENT_PACKS[3].sourceRules,...additions.sourceRules]}});
+export const CONTENT_PACKS=freeze({...V2.CONTENT_PACKS,5:{story:STORY_ORDERS,ordinary:ORDINARY_ORDERS,upgrades:UPGRADES,familyIds:FAMILIES.map(f=>f.id),chapters:CHAPTERS,levels:LEVELS,sourceRules:[...V2.CONTENT_PACKS[4].sourceRules,...additions.sourceRules]}});
 export function contentPack(s){return CONTENT_PACKS[typeof s==='number'?s:s.contentVersion]??null;}
 export function orderTemplate(id,version=CONTENT_VERSION,origin='story'){return CONTENT_PACKS[version]?.[origin==='ordinary'?'ordinary':'story'].find(t=>t.id===id)??null;}
 export function upgradeDefinition(id,version=CONTENT_VERSION){return CONTENT_PACKS[version]?.upgrades.find(u=>u.id===id)??null;}

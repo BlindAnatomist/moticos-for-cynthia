@@ -3,7 +3,7 @@
   "on": {
     "push": {
       "branches": [
-        "verify/full-campaign-20261008-r5"
+        "verify/full-campaign-20261008-r15"
       ]
     }
   },
@@ -11,7 +11,7 @@
     "contents": "read"
   },
   "concurrency": {
-    "group": "moticos-full-campaign-review-20261008-r5",
+    "group": "moticos-full-campaign-review-20261008-r15",
     "cancel-in-progress": false
   },
   "defaults": {
@@ -21,7 +21,7 @@
   },
   "jobs": {
     "full_campaign": {
-      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/full-campaign-20261008-r5' && github.event_name == 'push' && github.run_attempt == 1",
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/full-campaign-20261008-r15' && github.event_name == 'push' && github.run_attempt == 1",
       "runs-on": "ubuntu-latest",
       "timeout-minutes": 30,
       "steps": [
@@ -68,7 +68,7 @@
           "run": "node full-campaign-gate/authorize.mjs"
         },
         {
-          "name": "Ten Chromium cases once",
+          "name": "Fourteen Chromium cases once",
           "run": "node full-campaign-gate/run-group.mjs full-chromium",
           "timeout-minutes": 11,
           "env": {
