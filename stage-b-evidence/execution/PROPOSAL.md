@@ -1,3 +1,11 @@
+## Compact next-output artwork correction status — 2026-10-09
+
+Run 37888713928 passed 43 cases, including B16 on both engines. WebKit B17 then failed on the first Compass iteration at 390×664 with normal text: source selection and draw/Cut/Undo state restoration were correct, but the visible-image proof contained no source image. Existing compact CSS hid every next-output artwork span. The correction shows the existing original-art thumbnail at 20px inside each compact source button, placing the existing visible plus beneath it in the same column to preserve room for the full source and next-output labels. Source controls retain their height and 44px minimum targets; sorter/basic actions, board geometry, enlarged-text mode, game logic and every browser assertion remain unchanged. B18 uses the same source-preview requirement and is covered by the same correction. Native confirmation remains required.
+
+Continued verification is authorized under the current owner instruction, without a numerical three-run cutoff: diagnose and correct failures, retain 58 cases, one worker, zero automatic test retries, a 108-minute hard cap, a 124 MiB evidence cap, standard public GitHub runner and unchanged zero-dollar spending protection. Stop on acceptance or if spending protection blocks work. No laptop work, paid runners, budget changes, weaker assertions or broader preview audience. Bind the current approval to the final source/core/probe identities; preview replacement remains conditional on native and visual acceptance. Earlier records below describe historical source versions.
+
+---
+
 ## Compact HUD row sizing correction status — 2026-10-09
 
 Run 37886836656 again passed 42 cases before normal-text WebKit B16 failed at 320×844. Its HUD remained 55px while the progress control was 69px, exactly matching the preceding failure; changing only the button's internal layout did not resolve the issue. Chromium still passed all eight B16 viewport/text-mode combinations. The new correction changes only the normal HUD container from a nested grid to a single flex row, explicitly preserving the existing wallet, 72px Orders/Return and 44px More allocation and letting progress use the remaining width. The row can size around the wrapped progress control. The enlarged-text grid, all full labels, minimum touch controls, artwork, 28px ink assertions, test scope and workflow limits remain unchanged. Native confirmation is still required; no successful post-fix browser render is claimed.
@@ -90,7 +98,7 @@ Acceptance requires exact collected and terminal case/event identities, one succ
 
 ## Review and activation
 
-Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 143 Node checks (101 historical, 17 runtime, 14 browser contracts, eleven harness/presentation/collection/workflow/process contracts), subject to independent fresh collection.
+Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 145 Node checks (103 historical, 17 runtime, 14 browser contracts, eleven harness/presentation/collection/workflow/process contracts), subject to independent fresh collection.
 
 Confirm the repository remains public, standard GitHub-hosted runner eligibility and the owner’s zero-dollar spending stop before requesting publication; no billing setting is changed by this proposal.
 
