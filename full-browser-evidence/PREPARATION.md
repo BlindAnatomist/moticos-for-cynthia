@@ -1,10 +1,14 @@
-# Historical r13 preparation and current verification status
+# Status clarification for the separate 240-piece candidate
 
-Current status (2026-10-09): the owner-authorized 200-piece verification cycle is defined in [RUN-PROPOSAL.md](RUN-PROPOSAL.md), including the exact r15 branch, maximum three total run starts, game-only publication scope and continuing exclusions. This documentation-only descendant needs fresh pinned cloud preflight/build identities before any connected-GitHub mutation. No publication or Actions execution occurs in this local reconciliation. The earlier frozen checkpoint remains history.
+The original document below is preserved as a historical r13/200-piece preparation record. Its preparation prohibitions, proposed timings and approval status describe that earlier phase; they are not a new authorization or a current 240-piece execution budget. The later accepted 200-piece verification cycle and its evidence remain separate and unchanged. Its approval cannot authorize a 240-piece run.
 
-## Historical preparation record
+The current 240-piece scope is only a proposal in [stage-b-evidence/execution/PROPOSAL.md](../stage-b-evidence/execution/PROPOSAL.md). Its new verification branch, case inventory and caps are NOT yet owner-approved. Only a future explicit 240-specific owner authorization, followed by review of the exact final source/build identities and normal tool approval, can activate that scope. Do not reuse 200-piece approval, trailers, branch or budget as permission for 240. No merge, deployment, billing or security change is implied.
 
-The following describes r13, not the current authorization. The then-deferred HUD-validator work was subsequently repaired and checked in r15; no runtime or validator change is made here.
+Historical source text follows unchanged. Statements such as “no run authorized” or references to then-deferred validator work must be read in that historical context; they do not supersede later, explicitly bounded 200-piece authorization and do not establish any 240-piece authority.
+
+---
+
+# Private r13 native Stage A browser preparation
 
 This is authored harness preparation, not a browser run or approval. It preserves r11's exact application, content, artwork and original113 records. The separately cancelled HUD-validator repair remains out of scope; its limitation must still be reported.
 
@@ -14,4 +18,4 @@ D09 now owns only original160 gallery traversal. D02 retains every original chap
 
 Setup fixtures are actual reducer-generated states, labelled as setup, never claimed as browser playthroughs. Only the described subsequent gestures are native browser evidence. The global limits remain Chromium600seconds, WebKit420seconds, setup300seconds, preflight300seconds and job1800seconds with existing cleanup/reserve. One worker, zero retries, maxFailures1 and first-group failure stopping the second group remain intact. See RUN-PROPOSAL.md for the explicit regrouping/allocation and unresolved fit.
 
-Pinned Playwright1.61.1 and lockfile Vite remain mandatory. This Mac does not have those dependencies. Local Node fixture/guard checks and static syntax inspection do not count as pinned collection, builds or browser acceptance. Parent can independently collect/build using its existing supported pinned environment. At that preparation stage, installation, browser execution, Actions, push, deployment, publication, preview/main changes and spending were not authorized. The current owner-authorized publication/verification exception is precisely bounded in RUN-PROPOSAL.md; all other exclusions and pinned-version requirements remain in force.
+Pinned Playwright1.61.1 and lockfile Vite remain mandatory. This Mac does not have those dependencies. Local Node fixture/guard checks and static syntax inspection do not count as pinned collection, builds or browser acceptance. Parent can independently collect/build using its existing supported pinned environment. No installation, browser execution, Actions, push, deployment, publication, preview/main change or spending is authorized by this preparation.

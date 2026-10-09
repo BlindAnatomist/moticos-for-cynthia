@@ -1,8 +1,9 @@
+// Historical Stage A acceptance remains pinned to its independent v5 reader.
 import path from 'node:path';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 const evidenceRoot=process.env.MOTICOS_STAGE_A_OUTPUT_ROOT??'../stage-a-r10-review';fs.mkdirSync(evidenceRoot,{recursive:true});
-import * as E from '../src/career/engine.js';import * as C from '../src/career/content.js';import * as E4 from '../src/career/engine.v4.js';import * as C4 from '../src/career/content.v4.js';import {CONTINUATION} from '../src/career/volumes.js';import {driver} from '../tests/campaign-browser/save-fixtures.mjs';
-const d=driver(),d4=driver(E4,C4),endpoint=JSON.parse(fs.readFileSync(new URL('../campaign-evidence/full-basic-journey.json',import.meta.url))).state;
+import * as E from '../src/career/engine.v5.js';import * as C from '../src/career/content.v5.js';import * as E4 from '../src/career/engine.v4.js';import * as C4 from '../src/career/content.v4.js';import {CONTINUATION} from '../src/career/volumes.v5.js';import {driver} from '../tests/campaign-browser/save-fixtures.mjs';
+const d=driver(E,C),d4=driver(E4,C4),endpoint=JSON.parse(fs.readFileSync(new URL('../campaign-evidence/full-basic-journey.json',import.meta.url))).state;
 let old=structuredClone(endpoint);for(const u of C4.UPGRADES)old=d4.act(old,{type:'purchase',upgradeId:u.id,expectedLevel:0});assert.equal(C4.coinBalance(old),190);
 const makeCost=o=>o.requirements.reduce((n,r)=>n+(2*C.CATALOG.pieceOf(r.pieceId).mass-1)*r.quantity,0);
 function journey({priority='authored',order='authored',buy=true,cursors=false,retained=false}={}){

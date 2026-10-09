@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import * as C from '../src/career/content.js';
-import {validateCareer,allAuthoredContentComplete} from '../src/career/engine.js';
+import * as C from '../src/career/content.v5.js';
+import {validateCareer,allAuthoredContentComplete} from '../src/career/engine.v5.js';
 import {digest} from './evidence.mjs';
 
 // Independently reviewed r10 outputs, verified against its checkpoint manifest.

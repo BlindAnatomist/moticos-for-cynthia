@@ -109,3 +109,6 @@
 .career-page-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}.career-page-controls button,.career-volume-collection select,.career-correspondence-browser select{min-height:44px;padding:9px;max-width:100%;font:inherit}.career-volume-collection label,.career-correspondence-browser label{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.career-correspondence-browser .career-letter-chapter>h3:focus,.career-volume-collection>h3:focus{outline:2px solid #426d5d;outline-offset:3px}
 
 .career-collection-navigation{display:grid;gap:12px;margin:14px 0}.career-collection-navigation label{align-items:flex-start}.career-collection-navigation select{min-width:0;width:100%}
+
+/* Ending actions remain distinct and wrap without merging their labels. */
+.career-ending-actions{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 20px;margin-top:12px}.career-ending-actions button{min-height:44px;max-width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere}.career-ending-actions button:focus-visible{outline-offset:4px}

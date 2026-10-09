@@ -16,6 +16,6 @@ test('collection adapter visits all ten pages and rejects absent or misidentifie
   const expect=value=>({toHaveCount:async n=>assert.equal(value.count,n),toContainText:async text=>assert(value.text.includes(text)),toBeDisabled:async()=>assert(value.disabled),toEqual:other=>assert.deepEqual(value,other)});
   const proof=async()=>{visited.push(index);let pictures=ids().map(pieceId=>({location:'collection',pieceId}));if(fault==='wrong-image'&&index===9)pictures[0].pieceId='b1';if(fault==='missing-proof'&&index===9)pictures.pop();return pictures;};
   const run=new Function('expect','C','imageProof',adapter+';return collectionPages;')(expect,{CATALOG},proof);
-  if(fault)await assert.rejects(()=>run(page,200),fault);else{const result=await run(page,200);assert.equal(result.images.length,200);assert.deepEqual(result.seen,CATALOG.PIECES.map(p=>p.id));assert.deepEqual(visited,[0,1,2,3,4,5,6,7,8,9]);}
+  if(fault)await assert.rejects(()=>run(page,200),fault);else{const result=await run(page,200);assert.equal(result.images.length,200);assert.deepEqual(result.seen,CATALOG.PIECES.slice(0,200).map(p=>p.id));assert.deepEqual(visited,[0,1,2,3,4,5,6,7,8,9]);}
  }
 });

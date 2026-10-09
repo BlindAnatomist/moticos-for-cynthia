@@ -1,13 +1,13 @@
 // Append-only packs. The independent v2 module remains the historical reader.
 import { createMatchingCatalog } from '../matching/catalogFactory.js';
-import { EXPANSION200_DEFINITIONS } from '../matching/expansion200/definitions.js';
-import * as V2 from './content.v4.js';
-import additions from './continuation.v5.js';
+import { EXPANSION240_DEFINITIONS } from '../matching/expansion240/definitions.js';
+import * as V2 from './content.v5.js';
+import additions from './continuation.v6.js';
 const freeze=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
 freeze(additions);
-export const SCHEMA_VERSION=5, RULES_VERSION=2, CONTENT_VERSION=5;
+export const SCHEMA_VERSION=6, RULES_VERSION=2, CONTENT_VERSION=6;
 export const STORAGE_KEY=V2.STORAGE_KEY, LOCK_NAME=V2.LOCK_NAME;
-const catalogs=EXPANSION200_DEFINITIONS.map(d=>createMatchingCatalog(d.catalog));
+const catalogs=EXPANSION240_DEFINITIONS.map(d=>createMatchingCatalog(d.catalog));
 export const FAMILIES=freeze([...V2.FAMILIES,...catalogs.flatMap(c=>c.FAMILIES)]);
 const pieces=freeze([...V2.CATALOG.PIECES,...catalogs.flatMap(c=>c.PIECES)]),pieceMap=freeze(Object.fromEntries(pieces.map(p=>[p.id,p])));
 const pieceOf=id=>typeof id==='string'&&Object.hasOwn(pieceMap,id)?pieceMap[id]:null;
@@ -24,7 +24,7 @@ export const UPGRADES=freeze([...V2.UPGRADES,...additions.upgrades]);
 export const CHAPTER_COPY=freeze({...V2.CHAPTER_COPY,...additions.chapterCopy});
 export const DISCOVERY_CAPTIONS=freeze({...V2.DISCOVERY_CAPTIONS,...additions.discoveryCaptions});
 export const POSTCARD_POSTSCRIPTS=freeze([...V2.POSTCARD_POSTSCRIPTS,...additions.postscripts]);
-export const CONTENT_PACKS=freeze({...V2.CONTENT_PACKS,5:{story:STORY_ORDERS,ordinary:ORDINARY_ORDERS,upgrades:UPGRADES,familyIds:FAMILIES.map(f=>f.id),chapters:CHAPTERS,levels:LEVELS,sourceRules:[...V2.CONTENT_PACKS[4].sourceRules,...additions.sourceRules]}});
+export const CONTENT_PACKS=freeze({...V2.CONTENT_PACKS,6:{story:STORY_ORDERS,ordinary:ORDINARY_ORDERS,upgrades:UPGRADES,familyIds:FAMILIES.map(f=>f.id),chapters:CHAPTERS,levels:LEVELS,sourceRules:[...V2.CONTENT_PACKS[5].sourceRules,...additions.sourceRules]}});
 export function contentPack(s){return CONTENT_PACKS[typeof s==='number'?s:s.contentVersion]??null;}
 export function orderTemplate(id,version=CONTENT_VERSION,origin='story'){return CONTENT_PACKS[version]?.[origin==='ordinary'?'ordinary':'story'].find(t=>t.id===id)??null;}
 export function upgradeDefinition(id,version=CONTENT_VERSION){return CONTENT_PACKS[version]?.upgrades.find(u=>u.id===id)??null;}

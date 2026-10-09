@@ -1,0 +1,108 @@
+{
+  "name": "Bounded Moticos 240 verification",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/full-campaign-240-20261009"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "moticos-240-single-run",
+    "cancel-in-progress": false
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "jobs": {
+    "verification": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/full-campaign-240-20261009' && github.event_name == 'push' && github.run_attempt == 1 && github.event.repository.private == false",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 108,
+      "env": {
+        "MOTICOS_STAGE_B_PROBE_OUTPUT": "${{ runner.temp }}/moticos-240-probe",
+        "MOTICOS_STAGE_B_APPROVAL": "full-browser-results/stage-b-execution/approval.json",
+        "MOTICOS_240_UPLOAD": "${{ runner.temp }}/moticos-240-upload",
+        "MOTICOS_240_PUBLIC_REPO": "${{ github.event.repository.private == false }}"
+      },
+      "steps": [
+        {
+          "name": "Start immutable job clock",
+          "run": "echo \"MOTICOS_240_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\""
+        },
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "ref": "${{ github.sha }}",
+            "persist-credentials": false,
+            "fetch-depth": 1
+          }
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Require new exact Stage B authorization before installation",
+          "run": "node stage-b-evidence/execution/precheck.mjs"
+        },
+        {
+          "name": "Bounded pinned setup",
+          "timeout-minutes": 5,
+          "run": "timeout --signal=TERM --kill-after=5s 300s bash -euc \"npm ci --no-audit --no-fund; node node_modules/@playwright/test/cli.js install --with-deps chromium webkit\""
+        },
+        {
+          "name": "Bounded Node collection and three builds",
+          "timeout-minutes": 10,
+          "run": "timeout --signal=TERM --kill-after=5s 600s node stage-b-evidence/execution/prepare.mjs"
+        },
+        {
+          "name": "Bind fresh source core and probe builds",
+          "run": "node stage-b-evidence/execution/authorize.mjs"
+        },
+        {
+          "name": "full-chromium complete scope",
+          "run": "node stage-b-evidence/execution/run.mjs full-chromium"
+        },
+        {
+          "name": "full-webkit-phone complete scope",
+          "run": "node stage-b-evidence/execution/run.mjs full-webkit-phone"
+        },
+        {
+          "name": "stage-b-chromium complete scope",
+          "run": "node stage-b-evidence/execution/run.mjs stage-b-chromium"
+        },
+        {
+          "name": "stage-b-webkit-phone complete scope",
+          "run": "node stage-b-evidence/execution/run.mjs stage-b-webkit-phone"
+        },
+        {
+          "name": "Always preserve bounded acceptance or failure evidence",
+          "if": "always()",
+          "timeout-minutes": 2,
+          "run": "timeout --signal=TERM --kill-after=5s 120s node stage-b-evidence/execution/finalize.mjs"
+        },
+        {
+          "uses": "actions/upload-artifact@v4",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-240-${{ github.run_id }}",
+            "path": "${{ runner.temp }}/moticos-240-upload/",
+            "if-no-files-found": "error",
+            "retention-days": 1,
+            "compression-level": 6,
+            "include-hidden-files": true
+          }
+        }
+      ]
+    }
+  }
+}

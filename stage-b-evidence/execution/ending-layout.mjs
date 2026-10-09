@@ -1,0 +1,2 @@
+import assert from 'node:assert/strict';
+export function separatedActions(rows,container){assert.equal(rows.length,2);for(const r of rows){assert(r.width>0&&r.height>=44);assert(r.x>=container.x-1&&r.x+r.width<=container.x+container.width+1);assert(r.scrollWidth<=r.clientWidth+1);}const[a,b]=rows;const horizontal=Math.max(b.x-a.x-a.width,a.x-b.x-b.width),vertical=Math.max(b.y-a.y-a.height,a.y-b.y-b.height);assert(horizontal>=12||vertical>=12,'Ending actions must have distinct separated targets even when wrapped');return true;}

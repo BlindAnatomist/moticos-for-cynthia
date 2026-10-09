@@ -2,7 +2,7 @@ import {useEffect,useRef,useState,useReducer} from 'react';
 import {CATALOG,CHAPTERS,CHAPTER_COPY,STORY_ORDERS,POSTCARD_POSTSCRIPTS} from './content.js';
 import {chapterComplete,originalVolumeComplete} from './engine.js';
 import {familyName,completedLetter,correspondenceTitle,postcardChapter} from './feedback.js';
-import {VOLUMES,continuationEntered,collectionScope} from './volumes.js';
+import {VOLUMES,availableVolumes,collectionScope} from './volumes.js';
 import {initialCollectionNavigation,navigateCollection,collectionView} from './collectionNavigation.js';
 
 export function CollectionPanel({state,Artwork,openPostcard}) {
@@ -11,9 +11,9 @@ export function CollectionPanel({state,Artwork,openPostcard}) {
   const heading=useRef(null),mounted=useRef(false);
   useEffect(()=>{if(mounted.current)heading.current?.focus();else mounted.current=true;},[selection]);
   const original=collectionScope(state,VOLUMES[0].id),postscripts=POSTCARD_POSTSCRIPTS.filter(card=>view.pieceIds.includes(card.pieceId)&&chapterComplete(state,postcardChapter(card.pieceId)?.id));
-  return <section className="career-volume-collection"><h3 ref={heading} tabIndex={-1}>{view.title} · {view.collected}/{view.pieceIds.length} collected</h3><p>The first correspondence: {original.collected}/160 pictures collected. Discoveries stay after Send, Cut, Recycle or Undo.</p>
+  return <section className="career-volume-collection"><h3 ref={heading} tabIndex={-1}>{view.title} · {view.collected}/{view.pieceIds.length} collected</h3><p>The first correspondence: {original.collected}/{original.total} pictures collected. Discoveries stay after Send, Cut, Recycle or Undo.</p>
     <div className="career-collection-navigation">
-      {continuationEntered(state)&&<label>Collection volume <select aria-label="Collection volume" value={scope.id} onChange={event=>navigate({type:'volume',value:event.target.value})}><option value="all">All available pictures · 200</option>{VOLUMES.map(v=><option key={v.id} value={v.id}>{v.title} · {v.pieceIds.length}</option>)}</select></label>}
+      {availableVolumes(state).length>1&&<label>Collection volume <select aria-label="Collection volume" value={scope.id} onChange={event=>navigate({type:'volume',value:event.target.value})}><option value="all">All available pictures · {collectionScope(state,'all').total}</option>{availableVolumes(state).map(v=><option key={v.id} value={v.id}>{v.title} · {v.pieceIds.length}</option>)}</select></label>}
       <label>Collection chapter <select aria-label="Collection chapter" value={view.chapter} onChange={event=>navigate({type:'chapter',value:event.target.value})}><option value="all">All chapters in this collection</option>{view.chapters.map(c=><option key={c.id} value={c.id}>{c.number}. {c.title}</option>)}</select></label>
       <label>Picture family <select aria-label="Picture family" value={view.family} onChange={event=>navigate({type:'family',value:event.target.value})}><option value="all">All picture families</option>{view.families.map(f=><option key={f.id} value={f.id}>{f.shortName} · 5 pictures</option>)}</select></label>
     </div>

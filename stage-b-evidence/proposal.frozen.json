@@ -1,0 +1,2084 @@
+{
+  "proposalSchemaVersion": 1,
+  "status": "design-candidate-not-implemented-not-runtime-accepted",
+  "targetContentVersion": 6,
+  "targetSchemaVersion": 6,
+  "rulesVersion": 2,
+  "baseline": {
+    "contentVersion": 5,
+    "schemaVersion": 5,
+    "pieces": 200,
+    "chapters": 20,
+    "storyLetters": 139,
+    "canonicalStoryXP": 7830,
+    "canonicalStoryCoins": 3315,
+    "allPriorUpgradeCost": 3205,
+    "minimumCompletedStageAXP": 7810,
+    "sourceSnapshotSha256": "515181a5ee869ef9d72fe792ca00a6b0a7d4db4fe3e7cac8741633475dae0d4f"
+  },
+  "additions": {
+    "catalog": [
+      {
+        "familyId": "survey-compass",
+        "tier": 1,
+        "mass": 1,
+        "name": "Survey Compass",
+        "shortName": "Compass",
+        "compactBoardLabel": "Compass",
+        "id": "b240-cp1"
+      },
+      {
+        "familyId": "survey-compass",
+        "tier": 2,
+        "mass": 2,
+        "name": "Compass Hinge",
+        "shortName": "Hinge",
+        "compactBoardLabel": "Hinge",
+        "id": "b240-cp2"
+      },
+      {
+        "familyId": "survey-compass",
+        "tier": 3,
+        "mass": 4,
+        "name": "Cross Bearing",
+        "shortName": "Crosswise",
+        "compactBoardLabel": "Crossway",
+        "id": "b240-cp3"
+      },
+      {
+        "familyId": "survey-compass",
+        "tier": 4,
+        "mass": 8,
+        "name": "Off North",
+        "shortName": "Off North",
+        "compactBoardLabel": "Off-axis",
+        "id": "b240-cp4"
+      },
+      {
+        "familyId": "survey-compass",
+        "tier": 5,
+        "mass": 16,
+        "name": "Further Afield",
+        "shortName": "Afield",
+        "compactBoardLabel": "Afield",
+        "id": "b240-cp5"
+      },
+      {
+        "familyId": "paper-kite",
+        "tier": 1,
+        "mass": 1,
+        "name": "Paper Kite",
+        "shortName": "Kite",
+        "compactBoardLabel": "Kite",
+        "id": "b240-kt1"
+      },
+      {
+        "familyId": "paper-kite",
+        "tier": 2,
+        "mass": 2,
+        "name": "Tailwind",
+        "shortName": "Tailwind",
+        "compactBoardLabel": "Tailwind",
+        "id": "b240-kt2"
+      },
+      {
+        "familyId": "paper-kite",
+        "tier": 3,
+        "mass": 4,
+        "name": "Cross Draft",
+        "shortName": "Draft",
+        "compactBoardLabel": "Draft",
+        "id": "b240-kt3"
+      },
+      {
+        "familyId": "paper-kite",
+        "tier": 4,
+        "mass": 8,
+        "name": "Wind Window",
+        "shortName": "Windowed",
+        "compactBoardLabel": "Windowed",
+        "id": "b240-kt4"
+      },
+      {
+        "familyId": "paper-kite",
+        "tier": 5,
+        "mass": 16,
+        "name": "Windward",
+        "shortName": "Windward",
+        "compactBoardLabel": "Windward",
+        "id": "b240-kt5"
+      },
+      {
+        "familyId": "stoppered-bottle",
+        "tier": 1,
+        "mass": 1,
+        "name": "Stoppered Bottle",
+        "shortName": "Bottle",
+        "compactBoardLabel": "Bottle",
+        "id": "b240-vb1"
+      },
+      {
+        "familyId": "stoppered-bottle",
+        "tier": 2,
+        "mass": 2,
+        "name": "Bottle Uncapped",
+        "shortName": "Uncapped",
+        "compactBoardLabel": "Uncapped",
+        "id": "b240-vb2"
+      },
+      {
+        "familyId": "stoppered-bottle",
+        "tier": 3,
+        "mass": 4,
+        "name": "Neck and Neck",
+        "shortName": "Neckwise",
+        "compactBoardLabel": "Neckwise",
+        "id": "b240-vb3"
+      },
+      {
+        "familyId": "stoppered-bottle",
+        "tier": 4,
+        "mass": 8,
+        "name": "Bottle Passage",
+        "shortName": "Passageway",
+        "compactBoardLabel": "Neckway",
+        "id": "b240-vb4"
+      },
+      {
+        "familyId": "stoppered-bottle",
+        "tier": 5,
+        "mass": 16,
+        "name": "Bottled Space",
+        "shortName": "Kept Space",
+        "compactBoardLabel": "Kept",
+        "id": "b240-vb5"
+      },
+      {
+        "familyId": "tied-parcel",
+        "tier": 1,
+        "mass": 1,
+        "name": "Tied Parcel",
+        "shortName": "Parcel",
+        "compactBoardLabel": "Parcel",
+        "id": "b240-pa1"
+      },
+      {
+        "familyId": "tied-parcel",
+        "tier": 2,
+        "mass": 2,
+        "name": "Loose Strap",
+        "shortName": "Loose Tie",
+        "compactBoardLabel": "Loose",
+        "id": "b240-pa2"
+      },
+      {
+        "familyId": "tied-parcel",
+        "tier": 3,
+        "mass": 4,
+        "name": "Parcel Corner",
+        "shortName": "Cornered",
+        "compactBoardLabel": "Cornered",
+        "id": "b240-pa3"
+      },
+      {
+        "familyId": "tied-parcel",
+        "tier": 4,
+        "mass": 8,
+        "name": "Unpacked Parcel",
+        "shortName": "Unpacked",
+        "compactBoardLabel": "Unpacked",
+        "id": "b240-pa4"
+      },
+      {
+        "familyId": "tied-parcel",
+        "tier": 5,
+        "mass": 16,
+        "name": "Room in the Parcel",
+        "shortName": "Room Kept",
+        "compactBoardLabel": "Room",
+        "id": "b240-pa5"
+      },
+      {
+        "familyId": "balance-scale",
+        "tier": 1,
+        "mass": 1,
+        "name": "Paper Balance",
+        "shortName": "Scales",
+        "compactBoardLabel": "Scales",
+        "id": "b240-bs1"
+      },
+      {
+        "familyId": "balance-scale",
+        "tier": 2,
+        "mass": 2,
+        "name": "Unequal Pans",
+        "shortName": "Unequal",
+        "compactBoardLabel": "Unequal",
+        "id": "b240-bs2"
+      },
+      {
+        "familyId": "balance-scale",
+        "tier": 3,
+        "mass": 4,
+        "name": "Cross Measure",
+        "shortName": "Crossweight",
+        "compactBoardLabel": "Crossbar",
+        "id": "b240-bs3"
+      },
+      {
+        "familyId": "balance-scale",
+        "tier": 4,
+        "mass": 8,
+        "name": "Between Weights",
+        "shortName": "Between",
+        "compactBoardLabel": "Middle",
+        "id": "b240-bs4"
+      },
+      {
+        "familyId": "balance-scale",
+        "tier": 5,
+        "mass": 16,
+        "name": "Common Ground",
+        "shortName": "Grounded",
+        "compactBoardLabel": "Grounded",
+        "id": "b240-bs5"
+      },
+      {
+        "familyId": "horseshoe-magnet",
+        "tier": 1,
+        "mass": 1,
+        "name": "Horseshoe Magnet",
+        "shortName": "Magnet",
+        "compactBoardLabel": "Magnet",
+        "id": "b240-mg1"
+      },
+      {
+        "familyId": "horseshoe-magnet",
+        "tier": 2,
+        "mass": 2,
+        "name": "Uneven Pull",
+        "shortName": "Long Pull",
+        "compactBoardLabel": "Long Arm",
+        "id": "b240-mg2"
+      },
+      {
+        "familyId": "horseshoe-magnet",
+        "tier": 3,
+        "mass": 4,
+        "name": "Across the Gap",
+        "shortName": "Pole Gap",
+        "compactBoardLabel": "Pole Gap",
+        "id": "b240-mg3"
+      },
+      {
+        "familyId": "horseshoe-magnet",
+        "tier": 4,
+        "mass": 8,
+        "name": "Close Attraction",
+        "shortName": "Near Poles",
+        "compactBoardLabel": "Near",
+        "id": "b240-mg4"
+      },
+      {
+        "familyId": "horseshoe-magnet",
+        "tier": 5,
+        "mass": 16,
+        "name": "Outward Pull",
+        "shortName": "Outward",
+        "compactBoardLabel": "Outward",
+        "id": "b240-mg5"
+      },
+      {
+        "familyId": "accordion",
+        "tier": 1,
+        "mass": 1,
+        "name": "Paper Accordion",
+        "shortName": "Accordion",
+        "compactBoardLabel": "Accord",
+        "id": "b240-ac1"
+      },
+      {
+        "familyId": "accordion",
+        "tier": 2,
+        "mass": 2,
+        "name": "Open Bellows",
+        "shortName": "Bellows",
+        "compactBoardLabel": "Bellows",
+        "id": "b240-ac2"
+      },
+      {
+        "familyId": "accordion",
+        "tier": 3,
+        "mass": 4,
+        "name": "Off Key",
+        "shortName": "Off Key",
+        "compactBoardLabel": "Off Key",
+        "id": "b240-ac3"
+      },
+      {
+        "familyId": "accordion",
+        "tier": 4,
+        "mass": 8,
+        "name": "Counterpart",
+        "shortName": "Counter",
+        "compactBoardLabel": "Partner",
+        "id": "b240-ac4"
+      },
+      {
+        "familyId": "accordion",
+        "tier": 5,
+        "mass": 16,
+        "name": "Paper Chord",
+        "shortName": "Chord",
+        "compactBoardLabel": "Chord",
+        "id": "b240-ac5"
+      },
+      {
+        "familyId": "trumpet",
+        "tier": 1,
+        "mass": 1,
+        "name": "Paper Trumpet",
+        "shortName": "Trumpet",
+        "compactBoardLabel": "Trumpet",
+        "id": "b240-tr1"
+      },
+      {
+        "familyId": "trumpet",
+        "tier": 2,
+        "mass": 2,
+        "name": "Upbeat Brass",
+        "shortName": "Upbeat",
+        "compactBoardLabel": "Upbeat",
+        "id": "b240-tr2"
+      },
+      {
+        "familyId": "trumpet",
+        "tier": 3,
+        "mass": 4,
+        "name": "Roundabout Brass",
+        "shortName": "Roundabout",
+        "compactBoardLabel": "Round",
+        "id": "b240-tr3"
+      },
+      {
+        "familyId": "trumpet",
+        "tier": 4,
+        "mass": 8,
+        "name": "Call Back Brass",
+        "shortName": "Call Back",
+        "compactBoardLabel": "Recall",
+        "id": "b240-tr4"
+      },
+      {
+        "familyId": "trumpet",
+        "tier": 5,
+        "mass": 16,
+        "name": "A Note Kept",
+        "shortName": "Note Kept",
+        "compactBoardLabel": "Coda",
+        "id": "b240-tr5"
+      }
+    ],
+    "families": [
+      {
+        "id": "survey-compass",
+        "shortName": "Compass",
+        "color": "#a78448",
+        "starterId": "b240-cp1",
+        "pieceIds": [
+          "b240-cp1",
+          "b240-cp2",
+          "b240-cp3",
+          "b240-cp4",
+          "b240-cp5"
+        ]
+      },
+      {
+        "id": "paper-kite",
+        "shortName": "Kite",
+        "color": "#537b80",
+        "starterId": "b240-kt1",
+        "pieceIds": [
+          "b240-kt1",
+          "b240-kt2",
+          "b240-kt3",
+          "b240-kt4",
+          "b240-kt5"
+        ]
+      },
+      {
+        "id": "stoppered-bottle",
+        "shortName": "Bottle",
+        "color": "#53788b",
+        "starterId": "b240-vb1",
+        "pieceIds": [
+          "b240-vb1",
+          "b240-vb2",
+          "b240-vb3",
+          "b240-vb4",
+          "b240-vb5"
+        ]
+      },
+      {
+        "id": "tied-parcel",
+        "shortName": "Parcel",
+        "color": "#ad5946",
+        "starterId": "b240-pa1",
+        "pieceIds": [
+          "b240-pa1",
+          "b240-pa2",
+          "b240-pa3",
+          "b240-pa4",
+          "b240-pa5"
+        ]
+      },
+      {
+        "id": "balance-scale",
+        "shortName": "Scales",
+        "color": "#9a7d4b",
+        "starterId": "b240-bs1",
+        "pieceIds": [
+          "b240-bs1",
+          "b240-bs2",
+          "b240-bs3",
+          "b240-bs4",
+          "b240-bs5"
+        ]
+      },
+      {
+        "id": "horseshoe-magnet",
+        "shortName": "Magnet",
+        "color": "#aa5143",
+        "starterId": "b240-mg1",
+        "pieceIds": [
+          "b240-mg1",
+          "b240-mg2",
+          "b240-mg3",
+          "b240-mg4",
+          "b240-mg5"
+        ]
+      },
+      {
+        "id": "accordion",
+        "shortName": "Accordion",
+        "color": "#4c7870",
+        "starterId": "b240-ac1",
+        "pieceIds": [
+          "b240-ac1",
+          "b240-ac2",
+          "b240-ac3",
+          "b240-ac4",
+          "b240-ac5"
+        ]
+      },
+      {
+        "id": "trumpet",
+        "shortName": "Trumpet",
+        "color": "#b08a4b",
+        "starterId": "b240-tr1",
+        "pieceIds": [
+          "b240-tr1",
+          "b240-tr2",
+          "b240-tr3",
+          "b240-tr4",
+          "b240-tr5"
+        ]
+      }
+    ],
+    "levels": [
+      {
+        "level": 43,
+        "xp": 7865,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 44,
+        "xp": 8090,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 45,
+        "xp": 8130,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 46,
+        "xp": 8285,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 47,
+        "xp": 8350,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 48,
+        "xp": 8575,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 49,
+        "xp": 8630,
+        "targetCeiling": 5,
+        "slots": 2
+      },
+      {
+        "level": 50,
+        "xp": 8980,
+        "targetCeiling": 5,
+        "slots": 2
+      }
+    ],
+    "chapters": [
+      {
+        "id": "cross-currents",
+        "number": 21,
+        "title": "Cross Currents",
+        "catalogEnvelopeId": "expansion-cross-currents",
+        "entryXP": 7810,
+        "minimumLevel": 44,
+        "levelCap": 44,
+        "storyIds": [
+          "cross-currents-letter-1",
+          "cross-currents-letter-2",
+          "cross-currents-letter-3",
+          "cross-currents-letter-4",
+          "cross-currents-letter-5",
+          "cross-currents-letter-6"
+        ],
+        "entrySources": [
+          "survey-compass",
+          "paper-kite"
+        ],
+        "nextId": "safe-keeping",
+        "nextTitle": "Safe Keeping",
+        "nextPreview": "An open bottle begins this quieter envelope. One small reply brings the parcel; the letters stay with small forms."
+      },
+      {
+        "id": "safe-keeping",
+        "number": 22,
+        "title": "Safe Keeping",
+        "catalogEnvelopeId": "expansion-safe-keeping",
+        "entryXP": 8090,
+        "minimumLevel": 46,
+        "levelCap": 46,
+        "storyIds": [
+          "safe-keeping-letter-1",
+          "safe-keeping-letter-2",
+          "safe-keeping-letter-3",
+          "safe-keeping-letter-4",
+          "safe-keeping-letter-5",
+          "safe-keeping-letter-6"
+        ],
+        "entrySources": [
+          "stoppered-bottle"
+        ],
+        "nextId": "give-and-take",
+        "nextTitle": "Give and Take",
+        "nextPreview": "Scales and Magnet are both here from the start. Two letters wait: a small unequal pair and a request for two separate balance pictures."
+      },
+      {
+        "id": "give-and-take",
+        "number": 23,
+        "title": "Give and Take",
+        "catalogEnvelopeId": "expansion-give-and-take",
+        "entryXP": 8285,
+        "minimumLevel": 48,
+        "levelCap": 48,
+        "storyIds": [
+          "give-and-take-letter-1",
+          "give-and-take-letter-2",
+          "give-and-take-letter-3",
+          "give-and-take-letter-4",
+          "give-and-take-letter-5",
+          "give-and-take-letter-6"
+        ],
+        "entrySources": [
+          "balance-scale",
+          "horseshoe-magnet"
+        ],
+        "nextId": "paper-duet",
+        "nextTitle": "Paper Duet",
+        "nextPreview": "An accordion begins beside a sheet from the typewriter. The trumpet follows; the longer replies lead to one final trumpet picture and a small closing pair."
+      },
+      {
+        "id": "paper-duet",
+        "number": 24,
+        "title": "Paper Duet",
+        "catalogEnvelopeId": "expansion-paper-duet",
+        "entryXP": 8575,
+        "minimumLevel": 50,
+        "levelCap": 50,
+        "storyIds": [
+          "paper-duet-letter-1",
+          "paper-duet-letter-2",
+          "paper-duet-letter-3",
+          "paper-duet-letter-4",
+          "paper-duet-letter-5",
+          "paper-duet-letter-6",
+          "paper-duet-letter-7"
+        ],
+        "entrySources": [
+          "accordion"
+        ],
+        "nextId": null,
+        "nextTitle": null,
+        "nextPreview": null
+      }
+    ],
+    "story": [
+      {
+        "id": "cross-currents-letter-1",
+        "chapterId": "cross-currents",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "b240-cp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "An opening in two directions",
+        "letter": "The compass has opened a small hinge in its case. The kite has changed the edge of its sail. Let these two small departures begin another envelope.",
+        "goal": "Make and send Compass Hinge and Tailwind.",
+        "sentCaption": "The hinge and the altered sail went out together."
+      },
+      {
+        "id": "cross-currents-letter-2",
+        "chapterId": "cross-currents",
+        "requiresMilestones": [
+          "cross-currents-letter-1"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-cp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A draft across the table",
+        "letter": "The kite stretches across its spar, with a second sail fragment at the far end. Give that broad crossing the small Compass Hinge for company.",
+        "goal": "Make and send Compass Hinge and Cross Draft.",
+        "sentCaption": "The cross draft found its small hinge."
+      },
+      {
+        "id": "cross-currents-letter-3",
+        "chapterId": "cross-currents",
+        "requiresMilestones": [
+          "cross-currents-letter-1"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-cp4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A bearing left open",
+        "letter": "An open triangle interrupts the compass face. Tailwind keeps its own smaller cut in the sail. This reply can wait while you finish the other direction.",
+        "goal": "Make and send Off North and Tailwind.",
+        "sentCaption": "The open compass face travelled beside Tailwind."
+      },
+      {
+        "id": "cross-currents-letter-4",
+        "chapterId": "cross-currents",
+        "requiresMilestones": [
+          "cross-currents-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-cp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "ru2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "An old rule at a new angle",
+        "letter": "Cross Bearing sets the compass panels on different corners. Short Rule keeps two upright ruler strips around its narrow opening. Put the upright strips beside the separated compass panels.",
+        "goal": "Make and send Cross Bearing and Short Rule.",
+        "sentCaption": "The compass panels met the familiar ruler strips."
+      },
+      {
+        "id": "cross-currents-letter-5",
+        "chapterId": "cross-currents",
+        "requiresMilestones": [
+          "cross-currents-letter-3"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-cp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Room for the wind",
+        "letter": "The kite now carries an open window between its dark sails. Keep that opening beside the compass hinge; neither needs to be filled.",
+        "goal": "Make and send Compass Hinge and Wind Window.",
+        "sentCaption": "The window and hinge left room between them."
+      },
+      {
+        "id": "cross-currents-letter-6",
+        "chapterId": "cross-currents",
+        "requiresMilestones": [
+          "cross-currents-letter-1",
+          "cross-currents-letter-2",
+          "cross-currents-letter-3",
+          "cross-currents-letter-4",
+          "cross-currents-letter-5"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-cp3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Directions that can stay different",
+        "letter": "One crossing belongs to the compass panels, the other to the kite spar. They do not need to point the same way to close this envelope.",
+        "goal": "Make and send Cross Bearing and Cross Draft.",
+        "sentCaption": "The two crossings finished Cross Currents."
+      },
+      {
+        "id": "safe-keeping-letter-1",
+        "chapterId": "safe-keeping",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "b240-vb2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "pn2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "An opening for a small thought",
+        "letter": "The bottle neck lifts away from its open mouth. The pen from Small Impressions offers an Inkling. Send the two openings, and a parcel will join the table.",
+        "goal": "Make and send Bottle Uncapped and Inkling.",
+        "sentCaption": "The open bottle and the Inkling made room for the parcel."
+      },
+      {
+        "id": "safe-keeping-letter-2",
+        "chapterId": "safe-keeping",
+        "requiresMilestones": [
+          "safe-keeping-letter-1"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-vb2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "rp2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "The letter already here",
+        "letter": "An Open Letter may still be waiting from an earlier envelope. It belongs beside Bottle Uncapped in this small reply. If you keep the bottle for the parcel instead, this letter will wait.",
+        "goal": "Make and send Bottle Uncapped and Open Letter.",
+        "sentCaption": "The bottle opening reached the Open Letter."
+      },
+      {
+        "id": "safe-keeping-letter-3",
+        "chapterId": "safe-keeping",
+        "requiresMilestones": [
+          "safe-keeping-letter-1"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-pa3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-vb2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A corner to keep",
+        "letter": "The parcel makes a deep corner beneath its crossing strap. Put Bottle Uncapped beside it. The same bottle picture may be useful to the other waiting reply, so choose where it goes first.",
+        "goal": "Make and send Parcel Corner and Bottle Uncapped.",
+        "sentCaption": "The parcel corner kept company with the bottle opening."
+      },
+      {
+        "id": "safe-keeping-letter-4",
+        "chapterId": "safe-keeping",
+        "requiresMilestones": [
+          "safe-keeping-letter-3"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-pa2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-vb3",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A strap and a doorway",
+        "letter": "Loose Strap steps one parcel face forward. Neck and Neck leaves a tall opening under the bottle shoulders. The two pictures make a modest, uneven pair.",
+        "goal": "Make and send Loose Strap and Neck and Neck.",
+        "sentCaption": "The stepped parcel and the bottle doorway were sent."
+      },
+      {
+        "id": "safe-keeping-letter-5",
+        "chapterId": "safe-keeping",
+        "requiresMilestones": [
+          "safe-keeping-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-pa3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "th2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A measure for a corner",
+        "letter": "The thimble brings back Tilted, two low dotted panels from the last four envelopes. This time it sits beside the parcel corner. There is no packing to get right.",
+        "goal": "Make and send Parcel Corner and Tilted.",
+        "sentCaption": "The familiar little measure found the parcel corner."
+      },
+      {
+        "id": "safe-keeping-letter-6",
+        "chapterId": "safe-keeping",
+        "requiresMilestones": [
+          "safe-keeping-letter-1",
+          "safe-keeping-letter-2",
+          "safe-keeping-letter-3",
+          "safe-keeping-letter-4",
+          "safe-keeping-letter-5"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-vb3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-pa3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "Enough room for now",
+        "letter": "The bottle leaves a doorway; the parcel makes a corner. These small forms are enough to finish Safe Keeping. Their larger pictures remain yours to discover whenever you want.",
+        "goal": "Make and send Neck and Neck and Parcel Corner.",
+        "sentCaption": "The doorway and corner closed Safe Keeping."
+      },
+      {
+        "id": "give-and-take-letter-1",
+        "chapterId": "give-and-take",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "b240-bs2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "Unequal company",
+        "letter": "One pan hangs lower, and one magnet arm reaches higher. Give these unequal shapes a first reply without asking them to settle into symmetry.",
+        "goal": "Make and send Unequal Pans and Uneven Pull.",
+        "sentCaption": "The unequal pans and uneven pull arrived together."
+      },
+      {
+        "id": "give-and-take-letter-2",
+        "chapterId": "give-and-take",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "b240-bs2",
+            "quantity": 2
+          },
+          {
+            "pieceId": "b240-mg3",
+            "quantity": 1
+          }
+        ],
+        "xp": 45,
+        "coins": 20,
+        "title": "Two balances kept separate",
+        "letter": "Keep two Unequal Pans pictures separate for this letter. Across the Gap spreads the magnet arms beside them. Merging the two balances makes Cross Measure, which belongs to another reply.",
+        "goal": "Make and send 2 separate Unequal Pans pictures and Across the Gap.",
+        "sentCaption": "Two separate balances travelled with the broad magnet gap."
+      },
+      {
+        "id": "give-and-take-letter-3",
+        "chapterId": "give-and-take",
+        "requiresMilestones": [
+          "give-and-take-letter-1"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-bs3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "One measure across",
+        "letter": "Cross Measure changes the balance beam at its center. Uneven Pull keeps one magnet arm short. You can merge a pair of Unequal Pans for this reply, or reserve that pair for the other letter.",
+        "goal": "Make and send Cross Measure and Uneven Pull.",
+        "sentCaption": "The changed beam met the uneven magnet."
+      },
+      {
+        "id": "give-and-take-letter-4",
+        "chapterId": "give-and-take",
+        "requiresMilestones": [
+          "give-and-take-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-bs4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "Low pans, tall arm",
+        "letter": "Between Weights lowers the pans beside a bent support. Let the taller magnet arm rise next to that low balance. The larger share of this reply belongs to the scales.",
+        "goal": "Make and send Between Weights and Uneven Pull.",
+        "sentCaption": "The low balance and tall magnet arm made their reply."
+      },
+      {
+        "id": "give-and-take-letter-5",
+        "chapterId": "give-and-take",
+        "requiresMilestones": [
+          "give-and-take-letter-3"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-bs2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "The pull changes sides",
+        "letter": "Close Attraction curves its two ends toward the opening. Give it the small Unequal Pans. This time the longer making belongs to the magnet.",
+        "goal": "Make and send Unequal Pans and Close Attraction.",
+        "sentCaption": "The curved magnet ends travelled with the small balance."
+      },
+      {
+        "id": "give-and-take-letter-6",
+        "chapterId": "give-and-take",
+        "requiresMilestones": [
+          "give-and-take-letter-1",
+          "give-and-take-letter-2",
+          "give-and-take-letter-3",
+          "give-and-take-letter-4",
+          "give-and-take-letter-5"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-bs3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg3",
+            "quantity": 1
+          }
+        ],
+        "xp": 50,
+        "coins": 20,
+        "title": "A space between measures",
+        "letter": "The balance crosses at its beam, and the magnet spreads around a gap. Neither picture has to win. Send the pair and leave this envelope at rest.",
+        "goal": "Make and send Cross Measure and Across the Gap.",
+        "sentCaption": "The crossing and the gap finished Give and Take."
+      },
+      {
+        "id": "paper-duet-letter-1",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [],
+        "requirements": [
+          {
+            "pieceId": "b240-ac2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A first fold on fresh paper",
+        "letter": "The accordion raises one end above the other. A fresh sheet from the typewriter gives its open bellows a quiet beginning. A trumpet follows this first reply.",
+        "goal": "Make and send Open Bellows and Paper.",
+        "sentCaption": "The open bellows reached the fresh sheet."
+      },
+      {
+        "id": "paper-duet-letter-2",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [
+          "paper-duet-letter-1"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-ac3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A turn before the next phrase",
+        "letter": "Off Key turns its key end across the table. Upbeat Brass lifts the trumpet bell. Keep this first duet compact before opening the two longer replies.",
+        "goal": "Make and send Off Key and Upbeat Brass.",
+        "sentCaption": "The turned keys and lifted bell began their duet."
+      },
+      {
+        "id": "paper-duet-letter-3",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [
+          "paper-duet-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-ac2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30,
+        "title": "A call toward the folds",
+        "letter": "Call Back Brass turns the bell over its loop. Open Bellows holds the simpler accordion shape beside it. Keep an accordion picture here if this is the reply you want to finish first.",
+        "goal": "Make and send Open Bellows and Call Back Brass.",
+        "sentCaption": "The returning bell met the open folds."
+      },
+      {
+        "id": "paper-duet-letter-4",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [
+          "paper-duet-letter-2"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-ac4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr3",
+            "quantity": 1
+          }
+        ],
+        "xp": 85,
+        "coins": 35,
+        "title": "The other part of the duet",
+        "letter": "Counterpart draws the accordion ends around a wide opening. Roundabout Brass carries its valves beneath the pipe. This reply spends more paper on the accordion than the other waiting letter does.",
+        "goal": "Make and send Counterpart and Roundabout Brass.",
+        "sentCaption": "The open accordion and the low valves sent their part."
+      },
+      {
+        "id": "paper-duet-letter-5",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [
+          "paper-duet-letter-3"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-ac3",
+            "quantity": 1
+          },
+          {
+            "pieceId": "r2",
+            "quantity": 1
+          }
+        ],
+        "xp": 35,
+        "coins": 15,
+        "title": "A familiar ridge in the map",
+        "letter": "The old map brings back River Ridge, with two unequal peaks interrupting its river. Set Off Key beside it for a shorter reply between the larger pictures. The turned keys can keep the map peaks company.",
+        "goal": "Make and send Off Key and River Ridge.",
+        "sentCaption": "The keys and the map ridge took the shorter route."
+      },
+      {
+        "id": "paper-duet-letter-6",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [
+          "paper-duet-letter-4",
+          "paper-duet-letter-5"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-tr5",
+            "quantity": 1
+          }
+        ],
+        "xp": 140,
+        "coins": 60,
+        "title": "A note to keep",
+        "letter": "The trumpet turns upright around its long open loop. Its bell is high, its valves run down the side, and the mouthpiece stays near the table. Make A Note Kept for this one final picture.",
+        "goal": "Make and send A Note Kept.",
+        "sentCaption": "A Note Kept has been sent. There is one small reply left."
+      },
+      {
+        "id": "paper-duet-letter-7",
+        "chapterId": "paper-duet",
+        "requiresMilestones": [
+          "paper-duet-letter-1",
+          "paper-duet-letter-2",
+          "paper-duet-letter-3",
+          "paper-duet-letter-4",
+          "paper-duet-letter-5",
+          "paper-duet-letter-6"
+        ],
+        "requirements": [
+          {
+            "pieceId": "b240-ac2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10,
+        "title": "A small reply after the last note",
+        "letter": "Return to the open bellows and the lifted bell. There is no louder ending to make. Send this small pair, then keep the table and all the pictures you have found.",
+        "goal": "Make and send Open Bellows and Upbeat Brass.",
+        "sentCaption": "The small duet closed these four correspondences."
+      }
+    ],
+    "sourceRules": [
+      {
+        "id": "survey-compass",
+        "chapterId": "cross-currents",
+        "milestones": []
+      },
+      {
+        "id": "paper-kite",
+        "chapterId": "cross-currents",
+        "milestones": []
+      },
+      {
+        "id": "stoppered-bottle",
+        "chapterId": "safe-keeping",
+        "milestones": []
+      },
+      {
+        "id": "tied-parcel",
+        "chapterId": "safe-keeping",
+        "milestones": [
+          "safe-keeping-letter-1"
+        ]
+      },
+      {
+        "id": "balance-scale",
+        "chapterId": "give-and-take",
+        "milestones": []
+      },
+      {
+        "id": "horseshoe-magnet",
+        "chapterId": "give-and-take",
+        "milestones": []
+      },
+      {
+        "id": "accordion",
+        "chapterId": "paper-duet",
+        "milestones": []
+      },
+      {
+        "id": "trumpet",
+        "chapterId": "paper-duet",
+        "milestones": [
+          "paper-duet-letter-1"
+        ]
+      }
+    ],
+    "upgrades": [
+      {
+        "id": "survey-compass-sorter",
+        "familyId": "survey-compass",
+        "chapterId": "cross-currents",
+        "name": "Compass sorter I",
+        "level": 42,
+        "price": 65,
+        "description": "Compass draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "paper-kite-sorter",
+        "familyId": "paper-kite",
+        "chapterId": "cross-currents",
+        "name": "Kite sorter I",
+        "level": 42,
+        "price": 65,
+        "description": "Kite draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "stoppered-bottle-sorter",
+        "familyId": "stoppered-bottle",
+        "chapterId": "safe-keeping",
+        "name": "Bottle sorter I",
+        "level": 44,
+        "price": 45,
+        "description": "Bottle draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "tied-parcel-sorter",
+        "familyId": "tied-parcel",
+        "chapterId": "safe-keeping",
+        "name": "Parcel sorter I",
+        "level": 44,
+        "price": 50,
+        "description": "Parcel draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "balance-scale-sorter",
+        "familyId": "balance-scale",
+        "chapterId": "give-and-take",
+        "name": "Scales sorter I",
+        "level": 46,
+        "price": 70,
+        "description": "Scales draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "horseshoe-magnet-sorter",
+        "familyId": "horseshoe-magnet",
+        "chapterId": "give-and-take",
+        "name": "Magnet sorter I",
+        "level": 46,
+        "price": 60,
+        "description": "Magnet draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "accordion-sorter",
+        "familyId": "accordion",
+        "chapterId": "paper-duet",
+        "name": "Accordion sorter I",
+        "level": 48,
+        "price": 65,
+        "description": "Accordion draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      },
+      {
+        "id": "trumpet-sorter",
+        "familyId": "trumpet",
+        "chapterId": "paper-duet",
+        "name": "Trumpet sorter I",
+        "level": 48,
+        "price": 65,
+        "description": "Trumpet draws repeat level 1, level 1, level 2. The next output is shown; the separate free level-1 draw remains available."
+      }
+    ],
+    "ordinary": [
+      {
+        "id": "cross-currents-repeat-1",
+        "chapterId": "cross-currents",
+        "title": "Another cross currents reply",
+        "requirements": [
+          {
+            "pieceId": "b240-cp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10
+      },
+      {
+        "id": "cross-currents-repeat-2",
+        "chapterId": "cross-currents",
+        "title": "Another cross currents reply",
+        "requirements": [
+          {
+            "pieceId": "b240-cp3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "cross-currents-repeat-3",
+        "chapterId": "cross-currents",
+        "title": "Another cross currents reply",
+        "requirements": [
+          {
+            "pieceId": "b240-kt3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "cross-currents-repeat-4",
+        "chapterId": "cross-currents",
+        "title": "Another cross currents reply",
+        "requirements": [
+          {
+            "pieceId": "b240-cp4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30
+      },
+      {
+        "id": "cross-currents-repeat-5",
+        "chapterId": "cross-currents",
+        "title": "Another cross currents reply",
+        "requirements": [
+          {
+            "pieceId": "b240-cp2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-kt4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30
+      },
+      {
+        "id": "safe-keeping-repeat-1",
+        "chapterId": "safe-keeping",
+        "title": "Another safe keeping reply",
+        "requirements": [
+          {
+            "pieceId": "b240-vb2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-pa2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10
+      },
+      {
+        "id": "safe-keeping-repeat-2",
+        "chapterId": "safe-keeping",
+        "title": "Another safe keeping reply",
+        "requirements": [
+          {
+            "pieceId": "b240-vb3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "safe-keeping-repeat-3",
+        "chapterId": "safe-keeping",
+        "title": "Another safe keeping reply",
+        "requirements": [
+          {
+            "pieceId": "b240-pa3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "safe-keeping-repeat-4",
+        "chapterId": "safe-keeping",
+        "title": "Another safe keeping reply",
+        "requirements": [
+          {
+            "pieceId": "b240-vb4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25
+      },
+      {
+        "id": "safe-keeping-repeat-5",
+        "chapterId": "safe-keeping",
+        "title": "Another safe keeping reply",
+        "requirements": [
+          {
+            "pieceId": "b240-pa4",
+            "quantity": 1
+          }
+        ],
+        "xp": 60,
+        "coins": 25
+      },
+      {
+        "id": "give-and-take-repeat-1",
+        "chapterId": "give-and-take",
+        "title": "Another give and take reply",
+        "requirements": [
+          {
+            "pieceId": "b240-bs2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10
+      },
+      {
+        "id": "give-and-take-repeat-2",
+        "chapterId": "give-and-take",
+        "title": "Another give and take reply",
+        "requirements": [
+          {
+            "pieceId": "b240-bs3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "give-and-take-repeat-3",
+        "chapterId": "give-and-take",
+        "title": "Another give and take reply",
+        "requirements": [
+          {
+            "pieceId": "b240-mg3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "give-and-take-repeat-4",
+        "chapterId": "give-and-take",
+        "title": "Another give and take reply",
+        "requirements": [
+          {
+            "pieceId": "b240-bs4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30
+      },
+      {
+        "id": "give-and-take-repeat-5",
+        "chapterId": "give-and-take",
+        "title": "Another give and take reply",
+        "requirements": [
+          {
+            "pieceId": "b240-bs2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-mg4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30
+      },
+      {
+        "id": "paper-duet-repeat-1",
+        "chapterId": "paper-duet",
+        "title": "Another paper duet reply",
+        "requirements": [
+          {
+            "pieceId": "b240-ac2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr2",
+            "quantity": 1
+          }
+        ],
+        "xp": 20,
+        "coins": 10
+      },
+      {
+        "id": "paper-duet-repeat-2",
+        "chapterId": "paper-duet",
+        "title": "Another paper duet reply",
+        "requirements": [
+          {
+            "pieceId": "b240-ac3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "paper-duet-repeat-3",
+        "chapterId": "paper-duet",
+        "title": "Another paper duet reply",
+        "requirements": [
+          {
+            "pieceId": "b240-tr3",
+            "quantity": 1
+          }
+        ],
+        "xp": 25,
+        "coins": 10
+      },
+      {
+        "id": "paper-duet-repeat-4",
+        "chapterId": "paper-duet",
+        "title": "Another paper duet reply",
+        "requirements": [
+          {
+            "pieceId": "b240-ac4",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr2",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30
+      },
+      {
+        "id": "paper-duet-repeat-5",
+        "chapterId": "paper-duet",
+        "title": "Another paper duet reply",
+        "requirements": [
+          {
+            "pieceId": "b240-ac2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "b240-tr4",
+            "quantity": 1
+          }
+        ],
+        "xp": 70,
+        "coins": 30
+      }
+    ],
+    "chapterCopy": {
+      "cross-currents": {
+        "number": 21,
+        "id": "cross-currents",
+        "title": "Cross Currents",
+        "familyIds": [
+          "survey-compass",
+          "paper-kite"
+        ],
+        "opening": "Compass and Kite arrive together. Both free sources are open. Begin with a small pair, then choose which direction to make first.",
+        "ending": "Cross Currents is complete. The compass and kite may keep their different directions. Safe Keeping brings smaller shapes when you want another envelope.",
+        "goal": "Send every story letter in Cross Currents. Supplies are free; purchases and optional discoveries are not required.",
+        "sourceNotice": "Both sources open on entry.",
+        "optionalInvitation": "Later pictures in this collection are optional discoveries. No discovery is required to keep a finished chapter complete.",
+        "pacingPattern": "one short shared introduction, two effort-asymmetric branches, callbacks earned separately, join"
+      },
+      "safe-keeping": {
+        "number": 22,
+        "id": "safe-keeping",
+        "title": "Safe Keeping",
+        "familyIds": [
+          "stoppered-bottle",
+          "tied-parcel"
+        ],
+        "opening": "An open bottle begins this quieter envelope. One small reply brings the parcel; the letters stay with small forms.",
+        "ending": "Safe Keeping is complete. The bottle and parcel can stay as small as this; their later forms are optional discoveries.",
+        "goal": "Send every story letter in Safe Keeping. Supplies are free; purchases and optional discoveries are not required.",
+        "sourceNotice": "One opening story letter unlocks Parcel.",
+        "optionalInvitation": "Later pictures in this collection are optional discoveries. No discovery is required to keep a finished chapter complete.",
+        "pacingPattern": "one source-opening letter, two low-tier cross-linked lanes, low-tier close"
+      },
+      "give-and-take": {
+        "number": 23,
+        "id": "give-and-take",
+        "title": "Give and Take",
+        "familyIds": [
+          "balance-scale",
+          "horseshoe-magnet"
+        ],
+        "opening": "Scales and Magnet are both here from the start. Two letters wait: a small unequal pair and a request for two separate balance pictures.",
+        "ending": "Give and Take is complete. The separate balances, the merged measure and the magnet gaps have each had their reply.",
+        "goal": "Send every story letter in Give and Take. Supplies are free; purchases and optional discoveries are not required.",
+        "sourceNotice": "Both sources open on entry.",
+        "optionalInvitation": "Later pictures in this collection are optional discoveries. No discovery is required to keep a finished chapter complete.",
+        "pacingPattern": "two letters immediately available, one exact-quantity reservation competition, inverted-family branches, join"
+      },
+      "paper-duet": {
+        "number": 24,
+        "id": "paper-duet",
+        "title": "Paper Duet",
+        "familyIds": [
+          "accordion",
+          "trumpet"
+        ],
+        "opening": "An accordion begins beside a sheet from the typewriter. The trumpet follows; the longer replies lead to one final trumpet picture and a small closing pair.",
+        "ending": "These four correspondences are complete. The first sixteen and the four that followed remain complete too. Your table, pictures and earlier letters are here to revisit.",
+        "goal": "Send every story letter in Paper Duet. Supplies are free; purchases and optional discoveries are not required.",
+        "sourceNotice": "One opening story letter unlocks Trumpet.",
+        "optionalInvitation": "Later pictures in this collection are optional discoveries. No discovery is required to keep a finished chapter complete.",
+        "pacingPattern": "serial two-letter pickup, mid-chapter fork, short map interlude, one tier-five solo, quiet low-tier coda"
+      }
+    },
+    "discoveryCaptions": {
+      "b240-cp1": "A hinged square case holds a broad dark needle on its lower face.",
+      "b240-cp2": "A small square corner opens away from the compass case at its colored hinge.",
+      "b240-cp3": "Two square compass panels sit on opposite corners around a long crossing needle.",
+      "b240-cp4": "A triangular opening cuts through the tilted compass face beside its broad needle.",
+      "b240-cp5": "Two separated square panels face one another across a low colored bridge.",
+      "b240-kt1": "A broad asymmetric sail crosses a dark spar, with two attached tail pennants.",
+      "b240-kt2": "A rectangular notch interrupts one edge of the sail while the two tail pennants spread apart.",
+      "b240-kt3": "A large cut sail and a smaller opposite sail fragment extend along one broad spar.",
+      "b240-kt4": "Two dark sail sections surround a large open window above the attached tail.",
+      "b240-kt5": "The sail rises above a low curved tail whose two pennants spread toward opposite sides.",
+      "b240-vb1": "A square-stoppered bottle has a narrow neck and broad straight-sided body.",
+      "b240-vb2": "The stoppered neck tilts away from the open mouth of the bottle.",
+      "b240-vb3": "A tall central doorway divides the lower bottle body beneath its stoppered neck.",
+      "b240-vb4": "One side of the bottle opens into a broad curved passage.",
+      "b240-vb5": "A rectangular opening sits inside the broad bottle body beneath its stoppered neck.",
+      "b240-pa1": "Three parcel faces meet beneath a broad crossing strap and a compact knot.",
+      "b240-pa2": "One parcel face steps forward while a loose strap end rises behind the top.",
+      "b240-pa3": "A high parcel face and a low block make a deep corner crossed by a joined strap.",
+      "b240-pa4": "Three raised parcel walls spread around an open central space, held by one low strap.",
+      "b240-pa5": "An open floor extends between a broad back panel and a narrow strapped side panel.",
+      "b240-bs1": "Two pans hang from a broad beam above a straight central support and wide base.",
+      "b240-bs2": "One pan hangs lower beneath a tilted balance beam.",
+      "b240-bs3": "The balance beam changes direction at its central crossing above unequal pans.",
+      "b240-bs4": "The pans hang low beside a bent central support.",
+      "b240-bs5": "Long suspension strips open tall windows beside the central balance support.",
+      "b240-mg1": "Two squared pole faces rise from a continuous heavy horseshoe bend.",
+      "b240-mg2": "One straight magnet arm is taller than the other.",
+      "b240-mg3": "The magnet arms splay outward around a wide angular gap.",
+      "b240-mg4": "The heavy magnet arms curl inward toward an uneven opening.",
+      "b240-mg5": "The two upper pole faces turn outward above a straight-sided central slot.",
+      "b240-ac1": "Three buttons and three key blocks face outward from the accordion ends across broad bellows folds.",
+      "b240-ac2": "One accordion end rises above the other along stepped bellows folds.",
+      "b240-ac3": "The accordion key end turns across the table at the base of the bellows.",
+      "b240-ac4": "Two unequal accordion ends frame a large opening between separated bellows strips.",
+      "b240-ac5": "The button end and key end curl around a broad open center.",
+      "b240-tr1": "A flared bell and three valves stand above an open rectangular trumpet loop.",
+      "b240-tr2": "The trumpet bell lifts above three valves and a low rectangular loop.",
+      "b240-tr3": "Three valves hang below the trumpet pipe above a slanted lower loop.",
+      "b240-tr4": "The bell turns back above three upright valves and an open rectangular loop.",
+      "b240-tr5": "The trumpet stands upright around a long open loop, with three valves down one side."
+    },
+    "postscripts": [
+      {
+        "id": "postscript-survey-compass",
+        "pieceId": "b240-cp5",
+        "companionPieceId": "b240-kt5",
+        "title": "Further afield",
+        "goal": "Merge two Off North pictures to discover Further Afield.",
+        "caption": "Two separated square panels face one another across a low colored bridge.",
+        "reverse": "The two compass panels have found a little distance. Windward is another picture with room between its parts; neither asks for a further delivery.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      },
+      {
+        "id": "postscript-paper-kite",
+        "pieceId": "b240-kt5",
+        "companionPieceId": "b240-cp5",
+        "title": "A windward postscript",
+        "goal": "Merge two Wind Window pictures to discover Windward.",
+        "caption": "The sail rises above a low curved tail whose two pennants spread toward opposite sides.",
+        "reverse": "The kite keeps its sail and sends its tail ends in different directions. You can keep this picture beside the compass in thought, without turning either into a task.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      },
+      {
+        "id": "postscript-stoppered-bottle",
+        "pieceId": "b240-vb5",
+        "companionPieceId": "b240-pa5",
+        "title": "Space worth keeping",
+        "goal": "Merge two Bottle Passage pictures to discover Bottled Space.",
+        "caption": "A rectangular opening sits inside the broad bottle body beneath its stoppered neck.",
+        "reverse": "The bottle keeps an opening inside its outline. Room in the Parcel offers another open place. These are pictures to discover, not containers you have to fill.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      },
+      {
+        "id": "postscript-tied-parcel",
+        "pieceId": "b240-pa5",
+        "companionPieceId": "b240-vb5",
+        "title": "A room in paper",
+        "goal": "Merge two Unpacked Parcel pictures to discover Room in the Parcel.",
+        "caption": "An open floor extends between a broad back panel and a narrow strapped side panel.",
+        "reverse": "A floor and two walls remain from the parcel. The strap still remembers what joined them. Bottled Space can be its quiet companion.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      },
+      {
+        "id": "postscript-balance-scale",
+        "pieceId": "b240-bs5",
+        "companionPieceId": "b240-mg5",
+        "title": "Common ground",
+        "goal": "Merge two Between Weights pictures to discover Common Ground.",
+        "caption": "Long suspension strips open tall windows beside the central balance support.",
+        "reverse": "The long suspension strips give the balance new open windows. Outward Pull may stand nearby without making the two pictures equal.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      },
+      {
+        "id": "postscript-horseshoe-magnet",
+        "pieceId": "b240-mg5",
+        "companionPieceId": "b240-bs5",
+        "title": "Room beyond the poles",
+        "goal": "Merge two Close Attraction pictures to discover Outward Pull.",
+        "caption": "The two upper pole faces turn outward above a straight-sided central slot.",
+        "reverse": "Both magnet ends turn away from the middle. Common Ground is a possible companion, with its own space on either side of the support.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      },
+      {
+        "id": "postscript-accordion",
+        "pieceId": "b240-ac5",
+        "companionPieceId": "b240-tr5",
+        "title": "A chord left open",
+        "goal": "Merge two Counterpart pictures to discover Paper Chord.",
+        "caption": "The button end and key end curl around a broad open center.",
+        "reverse": "The accordion ends curl around an open center. A Note Kept has its own letter; this new picture needs no performance or delivery.",
+        "rewardPolicy": "No reward; discovery only; do not consume or require delivery.",
+        "presentationContract": "Use existing single-picture discovery/postcard surfaces. Companion is a prose relationship, not a combined layout or export. Never mark a chapter or volume complete from discovery."
+      }
+    ]
+  },
+  "continuationBoundary": {
+    "id": "after-four-more-correspondences",
+    "fromChapterId": "short-measure",
+    "toChapterId": "cross-currents",
+    "fromVolumeId": "four-more-correspondences",
+    "toVolumeId": "cross-currents-correspondences",
+    "requiredPreviousStoryIds": [
+      "garden-letter-1",
+      "garden-letter-2",
+      "garden-letter-3",
+      "garden-letter-4",
+      "garden-letter-5",
+      "garden-letter-6",
+      "garden-letter-7",
+      "garden-letter-8",
+      "garden-letter-9",
+      "moon-letter-1",
+      "moon-letter-2",
+      "moon-letter-3",
+      "moon-letter-4",
+      "moon-letter-5",
+      "moon-letter-6",
+      "moon-letter-7",
+      "riverside-letter-1",
+      "riverside-letter-2",
+      "riverside-letter-3",
+      "riverside-letter-4",
+      "riverside-letter-5",
+      "riverside-letter-6",
+      "riverside-letter-7",
+      "lantern-letter-1",
+      "lantern-letter-2",
+      "lantern-letter-3",
+      "lantern-letter-4",
+      "lantern-letter-5",
+      "lantern-letter-6",
+      "lantern-letter-7",
+      "wrong-address-letter-1",
+      "wrong-address-letter-2",
+      "wrong-address-letter-3",
+      "wrong-address-letter-4",
+      "wrong-address-letter-5",
+      "wrong-address-letter-6",
+      "wrong-address-letter-7",
+      "quiet-company-letter-1",
+      "quiet-company-letter-2",
+      "quiet-company-letter-3",
+      "quiet-company-letter-4",
+      "quiet-company-letter-5",
+      "quiet-company-letter-6",
+      "namesakes-letter-1",
+      "namesakes-letter-2",
+      "namesakes-letter-3",
+      "namesakes-letter-4",
+      "namesakes-letter-5",
+      "namesakes-letter-6",
+      "namesakes-letter-7",
+      "useful-gaps-letter-1",
+      "useful-gaps-letter-2",
+      "useful-gaps-letter-3",
+      "useful-gaps-letter-4",
+      "useful-gaps-letter-5",
+      "useful-gaps-letter-6",
+      "useful-gaps-letter-7",
+      "small-talk-letter-1",
+      "small-talk-letter-2",
+      "small-talk-letter-3",
+      "small-talk-letter-4",
+      "small-talk-letter-5",
+      "small-talk-letter-6",
+      "hello-again-letter-1",
+      "hello-again-letter-2",
+      "hello-again-letter-3",
+      "hello-again-letter-4",
+      "hello-again-letter-5",
+      "hello-again-letter-6",
+      "hello-again-letter-7",
+      "off-beat-letter-1",
+      "off-beat-letter-2",
+      "off-beat-letter-3",
+      "off-beat-letter-4",
+      "off-beat-letter-5",
+      "off-beat-letter-6",
+      "off-beat-letter-7",
+      "return-mail-letter-1",
+      "return-mail-letter-2",
+      "return-mail-letter-3",
+      "return-mail-letter-4",
+      "return-mail-letter-5",
+      "return-mail-letter-6",
+      "return-mail-letter-7",
+      "return-mail-letter-8",
+      "fair-weather-letter-1",
+      "fair-weather-letter-2",
+      "fair-weather-letter-3",
+      "fair-weather-letter-4",
+      "fair-weather-letter-5",
+      "fair-weather-letter-6",
+      "fair-weather-letter-7",
+      "double-meaning-letter-1",
+      "double-meaning-letter-2",
+      "double-meaning-letter-3",
+      "double-meaning-letter-4",
+      "double-meaning-letter-5",
+      "double-meaning-letter-6",
+      "double-meaning-letter-7",
+      "fine-print-letter-1",
+      "fine-print-letter-2",
+      "fine-print-letter-3",
+      "fine-print-letter-4",
+      "fine-print-letter-5",
+      "fine-print-letter-6",
+      "sound-advice-letter-1",
+      "sound-advice-letter-2",
+      "sound-advice-letter-3",
+      "sound-advice-letter-4",
+      "sound-advice-letter-5",
+      "sound-advice-letter-6",
+      "sound-advice-letter-7",
+      "sound-advice-letter-8",
+      "small-impressions-letter-1",
+      "small-impressions-letter-2",
+      "small-impressions-letter-3",
+      "small-impressions-letter-4",
+      "small-impressions-letter-5",
+      "small-impressions-letter-6",
+      "small-impressions-letter-7",
+      "second-look-letter-1",
+      "second-look-letter-2",
+      "second-look-letter-3",
+      "second-look-letter-4",
+      "second-look-letter-5",
+      "second-look-letter-6",
+      "loose-ends-letter-1",
+      "loose-ends-letter-2",
+      "loose-ends-letter-3",
+      "loose-ends-letter-4",
+      "loose-ends-letter-5",
+      "loose-ends-letter-6",
+      "loose-ends-letter-7",
+      "short-measure-letter-1",
+      "short-measure-letter-2",
+      "short-measure-letter-3",
+      "short-measure-letter-4",
+      "short-measure-letter-5",
+      "short-measure-letter-6"
+    ],
+    "minimumXP": 7810,
+    "explicitEntryRequired": true,
+    "action": "enter-continuation",
+    "entryButton": "Open the next four correspondences",
+    "deferButton": "Stay at my table",
+    "entryCopy": "The first twenty chapters are complete. Four new envelopes bring forty more pictures. Open them when you want another reply; your completed correspondences and saved table stay with you.",
+    "terminalPreviousChapterNextIdRemainsNull": true
+  },
+  "volumeAddition": {
+    "id": "cross-currents-correspondences",
+    "title": "Cross Currents and three more",
+    "chapterIds": [
+      "cross-currents",
+      "safe-keeping",
+      "give-and-take",
+      "paper-duet"
+    ],
+    "storyIds": [
+      "cross-currents-letter-1",
+      "cross-currents-letter-2",
+      "cross-currents-letter-3",
+      "cross-currents-letter-4",
+      "cross-currents-letter-5",
+      "cross-currents-letter-6",
+      "safe-keeping-letter-1",
+      "safe-keeping-letter-2",
+      "safe-keeping-letter-3",
+      "safe-keeping-letter-4",
+      "safe-keeping-letter-5",
+      "safe-keeping-letter-6",
+      "give-and-take-letter-1",
+      "give-and-take-letter-2",
+      "give-and-take-letter-3",
+      "give-and-take-letter-4",
+      "give-and-take-letter-5",
+      "give-and-take-letter-6",
+      "paper-duet-letter-1",
+      "paper-duet-letter-2",
+      "paper-duet-letter-3",
+      "paper-duet-letter-4",
+      "paper-duet-letter-5",
+      "paper-duet-letter-6",
+      "paper-duet-letter-7"
+    ],
+    "pieceIds": [
+      "b240-cp1",
+      "b240-cp2",
+      "b240-cp3",
+      "b240-cp4",
+      "b240-cp5",
+      "b240-kt1",
+      "b240-kt2",
+      "b240-kt3",
+      "b240-kt4",
+      "b240-kt5",
+      "b240-vb1",
+      "b240-vb2",
+      "b240-vb3",
+      "b240-vb4",
+      "b240-vb5",
+      "b240-pa1",
+      "b240-pa2",
+      "b240-pa3",
+      "b240-pa4",
+      "b240-pa5",
+      "b240-bs1",
+      "b240-bs2",
+      "b240-bs3",
+      "b240-bs4",
+      "b240-bs5",
+      "b240-mg1",
+      "b240-mg2",
+      "b240-mg3",
+      "b240-mg4",
+      "b240-mg5",
+      "b240-ac1",
+      "b240-ac2",
+      "b240-ac3",
+      "b240-ac4",
+      "b240-ac5",
+      "b240-tr1",
+      "b240-tr2",
+      "b240-tr3",
+      "b240-tr4",
+      "b240-tr5"
+    ],
+    "completionCopy": "These four correspondences are complete. The first sixteen and the four that followed remain complete too. Your table, pictures and earlier letters are here to revisit."
+  },
+  "collectionCounterPolicy": {
+    "originalVolumeTotal": 160,
+    "stageAVolumeTotal": 40,
+    "stageBVolumeTotal": 40,
+    "availableBeforeStageBEntry": 200,
+    "availableAfterStageBEntry": 240,
+    "targetProjectPieces": 320,
+    "rule": "All available totals include only deliberately entered volumes. Keep original 160 and Stage A 40 completion/collection recognition independent; never silently change an unopened Stage B denominator or label 240 as the finished 320-piece project."
+  },
+  "scope": {
+    "runtimeCodeEdited": false,
+    "workflowRun": false,
+    "deployed": false,
+    "paidExternalToolsUsed": false,
+    "artGenerationRequested": false,
+    "staticArtSelection": "40 individual and 8 family source-master reviews pass; this does not accept runtime derivatives, phone UI or export.",
+    "remainingProjectPiecesAfterSuccessfulIntegration": 80
+  },
+  "optionalPolicy": {
+    "repeatsRequired": false,
+    "purchasesRequired": false,
+    "storyRewardsOnlyOnDelivery": true,
+    "capNewOrdinaryXPAtChapterLevelCap": true,
+    "oldIssuedPromises": "Preserve exact version, target ID, quantity, XP, coins, origin and identity; only supported slot/holding changes may occur.",
+    "currencyEndNotice": "Extra coins have no further use in your entered content once its authored upgrades are owned.",
+    "optionalTierFiveDeliveryRecipes": false
+  }
+}

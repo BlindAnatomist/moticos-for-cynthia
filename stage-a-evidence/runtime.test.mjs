@@ -1,11 +1,12 @@
+// Historical Stage A acceptance remains pinned to its independent v5 reader.
 import path from 'node:path';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';import {fileURLToPath} from 'node:url';
 const evidenceRoot=process.env.MOTICOS_STAGE_A_OUTPUT_ROOT??'../stage-a-r10-review';fs.mkdirSync(evidenceRoot,{recursive:true});
-import * as E from '../src/career/engine.js';import * as C from '../src/career/content.js';import * as E4 from '../src/career/engine.v4.js';import * as C4 from '../src/career/content.v4.js';import * as E3 from '../src/career/engine.v3.js';import * as C3 from '../src/career/content.v3.js';import * as E2 from '../src/career/engine.v2.js';import * as C2 from '../src/career/content.v2.js';
-import {createCareerSession} from '../src/career/session.js';import {createCareerSession as oldSession} from '../src/career/session.v4.js';import {CONTINUATION,VOLUMES,collectionScope} from '../src/career/volumes.js';import {progressCue,completedLetter} from '../src/career/feedback.js';
+import * as E from '../src/career/engine.v5.js';import * as C from '../src/career/content.v5.js';import * as E4 from '../src/career/engine.v4.js';import * as C4 from '../src/career/content.v4.js';import * as E3 from '../src/career/engine.v3.js';import * as C3 from '../src/career/content.v3.js';import * as E2 from '../src/career/engine.v2.js';import * as C2 from '../src/career/content.v2.js';
+import {createCareerSession} from '../src/career/session.v5.js';import {createCareerSession as oldSession} from '../src/career/session.v4.js';import {CONTINUATION,VOLUMES,collectionScope} from '../src/career/volumes.v5.js';import {progressCue,completedLetter} from '../src/career/feedback.js';
 import {driver,storageHarness,legacyFixtures,oldEngine} from '../tests/campaign-browser/save-fixtures.mjs';
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url))),proposal=read('./proposal.frozen.json'),original=read('./original-113.frozen.json');
-const endpoint=read('../campaign-evidence/full-basic-journey.json').state,d=driver(),d4=driver(E4,C4),clone=structuredClone;
+const endpoint=read('../campaign-evidence/full-basic-journey.json').state,d=driver(E,C),d4=driver(E4,C4),clone=structuredClone;
 const migrate=()=>E.upgradeCareer(endpoint),enter=s=>d.act(s,{type:'enter-continuation',boundaryId:CONTINUATION.id});
 const outstanding=s=>[...s.orders,...s.heldOrders,...(s.suspendedStory?[s.suspendedStory]:[])];
 let basic=null,entries=new Map(),ends=new Map(),after=new Map();

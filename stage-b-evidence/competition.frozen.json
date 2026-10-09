@@ -1,0 +1,1342 @@
+{
+  "status": "PASS standalone exact action replay; native goal-selection acceptance pending",
+  "model": "Free basic supply; no sorters; Send and selection excluded; Cut included only when explicit",
+  "fixtures": [
+    {
+      "chapterId": "cross-currents",
+      "afterMilestone": "cross-currents-letter-1",
+      "coAvailableLetterIds": [
+        "cross-currents-letter-2",
+        "cross-currents-letter-3"
+      ],
+      "stock": {
+        "b240-cp3": 1,
+        "b240-kt2": 1
+      },
+      "firstDeliveryOptions": [
+        {
+          "makeActions": 7,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt1",
+              "to": "b240-kt2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt2",
+              "to": "b240-kt3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "cross-currents-letter-2",
+              "makeActions": 7,
+              "sent": [
+                "b240-cp2",
+                "b240-kt3"
+              ],
+              "retained": {
+                "b240-cp3": 1
+              }
+            }
+          ]
+        },
+        {
+          "makeActions": 8,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp2",
+              "to": "b240-cp3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp3",
+              "to": "b240-cp4"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "cross-currents-letter-3",
+              "makeActions": 8,
+              "sent": [
+                "b240-cp4",
+                "b240-kt2"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "bothDeliveryOrders": [
+        {
+          "makeActions": 18,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt1",
+              "to": "b240-kt2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt2",
+              "to": "b240-kt3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp2",
+              "to": "b240-cp3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp3",
+              "to": "b240-cp4"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt1",
+              "to": "b240-kt2"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "cross-currents-letter-2",
+              "makeActions": 7,
+              "sent": [
+                "b240-cp2",
+                "b240-kt3"
+              ],
+              "retained": {
+                "b240-cp3": 1
+              }
+            },
+            {
+              "letterId": "cross-currents-letter-3",
+              "makeActions": 11,
+              "sent": [
+                "b240-cp4",
+                "b240-kt2"
+              ],
+              "retained": {}
+            }
+          ]
+        },
+        {
+          "makeActions": 18,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp2",
+              "to": "b240-cp3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp3",
+              "to": "b240-cp4"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-cp1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-cp1",
+              "to": "b240-cp2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt1",
+              "to": "b240-kt2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-kt1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt1",
+              "to": "b240-kt2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-kt2",
+              "to": "b240-kt3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "cross-currents-letter-3",
+              "makeActions": 8,
+              "sent": [
+                "b240-cp4",
+                "b240-kt2"
+              ],
+              "retained": {}
+            },
+            {
+              "letterId": "cross-currents-letter-2",
+              "makeActions": 10,
+              "sent": [
+                "b240-cp2",
+                "b240-kt3"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "meaning": "Near-term readiness and retained structure differ. Both deliveries and fixed rewards remain required; total basic work for the pair is equal absent a chosen Cut.",
+      "optionalCutVariant": {
+        "makeActions": 20,
+        "steps": [
+          {
+            "type": "cut",
+            "pieceId": "b240-cp3"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-kt1"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-kt1"
+          },
+          {
+            "type": "merge",
+            "from": "b240-kt1",
+            "to": "b240-kt2"
+          },
+          {
+            "type": "merge",
+            "from": "b240-kt2",
+            "to": "b240-kt3"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-cp1"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-cp1"
+          },
+          {
+            "type": "merge",
+            "from": "b240-cp1",
+            "to": "b240-cp2"
+          },
+          {
+            "type": "merge",
+            "from": "b240-cp2",
+            "to": "b240-cp3"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-cp1"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-cp1"
+          },
+          {
+            "type": "merge",
+            "from": "b240-cp1",
+            "to": "b240-cp2"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-cp1"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-cp1"
+          },
+          {
+            "type": "merge",
+            "from": "b240-cp1",
+            "to": "b240-cp2"
+          },
+          {
+            "type": "merge",
+            "from": "b240-cp2",
+            "to": "b240-cp3"
+          },
+          {
+            "type": "merge",
+            "from": "b240-cp3",
+            "to": "b240-cp4"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-kt1"
+          },
+          {
+            "type": "draw-basic",
+            "pieceId": "b240-kt1"
+          },
+          {
+            "type": "merge",
+            "from": "b240-kt1",
+            "to": "b240-kt2"
+          }
+        ],
+        "deliveries": [
+          {
+            "letterId": "cross-currents-letter-2",
+            "makeActions": 5,
+            "sent": [
+              "b240-cp2",
+              "b240-kt3"
+            ],
+            "retained": {
+              "b240-cp2": 1
+            }
+          },
+          {
+            "letterId": "cross-currents-letter-3",
+            "makeActions": 15,
+            "sent": [
+              "b240-cp4",
+              "b240-kt2"
+            ],
+            "retained": {}
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "safe-keeping",
+      "afterMilestone": "safe-keeping-letter-1",
+      "coAvailableLetterIds": [
+        "safe-keeping-letter-2",
+        "safe-keeping-letter-3"
+      ],
+      "stock": {
+        "b240-vb2": 1,
+        "rp2": 1
+      },
+      "firstDeliveryOptions": [
+        {
+          "makeActions": 0,
+          "steps": [],
+          "deliveries": [
+            {
+              "letterId": "safe-keeping-letter-2",
+              "makeActions": 0,
+              "sent": [
+                "b240-vb2",
+                "rp2"
+              ],
+              "retained": {}
+            }
+          ]
+        },
+        {
+          "makeActions": 7,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa1",
+              "to": "b240-pa2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa1",
+              "to": "b240-pa2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa2",
+              "to": "b240-pa3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "safe-keeping-letter-3",
+              "makeActions": 7,
+              "sent": [
+                "b240-pa3",
+                "b240-vb2"
+              ],
+              "retained": {
+                "rp2": 1
+              }
+            }
+          ]
+        }
+      ],
+      "bothDeliveryOrders": [
+        {
+          "makeActions": 10,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa1",
+              "to": "b240-pa2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa1",
+              "to": "b240-pa2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa2",
+              "to": "b240-pa3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-vb1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-vb1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-vb1",
+              "to": "b240-vb2"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "safe-keeping-letter-2",
+              "makeActions": 0,
+              "sent": [
+                "b240-vb2",
+                "rp2"
+              ],
+              "retained": {}
+            },
+            {
+              "letterId": "safe-keeping-letter-3",
+              "makeActions": 10,
+              "sent": [
+                "b240-pa3",
+                "b240-vb2"
+              ],
+              "retained": {}
+            }
+          ]
+        },
+        {
+          "makeActions": 10,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa1",
+              "to": "b240-pa2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-pa1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa1",
+              "to": "b240-pa2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-pa2",
+              "to": "b240-pa3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-vb1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-vb1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-vb1",
+              "to": "b240-vb2"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "safe-keeping-letter-3",
+              "makeActions": 7,
+              "sent": [
+                "b240-pa3",
+                "b240-vb2"
+              ],
+              "retained": {
+                "rp2": 1
+              }
+            },
+            {
+              "letterId": "safe-keeping-letter-2",
+              "makeActions": 3,
+              "sent": [
+                "b240-vb2",
+                "rp2"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "meaning": "Near-term readiness and retained structure differ. Both deliveries and fixed rewards remain required; total basic work for the pair is equal absent a chosen Cut."
+    },
+    {
+      "chapterId": "give-and-take",
+      "afterMilestone": "give-and-take-letter-1",
+      "coAvailableLetterIds": [
+        "give-and-take-letter-2",
+        "give-and-take-letter-3"
+      ],
+      "stock": {
+        "b240-bs2": 2,
+        "b240-mg2": 1
+      },
+      "firstDeliveryOptions": [
+        {
+          "makeActions": 4,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg1",
+              "to": "b240-mg2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg2",
+              "to": "b240-mg3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "give-and-take-letter-2",
+              "makeActions": 4,
+              "sent": [
+                "b240-bs2",
+                "b240-bs2",
+                "b240-mg3"
+              ],
+              "retained": {}
+            }
+          ]
+        },
+        {
+          "makeActions": 1,
+          "steps": [
+            {
+              "type": "merge",
+              "from": "b240-bs2",
+              "to": "b240-bs3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "give-and-take-letter-3",
+              "makeActions": 1,
+              "sent": [
+                "b240-bs3",
+                "b240-mg2"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "bothDeliveryOrders": [
+        {
+          "makeActions": 14,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg1",
+              "to": "b240-mg2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg2",
+              "to": "b240-mg3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-bs1",
+              "to": "b240-bs2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-bs1",
+              "to": "b240-bs2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-bs2",
+              "to": "b240-bs3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg1",
+              "to": "b240-mg2"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "give-and-take-letter-2",
+              "makeActions": 4,
+              "sent": [
+                "b240-bs2",
+                "b240-bs2",
+                "b240-mg3"
+              ],
+              "retained": {}
+            },
+            {
+              "letterId": "give-and-take-letter-3",
+              "makeActions": 10,
+              "sent": [
+                "b240-bs3",
+                "b240-mg2"
+              ],
+              "retained": {}
+            }
+          ]
+        },
+        {
+          "makeActions": 14,
+          "steps": [
+            {
+              "type": "merge",
+              "from": "b240-bs2",
+              "to": "b240-bs3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-bs1",
+              "to": "b240-bs2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-bs1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-bs1",
+              "to": "b240-bs2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg1",
+              "to": "b240-mg2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-mg1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg1",
+              "to": "b240-mg2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-mg2",
+              "to": "b240-mg3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "give-and-take-letter-3",
+              "makeActions": 1,
+              "sent": [
+                "b240-bs3",
+                "b240-mg2"
+              ],
+              "retained": {}
+            },
+            {
+              "letterId": "give-and-take-letter-2",
+              "makeActions": 13,
+              "sent": [
+                "b240-bs2",
+                "b240-bs2",
+                "b240-mg3"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "meaning": "Near-term readiness and retained structure differ. Both deliveries and fixed rewards remain required; total basic work for the pair is equal absent a chosen Cut."
+    },
+    {
+      "chapterId": "paper-duet",
+      "afterMilestone": "paper-duet-letter-2",
+      "coAvailableLetterIds": [
+        "paper-duet-letter-3",
+        "paper-duet-letter-4"
+      ],
+      "stock": {
+        "b240-ac3": 1,
+        "b240-tr3": 1
+      },
+      "firstDeliveryOptions": [
+        {
+          "makeActions": 11,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr2",
+              "to": "b240-tr3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr3",
+              "to": "b240-tr4"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "paper-duet-letter-3",
+              "makeActions": 11,
+              "sent": [
+                "b240-ac2",
+                "b240-tr4"
+              ],
+              "retained": {
+                "b240-ac3": 1
+              }
+            }
+          ]
+        },
+        {
+          "makeActions": 8,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac2",
+              "to": "b240-ac3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac3",
+              "to": "b240-ac4"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "paper-duet-letter-4",
+              "makeActions": 8,
+              "sent": [
+                "b240-ac4",
+                "b240-tr3"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "bothDeliveryOrders": [
+        {
+          "makeActions": 26,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr2",
+              "to": "b240-tr3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr3",
+              "to": "b240-tr4"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac2",
+              "to": "b240-ac3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac3",
+              "to": "b240-ac4"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr2",
+              "to": "b240-tr3"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "paper-duet-letter-3",
+              "makeActions": 11,
+              "sent": [
+                "b240-ac2",
+                "b240-tr4"
+              ],
+              "retained": {
+                "b240-ac3": 1
+              }
+            },
+            {
+              "letterId": "paper-duet-letter-4",
+              "makeActions": 15,
+              "sent": [
+                "b240-ac4",
+                "b240-tr3"
+              ],
+              "retained": {}
+            }
+          ]
+        },
+        {
+          "makeActions": 26,
+          "steps": [
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac2",
+              "to": "b240-ac3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac3",
+              "to": "b240-ac4"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-ac1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-ac1",
+              "to": "b240-ac2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr2",
+              "to": "b240-tr3"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "draw-basic",
+              "pieceId": "b240-tr1"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr1",
+              "to": "b240-tr2"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr2",
+              "to": "b240-tr3"
+            },
+            {
+              "type": "merge",
+              "from": "b240-tr3",
+              "to": "b240-tr4"
+            }
+          ],
+          "deliveries": [
+            {
+              "letterId": "paper-duet-letter-4",
+              "makeActions": 8,
+              "sent": [
+                "b240-ac4",
+                "b240-tr3"
+              ],
+              "retained": {}
+            },
+            {
+              "letterId": "paper-duet-letter-3",
+              "makeActions": 18,
+              "sent": [
+                "b240-ac2",
+                "b240-tr4"
+              ],
+              "retained": {}
+            }
+          ]
+        }
+      ],
+      "meaning": "Near-term readiness and retained structure differ. Both deliveries and fixed rewards remain required; total basic work for the pair is equal absent a chosen Cut."
+    }
+  ]
+}

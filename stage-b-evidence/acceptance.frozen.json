@@ -1,0 +1,131 @@
+{
+  "status": "PENDING production implementation and independent runtime acceptance",
+  "fixtures": [
+    {
+      "id": "preserve-139",
+      "requiredEvidence": "All old story templates, chapter definitions, original finale, Stage A completion copy, ordinary promises, upgrade definitions/prices, and frozen historical pack readers match their supplied identities.",
+      "status": "not run"
+    },
+    {
+      "id": "migrate-closed-stage-a",
+      "requiredEvidence": "Migrate a completed Stage A save without entry. Preserve all prior progress, 200 collection scope, both complete volumes, board stock, focused request, active sources, source cursors and optional promises. New fields dormant, no new stories.",
+      "status": "not run"
+    },
+    {
+      "id": "migrate-older-saves",
+      "requiredEvidence": "Validate and migrate representative v1-v5 careers including unfinished Volume 1, complete Volume 1 with unopened Stage A, partial Stage A and completed Stage A. Reopen twice and compare idempotence; old readers protect new saves.",
+      "status": "not run"
+    },
+    {
+      "id": "enter-both-boundaries-from-v6",
+      "requiredEvidence": "A fresh v6 career crosses the old Stage A boundary and later Stage B; its old-boundary receipt has version 6 and remains valid. Existing v5 Stage A receipt stays version 5.",
+      "status": "not run"
+    },
+    {
+      "id": "malformed-boundary-receipts",
+      "requiredEvidence": "Reject persisted Stage B receipt without Stage A, missing Stage B receipt after entry, extra unknown boundary, out-of-order boundary revisions, and Stage B receipt claiming contentVersion 5. Validate exact receipt map and frozen pack membership before mutation.",
+      "status": "not run"
+    },
+    {
+      "id": "stale-duplicate-wrong-boundary",
+      "requiredEvidence": "Reject stale expected revision, wrong boundary ID, duplicate entry, missing earlier milestone, insufficient XP, wrong chapter, suspended story and replay-mode entry with no state mutation.",
+      "status": "not run"
+    },
+    {
+      "id": "two-completed-volumes-stay-complete",
+      "requiredEvidence": "Original ending and Stage A recognition remain complete before, during and after Stage B. allAuthoredContentComplete is separate from current-volume completion. Terminal nextId fields remain null.",
+      "status": "not run"
+    },
+    {
+      "id": "held-promise-boundary",
+      "requiredEvidence": "With up to three outstanding optional promises in held/main/desk locations, preserve every exact issued version, quantity, XP, coin value and ID across deliberate entry and reload; no duplicate, loss or reward rewrite.",
+      "status": "not run"
+    },
+    {
+      "id": "all-legal-story-orders",
+      "requiredEvidence": "Execute 1,080 admitted cross-chapter story orders or prove each distinct reducer gate state, and reproduce the reviewed source gates and 6/6/10/3 queue counts. Optional XP never unlocks Parcel or Trumpet before letter 1.",
+      "status": "not run"
+    },
+    {
+      "id": "story-only-economy",
+      "requiredEvidence": "Actual reducer route from 7,830 XP, zero stock, no purchase and no optional order reaches 9,000 XP and 3,820 earned coins. Conservative 7,810 XP zero-entry-coins case completes at 8,980 XP with no repeat.",
+      "status": "not run"
+    },
+    {
+      "id": "upgrade-buy-orders",
+      "requiredEvidence": "Actual engine reproduces early, reversed, cheapest, second-source-first and delayed buying. Preserve next-output preview and cursors through reload; cursor advances on successful sorted draws only, never basic/failed draws. Every issued price matches its version.",
+      "status": "not run"
+    },
+    {
+      "id": "exact-quantity-protection",
+      "requiredEvidence": "At Give and Take letter 2, two separate bs2 match; one bs3 does not. Auto-fill/hints never consume a reserved target for another requirement. Full board, Cut, Undo, and selected-goal switching preserve quantities/material.",
+      "status": "not run"
+    },
+    {
+      "id": "competition-native",
+      "requiredEvidence": "Stage all four competition-fixtures.json boards with both specified orders active; show correct ready counts, real selected goal and matching tiles; verify both ordering alternatives and the optional Cut case without misleading savings text.",
+      "status": "not run"
+    },
+    {
+      "id": "optional-desk-interference",
+      "requiredEvidence": "Add optional desk and held orders around every source gate and chapter transition; bounded refill/deduplication must not starve, hide or duplicate a story letter or hide the continuation invitation.",
+      "status": "not run"
+    },
+    {
+      "id": "early-accordion-postscript",
+      "requiredEvidence": "Discover Paper Chord immediately after Paper Duet entry, before Trumpet unlock and before A Note Kept is sent. Discovery stays freely available; any displayed postscript uses time-independent copy and claims no unearned letter completion.",
+      "status": "not run"
+    },
+    {
+      "id": "all-40-art-and-lineage",
+      "requiredEvidence": "Match each runtime derivative back to the selected master hash. No provisional or rejected source, regeneration, wrong tier or silent name replacement. Discover all 40 from free sources; seven optional tier-five pictures do not require delivery.",
+      "status": "not run"
+    },
+    {
+      "id": "all-40-native-surfaces",
+      "requiredEvidence": "Inspect decoded artwork in board, palette, collection, order/hint, discovery and actual single-picture postcard surfaces. Derive final bounds and padding only from approved derivative bytes; check all eight family lineages and prescribed near-neighbor collisions.",
+      "status": "not run"
+    },
+    {
+      "id": "real-export",
+      "requiredEvidence": "Save and open actual exported PNG/postcards for all eight families and at least every required tier-four/five target; compare orientation, full artwork, alpha/paper handling and captions, not only the modal screenshot.",
+      "status": "not run"
+    },
+    {
+      "id": "occupied-phones",
+      "requiredEvidence": "At 320, 360, 390 and 430 CSS-pixel widths, inspect nonempty varied boards with longest labels, four-digit coins, exact quantities and all 40 new assets. Await image decode and settled geometry. No overlap, clipped controls or ambiguous full names.",
+      "status": "not run"
+    },
+    {
+      "id": "keyboard-focus-history",
+      "requiredEvidence": "Keyboard and touch opening/closing of collection, postcard, practice, source picker and continuation invitation; Escape/Back and repeated clicks restore focus/history without accidental entry or duplicate Send.",
+      "status": "not run"
+    },
+    {
+      "id": "save-fullboard-and-recovery",
+      "requiredEvidence": "25-cell occupied boards, undo-limit histories, full optional holding, partial source cursors, interrupted writes, reload, duplicate sessions and storage denial retain single-writer recovery behavior at 240 pieces/48 families/164 letters.",
+      "status": "not run"
+    },
+    {
+      "id": "volume-navigation-and-memory",
+      "requiredEvidence": "Correct 160/40/40 scopes and 160/200/240 all-available totals by deliberate entry. Current/recent navigation, old-letter practice and old collections work. Measure asset load and decoded-memory pressure after repeated opening without assuming all 240 large images stay decoded.",
+      "status": "not run"
+    },
+    {
+      "id": "quiet-completion",
+      "requiredEvidence": "The solo letter 6 is not the final chapter ending. Only after the small coda and all chapter requirements are met show Stage B completion. Deferral preserves the table with no timer or repeated prompt.",
+      "status": "not run"
+    },
+    {
+      "id": "human-value-review",
+      "requiredEvidence": "Observe whether source choice, exact stock competition, quiet coda and optional sorter benefit are understandable and enjoyable. Arithmetic and screenshots alone cannot pass this case.",
+      "status": "not run"
+    }
+  ],
+  "notAuthorization": [
+    "CI execution",
+    "push",
+    "deployment",
+    "paid tools"
+  ]
+}

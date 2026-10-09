@@ -1,0 +1,1234 @@
+{
+  "schemaVersion": 1,
+  "status": "independently-selected-artifact-delivery-not-native-runtime-accepted",
+  "count": 40,
+  "encodedTotalBytes": 21402282,
+  "candidateManifestSha256": "805e0261d5ff3b0b39f108f4942af2d8c24a8db486a0a9ca964e314c91b1caf5",
+  "independentSelectionSha256": "7477a92b4cfa074f43be7b79dc39d43b266a3129b0a150b8236ded79dde8e267",
+  "coordinateConvention": "source=[width,height];ink/crop=[x,y,width,height];ink=decoded alpha>=16 bounding box",
+  "assets": [
+    {
+      "pieceId": "b240-cp1",
+      "acceptedOriginalRevision": "b240-cp1-r02",
+      "familyId": "survey-compass",
+      "tier": 1,
+      "file": "art/b240-cp1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 690600,
+      "sha256": "3f05ca070ed4f8e7eb0f783b2f86b70aced7834bb3b7c35c0fe551fa0499fcd8",
+      "originalFilename": "b240-cp1-r02.png",
+      "originalSha256": "e98595ab2bcef9654d928128fbbbde961af09bf3560642c2329c205e2000ec5d",
+      "generationRequestSha256": "09df92ad5ba4604f46c10e606fec125f5bc890212e51e78ec1e2db6988aab6d9",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "f6e1529577fc54cbe2e42e19393589349d25c471c2ce0b284006968ff5c5e464",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 2,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.00784313725490196
+      }
+    },
+    {
+      "pieceId": "b240-cp2",
+      "acceptedOriginalRevision": "b240-cp2-r02",
+      "familyId": "survey-compass",
+      "tier": 2,
+      "file": "art/b240-cp2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 632586,
+      "sha256": "e1df9ff3f33123573f0d271a2d93f5d9487c12094e1a7cc83d79b2f32f909748",
+      "originalFilename": "b240-cp2-r02.png",
+      "originalSha256": "f0d2ce62a22f7cf6eb09b32613e900cfc751ba688240add667c3efab818d28c1",
+      "generationRequestSha256": "a11506c28a0427ca099590f2bc22af8bcbba6216359ca433fcbad153d1aa091f",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "4a896503c0a71aa3917de5a4f05dbfc96ed878392d4b5910a2bc4057b91f0a4b",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 1,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.00392156862745098
+      }
+    },
+    {
+      "pieceId": "b240-cp3",
+      "acceptedOriginalRevision": "b240-cp3-r02",
+      "familyId": "survey-compass",
+      "tier": 3,
+      "file": "art/b240-cp3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 610568,
+      "sha256": "76dc1b223ada71b08a8623f4356026982fd372c2ebc17b6d5428e63fb1c66547",
+      "originalFilename": "b240-cp3-r02.png",
+      "originalSha256": "9100f0c25bb79a1d75e98046e18a5e506c04fc9173adcff7a8c77cd1cafaf542",
+      "generationRequestSha256": "9ae4018420482d238b94d2d27ddc2136553d34278ff1ec7d30fff948c7f43ee7",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "bdfb350662f7591e5d27f53ca5b3691b29fc366960079422f9665a6dab5d1e3d",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 11,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.043137254901960784
+      }
+    },
+    {
+      "pieceId": "b240-cp4",
+      "acceptedOriginalRevision": "b240-cp4-r03",
+      "familyId": "survey-compass",
+      "tier": 4,
+      "file": "art/b240-cp4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 660924,
+      "sha256": "3c4083c89964969a05639fff9a1e002357d9e45b273d42820f79ee19a06fe958",
+      "originalFilename": "b240-cp4-r03.png",
+      "originalSha256": "d6d3e0c67e890d025fbea5867a1a1a64c0aa617c194c00b24acb3a8d50fd3c58",
+      "generationRequestSha256": "89965341266551fc985abef242c61a0316cc1d8192e5751c8704966ce75ef7de",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "ad92de49c4d7d92d22e6e792c319367f626f7c1d9384075fb3990e834120ea46",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 26,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.10196078431372549
+      }
+    },
+    {
+      "pieceId": "b240-cp5",
+      "acceptedOriginalRevision": "b240-cp5-r04",
+      "familyId": "survey-compass",
+      "tier": 5,
+      "file": "art/b240-cp5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        768,
+        768
+      ],
+      "bytes": 229158,
+      "sha256": "12eb7691d06a3427826cc3e94bbe58472345612a758b8e209517641608b744fc",
+      "originalFilename": "b240-cp5-r04.png",
+      "originalSha256": "de58b33c236581898e69f21de18f9bd6f0ede2a07e4d47236fa1728edc3d2a77",
+      "generationRequestSha256": "58e721b329d1464cc83a3e34656b041a7c6d094140defe2b8e48ebb903a257c4",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "9caabda721bf93da51db9414f0c3d7f642546dcc69cf46f4b038d4df013ce22a",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 14,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.054901960784313725
+      }
+    },
+    {
+      "pieceId": "b240-kt1",
+      "acceptedOriginalRevision": "b240-kt1-r02",
+      "familyId": "paper-kite",
+      "tier": 1,
+      "file": "art/b240-kt1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        954,
+        954
+      ],
+      "bytes": 347970,
+      "sha256": "093663c49b77c493d5949df2f43886cb21b09166e40a0ef7f2a6720ce07e0a2a",
+      "originalFilename": "b240-kt1-r02.png",
+      "originalSha256": "e8deeede78a55847ba1c6df5c42ca5737b9ded63691f3c7d1f9c87db1b75a8b0",
+      "generationRequestSha256": "25d17eea27c1a1cc0bcb0f16d0956ced99e8e527889ae6423a11da98c1d0f78e",
+      "framing": {
+        "policy": "normalized-source-window",
+        "sourceWindowXYWH": [
+          189,
+          176,
+          954,
+          954
+        ],
+        "framingProofRGBASha256": "e9525118eff79c9bf8c465568e79fdc5fd89749e72acf126881aa785cf00b96f",
+        "wholeSourceCanvasRetained": false,
+        "allSourceAlphaAtLeast2PixelsRetained": true,
+        "omittedNonzeroAlphaPixels": 30,
+        "maximumOmittedAlpha": 1,
+        "omittedAlphaWeightedPixelEquivalent": 0.11764705882352941,
+        "resampling": {
+          "performed": false,
+          "sourceDimensions": [
+            954,
+            954
+          ],
+          "outputDimensions": [
+            954,
+            954
+          ],
+          "scaleFactor": 1.0,
+          "note": "Native954 retains window pixels exactly;768 downsample;1024 is an upsampling comparison with no added original detail."
+        }
+      },
+      "transform": "Exact954-square source window retained;30 alpha1 samples omitted from this derivative. Original preserved separately. No resampling; retained RGBA pixels unchanged before lossless WebP.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 74,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.2901960784313726
+      }
+    },
+    {
+      "pieceId": "b240-kt2",
+      "acceptedOriginalRevision": "b240-kt2-r04",
+      "familyId": "paper-kite",
+      "tier": 2,
+      "file": "art/b240-kt2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 321982,
+      "sha256": "57d07a23e6839dd3a9c6e6aed6a9cf294765e9f4f6eae603f697e94864c1bab6",
+      "originalFilename": "b240-kt2-r04.png",
+      "originalSha256": "2c6a5689bb9c154c1631589295a96c3b3191f285cbd48a4accf2d8f8f1944041",
+      "generationRequestSha256": "16dfaf604b7a9d63f6d42045df4a9fa304cf17a37afede6ce9db19193e26bec9",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "e5b71bf151d39a99542df307e838cdb61b5f88a3d34eeec901f16927e89a44b3",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 47,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.1843137254901961
+      }
+    },
+    {
+      "pieceId": "b240-kt3",
+      "acceptedOriginalRevision": "b240-kt3-r04",
+      "familyId": "paper-kite",
+      "tier": 3,
+      "file": "art/b240-kt3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        768,
+        768
+      ],
+      "bytes": 214276,
+      "sha256": "0a72528c57ea8df06948abb9d18deb78637a9aab5896c729ce3b9603eec61657",
+      "originalFilename": "b240-kt3-r04.png",
+      "originalSha256": "e8f42e133ea6d6a9679e7c7204c511d98ce59b3bcc7c382a806cb234fd479462",
+      "generationRequestSha256": "4d3c0f310a3b64d2bb1640a6b78b6ddb2fd0ce7d6151f0abb9d868315e6cca20",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "4b153e582beace27ad4f2b3a7cc27033e98015b19cab53833466f0afff6b0d01",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 0,
+        "maximumAlpha": 0,
+        "alphaWeightedPixelEquivalent": 0.0
+      }
+    },
+    {
+      "pieceId": "b240-kt4",
+      "acceptedOriginalRevision": "b240-kt4-r03",
+      "familyId": "paper-kite",
+      "tier": 4,
+      "file": "art/b240-kt4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 336550,
+      "sha256": "73195aa5aa94e443882549fbdefd419ef29b62c68d283071d1df89189d916579",
+      "originalFilename": "b240-kt4-r03.png",
+      "originalSha256": "b53bc351bce7fc4fde96757116dc892170ccaf494bf9ed456a1022d12595897c",
+      "generationRequestSha256": "45786d094fc000afb1e97a120e3d90389ae0ed1beb9cf745e62ba7216fe280ac",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "10d7d756ff1c197b445fe355cb768b3e2ad42921a7f85df0eefe4ccb39a2e45a",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 9,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.03529411764705882
+      }
+    },
+    {
+      "pieceId": "b240-kt5",
+      "acceptedOriginalRevision": "b240-kt5-r01",
+      "familyId": "paper-kite",
+      "tier": 5,
+      "file": "art/b240-kt5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        768,
+        768
+      ],
+      "bytes": 205940,
+      "sha256": "7219ca9d17a41b5e1c42ef1f7232a030492ab360fe7a9c158721b61a081a66e8",
+      "originalFilename": "b240-kt5-r01.png",
+      "originalSha256": "1c9dfe448d5f23fe0e1c4c9124daaaf7e9aba0d9c7d6decb131b259a60626152",
+      "generationRequestSha256": "f2bcdcb826d381ff96c880f090b72584d7ba616b23ad20c6718eee78754be7e9",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "40e47fe3519b40e78b0eef4e959027c31f7b1cde95c4d06c0b5beffbd2b2c6d7",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 22,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.08627450980392157
+      }
+    },
+    {
+      "pieceId": "b240-vb1",
+      "acceptedOriginalRevision": "b240-vb1-r01",
+      "familyId": "stoppered-bottle",
+      "tier": 1,
+      "file": "art/b240-vb1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 428498,
+      "sha256": "b95609fcb31f8ded3e6fabf7fe7ceeaaab00385be7ce481287d740fec04f398e",
+      "originalFilename": "b240-vb1-r01.png",
+      "originalSha256": "650d1b200d06f87daf9a62eefd0c06e051828ab6b313bd844da3ceed5b866b4a",
+      "generationRequestSha256": "156be0b77f5e2dac63e623047fa39d7eb86eede266d20f3fd95ef7361342c934",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "2508370f29f3e8c71a7f4bb7db57e72156838dd02690c9ced4a22b2b67f744c0",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 62,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.24313725490196078
+      }
+    },
+    {
+      "pieceId": "b240-vb2",
+      "acceptedOriginalRevision": "b240-vb2-r01",
+      "familyId": "stoppered-bottle",
+      "tier": 2,
+      "file": "art/b240-vb2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 497984,
+      "sha256": "5fe78c0f3a78d6bed6f8affe739d133779fbaa1f9c7627d1428454a7cd885d80",
+      "originalFilename": "b240-vb2-r01.png",
+      "originalSha256": "0fa9a4b973f26b255c3a20f7f6adf64c970951bcfee304a310ad9efe0ddf61e0",
+      "generationRequestSha256": "5db7fedd2715e81146b10bbd6393ab861095957aaefceeee2dd7091635c4d5aa",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "6352184e152f3ab8f014fe9a34651afd81160ad94d053f1ec2ca7702419e3313",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 52,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.20392156862745098
+      }
+    },
+    {
+      "pieceId": "b240-vb3",
+      "acceptedOriginalRevision": "b240-vb3-r02",
+      "familyId": "stoppered-bottle",
+      "tier": 3,
+      "file": "art/b240-vb3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 372210,
+      "sha256": "7009b73c63ed6ee3eecc3cebce6d158df056a72e749a7b6bb10a810a796690d9",
+      "originalFilename": "b240-vb3-r02.png",
+      "originalSha256": "f9f113d6ca27e745f38fe587334935961392bf129fcbe0fcb1e63077d435b474",
+      "generationRequestSha256": "a3944e708ebca6df6dd24bbcafa5c1046829cf015d2473bcea72d0c5ea10b9e5",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "aaf4eacc5522e4153d89368f1f3dfaab0df3863c166b5b90dd6173fb3eb75cbf",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 19,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.07450980392156863
+      }
+    },
+    {
+      "pieceId": "b240-vb4",
+      "acceptedOriginalRevision": "b240-vb4-r02",
+      "familyId": "stoppered-bottle",
+      "tier": 4,
+      "file": "art/b240-vb4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 406792,
+      "sha256": "7f5df48310ba1525a708c0f7e6b317c7a6455c6a2d456eb0943359b0ba7ffb7d",
+      "originalFilename": "b240-vb4-r02.png",
+      "originalSha256": "2eba8c8f245d1eaf969d8a7621bf6449e828a846f83d40011696e289879a3e7f",
+      "generationRequestSha256": "ee7831acf59c3732d53e65449b32b379752081d95c14da3ba9d704c761f2c9ee",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "f81f462781328bec20ac6237ad6dfc184b13c0b1e26cbf2721d709d604a39ece",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 171,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.6705882352941176
+      }
+    },
+    {
+      "pieceId": "b240-vb5",
+      "acceptedOriginalRevision": "b240-vb5-r03",
+      "familyId": "stoppered-bottle",
+      "tier": 5,
+      "file": "art/b240-vb5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        768,
+        768
+      ],
+      "bytes": 233052,
+      "sha256": "c59212abe137f8803634727d4ed4fede97d2073ecaf5077dda5e1ce20ec9a783",
+      "originalFilename": "b240-vb5-r03.png",
+      "originalSha256": "0162bdd77e4b7aebda869d8f108b742b9d642c5fb727bf33761d38f10695a6f7",
+      "generationRequestSha256": "db429453b18fa61072ab95e8a7908ac5ad86ce7241bd6cf94ecab3a84a22453d",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "1feb43308d3aaa80bfcd5a30fe0bc8c5b7bcb19c559dca32074610818af73070",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 3,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.011764705882352941
+      }
+    },
+    {
+      "pieceId": "b240-pa1",
+      "acceptedOriginalRevision": "b240-pa1-r01",
+      "familyId": "tied-parcel",
+      "tier": 1,
+      "file": "art/b240-pa1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 928796,
+      "sha256": "d322aa08e6866bef3e6af6308cc617dbf6299418fbc51f47740d1853d1268b7a",
+      "originalFilename": "b240-pa1-r01.png",
+      "originalSha256": "7912e8c7d09627fdaec3aec263d554eb60ecc7c9ca188f64044c9281d6fabf44",
+      "generationRequestSha256": "b54e00f990a1cc7223d767ae0bc7ca57da2c46fd583032b335cd598509b065b1",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "89f5c328d79a0106dea4d341f6631bba52f5e41fdf0cf15db3d12a9d898f66af",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 58,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.22745098039215686
+      }
+    },
+    {
+      "pieceId": "b240-pa2",
+      "acceptedOriginalRevision": "b240-pa2-r02",
+      "familyId": "tied-parcel",
+      "tier": 2,
+      "file": "art/b240-pa2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 809038,
+      "sha256": "c45f072ba0b2fd766f33dd5bf85aec09d0cd2a7ac67b343f0567688af029a8ba",
+      "originalFilename": "b240-pa2-r02.png",
+      "originalSha256": "2ec1cd4ef78eeacd97021f547924344b71ad28203ebb178b4228dbe2a9369960",
+      "generationRequestSha256": "7638d3ec053877fac0281ed80795a1b240900fa607ac46437bf1aff3f7c68c68",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "2d7651e846053f72ab56e35a8c477fea52752a4180fb36243a559fe70b878dec",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 1,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.00392156862745098
+      }
+    },
+    {
+      "pieceId": "b240-pa3",
+      "acceptedOriginalRevision": "b240-pa3-r01",
+      "familyId": "tied-parcel",
+      "tier": 3,
+      "file": "art/b240-pa3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        768,
+        768
+      ],
+      "bytes": 432966,
+      "sha256": "8e0e368c58b7f453edf7cf34a29f33f778ae084a2b2da2c7f24022d1afff23ba",
+      "originalFilename": "b240-pa3-r01.png",
+      "originalSha256": "d6f83954ff28830284fa4cb7713190256f7616e61255b7b1e43390a33c675daa",
+      "generationRequestSha256": "6f10d804ab945e609278613ac8bc6b0a36106899a52dc90d9f6faa318995ad22",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "4e1d24e1239d2cb0914a5573d0e8f1734b28b033f306e0c7ef10723aaa28b6de",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 0,
+        "maximumAlpha": 0,
+        "alphaWeightedPixelEquivalent": 0.0
+      }
+    },
+    {
+      "pieceId": "b240-pa4",
+      "acceptedOriginalRevision": "b240-pa4-r03",
+      "familyId": "tied-parcel",
+      "tier": 4,
+      "file": "art/b240-pa4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 638168,
+      "sha256": "669f93548b459d737409e022ab80b4884d46508ae79ec89c5a166c3e4d065c68",
+      "originalFilename": "b240-pa4-r03.png",
+      "originalSha256": "2e7e0397a385c7bc580ee98db598476d573e36ca533070d845df90ebc28d485d",
+      "generationRequestSha256": "0b2e078a3da21ed5eb6f54683b6c8079f653001479806819903db3659cb2cd90",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "545fd2562bd193215166447ce8c9ad8b133774f3755018bbb77d5e493ae8f79b",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 4,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.01568627450980392
+      }
+    },
+    {
+      "pieceId": "b240-pa5",
+      "acceptedOriginalRevision": "b240-pa5-r02",
+      "familyId": "tied-parcel",
+      "tier": 5,
+      "file": "art/b240-pa5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 644566,
+      "sha256": "5963f89b3cd22002b377f157477ae21e9abdcb343eb8ab81c44e81e1f608134c",
+      "originalFilename": "b240-pa5-r02.png",
+      "originalSha256": "07ae14a31316d05da8ad44986a7d645e21dd43f2760ec7472b5f18d6cd7e52d7",
+      "generationRequestSha256": "5b6e767434f3ad1d130df0cfc64a57378a8d01260f98289eeb8f85344222b58d",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "6c8c72dc0d8a93744b30784b30fff84ae0f79d59da48f34f477921b2f054dc28",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 15,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.058823529411764705
+      }
+    },
+    {
+      "pieceId": "b240-bs1",
+      "acceptedOriginalRevision": "b240-bs1-r02",
+      "familyId": "balance-scale",
+      "tier": 1,
+      "file": "art/b240-bs1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 501768,
+      "sha256": "132448b9ae04ae942f6f95c30b405341910198d5fe0424a8ec44528ec5b9291f",
+      "originalFilename": "b240-bs1-r02.png",
+      "originalSha256": "6470c159dd909377461898d3ffe85c65c80dc33b4828e27e8e7c4d62e573f9da",
+      "generationRequestSha256": "db5e98a81abf67c3f6f69a440e777b4271ad798aa8ff1a88f5ed4bb090f561b2",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "cbf90dfc5dd44576054a7d07af71963cc178f131706252b42ccd8b068d33573d",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 271,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 1.0627450980392157
+      }
+    },
+    {
+      "pieceId": "b240-bs2",
+      "acceptedOriginalRevision": "b240-bs2-r01",
+      "familyId": "balance-scale",
+      "tier": 2,
+      "file": "art/b240-bs2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 550786,
+      "sha256": "44f0f300fd0a1c1137f34be337dfcca4a4fbbbbfb54320d7b93967d1d7805e51",
+      "originalFilename": "b240-bs2-r01.png",
+      "originalSha256": "e3bfe48ddfc470f2726b3b6917ba9c34c9189454cfbddcceda98454dd1adaa04",
+      "generationRequestSha256": "52db185bddb96c81f5f07622cf9d9fe2f030030782f91eff557b56fa0ebadd9c",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "a337030ee50c9464bcf21f32ab9b6f6301c3f1dfc5e52d14dd174d62b83cb42d",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 152,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.596078431372549
+      }
+    },
+    {
+      "pieceId": "b240-bs3",
+      "acceptedOriginalRevision": "b240-bs3-r05",
+      "familyId": "balance-scale",
+      "tier": 3,
+      "file": "art/b240-bs3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 484730,
+      "sha256": "4015007f8794990dc31a2edcbffb7e030f09571b05f0bf8d79d18c5a694bbb6b",
+      "originalFilename": "b240-bs3-r05.png",
+      "originalSha256": "8b98248a9a1a37f997951f6f388228ef9e26946dddc34cfc82f0ce59691dcd97",
+      "generationRequestSha256": "fa8cc84952b18745e90e1b86a2b5e03a7e79e60ce51882f890519726171fd013",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "57fd34d286929f9c59bb80a04c583a11cc603e0587c0dc9a7b4d8bb905124ad5",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 0,
+        "maximumAlpha": 0,
+        "alphaWeightedPixelEquivalent": 0.0
+      }
+    },
+    {
+      "pieceId": "b240-bs4",
+      "acceptedOriginalRevision": "b240-bs4-r01",
+      "familyId": "balance-scale",
+      "tier": 4,
+      "file": "art/b240-bs4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 496768,
+      "sha256": "13e8e1310fee174dd254e984e2514bf1c419e981d17fa1568cca3a284c53cdaa",
+      "originalFilename": "b240-bs4-r01.png",
+      "originalSha256": "14ec795066472778bdb8ef9154606217feab9e2e8709d43ebdda9d578df9e8e0",
+      "generationRequestSha256": "97fa628dab9983632cd0a0a409f863fd06d6d125d3523e0f174cb24af3a03097",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "9111cebc58d750a16e25851c73587a602830cc877ed323f3fb324c22d308e8db",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 18,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.07058823529411765
+      }
+    },
+    {
+      "pieceId": "b240-bs5",
+      "acceptedOriginalRevision": "b240-bs5-r01",
+      "familyId": "balance-scale",
+      "tier": 5,
+      "file": "art/b240-bs5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 629954,
+      "sha256": "e54652d9d7e935bd481687b4125ad5e6d65536236e0bb732c9cff424b5e79a4a",
+      "originalFilename": "b240-bs5-r01.png",
+      "originalSha256": "b6bec996a380ddbac5fb62db3a1016eca312aff85f3bc10bcfb8d2034e76a644",
+      "generationRequestSha256": "1504baffadf5f2ded0a95d82ae61ebe038720f03fb84f43644e4e8a041682fbf",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "42746f7ac4906f4b5e6497f47ea66765472e59853ac3e0a7a209f6b58b7090db",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 9,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.03529411764705882
+      }
+    },
+    {
+      "pieceId": "b240-mg1",
+      "acceptedOriginalRevision": "b240-mg1-r01",
+      "familyId": "horseshoe-magnet",
+      "tier": 1,
+      "file": "art/b240-mg1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 993030,
+      "sha256": "3b89a0ac928f7f67be35415d751e5b0cdcb2eb99335e458dab696a61e8eda04e",
+      "originalFilename": "b240-mg1-r01.png",
+      "originalSha256": "099e3a7c20dff221a7e02ababddecf6b4bd06464ba9193a74ab9fe2bec61f0eb",
+      "generationRequestSha256": "71cc8b6b7925e498bcd830fe876cbf4bad13cd597244880e5278efa5d66cfd59",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "68f1859011ac56546d13d5db9dd1fe49dc8b6966058801d9fcdf64197aee6330",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 4,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.01568627450980392
+      }
+    },
+    {
+      "pieceId": "b240-mg2",
+      "acceptedOriginalRevision": "b240-mg2-r01",
+      "familyId": "horseshoe-magnet",
+      "tier": 2,
+      "file": "art/b240-mg2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 700088,
+      "sha256": "50759c3e3a9a4a431d089d01781f832656b39bcb79df3a9f14776bd34767ed65",
+      "originalFilename": "b240-mg2-r01.png",
+      "originalSha256": "320b00881765cb9f440cdddb4913566833a7f16387d3fe508503485e9c990290",
+      "generationRequestSha256": "7e7a4d7c3783ac29872796d2bc456916204ce18815357e4829136a17af2f962b",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "9b7dd8fd1f35eb95817bb6fc162ddc46a56a4395c70c241d84ae55d16d92e186",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 3,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.011764705882352941
+      }
+    },
+    {
+      "pieceId": "b240-mg3",
+      "acceptedOriginalRevision": "b240-mg3-r02",
+      "familyId": "horseshoe-magnet",
+      "tier": 3,
+      "file": "art/b240-mg3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 404362,
+      "sha256": "45ff44755e21539f7c7619a2652b476192d0bd4d3440024beebb651038ff8318",
+      "originalFilename": "b240-mg3-r02.png",
+      "originalSha256": "b2e8c10ccbf2310ce231ecb6af0f6adeb651a666e6b4ff74a5e7305e05fe62d7",
+      "generationRequestSha256": "de35121790678c22289565494d4c3fec7ba99bff3be170756aeac30aa832fc3e",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "cb72633398baf5d327810af1a62b51e5852ea53b00797ae21e351939c6e4a1b1",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 37,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.1450980392156863
+      }
+    },
+    {
+      "pieceId": "b240-mg4",
+      "acceptedOriginalRevision": "b240-mg4-r02",
+      "familyId": "horseshoe-magnet",
+      "tier": 4,
+      "file": "art/b240-mg4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 699532,
+      "sha256": "561cf73ccc5e2c4ddd92bd34f72684ab410ba7031e7cfdbdfe44f7ef4ddf8f7e",
+      "originalFilename": "b240-mg4-r02.png",
+      "originalSha256": "d17b2a66528d3585d87fffdf093ff5dc91236ec41ba9fea241b335d1de566348",
+      "generationRequestSha256": "8a98b912c10a32c69ab3ea9695fcd2f6411d0293a55c8c3d99dc628f71fed261",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "9dd250895025b5b601500a1855e9ef0fbe0e7b0fbf31f2e74d042659f8e9b925",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 18,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.07058823529411765
+      }
+    },
+    {
+      "pieceId": "b240-mg5",
+      "acceptedOriginalRevision": "b240-mg5-r01",
+      "familyId": "horseshoe-magnet",
+      "tier": 5,
+      "file": "art/b240-mg5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 599000,
+      "sha256": "e5165d5b57f257b6a360023016188a8e907178328453d8a8859f5218cf0b468f",
+      "originalFilename": "b240-mg5-r01.png",
+      "originalSha256": "e1b2255dfe6b1e79ce281292bdb625ec08a9b799b1ea53e49fd2a292c5396b71",
+      "generationRequestSha256": "f3249cb29bd856991ae6289d8f0cd203de7f7a205e9b234f2c8ce24a7d7ce81c",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "2f0c66dd761f9aea11e2910da0b930af9242bbb12474de9b14fdd02f1153dbf4",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 1550,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 6.078431372549019
+      }
+    },
+    {
+      "pieceId": "b240-ac1",
+      "acceptedOriginalRevision": "b240-ac1-r02",
+      "familyId": "accordion",
+      "tier": 1,
+      "file": "art/b240-ac1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 775012,
+      "sha256": "4029286a99b17ab10cd0081c4e95bc6dfb0c11868b3513ec042cc354d695a7ec",
+      "originalFilename": "b240-ac1-r02.png",
+      "originalSha256": "8f326e9b39615dbc7bb3e8b6cd8fa765f833d25aa3015de2366e256bd4e70c45",
+      "generationRequestSha256": "4ea2b6a1f47b7a75ef530ed5856d1d959e83385714f3ed33ef0233813105f462",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "5f69f5a1a2087c3a5d4d71cdfd61df4c2dd8904dbcd07510f13d6f2a9f81ba05",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 12,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.047058823529411764
+      }
+    },
+    {
+      "pieceId": "b240-ac2",
+      "acceptedOriginalRevision": "b240-ac2-r01",
+      "familyId": "accordion",
+      "tier": 2,
+      "file": "art/b240-ac2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 705804,
+      "sha256": "2efe43b5c3bac49ecf66f19a285a29e25f7f19a7e92d342282678b35f31e91a4",
+      "originalFilename": "b240-ac2-r01.png",
+      "originalSha256": "b9de1cf5e9349e59f2c411090a0a64600b3e284907ad163ea4b98b63bf1bc8ed",
+      "generationRequestSha256": "58018feb99f6ac4df16b725c3ac35931db97c51510d95d33d5be87eb16f18ae8",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "0fe4b9efe6684436ca71b1b6554c7d1bda90a9969c6583d227d7c31939fa2514",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 9,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.03529411764705882
+      }
+    },
+    {
+      "pieceId": "b240-ac3",
+      "acceptedOriginalRevision": "b240-ac3-r01",
+      "familyId": "accordion",
+      "tier": 3,
+      "file": "art/b240-ac3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 679818,
+      "sha256": "3c9753ee4d42683b7e127a231e26394258e2e91959070750319ba85caa238886",
+      "originalFilename": "b240-ac3-r01.png",
+      "originalSha256": "4069723bb2cfcc3b586939647417240551b6bf9c966e95ce75c72df9b90c8702",
+      "generationRequestSha256": "340ff33816f51a5b9ba62772dafc66a935ad8a946980b073133bba4ca105e529",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "c76315913866f671e5278ab517f142df5a1bd8c6573b68c565af749e252f214c",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 7,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.027450980392156862
+      }
+    },
+    {
+      "pieceId": "b240-ac4",
+      "acceptedOriginalRevision": "b240-ac4-r02",
+      "familyId": "accordion",
+      "tier": 4,
+      "file": "art/b240-ac4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 589852,
+      "sha256": "faf15242b6ebda5d69601390c2d1f368bed0a7111bbc241ee7ae1a33a944d1d3",
+      "originalFilename": "b240-ac4-r02.png",
+      "originalSha256": "df92105bb5578d5c5c6dfbd8c759cade1fcaf17ad7c582a4a5b11b618bd6615b",
+      "generationRequestSha256": "997e95e3ce9aa87e8ec6f6e41f113950b5de7293a76bb221c8dcc987b7a42b23",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "718b74fe9af27ac82e4a48f86c78fd10c7b79799fb3b96aa62e3852ec44a3629",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 6,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.023529411764705882
+      }
+    },
+    {
+      "pieceId": "b240-ac5",
+      "acceptedOriginalRevision": "b240-ac5-r03",
+      "familyId": "accordion",
+      "tier": 5,
+      "file": "art/b240-ac5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 608110,
+      "sha256": "d12fb4c1518a21ecd22fbbec434e5982d75609b1e3bff5018e4318f9cd742f06",
+      "originalFilename": "b240-ac5-r03.png",
+      "originalSha256": "08fc9f0b3cd996a4db30505e26450decef99a525792ad64df7e0c79724c9e6e3",
+      "generationRequestSha256": "2ddc4fa40688ad51f88438061fe5ce581f814b1e8187e070251376bd538fad67",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "58cbe7c726ec1727fa9aa44af9f14dc3859118ba1ebec75d0ed6e1df779acff0",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 48,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.18823529411764706
+      }
+    },
+    {
+      "pieceId": "b240-tr1",
+      "acceptedOriginalRevision": "b240-tr1-r03",
+      "familyId": "trumpet",
+      "tier": 1,
+      "file": "art/b240-tr1.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 517692,
+      "sha256": "71a35040dce752bd5df06635dd2e266e1a137715f4c5ea475212ab7a03ad53f7",
+      "originalFilename": "b240-tr1-r03.png",
+      "originalSha256": "c5246cafe01ffbf178defdaba61e67d0e614bf7195d3b36081292363e9c31264",
+      "generationRequestSha256": "74346c7226b4898d1463466eefc693cf4dd4d69514fe47f9d5ad6be0ae2e4561",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "9242c24eb6f4d57001688c3fb710682c8f6d8ef99ee2e2bf12be928c6a780ca6",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 42,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.16470588235294117
+      }
+    },
+    {
+      "pieceId": "b240-tr2",
+      "acceptedOriginalRevision": "b240-tr2-r02",
+      "familyId": "trumpet",
+      "tier": 2,
+      "file": "art/b240-tr2.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 406138,
+      "sha256": "f89fd11849e52e1139d43500d71bdf2bde381b896d06b00b7db9b2753e5bfaf9",
+      "originalFilename": "b240-tr2-r02.png",
+      "originalSha256": "5dce8541492ea8bc2a9c1400716f9a5c47a2c8f85ebff63013ab041a6fce6661",
+      "generationRequestSha256": "ec9188d81349b0b943fda2c520ecf20aa70b196ea73b898b023e3676396404ab",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "d6f1811acf181130194145ef420de2d15dc5cb667b05c5a559b57fd1f0a2cdd0",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 20,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.0784313725490196
+      }
+    },
+    {
+      "pieceId": "b240-tr3",
+      "acceptedOriginalRevision": "b240-tr3-r03",
+      "familyId": "trumpet",
+      "tier": 3,
+      "file": "art/b240-tr3.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 442610,
+      "sha256": "e2a516d5854aba211c02f1f1bc5020cdbe46c9a113ffa4e4368f2dd828e182c5",
+      "originalFilename": "b240-tr3-r03.png",
+      "originalSha256": "c866a840c0b0fdb3d446f9886b60ae9a8c46392505ad5172cbf944e36ca8fae9",
+      "generationRequestSha256": "2c963bc006ff1bb705b5646881d6df402cb8654d3d3ccc48c7c23be44576b34c",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "392a13727d50d975d67190bf481299cb367366497c8e8740ee2304ede0ac7e77",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 77,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.30196078431372547
+      }
+    },
+    {
+      "pieceId": "b240-tr4",
+      "acceptedOriginalRevision": "b240-tr4-r03",
+      "familyId": "trumpet",
+      "tier": 4,
+      "file": "art/b240-tr4.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 490260,
+      "sha256": "4fa2c2d4fc52ec4c6f25d2c2de933d93676b5f1cf6c9a6c142f8c50a711fb1b1",
+      "originalFilename": "b240-tr4-r03.png",
+      "originalSha256": "50d4deedea8b0fa64f541d4ce5dbcad05c028402177627ae06ffa5f4a2c5fc29",
+      "generationRequestSha256": "db17e8cdd42e7999a4eda704e9f31509e3d8f4b89d62ff82e34bfa47848299e2",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "a7aee7041111d6d71614a5ceb4c705e505baa13e3572bf0f71015dbd9cb24e3b",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 14,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.054901960784313725
+      }
+    },
+    {
+      "pieceId": "b240-tr5",
+      "acceptedOriginalRevision": "b240-tr5-r03",
+      "familyId": "trumpet",
+      "tier": 5,
+      "file": "art/b240-tr5.webp",
+      "format": "WEBP",
+      "mode": "RGBA",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 484344,
+      "sha256": "a89c502e379654d5e0050c05f087720c1852ea485e79e71aed9584884a09de4f",
+      "originalFilename": "b240-tr5-r03.png",
+      "originalSha256": "958a2537f964c76e23fabfecfddc9f0cf4ea244da658c8ca3dd70d0b644c6834",
+      "generationRequestSha256": "684ab19b28298a0f342883d0e1d861d41def0b2e7f79c0b8b66a97e425613487",
+      "framing": {
+        "policy": "exact-full-canvas-pad-only-before-resize",
+        "framingProofRGBASha256": "962e7564685732104270c0db4cfe9028dd5811b0a833fbe3a4fd983a5c64d473",
+        "wholeSourceCanvasRetainedBeforeResize": true
+      },
+      "transform": "Complete original canvas copied pixel-exact to a transparent square; alpha-aware Lanczos resized; RGBA lossless WebP. Original preserved separately.",
+      "codecRoundTripExact": true,
+      "cropExclusion": {
+        "nonzeroAlphaPixels": 6,
+        "maximumAlpha": 1,
+        "alphaWeightedPixelEquivalent": 0.023529411764705882
+      }
+    }
+  ]
+}

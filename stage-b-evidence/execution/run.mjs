@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {boundedProcess} from '../../full-campaign-gate/bounded-process.mjs';
+import {requireApproval} from './binding.mjs';
+import {ORDER,ROOT,CONFIG,LIMITS,admit} from './policy.mjs';
+const profile=process.argv[2];assert.equal(process.argv.length,3);assert(ORDER.includes(profile));const binding=requireApproval();assert.match(process.env.MOTICOS_240_EPOCH??'',/^\d+$/);const elapsed=Math.floor(Date.now()/1000)-Number(process.env.MOTICOS_240_EPOCH),budget=admit(profile,elapsed);
+for(const p of ORDER.slice(0,ORDER.indexOf(profile)))assert.equal(JSON.parse(fs.readFileSync(`${ROOT}/${p}/launcher.json`)).status,'passed','Stop after first profile failure');
+const dir=`${ROOT}/${profile}`;fs.mkdirSync(dir);fs.writeFileSync(`${dir}/launcher.json`,JSON.stringify({status:'started',profile,budget,...binding}),{flag:'wx'});
+const result=await boundedProcess(process.execPath,['node_modules/@playwright/test/cli.js','test',`--config=${CONFIG}`,`--project=${profile}`],{timeout:budget,env:{...process.env,MOTICOS_240_PROFILE:profile}});
+const status=result.status===0&&!result.error&&!result.timedOut?'passed':'incomplete-or-failed';fs.writeFileSync(`${dir}/launcher.json`,JSON.stringify({status,profile,budget,...binding,exitCode:result.status,signal:result.signal,error:result.error,timedOut:result.timedOut,groupCleanup:result.groupCleanup},null,2));if(status!=='passed')process.exitCode=1;

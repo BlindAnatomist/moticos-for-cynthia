@@ -1,6 +1,6 @@
 import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition, storyEligible, ordinaryTemplatesFor } from './content.js';
-import { upgradeCareer as upgradeV4 } from './engine.v4.js';
-import {CONTINUATION,VOLUMES,volumeOf,continuationEntered} from './volumes.js';
+import { upgradeCareer as upgradeV5 } from './engine.v5.js';
+import {CONTINUATION,CONTINUATIONS,VOLUMES,volumeOf,continuationEntered,boundaryAt,boundaryById} from './volumes.js';
 export const HISTORY_LIMIT=32, RECEIPT_LIMIT=40;
 const MAX=Number.MAX_SAFE_INTEGER-1000, clone=value=>structuredClone(value);
 const integer=(n,min=0,max=MAX)=>Number.isSafeInteger(n)&&n>=min&&n<=max;
@@ -17,7 +17,7 @@ export const originalVolumeComplete=s=>volumeComplete(s,VOLUMES[0].id);
 export const currentVolumeComplete=s=>volumeComplete(s,volumeOf(s).id);
 export const allAuthoredContentComplete=s=>VOLUMES.every(v=>volumeComplete(s,v.id));
 export const campaignComplete=currentVolumeComplete;
-export function canEnterContinuation(s){return s.mode==='career'&&s.chapterId===CONTINUATION.fromChapterId&&!continuationEntered(s)&&!s.suspendedStory&&originalVolumeComplete(s)&&s.xp>=CONTINUATION.minimumXP&&CONTINUATION.requiredOriginalStoryIds.every(id=>s.milestones.includes(id));}
+export function canEnterContinuation(s,boundaryId=boundaryAt(s)?.id){const boundary=boundaryById(boundaryId,s.contentVersion),at=boundary&&VOLUMES.findIndex(v=>v.chapterIds.includes(boundary.toChapterId));return s.mode==='career'&&!!boundary&&s.chapterId===boundary.fromChapterId&&!continuationEntered(s,boundary.id)&&!s.suspendedStory&&at>0&&VOLUMES.slice(0,at).every(v=>volumeComplete(s,v.id))&&s.xp>=boundary.minimumXP&&(boundary.requiredPreviousStoryIds??boundary.requiredOriginalStoryIds).every(id=>s.milestones.includes(id));}
 export function canStartNextChapter(s){return s.mode==='career'&&chapterComplete(s)&&!!chapterDefinition(s).nextId;}
 export function nextOutput(s,familyId,basic=false){const source=s.sources[familyId],family=familyOf(familyId);if(!source||!family||!s.unlockedSources.includes(familyId))return null;const tier=!basic&&source.sorter?SORTER_CYCLE[source.cursor%3]:1;return CATALOG.pieceOf(family.pieceIds[tier-1]);}
 function selectSourcesFor(s,order){if(!order)return;const needed=[...new Set(order.requirements.map(r=>CATALOG.pieceOf(r.pieceId).familyId))];s.activeSourceIds=[...new Set([...needed,...s.activeSourceIds,...s.unlockedSources])].filter(id=>s.unlockedSources.includes(id)).slice(0,2);}
@@ -70,7 +70,7 @@ export function upgradeCareer(input){
  // Same-schema packs are validated before append-only extension, too.
  let old;
  if(input?.schemaVersion===SCHEMA_VERSION){old=clone(input);validateCareer(old);if(old.contentVersion===CONTENT_VERSION)return old;}
- else old=upgradeV4(input); // Frozen old-schema reader runs before new fields exist.
+ else old=upgradeV5(input); // Frozen old-schema reader runs before new fields exist.
  assert(old.mode==='career','Practice cannot become a saved campaign');
  const s=clone(old),oldUnlocked=[...old.unlockedSources];
  s.schemaVersion=SCHEMA_VERSION;s.contentVersion=CONTENT_VERSION;
@@ -109,9 +109,10 @@ export function validateCareer(s){
  assert(Array.isArray(s.enteredChapters)&&same(s.enteredChapters,contentPack(s).chapters.slice(0,contentPack(s).chapters.findIndex(c=>c.id===s.chapterId)+1).map(c=>c.id)),'Invalid chapter sequence');
  assert(exactKeys(s.chapterEntryVersions,s.enteredChapters)&&Object.entries(s.chapterEntryVersions).every(([id,v])=>integer(v,1,s.contentVersion)&&contentPack(v)?.chapters.some(c=>c.id===id)),'Invalid chapter entry versions');
  if(s.mode==='career')for(let i=1;i<s.enteredChapters.length;i++)assert(chapterComplete(s,s.enteredChapters[i-1],s.chapterEntryVersions[s.enteredChapters[i-1]]),'Chapter entry prerequisites missing');
- const enteredContinuation=s.mode==='career'&&continuationEntered(s);
- assert(exactKeys(s.continuationEntries,enteredContinuation?[CONTINUATION.id]:[]),'Invalid explicit continuation entries');
- if(enteredContinuation){const entry=s.continuationEntries[CONTINUATION.id];assert(exactKeys(entry,['revision','contentVersion'])&&integer(entry.revision,1,s.revision)&&entry.contentVersion===5&&originalVolumeComplete(s)&&s.xp>=CONTINUATION.minimumXP,'Invalid continuation entry contract');}
+ const enteredBoundaries=s.mode==='career'?CONTINUATIONS.filter(b=>s.enteredChapters.includes(b.toChapterId)):[];
+ assert(exactKeys(s.continuationEntries,enteredBoundaries.map(b=>b.id)),'Invalid explicit continuation entries');
+ let previousBoundaryRevision=0;
+ for(const boundary of enteredBoundaries){const entry=s.continuationEntries[boundary.id],defined=boundaryById(boundary.id,entry?.contentVersion),at=VOLUMES.findIndex(v=>v.chapterIds.includes(boundary.toChapterId));assert(exactKeys(entry,['revision','contentVersion'])&&integer(entry.revision,previousBoundaryRevision+1,s.revision)&&integer(entry.contentVersion,1,s.contentVersion)&&defined&&same(defined,boundary)&&entry.contentVersion===s.chapterEntryVersions[boundary.toChapterId]&&VOLUMES.slice(0,at).every(v=>volumeComplete(s,v.id))&&s.xp>=boundary.minimumXP,'Invalid continuation entry contract');previousBoundaryRevision=entry.revision;}
  const unlocked=unlockedSourceIds(s);assert(same(s.unlockedSources,unlocked),'Invalid source unlocks');
  assert(Array.isArray(s.activeSourceIds)&&s.activeSourceIds.length===2&&new Set(s.activeSourceIds).size===2&&s.activeSourceIds.every(id=>s.unlockedSources.includes(id)),'Invalid active sources');
  assert(exactKeys(s.upgrades,contentPack(s).upgrades.map(u=>u.id))&&contentPack(s).upgrades.every(u=>integer(s.upgrades[u.id],0,1)),'Unknown upgrades');
@@ -153,7 +154,7 @@ export function goalHint(s,orderId=s.focusedOrderId){
  if(!order){
   if(s.mode==='replay')return {kind:'practice-complete',message:'This practice letter is complete. Return to your career whenever you are ready; its progress is unchanged.'};
   if(canStartNextChapter(s))return {kind:'chapter',message:`${chapterDefinition(s).title} is complete. Open ${chapterDefinition(s).nextTitle} when you are ready.`};
-  if(campaignComplete(s))return {kind:'complete',message:'The campaign is complete. Keep exploring your collection at your own pace.'};
+  if(campaignComplete(s))return {kind:'complete',message:'This correspondence is complete. Keep exploring your collection at your own pace.'};
   return {kind:'unavailable',message:'No eligible request is available right now. Your saved progress is intact; check your correspondence for unfinished goals.'};
  }
  if(matchingTiles(s,order))return {kind:'send',orderId:order.id,message:s.mode==='replay'?'Your practice letter is ready. Send it to finish with 0 XP and 0 coins.':'Your chosen request is ready. Send it to earn its displayed rewards.'};
@@ -197,7 +198,7 @@ export function reduceCareer(state,action){
   }
   case 'focus-order':{const order=s.orders.find(o=>o.id===action.orderId);assert(order,'Choose an active request');s.focusedOrderId=order.id;selectSourcesFor(s,order);break;}
   case 'select-source':{assert(integer(action.sourceSlot,0,1)&&s.unlockedSources.includes(action.familyId),'Choose an unlocked source');const other=1-action.sourceSlot;if(s.activeSourceIds[other]===action.familyId)[s.activeSourceIds[other],s.activeSourceIds[action.sourceSlot]]=[s.activeSourceIds[action.sourceSlot],s.activeSourceIds[other]];else s.activeSourceIds[action.sourceSlot]=action.familyId;break;}
-  case 'enter-continuation':{assert(action.boundaryId===CONTINUATION.id,'The continuation changed');assert(canEnterContinuation(s),'Complete the first correspondence and return to your story before opening this continuation');assert(!s.continuationEntries[CONTINUATION.id],'This continuation is already open');s.continuationEntries[CONTINUATION.id]={revision:s.revision,contentVersion:CONTENT_VERSION};enterChapter(s,CHAPTERS.find(c=>c.id===CONTINUATION.toChapterId));break;}
+  case 'enter-continuation':{const boundary=boundaryById(action.boundaryId,s.contentVersion);assert(boundary&&boundaryAt(s)?.id===boundary.id,'The continuation changed');assert(canEnterContinuation(s,boundary.id),'Complete the preceding correspondences and return to your story before opening this continuation');assert(!s.continuationEntries[boundary.id],'This continuation is already open');s.continuationEntries[boundary.id]={revision:s.revision,contentVersion:CONTENT_VERSION};enterChapter(s,CHAPTERS.find(c=>c.id===boundary.toChapterId));break;}
   case 'start-next-chapter':{assert(canStartNextChapter(s),'Finish this chapter before opening the next');const next=CHAPTERS.find(c=>c.id===chapterDefinition(s).nextId);assert(action.chapterId===next.id,'The next chapter changed');enterChapter(s,next);break;}
   case 'large-text':assert(typeof action.enabled==='boolean','Invalid text-size choice');s.largeText=action.enabled;break;
   case 'sound':assert(typeof action.enabled==='boolean','Invalid sound choice');s.sound=action.enabled;break;

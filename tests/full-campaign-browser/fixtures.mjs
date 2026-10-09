@@ -30,7 +30,7 @@ export function heldAtFive(){const s=migratedOptionalAtFour();return d.act(s,{ty
 export function readyLetter(state,id){const order=state.orders.find(o=>o.storyLetterId===id||o.id===id);assert(order);return d.ready(state,order);}
 let continuationReady=false;
 function prepareContinuation(){const result=prepare();if(continuationReady)return result;let s=structuredClone(result.ends.get(16));
- for(const chapter of C.CHAPTERS.slice(16)){s=d.act(s,chapter.number===17?{type:'enter-continuation',boundaryId:CONTINUATION.id}:{type:'start-next-chapter',chapterId:chapter.id});result.entries.set(chapter.number,structuredClone(s));for(const id of chapter.storyIds){s=d.complete(s,s.orders.find(o=>o.storyLetterId===id));result.letters.set(id,structuredClone(s));}result.ends.set(chapter.number,structuredClone(s));}
+ for(const chapter of C.CHAPTERS.slice(16,20)){s=d.act(s,chapter.number===17?{type:'enter-continuation',boundaryId:CONTINUATION.id}:{type:'start-next-chapter',chapterId:chapter.id});result.entries.set(chapter.number,structuredClone(s));for(const id of chapter.storyIds){s=d.complete(s,s.orders.find(o=>o.storyLetterId===id));result.letters.set(id,structuredClone(s));}result.ends.set(chapter.number,structuredClone(s));}
  assert.equal(s.milestones.length,139);assert.equal(s.xp,7830);continuationReady=true;return result;
 }
 export function previousFullCampaignSave(){return JSON.parse(fs.readFileSync(new URL('../../campaign-evidence/full-basic-journey.json',import.meta.url))).state;}
