@@ -29,7 +29,7 @@ function synthetic(){const config={workers:1,fullyParallel:false,forbidOnly:true
 
 test('approved 20 instances and exact evidence remain separate from historic 58',()=>{
   assert.deepEqual(ORDER.map(p=>CASES[p].length),[10,10]);assert.deepEqual(CASES[ORDER[0]],BROWSER_CASES);assert.deepEqual(SCREENSHOTS,BROWSER_SHOTS);assert.equal(PROFILE_MS,870000);
-  assert.equal(CASES[ORDER[0]].reduce((n,r)=>n+r[2],0),870000);assert.equal(240+2*870+60+120,2160);assert.equal(LIMITS.jobSeconds,2160);
+  assert.equal(CASES[ORDER[0]].reduce((n,r)=>n+r[2],0),870000);assert.equal(LIMITS.setupSeconds,600);assert.equal(LIMITS.cleanupSeconds+LIMITS.reserveSeconds,180);assert.equal(LIMITS.jobSeconds,2160);
   assert.equal(SCREENSHOTS.length,25);assert.equal(new Set(SCREENSHOTS).size,25);assert.equal(POSTCARDS.length,11);assert.equal(LIMITS.routinePngs+LIMITS.postcardPngs+LIMITS.failurePngs,73);assert.equal(LIMITS.artifactBytes,128*1024*1024);
 });
 test('exact argv denies filters extra flags repeats retries and unapproved project',()=>{
@@ -37,8 +37,9 @@ test('exact argv denies filters extra flags repeats retries and unapproved proje
   for(const p of ORDER)assert.equal(invocation(['test',`--config=${CONFIG}`,`--project=${p}`]).profile,p);
   for(const tail of [[],['--grep=C01'],['--project=full-chromium'],[`--project=${ORDER[0]}`,'--workers=2'],[`--project=${ORDER[0]}`,'--retries=1'],[`--project=${ORDER[0]}`,'--repeat-each=2'],['--list']])assert.throws(()=>invocation(['test',`--config=${CONFIG}`,...tail]));
 });
-test('admission reserves both complete profiles cleanup and reserve with no overtime',()=>{
-  assert.equal(admit(ORDER[0],240),870000);assert.throws(()=>admit(ORDER[0],241));assert.equal(admit(ORDER[1],1110),870000);assert.throws(()=>admit(ORDER[1],1111));assert.throws(()=>admit(ORDER[0],-1));assert.throws(()=>admit('old-240',0));
+test('admission preserves case standards and clips each full profile to remaining total time',()=>{
+  assert.equal(admit(ORDER[0],600),870000);assert.equal(admit(ORDER[1],1200),780000);assert.equal(admit(ORDER[1],1979),1000);assert.throws(()=>admit(ORDER[1],1980));assert.throws(()=>admit(ORDER[0],-1));assert.throws(()=>admit('old-240',0));
+  for(const p of ORDER)for(const elapsed of [0,600,1200,1979]){const ms=admit(p,elapsed);assert(ms<=BUDGETS[p]);assert(elapsed+ms/1000+LIMITS.cleanupSeconds+LIMITS.reserveSeconds<=LIMITS.jobSeconds);}
 });
 test('approval rejects historic grants changed budgets sources commits targets reruns and self-hosted',()=>{
   assert(approval(accepted(),id,env));
@@ -88,7 +89,7 @@ test('only one explicitly named failure PNG is allowed even when routine PNG cou
   enforceImageCounts(counts(valid));assert.throws(()=>enforceImageCounts(counts([...valid,'other/C01/failure.png'])),/One explicit failure PNG/);
   assert.throws(()=>enforceImageCounts(counts(['C01/test-failed-1.png'])),/Unknown PNG/);assert.throws(()=>enforceImageCounts(counts(['C01/failure.PNG'])),/Unknown PNG/);
   const config=fs.readFileSync(new URL('./playwright.config.mjs',import.meta.url),'utf8');assert(config.includes("screenshot:'off'"));assert(!config.includes("screenshot:'only-on-failure'"));
-  const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-failure-count-'));try{const results=join(dir,'results'),output=join(dir,'upload');for(const name of ['one','two']){fs.mkdirSync(join(results,name),{recursive:true});fs.writeFileSync(join(results,name,'failure.png'),'synthetic count fixture');}const passed=await finalizeEvidence({output,resultsRoot:results,validator:{command:process.execPath,args:['-e','process.exitCode=1'],cwd:dir}});assert.equal(passed,false);const summary=JSON.parse(fs.readFileSync(join(output,'over-cap.json')));assert.equal(summary.imageCounts.failurePngs,2);assert.equal(summary.status,'incomplete-or-failed');assert(fs.existsSync(join(results,'one','failure.png')));}finally{fs.rmSync(dir,{recursive:true,force:true});}
+  const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-failure-count-'));try{const results=join(dir,'results'),output=join(dir,'upload');for(const name of ['one','two']){fs.mkdirSync(join(results,name),{recursive:true});fs.writeFileSync(join(results,name,'failure.png'),'synthetic count fixture');}const passed=await finalizeEvidence({output,resultsRoot:results,setupRoot:join(dir,'no-setup'),validator:{command:process.execPath,args:['-e','process.exitCode=1'],cwd:dir}});assert.equal(passed,false);const summary=JSON.parse(fs.readFileSync(join(output,'over-cap.json')));assert.equal(summary.imageCounts.failurePngs,2);assert.equal(summary.status,'incomplete-or-failed');assert(fs.existsSync(join(results,'one','failure.png')));}finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
 test('deadline terminates a process group and cannot return a timeout as passed',async()=>{
   const r=await boundedProcess(process.execPath,['-e','setInterval(()=>{},1000)'],{timeout:80,stdio:'ignore'});assert.equal(r.timedOut,true);assert.notEqual(r.status,0);assert.equal(r.groupCleanup,'terminated');assert.match(r.error,/deadline/);
@@ -98,7 +99,7 @@ test('live artifact watchdog stops a child without deleting its over-cap diagnos
 });
 test('finalizer preserves real failure diagnostics and never passes unsafe or missing evidence',async()=>{
   for(const unsafe of [false,true]){const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-finalizer-'));try{const results=join(dir,'results'),output=join(dir,'upload');fs.mkdirSync(results);const bytes=Buffer.from('Actual native assertion failed before final report\n');fs.writeFileSync(join(results,'startup.log'),bytes);if(unsafe)fs.symlinkSync('/not-readable',join(results,'forbidden'));
-    assert.equal(await finalizeEvidence({output,resultsRoot:results,validator:{command:process.execPath,args:['-e',"throw Error('Synthetic missing native case evidence')"],cwd:dir}}),false);assert.deepEqual(fs.readFileSync(join(results,'startup.log')),bytes);
+    assert.equal(await finalizeEvidence({output,resultsRoot:results,setupRoot:join(dir,'no-setup'),validator:{command:process.execPath,args:['-e',"throw Error('Synthetic missing native case evidence')"],cwd:dir}}),false);assert.deepEqual(fs.readFileSync(join(results,'startup.log')),bytes);
     if(unsafe){const diagnostic=JSON.parse(fs.readFileSync(join(output,'failure-summary.json')));assert.equal(diagnostic.status,'incomplete-or-failed');assert.match(diagnostic.error,/symlink/i);}else{assert.deepEqual(fs.readFileSync(join(output,'startup.log')),bytes);assert.match(fs.readFileSync(join(output,'validator.log'),'utf8'),/missing native case evidence/);assert.equal(JSON.parse(fs.readFileSync(join(output,'finalizer.json'))).status,'incomplete-or-failed');assert(fs.existsSync(join(output,'inventory.json')));}
   }finally{fs.rmSync(dir,{recursive:true,force:true});}}
 });
@@ -108,5 +109,8 @@ test('only new exact 280 push triggers the 36-minute workflow; 240 trigger stays
   assert.deepEqual(w.on,{push:{branches:['verify/full-campaign-280-20261009']}});assert.deepEqual(old.on,{push:{branches:['verify/full-campaign-240-20261009']}});assert.equal(w.jobs.verification['timeout-minutes'],36);assert.equal(w.jobs.verification['runs-on'],'ubuntu-latest');assert.equal(w.concurrency['cancel-in-progress'],false);assert.deepEqual(w.permissions,{contents:'read'});
   const j=w.jobs.verification;assert(j.if.includes('github.run_attempt == 1'));assert(j.if.includes('github.event.repository.private == false'));assert(!JSON.stringify(j.env).includes('runner.'));
   assert.equal(j.steps.filter(s=>s.run?.includes('/run.mjs ')).length,2);assert(!JSON.stringify(j.steps).includes('stage-b-evidence/execution'));
-  const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-env-'));try{const envFile=join(dir,'env'),runner=join(dir,'runner with space');const r=spawnSync('bash',['-euo','pipefail','-c',j.steps[0].run],{encoding:'utf8',env:{...process.env,GITHUB_ENV:envFile,RUNNER_TEMP:runner}});assert.equal(r.status,0,r.stderr);const lines=fs.readFileSync(envFile,'utf8').trim().split('\n');assert.equal(lines.length,3);assert.match(lines[0],/^MOTICOS_280_EPOCH=\d+$/);assert.equal(lines[1],`MOTICOS_STAGE_C_PROBE_OUTPUT=${runner}/moticos-280-probe`);assert.equal(lines[2],`MOTICOS_280_UPLOAD=${runner}/moticos-280-upload`);}finally{fs.rmSync(dir,{recursive:true,force:true});}
+  assert.deepEqual(j.container,{image:'mcr.microsoft.com/playwright:v1.61.1-noble'});
+  assert(j.steps.some(s=>s.run==='node stage-c-evidence/execution/job-clock.mjs'));
+  assert(j.steps.some(s=>s.run==='node stage-c-evidence/execution/setup.mjs'));
+  assert(!JSON.stringify(j.steps).includes('install --with-deps'));
 });

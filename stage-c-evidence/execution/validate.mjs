@@ -57,7 +57,16 @@ export function validateCompletedProfile(profile,binding) {
   const root=`${ROOT}/${profile}`,report=json(root+'/results.json'),events=fs.readFileSync(root+'/progress/browser-events.jsonl','utf8').trim().split('\n').map(JSON.parse);
   validateReport(profile,report,events,binding);return validateProfileArtifacts(profile,binding);
 }
+export function requireSetup(root=ROOT,env=process.env) {
+  const at=`${root}/setup/`,clock=json(at+'job-clock.json');
+  assert.equal(clock.status,'bound',`Setup failed during ${clock.phase??'job clock'}: ${clock.error??'clock unavailable'}`);
+  const setup=json(at+'setup.json');
+  assert.equal(setup.status,'passed',`Setup failed during ${setup.lastStage??'installation'}: ${setup.timedOut?'setup deadline exceeded; ':''}${setup.error??'incomplete setup'}`);
+  assert.equal(clock.epoch,Number(env.MOTICOS_280_EPOCH),'Setup clock is not this run');
+  return setup;
+}
 export function validateEvidence() {
+  requireSetup();
   const binding=identity(),preparation=json(`${ROOT}/preparation.json`);assert.equal(preparation.status,'passed');
   assert.equal(preparation.sourceFingerprint,binding.sourceFingerprint);assert.equal(preparation.buildFingerprint,binding.buildFingerprint);
   assert(preparation.elapsedMs<=LIMITS.setupSeconds*1000);assert(preparation.setupElapsedMs<=LIMITS.setupSeconds*1000);

@@ -7,7 +7,7 @@ export const CASES = Object.freeze(Object.fromEntries(ORDER.map(p => [p, APPROVE
 export const SCREENSHOTS = Object.freeze(APPROVED_SCOPE.cases.flatMap(c => c.routineScreenshotNames));
 export const POSTCARDS = Object.freeze(APPROVED_SCOPE.postcardOutputsPerProfile);
 export const BUDGETS = Object.freeze(Object.fromEntries(ORDER.map(p => [p, 870000])));
-export const LIMITS = Object.freeze({jobSeconds:2160, setupSeconds:240, cleanupSeconds:60, reserveSeconds:120, artifactBytes:134217728, routinePngs:50, postcardPngs:22, failurePngs:1, traces:1, workers:1, retries:0, repeatEach:1, maxFailures:1, runStarts:1});
+export const LIMITS = Object.freeze({jobSeconds:2160, setupSeconds:600, cleanupSeconds:60, reserveSeconds:120, artifactBytes:134217728, routinePngs:50, postcardPngs:22, failurePngs:1, traces:1, workers:1, retries:0, repeatEach:1, maxFailures:1, runStarts:1});
 export const CONFIG = 'stage-c-evidence/execution/playwright.config.mjs';
 export const ROOT = 'stage-c-browser-results';
 export const TARGET = Object.freeze({repository:'BlindAnatomist/moticos-for-cynthia', ref:'refs/heads/verify/full-campaign-280-20261009', parent:'8c12d874b27ce6108b1fb770037d99d3444bf0d0', parentTree:'d3a7e9f1243013418c16b418458b677353a84cdb'});
@@ -19,14 +19,17 @@ export function invocation(args) {
   assert(listing || profile, 'Only exact 20-instance collection or one complete bounded profile is permitted');
   return {listing, profile};
 }
+// Case limits and each profile's870-second maximum are unchanged. The shared
+// job deadline may shorten a profile, which is an honest incomplete failure,
+// never permission to skip cases or promote partial evidence.
 export function remaining(profile) {
-  const n = ORDER.indexOf(profile); assert(n >= 0);
-  return ORDER.slice(n).reduce((sum,p) => sum + BUDGETS[p]/1000, LIMITS.cleanupSeconds + LIMITS.reserveSeconds);
+  assert(ORDER.includes(profile));return LIMITS.cleanupSeconds+LIMITS.reserveSeconds;
 }
 export function admit(profile, elapsed) {
-  assert(Number.isSafeInteger(elapsed) && elapsed >= 0);
-  assert(LIMITS.jobSeconds - elapsed >= remaining(profile), 'Insufficient complete remaining scope, cleanup and reserve');
-  return BUDGETS[profile];
+  assert(Number.isSafeInteger(elapsed) && elapsed >= 0);assert(ORDER.includes(profile));
+  const available=LIMITS.jobSeconds-elapsed-remaining(profile);
+  assert(available>0,'No browser time remains before cleanup/reserve');
+  return Math.min(BUDGETS[profile],available*1000);
 }
 export function environment(env, commit) {
   assert.equal(env.GITHUB_ACTIONS, 'true'); assert.equal(env.MOTICOS_280_PUBLIC_REPO, 'true');

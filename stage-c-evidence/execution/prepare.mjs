@@ -35,7 +35,7 @@ try {
   await run('build-core',['node_modules/vite/bin/vite.js','build','--config','career.vite.config.js']);
   await run('build-probe',['node_modules/vite/bin/vite.js','build','--config','stage-c-evidence/browser/probe/vite.config.mjs']);
   const build=freezeBuild();freezeProbe(build);
-  assert(Date.now()<=deadline,'Setup exceeded complete 240-second allowance');
+  assert(Date.now()<=deadline,`Setup exceeded complete ${LIMITS.setupSeconds}-second allowance`);
   fs.copyFileSync('stage-c-source.json',`${ROOT}/source.json`);fs.copyFileSync('stage-c-build.json',`${ROOT}/build.json`);
   fs.writeFileSync(`${ROOT}/preparation.json`,JSON.stringify({status:'passed',sourceFingerprint:source.sourceFingerprint,buildFingerprint:build.buildFingerprint,elapsedMs:Date.now()-started,setupElapsedMs:process.env.GITHUB_ACTIONS==='true'?Date.now()-Number(process.env.MOTICOS_280_EPOCH)*1000:Date.now()-started,collection:collectionProof,focusedTests:focused,steps},null,2)+'\n',{flag:'wx'});
 } catch(error) {

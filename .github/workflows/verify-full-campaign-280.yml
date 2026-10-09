@@ -30,16 +30,16 @@
       },
       "steps": [
         {
-          "name": "Start immutable 36-minute clock",
-          "run": "echo \"MOTICOS_280_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\"\nprintf 'MOTICOS_STAGE_C_PROBE_OUTPUT=%s/moticos-280-probe\\nMOTICOS_280_UPLOAD=%s/moticos-280-upload\\n' \"${RUNNER_TEMP:?}\" \"${RUNNER_TEMP:?}\" >> \"$GITHUB_ENV\""
-        },
-        {
           "uses": "actions/checkout@v4",
           "with": {
             "ref": "${{ github.sha }}",
             "persist-credentials": false,
             "fetch-depth": 0
           }
+        },
+        {
+          "name": "Bind clock to actual job start including container provisioning",
+          "run": "node stage-c-evidence/execution/job-clock.mjs"
         },
         {
           "uses": "actions/setup-node@v4",
@@ -52,9 +52,9 @@
           "run": "node stage-c-evidence/execution/precheck.mjs"
         },
         {
-          "name": "Pinned setup, focused contracts, exact collection and two builds",
-          "timeout-minutes": 4,
-          "run": "remaining=$((MOTICOS_280_EPOCH + 240 - $(date +%s)))\ntest \"$remaining\" -gt 0\ntimeout --signal=TERM --kill-after=5s \"${remaining}s\" bash -euc 'npm ci --no-audit --no-fund; node node_modules/@playwright/test/cli.js install --with-deps chromium webkit; node stage-c-evidence/execution/prepare.mjs'"
+          "name": "Bounded official-image setup, focused contracts and exact builds",
+          "timeout-minutes": 11,
+          "run": "node stage-c-evidence/execution/setup.mjs"
         },
         {
           "name": "Bind exact source, core and dual probe builds",
@@ -72,7 +72,7 @@
           "name": "Preserve bounded acceptance or failure diagnostics",
           "if": "always()",
           "timeout-minutes": 1,
-          "run": "timeout --signal=TERM --kill-after=5s 45s node stage-c-evidence/execution/finalize.mjs"
+          "run": "export MOTICOS_280_UPLOAD=\"${MOTICOS_280_UPLOAD:-${RUNNER_TEMP:?}/moticos-280-upload}\"\ntimeout --signal=TERM --kill-after=5s 45s node stage-c-evidence/execution/finalize.mjs"
         },
         {
           "uses": "actions/upload-artifact@v4",
@@ -87,7 +87,10 @@
             "include-hidden-files": true
           }
         }
-      ]
+      ],
+      "container": {
+        "image": "mcr.microsoft.com/playwright:v1.61.1-noble"
+      }
     }
   }
 }

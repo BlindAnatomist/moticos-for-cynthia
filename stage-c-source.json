@@ -43,8 +43,8 @@
     },
     {
       "file": ".github/workflows/verify-full-campaign-280.yml",
-      "bytes": 3358,
-      "sha256": "6ee12bf302fe9930a41278727a3c8c8f1e894fae998a7a75c80004b06f9a0540"
+      "bytes": 3135,
+      "sha256": "7b61338d722b6b3cf38fde0d429655667f4da6bb91eee2a28d3fa8be31afe664"
     },
     {
       "file": ".github/workflows/verify-full-campaign.yml",
@@ -2768,8 +2768,8 @@
     },
     {
       "file": "stage-c-evidence/execution/README.md",
-      "bytes": 3241,
-      "sha256": "ccde184327547757bd79cb45eb2c99665eaf9d2dbf70db911e545c7e77b6aee3"
+      "bytes": 4639,
+      "sha256": "92ab7caa829479f5fb96d8a2439720a4780c2f05afccf12c93d2e4bb1e4f02e4"
     },
     {
       "file": "stage-c-evidence/execution/approved-scope.json",
@@ -2798,13 +2798,23 @@
     },
     {
       "file": "stage-c-evidence/execution/contracts.test.mjs",
-      "bytes": 17058,
-      "sha256": "7cb096023facec9ff681038c18a8db45546011caf97461789eb218c0dcd2086a"
+      "bytes": 17056,
+      "sha256": "010de658b32dd0666f28951810fbfd486b821026a175ee03e856e3172c2e2b37"
     },
     {
       "file": "stage-c-evidence/execution/finalize.mjs",
-      "bytes": 4317,
-      "sha256": "50a253501e5dd5cc87f57d4af8537ed2be066da36e7bd98e095940ce7851e7f8"
+      "bytes": 4796,
+      "sha256": "01bc83f4a1c2dddbfd82d477763b125652ef9955960e0a0eb664852f26db30ea"
+    },
+    {
+      "file": "stage-c-evidence/execution/job-clock.mjs",
+      "bytes": 3243,
+      "sha256": "24384ab368933c3ed530b9c476d7ce18082e6060c3b0cd7dba1162849be6f46c"
+    },
+    {
+      "file": "stage-c-evidence/execution/job-clock.test.mjs",
+      "bytes": 4007,
+      "sha256": "8fefc8b61424a8beb49473159af930694c6e0e7d7aa17ad107591b98a0771c01"
     },
     {
       "file": "stage-c-evidence/execution/paths.mjs",
@@ -2813,13 +2823,13 @@
     },
     {
       "file": "stage-c-evidence/execution/playwright.config.mjs",
-      "bytes": 1783,
-      "sha256": "57d4f1ed51a5bb32c867df63788f5de6077b2426be44a59bd082c9dd18bd26d7"
+      "bytes": 1846,
+      "sha256": "ec6580bebb575b0f3e601be66bbedf13c7d60e109a1872cbaf992d2fba84866b"
     },
     {
       "file": "stage-c-evidence/execution/policy.mjs",
-      "bytes": 3309,
-      "sha256": "4a2089ca3d189a62811f0cff64919ada02d1d7a45bd769a4eea03f582135dcec"
+      "bytes": 3519,
+      "sha256": "1837d393fc25de60a5d05b0a0cefac39907d58f33bb6f4355c4bc1ba17590f69"
     },
     {
       "file": "stage-c-evidence/execution/precheck.mjs",
@@ -2828,8 +2838,8 @@
     },
     {
       "file": "stage-c-evidence/execution/prepare.mjs",
-      "bytes": 3371,
-      "sha256": "4cf5c26e668599f8f78909128e66664807f47c73617342cb3f6cbf75432534c5"
+      "bytes": 3390,
+      "sha256": "d37c304429c9d1a65c3d012abd0296e515c5ec10c7d443eb5172be7df69595cd"
     },
     {
       "file": "stage-c-evidence/execution/reporter.mjs",
@@ -2852,9 +2862,19 @@
       "sha256": "d4d582940e350fc234717d71c88bf7b46e637e903d45aa7d8810abfc5fde5298"
     },
     {
+      "file": "stage-c-evidence/execution/setup.mjs",
+      "bytes": 9322,
+      "sha256": "8980583a46bd2bbf2c3cf899816c5622ee2381afc8480ced57cc8e8a2a6d0b8a"
+    },
+    {
+      "file": "stage-c-evidence/execution/setup.test.mjs",
+      "bytes": 10064,
+      "sha256": "0d7e3db25e5d94943fbfb492666e1cc10ffc297828dc30b229256cbbd0c7f21b"
+    },
+    {
       "file": "stage-c-evidence/execution/validate.mjs",
-      "bytes": 6292,
-      "sha256": "8d09f120bde9af8d048dc6f95dc130db72370a8d1f3d16ecacdd980bf782a533"
+      "bytes": 6878,
+      "sha256": "80afadd0b0f02e5c3c1e6c572e643c6362240250ef2c357aa84e7922bb5978be"
     },
     {
       "file": "stage-c-evidence/proposal.frozen.json",
