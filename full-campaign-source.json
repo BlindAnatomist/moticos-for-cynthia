@@ -74,8 +74,8 @@
     },
     {
       "file": "full-browser-evidence/hud-readability.test.mjs",
-      "bytes": 9642,
-      "sha256": "63c4719c0818a0e1de55f672e78636bd066d1be7095033cab421df8f1fdcc471"
+      "bytes": 12363,
+      "sha256": "207e928cb29dfc56594eed0828c0a026a137799c124f1e4f733f78b2c684339b"
     },
     {
       "file": "full-browser-evidence/image-readiness.test.mjs",
@@ -604,8 +604,8 @@
     },
     {
       "file": "src/career/career.css",
-      "bytes": 54493,
-      "sha256": "31c480878fa2d8d348dfead46c57d8c0ee7d8e88bd850bd25a7fb947956189c3"
+      "bytes": 54929,
+      "sha256": "63f2b1c89cb988b03a5f8b3d0d162f324290fdbe573bf31db4920c13ae53fcb5"
     },
     {
       "file": "src/career/CareerGarden.jsx",
@@ -2334,8 +2334,8 @@
     },
     {
       "file": "stage-b-evidence/execution/PROPOSAL.md",
-      "bytes": 14447,
-      "sha256": "1ae9efde2c357880345e30db6fec09fa584b5c9afc6c55e724115fd0246e1f0b"
+      "bytes": 16179,
+      "sha256": "81d58564660102cb0490dced287dbd4cac420e448cd1d2431ab020966acaa94d"
     },
     {
       "file": "stage-b-evidence/execution/reporter.mjs",

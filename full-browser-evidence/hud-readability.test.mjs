@@ -39,3 +39,20 @@ test('serialized producer proof matches strict schema and CSS visibility remains
  for(const style of [{display:'none'},{visibility:'hidden'},{opacity:'0'},{contentVisibility:'hidden'}]){const hud=scene();hud.children[0].style=style;const proof=JSON.parse(JSON.stringify(serialized(hud)));assert.equal(proof.controls[0].visible,false);assert(hudReadabilityViolations(proof).length>0);}
  const hud=scene(),label=hud.children[0].children[0];label.rect=rect(-10,-10,900,900);label.children[0].rects=[rect(130,5,80,14)];const proof=JSON.parse(JSON.stringify(serialized(hud)));assert(proof.controls[0].text[0].parent.width>proof.controls[0].rect.width);assert(hudReadabilityViolations(proof).some(s=>/own control/.test(s)));
 });
+
+// Source contracts protect the container dependency exposed by native WebKit B16.
+// They do not substitute for rendered geometry checks in the unchanged browser cases.
+const compactHudCss=async()=>await(await import('node:fs/promises')).readFile(new URL('../src/career/career.css',import.meta.url),'utf8');
+function hudRules(css){return [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map(m=>({selector:m[1].trim(),index:m.index,props:Object.fromEntries(m[2].split(';').filter(s=>s.includes(':')).map(s=>{const i=s.indexOf(':');return[s.slice(0,i).trim(),s.slice(i+1).trim()];}))}));}
+function normalHudContract(css){const rules=hudRules(css),last=s=>rules.findLast(r=>r.selector===s),normal='.career-shell:not(.is-large-text) ';
+ const container=last(normal+'.career-mobile-hud');assert.equal(container?.props.display,'flex','Wrapped progress must contribute to a flex row, not a nested grid track');
+ assert(container.index>last('.career-mobile-hud').index,'Normal override must follow shared HUD declarations');
+ assert.equal(last(normal+'.career-mobile-progress-button').props.flex,'1 1 0%','Progress receives responsive remaining width');
+ assert.equal(last(normal+'.career-mobile-progress-button').props['min-height'],'44px');
+ assert.equal(last(normal+'.career-mobile-coins').props.flex,'none','Wallet retains intrinsic content width');
+ assert.equal(last(normal+'.career-mobile-orders-button,'+normal+'.career-mobile-return').props.flex,'0 0 72px');
+ assert.equal(last(normal+'.career-mobile-more-button').props.flex,'0 0 44px');
+ assert(!Object.hasOwn(container.props,'width'),'Do not hard-code a viewport width');
+}
+test('normal HUD owns wrapped height and preserves responsive wallet/action allocation',async()=>{const css=await compactHudCss();normalHudContract(css);assert.throws(()=>normalHudContract(css.replace('.career-shell:not(.is-large-text) .career-mobile-hud{display:flex}', '.career-shell:not(.is-large-text) .career-mobile-hud{display:grid}')));});
+test('HUD container override ordering rejects regression while large-text keeps its grid',async()=>{const css=await compactHudCss();assert.throws(()=>normalHudContract(css+'\n@media(max-width:650px){.career-shell:not(.is-large-text) .career-mobile-hud{display:grid}}'));const rules=hudRules(css),large=rules.findLast(r=>r.selector==='.career-shell.is-large-text .career-mobile-hud');assert.equal(large.props['grid-template-columns'],'minmax(0,1fr) minmax(82px,1fr) minmax(64px,1fr)');assert.equal(rules.findLast(r=>r.selector==='.career-shell.is-large-text .career-mobile-progress-button').props['grid-column'],'1/-1');assert(!rules.some(r=>r.selector==='.career-mobile-hud'&&r.props.display==='flex'),'Flex override must stay normal-text only');});

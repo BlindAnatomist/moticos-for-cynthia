@@ -115,9 +115,14 @@
 
 /* Compact HUD: wrap full progress labels within their own column. Short titles
    retain the single-row board budget; longer titles grow the header naturally.
-   Block-flow labels avoid nested column-flex intrinsic-height undercounting. */
+   A flex HUD row derives height after allocating the progress column width;
+   this avoids the nested grid track retaining its pre-wrap height in WebKit. */
 @media(max-width:650px){
- .career-shell:not(.is-large-text) .career-mobile-progress-button{display:block;height:auto;min-height:44px}
+ .career-shell:not(.is-large-text) .career-mobile-hud{display:flex}
+ .career-shell:not(.is-large-text) .career-mobile-coins{flex:none}
+ .career-shell:not(.is-large-text) .career-mobile-orders-button,.career-shell:not(.is-large-text) .career-mobile-return{flex:0 0 72px}
+ .career-shell:not(.is-large-text) .career-mobile-more-button{flex:0 0 44px}
+ .career-shell:not(.is-large-text) .career-mobile-progress-button{flex:1 1 0%;display:block;height:auto;min-height:44px}
  .career-shell:not(.is-large-text) .career-mobile-progress-button>strong,.career-shell:not(.is-large-text) .career-mobile-progress-button>span{display:block}
  .career-shell:not(.is-large-text) .career-mobile-progress-button>span{margin-top:3px}
  .career-mobile-progress-button strong,.career-mobile-progress-button>span{max-width:100%;white-space:normal;overflow-wrap:anywhere}

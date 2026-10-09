@@ -1,3 +1,11 @@
+## Compact HUD row sizing correction status — 2026-10-09
+
+Run 37886836656 again passed 42 cases before normal-text WebKit B16 failed at 320×844. Its HUD remained 55px while the progress control was 69px, exactly matching the preceding failure; changing only the button's internal layout did not resolve the issue. Chromium still passed all eight B16 viewport/text-mode combinations. The new correction changes only the normal HUD container from a nested grid to a single flex row, explicitly preserving the existing wallet, 72px Orders/Return and 44px More allocation and letting progress use the remaining width. The row can size around the wrapped progress control. The enlarged-text grid, all full labels, minimum touch controls, artwork, 28px ink assertions, test scope and workflow limits remain unchanged. Native confirmation is still required; no successful post-fix browser render is claimed.
+
+The owner has explicitly authorized continuing this ongoing 240-piece verification through diagnosed corrections until acceptance, superseding the numerical three-start limit. Stop on acceptance and diagnose/fix a specific failure before another start. Every run retains 58 cases, one worker, zero automatic test retries, a 108-minute hard job cap, a 124 MiB evidence cap, the standard public GitHub runner and unchanged zero-dollar spending protection. Stop and notify the owner if spending protection blocks work. No laptop work, paid runners, budget changes, weakened assertions or broader preview audience are authorized. Bind the current approval to the final source/core/probe identities. Earlier authorization records below are historical; preview replacement remains conditional on native and visual acceptance.
+
+---
+
 ## WebKit compact HUD height correction status — 2026-10-09
 
 Run 37885128232 passed all 14 historical Chromium cases, all 8 historical WebKit cases, all 18 Stage B Chromium cases, and Stage B WebKit B14/B15 (42 passes), then WebKit B16 failed at 320×844 with normal text. Both engines rendered a 69px wrapped progress button, but Chromium allocated a 70px HUD and WebKit only 55px. WebKit centered the oversized button beyond the HUD bounds. The narrow CSS correction replaces only the normal progress button's internal column-flex layout with block-flow labels and explicit 3px spacing. Single-row HUD placement, natural height, full text, existing enlarged-text layout, 44px controls, artwork and unchanged 28px ink assertions are preserved.
@@ -82,7 +90,7 @@ Acceptance requires exact collected and terminal case/event identities, one succ
 
 ## Review and activation
 
-Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 141 Node checks (99 historical, 17 runtime, 14 browser contracts, eleven harness/presentation/collection/workflow/process contracts), subject to independent fresh collection.
+Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 143 Node checks (101 historical, 17 runtime, 14 browser contracts, eleven harness/presentation/collection/workflow/process contracts), subject to independent fresh collection.
 
 Confirm the repository remains public, standard GitHub-hosted runner eligibility and the owner’s zero-dollar spending stop before requesting publication; no billing setting is changed by this proposal.
 
