@@ -1,0 +1,17 @@
+{
+  "commit": "d0102796404e7b754e94f464c04b00acbc16cc0d",
+  "tree": "bb6c34f004b6f80759d4a98b5891e62733b9ac5a",
+  "runId": 37982578118,
+  "sourceFingerprint": "c0cc640a569cfe8f3a346ed2520b1f68d6ee55b124faa2185fd1b386a62162be",
+  "buildFingerprint": "b98dcdfdfaf510925d2af6dc188fcc06ea89a6119ed36c2040de61a149e84384",
+  "probeFingerprint": "93e2a136d115982036794faa4586994a6d8af55b99839a0417d97697a3f887e1",
+  "status": "accepted-corrected-280-native-artifact-and-scoped-visual-evidence",
+  "trackedFiles": 616,
+  "nativeCases": 20,
+  "pngs": 82,
+  "allOriginalsVisuallyInspected": 82,
+  "journalsComplete": true,
+  "cleanup": "confirmed-clean-both-profiles",
+  "sourceReceiptSha256": "c267d70821ef60af7f965d8a888f608c10ed596e72c5ba22ac291553029a2061",
+  "reconstruction": "This is a NEW report of accepted280 identifiers and reported measurements recovered from the completed worker audit, not original receipt bytes. sourceReceiptSha256 identifies the lost historical receipt, never this report."
+}

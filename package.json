@@ -8,7 +8,10 @@
     "build": "VITE_COLLAGE_EXPANSION_160=1 vite build --outDir dist-expansion160 && node scripts/stampExpansion160.mjs",
     "test": "bash scripts/testCurrentCandidate.sh",
     "test:e2e": "playwright test --config=playwright.expansion160.config.js",
-    "verify:current": "bash scripts/preflightExpansion160.sh"
+    "verify:current": "bash scripts/preflightExpansion160.sh",
+    "build:career320": "vite build --config career.vite.config.js --outDir dist-stage-d",
+    "test:stage-d": "node --test stage-d-evidence/*.test.mjs stage-d-evidence/browser/*.test.mjs",
+    "test:stage-d-harness": "node --test stage-d-evidence/*.test.mjs stage-d-evidence/browser/*.test.mjs stage-d-evidence/execution/*.test.mjs"
   },
   "dependencies": {
     "lucide-react": "1.27.0",

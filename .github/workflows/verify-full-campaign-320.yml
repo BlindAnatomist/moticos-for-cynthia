@@ -1,0 +1,97 @@
+{
+  "name": "Bounded Moticos 320 verification",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/full-campaign-320-20261009"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "moticos-320-single-run",
+    "cancel-in-progress": false
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "jobs": {
+    "verification": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/full-campaign-320-20261009' && github.event_name == 'push' && github.run_attempt == 1 && github.event.repository.private == false",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 36,
+      "container": {
+        "image": "mcr.microsoft.com/playwright:v1.61.1-noble"
+      },
+      "env": {
+        "MOTICOS_STAGE_D_APPROVAL": "stage-d-browser-results/approval.json",
+        "MOTICOS_320_PUBLIC_REPO": "${{ github.event.repository.private == false }}"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "ref": "${{ github.sha }}",
+            "persist-credentials": false,
+            "fetch-depth": 0
+          },
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Bind actual job-start clock including container provisioning",
+          "run": "node stage-d-evidence/execution/job-clock.mjs",
+          "timeout-minutes": 1
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": "24"
+          },
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Require exact reviewed source and fresh320 approval before installation",
+          "run": "node stage-d-evidence/execution/precheck.mjs",
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Bounded180-second official-image setup and nonbrowser preparation",
+          "timeout-minutes": 4,
+          "run": "node stage-d-evidence/execution/setup.mjs"
+        },
+        {
+          "name": "Bind exact rebuilt source, core and current-v7 probe identities",
+          "run": "node stage-d-evidence/execution/authorize.mjs",
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Run both complete eleven-case profiles serially with first-failure stop",
+          "run": "node stage-d-evidence/execution/run.mjs"
+        },
+        {
+          "name": "Retain bounded native acceptance or original failure diagnostics",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "run": "export MOTICOS_320_UPLOAD=\"${MOTICOS_320_UPLOAD:-${RUNNER_TEMP:?}/moticos-320-upload}\"\ntimeout --signal=TERM --kill-after=5s 45s node stage-d-evidence/execution/finalize.mjs"
+        },
+        {
+          "uses": "actions/upload-artifact@v4",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-320-${{ github.run_id }}",
+            "path": "${{ runner.temp }}/moticos-320-upload/",
+            "if-no-files-found": "error",
+            "retention-days": 1,
+            "compression-level": 6,
+            "include-hidden-files": true
+          }
+        }
+      ]
+    }
+  }
+}

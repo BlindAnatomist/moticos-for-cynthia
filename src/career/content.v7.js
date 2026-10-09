@@ -1,13 +1,13 @@
-// Append-only Stage D pack. Independently frozen v1–v7 readers preserve historical contracts.
+// Append-only packs. The independent v2 module remains the historical reader.
 import { createMatchingCatalog } from '../matching/catalogFactory.js';
-import { EXPANSION320_DEFINITIONS } from '../matching/expansion320/definitions.js';
-import * as V2 from './content.v7.js';
-import additions from './continuation.v8.js';
+import { EXPANSION280_DEFINITIONS } from '../matching/expansion280/definitions.js';
+import * as V2 from './content.v6.js';
+import additions from './continuation.v7.js';
 const freeze=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
 freeze(additions);
-export const SCHEMA_VERSION=8, RULES_VERSION=2, CONTENT_VERSION=8;
+export const SCHEMA_VERSION=7, RULES_VERSION=2, CONTENT_VERSION=7;
 export const STORAGE_KEY=V2.STORAGE_KEY, LOCK_NAME=V2.LOCK_NAME;
-const catalogs=EXPANSION320_DEFINITIONS.map(d=>createMatchingCatalog(d.catalog));
+const catalogs=EXPANSION280_DEFINITIONS.map(d=>createMatchingCatalog(d.catalog));
 export const FAMILIES=freeze([...V2.FAMILIES,...catalogs.flatMap(c=>c.FAMILIES)]);
 const pieces=freeze([...V2.CATALOG.PIECES,...catalogs.flatMap(c=>c.PIECES)]),pieceMap=freeze(Object.fromEntries(pieces.map(p=>[p.id,p])));
 const pieceOf=id=>typeof id==='string'&&Object.hasOwn(pieceMap,id)?pieceMap[id]:null;
@@ -24,7 +24,7 @@ export const UPGRADES=freeze([...V2.UPGRADES,...additions.upgrades]);
 export const CHAPTER_COPY=freeze({...V2.CHAPTER_COPY,...additions.chapterCopy});
 export const DISCOVERY_CAPTIONS=freeze({...V2.DISCOVERY_CAPTIONS,...additions.discoveryCaptions});
 export const POSTCARD_POSTSCRIPTS=freeze([...V2.POSTCARD_POSTSCRIPTS,...additions.postscripts]);
-export const CONTENT_PACKS=freeze({...V2.CONTENT_PACKS,8:{story:STORY_ORDERS,ordinary:ORDINARY_ORDERS,upgrades:UPGRADES,familyIds:FAMILIES.map(f=>f.id),chapters:CHAPTERS,levels:LEVELS,sourceRules:[...V2.CONTENT_PACKS[7].sourceRules,...additions.sourceRules]}});
+export const CONTENT_PACKS=freeze({...V2.CONTENT_PACKS,7:{story:STORY_ORDERS,ordinary:ORDINARY_ORDERS,upgrades:UPGRADES,familyIds:FAMILIES.map(f=>f.id),chapters:CHAPTERS,levels:LEVELS,sourceRules:[...V2.CONTENT_PACKS[6].sourceRules,...additions.sourceRules]}});
 export function contentPack(s){return CONTENT_PACKS[typeof s==='number'?s:s.contentVersion]??null;}
 export function orderTemplate(id,version=CONTENT_VERSION,origin='story'){return CONTENT_PACKS[version]?.[origin==='ordinary'?'ordinary':'story'].find(t=>t.id===id)??null;}
 export function upgradeDefinition(id,version=CONTENT_VERSION){return CONTENT_PACKS[version]?.upgrades.find(u=>u.id===id)??null;}

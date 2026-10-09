@@ -1,6 +1,6 @@
-import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition, storyEligible, ordinaryTemplatesFor } from './content.js';
-import { upgradeCareer as upgradeV7 } from './engine.v7.js';
-import {CONTINUATION,CONTINUATIONS,VOLUMES,volumeOf,continuationEntered,boundaryAt,boundaryById} from './volumes.js';
+import { CATALOG, FAMILIES, SCHEMA_VERSION, RULES_VERSION, CONTENT_VERSION, CHAPTER, CHAPTERS, STARTER_FAMILY_IDS, STORY_ORDERS, ORDINARY_ORDERS, UPGRADES, SORTER_CYCLE, levelDefinition, coinBalance, orderCapacity, recipeKey, eligible, chapterDefinition, chapterStories, unlockedSourceIds, availableUpgrades, orderTemplate, upgradeDefinition, contentPack, enteredChapterDefinition, storyEligible, ordinaryTemplatesFor } from './content.v7.js';
+import { upgradeCareer as upgradeV6 } from './engine.v6.js';
+import {CONTINUATION,CONTINUATIONS,VOLUMES,volumeOf,continuationEntered,boundaryAt,boundaryById} from './volumes.v7.js';
 export const HISTORY_LIMIT=32, RECEIPT_LIMIT=40;
 const MAX=Number.MAX_SAFE_INTEGER-1000, clone=value=>structuredClone(value);
 const integer=(n,min=0,max=MAX)=>Number.isSafeInteger(n)&&n>=min&&n<=max;
@@ -70,7 +70,7 @@ export function upgradeCareer(input){
  // Same-schema packs are validated before append-only extension, too.
  let old;
  if(input?.schemaVersion===SCHEMA_VERSION){old=clone(input);validateCareer(old);if(old.contentVersion===CONTENT_VERSION)return old;}
- else old=upgradeV7(input); // Frozen old-schema reader runs before new fields exist.
+ else old=upgradeV6(input); // Frozen old-schema reader runs before new fields exist.
  assert(old.mode==='career','Practice cannot become a saved campaign');
  const s=clone(old),oldUnlocked=[...old.unlockedSources];
  s.schemaVersion=SCHEMA_VERSION;s.contentVersion=CONTENT_VERSION;

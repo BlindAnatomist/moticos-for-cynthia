@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "status": "RECOVERED_REPORTED_MEASUREMENTS_NOT_ORIGINAL_RECEIPT_BYTES",
+  "baseline": {
+    "commit": "d0102796404e7b754e94f464c04b00acbc16cc0d",
+    "tree": "bb6c34f004b6f80759d4a98b5891e62733b9ac5a",
+    "runId": 37982578118,
+    "sourceFingerprint": "c0cc640a569cfe8f3a346ed2520b1f68d6ee55b124faa2185fd1b386a62162be",
+    "buildFingerprint": "b98dcdfdfaf510925d2af6dc188fcc06ea89a6119ed36c2040de61a149e84384",
+    "probeFingerprint": "93e2a136d115982036794faa4586994a6d8af55b99839a0417d97697a3f887e1",
+    "acceptanceReceiptSha256": "c267d70821ef60af7f965d8a888f608c10ed596e72c5ba22ac291553029a2061"
+  },
+  "jobSeconds": 627,
+  "setupSeconds": 55.759,
+  "profileSeconds": {
+    "chromium": 199.595,
+    "webkit": 359.047
+  },
+  "nativeCases": 20,
+  "contracts": 82,
+  "pngs": 82,
+  "files": 195,
+  "extractedBytes": 86697806,
+  "zipBytes": 35301443,
+  "categoryBytes": {
+    "screens": 19964487,
+    "exports": 13110458,
+    "journals": 23612745,
+    "proof": 29230736,
+    "geometry": 59218,
+    "other": 720162
+  },
+  "journalBytes": {
+    "chromium": 12065208,
+    "webkit": 11547537
+  },
+  "visualReview": {
+    "originals": 82,
+    "additionalFullResolution": 43,
+    "reportedResult": "pass"
+  },
+  "provenance": "Completed accepted280 terminal/artifact audit relayed by integration owner 2026-10-09. Original JSON body unavailable."
+}

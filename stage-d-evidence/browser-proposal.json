@@ -1,0 +1,270 @@
+{
+  "status": "NEW_RECONSTRUCTION_REQUIRES_REVIEW_NOT_BROWSER_EVIDENCE",
+  "caseCount": 11,
+  "proposedInstances": 22,
+  "profiles": [
+    {
+      "id": "stage-d-chromium-desktop",
+      "browser": "chromium"
+    },
+    {
+      "id": "stage-d-webkit-phone",
+      "browser": "webkit"
+    }
+  ],
+  "cases": [
+    {
+      "id": "D01",
+      "title": "Migrate frozen v7 saves without entering Stage D",
+      "timeoutSeconds": 60,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "D02",
+      "title": "Enter fourth boundary and reject concurrent stale writers",
+      "timeoutSeconds": 75,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "D03",
+      "title": "Play nineteen Stage D letters and all four two-letter gates",
+      "timeoutSeconds": 180,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D03-rabbit-zero.png",
+        "D03-violin-zero.png",
+        "D03-anvil-zero.png",
+        "D03-handsaw-zero.png"
+      ]
+    },
+    {
+      "id": "D04",
+      "title": "Reject wrong tier quantity and repeated deliveries",
+      "timeoutSeconds": 60,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "D05",
+      "title": "Preserve old material and deliver three historical callbacks",
+      "timeoutSeconds": 90,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D05-callback-return.png"
+      ]
+    },
+    {
+      "id": "D06",
+      "title": "Browse all320 collection entries without save writes",
+      "timeoutSeconds": 90,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D06-page-first.png",
+        "D06-page-last.png"
+      ]
+    },
+    {
+      "id": "D07",
+      "title": "Retain five endings and isolate historical replay",
+      "timeoutSeconds": 90,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D07-five-endings.png"
+      ]
+    },
+    {
+      "id": "D08",
+      "title": "Export twelve exact native postcards",
+      "timeoutSeconds": 150,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D08-rabbit-postcard.png",
+        "D08-mushroom-window-postcard.png"
+      ]
+    },
+    {
+      "id": "D09",
+      "title": "Measure occupied phone layouts and whole-word labels",
+      "timeoutSeconds": 180,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D09-320x568-standard.png",
+        "D09-320x568-large-left.png",
+        "D09-320x568-large-right.png",
+        "D09-390x664-standard.png",
+        "D09-390x664-large-left.png",
+        "D09-390x664-large-right.png",
+        "D09-390x844-standard.png",
+        "D09-390x844-large-left.png",
+        "D09-390x844-large-right.png",
+        "D09-430x932-standard.png",
+        "D09-430x932-large-left.png",
+        "D09-430x932-large-right.png",
+        "D09-desktop-standard.png",
+        "D09-desktop-large.png",
+        "D09-ending-320x568-large-left.png",
+        "D09-ending-320x568-large-right.png"
+      ]
+    },
+    {
+      "id": "D10",
+      "title": "Verify all forty live decoded crop identities at standard and larger text",
+      "timeoutSeconds": 120,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D10-first20-standard.png",
+        "D10-last20-standard.png",
+        "D10-first20-large.png",
+        "D10-last20-large.png"
+      ]
+    },
+    {
+      "id": "D11",
+      "title": "Measure native loads source picker and bounded postcard cache behavior",
+      "timeoutSeconds": 90,
+      "profiles": [
+        "stage-d-chromium-desktop",
+        "stage-d-webkit-phone"
+      ],
+      "routineScreenshotNames": [
+        "D11-all-sources-first.png",
+        "D11-all-sources-last.png"
+      ]
+    }
+  ],
+  "postcardOutputsPerProfile": [
+    {
+      "pieceId": "d320-rb5",
+      "normalizedEvidenceFilename": "d320-rb5.png",
+      "expectedSuggestedDownloadFilename": "moticos-rabbit-all-ears.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-mu5",
+      "normalizedEvidenceFilename": "d320-mu5.png",
+      "expectedSuggestedDownloadFilename": "moticos-mushroom-open-saddle.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-vn5",
+      "normalizedEvidenceFilename": "d320-vn5.png",
+      "expectedSuggestedDownloadFilename": "moticos-violin-folded-phrase.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-dr5",
+      "normalizedEvidenceFilename": "d320-dr5.png",
+      "expectedSuggestedDownloadFilename": "moticos-drum-carrying-the-beat.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-av5",
+      "normalizedEvidenceFilename": "d320-av5.png",
+      "expectedSuggestedDownloadFilename": "moticos-anvil-giving-ground.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-bl5",
+      "normalizedEvidenceFilename": "d320-bl5.png",
+      "expectedSuggestedDownloadFilename": "moticos-bellows-holding-a-breath.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-sa5",
+      "normalizedEvidenceFilename": "d320-sa5.png",
+      "expectedSuggestedDownloadFilename": "moticos-handsaw-end-to-end.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-wj5",
+      "normalizedEvidenceFilename": "d320-wj5.png",
+      "expectedSuggestedDownloadFilename": "moticos-wrench-wide-courtesy.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-rb3",
+      "normalizedEvidenceFilename": "d320-rb3.png",
+      "expectedSuggestedDownloadFilename": "moticos-rabbit-longer-rest.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-bl2",
+      "normalizedEvidenceFilename": "d320-bl2.png",
+      "expectedSuggestedDownloadFilename": "moticos-bellows-taking-air.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-sa2",
+      "normalizedEvidenceFilename": "d320-sa2.png",
+      "expectedSuggestedDownloadFilename": "moticos-handsaw-raised-handle.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "d320-sa3",
+      "normalizedEvidenceFilename": "d320-sa3.png",
+      "expectedSuggestedDownloadFilename": "moticos-handsaw-blunt-reply.png",
+      "width": 1536,
+      "height": 1120
+    }
+  ],
+  "limits": {
+    "workers": 1,
+    "retries": 0,
+    "maxFailures": 1,
+    "jobSeconds": 2160,
+    "artifactHardCapBytes": 134217728,
+    "artifactWatchdogBytes": 133169152,
+    "routineScreenshots": 64,
+    "postcards": 24,
+    "pngs": 88
+  },
+  "notClaimed": [
+    "Original missing payload identity",
+    "Native320 execution",
+    "Visual acceptance",
+    "Complete independent semantic review"
+  ]
+}

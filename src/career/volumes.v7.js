@@ -1,17 +1,13 @@
-import * as V7 from './volumes.v7.js';
+import * as V6 from './volumes.v6.js';
 const freeze=v=>{if(v&&typeof v==='object'){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
-const FIRST=V7.CONTINUATION;
+const FIRST=V6.CONTINUATION;
 export const CONTINUATION=FIRST;
-export const CONTINUATIONS=freeze([...V7.CONTINUATIONS,{
-  "id": "after-sideways-correspondences",
-  "fromChapterId": "next-move",
-  "toChapterId": "a-place-to-pause",
-  "fromVolumeId": "sideways-correspondences",
-  "toVolumeId": "final-forty-correspondences",
-  "minimumXP": 9375,
-  "explicitEntryRequired": true,
-  "action": "enter-continuation",
-  "terminalPreviousChapterNextIdRemainsNull": true,
+export const CONTINUATIONS=freeze([...V6.CONTINUATIONS,{
+  "id": "after-cross-currents-correspondences",
+  "fromChapterId": "paper-duet",
+  "toChapterId": "sideways-company",
+  "fromVolumeId": "cross-currents-correspondences",
+  "toVolumeId": "sideways-correspondences",
   "requiredPreviousStoryIds": [
     "garden-letter-1",
     "garden-letter-2",
@@ -176,7 +172,26 @@ export const CONTINUATIONS=freeze([...V7.CONTINUATIONS,{
     "paper-duet-letter-4",
     "paper-duet-letter-5",
     "paper-duet-letter-6",
-    "paper-duet-letter-7",
+    "paper-duet-letter-7"
+  ],
+  "minimumXP": 8980,
+  "explicitEntryRequired": true,
+  "action": "enter-continuation",
+  "entryButton": "Open the next four correspondences",
+  "deferButton": "Stay at my table",
+  "entryCopy": "The first twenty-four chapters are complete. Four more envelopes bring forty new pictures. Open them when you want to continue; your finished letters and saved table stay with you.",
+  "terminalPreviousChapterNextIdRemainsNull": true
+}]);
+export const VOLUMES=freeze([...V6.VOLUMES,{
+  "id": "sideways-correspondences",
+  "title": "Sideways Company and three more",
+  "chapterIds": [
+    "sideways-company",
+    "a-little-tending",
+    "warm-regards",
+    "next-move"
+  ],
+  "storyIds": [
     "sideways-company-letter-1",
     "sideways-company-letter-2",
     "sideways-company-letter-3",
@@ -197,86 +212,52 @@ export const CONTINUATIONS=freeze([...V7.CONTINUATIONS,{
     "next-move-letter-4",
     "next-move-letter-5"
   ],
-  "entryButton": "Open the final four correspondences",
-  "deferButton": "Stay at my table",
-  "entryCopy": "The first twenty-eight chapters are complete. Four final envelopes bring forty new pictures. Open them when you want to continue; your finished letters and saved table stay with you."
-}]);
-export const VOLUMES=freeze([...V7.VOLUMES,{
-  "id": "final-forty-correspondences",
-  "chapterIds": [
-    "a-place-to-pause",
-    "room-for-rhythm",
-    "weight-and-breath",
-    "along-the-grain"
-  ],
-  "storyIds": [
-    "a-place-to-pause-letter-1",
-    "a-place-to-pause-letter-2",
-    "a-place-to-pause-letter-3",
-    "a-place-to-pause-letter-4",
-    "room-for-rhythm-letter-1",
-    "room-for-rhythm-letter-2",
-    "room-for-rhythm-letter-3",
-    "room-for-rhythm-letter-4",
-    "room-for-rhythm-letter-5",
-    "weight-and-breath-letter-1",
-    "weight-and-breath-letter-2",
-    "weight-and-breath-letter-3",
-    "weight-and-breath-letter-4",
-    "weight-and-breath-letter-5",
-    "along-the-grain-letter-1",
-    "along-the-grain-letter-2",
-    "along-the-grain-letter-3",
-    "along-the-grain-letter-4",
-    "along-the-grain-letter-5"
-  ],
   "pieceIds": [
-    "d320-rb1",
-    "d320-rb2",
-    "d320-rb3",
-    "d320-rb4",
-    "d320-rb5",
-    "d320-mu1",
-    "d320-mu2",
-    "d320-mu3",
-    "d320-mu4",
-    "d320-mu5",
-    "d320-vn1",
-    "d320-vn2",
-    "d320-vn3",
-    "d320-vn4",
-    "d320-vn5",
-    "d320-dr1",
-    "d320-dr2",
-    "d320-dr3",
-    "d320-dr4",
-    "d320-dr5",
-    "d320-av1",
-    "d320-av2",
-    "d320-av3",
-    "d320-av4",
-    "d320-av5",
-    "d320-bl1",
-    "d320-bl2",
-    "d320-bl3",
-    "d320-bl4",
-    "d320-bl5",
-    "d320-sa1",
-    "d320-sa2",
-    "d320-sa3",
-    "d320-sa4",
-    "d320-sa5",
-    "d320-wj1",
-    "d320-wj2",
-    "d320-wj3",
-    "d320-wj4",
-    "d320-wj5"
+    "c280-cr1",
+    "c280-cr2",
+    "c280-cr3",
+    "c280-cr4",
+    "c280-cr5",
+    "c280-sn1",
+    "c280-sn2",
+    "c280-sn3",
+    "c280-sn4",
+    "c280-sn5",
+    "c280-wc1",
+    "c280-wc2",
+    "c280-wc3",
+    "c280-wc4",
+    "c280-wc5",
+    "c280-gt1",
+    "c280-gt2",
+    "c280-gt3",
+    "c280-gt4",
+    "c280-gt5",
+    "c280-fi1",
+    "c280-fi2",
+    "c280-fi3",
+    "c280-fi4",
+    "c280-fi5",
+    "c280-mi1",
+    "c280-mi2",
+    "c280-mi3",
+    "c280-mi4",
+    "c280-mi5",
+    "c280-kn1",
+    "c280-kn2",
+    "c280-kn3",
+    "c280-kn4",
+    "c280-kn5",
+    "c280-cg1",
+    "c280-cg2",
+    "c280-cg3",
+    "c280-cg4",
+    "c280-cg5"
   ],
-  "title": "A Place to Pause and three more",
-  "completionCopy": "All thirty-two correspondences are complete. There are now 320 pictures available across the opened collections; discovering every picture is optional. Your table and all five endings are here to revisit."
+  "completionCopy": "These four correspondences are complete. There are now 280 pictures available across the opened collections; discovering them all is optional. The earlier endings remain yours. This is the 280-picture checkpoint on the way to 320."
 }]);
-export const boundariesForVersion=version=>version>=8?CONTINUATIONS:V7.boundariesForVersion(version);
-export const boundaryById=(id,version=8)=>boundariesForVersion(version).find(b=>b.id===id)??null;
+export const boundariesForVersion=version=>version>=7?CONTINUATIONS:V6.boundariesForVersion(version);
+export const boundaryById=(id,version=7)=>boundariesForVersion(version).find(b=>b.id===id)??null;
 export const boundaryAt=s=>boundariesForVersion(s.contentVersion).find(b=>b.fromChapterId===s.chapterId)??null;
 export const volumeOf=s=>VOLUMES.find(v=>v.chapterIds.includes(s.chapterId))??VOLUMES[0];
 export const continuationEntered=(s,boundaryId=FIRST.id)=>{const b=boundaryById(boundaryId,s.contentVersion);return !!b&&s.enteredChapters.includes(b.toChapterId);};
