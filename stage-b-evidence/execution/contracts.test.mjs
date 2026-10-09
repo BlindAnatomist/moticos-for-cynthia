@@ -26,3 +26,15 @@ test('pinned multi-project collection shape accepts shared specs but rejects dup
  const shared=r=>r.suites.find(s=>s.file==='stage-b.spec.mjs').suites[0].specs[0];assert.equal(shared(report).tests.length,2);assert.deepEqual(shared(report).tests.map(t=>t.projectName),['stage-b-chromium','stage-b-webkit-phone']);
  for(const mutate of [r=>shared(r).tests.push(structuredClone(shared(r).tests[0])),r=>shared(r).tests.pop(),r=>shared(r).tests[1].projectName='stage-b-chromium',r=>shared(r).title='B1 wrong title',r=>r.suites.find(s=>s.file==='stage-b.spec.mjs').suites[1].specs[0].id=shared(r).id,r=>shared(r).id='',r=>shared(r).tests[0].results=[{status:'passed',retry:0}]]){const broken=structuredClone(report);mutate(broken);assert.throws(()=>verifyCombinedCollection(broken));}
 });
+
+test('workflow runner paths are initialized in a step, never unavailable job-env context',async()=>{
+ const fs=await import('node:fs'),os=await import('node:os'),path=await import('node:path'),{spawnSync}=await import('node:child_process');
+ // GitHub's official workflow schema job-env context excludes runner:
+ // https://github.com/actions/languageservices/blob/main/workflow-parser/src/workflow-v1.0.json
+ const allowed=new Set(['github','inputs','vars','needs','strategy','matrix','secrets']);
+ function jobEnvValid(env){for(const value of Object.values(env))for(const [,expr]of String(value).matchAll(/\$\{\{([\s\S]*?)\}\}/g))for(const [,root]of expr.matchAll(/(?<![\w.])([A-Za-z_][\w-]*)\s*(?:\.|\[)/g))assert(allowed.has(root),`Unavailable job-env context: ${root}`);}
+ assert.throws(()=>jobEnvValid({OUTPUT:'${{ runner.temp }}/probe'}));assert.throws(()=>jobEnvValid({OUTPUT:"${{ runner['temp'] }}/probe"}));
+ const active=JSON.parse(fs.readFileSync('.github/workflows/verify-full-campaign-240.yml')),proposal=JSON.parse(fs.readFileSync('stage-b-evidence/execution/workflow.proposal.json'));assert.deepEqual({...active,name:proposal.name},proposal);
+ for(const w of [active,proposal]){const j=w.jobs.verification;jobEnvValid(j.env);assert(!Object.hasOwn(j.env,'MOTICOS_STAGE_B_PROBE_OUTPUT'));assert(!Object.hasOwn(j.env,'MOTICOS_240_UPLOAD'));assert.equal(j['timeout-minutes'],108);assert.equal(j['runs-on'],'ubuntu-latest');
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'moticos-workflow-env-'));try{const file=path.join(dir,'env'),runner=path.join(dir,'runner with space');const result=spawnSync('bash',['-euo','pipefail','-c',j.steps[0].run],{encoding:'utf8',env:{...process.env,GITHUB_ENV:file,RUNNER_TEMP:runner}});assert.equal(result.status,0,result.stderr);const lines=fs.readFileSync(file,'utf8').trimEnd().split('\n');assert.equal(lines.length,3);assert.match(lines[0],/^MOTICOS_240_EPOCH=\d+$/);assert.equal(lines[1],`MOTICOS_STAGE_B_PROBE_OUTPUT=${runner}/moticos-240-probe`);assert.equal(lines[2],`MOTICOS_240_UPLOAD=${runner}/moticos-240-upload`);}finally{fs.rmSync(dir,{recursive:true,force:true});}}
+});

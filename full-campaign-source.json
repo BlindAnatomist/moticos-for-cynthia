@@ -9,8 +9,8 @@
     },
     {
       "file": ".github/workflows/verify-full-campaign-240.yml",
-      "bytes": 3675,
-      "sha256": "8c3977afbad3ee7c001ed3c4ebfeab70219e92fe4599de10e055d71366c492b4"
+      "bytes": 3691,
+      "sha256": "553e0a9dc8dde04bc9ecd1a023f3da7db00aed10ddf73a8a4b9a09182a93fddb"
     },
     {
       "file": ".github/workflows/verify-full-campaign.yml",
@@ -2289,8 +2289,8 @@
     },
     {
       "file": "stage-b-evidence/execution/contracts.test.mjs",
-      "bytes": 7748,
-      "sha256": "739b31170895cb8ab10bfa51e742a40faf70d50df201b8606348ed0a284b41ae"
+      "bytes": 9881,
+      "sha256": "cd5d1c571313f93718b43c577d98ba15e6037f2ead0a21ca6255cd16364ff1d8"
     },
     {
       "file": "stage-b-evidence/execution/ending-layout.mjs",
@@ -2329,8 +2329,8 @@
     },
     {
       "file": "stage-b-evidence/execution/PROPOSAL.md",
-      "bytes": 8025,
-      "sha256": "3be2d3887d702c9c52533f8a95f2fc6a9e482c2ae1c6099c168360fc8805750c"
+      "bytes": 8893,
+      "sha256": "cd2b84fa6ac93ece1b52a306f485050f35f4a944d2416cd1f10a1147f493d460"
     },
     {
       "file": "stage-b-evidence/execution/reporter.mjs",
@@ -2355,12 +2355,12 @@
     {
       "file": "stage-b-evidence/execution/validate.mjs",
       "bytes": 6194,
-      "sha256": "6ab910eb99ad711933a3c4e15278b5fd01cbd54ec79b953c23e26921c29c3967"
+      "sha256": "a67df0d5ce6cd0509fbe6eab46cfde96c2c5dc924f0ec56bfad4269dca6aa0ad"
     },
     {
       "file": "stage-b-evidence/execution/workflow.proposal.json",
-      "bytes": 3696,
-      "sha256": "86485444b126bc4917d1caf7f97ed09fa4eae846d5d989718419d10718eece02"
+      "bytes": 3712,
+      "sha256": "44d0f7d410a8bdfce128bcf7dcf0e791db647df78f3c6a97ad770ed1b71ac860"
     },
     {
       "file": "stage-b-evidence/integration.frozen.json",

@@ -1,3 +1,9 @@
+## Correction status — 2026-10-09
+
+The first approved start, run 37879339607, failed before any runner job began. The local workflow correction moves runner-dependent paths from job-level expressions into the initial shell step. GitHub’s official schema excludes the runner context from job env. The exact server annotation was not retrieved. The earlier one-start approval is consumed. The owner subsequently explicitly approved uploading this correction and starting one new 58-case run with the same 108-minute limit, zero automatic retries and unchanged spending protection. The final corrected source/core/probe identities and this fresh approval must be bound in the commit trailers. The failed attempt must not be rerun, and any additional start would require new approval. The previous activation record below describes the first start only.
+
+---
+
 ## Activation status — 2026-10-09
 
 The owner explicitly approved transfer and one complete 58-case verification run with the proposed 108-minute hard stop, zero automatic retries, and unchanged spending protection. The active workflow is now `.github/workflows/verify-full-campaign-240.yml`; the proposal JSON remains as the reviewed template. Exact final source/core/probe identities and this one-run authority must be bound by the commit trailers before publication. Browser and visual acceptance are still pending. Conditional preview replacement is separate and may occur only after both pass. No laptop work, additional run, paid overage, budget change, or deployment is performed by activating this workflow.
@@ -48,7 +54,7 @@ Acceptance requires exact collected and terminal case/event identities, one succ
 
 ## Review and activation
 
-Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 138 Node checks (99 historical, 17 runtime, 14 browser contracts, eight harness/presentation/collection contracts), subject to independent fresh collection.
+Local checks can run `node --test stage-b-evidence/execution/contracts.test.mjs`; negative fixtures are synthetic validator tests, not native evidence. With existing pinned dependencies, `node stage-b-evidence/execution/prepare.mjs` performs collection/tests/three builds only; set `MOTICOS_STAGE_B_PROBE_OUTPUT` to a new external absolute directory. It validates all explicitly registered Stage B suites and refuses old output. The expected aggregate is 139 Node checks (99 historical, 17 runtime, 14 browser contracts, nine harness/presentation/collection/workflow contracts), subject to independent fresh collection.
 
 Confirm the repository remains public, standard GitHub-hosted runner eligibility and the owner’s zero-dollar spending stop before requesting publication; no billing setting is changed by this proposal.
 

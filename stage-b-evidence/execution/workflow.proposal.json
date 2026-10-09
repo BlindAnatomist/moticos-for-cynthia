@@ -25,15 +25,13 @@
       "runs-on": "ubuntu-latest",
       "timeout-minutes": 108,
       "env": {
-        "MOTICOS_STAGE_B_PROBE_OUTPUT": "${{ runner.temp }}/moticos-240-probe",
         "MOTICOS_STAGE_B_APPROVAL": "full-browser-results/stage-b-execution/approval.json",
-        "MOTICOS_240_UPLOAD": "${{ runner.temp }}/moticos-240-upload",
         "MOTICOS_240_PUBLIC_REPO": "${{ github.event.repository.private == false }}"
       },
       "steps": [
         {
           "name": "Start immutable job clock",
-          "run": "echo \"MOTICOS_240_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\""
+          "run": "echo \"MOTICOS_240_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\"\nprintf 'MOTICOS_STAGE_B_PROBE_OUTPUT=%s/moticos-240-probe\\nMOTICOS_240_UPLOAD=%s/moticos-240-upload\\n' \"${RUNNER_TEMP:?}\" \"${RUNNER_TEMP:?}\" >> \"$GITHUB_ENV\""
         },
         {
           "uses": "actions/checkout@v4",
