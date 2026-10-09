@@ -2732,6 +2732,16 @@
       "sha256": "e477908cf5f6ed5f552b7557a62e38186b734c00a2531f9237c749060199091a"
     },
     {
+      "file": "stage-c-evidence/browser/capture-geometry.mjs",
+      "bytes": 3649,
+      "sha256": "c68c997d746563e64c4209777a54c15b8edbfd8eadc35bec5a93c8cf5840a35f"
+    },
+    {
+      "file": "stage-c-evidence/browser/capture-geometry.test.mjs",
+      "bytes": 6441,
+      "sha256": "9197162ac52ac849df7f609244d2426d560a96a8f4d0932b85509a06e1c02d35"
+    },
+    {
       "file": "stage-c-evidence/browser/contracts.test.mjs",
       "bytes": 14973,
       "sha256": "3f173ad83754c9d440bb06d4d96fcb6d6c3755821ddca804c494066443f0f847"
@@ -2753,8 +2763,8 @@
     },
     {
       "file": "stage-c-evidence/browser/helpers.mjs",
-      "bytes": 15068,
-      "sha256": "081b1201b62f204d7cbf44b2861205ea8cd2c1d79c2dcb22369065162eba3856"
+      "bytes": 14833,
+      "sha256": "a0f4aeed14acc0ad761a02c530c366357feba7791387076bd58c46cd5c82223d"
     },
     {
       "file": "stage-c-evidence/browser/late.spec.mjs",
@@ -2813,8 +2823,8 @@
     },
     {
       "file": "stage-c-evidence/execution/README.md",
-      "bytes": 11172,
-      "sha256": "069c6e525748081b055b0e04d9ac764ce0767d925cf3083ac12f68ed2955ea6b"
+      "bytes": 13237,
+      "sha256": "02e5518cc8da0d04409598394ce76c3997a6f86a687ea86a210c162a02aad164"
     },
     {
       "file": "stage-c-evidence/execution/approved-scope.json",
@@ -2848,13 +2858,13 @@
     },
     {
       "file": "stage-c-evidence/execution/diagnostics.test.mjs",
-      "bytes": 5907,
-      "sha256": "c9ca3dfb79e0f30fa1d231d5f20662311b24fbad468ccaea4825fb493dcd026b"
+      "bytes": 6000,
+      "sha256": "975a2344c1299ebc55797624943dce699f1dd98061dcdbc0252dfa0895180a3a"
     },
     {
       "file": "stage-c-evidence/execution/evidence-counts.test.mjs",
-      "bytes": 3214,
-      "sha256": "fb5bf1bc21589d41b544ea94e599848027ec9b7b7384a7fb2372cd9d30e8b923"
+      "bytes": 3567,
+      "sha256": "63bbe8d0fcc72bef2b65db8c2e2690472555a4538b3614072b88d15ed42abe57"
     },
     {
       "file": "stage-c-evidence/execution/finalize.mjs",
@@ -2958,8 +2968,8 @@
     },
     {
       "file": "stage-c-evidence/execution/validate.mjs",
-      "bytes": 7566,
-      "sha256": "1f926c5dd178f6cf5c810faa5100e1d307b565cbccc7fa7a856c66cd2fd933ae"
+      "bytes": 7980,
+      "sha256": "b12f6e4b6302f205d03774d157c73f4bf500b11afb78aba5b58f460d9f009d78"
     },
     {
       "file": "stage-c-evidence/proposal.frozen.json",

@@ -9,6 +9,7 @@ import {verifyProfile,flatten} from '../../full-campaign-gate/results.mjs';
 import {verifyStepJournal} from './step-journal.mjs';
 import {filesUnder,regularBytes,digest} from '../../full-campaign-gate/evidence.mjs';
 import {verifyPng} from '../../gate/png.mjs';
+import {verifyCaptureGeometry} from '../browser/capture-geometry.mjs';
 
 const json=p=>JSON.parse(fs.readFileSync(p));
 export function verifyNodeLog(log) {
@@ -40,7 +41,12 @@ export function validateProfileArtifacts(profile,binding,root=`${ROOT}/${profile
       assert(Array.isArray(dimensions)&&dimensions.length===2&&dimensions.every(n=>Number.isSafeInteger(n)&&n>0));
       verifyPng(bytes,dimensions);registered.push(at);
     }
-    for(const r of screens)png(r,r.name,r.dimensions);
+    for(const r of screens) {
+      const geometry=JSON.parse(regularBytes(root,dir+r.name+'.geometry.json'));
+      assert.deepEqual(r.geometry,geometry,'Screenshot geometry receipt differs from retained observations');
+      assert.deepEqual(r.dimensions,verifyCaptureGeometry(geometry),'Screenshot extent must come from independent stable DOM geometry');
+      png(r,r.name,r.dimensions);
+    }
     const exports=proof.exports??proof.data?.exports??[];
     assert.deepEqual(exports.map(r=>r.pieceId).sort(),proof.caseId==='C08'?POSTCARDS.map(r=>r.pieceId).sort():[],'Exact postcard outputs required');
     for(const r of exports) {

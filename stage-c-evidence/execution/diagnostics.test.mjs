@@ -36,7 +36,7 @@ test('native payload tracing is disabled while explicit evidence and failure cap
   assert(validator.includes('verifyStepJournal'));assert(validator.includes('Journal receipt differs from retained bytes'));assert(validator.includes('Native payload traces must not be generated'));
   assert(validator.includes("assert.equal(rows.filter(r=>r.path.endsWith('.png')).length,82)"));assert(validator.includes("Exactly ten native case proofs required"));
   assert(scope.includes("info.outputPath('failure.png')"));assert(scope.includes("info.outputPath('failure-state.json')"));assert(scope.includes('recentWrites:'));assert(scope.includes('save:{raw:'));
-  assert(helpers.includes("page.screenshot({path,fullPage:true})"));assert(helpers.includes('await download.saveAs(path)'));assert(helpers.includes('verifyPng(bytes,[1536,1120])'));
+  assert(helpers.includes('await captureFullPage(page,path)'));assert(read('../browser/capture-geometry.mjs').includes("page.screenshot({path,fullPage:true})"));assert(helpers.includes('await download.saveAs(path)'));assert(helpers.includes('verifyPng(bytes,[1536,1120])'));
 });
 
 

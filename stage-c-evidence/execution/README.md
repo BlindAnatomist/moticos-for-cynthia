@@ -21,7 +21,7 @@ const focused = source.manifest.files
 const args = ['--test', '--test-reporter=tap', ...focused];
 ```
 
-Run process.execPath with those exact arguments, retain the argument list and full TAP output, and require zero failures/skips/cancellations before packaging. There are currently 68 tests across the complete selected files. Do not run prepare.mjs merely to repeat unchanged app/probe builds; their verified byte inventories may be reused and rebound independently.
+Run process.execPath with those exact arguments, retain the argument list and full TAP output, and require zero failures/skips/cancellations before packaging. There are currently 76 tests across the complete selected files. Do not run prepare.mjs merely to repeat unchanged app/probe builds; their verified byte inventories may be reused and rebound independently.
 
 ## Fresh exact run binding
 
@@ -70,3 +70,12 @@ The prior failed run also took 21.983 seconds in browser-worker cleanup and repo
 The 20 native cases and all case/profile/job deadlines are retained. C08 now requires the bundled serif face to be loaded before every export. C09 verifies intact words at 14px or greater, measures all 280 catalog labels, checks local board scrolling, and exercises keyboard and touch/click reveal without saved-state writes or page overflow. Five additional right-edge screenshots are required per profile: C09-320x568-large-right.png, C09-390x664-large-right.png, C09-390x844-large-right.png, C09-430x932-large-right.png, and C09-ending-320x568-large-right.png. Acceptance now requires 60 screenshots plus 22 postcard PNGs (82 total; at most one extra failure PNG). The 128 MiB artifact cap, zero retries, first-failure stop, and spending protections are unchanged.
 
 All 60 screenshots and 22 downloaded postcard compositions require actual visual review before publication. The larger-text board deliberately permits contained horizontal scrolling so full labels, five logical columns, and comfortable tile sizes coexist. Standard-mode layout must remain unchanged; no clipped names, smaller accessibility fonts, renamed art, or engine-specific branches are permitted.
+
+
+## Exact capture geometry after run 37971538569
+
+WebKit C09 reached the first 320×568 larger-text capture after all preceding text, scroll and focus assertions passed. The helper measured root scrollHeight at 1008 CSS pixels; the original PNG and independently retained post-capture document height were 1021 CSS pixels (3063 device pixels at DPR 3). The former helper observed only root scrollHeight before the screenshot. Pinned Playwright 1.61.1 synchronizes WebKit screenshot style/layout and measures the maximum body/root scroll, offset and client extents. The failed run did not retain each pre-capture body/root metric, so the exact 13-pixel contributor is not established. This is a diagnosed capture-contract mismatch, not a claimed native pass.
+
+Before each single routine screenshot, the helper now awaits fonts, flushes a temporary no-op stylesheet and layout on both engines, then awaits font readiness and two animation frames. Independent full-document metrics are measured immediately before and after capture. Every metric, viewport value and font-ready state must match exactly; genuine capture-time changes fail. Expected PNG dimensions derive from those DOM metrics, never the image header. Full-document width must equal viewport width, preserving the no-page-overflow requirement. No tolerance, capture retry, engine detection, extra screenshot, changed case or larger budget is introduced.
+
+Each original screenshot has a small `.geometry.json` sidecar retaining both measurements even when dimension validation fails. Successful proof records include the same observations, and artifact acceptance checks sidecar identity, stability, exact DOM-derived PNG dimensions and full PNG decoding. Eight nonbrowser regressions cover all body/root extent contributors, settling order, one-shot capture, immutable evidence, the observed 13-pixel change failing, wrong PNG dimensions, horizontal overflow and invalid/unready geometry. Production and bundled font bytes are unchanged. Fresh full native and actual visual acceptance remain required.

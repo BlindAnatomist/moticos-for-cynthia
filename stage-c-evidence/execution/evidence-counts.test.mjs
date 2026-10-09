@@ -17,11 +17,13 @@ function png(width,height){
 }
 test('both expanded 41-image profile registries validate exactly 60 screenshots and 22 postcards',()=>{
  const dir=fs.mkdtempSync(join(os.tmpdir(),'moticos-text-image-counts-')),binding={sourceFingerprint:'a'.repeat(64),buildFingerprint:'b'.repeat(64)};
+ const metrics={scrollWidth:1,scrollHeight:1,offsetWidth:1,offsetHeight:1,clientWidth:1,clientHeight:1};
+ const observation={viewport:{width:1,height:1,dpr:1},fonts:'loaded',body:metrics,root:metrics},geometry={schemaVersion:1,before:observation,after:observation};
  const shot=png(1,1),card=png(1536,1120),receipts=[];
  try{
   for(const profile of ORDER){const root=join(dir,profile);for(const definition of APPROVED_SCOPE.cases){
    const folder=join(root,definition.id);fs.mkdirSync(folder,{recursive:true});const proof={caseId:definition.id,...binding,screenshots:[],exports:[]};
-   for(const name of definition.routineScreenshotNames){fs.writeFileSync(join(folder,name),shot);proof.screenshots.push({name,bytes:shot.length,sha256:digest(shot),dimensions:[1,1]});}
+   for(const name of definition.routineScreenshotNames){fs.writeFileSync(join(folder,name),shot);fs.writeFileSync(join(folder,name+'.geometry.json'),JSON.stringify(geometry));proof.screenshots.push({name,bytes:shot.length,sha256:digest(shot),dimensions:[1,1],geometry});}
    if(definition.id==='C08')for(const p of POSTCARDS){fs.writeFileSync(join(folder,p.normalizedEvidenceFilename),card);const hash=digest(card);proof.exports.push({pieceId:p.pieceId,filename:p.normalizedEvidenceFilename,suggestedFilename:p.expectedSuggestedDownloadFilename,bytes:card.length,sha256:hash,dimensions:[1536,1120],parity:{hashes:[hash,hash,hash],byteEqual:true,sameBlob:true,sameFilename:true}});}
    fs.writeFileSync(join(folder,'proof.json'),JSON.stringify(proof));
   }receipts.push(validateProfileArtifacts(profile,binding,root));}
