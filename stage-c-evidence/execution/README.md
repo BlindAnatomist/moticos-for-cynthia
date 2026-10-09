@@ -8,6 +8,21 @@ From the repository root, generate the reducer fixtures once with `node stage-c-
 
 Set `MOTICOS_STAGE_C_PROBE_OUTPUT` to a new absolute external directory, then run `node stage-c-evidence/execution/prepare.mjs` once in the pinned Node 24 / Playwright 1.61.1 environment. This performs only focused Stage C contracts, exact `--list` collection, the career build, and the dual current/v6 probe build. It never launches a browser. Outputs are `stage-c-source.json`, `stage-c-build.json`, and `stage-c-browser-results/`. The build fingerprint is SHA256 of compact JSON for the build proof with its own `buildFingerprint` field excluded; the probe fingerprint is SHA256 of the exact `probe-build.json` bytes.
 
+## Complete local contract checkpoint before a correction transfer
+
+Every harness correction must run the exact complete focused-contract command used by prepare.mjs, even when individual test files appear unchanged: static contracts can depend on changed reporters or configuration. This approximately three-second contract suite is separate from browser execution and application builds; selected subsets are supplemental, never a substitute.
+
+After sealing source, derive the command from the same explicit manifest selection used by prepare.mjs:
+
+```js
+const focused = source.manifest.files
+  .filter(r => /^stage-c-evidence\/(browser|execution)\/[^/]+\.test\.mjs$/.test(r.file))
+  .map(r => r.file);
+const args = ['--test', '--test-reporter=tap', ...focused];
+```
+
+Run process.execPath with those exact arguments, retain the argument list and full TAP output, and require zero failures/skips/cancellations before packaging. There are currently 60 tests across the complete selected files. Do not run prepare.mjs merely to repeat unchanged app/probe builds; their verified byte inventories may be reused and rebound independently.
+
 ## Fresh exact run binding
 
 The final commit must descend from accepted 240 commit `8c12d874b27ce6108b1fb770037d99d3444bf0d0`, whose tree is pinned. Four unique final-commit trailers bind the actual reviewed candidate:
