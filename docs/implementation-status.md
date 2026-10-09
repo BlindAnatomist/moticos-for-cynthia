@@ -23,11 +23,11 @@ Four frozen version-7 readers preserve historical content, engine, volume and se
 
 ## Verification and authorization
 
-The owner authorized the bounded 320 browser workflow, complete public code/artwork/documentation transfer and publication of a passing result to the private preview. Execution still requires complete reviewed source/build/probe identities and exact workflow admission. No 320 native run or private publication has occurred. Public blob preservation has occurred; it did not create a branch or start Actions.
+The owner authorized the bounded 320 browser workflow, complete public code/artwork/documentation transfer and publication of a passing result to the private preview. Execution still requires complete reviewed source/build/probe identities and exact workflow admission. The first 320 native run failed in its initial migration assertion after passing exact preparation; no 320 private publication has occurred. The reviewed candidate is on the dedicated verification branch. The bounded correction below still requires fresh admission and a new run.
 
-Current evidence consists of newly run reducer/session contracts, static preservation checks, server-rendered semantics, fixture replay and collection-only checks. Their receipts must bind the final current bytes. The earlier lost candidate's 71-contract result and fixture counts do not certify this reconstruction. Unchanged Stage A/B/C tests assert historical version totals and are not a current-v8 aggregate; see `stage-d-evidence/README.md` for scope.
+Current evidence includes newly run reducer/session contracts, static preservation checks, server-rendered semantics, fixture replay, collection-only checks and the failed first native run described below. Their receipts must bind the final current bytes. The earlier lost candidate's 71-contract result and fixture counts do not certify this reconstruction. Unchanged Stage A/B/C tests assert historical version totals and are not a current-v8 aggregate; see `stage-d-evidence/README.md` for scope.
 
-The native scope remains two complete 11-case profiles, 64 routine screenshots and 24 real postcard downloads, totaling 88 PNGs. Limits remain 36 minutes for the job, 900 seconds per profile, one worker, no automatic retries, a 127 MiB artifact watchdog and a 128 MiB final evidence cap. The existing included allowance and automatic zero-dollar spending stop remain in force. Budgets, stop settings and paid overages must not change. Current runtime estimates are planning estimates, not observations of this unexecuted candidate.
+The native scope remains two complete 11-case profiles, 64 routine screenshots and 24 real postcard downloads, totaling 88 PNGs. Limits remain 36 minutes for the job, 900 seconds per profile, one worker, no automatic retries, a 127 MiB artifact watchdog and a 128 MiB final evidence cap. The existing included allowance and automatic zero-dollar spending stop remain in force. Budgets, stop settings and paid overages must not change. Full-scope runtime estimates remain planning estimates. The first run observed 160.586 seconds of setup from actual job start, within the unchanged 180-second setup cap; it did not complete the native scope.
 
 ## Remaining gates
 
@@ -36,3 +36,9 @@ The native scope remains two complete 11-case profiles, 64 routine screenshots a
 3. Run the admitted native profiles under the unchanged caps, audit original artifact bindings and review every required original screenshot and downloaded postcard.
 4. Publish only a passing, reviewed 320 build to the existing private preview. Do not silently roll a newer v8 save back to a v7 writer.
 5. Keep physical iPhone and owner-operated VoiceOver checks separate from browser-emulation acceptance.
+
+## First native run and bounded correction
+
+Run [38000689343](https://github.com/BlindAnatomist/moticos-for-cynthia/actions/runs/38000689343) passed preparation and exact rebuild admission, then failed the first Chromium case. The migration test incorrectly required schema 7 to remain unchanged across the initial v7-to-v8 load; the recorded saved state exactly matched the real v8 upgrade. This revision waits for that exact migrated state at all four historical entry points before checking unchanged reloads. Product, artwork and fixture bytes are unchanged.
+
+Cleanup was reported unconfirmed, with no original process-state inventory to establish its cause. Small bounded PID/parent/group/state diagnostics now accompany stop and unconfirmed-cleanup receipts; cleanup still fails closed. Native acceptance and visual review remain pending. Runtime forecasts remain planning estimates for the full uncompleted scope; caps and spending-stop constraints are unchanged.

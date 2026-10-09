@@ -14,7 +14,7 @@ export async function runProfile(profile,binding){
  fs.mkdirSync(dir);fs.writeFileSync(`${dir}/launcher.json`,JSON.stringify({status:'started',profile,budget,...binding}),{flag:'wx'});
  let result={status:null,error:null,timedOut:false},receipt;
  try{const fd=fs.openSync(`${dir}/launcher.log`,'wx');try{result=await boundedProcess(process.execPath,['node_modules/@playwright/test/cli.js','test',`--config=${CONFIG}`,`--project=${profile}`],{timeout:budget,artifactRoot:ROOT,stdio:['ignore',fd,fd],env:{...process.env,MOTICOS_320_PROFILE:profile}});}finally{fs.closeSync(fd);}assert(result.status===0&&!result.error&&!result.timedOut&&!result.signal&&['not-required','terminated'].includes(result.groupCleanup),'Profile failed, interrupted, exceeded cap, or cleanup unconfirmed');receipt=validateCompletedProfile(profile,binding);}catch(error){result.error??=String(error.message).slice(0,8192);}
- const record={status:receipt?'passed':'incomplete-or-failed',profile,budget,...binding,exitCode:result.status,signal:result.signal,error:result.error,timedOut:result.timedOut,groupCleanup:result.groupCleanup,receipt};
+ const record={status:receipt?'passed':'incomplete-or-failed',profile,budget,...binding,exitCode:result.status,signal:result.signal,error:result.error,timedOut:result.timedOut,groupCleanup:result.groupCleanup,...(result.cleanupDiagnostics?{cleanupDiagnostics:result.cleanupDiagnostics}:{}),receipt};
  fs.writeFileSync(`${dir}/launcher.json`,JSON.stringify(record,null,2)+'\n');assert.equal(record.status,'passed',`Stop after nonpass: ${profile}: ${record.error}`);return record;
 }
 export async function serialProfiles(binding,runner=runProfile){const rows=[];for(const profile of ORDER)rows.push(await runner(profile,binding));return rows;}

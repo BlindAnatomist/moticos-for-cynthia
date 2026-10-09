@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import {spawn} from 'node:child_process';
 import {resolve,relative,sep} from 'node:path';
 import {LIMITS,SCREENSHOTS,POSTCARDS} from './policy.mjs';
+import {processGroupSnapshot} from './process-diagnostics.mjs';
 
 export function classifyPngNames(paths) {
   const routine=new Set(SCREENSHOTS),postcards=new Set(POSTCARDS.map(r=>r.normalizedEvidenceFilename));
@@ -50,12 +51,12 @@ export function boundedProcess(command,args,{timeout,env=process.env,stdio='inhe
   if(process.platform==='win32')throw Error('POSIX process groups required');
   return new Promise(resolvePromise=>{
     let status=null,signal=null,error=null,timedOut=false,closed=false,settled=false,stopping=false,force,drain;
-    const child=spawn(command,args,{env,stdio,cwd,detached:true});
+    const child=spawn(command,args,{env,stdio,cwd,detached:true}),cleanupDiagnostics=[];
     function alive(){if(!Number.isInteger(child.pid))return false;try{process.kill(-child.pid,0);return true;}catch(e){if(e.code==='ESRCH')return false;error??=e.message;return true;}}
     function send(s){if(Number.isInteger(child.pid))try{process.kill(-child.pid,s);}catch(e){if(e.code!=='ESRCH')error??=e.message;}}
-    function finish(groupCleanup){if(settled)return;settled=true;clearTimeout(timer);clearTimeout(force);clearTimeout(drain);clearInterval(poll);for(const s of ['SIGTERM','SIGINT'])process.removeListener(s,parentStop);resolvePromise({status,signal,error,timedOut,groupCleanup});}
+    function finish(groupCleanup){if(settled)return;settled=true;if(groupCleanup==='unconfirmed')cleanupDiagnostics.push({phase:'cleanup-unconfirmed',...processGroupSnapshot(child.pid)});clearTimeout(timer);clearTimeout(force);clearTimeout(drain);clearInterval(poll);for(const s of ['SIGTERM','SIGINT'])process.removeListener(s,parentStop);resolvePromise({status,signal,error,timedOut,groupCleanup,...(cleanupDiagnostics.length?{cleanupDiagnostics}:{})});}
     function check(){if(closed&&!alive())finish(stopping?'terminated':'not-required');}
-    function stop(reason){error??=reason;if(stopping)return;stopping=true;send('SIGTERM');force=setTimeout(()=>{send('SIGKILL');check();if(!settled)drain=setTimeout(()=>{check();if(!settled){error??='Process-group cleanup unconfirmed';finish('unconfirmed');}},1000);},5000);check();}
+    function stop(reason){error??=reason;if(stopping)return;stopping=true;send('SIGTERM');force=setTimeout(()=>{send('SIGKILL');check();if(!settled)drain=setTimeout(()=>{check();if(!settled){error??='Process-group cleanup unconfirmed';finish('unconfirmed');}},1000);},5000);cleanupDiagnostics.push({phase:'after-term',...processGroupSnapshot(child.pid)});check();}
     function parentStop(s){stop(`Launcher received ${s}`);}
     for(const s of ['SIGTERM','SIGINT'])process.on(s,parentStop);
     const timer=setTimeout(()=>{timedOut=true;stop('Hard child deadline reached');},timeout);
