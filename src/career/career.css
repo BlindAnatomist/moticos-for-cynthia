@@ -114,8 +114,11 @@
 .career-ending-actions{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 20px;margin-top:12px}.career-ending-actions button{min-height:44px;max-width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere}.career-ending-actions button:focus-visible{outline-offset:4px}
 
 /* Compact HUD: wrap full progress labels within their own column. Short titles
-   retain the single-row board budget; longer titles grow the header naturally. */
+   retain the single-row board budget; longer titles grow the header naturally.
+   Block-flow labels avoid nested column-flex intrinsic-height undercounting. */
 @media(max-width:650px){
- .career-shell:not(.is-large-text) .career-mobile-progress-button{height:auto;min-height:44px}
+ .career-shell:not(.is-large-text) .career-mobile-progress-button{display:block;height:auto;min-height:44px}
+ .career-shell:not(.is-large-text) .career-mobile-progress-button>strong,.career-shell:not(.is-large-text) .career-mobile-progress-button>span{display:block}
+ .career-shell:not(.is-large-text) .career-mobile-progress-button>span{margin-top:3px}
  .career-mobile-progress-button strong,.career-mobile-progress-button>span{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 }
