@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {gitRead} from './git-read.mjs';
 import {resolve,relative,isAbsolute} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {CATALOG} from '../../src/career/content.js';
@@ -92,7 +92,7 @@ export function preparedIdentity() {
   return {sourceFingerprint:build.sourceFingerprint,buildFingerprint:build.buildFingerprint,probeFingerprint:digest(bytes)};
 }
 export function commitIdentity() {
-  const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim(),commit=git('rev-parse','HEAD');
+  const git=(...args)=>gitRead(...args).trim(),commit=git('rev-parse','HEAD');
   assert.match(commit,/^[a-f0-9]{40}$/);assert.equal(git('rev-parse',`${TARGET.parent}^{tree}`),TARGET.parentTree,'Accepted 240 ancestor tree changed');
   git('merge-base','--is-ancestor',TARGET.parent,'HEAD');
   return {commit,parent:TARGET.parent,parentTree:TARGET.parentTree};

@@ -2778,13 +2778,13 @@
     },
     {
       "file": "stage-c-evidence/execution/authorize.mjs",
-      "bytes": 990,
-      "sha256": "e7c721b10ffd38688e2db8f55efdfb101cc62670ec5bbc71dbcfa394c39796ba"
+      "bytes": 950,
+      "sha256": "34d7d324425b634b0444ad7849f0f02f500779bc08aaf61fe9b675a85d752cac"
     },
     {
       "file": "stage-c-evidence/execution/binding.mjs",
-      "bytes": 8150,
-      "sha256": "f95f320a071f7d0a5715136e136dcb8bcf2bac23f260203bd7cea2923bb86991"
+      "bytes": 8115,
+      "sha256": "488cc04ccf25e3e4e56a228dc1a9704d8a3a0d1cec2d5ae67a5ce9ad0bc95bc4"
     },
     {
       "file": "stage-c-evidence/execution/bounded-process.mjs",
@@ -2805,6 +2805,16 @@
       "file": "stage-c-evidence/execution/finalize.mjs",
       "bytes": 4796,
       "sha256": "01bc83f4a1c2dddbfd82d477763b125652ef9955960e0a0eb664852f26db30ea"
+    },
+    {
+      "file": "stage-c-evidence/execution/git-read.mjs",
+      "bytes": 1247,
+      "sha256": "c7a6dccd6af77d2cef80bae4b7086db7fa60b3d0d03116f91c8d6d6c599222a4"
+    },
+    {
+      "file": "stage-c-evidence/execution/git-read.test.mjs",
+      "bytes": 4514,
+      "sha256": "c8718856376ef389a398e99f46c5f63fad0c7d41fffb2658b21397b93f767b32"
     },
     {
       "file": "stage-c-evidence/execution/job-clock.mjs",
@@ -2833,8 +2843,8 @@
     },
     {
       "file": "stage-c-evidence/execution/precheck.mjs",
-      "bytes": 1041,
-      "sha256": "4829f79d309fee8f26bed0f70b4396a885e3eca8b292edf85da0b4af1f02b8d4"
+      "bytes": 1001,
+      "sha256": "38476ad1b5d77284b4048935446272de25e3c828600fe44731712761efbbfd92"
     },
     {
       "file": "stage-c-evidence/execution/prepare.mjs",
