@@ -3,7 +3,8 @@ import {resolve,join,isAbsolute,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {boundedProcess,classifyPngNames,enforceImageCounts} from './bounded-process.mjs';
 import {filesUnder,regularBytes,digest} from '../../full-campaign-gate/evidence.mjs';
-import {LIMITS} from './policy.mjs';
+import {LIMITS,ORDER} from './policy.mjs';
+import {STEP_JOURNAL_LIMITS} from './step-journal.mjs';
 import {SETUP_ROOT} from './job-clock.mjs';
 import {REPO_ROOT,RESULTS_ROOT,requireRepoCwd} from './paths.mjs';
 const smallError=e=>String(e?.message??e).slice(0,8192);
@@ -34,7 +35,17 @@ export async function finalizeEvidence({output=process.env.MOTICOS_280_UPLOAD,re
       diagnostic(output,'over-cap.json',{status:'incomplete-or-failed',reason:'Evidence exceeds byte or PNG/trace cap, or has unknown PNG names; raw files untouched',totalBytes:total,imageCounts,cap:LIMITS.artifactBytes,validation:result,files:inventory});
       // Keep useful startup/assertion diagnostics even if a raw artifact breaches
       // the cap. Omitted binaries are explicitly never reported as accepted.
-      let copied=0;for(const r of inventory.filter(r=>/\.(log|jsonl|json)$/.test(r.path)&&r.bytes<=2*1024*1024)){if(copied+r.bytes>8*1024*1024)break;const at=join(output,'diagnostics',r.path);fs.mkdirSync(dirname(at),{recursive:true});fs.writeFileSync(at,regularBytes(resultsRoot,r.path),{flag:'wx'});copied+=r.bytes;}
+      const retained=new Set();
+      const copy=r=>{const at=join(output,'diagnostics',r.path);fs.mkdirSync(dirname(at),{recursive:true});fs.writeFileSync(at,regularBytes(resultsRoot,r.path),{flag:'wx'});retained.add(r.path);};
+      // Native tracing is off. Preserve both bounded action journals even when
+      // they exceed the legacy 2 MiB generic-diagnostic filter. Reserve the sole
+      // explicit failure state/PNG too; never mutate or truncate their originals.
+      for(const profile of ORDER){const row=inventory.find(r=>r.path===`${profile}/progress/action-assertion-journal.jsonl`);if(row&&row.bytes<=STEP_JOURNAL_LIMITS.profileBytes)copy(row);}
+      const failureState=inventory.find(r=>r.path.endsWith('/failure-state.json')&&r.bytes<=256*1024);if(failureState)copy(failureState);
+      const failurePng=inventory.find(r=>r.path.endsWith('/failure.png')&&r.bytes<=16*1024*1024);if(failurePng)copy(failurePng);
+      // Priority diagnostics are at most 48.25 MiB; generic diagnostics add at
+      // most 8 MiB. The unchanged 128 MiB upload ceiling is never enlarged.
+      let copied=0;for(const r of inventory.filter(r=>!retained.has(r.path)&&/\.(log|jsonl|json)$/.test(r.path)&&r.bytes<=2*1024*1024)){if(copied+r.bytes>8*1024*1024)break;copy(r);copied+=r.bytes;}
       return false;
     }
     for(const r of inventory){const at=join(output,r.path);fs.mkdirSync(dirname(at),{recursive:true});fs.writeFileSync(at,regularBytes(resultsRoot,r.path),{flag:'wx'});}
