@@ -1,0 +1,2 @@
+import {createCareerSession} from '../../../../src/career/session.v6.js';import {commandFor} from '../../../../src/career/engine.v6.js';let session,state;
+window.stageCV6Probe={async open(){session=createCareerSession();const r=await session.open();state=r.state;return r;},async supply(){if(!session)throw Error('Session not open');const r=await session.commit(commandFor(state,{type:'supply',familyId:state.activeSourceIds[0]}));state=r.state;return r;},snapshot(){return session.snapshot();}};

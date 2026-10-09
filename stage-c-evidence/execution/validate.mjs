@@ -1,0 +1,72 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {identity} from './binding.mjs';
+import {ROOT,ORDER,CASES,BUDGETS,LIMITS,APPROVED_SCOPE,POSTCARDS} from './policy.mjs';
+import {verifyCollection} from './collection.mjs';
+import {verifyProfile} from '../../full-campaign-gate/results.mjs';
+import {filesUnder,regularBytes,digest} from '../../full-campaign-gate/evidence.mjs';
+import {verifyPng} from '../../gate/png.mjs';
+
+const json=p=>JSON.parse(fs.readFileSync(p));
+export function verifyNodeLog(log) {
+  const lines=log.split('\n').map(s=>s.trimEnd()),counts=lines.filter(s=>/^# tests \d+$/.test(s));
+  assert.equal(counts.length,1);const count=Number(counts[0].slice(8));assert(count>0);
+  for(const line of [`# pass ${count}`,'# fail 0','# skipped 0','# cancelled 0','# todo 0'])assert.equal(lines.filter(s=>s===line).length,1,`Incomplete focused contracts: ${line}`);
+  return count;
+}
+export function validateReport(profile,report,events,binding) {
+  verifyProfile(profile,CASES[profile],report,events);
+  for(const event of events)for(const key of Object.keys(binding))assert.equal(event[key],binding[key],`Unbound event: ${key}`);
+  assert(Number.isFinite(events.at(-1).durationMs)&&events.at(-1).durationMs>=0&&events.at(-1).durationMs<=BUDGETS[profile]);
+  assert.equal(events.find(e=>e.event==='begin').tests,10);
+  return 10;
+}
+export function validateProfileArtifacts(profile,binding,root=`${ROOT}/${profile}/raw`) {
+  const files=filesUnder(root),proofs=files.filter(p=>p.endsWith('/proof.json')||p==='proof.json').map(path=>({path,proof:JSON.parse(regularBytes(root,path))}));
+  assert.equal(proofs.length,10,'Exactly ten native case proofs required');
+  assert.deepEqual(proofs.map(r=>r.proof.caseId).sort(),CASES[profile].map(r=>r[0]).sort());
+  const registered=[];
+  for(const {path,proof}of proofs) {
+    for(const key of ['sourceFingerprint','buildFingerprint'])assert.equal(proof[key],binding[key],`Unbound ${proof.caseId} proof`);
+    const dir=path.slice(0,path.lastIndexOf('/')+1),expected=APPROVED_SCOPE.cases.find(c=>c.id===proof.caseId),screens=proof.screenshots??[];
+    assert.deepEqual(screens.map(r=>r.name).sort(),[...expected.routineScreenshotNames].sort(),`Wrong screenshot set for ${proof.caseId}`);
+    function png(record,name,dimensions) {
+      assert.equal(name,name.split('/').at(-1),'Evidence filename must be a basename');
+      assert(!name.includes('\\'));const at=dir+name,bytes=regularBytes(root,at);
+      assert.equal(record.bytes,bytes.length);assert.equal(record.sha256,digest(bytes));
+      assert(Array.isArray(dimensions)&&dimensions.length===2&&dimensions.every(n=>Number.isSafeInteger(n)&&n>0));
+      verifyPng(bytes,dimensions);registered.push(at);
+    }
+    for(const r of screens)png(r,r.name,r.dimensions);
+    const exports=proof.exports??proof.data?.exports??[];
+    assert.deepEqual(exports.map(r=>r.pieceId).sort(),proof.caseId==='C08'?POSTCARDS.map(r=>r.pieceId).sort():[],'Exact postcard outputs required');
+    for(const r of exports) {
+      const expected=POSTCARDS.find(p=>p.pieceId===r.pieceId);assert.equal(r.filename,expected.normalizedEvidenceFilename);
+      assert.equal(r.suggestedFilename,expected.expectedSuggestedDownloadFilename);assert.deepEqual(r.dimensions,[1536,1120]);png(r,r.filename,r.dimensions);
+      assert.deepEqual(r.parity?.hashes,[r.sha256,r.sha256,r.sha256]);
+      for(const key of ['byteEqual','sameBlob','sameFilename'])assert.equal(r.parity?.[key],true,`Missing renderer/cache parity ${key}`);
+    }
+  }
+  assert.equal(new Set(registered).size,36);assert.deepEqual(files.filter(p=>p.endsWith('.png')).sort(),registered.sort(),'Unmanifested PNG or missing native PNG');
+  assert.equal(files.filter(p=>p.endsWith('trace.zip')).length,0,'Successful profile cannot retain a failure trace');
+  return {profile,cases:10,routineScreenshots:25,downloadedPostcards:11};
+}
+export function validateCompletedProfile(profile,binding) {
+  const root=`${ROOT}/${profile}`,report=json(root+'/results.json'),events=fs.readFileSync(root+'/progress/browser-events.jsonl','utf8').trim().split('\n').map(JSON.parse);
+  validateReport(profile,report,events,binding);return validateProfileArtifacts(profile,binding);
+}
+export function validateEvidence() {
+  const binding=identity(),preparation=json(`${ROOT}/preparation.json`);assert.equal(preparation.status,'passed');
+  assert.equal(preparation.sourceFingerprint,binding.sourceFingerprint);assert.equal(preparation.buildFingerprint,binding.buildFingerprint);
+  assert(preparation.elapsedMs<=LIMITS.setupSeconds*1000);assert(preparation.setupElapsedMs<=LIMITS.setupSeconds*1000);
+  assert.deepEqual(preparation.steps.map(s=>s.name),['focused-contracts','collection','build-core','build-probe']);
+  assert(preparation.steps.every(s=>s.status===0&&!s.error&&!s.timedOut));verifyNodeLog(fs.readFileSync(`${ROOT}/focused-contracts.log`,'utf8'));
+  verifyCollection(json(`${ROOT}/collection.json`));const receipts=[];
+  for(const p of ORDER){const launch=json(`${ROOT}/${p}/launcher.json`);assert.equal(launch.status,'passed');assert.equal(launch.exitCode,0);assert.equal(launch.timedOut,false);for(const k of Object.keys(binding))assert.equal(launch[k],binding[k]);receipts.push(validateCompletedProfile(p,binding));}
+  const rows=filesUnder(ROOT).map(path=>{const b=regularBytes(ROOT,path);return {path,bytes:b.length,sha256:digest(b)};}),bytes=rows.reduce((n,r)=>n+r.bytes,0);
+  assert.equal(rows.filter(r=>r.path.endsWith('.png')).length,72);assert.equal(rows.filter(r=>r.path.endsWith('trace.zip')).length,0);assert(bytes+1024*1024<=LIMITS.artifactBytes);
+  return {status:'passed',meaning:'Native bounded 280 browser checks passed; visual review of all 22 exports is still required',...binding,cases:20,receipts,bytes,pngs:72,inventory:rows};
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){try{fs.writeFileSync(`${ROOT}/acceptance.json`,JSON.stringify(validateEvidence(),null,2)+'\n',{flag:'wx'});}catch(error){fs.mkdirSync(ROOT,{recursive:true});fs.writeFileSync(`${ROOT}/acceptance.json`,JSON.stringify({status:'incomplete-or-failed',error:String(error.message).slice(0,8192)},null,2)+'\n',{flag:'wx'});throw error;}}

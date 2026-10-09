@@ -1,0 +1,6460 @@
+{
+  "purchases": {
+    "schemaVersion": 6,
+    "rulesVersion": 2,
+    "contentVersion": 6,
+    "mode": "career",
+    "careerId": "full-authored-false",
+    "chapterId": "paper-duet",
+    "enteredChapters": [
+      "garden-correspondence",
+      "moonlit-correspondence",
+      "riverside-correspondence",
+      "lantern-correspondence",
+      "wrong-address",
+      "quiet-company",
+      "namesakes",
+      "useful-gaps",
+      "small-talk",
+      "hello-again",
+      "off-beat",
+      "return-mail",
+      "fair-weather",
+      "double-meaning",
+      "fine-print",
+      "sound-advice",
+      "small-impressions",
+      "second-look",
+      "loose-ends",
+      "short-measure",
+      "cross-currents",
+      "safe-keeping",
+      "give-and-take",
+      "paper-duet"
+    ],
+    "chapterEntryVersions": {
+      "garden-correspondence": 4,
+      "moonlit-correspondence": 4,
+      "riverside-correspondence": 4,
+      "lantern-correspondence": 4,
+      "wrong-address": 4,
+      "quiet-company": 4,
+      "namesakes": 4,
+      "useful-gaps": 4,
+      "small-talk": 4,
+      "hello-again": 4,
+      "off-beat": 4,
+      "return-mail": 4,
+      "fair-weather": 4,
+      "double-meaning": 4,
+      "fine-print": 4,
+      "sound-advice": 4,
+      "small-impressions": 5,
+      "second-look": 5,
+      "loose-ends": 5,
+      "short-measure": 5,
+      "cross-currents": 6,
+      "safe-keeping": 6,
+      "give-and-take": 6,
+      "paper-duet": 6
+    },
+    "unlockedSources": [
+      "bird",
+      "fern",
+      "key",
+      "moon",
+      "map",
+      "teacup",
+      "lantern",
+      "spool",
+      "wing",
+      "shoe",
+      "chair",
+      "cup",
+      "pear",
+      "fish",
+      "scissors",
+      "button",
+      "hand",
+      "profile",
+      "telephone",
+      "hat",
+      "comb",
+      "watch",
+      "letter",
+      "shell",
+      "umbrella",
+      "anchor",
+      "bee",
+      "domino",
+      "book",
+      "matchbook",
+      "handbell",
+      "typewriter",
+      "rubber-stamp",
+      "fountain-pen",
+      "spectacles",
+      "camera",
+      "safety-pin",
+      "zipper",
+      "ruler",
+      "thimble",
+      "survey-compass",
+      "paper-kite",
+      "stoppered-bottle",
+      "tied-parcel",
+      "balance-scale",
+      "horseshoe-magnet",
+      "accordion",
+      "trumpet"
+    ],
+    "activeSourceIds": [
+      "accordion",
+      "trumpet"
+    ],
+    "focusedOrderId": null,
+    "revision": 2664,
+    "nextTileSeq": 2299,
+    "nextOrderSeq": 168,
+    "board": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "sources": {
+      "bird": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "fern": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "key": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "moon": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "map": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "teacup": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "lantern": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "spool": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "wing": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "shoe": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "chair": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "cup": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "pear": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "fish": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "scissors": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "button": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "hand": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "profile": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "telephone": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "hat": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "comb": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "watch": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "letter": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "shell": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "umbrella": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "anchor": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "bee": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "domino": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "book": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "matchbook": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "handbell": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "typewriter": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "rubber-stamp": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "fountain-pen": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "spectacles": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "camera": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "safety-pin": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "zipper": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "ruler": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "thimble": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "survey-compass": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "paper-kite": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "stoppered-bottle": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "tied-parcel": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "balance-scale": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "horseshoe-magnet": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "accordion": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "trumpet": {
+        "sorter": 1,
+        "cursor": 2
+      }
+    },
+    "upgrades": {
+      "bird-sorter": 1,
+      "fern-sorter": 1,
+      "order-desk": 1,
+      "key-sorter": 1,
+      "moon-sorter": 1,
+      "map-sorter": 1,
+      "teacup-sorter": 1,
+      "lantern-sorter": 1,
+      "spool-sorter": 1,
+      "wing-sorter": 1,
+      "shoe-sorter": 1,
+      "chair-sorter": 1,
+      "cup-sorter": 1,
+      "pear-sorter": 1,
+      "fish-sorter": 1,
+      "scissors-sorter": 1,
+      "button-sorter": 1,
+      "hand-sorter": 1,
+      "profile-sorter": 1,
+      "telephone-sorter": 1,
+      "hat-sorter": 1,
+      "comb-sorter": 1,
+      "watch-sorter": 1,
+      "letter-sorter": 1,
+      "shell-sorter": 1,
+      "umbrella-sorter": 1,
+      "anchor-sorter": 1,
+      "bee-sorter": 1,
+      "domino-sorter": 1,
+      "book-sorter": 1,
+      "matchbook-sorter": 1,
+      "handbell-sorter": 1,
+      "typewriter-sorter": 1,
+      "rubber-stamp-sorter": 1,
+      "fountain-pen-sorter": 1,
+      "spectacles-sorter": 1,
+      "camera-sorter": 1,
+      "safety-pin-sorter": 1,
+      "zipper-sorter": 1,
+      "ruler-sorter": 1,
+      "thimble-sorter": 1,
+      "survey-compass-sorter": 1,
+      "paper-kite-sorter": 1,
+      "stoppered-bottle-sorter": 1,
+      "tied-parcel-sorter": 1,
+      "balance-scale-sorter": 1,
+      "horseshoe-magnet-sorter": 1,
+      "accordion-sorter": 1,
+      "trumpet-sorter": 1
+    },
+    "purchases": {
+      "bird-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "fern-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "order-desk": {
+        "price": 100,
+        "contentVersion": 5
+      },
+      "key-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "moon-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "map-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "teacup-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "lantern-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "spool-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "wing-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "shoe-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "chair-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "cup-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "pear-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "fish-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "scissors-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "button-sorter": {
+        "price": 70,
+        "contentVersion": 5
+      },
+      "hand-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "profile-sorter": {
+        "price": 60,
+        "contentVersion": 5
+      },
+      "telephone-sorter": {
+        "price": 105,
+        "contentVersion": 5
+      },
+      "hat-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "comb-sorter": {
+        "price": 70,
+        "contentVersion": 5
+      },
+      "watch-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "letter-sorter": {
+        "price": 110,
+        "contentVersion": 5
+      },
+      "shell-sorter": {
+        "price": 100,
+        "contentVersion": 5
+      },
+      "umbrella-sorter": {
+        "price": 105,
+        "contentVersion": 5
+      },
+      "anchor-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "bee-sorter": {
+        "price": 75,
+        "contentVersion": 5
+      },
+      "domino-sorter": {
+        "price": 70,
+        "contentVersion": 5
+      },
+      "book-sorter": {
+        "price": 75,
+        "contentVersion": 5
+      },
+      "matchbook-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "handbell-sorter": {
+        "price": 55,
+        "contentVersion": 5
+      },
+      "typewriter-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "rubber-stamp-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "fountain-pen-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "spectacles-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "camera-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "safety-pin-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "zipper-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "ruler-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "thimble-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "survey-compass-sorter": {
+        "price": 65,
+        "contentVersion": 6
+      },
+      "paper-kite-sorter": {
+        "price": 65,
+        "contentVersion": 6
+      },
+      "stoppered-bottle-sorter": {
+        "price": 45,
+        "contentVersion": 6
+      },
+      "tied-parcel-sorter": {
+        "price": 50,
+        "contentVersion": 6
+      },
+      "balance-scale-sorter": {
+        "price": 70,
+        "contentVersion": 6
+      },
+      "horseshoe-magnet-sorter": {
+        "price": 60,
+        "contentVersion": 6
+      },
+      "accordion-sorter": {
+        "price": 65,
+        "contentVersion": 6
+      },
+      "trumpet-sorter": {
+        "price": 65,
+        "contentVersion": 6
+      }
+    },
+    "orders": [],
+    "heldOrders": [
+      {
+        "id": "full-authored-false:order:114",
+        "slot": 0,
+        "templateId": "sound-advice-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:115",
+        "slot": 1,
+        "templateId": "sound-advice-repeat-2",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:142",
+        "slot": 0,
+        "templateId": "short-measure-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "ru2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "th2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 5
+      }
+    ],
+    "suspendedStory": null,
+    "resumedOptionalId": null,
+    "xp": 9000,
+    "coinsEarned": 3820,
+    "coinsSpent": 3690,
+    "milestones": [
+      "garden-letter-1",
+      "garden-letter-2",
+      "garden-letter-3",
+      "garden-letter-4",
+      "garden-letter-5",
+      "garden-letter-6",
+      "garden-letter-7",
+      "garden-letter-8",
+      "garden-letter-9",
+      "moon-letter-1",
+      "moon-letter-2",
+      "moon-letter-3",
+      "moon-letter-4",
+      "moon-letter-5",
+      "moon-letter-6",
+      "moon-letter-7",
+      "riverside-letter-1",
+      "riverside-letter-2",
+      "riverside-letter-3",
+      "riverside-letter-4",
+      "riverside-letter-5",
+      "riverside-letter-6",
+      "riverside-letter-7",
+      "lantern-letter-1",
+      "lantern-letter-2",
+      "lantern-letter-3",
+      "lantern-letter-4",
+      "lantern-letter-5",
+      "lantern-letter-6",
+      "lantern-letter-7",
+      "wrong-address-letter-1",
+      "wrong-address-letter-2",
+      "wrong-address-letter-3",
+      "wrong-address-letter-4",
+      "wrong-address-letter-5",
+      "wrong-address-letter-6",
+      "wrong-address-letter-7",
+      "quiet-company-letter-1",
+      "quiet-company-letter-2",
+      "quiet-company-letter-3",
+      "quiet-company-letter-4",
+      "quiet-company-letter-5",
+      "quiet-company-letter-6",
+      "namesakes-letter-1",
+      "namesakes-letter-2",
+      "namesakes-letter-3",
+      "namesakes-letter-4",
+      "namesakes-letter-5",
+      "namesakes-letter-6",
+      "namesakes-letter-7",
+      "useful-gaps-letter-1",
+      "useful-gaps-letter-2",
+      "useful-gaps-letter-3",
+      "useful-gaps-letter-4",
+      "useful-gaps-letter-5",
+      "useful-gaps-letter-6",
+      "useful-gaps-letter-7",
+      "small-talk-letter-1",
+      "small-talk-letter-2",
+      "small-talk-letter-3",
+      "small-talk-letter-4",
+      "small-talk-letter-5",
+      "small-talk-letter-6",
+      "hello-again-letter-1",
+      "hello-again-letter-2",
+      "hello-again-letter-3",
+      "hello-again-letter-4",
+      "hello-again-letter-5",
+      "hello-again-letter-6",
+      "hello-again-letter-7",
+      "off-beat-letter-1",
+      "off-beat-letter-2",
+      "off-beat-letter-3",
+      "off-beat-letter-4",
+      "off-beat-letter-5",
+      "off-beat-letter-6",
+      "off-beat-letter-7",
+      "return-mail-letter-1",
+      "return-mail-letter-2",
+      "return-mail-letter-3",
+      "return-mail-letter-4",
+      "return-mail-letter-5",
+      "return-mail-letter-6",
+      "return-mail-letter-7",
+      "return-mail-letter-8",
+      "fair-weather-letter-1",
+      "fair-weather-letter-2",
+      "fair-weather-letter-3",
+      "fair-weather-letter-4",
+      "fair-weather-letter-5",
+      "fair-weather-letter-6",
+      "fair-weather-letter-7",
+      "double-meaning-letter-1",
+      "double-meaning-letter-2",
+      "double-meaning-letter-3",
+      "double-meaning-letter-4",
+      "double-meaning-letter-5",
+      "double-meaning-letter-6",
+      "double-meaning-letter-7",
+      "fine-print-letter-1",
+      "fine-print-letter-2",
+      "fine-print-letter-3",
+      "fine-print-letter-4",
+      "fine-print-letter-5",
+      "fine-print-letter-6",
+      "sound-advice-letter-1",
+      "sound-advice-letter-2",
+      "sound-advice-letter-3",
+      "sound-advice-letter-4",
+      "sound-advice-letter-5",
+      "sound-advice-letter-6",
+      "sound-advice-letter-7",
+      "sound-advice-letter-8",
+      "small-impressions-letter-1",
+      "small-impressions-letter-2",
+      "small-impressions-letter-3",
+      "small-impressions-letter-4",
+      "small-impressions-letter-5",
+      "small-impressions-letter-6",
+      "small-impressions-letter-7",
+      "second-look-letter-1",
+      "second-look-letter-2",
+      "second-look-letter-3",
+      "second-look-letter-4",
+      "second-look-letter-5",
+      "second-look-letter-6",
+      "loose-ends-letter-1",
+      "loose-ends-letter-2",
+      "loose-ends-letter-3",
+      "loose-ends-letter-4",
+      "loose-ends-letter-5",
+      "loose-ends-letter-6",
+      "loose-ends-letter-7",
+      "short-measure-letter-1",
+      "short-measure-letter-2",
+      "short-measure-letter-3",
+      "short-measure-letter-4",
+      "short-measure-letter-5",
+      "short-measure-letter-6",
+      "cross-currents-letter-1",
+      "cross-currents-letter-2",
+      "cross-currents-letter-3",
+      "cross-currents-letter-4",
+      "cross-currents-letter-5",
+      "cross-currents-letter-6",
+      "safe-keeping-letter-1",
+      "safe-keeping-letter-2",
+      "safe-keeping-letter-3",
+      "safe-keeping-letter-4",
+      "safe-keeping-letter-5",
+      "safe-keeping-letter-6",
+      "give-and-take-letter-1",
+      "give-and-take-letter-2",
+      "give-and-take-letter-3",
+      "give-and-take-letter-4",
+      "give-and-take-letter-5",
+      "give-and-take-letter-6",
+      "paper-duet-letter-1",
+      "paper-duet-letter-2",
+      "paper-duet-letter-3",
+      "paper-duet-letter-4",
+      "paper-duet-letter-5",
+      "paper-duet-letter-6",
+      "paper-duet-letter-7"
+    ],
+    "storyCompletions": {
+      "garden-letter-1": {
+        "contentVersion": 4
+      },
+      "garden-letter-2": {
+        "contentVersion": 4
+      },
+      "garden-letter-3": {
+        "contentVersion": 4
+      },
+      "garden-letter-4": {
+        "contentVersion": 4
+      },
+      "garden-letter-5": {
+        "contentVersion": 4
+      },
+      "garden-letter-6": {
+        "contentVersion": 4
+      },
+      "garden-letter-7": {
+        "contentVersion": 4
+      },
+      "garden-letter-8": {
+        "contentVersion": 4
+      },
+      "garden-letter-9": {
+        "contentVersion": 4
+      },
+      "moon-letter-1": {
+        "contentVersion": 4
+      },
+      "moon-letter-2": {
+        "contentVersion": 4
+      },
+      "moon-letter-3": {
+        "contentVersion": 4
+      },
+      "moon-letter-4": {
+        "contentVersion": 4
+      },
+      "moon-letter-5": {
+        "contentVersion": 4
+      },
+      "moon-letter-6": {
+        "contentVersion": 4
+      },
+      "moon-letter-7": {
+        "contentVersion": 4
+      },
+      "riverside-letter-1": {
+        "contentVersion": 4
+      },
+      "riverside-letter-2": {
+        "contentVersion": 4
+      },
+      "riverside-letter-3": {
+        "contentVersion": 4
+      },
+      "riverside-letter-4": {
+        "contentVersion": 4
+      },
+      "riverside-letter-5": {
+        "contentVersion": 4
+      },
+      "riverside-letter-6": {
+        "contentVersion": 4
+      },
+      "riverside-letter-7": {
+        "contentVersion": 4
+      },
+      "lantern-letter-1": {
+        "contentVersion": 4
+      },
+      "lantern-letter-2": {
+        "contentVersion": 4
+      },
+      "lantern-letter-3": {
+        "contentVersion": 4
+      },
+      "lantern-letter-4": {
+        "contentVersion": 4
+      },
+      "lantern-letter-5": {
+        "contentVersion": 4
+      },
+      "lantern-letter-6": {
+        "contentVersion": 4
+      },
+      "lantern-letter-7": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-1": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-2": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-3": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-4": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-5": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-6": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-7": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-1": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-2": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-3": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-4": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-5": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-1": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-2": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-3": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-4": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-5": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-7": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-1": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-2": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-3": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-4": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-5": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-6": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-7": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-1": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-2": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-3": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-4": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-5": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-1": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-2": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-3": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-4": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-5": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-7": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-1": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-2": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-3": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-4": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-5": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-6": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-1": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-2": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-3": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-4": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-5": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-6": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-8": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-1": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-2": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-3": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-4": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-5": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-6": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-7": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-1": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-2": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-3": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-4": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-5": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-6": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-7": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-1": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-2": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-3": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-4": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-5": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-1": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-2": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-3": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-4": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-5": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-7": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-8": {
+        "contentVersion": 4
+      },
+      "small-impressions-letter-1": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-2": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-3": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-4": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-5": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-6": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-7": {
+        "contentVersion": 5
+      },
+      "second-look-letter-1": {
+        "contentVersion": 5
+      },
+      "second-look-letter-2": {
+        "contentVersion": 5
+      },
+      "second-look-letter-3": {
+        "contentVersion": 5
+      },
+      "second-look-letter-4": {
+        "contentVersion": 5
+      },
+      "second-look-letter-5": {
+        "contentVersion": 5
+      },
+      "second-look-letter-6": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-1": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-2": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-3": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-4": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-5": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-6": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-7": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-1": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-2": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-3": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-4": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-5": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-6": {
+        "contentVersion": 5
+      },
+      "cross-currents-letter-1": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-2": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-3": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-4": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-5": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-6": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-1": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-2": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-3": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-4": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-5": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-6": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-1": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-2": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-3": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-4": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-5": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-6": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-1": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-2": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-3": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-4": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-5": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-6": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-7": {
+        "contentVersion": 6
+      }
+    },
+    "ordinaryCursor": 0,
+    "ordinaryChapterCursors": {
+      "garden-correspondence": 0,
+      "moonlit-correspondence": 0,
+      "riverside-correspondence": 0,
+      "lantern-correspondence": 0,
+      "wrong-address": 0,
+      "quiet-company": 0,
+      "namesakes": 0,
+      "useful-gaps": 0,
+      "small-talk": 0,
+      "hello-again": 0,
+      "off-beat": 0,
+      "return-mail": 0,
+      "fair-weather": 0,
+      "double-meaning": 0,
+      "fine-print": 0,
+      "sound-advice": 2,
+      "small-impressions": 0,
+      "second-look": 0,
+      "loose-ends": 0,
+      "short-measure": 1,
+      "cross-currents": 0,
+      "safe-keeping": 0,
+      "give-and-take": 0,
+      "paper-duet": 0
+    },
+    "discoveries": [
+      "b1",
+      "f1",
+      "b2",
+      "f2",
+      "b3",
+      "f3",
+      "b4",
+      "f4",
+      "b5",
+      "k1",
+      "k2",
+      "k3",
+      "m1",
+      "m2",
+      "k4",
+      "m3",
+      "m4",
+      "k5",
+      "r1",
+      "r2",
+      "r3",
+      "t1",
+      "t2",
+      "r4",
+      "t3",
+      "t4",
+      "r5",
+      "l1",
+      "l2",
+      "l3",
+      "l4",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "wr1",
+      "wr2",
+      "wr3",
+      "wa1",
+      "wa2",
+      "wr4",
+      "wa3",
+      "wa4",
+      "wr5",
+      "ec1",
+      "ec2",
+      "ec3",
+      "ce1",
+      "ce2",
+      "ce3",
+      "ce4",
+      "ec4",
+      "pp1",
+      "pp2",
+      "pp3",
+      "ss1",
+      "ss2",
+      "pp4",
+      "ss3",
+      "ss4",
+      "cj1",
+      "cj2",
+      "cj3",
+      "bh1",
+      "bh2",
+      "cj4",
+      "bh3",
+      "bh4",
+      "hs1",
+      "hs2",
+      "hs3",
+      "fv1",
+      "fv2",
+      "fv3",
+      "fv4",
+      "hs4",
+      "la1",
+      "la2",
+      "la3",
+      "ht1",
+      "ht2",
+      "la4",
+      "ht3",
+      "ht4",
+      "la5",
+      "ft1",
+      "ft2",
+      "ft3",
+      "ct1",
+      "ct2",
+      "ft4",
+      "ct3",
+      "ct4",
+      "rp1",
+      "rp2",
+      "rp3",
+      "sh1",
+      "sh2",
+      "sh3",
+      "rp4",
+      "sh4",
+      "sh5",
+      "rc1",
+      "rc2",
+      "rc3",
+      "hp1",
+      "hp2",
+      "rc4",
+      "rc5",
+      "hp3",
+      "hp4",
+      "bb1",
+      "bb2",
+      "bb3",
+      "ds1",
+      "ds2",
+      "bb4",
+      "ds3",
+      "ds4",
+      "ob1",
+      "ob2",
+      "ob3",
+      "sm1",
+      "sm2",
+      "ob4",
+      "sm3",
+      "sm4",
+      "bt1",
+      "bt2",
+      "bt3",
+      "tw1",
+      "tw2",
+      "bt4",
+      "tw3",
+      "tw4",
+      "tw5",
+      "im1",
+      "im2",
+      "im3",
+      "pn1",
+      "pn2",
+      "im4",
+      "pn3",
+      "pn4",
+      "sg1",
+      "sg2",
+      "cm1",
+      "cm2",
+      "sg3",
+      "cm3",
+      "sg4",
+      "cm4",
+      "cm5",
+      "sp1",
+      "sp2",
+      "zp1",
+      "zp2",
+      "sp3",
+      "zp3",
+      "sp4",
+      "zp4",
+      "ru1",
+      "ru2",
+      "ru3",
+      "th1",
+      "th2",
+      "th3",
+      "ru4",
+      "th4",
+      "b240-cp1",
+      "b240-cp2",
+      "b240-kt1",
+      "b240-kt2",
+      "b240-kt3",
+      "b240-cp3",
+      "b240-cp4",
+      "b240-kt4",
+      "b240-vb1",
+      "b240-vb2",
+      "b240-pa1",
+      "b240-pa2",
+      "b240-pa3",
+      "b240-vb3",
+      "b240-bs1",
+      "b240-bs2",
+      "b240-mg1",
+      "b240-mg2",
+      "b240-mg3",
+      "b240-bs3",
+      "b240-bs4",
+      "b240-mg4",
+      "b240-ac1",
+      "b240-ac2",
+      "b240-ac3",
+      "b240-tr1",
+      "b240-tr2",
+      "b240-tr3",
+      "b240-tr4",
+      "b240-ac4",
+      "b240-tr5"
+    ],
+    "material": {
+      "bird": {
+        "initial": 4,
+        "generated": 50,
+        "delivered": 54,
+        "recycled": 0
+      },
+      "fern": {
+        "initial": 4,
+        "generated": 48,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "key": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "moon": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "map": {
+        "initial": 0,
+        "generated": 52,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "teacup": {
+        "initial": 0,
+        "generated": 44,
+        "delivered": 44,
+        "recycled": 0
+      },
+      "lantern": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "spool": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "wing": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "shoe": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "chair": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "cup": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "pear": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "fish": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "scissors": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "button": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      },
+      "hand": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "profile": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "telephone": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "hat": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "comb": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "watch": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "letter": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "shell": {
+        "initial": 0,
+        "generated": 38,
+        "delivered": 38,
+        "recycled": 0
+      },
+      "umbrella": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "anchor": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "bee": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "domino": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "book": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "matchbook": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "handbell": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "typewriter": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "rubber-stamp": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "fountain-pen": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "spectacles": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "camera": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      },
+      "safety-pin": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "zipper": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "ruler": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "thimble": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "survey-compass": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "paper-kite": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "stoppered-bottle": {
+        "initial": 0,
+        "generated": 14,
+        "delivered": 14,
+        "recycled": 0
+      },
+      "tied-parcel": {
+        "initial": 0,
+        "generated": 14,
+        "delivered": 14,
+        "recycled": 0
+      },
+      "balance-scale": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "horseshoe-magnet": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "accordion": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "trumpet": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      }
+    },
+    "receipts": [
+      {
+        "id": "fountain-pen-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 90,
+        "contentVersion": 5,
+        "revision": 2348
+      },
+      {
+        "id": "spectacles-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 85,
+        "contentVersion": 5,
+        "revision": 2349
+      },
+      {
+        "id": "camera-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 85,
+        "contentVersion": 5,
+        "revision": 2350
+      },
+      {
+        "id": "safety-pin-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 95,
+        "contentVersion": 5,
+        "revision": 2351
+      },
+      {
+        "id": "zipper-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 80,
+        "contentVersion": 5,
+        "revision": 2352
+      },
+      {
+        "id": "ruler-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 80,
+        "contentVersion": 5,
+        "revision": 2353
+      },
+      {
+        "id": "thimble-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 50,
+        "contentVersion": 5,
+        "revision": 2354
+      },
+      {
+        "id": "survey-compass-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 65,
+        "contentVersion": 6,
+        "revision": 2356
+      },
+      {
+        "id": "full-authored-false:order:143",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-1",
+        "templateId": "cross-currents-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2364
+      },
+      {
+        "id": "full-authored-false:order:144",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-2",
+        "templateId": "cross-currents-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2374
+      },
+      {
+        "id": "paper-kite-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 65,
+        "contentVersion": 6,
+        "revision": 2375
+      },
+      {
+        "id": "full-authored-false:order:145",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-3",
+        "templateId": "cross-currents-letter-3",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2391
+      },
+      {
+        "id": "full-authored-false:order:146",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-4",
+        "templateId": "cross-currents-letter-4",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2401
+      },
+      {
+        "id": "full-authored-false:order:147",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-5",
+        "templateId": "cross-currents-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2417
+      },
+      {
+        "id": "full-authored-false:order:148",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-6",
+        "templateId": "cross-currents-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2429
+      },
+      {
+        "id": "stoppered-bottle-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 45,
+        "contentVersion": 6,
+        "revision": 2431
+      },
+      {
+        "id": "full-authored-false:order:149",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-1",
+        "templateId": "safe-keeping-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2439
+      },
+      {
+        "id": "tied-parcel-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 50,
+        "contentVersion": 6,
+        "revision": 2440
+      },
+      {
+        "id": "full-authored-false:order:150",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-2",
+        "templateId": "safe-keeping-letter-2",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2446
+      },
+      {
+        "id": "full-authored-false:order:151",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-3",
+        "templateId": "safe-keeping-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2456
+      },
+      {
+        "id": "full-authored-false:order:153",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-4",
+        "templateId": "safe-keeping-letter-4",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2466
+      },
+      {
+        "id": "full-authored-false:order:152",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-5",
+        "templateId": "safe-keeping-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2476
+      },
+      {
+        "id": "full-authored-false:order:154",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-6",
+        "templateId": "safe-keeping-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2488
+      },
+      {
+        "id": "balance-scale-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 70,
+        "contentVersion": 6,
+        "revision": 2490
+      },
+      {
+        "id": "full-authored-false:order:155",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-1",
+        "templateId": "give-and-take-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2498
+      },
+      {
+        "id": "full-authored-false:order:156",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-2",
+        "templateId": "give-and-take-letter-2",
+        "xp": 45,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2511
+      },
+      {
+        "id": "full-authored-false:order:157",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-3",
+        "templateId": "give-and-take-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2521
+      },
+      {
+        "id": "horseshoe-magnet-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 60,
+        "contentVersion": 6,
+        "revision": 2522
+      },
+      {
+        "id": "full-authored-false:order:158",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-4",
+        "templateId": "give-and-take-letter-4",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2538
+      },
+      {
+        "id": "full-authored-false:order:159",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-5",
+        "templateId": "give-and-take-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2552
+      },
+      {
+        "id": "full-authored-false:order:160",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-6",
+        "templateId": "give-and-take-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2564
+      },
+      {
+        "id": "accordion-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 65,
+        "contentVersion": 6,
+        "revision": 2566
+      },
+      {
+        "id": "full-authored-false:order:161",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-1",
+        "templateId": "paper-duet-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2574
+      },
+      {
+        "id": "full-authored-false:order:162",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-2",
+        "templateId": "paper-duet-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2584
+      },
+      {
+        "id": "full-authored-false:order:163",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-3",
+        "templateId": "paper-duet-letter-3",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2602
+      },
+      {
+        "id": "trumpet-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 65,
+        "contentVersion": 6,
+        "revision": 2603
+      },
+      {
+        "id": "full-authored-false:order:164",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-4",
+        "templateId": "paper-duet-letter-4",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 6,
+        "revision": 2621
+      },
+      {
+        "id": "full-authored-false:order:165",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-5",
+        "templateId": "paper-duet-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2631
+      },
+      {
+        "id": "full-authored-false:order:166",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-6",
+        "templateId": "paper-duet-letter-6",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 6,
+        "revision": 2656
+      },
+      {
+        "id": "full-authored-false:order:167",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-7",
+        "templateId": "paper-duet-letter-7",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2664
+      }
+    ],
+    "history": [],
+    "sound": false,
+    "largeText": false,
+    "continuationEntries": {
+      "after-the-first-correspondence": {
+        "revision": 1928,
+        "contentVersion": 5
+      },
+      "after-four-more-correspondences": {
+        "revision": 2355,
+        "contentVersion": 6
+      }
+    }
+  },
+  "basic": {
+    "schemaVersion": 6,
+    "rulesVersion": 2,
+    "contentVersion": 6,
+    "mode": "career",
+    "careerId": "full-authored-false",
+    "chapterId": "paper-duet",
+    "enteredChapters": [
+      "garden-correspondence",
+      "moonlit-correspondence",
+      "riverside-correspondence",
+      "lantern-correspondence",
+      "wrong-address",
+      "quiet-company",
+      "namesakes",
+      "useful-gaps",
+      "small-talk",
+      "hello-again",
+      "off-beat",
+      "return-mail",
+      "fair-weather",
+      "double-meaning",
+      "fine-print",
+      "sound-advice",
+      "small-impressions",
+      "second-look",
+      "loose-ends",
+      "short-measure",
+      "cross-currents",
+      "safe-keeping",
+      "give-and-take",
+      "paper-duet"
+    ],
+    "chapterEntryVersions": {
+      "garden-correspondence": 4,
+      "moonlit-correspondence": 4,
+      "riverside-correspondence": 4,
+      "lantern-correspondence": 4,
+      "wrong-address": 4,
+      "quiet-company": 4,
+      "namesakes": 4,
+      "useful-gaps": 4,
+      "small-talk": 4,
+      "hello-again": 4,
+      "off-beat": 4,
+      "return-mail": 4,
+      "fair-weather": 4,
+      "double-meaning": 4,
+      "fine-print": 4,
+      "sound-advice": 4,
+      "small-impressions": 5,
+      "second-look": 5,
+      "loose-ends": 5,
+      "short-measure": 5,
+      "cross-currents": 6,
+      "safe-keeping": 6,
+      "give-and-take": 6,
+      "paper-duet": 6
+    },
+    "unlockedSources": [
+      "bird",
+      "fern",
+      "key",
+      "moon",
+      "map",
+      "teacup",
+      "lantern",
+      "spool",
+      "wing",
+      "shoe",
+      "chair",
+      "cup",
+      "pear",
+      "fish",
+      "scissors",
+      "button",
+      "hand",
+      "profile",
+      "telephone",
+      "hat",
+      "comb",
+      "watch",
+      "letter",
+      "shell",
+      "umbrella",
+      "anchor",
+      "bee",
+      "domino",
+      "book",
+      "matchbook",
+      "handbell",
+      "typewriter",
+      "rubber-stamp",
+      "fountain-pen",
+      "spectacles",
+      "camera",
+      "safety-pin",
+      "zipper",
+      "ruler",
+      "thimble",
+      "survey-compass",
+      "paper-kite",
+      "stoppered-bottle",
+      "tied-parcel",
+      "balance-scale",
+      "horseshoe-magnet",
+      "accordion",
+      "trumpet"
+    ],
+    "activeSourceIds": [
+      "accordion",
+      "trumpet"
+    ],
+    "focusedOrderId": null,
+    "revision": 2722,
+    "nextTileSeq": 2365,
+    "nextOrderSeq": 168,
+    "board": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "sources": {
+      "bird": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "fern": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "key": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "moon": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "map": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "teacup": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "lantern": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "spool": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "wing": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "shoe": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "chair": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "cup": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "pear": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "fish": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "scissors": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "button": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "hand": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "profile": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "telephone": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "hat": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "comb": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "watch": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "letter": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "shell": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "umbrella": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "anchor": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "bee": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "domino": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "book": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "matchbook": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "handbell": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "typewriter": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "rubber-stamp": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "fountain-pen": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "spectacles": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "camera": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "safety-pin": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "zipper": {
+        "sorter": 1,
+        "cursor": 0
+      },
+      "ruler": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "thimble": {
+        "sorter": 1,
+        "cursor": 2
+      },
+      "survey-compass": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "paper-kite": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "stoppered-bottle": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "tied-parcel": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "balance-scale": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "horseshoe-magnet": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "accordion": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "trumpet": {
+        "sorter": 0,
+        "cursor": 0
+      }
+    },
+    "upgrades": {
+      "bird-sorter": 1,
+      "fern-sorter": 1,
+      "order-desk": 1,
+      "key-sorter": 1,
+      "moon-sorter": 1,
+      "map-sorter": 1,
+      "teacup-sorter": 1,
+      "lantern-sorter": 1,
+      "spool-sorter": 1,
+      "wing-sorter": 1,
+      "shoe-sorter": 1,
+      "chair-sorter": 1,
+      "cup-sorter": 1,
+      "pear-sorter": 1,
+      "fish-sorter": 1,
+      "scissors-sorter": 1,
+      "button-sorter": 1,
+      "hand-sorter": 1,
+      "profile-sorter": 1,
+      "telephone-sorter": 1,
+      "hat-sorter": 1,
+      "comb-sorter": 1,
+      "watch-sorter": 1,
+      "letter-sorter": 1,
+      "shell-sorter": 1,
+      "umbrella-sorter": 1,
+      "anchor-sorter": 1,
+      "bee-sorter": 1,
+      "domino-sorter": 1,
+      "book-sorter": 1,
+      "matchbook-sorter": 1,
+      "handbell-sorter": 1,
+      "typewriter-sorter": 1,
+      "rubber-stamp-sorter": 1,
+      "fountain-pen-sorter": 1,
+      "spectacles-sorter": 1,
+      "camera-sorter": 1,
+      "safety-pin-sorter": 1,
+      "zipper-sorter": 1,
+      "ruler-sorter": 1,
+      "thimble-sorter": 1,
+      "survey-compass-sorter": 0,
+      "paper-kite-sorter": 0,
+      "stoppered-bottle-sorter": 0,
+      "tied-parcel-sorter": 0,
+      "balance-scale-sorter": 0,
+      "horseshoe-magnet-sorter": 0,
+      "accordion-sorter": 0,
+      "trumpet-sorter": 0
+    },
+    "purchases": {
+      "bird-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "fern-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "order-desk": {
+        "price": 100,
+        "contentVersion": 5
+      },
+      "key-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "moon-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      },
+      "map-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "teacup-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "lantern-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "spool-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "wing-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "shoe-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "chair-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "cup-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "pear-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "fish-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "scissors-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "button-sorter": {
+        "price": 70,
+        "contentVersion": 5
+      },
+      "hand-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "profile-sorter": {
+        "price": 60,
+        "contentVersion": 5
+      },
+      "telephone-sorter": {
+        "price": 105,
+        "contentVersion": 5
+      },
+      "hat-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "comb-sorter": {
+        "price": 70,
+        "contentVersion": 5
+      },
+      "watch-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "letter-sorter": {
+        "price": 110,
+        "contentVersion": 5
+      },
+      "shell-sorter": {
+        "price": 100,
+        "contentVersion": 5
+      },
+      "umbrella-sorter": {
+        "price": 105,
+        "contentVersion": 5
+      },
+      "anchor-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "bee-sorter": {
+        "price": 75,
+        "contentVersion": 5
+      },
+      "domino-sorter": {
+        "price": 70,
+        "contentVersion": 5
+      },
+      "book-sorter": {
+        "price": 75,
+        "contentVersion": 5
+      },
+      "matchbook-sorter": {
+        "price": 65,
+        "contentVersion": 5
+      },
+      "handbell-sorter": {
+        "price": 55,
+        "contentVersion": 5
+      },
+      "typewriter-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "rubber-stamp-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "fountain-pen-sorter": {
+        "price": 90,
+        "contentVersion": 5
+      },
+      "spectacles-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "camera-sorter": {
+        "price": 85,
+        "contentVersion": 5
+      },
+      "safety-pin-sorter": {
+        "price": 95,
+        "contentVersion": 5
+      },
+      "zipper-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "ruler-sorter": {
+        "price": 80,
+        "contentVersion": 5
+      },
+      "thimble-sorter": {
+        "price": 50,
+        "contentVersion": 5
+      }
+    },
+    "orders": [],
+    "heldOrders": [
+      {
+        "id": "full-authored-false:order:114",
+        "slot": 0,
+        "templateId": "sound-advice-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:115",
+        "slot": 1,
+        "templateId": "sound-advice-repeat-2",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:142",
+        "slot": 0,
+        "templateId": "short-measure-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "ru2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "th2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 5
+      }
+    ],
+    "suspendedStory": null,
+    "resumedOptionalId": null,
+    "xp": 9000,
+    "coinsEarned": 3820,
+    "coinsSpent": 3205,
+    "milestones": [
+      "garden-letter-1",
+      "garden-letter-2",
+      "garden-letter-3",
+      "garden-letter-4",
+      "garden-letter-5",
+      "garden-letter-6",
+      "garden-letter-7",
+      "garden-letter-8",
+      "garden-letter-9",
+      "moon-letter-1",
+      "moon-letter-2",
+      "moon-letter-3",
+      "moon-letter-4",
+      "moon-letter-5",
+      "moon-letter-6",
+      "moon-letter-7",
+      "riverside-letter-1",
+      "riverside-letter-2",
+      "riverside-letter-3",
+      "riverside-letter-4",
+      "riverside-letter-5",
+      "riverside-letter-6",
+      "riverside-letter-7",
+      "lantern-letter-1",
+      "lantern-letter-2",
+      "lantern-letter-3",
+      "lantern-letter-4",
+      "lantern-letter-5",
+      "lantern-letter-6",
+      "lantern-letter-7",
+      "wrong-address-letter-1",
+      "wrong-address-letter-2",
+      "wrong-address-letter-3",
+      "wrong-address-letter-4",
+      "wrong-address-letter-5",
+      "wrong-address-letter-6",
+      "wrong-address-letter-7",
+      "quiet-company-letter-1",
+      "quiet-company-letter-2",
+      "quiet-company-letter-3",
+      "quiet-company-letter-4",
+      "quiet-company-letter-5",
+      "quiet-company-letter-6",
+      "namesakes-letter-1",
+      "namesakes-letter-2",
+      "namesakes-letter-3",
+      "namesakes-letter-4",
+      "namesakes-letter-5",
+      "namesakes-letter-6",
+      "namesakes-letter-7",
+      "useful-gaps-letter-1",
+      "useful-gaps-letter-2",
+      "useful-gaps-letter-3",
+      "useful-gaps-letter-4",
+      "useful-gaps-letter-5",
+      "useful-gaps-letter-6",
+      "useful-gaps-letter-7",
+      "small-talk-letter-1",
+      "small-talk-letter-2",
+      "small-talk-letter-3",
+      "small-talk-letter-4",
+      "small-talk-letter-5",
+      "small-talk-letter-6",
+      "hello-again-letter-1",
+      "hello-again-letter-2",
+      "hello-again-letter-3",
+      "hello-again-letter-4",
+      "hello-again-letter-5",
+      "hello-again-letter-6",
+      "hello-again-letter-7",
+      "off-beat-letter-1",
+      "off-beat-letter-2",
+      "off-beat-letter-3",
+      "off-beat-letter-4",
+      "off-beat-letter-5",
+      "off-beat-letter-6",
+      "off-beat-letter-7",
+      "return-mail-letter-1",
+      "return-mail-letter-2",
+      "return-mail-letter-3",
+      "return-mail-letter-4",
+      "return-mail-letter-5",
+      "return-mail-letter-6",
+      "return-mail-letter-7",
+      "return-mail-letter-8",
+      "fair-weather-letter-1",
+      "fair-weather-letter-2",
+      "fair-weather-letter-3",
+      "fair-weather-letter-4",
+      "fair-weather-letter-5",
+      "fair-weather-letter-6",
+      "fair-weather-letter-7",
+      "double-meaning-letter-1",
+      "double-meaning-letter-2",
+      "double-meaning-letter-3",
+      "double-meaning-letter-4",
+      "double-meaning-letter-5",
+      "double-meaning-letter-6",
+      "double-meaning-letter-7",
+      "fine-print-letter-1",
+      "fine-print-letter-2",
+      "fine-print-letter-3",
+      "fine-print-letter-4",
+      "fine-print-letter-5",
+      "fine-print-letter-6",
+      "sound-advice-letter-1",
+      "sound-advice-letter-2",
+      "sound-advice-letter-3",
+      "sound-advice-letter-4",
+      "sound-advice-letter-5",
+      "sound-advice-letter-6",
+      "sound-advice-letter-7",
+      "sound-advice-letter-8",
+      "small-impressions-letter-1",
+      "small-impressions-letter-2",
+      "small-impressions-letter-3",
+      "small-impressions-letter-4",
+      "small-impressions-letter-5",
+      "small-impressions-letter-6",
+      "small-impressions-letter-7",
+      "second-look-letter-1",
+      "second-look-letter-2",
+      "second-look-letter-3",
+      "second-look-letter-4",
+      "second-look-letter-5",
+      "second-look-letter-6",
+      "loose-ends-letter-1",
+      "loose-ends-letter-2",
+      "loose-ends-letter-3",
+      "loose-ends-letter-4",
+      "loose-ends-letter-5",
+      "loose-ends-letter-6",
+      "loose-ends-letter-7",
+      "short-measure-letter-1",
+      "short-measure-letter-2",
+      "short-measure-letter-3",
+      "short-measure-letter-4",
+      "short-measure-letter-5",
+      "short-measure-letter-6",
+      "cross-currents-letter-1",
+      "cross-currents-letter-2",
+      "cross-currents-letter-3",
+      "cross-currents-letter-4",
+      "cross-currents-letter-5",
+      "cross-currents-letter-6",
+      "safe-keeping-letter-1",
+      "safe-keeping-letter-2",
+      "safe-keeping-letter-3",
+      "safe-keeping-letter-4",
+      "safe-keeping-letter-5",
+      "safe-keeping-letter-6",
+      "give-and-take-letter-1",
+      "give-and-take-letter-2",
+      "give-and-take-letter-3",
+      "give-and-take-letter-4",
+      "give-and-take-letter-5",
+      "give-and-take-letter-6",
+      "paper-duet-letter-1",
+      "paper-duet-letter-2",
+      "paper-duet-letter-3",
+      "paper-duet-letter-4",
+      "paper-duet-letter-5",
+      "paper-duet-letter-6",
+      "paper-duet-letter-7"
+    ],
+    "storyCompletions": {
+      "garden-letter-1": {
+        "contentVersion": 4
+      },
+      "garden-letter-2": {
+        "contentVersion": 4
+      },
+      "garden-letter-3": {
+        "contentVersion": 4
+      },
+      "garden-letter-4": {
+        "contentVersion": 4
+      },
+      "garden-letter-5": {
+        "contentVersion": 4
+      },
+      "garden-letter-6": {
+        "contentVersion": 4
+      },
+      "garden-letter-7": {
+        "contentVersion": 4
+      },
+      "garden-letter-8": {
+        "contentVersion": 4
+      },
+      "garden-letter-9": {
+        "contentVersion": 4
+      },
+      "moon-letter-1": {
+        "contentVersion": 4
+      },
+      "moon-letter-2": {
+        "contentVersion": 4
+      },
+      "moon-letter-3": {
+        "contentVersion": 4
+      },
+      "moon-letter-4": {
+        "contentVersion": 4
+      },
+      "moon-letter-5": {
+        "contentVersion": 4
+      },
+      "moon-letter-6": {
+        "contentVersion": 4
+      },
+      "moon-letter-7": {
+        "contentVersion": 4
+      },
+      "riverside-letter-1": {
+        "contentVersion": 4
+      },
+      "riverside-letter-2": {
+        "contentVersion": 4
+      },
+      "riverside-letter-3": {
+        "contentVersion": 4
+      },
+      "riverside-letter-4": {
+        "contentVersion": 4
+      },
+      "riverside-letter-5": {
+        "contentVersion": 4
+      },
+      "riverside-letter-6": {
+        "contentVersion": 4
+      },
+      "riverside-letter-7": {
+        "contentVersion": 4
+      },
+      "lantern-letter-1": {
+        "contentVersion": 4
+      },
+      "lantern-letter-2": {
+        "contentVersion": 4
+      },
+      "lantern-letter-3": {
+        "contentVersion": 4
+      },
+      "lantern-letter-4": {
+        "contentVersion": 4
+      },
+      "lantern-letter-5": {
+        "contentVersion": 4
+      },
+      "lantern-letter-6": {
+        "contentVersion": 4
+      },
+      "lantern-letter-7": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-1": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-2": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-3": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-4": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-5": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-6": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-7": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-1": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-2": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-3": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-4": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-5": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-1": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-2": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-3": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-4": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-5": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-7": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-1": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-2": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-3": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-4": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-5": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-6": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-7": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-1": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-2": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-3": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-4": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-5": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-1": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-2": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-3": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-4": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-5": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-7": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-1": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-2": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-3": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-4": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-5": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-6": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-1": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-2": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-3": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-4": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-5": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-6": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-8": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-1": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-2": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-3": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-4": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-5": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-6": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-7": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-1": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-2": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-3": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-4": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-5": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-6": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-7": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-1": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-2": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-3": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-4": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-5": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-1": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-2": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-3": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-4": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-5": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-7": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-8": {
+        "contentVersion": 4
+      },
+      "small-impressions-letter-1": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-2": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-3": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-4": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-5": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-6": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-7": {
+        "contentVersion": 5
+      },
+      "second-look-letter-1": {
+        "contentVersion": 5
+      },
+      "second-look-letter-2": {
+        "contentVersion": 5
+      },
+      "second-look-letter-3": {
+        "contentVersion": 5
+      },
+      "second-look-letter-4": {
+        "contentVersion": 5
+      },
+      "second-look-letter-5": {
+        "contentVersion": 5
+      },
+      "second-look-letter-6": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-1": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-2": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-3": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-4": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-5": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-6": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-7": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-1": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-2": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-3": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-4": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-5": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-6": {
+        "contentVersion": 5
+      },
+      "cross-currents-letter-1": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-2": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-3": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-4": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-5": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-6": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-1": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-2": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-3": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-4": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-5": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-6": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-1": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-2": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-3": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-4": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-5": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-6": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-1": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-2": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-3": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-4": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-5": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-6": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-7": {
+        "contentVersion": 6
+      }
+    },
+    "ordinaryCursor": 0,
+    "ordinaryChapterCursors": {
+      "garden-correspondence": 0,
+      "moonlit-correspondence": 0,
+      "riverside-correspondence": 0,
+      "lantern-correspondence": 0,
+      "wrong-address": 0,
+      "quiet-company": 0,
+      "namesakes": 0,
+      "useful-gaps": 0,
+      "small-talk": 0,
+      "hello-again": 0,
+      "off-beat": 0,
+      "return-mail": 0,
+      "fair-weather": 0,
+      "double-meaning": 0,
+      "fine-print": 0,
+      "sound-advice": 2,
+      "small-impressions": 0,
+      "second-look": 0,
+      "loose-ends": 0,
+      "short-measure": 1,
+      "cross-currents": 0,
+      "safe-keeping": 0,
+      "give-and-take": 0,
+      "paper-duet": 0
+    },
+    "discoveries": [
+      "b1",
+      "f1",
+      "b2",
+      "f2",
+      "b3",
+      "f3",
+      "b4",
+      "f4",
+      "b5",
+      "k1",
+      "k2",
+      "k3",
+      "m1",
+      "m2",
+      "k4",
+      "m3",
+      "m4",
+      "k5",
+      "r1",
+      "r2",
+      "r3",
+      "t1",
+      "t2",
+      "r4",
+      "t3",
+      "t4",
+      "r5",
+      "l1",
+      "l2",
+      "l3",
+      "l4",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "wr1",
+      "wr2",
+      "wr3",
+      "wa1",
+      "wa2",
+      "wr4",
+      "wa3",
+      "wa4",
+      "wr5",
+      "ec1",
+      "ec2",
+      "ec3",
+      "ce1",
+      "ce2",
+      "ce3",
+      "ce4",
+      "ec4",
+      "pp1",
+      "pp2",
+      "pp3",
+      "ss1",
+      "ss2",
+      "pp4",
+      "ss3",
+      "ss4",
+      "cj1",
+      "cj2",
+      "cj3",
+      "bh1",
+      "bh2",
+      "cj4",
+      "bh3",
+      "bh4",
+      "hs1",
+      "hs2",
+      "hs3",
+      "fv1",
+      "fv2",
+      "fv3",
+      "fv4",
+      "hs4",
+      "la1",
+      "la2",
+      "la3",
+      "ht1",
+      "ht2",
+      "la4",
+      "ht3",
+      "ht4",
+      "la5",
+      "ft1",
+      "ft2",
+      "ft3",
+      "ct1",
+      "ct2",
+      "ft4",
+      "ct3",
+      "ct4",
+      "rp1",
+      "rp2",
+      "rp3",
+      "sh1",
+      "sh2",
+      "sh3",
+      "rp4",
+      "sh4",
+      "sh5",
+      "rc1",
+      "rc2",
+      "rc3",
+      "hp1",
+      "hp2",
+      "rc4",
+      "rc5",
+      "hp3",
+      "hp4",
+      "bb1",
+      "bb2",
+      "bb3",
+      "ds1",
+      "ds2",
+      "bb4",
+      "ds3",
+      "ds4",
+      "ob1",
+      "ob2",
+      "ob3",
+      "sm1",
+      "sm2",
+      "ob4",
+      "sm3",
+      "sm4",
+      "bt1",
+      "bt2",
+      "bt3",
+      "tw1",
+      "tw2",
+      "bt4",
+      "tw3",
+      "tw4",
+      "tw5",
+      "im1",
+      "im2",
+      "im3",
+      "pn1",
+      "pn2",
+      "im4",
+      "pn3",
+      "pn4",
+      "sg1",
+      "sg2",
+      "cm1",
+      "cm2",
+      "sg3",
+      "cm3",
+      "sg4",
+      "cm4",
+      "cm5",
+      "sp1",
+      "sp2",
+      "zp1",
+      "zp2",
+      "sp3",
+      "zp3",
+      "sp4",
+      "zp4",
+      "ru1",
+      "ru2",
+      "ru3",
+      "th1",
+      "th2",
+      "th3",
+      "ru4",
+      "th4",
+      "b240-cp1",
+      "b240-cp2",
+      "b240-kt1",
+      "b240-kt2",
+      "b240-kt3",
+      "b240-cp3",
+      "b240-cp4",
+      "b240-kt4",
+      "b240-vb1",
+      "b240-vb2",
+      "b240-pa1",
+      "b240-pa2",
+      "b240-pa3",
+      "b240-vb3",
+      "b240-bs1",
+      "b240-bs2",
+      "b240-mg1",
+      "b240-mg2",
+      "b240-mg3",
+      "b240-bs3",
+      "b240-bs4",
+      "b240-mg4",
+      "b240-ac1",
+      "b240-ac2",
+      "b240-ac3",
+      "b240-tr1",
+      "b240-tr2",
+      "b240-tr3",
+      "b240-tr4",
+      "b240-ac4",
+      "b240-tr5"
+    ],
+    "material": {
+      "bird": {
+        "initial": 4,
+        "generated": 50,
+        "delivered": 54,
+        "recycled": 0
+      },
+      "fern": {
+        "initial": 4,
+        "generated": 48,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "key": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "moon": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "map": {
+        "initial": 0,
+        "generated": 52,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "teacup": {
+        "initial": 0,
+        "generated": 44,
+        "delivered": 44,
+        "recycled": 0
+      },
+      "lantern": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "spool": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "wing": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "shoe": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "chair": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "cup": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "pear": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "fish": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "scissors": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "button": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      },
+      "hand": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "profile": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "telephone": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "hat": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "comb": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "watch": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "letter": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "shell": {
+        "initial": 0,
+        "generated": 38,
+        "delivered": 38,
+        "recycled": 0
+      },
+      "umbrella": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "anchor": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "bee": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "domino": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "book": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "matchbook": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "handbell": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "typewriter": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "rubber-stamp": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "fountain-pen": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "spectacles": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "camera": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      },
+      "safety-pin": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "zipper": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "ruler": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "thimble": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "survey-compass": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "paper-kite": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "stoppered-bottle": {
+        "initial": 0,
+        "generated": 14,
+        "delivered": 14,
+        "recycled": 0
+      },
+      "tied-parcel": {
+        "initial": 0,
+        "generated": 14,
+        "delivered": 14,
+        "recycled": 0
+      },
+      "balance-scale": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "horseshoe-magnet": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "accordion": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "trumpet": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      }
+    },
+    "receipts": [
+      {
+        "id": "anchor-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 90,
+        "contentVersion": 5,
+        "revision": 2340
+      },
+      {
+        "id": "bee-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 75,
+        "contentVersion": 5,
+        "revision": 2341
+      },
+      {
+        "id": "domino-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 70,
+        "contentVersion": 5,
+        "revision": 2342
+      },
+      {
+        "id": "book-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 75,
+        "contentVersion": 5,
+        "revision": 2343
+      },
+      {
+        "id": "matchbook-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 65,
+        "contentVersion": 5,
+        "revision": 2344
+      },
+      {
+        "id": "handbell-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 55,
+        "contentVersion": 5,
+        "revision": 2345
+      },
+      {
+        "id": "typewriter-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 80,
+        "contentVersion": 5,
+        "revision": 2346
+      },
+      {
+        "id": "rubber-stamp-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 85,
+        "contentVersion": 5,
+        "revision": 2347
+      },
+      {
+        "id": "fountain-pen-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 90,
+        "contentVersion": 5,
+        "revision": 2348
+      },
+      {
+        "id": "spectacles-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 85,
+        "contentVersion": 5,
+        "revision": 2349
+      },
+      {
+        "id": "camera-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 85,
+        "contentVersion": 5,
+        "revision": 2350
+      },
+      {
+        "id": "safety-pin-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 95,
+        "contentVersion": 5,
+        "revision": 2351
+      },
+      {
+        "id": "zipper-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 80,
+        "contentVersion": 5,
+        "revision": 2352
+      },
+      {
+        "id": "ruler-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 80,
+        "contentVersion": 5,
+        "revision": 2353
+      },
+      {
+        "id": "thimble-sorter",
+        "type": "purchase",
+        "xp": 0,
+        "coins": 50,
+        "contentVersion": 5,
+        "revision": 2354
+      },
+      {
+        "id": "full-authored-false:order:143",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-1",
+        "templateId": "cross-currents-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2363
+      },
+      {
+        "id": "full-authored-false:order:144",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-2",
+        "templateId": "cross-currents-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2375
+      },
+      {
+        "id": "full-authored-false:order:145",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-3",
+        "templateId": "cross-currents-letter-3",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2395
+      },
+      {
+        "id": "full-authored-false:order:146",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-4",
+        "templateId": "cross-currents-letter-4",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2407
+      },
+      {
+        "id": "full-authored-false:order:147",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-5",
+        "templateId": "cross-currents-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2427
+      },
+      {
+        "id": "full-authored-false:order:148",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-6",
+        "templateId": "cross-currents-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2443
+      },
+      {
+        "id": "full-authored-false:order:149",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-1",
+        "templateId": "safe-keeping-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2452
+      },
+      {
+        "id": "full-authored-false:order:150",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-2",
+        "templateId": "safe-keeping-letter-2",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2460
+      },
+      {
+        "id": "full-authored-false:order:151",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-3",
+        "templateId": "safe-keeping-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2472
+      },
+      {
+        "id": "full-authored-false:order:153",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-4",
+        "templateId": "safe-keeping-letter-4",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2484
+      },
+      {
+        "id": "full-authored-false:order:152",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-5",
+        "templateId": "safe-keeping-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2496
+      },
+      {
+        "id": "full-authored-false:order:154",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-6",
+        "templateId": "safe-keeping-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2512
+      },
+      {
+        "id": "full-authored-false:order:155",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-1",
+        "templateId": "give-and-take-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2521
+      },
+      {
+        "id": "full-authored-false:order:156",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-2",
+        "templateId": "give-and-take-letter-2",
+        "xp": 45,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2536
+      },
+      {
+        "id": "full-authored-false:order:157",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-3",
+        "templateId": "give-and-take-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2548
+      },
+      {
+        "id": "full-authored-false:order:158",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-4",
+        "templateId": "give-and-take-letter-4",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2568
+      },
+      {
+        "id": "full-authored-false:order:159",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-5",
+        "templateId": "give-and-take-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2588
+      },
+      {
+        "id": "full-authored-false:order:160",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-6",
+        "templateId": "give-and-take-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2604
+      },
+      {
+        "id": "full-authored-false:order:161",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-1",
+        "templateId": "paper-duet-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2613
+      },
+      {
+        "id": "full-authored-false:order:162",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-2",
+        "templateId": "paper-duet-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2625
+      },
+      {
+        "id": "full-authored-false:order:163",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-3",
+        "templateId": "paper-duet-letter-3",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2645
+      },
+      {
+        "id": "full-authored-false:order:164",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-4",
+        "templateId": "paper-duet-letter-4",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 6,
+        "revision": 2669
+      },
+      {
+        "id": "full-authored-false:order:165",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-5",
+        "templateId": "paper-duet-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2681
+      },
+      {
+        "id": "full-authored-false:order:166",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-6",
+        "templateId": "paper-duet-letter-6",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 6,
+        "revision": 2714
+      },
+      {
+        "id": "full-authored-false:order:167",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-7",
+        "templateId": "paper-duet-letter-7",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2722
+      }
+    ],
+    "history": [],
+    "sound": false,
+    "largeText": false,
+    "continuationEntries": {
+      "after-the-first-correspondence": {
+        "revision": 1928,
+        "contentVersion": 5
+      },
+      "after-four-more-correspondences": {
+        "revision": 2355,
+        "contentVersion": 6
+      }
+    }
+  },
+  "conservative": {
+    "schemaVersion": 6,
+    "rulesVersion": 2,
+    "contentVersion": 6,
+    "mode": "career",
+    "careerId": "full-authored-false",
+    "chapterId": "paper-duet",
+    "enteredChapters": [
+      "garden-correspondence",
+      "moonlit-correspondence",
+      "riverside-correspondence",
+      "lantern-correspondence",
+      "wrong-address",
+      "quiet-company",
+      "namesakes",
+      "useful-gaps",
+      "small-talk",
+      "hello-again",
+      "off-beat",
+      "return-mail",
+      "fair-weather",
+      "double-meaning",
+      "fine-print",
+      "sound-advice",
+      "small-impressions",
+      "second-look",
+      "loose-ends",
+      "short-measure",
+      "cross-currents",
+      "safe-keeping",
+      "give-and-take",
+      "paper-duet"
+    ],
+    "chapterEntryVersions": {
+      "garden-correspondence": 4,
+      "moonlit-correspondence": 4,
+      "riverside-correspondence": 4,
+      "lantern-correspondence": 4,
+      "wrong-address": 4,
+      "quiet-company": 4,
+      "namesakes": 4,
+      "useful-gaps": 4,
+      "small-talk": 4,
+      "hello-again": 4,
+      "off-beat": 4,
+      "return-mail": 4,
+      "fair-weather": 4,
+      "double-meaning": 4,
+      "fine-print": 4,
+      "sound-advice": 4,
+      "small-impressions": 5,
+      "second-look": 5,
+      "loose-ends": 5,
+      "short-measure": 5,
+      "cross-currents": 6,
+      "safe-keeping": 6,
+      "give-and-take": 6,
+      "paper-duet": 6
+    },
+    "unlockedSources": [
+      "bird",
+      "fern",
+      "key",
+      "moon",
+      "map",
+      "teacup",
+      "lantern",
+      "spool",
+      "wing",
+      "shoe",
+      "chair",
+      "cup",
+      "pear",
+      "fish",
+      "scissors",
+      "button",
+      "hand",
+      "profile",
+      "telephone",
+      "hat",
+      "comb",
+      "watch",
+      "letter",
+      "shell",
+      "umbrella",
+      "anchor",
+      "bee",
+      "domino",
+      "book",
+      "matchbook",
+      "handbell",
+      "typewriter",
+      "rubber-stamp",
+      "fountain-pen",
+      "spectacles",
+      "camera",
+      "safety-pin",
+      "zipper",
+      "ruler",
+      "thimble",
+      "survey-compass",
+      "paper-kite",
+      "stoppered-bottle",
+      "tied-parcel",
+      "balance-scale",
+      "horseshoe-magnet",
+      "accordion",
+      "trumpet"
+    ],
+    "activeSourceIds": [
+      "accordion",
+      "trumpet"
+    ],
+    "focusedOrderId": null,
+    "revision": 2681,
+    "nextTileSeq": 2365,
+    "nextOrderSeq": 168,
+    "board": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "sources": {
+      "bird": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "fern": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "key": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "moon": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "map": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "teacup": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "lantern": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "spool": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "wing": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "shoe": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "chair": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "cup": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "pear": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "fish": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "scissors": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "button": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "hand": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "profile": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "telephone": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "hat": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "comb": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "watch": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "letter": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "shell": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "umbrella": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "anchor": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "bee": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "domino": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "book": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "matchbook": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "handbell": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "typewriter": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "rubber-stamp": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "fountain-pen": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "spectacles": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "camera": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "safety-pin": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "zipper": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "ruler": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "thimble": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "survey-compass": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "paper-kite": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "stoppered-bottle": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "tied-parcel": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "balance-scale": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "horseshoe-magnet": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "accordion": {
+        "sorter": 0,
+        "cursor": 0
+      },
+      "trumpet": {
+        "sorter": 0,
+        "cursor": 0
+      }
+    },
+    "upgrades": {
+      "bird-sorter": 0,
+      "fern-sorter": 0,
+      "order-desk": 0,
+      "key-sorter": 0,
+      "moon-sorter": 0,
+      "map-sorter": 0,
+      "teacup-sorter": 0,
+      "lantern-sorter": 0,
+      "spool-sorter": 0,
+      "wing-sorter": 0,
+      "shoe-sorter": 0,
+      "chair-sorter": 0,
+      "cup-sorter": 0,
+      "pear-sorter": 0,
+      "fish-sorter": 0,
+      "scissors-sorter": 0,
+      "button-sorter": 0,
+      "hand-sorter": 0,
+      "profile-sorter": 0,
+      "telephone-sorter": 0,
+      "hat-sorter": 0,
+      "comb-sorter": 0,
+      "watch-sorter": 0,
+      "letter-sorter": 0,
+      "shell-sorter": 0,
+      "umbrella-sorter": 0,
+      "anchor-sorter": 0,
+      "bee-sorter": 0,
+      "domino-sorter": 0,
+      "book-sorter": 0,
+      "matchbook-sorter": 0,
+      "handbell-sorter": 0,
+      "typewriter-sorter": 0,
+      "rubber-stamp-sorter": 0,
+      "fountain-pen-sorter": 0,
+      "spectacles-sorter": 0,
+      "camera-sorter": 0,
+      "safety-pin-sorter": 0,
+      "zipper-sorter": 0,
+      "ruler-sorter": 0,
+      "thimble-sorter": 0,
+      "survey-compass-sorter": 0,
+      "paper-kite-sorter": 0,
+      "stoppered-bottle-sorter": 0,
+      "tied-parcel-sorter": 0,
+      "balance-scale-sorter": 0,
+      "horseshoe-magnet-sorter": 0,
+      "accordion-sorter": 0,
+      "trumpet-sorter": 0
+    },
+    "purchases": {},
+    "orders": [],
+    "heldOrders": [
+      {
+        "id": "full-authored-false:order:114",
+        "slot": 0,
+        "templateId": "sound-advice-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "bt2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "tw2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:115",
+        "slot": 1,
+        "templateId": "sound-advice-repeat-2",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "tw3",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 4
+      },
+      {
+        "id": "full-authored-false:order:142",
+        "slot": 0,
+        "templateId": "short-measure-repeat-1",
+        "origin": "ordinary",
+        "storyLetterId": null,
+        "requirements": [
+          {
+            "pieceId": "ru2",
+            "quantity": 1
+          },
+          {
+            "pieceId": "th2",
+            "quantity": 1
+          }
+        ],
+        "xp": 0,
+        "coins": 10,
+        "rulesVersion": 2,
+        "contentVersion": 5
+      }
+    ],
+    "suspendedStory": null,
+    "resumedOptionalId": null,
+    "xp": 8980,
+    "coinsEarned": 505,
+    "coinsSpent": 0,
+    "milestones": [
+      "garden-letter-1",
+      "garden-letter-2",
+      "garden-letter-3",
+      "garden-letter-4",
+      "garden-letter-5",
+      "garden-letter-6",
+      "garden-letter-7",
+      "garden-letter-8",
+      "garden-letter-9",
+      "moon-letter-1",
+      "moon-letter-2",
+      "moon-letter-3",
+      "moon-letter-4",
+      "moon-letter-5",
+      "moon-letter-6",
+      "moon-letter-7",
+      "riverside-letter-1",
+      "riverside-letter-2",
+      "riverside-letter-3",
+      "riverside-letter-4",
+      "riverside-letter-5",
+      "riverside-letter-6",
+      "riverside-letter-7",
+      "lantern-letter-1",
+      "lantern-letter-2",
+      "lantern-letter-3",
+      "lantern-letter-4",
+      "lantern-letter-5",
+      "lantern-letter-6",
+      "lantern-letter-7",
+      "wrong-address-letter-1",
+      "wrong-address-letter-2",
+      "wrong-address-letter-3",
+      "wrong-address-letter-4",
+      "wrong-address-letter-5",
+      "wrong-address-letter-6",
+      "wrong-address-letter-7",
+      "quiet-company-letter-1",
+      "quiet-company-letter-2",
+      "quiet-company-letter-3",
+      "quiet-company-letter-4",
+      "quiet-company-letter-5",
+      "quiet-company-letter-6",
+      "namesakes-letter-1",
+      "namesakes-letter-2",
+      "namesakes-letter-3",
+      "namesakes-letter-4",
+      "namesakes-letter-5",
+      "namesakes-letter-6",
+      "namesakes-letter-7",
+      "useful-gaps-letter-1",
+      "useful-gaps-letter-2",
+      "useful-gaps-letter-3",
+      "useful-gaps-letter-4",
+      "useful-gaps-letter-5",
+      "useful-gaps-letter-6",
+      "useful-gaps-letter-7",
+      "small-talk-letter-1",
+      "small-talk-letter-2",
+      "small-talk-letter-3",
+      "small-talk-letter-4",
+      "small-talk-letter-5",
+      "small-talk-letter-6",
+      "hello-again-letter-1",
+      "hello-again-letter-2",
+      "hello-again-letter-3",
+      "hello-again-letter-4",
+      "hello-again-letter-5",
+      "hello-again-letter-6",
+      "hello-again-letter-7",
+      "off-beat-letter-1",
+      "off-beat-letter-2",
+      "off-beat-letter-3",
+      "off-beat-letter-4",
+      "off-beat-letter-5",
+      "off-beat-letter-6",
+      "off-beat-letter-7",
+      "return-mail-letter-1",
+      "return-mail-letter-2",
+      "return-mail-letter-3",
+      "return-mail-letter-4",
+      "return-mail-letter-5",
+      "return-mail-letter-6",
+      "return-mail-letter-7",
+      "return-mail-letter-8",
+      "fair-weather-letter-1",
+      "fair-weather-letter-2",
+      "fair-weather-letter-3",
+      "fair-weather-letter-4",
+      "fair-weather-letter-5",
+      "fair-weather-letter-6",
+      "fair-weather-letter-7",
+      "double-meaning-letter-1",
+      "double-meaning-letter-2",
+      "double-meaning-letter-3",
+      "double-meaning-letter-4",
+      "double-meaning-letter-5",
+      "double-meaning-letter-6",
+      "double-meaning-letter-7",
+      "fine-print-letter-1",
+      "fine-print-letter-2",
+      "fine-print-letter-3",
+      "fine-print-letter-4",
+      "fine-print-letter-5",
+      "fine-print-letter-6",
+      "sound-advice-letter-1",
+      "sound-advice-letter-2",
+      "sound-advice-letter-3",
+      "sound-advice-letter-4",
+      "sound-advice-letter-5",
+      "sound-advice-letter-6",
+      "sound-advice-letter-7",
+      "sound-advice-letter-8",
+      "small-impressions-letter-1",
+      "small-impressions-letter-2",
+      "small-impressions-letter-3",
+      "small-impressions-letter-4",
+      "small-impressions-letter-5",
+      "small-impressions-letter-6",
+      "small-impressions-letter-7",
+      "second-look-letter-1",
+      "second-look-letter-2",
+      "second-look-letter-3",
+      "second-look-letter-4",
+      "second-look-letter-5",
+      "second-look-letter-6",
+      "loose-ends-letter-1",
+      "loose-ends-letter-2",
+      "loose-ends-letter-3",
+      "loose-ends-letter-4",
+      "loose-ends-letter-5",
+      "loose-ends-letter-6",
+      "loose-ends-letter-7",
+      "short-measure-letter-1",
+      "short-measure-letter-2",
+      "short-measure-letter-3",
+      "short-measure-letter-4",
+      "short-measure-letter-5",
+      "short-measure-letter-6",
+      "cross-currents-letter-1",
+      "cross-currents-letter-2",
+      "cross-currents-letter-3",
+      "cross-currents-letter-4",
+      "cross-currents-letter-5",
+      "cross-currents-letter-6",
+      "safe-keeping-letter-1",
+      "safe-keeping-letter-2",
+      "safe-keeping-letter-3",
+      "safe-keeping-letter-4",
+      "safe-keeping-letter-5",
+      "safe-keeping-letter-6",
+      "give-and-take-letter-1",
+      "give-and-take-letter-2",
+      "give-and-take-letter-3",
+      "give-and-take-letter-4",
+      "give-and-take-letter-5",
+      "give-and-take-letter-6",
+      "paper-duet-letter-1",
+      "paper-duet-letter-2",
+      "paper-duet-letter-3",
+      "paper-duet-letter-4",
+      "paper-duet-letter-5",
+      "paper-duet-letter-6",
+      "paper-duet-letter-7"
+    ],
+    "storyCompletions": {
+      "garden-letter-1": {
+        "contentVersion": 4
+      },
+      "garden-letter-2": {
+        "contentVersion": 4
+      },
+      "garden-letter-3": {
+        "contentVersion": 4
+      },
+      "garden-letter-4": {
+        "contentVersion": 4
+      },
+      "garden-letter-5": {
+        "contentVersion": 4
+      },
+      "garden-letter-6": {
+        "contentVersion": 4
+      },
+      "garden-letter-7": {
+        "contentVersion": 4
+      },
+      "garden-letter-8": {
+        "contentVersion": 4
+      },
+      "garden-letter-9": {
+        "contentVersion": 4
+      },
+      "moon-letter-1": {
+        "contentVersion": 4
+      },
+      "moon-letter-2": {
+        "contentVersion": 4
+      },
+      "moon-letter-3": {
+        "contentVersion": 4
+      },
+      "moon-letter-4": {
+        "contentVersion": 4
+      },
+      "moon-letter-5": {
+        "contentVersion": 4
+      },
+      "moon-letter-6": {
+        "contentVersion": 4
+      },
+      "moon-letter-7": {
+        "contentVersion": 4
+      },
+      "riverside-letter-1": {
+        "contentVersion": 4
+      },
+      "riverside-letter-2": {
+        "contentVersion": 4
+      },
+      "riverside-letter-3": {
+        "contentVersion": 4
+      },
+      "riverside-letter-4": {
+        "contentVersion": 4
+      },
+      "riverside-letter-5": {
+        "contentVersion": 4
+      },
+      "riverside-letter-6": {
+        "contentVersion": 4
+      },
+      "riverside-letter-7": {
+        "contentVersion": 4
+      },
+      "lantern-letter-1": {
+        "contentVersion": 4
+      },
+      "lantern-letter-2": {
+        "contentVersion": 4
+      },
+      "lantern-letter-3": {
+        "contentVersion": 4
+      },
+      "lantern-letter-4": {
+        "contentVersion": 4
+      },
+      "lantern-letter-5": {
+        "contentVersion": 4
+      },
+      "lantern-letter-6": {
+        "contentVersion": 4
+      },
+      "lantern-letter-7": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-1": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-2": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-3": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-4": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-5": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-6": {
+        "contentVersion": 4
+      },
+      "wrong-address-letter-7": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-1": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-2": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-3": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-4": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-5": {
+        "contentVersion": 4
+      },
+      "quiet-company-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-1": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-2": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-3": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-4": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-5": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-6": {
+        "contentVersion": 4
+      },
+      "namesakes-letter-7": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-1": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-2": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-3": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-4": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-5": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-6": {
+        "contentVersion": 4
+      },
+      "useful-gaps-letter-7": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-1": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-2": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-3": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-4": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-5": {
+        "contentVersion": 4
+      },
+      "small-talk-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-1": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-2": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-3": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-4": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-5": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-6": {
+        "contentVersion": 4
+      },
+      "hello-again-letter-7": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-1": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-2": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-3": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-4": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-5": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-6": {
+        "contentVersion": 4
+      },
+      "off-beat-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-1": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-2": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-3": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-4": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-5": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-6": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-7": {
+        "contentVersion": 4
+      },
+      "return-mail-letter-8": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-1": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-2": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-3": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-4": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-5": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-6": {
+        "contentVersion": 4
+      },
+      "fair-weather-letter-7": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-1": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-2": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-3": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-4": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-5": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-6": {
+        "contentVersion": 4
+      },
+      "double-meaning-letter-7": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-1": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-2": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-3": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-4": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-5": {
+        "contentVersion": 4
+      },
+      "fine-print-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-1": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-2": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-3": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-4": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-5": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-6": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-7": {
+        "contentVersion": 4
+      },
+      "sound-advice-letter-8": {
+        "contentVersion": 4
+      },
+      "small-impressions-letter-1": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-2": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-3": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-4": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-5": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-6": {
+        "contentVersion": 5
+      },
+      "small-impressions-letter-7": {
+        "contentVersion": 5
+      },
+      "second-look-letter-1": {
+        "contentVersion": 5
+      },
+      "second-look-letter-2": {
+        "contentVersion": 5
+      },
+      "second-look-letter-3": {
+        "contentVersion": 5
+      },
+      "second-look-letter-4": {
+        "contentVersion": 5
+      },
+      "second-look-letter-5": {
+        "contentVersion": 5
+      },
+      "second-look-letter-6": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-1": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-2": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-3": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-4": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-5": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-6": {
+        "contentVersion": 5
+      },
+      "loose-ends-letter-7": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-1": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-2": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-3": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-4": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-5": {
+        "contentVersion": 5
+      },
+      "short-measure-letter-6": {
+        "contentVersion": 5
+      },
+      "cross-currents-letter-1": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-2": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-3": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-4": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-5": {
+        "contentVersion": 6
+      },
+      "cross-currents-letter-6": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-1": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-2": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-3": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-4": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-5": {
+        "contentVersion": 6
+      },
+      "safe-keeping-letter-6": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-1": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-2": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-3": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-4": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-5": {
+        "contentVersion": 6
+      },
+      "give-and-take-letter-6": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-1": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-2": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-3": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-4": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-5": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-6": {
+        "contentVersion": 6
+      },
+      "paper-duet-letter-7": {
+        "contentVersion": 6
+      }
+    },
+    "ordinaryCursor": 0,
+    "ordinaryChapterCursors": {
+      "garden-correspondence": 0,
+      "moonlit-correspondence": 0,
+      "riverside-correspondence": 0,
+      "lantern-correspondence": 0,
+      "wrong-address": 0,
+      "quiet-company": 0,
+      "namesakes": 0,
+      "useful-gaps": 0,
+      "small-talk": 0,
+      "hello-again": 0,
+      "off-beat": 0,
+      "return-mail": 0,
+      "fair-weather": 0,
+      "double-meaning": 0,
+      "fine-print": 0,
+      "sound-advice": 2,
+      "small-impressions": 0,
+      "second-look": 0,
+      "loose-ends": 0,
+      "short-measure": 1,
+      "cross-currents": 0,
+      "safe-keeping": 0,
+      "give-and-take": 0,
+      "paper-duet": 0
+    },
+    "discoveries": [
+      "b1",
+      "f1",
+      "b2",
+      "f2",
+      "b3",
+      "f3",
+      "b4",
+      "f4",
+      "b5",
+      "k1",
+      "k2",
+      "k3",
+      "m1",
+      "m2",
+      "k4",
+      "m3",
+      "m4",
+      "k5",
+      "r1",
+      "r2",
+      "r3",
+      "t1",
+      "t2",
+      "r4",
+      "t3",
+      "t4",
+      "r5",
+      "l1",
+      "l2",
+      "l3",
+      "l4",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "wr1",
+      "wr2",
+      "wr3",
+      "wa1",
+      "wa2",
+      "wr4",
+      "wa3",
+      "wa4",
+      "wr5",
+      "ec1",
+      "ec2",
+      "ec3",
+      "ce1",
+      "ce2",
+      "ce3",
+      "ce4",
+      "ec4",
+      "pp1",
+      "pp2",
+      "pp3",
+      "ss1",
+      "ss2",
+      "pp4",
+      "ss3",
+      "ss4",
+      "cj1",
+      "cj2",
+      "cj3",
+      "bh1",
+      "bh2",
+      "cj4",
+      "bh3",
+      "bh4",
+      "hs1",
+      "hs2",
+      "hs3",
+      "fv1",
+      "fv2",
+      "fv3",
+      "fv4",
+      "hs4",
+      "la1",
+      "la2",
+      "la3",
+      "ht1",
+      "ht2",
+      "la4",
+      "ht3",
+      "ht4",
+      "la5",
+      "ft1",
+      "ft2",
+      "ft3",
+      "ct1",
+      "ct2",
+      "ft4",
+      "ct3",
+      "ct4",
+      "rp1",
+      "rp2",
+      "rp3",
+      "sh1",
+      "sh2",
+      "sh3",
+      "rp4",
+      "sh4",
+      "sh5",
+      "rc1",
+      "rc2",
+      "rc3",
+      "hp1",
+      "hp2",
+      "rc4",
+      "rc5",
+      "hp3",
+      "hp4",
+      "bb1",
+      "bb2",
+      "bb3",
+      "ds1",
+      "ds2",
+      "bb4",
+      "ds3",
+      "ds4",
+      "ob1",
+      "ob2",
+      "ob3",
+      "sm1",
+      "sm2",
+      "ob4",
+      "sm3",
+      "sm4",
+      "bt1",
+      "bt2",
+      "bt3",
+      "tw1",
+      "tw2",
+      "bt4",
+      "tw3",
+      "tw4",
+      "tw5",
+      "im1",
+      "im2",
+      "im3",
+      "pn1",
+      "pn2",
+      "im4",
+      "pn3",
+      "pn4",
+      "sg1",
+      "sg2",
+      "cm1",
+      "cm2",
+      "sg3",
+      "cm3",
+      "sg4",
+      "cm4",
+      "cm5",
+      "sp1",
+      "sp2",
+      "zp1",
+      "zp2",
+      "sp3",
+      "zp3",
+      "sp4",
+      "zp4",
+      "ru1",
+      "ru2",
+      "ru3",
+      "th1",
+      "th2",
+      "th3",
+      "ru4",
+      "th4",
+      "b240-cp1",
+      "b240-cp2",
+      "b240-kt1",
+      "b240-kt2",
+      "b240-kt3",
+      "b240-cp3",
+      "b240-cp4",
+      "b240-kt4",
+      "b240-vb1",
+      "b240-vb2",
+      "b240-pa1",
+      "b240-pa2",
+      "b240-pa3",
+      "b240-vb3",
+      "b240-bs1",
+      "b240-bs2",
+      "b240-mg1",
+      "b240-mg2",
+      "b240-mg3",
+      "b240-bs3",
+      "b240-bs4",
+      "b240-mg4",
+      "b240-ac1",
+      "b240-ac2",
+      "b240-ac3",
+      "b240-tr1",
+      "b240-tr2",
+      "b240-tr3",
+      "b240-tr4",
+      "b240-ac4",
+      "b240-tr5"
+    ],
+    "material": {
+      "bird": {
+        "initial": 4,
+        "generated": 50,
+        "delivered": 54,
+        "recycled": 0
+      },
+      "fern": {
+        "initial": 4,
+        "generated": 48,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "key": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "moon": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "map": {
+        "initial": 0,
+        "generated": 52,
+        "delivered": 52,
+        "recycled": 0
+      },
+      "teacup": {
+        "initial": 0,
+        "generated": 44,
+        "delivered": 44,
+        "recycled": 0
+      },
+      "lantern": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "spool": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "wing": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "shoe": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "chair": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "cup": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "pear": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "fish": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "scissors": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "button": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      },
+      "hand": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "profile": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "telephone": {
+        "initial": 0,
+        "generated": 40,
+        "delivered": 40,
+        "recycled": 0
+      },
+      "hat": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "comb": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "watch": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "letter": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "shell": {
+        "initial": 0,
+        "generated": 38,
+        "delivered": 38,
+        "recycled": 0
+      },
+      "umbrella": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "anchor": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "bee": {
+        "initial": 0,
+        "generated": 26,
+        "delivered": 26,
+        "recycled": 0
+      },
+      "domino": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "book": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "matchbook": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "handbell": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "typewriter": {
+        "initial": 0,
+        "generated": 36,
+        "delivered": 36,
+        "recycled": 0
+      },
+      "rubber-stamp": {
+        "initial": 0,
+        "generated": 28,
+        "delivered": 28,
+        "recycled": 0
+      },
+      "fountain-pen": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "spectacles": {
+        "initial": 0,
+        "generated": 18,
+        "delivered": 18,
+        "recycled": 0
+      },
+      "camera": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      },
+      "safety-pin": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "zipper": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "ruler": {
+        "initial": 0,
+        "generated": 30,
+        "delivered": 30,
+        "recycled": 0
+      },
+      "thimble": {
+        "initial": 0,
+        "generated": 16,
+        "delivered": 16,
+        "recycled": 0
+      },
+      "survey-compass": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "paper-kite": {
+        "initial": 0,
+        "generated": 20,
+        "delivered": 20,
+        "recycled": 0
+      },
+      "stoppered-bottle": {
+        "initial": 0,
+        "generated": 14,
+        "delivered": 14,
+        "recycled": 0
+      },
+      "tied-parcel": {
+        "initial": 0,
+        "generated": 14,
+        "delivered": 14,
+        "recycled": 0
+      },
+      "balance-scale": {
+        "initial": 0,
+        "generated": 24,
+        "delivered": 24,
+        "recycled": 0
+      },
+      "horseshoe-magnet": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "accordion": {
+        "initial": 0,
+        "generated": 22,
+        "delivered": 22,
+        "recycled": 0
+      },
+      "trumpet": {
+        "initial": 0,
+        "generated": 32,
+        "delivered": 32,
+        "recycled": 0
+      }
+    },
+    "receipts": [
+      {
+        "id": "full-authored-false:order:127",
+        "type": "delivery",
+        "storyLetterId": "second-look-letter-5",
+        "templateId": "second-look-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 5,
+        "revision": 2093
+      },
+      {
+        "id": "full-authored-false:order:128",
+        "type": "delivery",
+        "storyLetterId": "second-look-letter-6",
+        "templateId": "second-look-letter-6",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 5,
+        "revision": 2125
+      },
+      {
+        "id": "full-authored-false:order:129",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-1",
+        "templateId": "loose-ends-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 5,
+        "revision": 2133
+      },
+      {
+        "id": "full-authored-false:order:130",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-2",
+        "templateId": "loose-ends-letter-2",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 5,
+        "revision": 2140
+      },
+      {
+        "id": "full-authored-false:order:131",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-3",
+        "templateId": "loose-ends-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 5,
+        "revision": 2151
+      },
+      {
+        "id": "full-authored-false:order:132",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-4",
+        "templateId": "loose-ends-letter-4",
+        "xp": 45,
+        "coins": 20,
+        "contentVersion": 5,
+        "revision": 2165
+      },
+      {
+        "id": "full-authored-false:order:133",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-5",
+        "templateId": "loose-ends-letter-5",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 5,
+        "revision": 2180
+      },
+      {
+        "id": "full-authored-false:order:134",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-6",
+        "templateId": "loose-ends-letter-6",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 5,
+        "revision": 2203
+      },
+      {
+        "id": "full-authored-false:order:135",
+        "type": "delivery",
+        "storyLetterId": "loose-ends-letter-7",
+        "templateId": "loose-ends-letter-7",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 5,
+        "revision": 2226
+      },
+      {
+        "id": "full-authored-false:order:136",
+        "type": "delivery",
+        "storyLetterId": "short-measure-letter-1",
+        "templateId": "short-measure-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 5,
+        "revision": 2234
+      },
+      {
+        "id": "full-authored-false:order:137",
+        "type": "delivery",
+        "storyLetterId": "short-measure-letter-2",
+        "templateId": "short-measure-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 5,
+        "revision": 2245
+      },
+      {
+        "id": "full-authored-false:order:138",
+        "type": "delivery",
+        "storyLetterId": "short-measure-letter-3",
+        "templateId": "short-measure-letter-3",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 5,
+        "revision": 2252
+      },
+      {
+        "id": "full-authored-false:order:139",
+        "type": "delivery",
+        "storyLetterId": "short-measure-letter-4",
+        "templateId": "short-measure-letter-4",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 5,
+        "revision": 2267
+      },
+      {
+        "id": "full-authored-false:order:140",
+        "type": "delivery",
+        "storyLetterId": "short-measure-letter-5",
+        "templateId": "short-measure-letter-5",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 5,
+        "revision": 2290
+      },
+      {
+        "id": "full-authored-false:order:141",
+        "type": "delivery",
+        "storyLetterId": "short-measure-letter-6",
+        "templateId": "short-measure-letter-6",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 5,
+        "revision": 2313
+      },
+      {
+        "id": "full-authored-false:order:143",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-1",
+        "templateId": "cross-currents-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2322
+      },
+      {
+        "id": "full-authored-false:order:144",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-2",
+        "templateId": "cross-currents-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2334
+      },
+      {
+        "id": "full-authored-false:order:145",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-3",
+        "templateId": "cross-currents-letter-3",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2354
+      },
+      {
+        "id": "full-authored-false:order:146",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-4",
+        "templateId": "cross-currents-letter-4",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2366
+      },
+      {
+        "id": "full-authored-false:order:147",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-5",
+        "templateId": "cross-currents-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2386
+      },
+      {
+        "id": "full-authored-false:order:148",
+        "type": "delivery",
+        "storyLetterId": "cross-currents-letter-6",
+        "templateId": "cross-currents-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2402
+      },
+      {
+        "id": "full-authored-false:order:149",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-1",
+        "templateId": "safe-keeping-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2411
+      },
+      {
+        "id": "full-authored-false:order:150",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-2",
+        "templateId": "safe-keeping-letter-2",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2419
+      },
+      {
+        "id": "full-authored-false:order:151",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-3",
+        "templateId": "safe-keeping-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2431
+      },
+      {
+        "id": "full-authored-false:order:153",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-4",
+        "templateId": "safe-keeping-letter-4",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2443
+      },
+      {
+        "id": "full-authored-false:order:152",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-5",
+        "templateId": "safe-keeping-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2455
+      },
+      {
+        "id": "full-authored-false:order:154",
+        "type": "delivery",
+        "storyLetterId": "safe-keeping-letter-6",
+        "templateId": "safe-keeping-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2471
+      },
+      {
+        "id": "full-authored-false:order:155",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-1",
+        "templateId": "give-and-take-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2480
+      },
+      {
+        "id": "full-authored-false:order:156",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-2",
+        "templateId": "give-and-take-letter-2",
+        "xp": 45,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2495
+      },
+      {
+        "id": "full-authored-false:order:157",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-3",
+        "templateId": "give-and-take-letter-3",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2507
+      },
+      {
+        "id": "full-authored-false:order:158",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-4",
+        "templateId": "give-and-take-letter-4",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2527
+      },
+      {
+        "id": "full-authored-false:order:159",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-5",
+        "templateId": "give-and-take-letter-5",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2547
+      },
+      {
+        "id": "full-authored-false:order:160",
+        "type": "delivery",
+        "storyLetterId": "give-and-take-letter-6",
+        "templateId": "give-and-take-letter-6",
+        "xp": 50,
+        "coins": 20,
+        "contentVersion": 6,
+        "revision": 2563
+      },
+      {
+        "id": "full-authored-false:order:161",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-1",
+        "templateId": "paper-duet-letter-1",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2572
+      },
+      {
+        "id": "full-authored-false:order:162",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-2",
+        "templateId": "paper-duet-letter-2",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2584
+      },
+      {
+        "id": "full-authored-false:order:163",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-3",
+        "templateId": "paper-duet-letter-3",
+        "xp": 70,
+        "coins": 30,
+        "contentVersion": 6,
+        "revision": 2604
+      },
+      {
+        "id": "full-authored-false:order:164",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-4",
+        "templateId": "paper-duet-letter-4",
+        "xp": 85,
+        "coins": 35,
+        "contentVersion": 6,
+        "revision": 2628
+      },
+      {
+        "id": "full-authored-false:order:165",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-5",
+        "templateId": "paper-duet-letter-5",
+        "xp": 35,
+        "coins": 15,
+        "contentVersion": 6,
+        "revision": 2640
+      },
+      {
+        "id": "full-authored-false:order:166",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-6",
+        "templateId": "paper-duet-letter-6",
+        "xp": 140,
+        "coins": 60,
+        "contentVersion": 6,
+        "revision": 2673
+      },
+      {
+        "id": "full-authored-false:order:167",
+        "type": "delivery",
+        "storyLetterId": "paper-duet-letter-7",
+        "templateId": "paper-duet-letter-7",
+        "xp": 20,
+        "coins": 10,
+        "contentVersion": 6,
+        "revision": 2681
+      }
+    ],
+    "history": [],
+    "sound": false,
+    "largeText": false,
+    "continuationEntries": {
+      "after-the-first-correspondence": {
+        "revision": 1928,
+        "contentVersion": 5
+      },
+      "after-four-more-correspondences": {
+        "revision": 2314,
+        "contentVersion": 6
+      }
+    }
+  }
+}

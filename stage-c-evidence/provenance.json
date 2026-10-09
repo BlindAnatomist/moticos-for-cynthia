@@ -1,0 +1,11 @@
+{
+  "proposalSha256": "89d3d304bf6ef22948a59645deea77c1464ee2fe77cb856f8e8f3fa828349598",
+  "priorRouteFixtureSha256": "65a6744535c968ec52c7300d9900b713d01c8d0f478b37159f31d3564490c088",
+  "derivedEndpointIndexes": {
+    "purchases": 0,
+    "basic": 7,
+    "conservative": 10
+  },
+  "baselineSourceManifest": "../../baseline-manifest.json",
+  "scope": "Private runtime integration tests. Browser rendering/persistence/export are separate acceptance gates."
+}

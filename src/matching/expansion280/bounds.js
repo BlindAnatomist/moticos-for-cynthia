@@ -1,0 +1,844 @@
+export const EXPANSION280_BOUNDS=Object.freeze({
+  "c280-cr1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      100,
+      240,
+      828,
+      567
+    ],
+    "crop": [
+      92,
+      232,
+      844,
+      583
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cr2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      60,
+      202,
+      912,
+      650
+    ],
+    "crop": [
+      52,
+      194,
+      928,
+      666
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cr3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      86,
+      253,
+      892,
+      544
+    ],
+    "crop": [
+      78,
+      245,
+      908,
+      560
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cr4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      70,
+      204,
+      902,
+      643
+    ],
+    "crop": [
+      62,
+      196,
+      918,
+      659
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cr5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      90,
+      220,
+      852,
+      622
+    ],
+    "crop": [
+      82,
+      212,
+      868,
+      638
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-sn1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      124,
+      282,
+      812,
+      499
+    ],
+    "crop": [
+      116,
+      274,
+      828,
+      515
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-sn2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      106,
+      316,
+      824,
+      441
+    ],
+    "crop": [
+      98,
+      308,
+      840,
+      457
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-sn3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      91,
+      196,
+      853,
+      636
+    ],
+    "crop": [
+      83,
+      188,
+      869,
+      652
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-sn4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      92,
+      234,
+      876,
+      594
+    ],
+    "crop": [
+      84,
+      226,
+      892,
+      610
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-sn5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      96,
+      192,
+      850,
+      677
+    ],
+    "crop": [
+      88,
+      184,
+      866,
+      693
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-wc1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      102,
+      295,
+      819,
+      434
+    ],
+    "crop": [
+      94,
+      287,
+      835,
+      450
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-wc2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      122,
+      361,
+      781,
+      301
+    ],
+    "crop": [
+      114,
+      353,
+      797,
+      317
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-wc3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      103,
+      293,
+      819,
+      437
+    ],
+    "crop": [
+      95,
+      285,
+      835,
+      453
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-wc4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      104,
+      239,
+      854,
+      590
+    ],
+    "crop": [
+      96,
+      231,
+      870,
+      606
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-wc5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      91,
+      302,
+      791,
+      447
+    ],
+    "crop": [
+      83,
+      294,
+      807,
+      463
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-gt1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      97,
+      109,
+      865,
+      832
+    ],
+    "crop": [
+      89,
+      101,
+      881,
+      848
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-gt2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      143,
+      178,
+      770,
+      715
+    ],
+    "crop": [
+      135,
+      170,
+      786,
+      731
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-gt3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      127,
+      144,
+      813,
+      758
+    ],
+    "crop": [
+      119,
+      136,
+      829,
+      774
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-gt4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      138,
+      176,
+      798,
+      699
+    ],
+    "crop": [
+      130,
+      168,
+      814,
+      715
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-gt5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      86,
+      292,
+      879,
+      486
+    ],
+    "crop": [
+      78,
+      284,
+      895,
+      502
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-fi1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      93,
+      177,
+      863,
+      708
+    ],
+    "crop": [
+      85,
+      169,
+      879,
+      724
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-fi2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      128,
+      222,
+      820,
+      614
+    ],
+    "crop": [
+      120,
+      214,
+      836,
+      630
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-fi3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      123,
+      259,
+      791,
+      534
+    ],
+    "crop": [
+      115,
+      251,
+      807,
+      550
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-fi4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      137,
+      203,
+      761,
+      642
+    ],
+    "crop": [
+      129,
+      195,
+      777,
+      658
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-fi5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      103,
+      307,
+      819,
+      411
+    ],
+    "crop": [
+      95,
+      299,
+      835,
+      427
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-mi1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      198,
+      149,
+      636,
+      758
+    ],
+    "crop": [
+      190,
+      141,
+      652,
+      774
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-mi2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      140,
+      128,
+      762,
+      795
+    ],
+    "crop": [
+      132,
+      120,
+      778,
+      811
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-mi3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      125,
+      141,
+      799,
+      752
+    ],
+    "crop": [
+      117,
+      133,
+      815,
+      768
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-mi4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      81,
+      166,
+      883,
+      666
+    ],
+    "crop": [
+      73,
+      158,
+      899,
+      682
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-mi5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      109,
+      243,
+      814,
+      566
+    ],
+    "crop": [
+      101,
+      235,
+      830,
+      582
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-kn1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      229,
+      141,
+      568,
+      751
+    ],
+    "crop": [
+      221,
+      133,
+      584,
+      767
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-kn2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      70,
+      97,
+      908,
+      831
+    ],
+    "crop": [
+      62,
+      89,
+      924,
+      847
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-kn3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      212,
+      179,
+      604,
+      727
+    ],
+    "crop": [
+      204,
+      171,
+      620,
+      743
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-kn4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      168,
+      95,
+      711,
+      838
+    ],
+    "crop": [
+      160,
+      87,
+      727,
+      854
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-kn5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      180,
+      56,
+      691,
+      903
+    ],
+    "crop": [
+      172,
+      48,
+      707,
+      919
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cg1": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      53,
+      58,
+      918,
+      909
+    ],
+    "crop": [
+      45,
+      50,
+      934,
+      925
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cg2": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      127,
+      79,
+      771,
+      872
+    ],
+    "crop": [
+      119,
+      71,
+      787,
+      888
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cg3": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      66,
+      194,
+      925,
+      675
+    ],
+    "crop": [
+      58,
+      186,
+      941,
+      691
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cg4": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      62,
+      130,
+      931,
+      785
+    ],
+    "crop": [
+      54,
+      122,
+      947,
+      801
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  },
+  "c280-cg5": {
+    "source": [
+      1024,
+      1024
+    ],
+    "ink": [
+      113,
+      215,
+      798,
+      599
+    ],
+    "crop": [
+      105,
+      207,
+      814,
+      615
+    ],
+    "alphaThreshold": 16,
+    "paddingPixels": 8
+  }
+});
+export const EXPANSION280_LABELS=Object.freeze({
+  "c280-cr1": "Crab",
+  "c280-cr2": "Clawpost",
+  "c280-cr3": "Crabside",
+  "c280-cr4": "Crabfold",
+  "c280-cr5": "Crabhold",
+  "c280-sn1": "Snail",
+  "c280-sn2": "Shoulder",
+  "c280-sn3": "Shellift",
+  "c280-sn4": "Uncoiled",
+  "c280-sn5": "Coilroof",
+  "c280-wc1": "Watercan",
+  "c280-wc2": "Lowrose",
+  "c280-wc3": "Canstep",
+  "c280-wc4": "Canbend",
+  "c280-wc5": "Canaside",
+  "c280-gt1": "Trowel",
+  "c280-gt2": "Digshift",
+  "c280-gt3": "Scoopout",
+  "c280-gt4": "Diglap",
+  "c280-gt5": "Digrest",
+  "c280-fi1": "Flatiron",
+  "c280-fi2": "Ironheel",
+  "c280-fi3": "Ironturn",
+  "c280-fi4": "Ironseam",
+  "c280-fi5": "Ironnote",
+  "c280-mi1": "Mitten",
+  "c280-mi2": "Cuffturn",
+  "c280-mi3": "Mittbend",
+  "c280-mi4": "Mittfold",
+  "c280-mi5": "Mittwave",
+  "c280-kn1": "Knight",
+  "c280-kn2": "Kntstep",
+  "c280-kn3": "Kntbow",
+  "c280-kn4": "Kntcut",
+  "c280-kn5": "Kntbear",
+  "c280-cg1": "Cogwheel",
+  "c280-cg2": "Cogshift",
+  "c280-cg3": "Coghinge",
+  "c280-cg4": "Coglap",
+  "c280-cg5": "Cogout"
+});

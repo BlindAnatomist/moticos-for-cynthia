@@ -1,13 +1,12 @@
-import * as V6 from './volumes.v6.js';
+import {CONTINUATION as FIRST,VOLUMES as OLD} from './volumes.v5.js';
 const freeze=v=>{if(v&&typeof v==='object'){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
-const FIRST=V6.CONTINUATION;
 export const CONTINUATION=FIRST;
-export const CONTINUATIONS=freeze([...V6.CONTINUATIONS,{
-  "id": "after-cross-currents-correspondences",
-  "fromChapterId": "paper-duet",
-  "toChapterId": "sideways-company",
-  "fromVolumeId": "cross-currents-correspondences",
-  "toVolumeId": "sideways-correspondences",
+export const CONTINUATIONS=freeze([FIRST,{
+  "id": "after-four-more-correspondences",
+  "fromChapterId": "short-measure",
+  "toChapterId": "cross-currents",
+  "fromVolumeId": "four-more-correspondences",
+  "toVolumeId": "cross-currents-correspondences",
   "requiredPreviousStoryIds": [
     "garden-letter-1",
     "garden-letter-2",
@@ -147,7 +146,26 @@ export const CONTINUATIONS=freeze([...V6.CONTINUATIONS,{
     "short-measure-letter-3",
     "short-measure-letter-4",
     "short-measure-letter-5",
-    "short-measure-letter-6",
+    "short-measure-letter-6"
+  ],
+  "minimumXP": 7810,
+  "explicitEntryRequired": true,
+  "action": "enter-continuation",
+  "entryButton": "Open the next four correspondences",
+  "deferButton": "Stay at my table",
+  "entryCopy": "The first twenty chapters are complete. Four new envelopes bring forty more pictures. Open them when you want another reply; your completed correspondences and saved table stay with you.",
+  "terminalPreviousChapterNextIdRemainsNull": true
+}]);
+export const VOLUMES=freeze([...OLD,{
+  "id": "cross-currents-correspondences",
+  "title": "Cross Currents and three more",
+  "chapterIds": [
+    "cross-currents",
+    "safe-keeping",
+    "give-and-take",
+    "paper-duet"
+  ],
+  "storyIds": [
     "cross-currents-letter-1",
     "cross-currents-letter-2",
     "cross-currents-letter-3",
@@ -174,90 +192,52 @@ export const CONTINUATIONS=freeze([...V6.CONTINUATIONS,{
     "paper-duet-letter-6",
     "paper-duet-letter-7"
   ],
-  "minimumXP": 8980,
-  "explicitEntryRequired": true,
-  "action": "enter-continuation",
-  "entryButton": "Open the next four correspondences",
-  "deferButton": "Stay at my table",
-  "entryCopy": "The first twenty-four chapters are complete. Four more envelopes bring forty new pictures. Open them when you want to continue; your finished letters and saved table stay with you.",
-  "terminalPreviousChapterNextIdRemainsNull": true
-}]);
-export const VOLUMES=freeze([...V6.VOLUMES,{
-  "id": "sideways-correspondences",
-  "title": "Sideways Company and three more",
-  "chapterIds": [
-    "sideways-company",
-    "a-little-tending",
-    "warm-regards",
-    "next-move"
-  ],
-  "storyIds": [
-    "sideways-company-letter-1",
-    "sideways-company-letter-2",
-    "sideways-company-letter-3",
-    "sideways-company-letter-4",
-    "a-little-tending-letter-1",
-    "a-little-tending-letter-2",
-    "a-little-tending-letter-3",
-    "a-little-tending-letter-4",
-    "a-little-tending-letter-5",
-    "warm-regards-letter-1",
-    "warm-regards-letter-2",
-    "warm-regards-letter-3",
-    "warm-regards-letter-4",
-    "warm-regards-letter-5",
-    "next-move-letter-1",
-    "next-move-letter-2",
-    "next-move-letter-3",
-    "next-move-letter-4",
-    "next-move-letter-5"
-  ],
   "pieceIds": [
-    "c280-cr1",
-    "c280-cr2",
-    "c280-cr3",
-    "c280-cr4",
-    "c280-cr5",
-    "c280-sn1",
-    "c280-sn2",
-    "c280-sn3",
-    "c280-sn4",
-    "c280-sn5",
-    "c280-wc1",
-    "c280-wc2",
-    "c280-wc3",
-    "c280-wc4",
-    "c280-wc5",
-    "c280-gt1",
-    "c280-gt2",
-    "c280-gt3",
-    "c280-gt4",
-    "c280-gt5",
-    "c280-fi1",
-    "c280-fi2",
-    "c280-fi3",
-    "c280-fi4",
-    "c280-fi5",
-    "c280-mi1",
-    "c280-mi2",
-    "c280-mi3",
-    "c280-mi4",
-    "c280-mi5",
-    "c280-kn1",
-    "c280-kn2",
-    "c280-kn3",
-    "c280-kn4",
-    "c280-kn5",
-    "c280-cg1",
-    "c280-cg2",
-    "c280-cg3",
-    "c280-cg4",
-    "c280-cg5"
+    "b240-cp1",
+    "b240-cp2",
+    "b240-cp3",
+    "b240-cp4",
+    "b240-cp5",
+    "b240-kt1",
+    "b240-kt2",
+    "b240-kt3",
+    "b240-kt4",
+    "b240-kt5",
+    "b240-vb1",
+    "b240-vb2",
+    "b240-vb3",
+    "b240-vb4",
+    "b240-vb5",
+    "b240-pa1",
+    "b240-pa2",
+    "b240-pa3",
+    "b240-pa4",
+    "b240-pa5",
+    "b240-bs1",
+    "b240-bs2",
+    "b240-bs3",
+    "b240-bs4",
+    "b240-bs5",
+    "b240-mg1",
+    "b240-mg2",
+    "b240-mg3",
+    "b240-mg4",
+    "b240-mg5",
+    "b240-ac1",
+    "b240-ac2",
+    "b240-ac3",
+    "b240-ac4",
+    "b240-ac5",
+    "b240-tr1",
+    "b240-tr2",
+    "b240-tr3",
+    "b240-tr4",
+    "b240-tr5"
   ],
-  "completionCopy": "These four correspondences are complete. There are now 280 pictures available across the opened collections; discovering them all is optional. The earlier endings remain yours. This is the 280-picture checkpoint on the way to 320."
+  "completionCopy": "These four correspondences are complete. The first sixteen and the four that followed remain complete too. Your table, pictures and earlier letters are here to revisit."
 }]);
-export const boundariesForVersion=version=>version>=7?CONTINUATIONS:V6.boundariesForVersion(version);
-export const boundaryById=(id,version=7)=>boundariesForVersion(version).find(b=>b.id===id)??null;
+export const boundariesForVersion=version=>version>=6?CONTINUATIONS:version===5?[FIRST]:[];
+export const boundaryById=(id,version=6)=>boundariesForVersion(version).find(b=>b.id===id)??null;
 export const boundaryAt=s=>boundariesForVersion(s.contentVersion).find(b=>b.fromChapterId===s.chapterId)??null;
 export const volumeOf=s=>VOLUMES.find(v=>v.chapterIds.includes(s.chapterId))??VOLUMES[0];
 export const continuationEntered=(s,boundaryId=FIRST.id)=>{const b=boundaryById(boundaryId,s.contentVersion);return !!b&&s.enteredChapters.includes(b.toChapterId);};

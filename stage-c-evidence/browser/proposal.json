@@ -1,0 +1,347 @@
+{
+  "status": "PROPOSED ONLY; no browser-run authorization, launcher, Actions dispatch or deployment",
+  "candidateSourceFingerprint": "8e1668e313b1fef29e725cc3c2da095cba430ea2d9ad3e8d37002792a0247bac",
+  "baselineCommitFromExistingReceipt": "8c12d874b27ce6108b1fb770037d99d3444bf0d0",
+  "baselineCSSSha256": "fadfe927e594231ece30b0ca1e0044ef20b3b5b9acd3ffd33c8469f6be7f84ae",
+  "profiles": [
+    {
+      "id": "stage-c-chromium-desktop",
+      "browser": "installed pinned Chromium",
+      "defaultViewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "id": "stage-c-webkit-phone",
+      "browser": "installed pinned WebKit with iPhone13 touch emulation",
+      "defaultViewport": {
+        "width": 390,
+        "height": 664
+      }
+    }
+  ],
+  "caseCount": 10,
+  "proposedInstances": 20,
+  "cases": [
+    {
+      "id": "C01",
+      "timeoutSeconds": 60,
+      "title": "Migrate existing saves without entering Stage C",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Load the frozen completed v5 endpoint and the conservative and purchased completed v6 endpoints in separate temporary browser contexts.",
+        "Wait for native save/lock completion; verify schema/content7, unchanged board IDs, old source cursors, balances, purchases, held promises, earlier ending and chapter-entry versions.",
+        "Reload each twice. Assert no Stage C entry, no unlocked new source, no new material, and collection availability stays at the already entered160/200/240 scope.",
+        "Before migrating one purchased v6 fixture, open its frozen v6 writer. After v7 migration, attempt one old-tab action and assert newer bytes are protected and the old tab falls back to isolated practice."
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "C02",
+      "timeoutSeconds": 75,
+      "title": "Explicit third-boundary entry and concurrent-tab protection",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Start from the purchased v6 endpoint with retained old tile stock, desk promise and partial old sorter cursor. Open and cancel the new continuation twice; reload and compare saved bytes.",
+        "Open two same-context tabs at the same revision. Submit one third-boundary command from each through the real UI/native session gate; exactly one entry/revision is committed and the other becomes stale.",
+        "Verify old resources/promises remain; version7 receipt and entry, only Crab newly unlocked, exactly two selected sources, zero Snail stock, intended new Undo boundary; reject stale/repeated entry."
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "C03",
+      "timeoutSeconds": 90,
+      "title": "Play all nineteen new letters and four two-letter gates",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Use the conservative8980-XP endpoint with no Stage C stock. Chromium uses authored order; WebKit reverses every legal opener/fork ordering. No purchase or optional order is completed.",
+        "Make/deliver each requested piece through visible controls and verify exact consumption, reward increment, one durable save and letter milestone.",
+        "At all four chapter entries focus the exact zero-reward story (Knight letter2, others letter1). For these four captures set BOTH profiles to390x664, assert visible0 XP/0 coins on card, compact strip and accessibility label plus both-opening-letter notice, then restore the profile default viewport.",
+        "Before the second opening letter, assert the second family remains locked. After both, assert free source unlock with zero gifted material and exactly two source controls.",
+        "Finish at19 new milestones,395 added XP/175 coins, no purchase/repeat delivery, level54 and9375 XP. Preserve all previous endings and stop at the280 checkpoint."
+      ],
+      "routineScreenshotNames": [
+        "C03-crab-zero.png",
+        "C03-can-zero.png",
+        "C03-iron-zero.png",
+        "C03-knight-zero.png"
+      ]
+    },
+    {
+      "id": "C04",
+      "timeoutSeconds": 60,
+      "title": "Reject XP substitutes, wrong tier and wrong quantity",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Use a reducer-generated pre-second-opener fixture with XP above the chapter threshold earned by documented optional deliveries; do not invent XP or unlock fields.",
+        "Verify Snail remains locked and chapter continuation unavailable until the exact pending second story is sent.",
+        "In a separate exact-delivery fixture, show that a higher-tier Crab cannot enable Send for Crab1. Use the reviewed source-bound test probe for two intentionally invalid completion commands (wrong tier; two IDs for quantity1), since the normal UI does not offer a malformed tile-ID selector. Verify no payout, consumption, order change or durable write.",
+        "Send exactly one valid tile and verify its identical retained sibling remains."
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "C05",
+      "timeoutSeconds": 75,
+      "title": "Preserve held letters, callback sources and resumed work",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Use real pre-callback states for Trowel/Fern and Cogwheel/Key, including one old held optional promise and old source cursor.",
+        "Choose callback; assert its exact source pair. Resume the held optional, reload, switch once to another held optional, and return to the same suspended story without new order IDs or rewards.",
+        "Manually select a different unlocked pair, reload twice and verify it is preserved until deliberate refocus. Refocus callback and send it from exact retained/fresh material.",
+        "For the final Next Move letter, verify the return to Knight/Cogwheel without losing the old Key stock/cursor."
+      ],
+      "routineScreenshotNames": [
+        "C05-callback-return.png"
+      ]
+    },
+    {
+      "id": "C06",
+      "timeoutSeconds": 90,
+      "title": "Navigate the expanded collection without save writes",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Use the previously reducer-generated completed280 fixture with all forty new pictures discovered by documented zero-reward makes.",
+        "Visit all fourteen20-picture pages and verify exactly280 unique catalog IDs. Verify DOM image bytes on discovered cards; undiscovered old cards must stay masked rather than inventing old discoveries. The160/40/40/40 volume scopes must retain exact identities and counts.",
+        "For the four new chapters select chapter then each of its two families; assert10/5 picture filters, deterministic reset/page clamping and valid next/back controls.",
+        "Record each scope/page DOM list and source/build binding; view-only navigation must not write the career save. Capture first/last all-volume pages."
+      ],
+      "routineScreenshotNames": [
+        "C06-page-first.png",
+        "C06-page-last.png"
+      ]
+    },
+    {
+      "id": "C07",
+      "timeoutSeconds": 60,
+      "title": "Retain four endings and isolate historical/new replay",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "View the original, Stage A, Stage B and Stage C terminal endings from the completed fixture; record exact copy and no automatic next-chapter entry.",
+        "Replay short-measure-letter-6 at content5, paper-duet-letter-6 at content6, and next-move-letter-5 at content7 through visible controls.",
+        "Assert pinned recipes and zero career reward, and compare persistent career bytes before/after each replay and return.",
+        "Stage C says280 on the way to320; no further unwritten continuation or claimed320 completion."
+      ],
+      "routineScreenshotNames": [
+        "C07-original-ending.png",
+        "C07-stage-a-ending.png",
+        "C07-stage-b-ending.png",
+        "C07-stage-c-ending.png"
+      ]
+    },
+    {
+      "id": "C08",
+      "timeoutSeconds": 120,
+      "title": "Inspect eleven exact postcards and download real PNGs",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "From documented discovery fixtures, open and download the eight new tier5 cards: Crab, Snail, WateringCan, Trowel, Flatiron, Mitten, ChessKnight and Cogwheel.",
+        "Also open/download WateringCan1,2,3 to cover all four selected framing windows together with Flatiron5.",
+        "Verify exact name/chapter, decoded source identity, ready image dimensions, actual downloaded1536x1120 PNG and suggested filename moticos-<lowercase-piece-name-with-spaces-replaced-by-hyphens>.png, plus original-renderer/cache parity. c280-*.png names are normalized evidence filenames only. Decode every download; valid PNG alone is not composition acceptance.",
+        "For every tier5, its own postscript appears only after its own discovery. No companion discovery, reward, material consumption or chapter-completion prerequisite may be inferred.",
+        "Final human/independent visual review must inspect all22 actual exports across both engines, including full composition, white margins, material texture and preserved openings."
+      ],
+      "routineScreenshotNames": []
+    },
+    {
+      "id": "C09",
+      "timeoutSeconds": 120,
+      "title": "Measure occupied phone layouts and long completion labels",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "Use a valid pre-final-letter state with all eight new sources earned. Prepare exactly20 occupied cells through recorded reducer actions: eight new tier3 tiles, b1/b2/f1/f2/k1/k2/m1/m2, and four additional b1 tiles. Check320x568,390x664,390x844,430x932 in normal/large text: eight bounded layouts per profile.",
+        "For each layout inspect actual25-cell geometry, visible art/ink, full compact labels, all required HUD glyph rectangles, wallet, Orders/More, tools and two visible next-output source previews. Preserve the accepted minimums and real overflow/overlap assertions; do not waive failures by hiding/truncating labels.",
+        "Repeat320x568 in normal/large text at the Stage C terminal heading for two additional long-label layouts. Check focused0-XP strip where applicable.",
+        "Save exactly ten named routine screenshots per profile. Both browser engines use this mobile-size matrix even though Chromium default is desktop. Large-text scrolling remains allowed when controls and content stay reachable.",
+        "Source thumbnails use the accepted20px-preview contract; board artwork uses its separate inherited visible-ink contract. Do not confuse the thresholds or impose a new design silently."
+      ],
+      "routineScreenshotNames": [
+        "C09-320x568-normal.png",
+        "C09-320x568-large.png",
+        "C09-390x664-normal.png",
+        "C09-390x664-large.png",
+        "C09-390x844-normal.png",
+        "C09-390x844-large.png",
+        "C09-430x932-normal.png",
+        "C09-430x932-large.png",
+        "C09-ending-320x568-normal.png",
+        "C09-ending-320x568-large.png"
+      ]
+    },
+    {
+      "id": "C10",
+      "timeoutSeconds": 120,
+      "title": "Use all eight sources with Cut/Undo and earned-sorter callbacks",
+      "profiles": [
+        "stage-c-chromium-desktop",
+        "stage-c-webkit-phone"
+      ],
+      "assertions": [
+        "At390x664, select each of the eight new families through Sources. Verify the two actual controls and correct next-output preview/alt text before making.",
+        "For each family, make one real free basic piece, verify board/source art, Undo, Cut its prepared tier3 tile, and Undo to the exact prior stock/material/cursors. No new-family sorter is invented.",
+        "For the old Fern and Key callback sources, exercise earned sorter cursor positions0,1,2 using documented prepared fixtures; verify preview matches nextOutput and basic draw does not advance sorter.",
+        "Capture one screenshot for each new family pair, showing selected sources and occupied board.",
+        "Cancel and reopen Sources, Orders and one postcard; verify modal scroll/keyboard focus return, no ghost overlay, no unintended save or resumed stale action."
+      ],
+      "routineScreenshotNames": [
+        "C10-crab-snail-sources.png",
+        "C10-can-trowel-sources.png",
+        "C10-iron-mitten-sources.png",
+        "C10-knight-cogwheel-sources.png"
+      ]
+    }
+  ],
+  "postcardOutputsPerProfile": [
+    {
+      "pieceId": "c280-cr5",
+      "normalizedEvidenceFilename": "c280-cr5.png",
+      "expectedSuggestedDownloadFilename": "moticos-crab-in-parentheses.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-sn5",
+      "normalizedEvidenceFilename": "c280-sn5.png",
+      "expectedSuggestedDownloadFilename": "moticos-snail-under-its-own-roof.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-wc5",
+      "normalizedEvidenceFilename": "c280-wc5.png",
+      "expectedSuggestedDownloadFilename": "moticos-watering-can-aside.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-gt5",
+      "normalizedEvidenceFilename": "c280-gt5.png",
+      "expectedSuggestedDownloadFilename": "moticos-trowel-cradle.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-fi5",
+      "normalizedEvidenceFilename": "c280-fi5.png",
+      "expectedSuggestedDownloadFilename": "moticos-flatiron-footnote.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-mi5",
+      "normalizedEvidenceFilename": "c280-mi5.png",
+      "expectedSuggestedDownloadFilename": "moticos-mitten-long-goodbye.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-kn5",
+      "normalizedEvidenceFilename": "c280-kn5.png",
+      "expectedSuggestedDownloadFilename": "moticos-knight-bearing-up.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-cg5",
+      "normalizedEvidenceFilename": "c280-cg5.png",
+      "expectedSuggestedDownloadFilename": "moticos-cogwheel-outward.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-wc1",
+      "normalizedEvidenceFilename": "c280-wc1.png",
+      "expectedSuggestedDownloadFilename": "moticos-garden-watering-can.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-wc2",
+      "normalizedEvidenceFilename": "c280-wc2.png",
+      "expectedSuggestedDownloadFilename": "moticos-lowered-rose.png",
+      "width": 1536,
+      "height": 1120
+    },
+    {
+      "pieceId": "c280-wc3",
+      "normalizedEvidenceFilename": "c280-wc3.png",
+      "expectedSuggestedDownloadFilename": "moticos-can-of-two-heights.png",
+      "width": 1536,
+      "height": 1120
+    }
+  ],
+  "limits": {
+    "workers": 1,
+    "parallelProfiles": false,
+    "retries": 0,
+    "repeatEach": 1,
+    "maxFailuresGlobal": 1,
+    "profileSeconds": 870,
+    "browserSecondsTotal": 1740,
+    "setupSeconds": 240,
+    "cleanupSeconds": 60,
+    "reserveSeconds": 120,
+    "totalSeconds": 2160,
+    "totalMinutes": 36,
+    "routineScreenshots": 50,
+    "downloadedPostcardPNGs": 22,
+    "failureScreenshotsMaximum": 1,
+    "failureTracesMaximum": 1,
+    "totalPNGFilesMaximum": 73,
+    "artifactBytesMaximum": 134217728,
+    "video": false,
+    "trace": "Failure only; no source/snapshot/screenshot embedding; bounded artifact size."
+  },
+  "entryConditions": [
+    "Explicit fresh user approval for this bounded280 browser run and its exact candidate/tests/probe/build fingerprints. Existing240 approval is not inherited.",
+    "Implement and independently review a separate source-bound280 harness without modifying the accepted240 gate; collect exactly these20instances with --list only before asking to start. This document is a scoped proposal, not a collected executable test set.",
+    "Fixtures must be reducer-generated and provenance-bound. Reuse prior accepted endpoint and280 route files; any added stock/discovery setup must have a recorded action recipe. Fixture generation is not browser-played campaign evidence.",
+    "A frozen v6 old-writer probe is required for C01/C02 protection: same browser storage origin and distinct /stage-c-v6-probe/ path, with pinned bytes. The pre-existing v6 tab must reject migrated v7 bytes without overwrite and isolate a subsequent practice action. Unknown/future bytes must not be overwritten.",
+    "Verify runtime, fixture, harness, probe and build identity and complete remaining time budget before each group. No extra tests, retries, repeated runs, installs outside pinned official dependencies, or altered budgets.",
+    "If GitHub Actions is proposed later, follow the then-current user permissions and financial controls. This proposal authorizes no Actions run, budget change or paid overage; current rules must be consulted at execution time."
+  ],
+  "stoppingRules": [
+    "Stop the whole run on the first failed assertion, unsafe permission condition, hard time/artifact cap, or allowance stop. Preserve bounded evidence; no automatic rerun.",
+    "No deployment or preview replacement is included. Native pass must be followed by actual screenshot/export review before any separate280publication decision.",
+    "If the collected inventory, source, scope, permissions or budget materially changes before execution, present the revised proposal. Do not silently expand an approval."
+  ],
+  "reusedEvidence": [
+    "Accepted/deployed240 full browser and visual results; not rerun as a full suite.",
+    "Prior280 exact content/art/migration15-test suite, independent review,188replays and bounded runtime routes; all relevant JavaScript/assets are byte-identical after CSS-only rebase.",
+    "73routes/12,110actions with64fork permutations remain proposal-model evidence, not actual280browser coverage."
+  ],
+  "notClaimed": [
+    "This proposed20-instance set is not yet authored/collected or executed.",
+    "No real device claim from emulated WebKit/Chromium.",
+    "No full64-branch browser or runtime permutation replay.",
+    "No new paid service, external generation, laptop work or publication."
+  ]
+}

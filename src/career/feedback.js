@@ -134,3 +134,13 @@ export function correspondenceTitle(state, letter, number) {
   const active = state.orders.find(order => order.storyLetterId === letter.id);
   return active ? orderPresentation(active).title : letter.title;
 }
+
+// Unpaid story introductions still advance authored source milestones.
+export function zeroXPRewardPrefix(order, mode = 'career') {
+  return mode === 'replay' || order.origin === 'story' || order.origin === 'practice' ? '0 XP · ' : 'Coins only · ';
+}
+export function storyMilestoneNote(order, state) {
+  if (state.mode === 'replay' || order.origin !== 'story' || order.contentVersion < 7) return '';
+  const rule = contentPack(order.contentVersion)?.sourceRules.find(rule => rule.milestones.includes(order.storyLetterId));
+  return rule?.milestones.length === 2 && !contentPack(6).sourceRules.some(prior => prior.id === rule.id) ? `Story milestone · Send both opening story letters to unlock ${familyName(rule.id)}. ${rule.milestones.filter(id => !state.milestones.includes(id)).length} remaining.` : '';
+}

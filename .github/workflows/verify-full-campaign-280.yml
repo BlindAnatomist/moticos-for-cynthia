@@ -1,0 +1,93 @@
+{
+  "name": "Bounded Moticos 280 verification",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/full-campaign-280-20261009"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "moticos-280-single-run",
+    "cancel-in-progress": false
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "jobs": {
+    "verification": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/full-campaign-280-20261009' && github.event_name == 'push' && github.run_attempt == 1 && github.event.repository.private == false",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 36,
+      "env": {
+        "MOTICOS_STAGE_C_APPROVAL": "stage-c-browser-results/approval.json",
+        "MOTICOS_280_PUBLIC_REPO": "${{ github.event.repository.private == false }}"
+      },
+      "steps": [
+        {
+          "name": "Start immutable 36-minute clock",
+          "run": "echo \"MOTICOS_280_EPOCH=$(date +%s)\" >> \"$GITHUB_ENV\"\nprintf 'MOTICOS_STAGE_C_PROBE_OUTPUT=%s/moticos-280-probe\\nMOTICOS_280_UPLOAD=%s/moticos-280-upload\\n' \"${RUNNER_TEMP:?}\" \"${RUNNER_TEMP:?}\" >> \"$GITHUB_ENV\""
+        },
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "ref": "${{ github.sha }}",
+            "persist-credentials": false,
+            "fetch-depth": 0
+          }
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Require exact fresh 280 approval before installation",
+          "run": "node stage-c-evidence/execution/precheck.mjs"
+        },
+        {
+          "name": "Pinned setup, focused contracts, exact collection and two builds",
+          "timeout-minutes": 4,
+          "run": "remaining=$((MOTICOS_280_EPOCH + 240 - $(date +%s)))\ntest \"$remaining\" -gt 0\ntimeout --signal=TERM --kill-after=5s \"${remaining}s\" bash -euc 'npm ci --no-audit --no-fund; node node_modules/@playwright/test/cli.js install --with-deps chromium webkit; node stage-c-evidence/execution/prepare.mjs'"
+        },
+        {
+          "name": "Bind exact source, core and dual probe builds",
+          "run": "node stage-c-evidence/execution/authorize.mjs"
+        },
+        {
+          "name": "Stage C Chromium complete ten-case scope",
+          "run": "node stage-c-evidence/execution/run.mjs stage-c-chromium-desktop"
+        },
+        {
+          "name": "Stage C WebKit complete ten-case scope",
+          "run": "node stage-c-evidence/execution/run.mjs stage-c-webkit-phone"
+        },
+        {
+          "name": "Preserve bounded acceptance or failure diagnostics",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "run": "timeout --signal=TERM --kill-after=5s 45s node stage-c-evidence/execution/finalize.mjs"
+        },
+        {
+          "uses": "actions/upload-artifact@v4",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-280-${{ github.run_id }}",
+            "path": "${{ runner.temp }}/moticos-280-upload/",
+            "if-no-files-found": "error",
+            "retention-days": 1,
+            "compression-level": 6,
+            "include-hidden-files": true
+          }
+        }
+      ]
+    }
+  }
+}
