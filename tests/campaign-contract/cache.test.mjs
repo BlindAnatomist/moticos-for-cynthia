@@ -112,12 +112,14 @@ test('optional timing observer cannot change success or leak identifying input',
   assert.equal(events.find(e => e.type === 'render-complete').durationMs, 12);
   assert(!JSON.stringify(events).includes('Paper Bird')); assert.equal(cache.snapshot().hits, 1);
 });
-test('campaign wrapper delegates the actual unchanged renderer and repeats with no new image or canvas work', async () => {
+test('campaign wrapper delegates the actual font-bound renderer and repeats with no new image or canvas work', async () => {
+  const previousFontFace = Object.getOwnPropertyDescriptor(globalThis, 'FontFace');
+  Object.defineProperty(globalThis, 'FontFace', {configurable:true, value:class {constructor(family,source,descriptors){this.family=family;Object.assign(this,descriptors);}async load(){this.status='loaded';return this;}}});
   const previousImage = Object.getOwnPropertyDescriptor(globalThis, 'Image'), previousDocument = Object.getOwnPropertyDescriptor(globalThis, 'document');
   let images = 0, canvases = 0; const operations = [];
   class FakeImage { constructor() { images++; } async decode() { operations.push(['decode', this.src]); } }
   Object.defineProperty(globalThis, 'Image', { configurable: true, value: FakeImage });
-  Object.defineProperty(globalThis, 'document', { configurable: true, value: { createElement(tag) {
+  Object.defineProperty(globalThis, 'document', { configurable: true, value: { fonts:new Set(), createElement(tag) {
     assert.equal(tag, 'canvas'); canvases++;
     const log = [], context = new Proxy({}, {
       set(target, property, value) { log.push(['set', property, value]); target[property] = value; return true; },
@@ -138,12 +140,12 @@ test('campaign wrapper delegates the actual unchanged renderer and repeats with 
     // This compares drawing commands under mocks, not actual raster pixels.
   } finally {
     clearCampaignPostcards();
-    for (const [name, descriptor] of [['Image', previousImage], ['document', previousDocument]]) {
+    for (const [name, descriptor] of [['Image', previousImage], ['document', previousDocument], ['FontFace', previousFontFace]]) {
       if (descriptor) Object.defineProperty(globalThis, name, descriptor); else delete globalThis[name];
     }
   }
 });
-test('protected accepted renderer and export modules remain byte-for-byte unchanged', async () => {
-  const hashes = { 'src/matching/postcard.js': '364e1e13d1caea63f64e0c02d5ef100531758252b9c0b27009a9dd1eed110eca', 'src/exportPostcard.js': 'ad429cc31a7025d0f9b3d19f4faa53276411faf8ba9aebab780a3bf78d06e442' };
+test('reviewed typography renderer and unchanged download/share module remain pinned', async () => {
+  const hashes = { 'src/matching/postcard.js': 'cd0f98b4ac19164059359ab1b410a0ba3896c80148950c28455396caa2302217', 'src/exportPostcard.js': 'ad429cc31a7025d0f9b3d19f4faa53276411faf8ba9aebab780a3bf78d06e442' };
   for (const [path, expected] of Object.entries(hashes)) assert.equal(createHash('sha256').update(await readFile(new URL(`../../${path}`, import.meta.url))).digest('hex'), expected, path);
 });

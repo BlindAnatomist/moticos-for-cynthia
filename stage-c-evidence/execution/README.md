@@ -21,7 +21,7 @@ const focused = source.manifest.files
 const args = ['--test', '--test-reporter=tap', ...focused];
 ```
 
-Run process.execPath with those exact arguments, retain the argument list and full TAP output, and require zero failures/skips/cancellations before packaging. There are currently 60 tests across the complete selected files. Do not run prepare.mjs merely to repeat unchanged app/probe builds; their verified byte inventories may be reused and rebound independently.
+Run process.execPath with those exact arguments, retain the argument list and full TAP output, and require zero failures/skips/cancellations before packaging. There are currently 68 tests across the complete selected files. Do not run prepare.mjs merely to repeat unchanged app/probe builds; their verified byte inventories may be reused and rebound independently.
 
 ## Fresh exact run binding
 
@@ -30,13 +30,13 @@ The final commit must descend from accepted 240 commit `8c12d874b27ce6108b1fb770
 * `Moticos-280-Reviewed-Source: <source fingerprint>`
 * `Moticos-280-Reviewed-Build: <core build fingerprint>`
 * `Moticos-280-Reviewed-Probe: <probe fingerprint>`
-* `Moticos-280-Run-Authorization: Sentinel_59577051eb888191ba3a1a1c86bca4f9`
+* `Moticos-280-Run-Authorization: Sentinel_832f67454c148191a1de412f69b2d0bf`
 
 Only the parent coordinator may publish the authorized commit. A push to the exact 280 verification branch is the sole trigger; rerun attempts and other targets are rejected. The runner checks final HEAD, accepted ancestor/tree, source inventory, installed dependency versions, collection, core/probe bytes, approval identity and complete remaining budget. It never changes payment budgets or enables overages. An allowance stop is a blocker, not grounds to restart.
 
 The job ceiling remains 2,160 seconds, measured from the actual GitHub job start including image provisioning. Setup is allowed at most 600 seconds. Each unchanged ten-case profile retains its 870-second maximum and is additionally clipped to the shared remaining time after 60 seconds cleanup and 120 seconds reserve. These are overlapping phase maxima, not extra time; a truncated profile is incomplete and cannot pass. Browser processes run in isolated POSIX process groups with deadline/artifact watchdogs, one worker, zero retries and global stop on first failure. The second profile requires a fully validated first-profile pass. Skipped, interrupted, flaky, retried, unbound or absent evidence cannot pass.
 
-Exactly 50 named screenshots and 22 real 1536×1120 postcard exports are required for success. Byte identity, full PNG decode/CRC validation, suggested filenames and renderer/cache parity are checked. At most one extra failure screenshot is preserved; videos and native Playwright traces are disabled. An append-only action/assertion journal, capped at 16 MiB per profile within the same aggregate cap, retains public reporter step metadata, timing, hierarchy and bounded error details for every profile, alongside unchanged case proofs, failure-state JSON and exact image outputs. It does not record DOM/network snapshots or API arguments/results; native Trace Viewer replay is therefore unavailable. Journal exhaustion, write failure or incomplete coverage cannot pass. The total artifact cap is 128 MiB. Finalization always attempts bounded diagnostics and preserves safe raw bytes; over-cap output is explicitly incomplete. A native pass still requires separate actual visual inspection of all 22 exported compositions before any publication decision.
+Exactly 60 named screenshots and 22 real 1536×1120 postcard exports are required for success. Byte identity, full PNG decode/CRC validation, suggested filenames and renderer/cache parity are checked. At most one extra failure screenshot is preserved; videos and native Playwright traces are disabled. An append-only action/assertion journal, capped at 16 MiB per profile within the same aggregate cap, retains public reporter step metadata, timing, hierarchy and bounded error details for every profile, alongside unchanged case proofs, failure-state JSON and exact image outputs. It does not record DOM/network snapshots or API arguments/results; native Trace Viewer replay is therefore unavailable. Journal exhaustion, write failure or incomplete coverage cannot pass. The total artifact cap is 128 MiB. Finalization always attempts bounded diagnostics and preserves safe raw bytes; over-cap output is explicitly incomplete. A native pass still requires separate actual visual inspection of all 22 exported compositions before any publication decision.
 
 ## Diagnosed setup correction after run 37953367915
 
@@ -63,3 +63,10 @@ Chromium completed all ten cases. WebKit C03 continuously progressed through fif
 C03 alone now has a 150-second case ceiling, allowing roughly 32–44 percent margin above that observed-rate projection. Its actions, assertions, route order and image evidence are unchanged. Both profiles retain the same 870-second global maximum, and the shared 2,160-second job deadline still reserves cleanup time. Individual case maxima now sum to 930 seconds; these overlap with and do not extend the stricter profile/job watchdogs. All other case ceilings and the 7.5-second action/assertion and 15-second navigation limits remain unchanged, so stalled locator gestures/assertions retain their original short deadlines. Evaluations remain bounded by the case, profile and job ceilings.
 
 The prior failed run also took 21.983 seconds in browser-worker cleanup and reported unconfirmed surviving-child cleanup. Those are post-timeout diagnostics, excluded from the gameplay projection; they remain failures and are not converted to acceptance by this calibration. Fresh complete preflight, collection and native verification are required.
+
+
+## Text presentation correction
+
+The 20 native cases and all case/profile/job deadlines are retained. C08 now requires the bundled serif face to be loaded before every export. C09 verifies intact words at 14px or greater, measures all 280 catalog labels, checks local board scrolling, and exercises keyboard and touch/click reveal without saved-state writes or page overflow. Five additional right-edge screenshots are required per profile: C09-320x568-large-right.png, C09-390x664-large-right.png, C09-390x844-large-right.png, C09-430x932-large-right.png, and C09-ending-320x568-large-right.png. Acceptance now requires 60 screenshots plus 22 postcard PNGs (82 total; at most one extra failure PNG). The 128 MiB artifact cap, zero retries, first-failure stop, and spending protections are unchanged.
+
+All 60 screenshots and 22 downloaded postcard compositions require actual visual review before publication. The larger-text board deliberately permits contained horizontal scrolling so full labels, five logical columns, and comfortable tile sizes coexist. Standard-mode layout must remain unchanged; no clipped names, smaller accessibility fonts, renamed art, or engine-specific branches are permitted.

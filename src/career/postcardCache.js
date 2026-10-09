@@ -1,6 +1,6 @@
-// Campaign-only reuse. The accepted collection renderer stays unchanged and is
-// called on a miss, so a cache hit cannot change the PNG's pixels or filename.
-export const POSTCARD_RENDER_VERSION = 'collection-v1-1536x1120';
+// Campaign-only reuse. The collection renderer is called on a miss, so a cache
+// hit cannot change the PNG's pixels or filename.
+export const POSTCARD_RENDER_VERSION = 'collection-v2-bundled-serif-1536x1120';
 const DEFAULT_SUBTITLE = 'Garden correspondence';
 
 export class PostcardBusyError extends Error {

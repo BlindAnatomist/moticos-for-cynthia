@@ -7,11 +7,11 @@ export const CASES = Object.freeze(Object.fromEntries(ORDER.map(p => [p, APPROVE
 export const SCREENSHOTS = Object.freeze(APPROVED_SCOPE.cases.flatMap(c => c.routineScreenshotNames));
 export const POSTCARDS = Object.freeze(APPROVED_SCOPE.postcardOutputsPerProfile);
 export const BUDGETS = Object.freeze(Object.fromEntries(ORDER.map(p => [p, 870000])));
-export const LIMITS = Object.freeze({jobSeconds:2160, setupSeconds:600, cleanupSeconds:60, reserveSeconds:120, artifactBytes:134217728, routinePngs:50, postcardPngs:22, failurePngs:1, traces:1, workers:1, retries:0, repeatEach:1, maxFailures:1, runStarts:1});
+export const LIMITS = Object.freeze({jobSeconds:2160, setupSeconds:600, cleanupSeconds:60, reserveSeconds:120, artifactBytes:134217728, routinePngs:60, postcardPngs:22, failurePngs:1, traces:1, workers:1, retries:0, repeatEach:1, maxFailures:1, runStarts:1});
 export const CONFIG = 'stage-c-evidence/execution/playwright.config.mjs';
 export const ROOT = 'stage-c-browser-results';
 export const TARGET = Object.freeze({repository:'BlindAnatomist/moticos-for-cynthia', ref:'refs/heads/verify/full-campaign-280-20261009', parent:'8c12d874b27ce6108b1fb770037d99d3444bf0d0', parentTree:'d3a7e9f1243013418c16b418458b677353a84cdb'});
-export const AUTHORIZATION_REFERENCE = 'Sentinel_59577051eb888191ba3a1a1c86bca4f9';
+export const AUTHORIZATION_REFERENCE = 'Sentinel_832f67454c148191a1de412f69b2d0bf';
 export function invocation(args) {
   assert(Array.isArray(args));
   const listing = JSON.stringify(args) === JSON.stringify(['test', `--config=${CONFIG}`, '--list', '--reporter=json']);

@@ -18,8 +18,8 @@ const compressed=fs.readFileSync(new URL('fixtures.generated.json.gz',here));
 const bundle=JSON.parse(gunzipSync(compressed));
 const proposalBytes=read('stage-c-evidence/browser/proposal.json'),proposal=JSON.parse(proposalBytes);
 const approved=JSON.parse(read('stage-c-evidence/execution/approved-scope.json'));
-// Reviewed C03-only 90s → 150s calibration; all other proposal fields are unchanged.
-const approvedProposalSha256='22d1427b61579d7d74f57de0f2ea76d1de4448c4725f6b7e35a5ff1a4b5f92a6';
+// Reviewed whole-word text / bundled-serif checks and five extra right-edge captures per profile; deadlines are unchanged.
+const approvedProposalSha256='2b9c955a5c8d4bc3b6d2ae661d5ef7ba444db591dc230002075d978810d69fd1';
 const families=C.FAMILIES.slice(48),newPieces=C.CATALOG.PIECES.slice(240),zero={initial:0,generated:0,delivered:0,recycled:0};
 const expectedNames=[
   'v5-endpoint','v6-conservative','v6-purchased','stage-c-entry','v6-retained-boundary','v7-retained-before-entry',
@@ -124,17 +124,17 @@ test('occupied layouts and earned-sorter fixtures have the approved pieces and a
   for(const family of ['fern','key'])for(const cursor of [0,1,2]){const state=fixture(`sorter-${family}-${cursor}`);assert.deepEqual(state.sources[family],{sorter:1,cursor});assert.equal(state.activeSourceIds[0],family);assert.equal(E.nextOutput(state,family).tier,[1,1,2][cursor]);assert.equal(E.nextOutput(state,family,true).tier,1);assert.equal(state.sources[family].cursor,cursor);}
 });
 
-test('browser scope exactly matches the approved proposal, 25 captures and eleven exports',()=>{
+test('browser scope exactly matches the approved proposal, 30 captures and eleven exports',()=>{
   assert.equal(sha(proposalBytes),approvedProposalSha256);assert.deepEqual(PROPOSAL,proposal);
   for(const key of ['cases','postcardOutputsPerProfile','limits'])assert.deepEqual(proposal[key],approved[key],key);
   assert.deepEqual(CASES,proposal.cases.map(row=>[row.id,row.title,row.timeoutSeconds*1000]));
   assert.equal(CASES.length,10);assert.deepEqual(CASES.map(row=>row[2]),[60000,75000,150000,60000,75000,90000,60000,120000,120000,120000]);assert.equal(CASES.reduce((sum,row)=>sum+row[2],0),930000);assert.equal(PROFILE_MS,870000);
-  assert.deepEqual(SCREENSHOTS,proposal.cases.flatMap(row=>row.routineScreenshotNames));assert.equal(SCREENSHOTS.length,25);assert.equal(new Set(SCREENSHOTS).size,25);for(const name of SCREENSHOTS)assert.equal(screenshotAllowed(name),true);assert.throws(()=>screenshotAllowed('unreviewed.png'),/Unreviewed screenshot/);
+  assert.deepEqual(SCREENSHOTS,proposal.cases.flatMap(row=>row.routineScreenshotNames));assert.equal(SCREENSHOTS.length,30);assert.equal(new Set(SCREENSHOTS).size,30);for(const name of SCREENSHOTS)assert.equal(screenshotAllowed(name),true);assert.throws(()=>screenshotAllowed('unreviewed.png'),/Unreviewed screenshot/);
   assert.deepEqual(POSTCARDS,proposal.postcardOutputsPerProfile);assert.equal(POSTCARDS.length,11);assert.equal(new Set(POSTCARDS.map(row=>row.pieceId)).size,11);
   assert.deepEqual(POSTCARDS.map(row=>row.pieceId),[...families.map(family=>family.pieceIds[4]),'c280-wc1','c280-wc2','c280-wc3']);
   for(const card of POSTCARDS){assert.deepEqual([card.width,card.height],[1536,1120]);assert.equal(card.normalizedEvidenceFilename,card.pieceId+'.png');assert.equal(card.expectedSuggestedDownloadFilename,`moticos-${C.CATALOG.pieceOf(card.pieceId).name.toLowerCase().replaceAll(' ','-')}.png`);}
   assert.deepEqual(proposal.profiles.map(profile=>profile.id),['stage-c-chromium-desktop','stage-c-webkit-phone']);assert.equal(proposal.proposedInstances,20);
-  assert.equal(proposal.limits.routineScreenshots,50);assert.equal(proposal.limits.downloadedPostcardPNGs,22);assert.equal(proposal.limits.totalPNGFilesMaximum,73);assert.equal(proposal.limits.workers,1);assert.equal(proposal.limits.retries,0);assert.equal(proposal.limits.maxFailuresGlobal,1);
+  assert.equal(proposal.limits.routineScreenshots,60);assert.equal(proposal.limits.downloadedPostcardPNGs,22);assert.equal(proposal.limits.totalPNGFilesMaximum,83);assert.equal(proposal.limits.workers,1);assert.equal(proposal.limits.retries,0);assert.equal(proposal.limits.maxFailuresGlobal,1);
 });
 
 test('the two source files declare exactly C01–C10 and the scope forwards every required fixture',async()=>{

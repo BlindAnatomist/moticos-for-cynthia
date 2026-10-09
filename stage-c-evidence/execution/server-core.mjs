@@ -14,7 +14,7 @@ export function assetPaths(core,probe,repoRoot,probeRoot) {
   assert(paths.has('/career.html'));return paths;
 }
 export function createAssetServer(paths) {
-  const types={html:'text/html',js:'application/javascript',css:'text/css',webp:'image/webp',png:'image/png',json:'application/json',svg:'image/svg+xml'};
+  const types={html:'text/html',js:'application/javascript',css:'text/css',webp:'image/webp',png:'image/png',json:'application/json',svg:'image/svg+xml',ttf:'font/ttf'};
   return http.createServer((req,res)=>{
     if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);return res.end();}
     let row;try{row=paths.get(new URL(req.url,'http://127.0.0.1').pathname);}catch{res.writeHead(400);return res.end();}

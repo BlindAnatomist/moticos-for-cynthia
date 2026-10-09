@@ -55,7 +55,7 @@ export async function hudReadability(page){
 export async function wayfinderLines(page){
  const label=page.locator('[data-piece-id="b3"] .career-cell-name-full');expect(await label.textContent()).toBe('Wayfinder');
  const lines=await label.evaluate(el=>{const chars=[],walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const n=walker.currentNode;for(let i=0;i<n.length;i++){const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+1);chars.push({text:n.textContent[i],y:r.getBoundingClientRect().y});}}const lines=[];for(const c of chars){let row=lines.find(r=>Math.abs(r.y-c.y)<1);if(!row){row={y:c.y,text:''};lines.push(row);}row.text+=c.text;}return lines.map(r=>r.text);});
- expect([['Wayfinder'],['Way','finder']]).toContainEqual(lines);await expect(page.locator('[data-piece-id="b3"]')).toHaveAttribute('aria-label',/^Wayfinder,/);return lines;
+ expect(lines).toEqual(['Wayfinder']);await expect(page.locator('[data-piece-id="b3"]')).toHaveAttribute('aria-label',/^Wayfinder,/);return lines;
 }
 
 // Collection adapters use stable IDs; a card may be on another filtered page.

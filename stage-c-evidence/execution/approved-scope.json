@@ -140,7 +140,8 @@
         "Also open/download WateringCan1,2,3 to cover all four selected framing windows together with Flatiron5.",
         "Verify exact name/chapter, decoded source identity, ready image dimensions, actual downloaded1536x1120 PNG and suggested filename moticos-<lowercase-piece-name-with-spaces-replaced-by-hyphens>.png, plus original-renderer/cache parity. c280-*.png names are normalized evidence filenames only. Decode every download; valid PNG alone is not composition acceptance.",
         "For every tier5, its own postscript appears only after its own discovery. No companion discovery, reward, material consumption or chapter-completion prerequisite may be inferred.",
-        "Final human/independent visual review must inspect all22 actual exports across both engines, including full composition, white margins, material texture and preserved openings."
+        "Final human/independent visual review must inspect all22 actual exports across both engines, including full composition, white margins, material texture and preserved openings.",
+        "The bundled licensed Moticos Serif face must be loaded before export; screen captions use the same face. Review all 22 downloaded title compositions across engines."
       ],
       "routineScreenshotNames": []
     },
@@ -156,8 +157,11 @@
         "Use a valid pre-final-letter state with all eight new sources earned. Prepare exactly20 occupied cells through recorded reducer actions: eight new tier3 tiles, b1/b2/f1/f2/k1/k2/m1/m2, and four additional b1 tiles. Check320x568,390x664,390x844,430x932 in normal/large text: eight bounded layouts per profile.",
         "For each layout inspect actual25-cell geometry, visible art/ink, full compact labels, all required HUD glyph rectangles, wallet, Orders/More, tools and two visible next-output source previews. Preserve the accepted minimums and real overflow/overlap assertions; do not waive failures by hiding/truncating labels.",
         "Repeat320x568 in normal/large text at the Stage C terminal heading for two additional long-label layouts. Check focused0-XP strip where applicable.",
-        "Save exactly ten named routine screenshots per profile. Both browser engines use this mobile-size matrix even though Chromium default is desktop. Large-text scrolling remains allowed when controls and content stay reachable.",
-        "Source thumbnails use the accepted20px-preview contract; board artwork uses its separate inherited visible-ink contract. Do not confuse the thresholds or impose a new design silently."
+        "Save exactly fifteen named routine screenshots per profile (ten existing views plus five right-edge larger-text views). Both browser engines use this mobile-size matrix even though Chromium default is desktop. Large-text scrolling remains allowed when controls and content stay reachable.",
+        "Source thumbnails use the accepted20px-preview contract; board artwork uses its separate inherited visible-ink contract. Do not confuse the thresholds or impose a new design silently.",
+        "Larger-text labels retain whole words at 14px or greater. Measure all 280 catalog labels against the smallest rendered tile.",
+        "Only the larger-text board may scroll sideways. Verify keyboard focus reveals every tested row/column and native scroll controls reach both ends without page overflow or saved-state writes.",
+        "Capture both horizontal ends at every larger-text viewport, including the completed board."
       ],
       "routineScreenshotNames": [
         "C09-320x568-normal.png",
@@ -169,7 +173,12 @@
         "C09-430x932-normal.png",
         "C09-430x932-large.png",
         "C09-ending-320x568-normal.png",
-        "C09-ending-320x568-large.png"
+        "C09-ending-320x568-large.png",
+        "C09-320x568-large-right.png",
+        "C09-390x664-large-right.png",
+        "C09-390x844-large-right.png",
+        "C09-430x932-large-right.png",
+        "C09-ending-320x568-large-right.png"
       ]
     },
     {
@@ -287,11 +296,11 @@
     "reserveSeconds": 120,
     "totalSeconds": 2160,
     "totalMinutes": 36,
-    "routineScreenshots": 50,
+    "routineScreenshots": 60,
     "downloadedPostcardPNGs": 22,
     "failureScreenshotsMaximum": 1,
     "failureTracesMaximum": 1,
-    "totalPNGFilesMaximum": 73,
+    "totalPNGFilesMaximum": 83,
     "artifactBytesMaximum": 134217728,
     "video": false,
     "trace": "Failure only; no source/snapshot/screenshot embedding; bounded artifact size."

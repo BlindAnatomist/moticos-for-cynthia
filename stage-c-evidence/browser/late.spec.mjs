@@ -1,3 +1,4 @@
+import {wholeWordBoardProof, boardScrollProof, postcardFontProof} from './text-polish.mjs';
 import {test, expect} from '@playwright/test';
 import fs from 'node:fs';
 import * as h from './helpers.mjs';
@@ -310,6 +311,7 @@ scenario('C08 Inspect eleven exact postcards and download real PNGs', async ({pa
       expect(images[0].natural).toEqual(BOARD_ART_BOUNDS[pieceId].source);
       const button = page.getByRole('button', {name: 'Download postcard', exact: true});
       await expect(button).toBeEnabled();
+      const typography = await postcardFontProof(page);
       const [download] = await Promise.all([page.waitForEvent('download'), button.click()]);
       expect(await download.failure()).toBe(null);
       const suggestedFilename = download.suggestedFilename();
@@ -332,7 +334,7 @@ scenario('C08 Inspect eleven exact postcards and download real PNGs', async ({pa
       await h.close(page, touchByPage.get(page));
       expect(await h.bytes(page)).toBe(saved);
       const writes = await h.noViewWrites(page, writeStart);
-      exports.push({pieceId, filename, suggestedFilename, bytes: bytes.length, sha256, dimensions: [1536, 1120], decoded, png, readiness, images, parity, writes});
+      exports.push({pieceId, filename, suggestedFilename, bytes: bytes.length, sha256, dimensions: [1536, 1120], decoded, png, readiness, images, typography, parity, writes});
       // Keep the actual downloads and a partial journal if a later card fails.
       fs.writeFileSync(info.outputPath('postcard-download-journal.json'), JSON.stringify({caseId: 'C08', exports}, null, 2));
     }
@@ -438,6 +440,8 @@ scenario('C09 Measure occupied phone layouts and long completion labels', async 
         expect(readiness.images.filter(i => i.cell !== null).map(i => i.pieceId).sort()).toEqual([...expectedIds].sort());
         const geometry = await h.noOverflow(page, large ? {mode: 'large-text'} : {touch: true});
         const hud = await h.hudReadability(page), images = await h.imageProof(page), labels = await boardLabels(page, state, large), sources = await sourceControls(page, state);
+        const wholeWords = large ? await wholeWordBoardProof(page) : null;
+        const scrolling = large ? await boardScrollProof(page, touchByPage.get(page)) : null;
         await expect(page.locator('.career-mobile-coins strong')).toHaveText(String(C.coinBalance(state)));
         await expect(page.locator('.career-mobile-orders-button span')).toHaveText(`Orders ${state.orders.length}`);
         await expect(page.locator('.career-mobile-more-button span')).toHaveText('More');
@@ -461,9 +465,16 @@ scenario('C09 Measure occupied phone layouts and long completion labels', async 
         const name = `C09-${fixtureName === 'occupied-completed' ? 'ending-' : ''}${width}x${height}-${large ? 'large' : 'normal'}.png`;
         await page.evaluate(() => scrollTo(0, 0));
         const screenshot = await h.shot(page, info, name);
+        let rightScreenshot = null;
+        if (large) {
+          await page.locator('.career-board').evaluate(el => { el.scrollLeft = el.scrollWidth; });
+          await expect.poll(() => page.locator('.career-board').evaluate(el => Math.abs(el.scrollLeft - (el.scrollWidth - el.clientWidth)))).toBeLessThanOrEqual(1);
+          rightScreenshot = await h.shot(page, info, name.replace('.png', '-right.png'));
+          await page.locator('.career-board').evaluate(el => { el.scrollLeft = 0; });
+        }
         expect(await h.bytes(page)).toBe(saved);
         const writes = await h.noViewWrites(page, writeStart);
-        layouts.push({fixture: fixtureName, width, height, large, readiness, geometry, hud, glyphs, images, labels, sources, screenshot, writes});
+        layouts.push({fixture: fixtureName, width, height, large, readiness, geometry, hud, glyphs, images, labels, wholeWords, scrolling, sources, screenshot, rightScreenshot, writes});
       }
     }
   }

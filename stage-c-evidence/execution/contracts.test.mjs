@@ -30,7 +30,7 @@ function synthetic(){const config={workers:1,fullyParallel:false,forbidOnly:true
 test('approved 20 instances and exact evidence remain separate from historic 58',()=>{
   assert.deepEqual(ORDER.map(p=>CASES[p].length),[10,10]);assert.deepEqual(CASES[ORDER[0]],BROWSER_CASES);assert.deepEqual(SCREENSHOTS,BROWSER_SHOTS);assert.equal(PROFILE_MS,870000);
   assert.deepEqual(CASES[ORDER[0]].map(row=>row[2]),[60000,75000,150000,60000,75000,90000,60000,120000,120000,120000]);assert.equal(CASES[ORDER[0]].reduce((n,r)=>n+r[2],0),930000);assert.deepEqual(ORDER.map(p=>BUDGETS[p]),[870000,870000]);const config=fs.readFileSync(new URL('./playwright.config.mjs',import.meta.url),'utf8');assert(config.includes('actionTimeout:7500'));assert(config.includes('navigationTimeout:15000'));assert(config.includes('expect:{timeout:7500}'));assert.equal(LIMITS.setupSeconds,600);assert.equal(LIMITS.cleanupSeconds+LIMITS.reserveSeconds,180);assert.equal(LIMITS.jobSeconds,2160);
-  assert.equal(SCREENSHOTS.length,25);assert.equal(new Set(SCREENSHOTS).size,25);assert.equal(POSTCARDS.length,11);assert.equal(LIMITS.routinePngs+LIMITS.postcardPngs+LIMITS.failurePngs,73);assert.equal(LIMITS.artifactBytes,128*1024*1024);
+  assert.equal(SCREENSHOTS.length,30);assert.equal(new Set(SCREENSHOTS).size,30);assert.equal(POSTCARDS.length,11);assert.equal(LIMITS.routinePngs+LIMITS.postcardPngs+LIMITS.failurePngs,83);assert.equal(LIMITS.artifactBytes,128*1024*1024);
 });
 test('exact argv denies filters extra flags repeats retries and unapproved project',()=>{
   assert(invocation(['test',`--config=${CONFIG}`,'--list','--reporter=json']).listing);
@@ -80,7 +80,7 @@ test('PNG validation checks real decompression CRC dimensions and trailing data'
   assert.deepEqual(verifyPng(png,[1,1]),{width:1,height:1,decodedBytes:5});assert.throws(()=>verifyPng(png,[2,1]));const broken=Buffer.from(png);broken[45]^=1;assert.throws(()=>verifyPng(broken,[1,1]));assert.throws(()=>verifyPng(Buffer.concat([png,Buffer.from([0])]),[1,1]));
 });
 test('artifact watchdog enforces total PNG trace and byte ceilings without following symlinks',()=>{
-  const complete={bytes:100,pngs:73,traces:1,routinePngs:50,postcardPngs:22,failurePngs:1,unknownPngs:0};enforceUsage(complete);for(const v of [{...complete,bytes:LIMITS.artifactBytes},{...complete,pngs:74,failurePngs:2},{...complete,traces:2}])assert.throws(()=>enforceUsage(v));
+  const complete={bytes:100,pngs:83,traces:1,routinePngs:60,postcardPngs:22,failurePngs:1,unknownPngs:0};enforceUsage(complete);for(const v of [{...complete,bytes:LIMITS.artifactBytes},{...complete,pngs:84,failurePngs:2},{...complete,traces:2}])assert.throws(()=>enforceUsage(v));
   const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-watchdog-'));try{fs.writeFileSync(join(dir,'C03-crab-zero.png'),'bytes');assert.deepEqual(artifactUsage(dir),{bytes:5,pngs:1,traces:0,routinePngs:1,postcardPngs:0,failurePngs:0,unknownPngs:0});fs.symlinkSync('/no-such-target',join(dir,'unsafe'));assert.throws(()=>artifactUsage(dir),/symlink/i);}finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
 test('only one explicitly named failure PNG is allowed even when routine PNG count is small',async()=>{
@@ -95,7 +95,7 @@ test('deadline terminates a process group and cannot return a timeout as passed'
   const r=await boundedProcess(process.execPath,['-e','setInterval(()=>{},1000)'],{timeout:80,stdio:'ignore'});assert.equal(r.timedOut,true);assert.notEqual(r.status,0);assert.equal(r.groupCleanup,'terminated');assert.match(r.error,/deadline/);
 });
 test('live artifact watchdog stops a child without deleting its over-cap diagnostics',async()=>{
-  const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-live-cap-'));try{for(let n=0;n<74;n++)fs.writeFileSync(join(dir,`${n}.png`),'synthetic invalid PNG count fixture');const r=await boundedProcess(process.execPath,['-e','setInterval(()=>{},1000)'],{timeout:10000,artifactRoot:dir,stdio:'ignore'});assert.equal(r.timedOut,false);assert.notEqual(r.status,0);assert.equal(r.groupCleanup,'terminated');assert.match(r.error,/PNG ceiling/);assert.equal(fs.readdirSync(dir).length,74);}finally{fs.rmSync(dir,{recursive:true,force:true});}
+  const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-live-cap-'));try{for(let n=0;n<84;n++)fs.writeFileSync(join(dir,`${n}.png`),'synthetic invalid PNG count fixture');const r=await boundedProcess(process.execPath,['-e','setInterval(()=>{},1000)'],{timeout:10000,artifactRoot:dir,stdio:'ignore'});assert.equal(r.timedOut,false);assert.notEqual(r.status,0);assert.equal(r.groupCleanup,'terminated');assert.match(r.error,/PNG ceiling/);assert.equal(fs.readdirSync(dir).length,84);}finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
 test('finalizer preserves real failure diagnostics and never passes unsafe or missing evidence',async()=>{
   for(const unsafe of [false,true]){const dir=fs.mkdtempSync(join(os.tmpdir(),'c280-finalizer-'));try{const results=join(dir,'results'),output=join(dir,'upload');fs.mkdirSync(results);const bytes=Buffer.from('Actual native assertion failed before final report\n');fs.writeFileSync(join(results,'startup.log'),bytes);if(unsafe)fs.symlinkSync('/not-readable',join(results,'forbidden'));

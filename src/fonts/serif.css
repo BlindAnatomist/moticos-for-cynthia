@@ -1,0 +1,4 @@
+/* Original, unmodified Liberation Serif files; SIL OFL license is beside them.
+   No installed-font lookup: every browser receives the same letterforms. */
+@font-face{font-family:'Moticos Serif';src:url('./LiberationSerif-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Moticos Serif';src:url('./LiberationSerif-Italic.ttf') format('truetype');font-style:italic;font-weight:400;font-display:swap}
