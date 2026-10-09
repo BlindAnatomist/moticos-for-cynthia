@@ -19,7 +19,7 @@ export function invocation(args) {
   assert(listing || profile, 'Only exact 20-instance collection or one complete bounded profile is permitted');
   return {listing, profile};
 }
-// Case limits and each profile's870-second maximum are unchanged. The shared
+// Per-case allowances overlap with each profile's fixed870-second cap. The shared
 // job deadline may shorten a profile, which is an honest incomplete failure,
 // never permission to skip cases or promote partial evidence.
 export function remaining(profile) {

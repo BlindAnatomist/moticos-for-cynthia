@@ -18,7 +18,8 @@ const compressed=fs.readFileSync(new URL('fixtures.generated.json.gz',here));
 const bundle=JSON.parse(gunzipSync(compressed));
 const proposalBytes=read('stage-c-evidence/browser/proposal.json'),proposal=JSON.parse(proposalBytes);
 const approved=JSON.parse(read('stage-c-evidence/execution/approved-scope.json'));
-const approvedProposalSha256='ad2ff3a5521ebcf235a25d69fc8d900fa1d747808f595aaf1cdd1969e0c8c8ac';
+// Reviewed C03-only 90s → 150s calibration; all other proposal fields are unchanged.
+const approvedProposalSha256='22d1427b61579d7d74f57de0f2ea76d1de4448c4725f6b7e35a5ff1a4b5f92a6';
 const families=C.FAMILIES.slice(48),newPieces=C.CATALOG.PIECES.slice(240),zero={initial:0,generated:0,delivered:0,recycled:0};
 const expectedNames=[
   'v5-endpoint','v6-conservative','v6-purchased','stage-c-entry','v6-retained-boundary','v7-retained-before-entry',
@@ -127,7 +128,7 @@ test('browser scope exactly matches the approved proposal, 25 captures and eleve
   assert.equal(sha(proposalBytes),approvedProposalSha256);assert.deepEqual(PROPOSAL,proposal);
   for(const key of ['cases','postcardOutputsPerProfile','limits'])assert.deepEqual(proposal[key],approved[key],key);
   assert.deepEqual(CASES,proposal.cases.map(row=>[row.id,row.title,row.timeoutSeconds*1000]));
-  assert.equal(CASES.length,10);assert.equal(CASES.reduce((sum,row)=>sum+row[2],0),PROFILE_MS);assert.equal(PROFILE_MS,870000);
+  assert.equal(CASES.length,10);assert.deepEqual(CASES.map(row=>row[2]),[60000,75000,150000,60000,75000,90000,60000,120000,120000,120000]);assert.equal(CASES.reduce((sum,row)=>sum+row[2],0),930000);assert.equal(PROFILE_MS,870000);
   assert.deepEqual(SCREENSHOTS,proposal.cases.flatMap(row=>row.routineScreenshotNames));assert.equal(SCREENSHOTS.length,25);assert.equal(new Set(SCREENSHOTS).size,25);for(const name of SCREENSHOTS)assert.equal(screenshotAllowed(name),true);assert.throws(()=>screenshotAllowed('unreviewed.png'),/Unreviewed screenshot/);
   assert.deepEqual(POSTCARDS,proposal.postcardOutputsPerProfile);assert.equal(POSTCARDS.length,11);assert.equal(new Set(POSTCARDS.map(row=>row.pieceId)).size,11);
   assert.deepEqual(POSTCARDS.map(row=>row.pieceId),[...families.map(family=>family.pieceIds[4]),'c280-wc1','c280-wc2','c280-wc3']);

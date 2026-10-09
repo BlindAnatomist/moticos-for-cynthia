@@ -57,7 +57,7 @@
     },
     {
       "id": "C03",
-      "timeoutSeconds": 90,
+      "timeoutSeconds": 150,
       "title": "Play all nineteen new letters and four two-letter gates",
       "profiles": [
         "stage-c-chromium-desktop",

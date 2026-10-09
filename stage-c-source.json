@@ -2698,8 +2698,8 @@
     },
     {
       "file": "stage-c-evidence/browser/contracts.test.mjs",
-      "bytes": 14746,
-      "sha256": "00c8e9ee46e1a0038287ac9b6d51b3845bcb0cae0d5244ff98e637b4087bf469"
+      "bytes": 14937,
+      "sha256": "4a9bc86c836c8c568c4052c0adbea1e4ee7ade85d656d795b48c605f638f8fcf"
     },
     {
       "file": "stage-c-evidence/browser/early.spec.mjs",
@@ -2758,8 +2758,8 @@
     },
     {
       "file": "stage-c-evidence/browser/proposal.json",
-      "bytes": 18606,
-      "sha256": "ad2ff3a5521ebcf235a25d69fc8d900fa1d747808f595aaf1cdd1969e0c8c8ac"
+      "bytes": 18607,
+      "sha256": "22d1427b61579d7d74f57de0f2ea76d1de4448c4725f6b7e35a5ff1a4b5f92a6"
     },
     {
       "file": "stage-c-evidence/browser/scope.mjs",
@@ -2768,13 +2768,13 @@
     },
     {
       "file": "stage-c-evidence/execution/README.md",
-      "bytes": 8185,
-      "sha256": "556e7cf395b65ce0e36f2d65f87ba14c4bcc4ba9b4fe0f6bb35096b804082238"
+      "bytes": 9965,
+      "sha256": "8f46712e926613be9d8c9cc2fa50941102abd0dbb274d8d4ceb3e92454f20d91"
     },
     {
       "file": "stage-c-evidence/execution/approved-scope.json",
-      "bytes": 15051,
-      "sha256": "68d18c1ae664880efcbc01335fed4696e8a9875437dd60a4cb665fdb53d8b842"
+      "bytes": 15052,
+      "sha256": "afa621a58b671778a256daa94fcbf245cd0e27c1bb8f6992ed229f55c5b8dc69"
     },
     {
       "file": "stage-c-evidence/execution/authorize.mjs",
@@ -2798,8 +2798,8 @@
     },
     {
       "file": "stage-c-evidence/execution/contracts.test.mjs",
-      "bytes": 17056,
-      "sha256": "010de658b32dd0666f28951810fbfd486b821026a175ee03e856e3172c2e2b37"
+      "bytes": 17466,
+      "sha256": "c45a6b00fe23a39a75eb0f317f637078119c1ad2760c1891e5da610d35403360"
     },
     {
       "file": "stage-c-evidence/execution/diagnostics.test.mjs",
@@ -2853,8 +2853,8 @@
     },
     {
       "file": "stage-c-evidence/execution/policy.mjs",
-      "bytes": 3519,
-      "sha256": "1837d393fc25de60a5d05b0a0cefac39907d58f33bb6f4355c4bc1ba17590f69"
+      "bytes": 3524,
+      "sha256": "dc2fe4c1c8bdc16718cd276e0cdf23dddf6f9acf0e8fb101a45f0e364a3dfd35"
     },
     {
       "file": "stage-c-evidence/execution/precheck.mjs",

@@ -29,7 +29,7 @@ function synthetic(){const config={workers:1,fullyParallel:false,forbidOnly:true
 
 test('approved 20 instances and exact evidence remain separate from historic 58',()=>{
   assert.deepEqual(ORDER.map(p=>CASES[p].length),[10,10]);assert.deepEqual(CASES[ORDER[0]],BROWSER_CASES);assert.deepEqual(SCREENSHOTS,BROWSER_SHOTS);assert.equal(PROFILE_MS,870000);
-  assert.equal(CASES[ORDER[0]].reduce((n,r)=>n+r[2],0),870000);assert.equal(LIMITS.setupSeconds,600);assert.equal(LIMITS.cleanupSeconds+LIMITS.reserveSeconds,180);assert.equal(LIMITS.jobSeconds,2160);
+  assert.deepEqual(CASES[ORDER[0]].map(row=>row[2]),[60000,75000,150000,60000,75000,90000,60000,120000,120000,120000]);assert.equal(CASES[ORDER[0]].reduce((n,r)=>n+r[2],0),930000);assert.deepEqual(ORDER.map(p=>BUDGETS[p]),[870000,870000]);const config=fs.readFileSync(new URL('./playwright.config.mjs',import.meta.url),'utf8');assert(config.includes('actionTimeout:7500'));assert(config.includes('navigationTimeout:15000'));assert(config.includes('expect:{timeout:7500}'));assert.equal(LIMITS.setupSeconds,600);assert.equal(LIMITS.cleanupSeconds+LIMITS.reserveSeconds,180);assert.equal(LIMITS.jobSeconds,2160);
   assert.equal(SCREENSHOTS.length,25);assert.equal(new Set(SCREENSHOTS).size,25);assert.equal(POSTCARDS.length,11);assert.equal(LIMITS.routinePngs+LIMITS.postcardPngs+LIMITS.failurePngs,73);assert.equal(LIMITS.artifactBytes,128*1024*1024);
 });
 test('exact argv denies filters extra flags repeats retries and unapproved project',()=>{
