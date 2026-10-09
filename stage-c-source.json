@@ -2788,8 +2788,8 @@
     },
     {
       "file": "stage-c-evidence/execution/bounded-process.mjs",
-      "bytes": 4568,
-      "sha256": "bf72596b66b39ebe9f37f0e2c0678433dadc2f29e8d5c305d7ead24748b15ab6"
+      "bytes": 5191,
+      "sha256": "1950eb73856dca09ab76c6a7faed9365b2277a97de3bdd3a2c01bbe881753e1e"
     },
     {
       "file": "stage-c-evidence/execution/collection.mjs",
@@ -2827,6 +2827,16 @@
       "sha256": "8fefc8b61424a8beb49473159af930694c6e0e7d7aa17ad107591b98a0771c01"
     },
     {
+      "file": "stage-c-evidence/execution/passed-traces.mjs",
+      "bytes": 3894,
+      "sha256": "6fb097d4a6a8f75b447ebf27248fcd96f55aeb13c79586a0c0e61843eff5263d"
+    },
+    {
+      "file": "stage-c-evidence/execution/passed-traces.test.mjs",
+      "bytes": 6534,
+      "sha256": "eb5580eddec0bbb58c542fa5bb18516780bb558ee0d3d6adc2e1d0d18ca50efe"
+    },
+    {
       "file": "stage-c-evidence/execution/paths.mjs",
       "bytes": 1107,
       "sha256": "d7b5702072ffd89dd4fa4efeaf9fdb4f850e3410c34b9cdb2962d756680c4667"
@@ -2853,8 +2863,8 @@
     },
     {
       "file": "stage-c-evidence/execution/reporter.mjs",
-      "bytes": 763,
-      "sha256": "4efc8bb630e97f7435377780667ba21e045dfa40fd49d3b26f75d40fdb0402d3"
+      "bytes": 1506,
+      "sha256": "90ca1194e8a2778e3cf5fd07be0355f3889b8b84c14dfc0806416f2c23816a69"
     },
     {
       "file": "stage-c-evidence/execution/run.mjs",

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {spawn} from 'node:child_process';
-import {resolve} from 'node:path';
+import {resolve,relative,sep} from 'node:path';
 import {LIMITS,SCREENSHOTS,POSTCARDS} from './policy.mjs';
 
 export function classifyPngNames(paths) {
@@ -20,10 +20,23 @@ export function enforceImageCounts(usage) {
   if(usage.postcardPngs>LIMITS.postcardPngs)throw Error('Postcard PNG ceiling reached');
 }
 
-export function artifactUsage(root) {
+function transientTracePath(root,path) {
+  const parts=relative(resolve(root),resolve(path)).split(sep);if(parts.includes('..'))return false;
+  const at=parts.findIndex(part=>/^\.playwright-artifacts-\d+$/.test(part));
+  return at>=0&&(parts.length===at+1||parts[at+1]==='traces');
+}
+export function artifactUsage(root,operations=fs) {
   let bytes=0,traces=0;const pngPaths=[];
-  function walk(path) {const s=fs.lstatSync(path);if(s.isSymbolicLink())throw Error('Evidence symlink forbidden');if(s.isDirectory())for(const n of fs.readdirSync(path))walk(path+'/'+n);else{if(!s.isFile())throw Error('Nonregular evidence forbidden');bytes+=s.size;if(path.toLowerCase().endsWith('.png'))pngPaths.push(path);if(path.endsWith('trace.zip'))traces++;}}
-  if(fs.existsSync(root))walk(resolve(root));return {bytes,pngs:pngPaths.length,traces,...classifyPngNames(pngPaths)};
+  function disappeared(error,path){return error.code==='ENOENT'&&transientTracePath(root,path);}
+  function walk(path) {
+    let s;try{s=operations.lstatSync(path);}catch(error){if(disappeared(error,path))return;throw error;}
+    if(s.isSymbolicLink())throw Error('Evidence symlink forbidden');
+    if(s.isDirectory()){
+      let names;try{names=operations.readdirSync(path);}catch(error){if(disappeared(error,path))return;throw error;}
+      for(const n of names)walk(path+'/'+n);
+    }else{if(!s.isFile())throw Error('Nonregular evidence forbidden');bytes+=s.size;if(path.toLowerCase().endsWith('.png'))pngPaths.push(path);if(path.endsWith('trace.zip'))traces++;}
+  }
+  if(operations.existsSync(root))walk(resolve(root));return {bytes,pngs:pngPaths.length,traces,...classifyPngNames(pngPaths)};
 }
 export function enforceUsage(usage) {
   if(usage.bytes>LIMITS.artifactBytes-1024*1024)throw Error('Artifact byte safety ceiling reached; preserve remaining diagnostic allowance');
