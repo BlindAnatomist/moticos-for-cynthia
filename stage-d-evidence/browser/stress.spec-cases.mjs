@@ -1,6 +1,8 @@
 // Newly authored recovery tests. No claim of identity with the lost Stage D suite.
 import {test, expect} from '@playwright/test';
 import {createHash} from 'node:crypto';
+import fs from 'node:fs';
+import {cropGeometryResidual, verifyCropResidual} from './crop-model.mjs';
 import * as h from './helpers.mjs';
 import {C, fixture, buildArt} from './fixtures.mjs';
 import {BOARD_ART_BOUNDS} from '../../src/career/boardArt.js';
@@ -22,10 +24,10 @@ async function setLargeText(page, enabled, isTouch) {
   await expect(page.locator('.career-shell')).toHaveClass(enabled ? /is-large-text/ : /^(?!.*is-large-text)/);
 }
 
-async function decodedCropProof(page, expectedIds) {
+async function decodedCropProof(page, info, label, expectedIds) {
   await h.captureImageReadiness(page);
   const state = await h.read(page);
-  expect(state.board.filter(Boolean).map(tile => tile.pieceId)).toEqual(expectedIds);
+  const boardIds=state.board.filter(Boolean).map(tile => tile.pieceId);
   const rows = await page.locator('[data-career-cell].has-piece').evaluateAll(async (cells, bounds) => {
     const hash = async bytes => [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(x => x.toString(16).padStart(2, '0')).join('');
     const pixels = async (image, width, height, crop = null) => {
@@ -49,23 +51,32 @@ async function decodedCropProof(page, expectedIds) {
       const bitmap = await createImageBitmap(blob);
       try {
         const {source: [sw, sh], crop: [x, y, cw, ch]} = bounds[pieceId];
-        const scale = Math.min(outer.clientWidth / cw, outer.clientHeight / ch);
+        const style = element => { const s=getComputedStyle(element); return Object.fromEntries(['paddingTop','paddingRight','paddingBottom','paddingLeft','borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth','maxWidth','maxHeight','transform','position'].map(key=>[key,/^(padding|border)/.test(key)?parseFloat(s[key]):s[key]])); };
+        const styles={outer:style(outer),inner:style(inner),image:style(img)};
+        const outerBox=outer.getBoundingClientRect(),o=styles.outer;
+        const client=[outer.clientWidth,outer.clientHeight],content=[outerBox.width-o.borderLeftWidth-o.borderRightWidth-o.paddingLeft-o.paddingRight,outerBox.height-o.borderTopWidth-o.borderBottomWidth-o.paddingTop-o.paddingBottom];
         const frame = inner.getBoundingClientRect(), image = img.getBoundingClientRect();
         const actual = [frame.width, frame.height, image.width, image.height, image.left - frame.left, image.top - frame.top];
-        const expected = [cw * scale, ch * scale, sw * scale, sh * scale, -x * scale, -y * scale];
-        const errors = actual.map((v, i) => Math.abs(v - expected[i]));
+
         result.push({pieceId, index: Number(cell.dataset.careerCell), src: img.currentSrc,
           sourceBytes: bytes.byteLength, sourceSha256: await hash(bytes), natural: [img.naturalWidth, img.naturalHeight],
           decodedDimensions: [bitmap.width, bitmap.height],
           domDecodedPixelsSha256: await pixels(img, sw, sh),
           referenceDecodedPixelsSha256: await pixels(bitmap, sw, sh),
           cropPixelsSha256: await pixels(bitmap, cw, ch, [x, y, cw, ch]),
-          source: [sw, sh], crop: [x, y, cw, ch], actual, expected, errors,
+          source: [sw, sh], crop: [x, y, cw, ch], actual, client, content, dpr:devicePixelRatio, styles,
           note: 'Decoded image and source-crop pixels plus live CSS crop geometry; screenshot compositing is reviewed separately.'});
       } finally { bitmap.close(); }
     }
     return result;
   }, BOARD_ART_BOUNDS);
+  // Persist every raw measurement before any identity/style/geometry assertion.
+  for(const row of rows){try{Object.assign(row,cropGeometryResidual(row));}catch(error){row.modelError=String(error.message).slice(0,256);}}
+  const measurement={schemaVersion:1,caseId:'D10',label,project:info.project.name,sourceFingerprint:digest(fs.readFileSync('stage-d-source.json')),buildFingerprint:JSON.parse(fs.readFileSync('stage-d-build.json')).buildFingerprint,probeFingerprint:digest(fs.readFileSync('stage-d-probe.preparation.json')),boardIds,expectedIds,rows};
+  const bytes=Buffer.from(JSON.stringify(measurement,null,2)+'\n');
+  if(bytes.length>131072)throw Error('Crop measurement receipt exceeded 128 KiB');
+  fs.mkdirSync(info.outputDir,{recursive:true});fs.writeFileSync(info.outputPath(`D10-${label}-crop-measurements.json`),bytes,{flag:'wx'});
+  expect(boardIds).toEqual(expectedIds);
   expect(rows.map(row => row.pieceId)).toEqual(expectedIds);
   const art = buildArt();
   for (const row of rows) {
@@ -73,7 +84,7 @@ async function decodedCropProof(page, expectedIds) {
     expect(row.natural).toEqual(row.source);
     expect(row.decodedDimensions).toEqual(row.source);
     expect(row.domDecodedPixelsSha256).toBe(row.referenceDecodedPixelsSha256);
-    expect(Math.max(...row.errors), `${row.pieceId} live crop coordinates`).toBeLessThanOrEqual(0.125);
+    expect(()=>verifyCropResidual(row), `${row.pieceId} live crop coordinates and independently constrained style`).not.toThrow();
   }
   return rows;
 }
@@ -154,12 +165,12 @@ export function registerStressCases() {
       await setLargeText(page,false,touch(info));
       const ids=C.CATALOG.PIECES.slice(start,start+20).map(p=>p.id);
       const standardBytes=await h.bytes(page),standardCheckpoint=await h.writeCheckpoint(page);
-      const standard=await decodedCropProof(page,ids);
+      const standard=await decodedCropProof(page,info,`${name}-standard`,ids);
       await h.shot(page,info,`D10-${name}-standard.png`);
       expect(await h.bytes(page)).toBe(standardBytes);await h.durableNoWrites(page,standardCheckpoint);
       await setLargeText(page,true,touch(info));
       const largeBytes=await h.bytes(page),largeCheckpoint=await h.writeCheckpoint(page);
-      const large=await decodedCropProof(page,ids),keyboard=await keyboardRevealEveryPiece(page,ids);
+      const large=await decodedCropProof(page,info,`${name}-large`,ids),keyboard=await keyboardRevealEveryPiece(page,ids);
       await h.shot(page,info,`D10-${name}-large.png`);
       expect(await h.bytes(page)).toBe(largeBytes);await h.durableNoWrites(page,largeCheckpoint);
       rows.push({name,ids,standard,large,keyboard});
@@ -193,14 +204,15 @@ export function registerStressCases() {
       expect((await h.read(page)).unlockedSources).toHaveLength(64);
       let start=performance.now();await h.panel(page,'sources',touch(info));
       const sources=await sourcePickerProof(page),sourcePickerMs=performance.now()-start;
-      await page.getByRole('dialog').locator('.career-source-options button').first().scrollIntoViewIfNeeded();
-      await h.shot(page,info,'D11-all-sources-first.png');
+      await h.shot(page,info,'D11-all-sources-first.png',{captureKind:'viewport-modal',modal:{selector:'.career-dialog',targets:['.career-source-panel fieldset:first-of-type .career-source-options button:first-child']},frame:async()=>{const first=page.getByRole('dialog').locator('.career-source-options button').first();await first.scrollIntoViewIfNeeded();await expect(first).toBeInViewport({ratio:1});}});
       const sourceDialog=page.getByRole('dialog'),lastSource=sourceDialog.locator('.career-source-options button').last(),back=sourceDialog.getByRole('button',{name:'Back to my board',exact:true});
+      let sourceFooterView;
+      await h.shot(page,info,'D11-all-sources-last.png',{captureKind:'viewport-modal',modal:{selector:'.career-dialog',targets:['.career-source-panel fieldset:last-of-type .career-source-options button:last-child','.career-source-panel > .career-dialog-actions > button']},frame:async()=>{
       await back.scrollIntoViewIfNeeded();await expect(back).toBeInViewport({ratio:1});await expect(lastSource).toBeInViewport({ratio:1});
-      const sourceFooterView=await sourceDialog.evaluate(dialog=>{const rect=el=>{const r=el.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom};},d=dialog.getBoundingClientRect(),buttons=[...dialog.querySelectorAll('.career-source-options button')],back=[...dialog.querySelectorAll('button')].find(el=>el.textContent.trim()==='Back to my board');return{lastSource:rect(buttons.at(-1)),back:rect(back),scrollport:{left:d.left+dialog.clientLeft,right:d.left+dialog.clientLeft+dialog.clientWidth,top:d.top+dialog.clientTop,bottom:d.top+dialog.clientTop+dialog.clientHeight},scrollTop:dialog.scrollTop,scrollHeight:dialog.scrollHeight,clientHeight:dialog.clientHeight,overflowY:getComputedStyle(dialog).overflowY};});
+      sourceFooterView=await sourceDialog.evaluate(dialog=>{const rect=el=>{const r=el.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom};},d=dialog.getBoundingClientRect(),buttons=[...dialog.querySelectorAll('.career-source-options button')],back=[...dialog.querySelectorAll('button')].find(el=>el.textContent.trim()==='Back to my board');return{lastSource:rect(buttons.at(-1)),back:rect(back),scrollport:{left:d.left+dialog.clientLeft,right:d.left+dialog.clientLeft+dialog.clientWidth,top:d.top+dialog.clientTop,bottom:d.top+dialog.clientTop+dialog.clientHeight},scrollTop:dialog.scrollTop,scrollHeight:dialog.scrollHeight,clientHeight:dialog.clientHeight,overflowY:getComputedStyle(dialog).overflowY};});
       for(const box of [sourceFooterView.lastSource,sourceFooterView.back])for(const [key,lower] of [['left',true],['top',true],['right',false],['bottom',false]]){if(lower)expect(box[key]).toBeGreaterThanOrEqual(sourceFooterView.scrollport[key]-1);else expect(box[key]).toBeLessThanOrEqual(sourceFooterView.scrollport[key]+1);}
       if(sourceFooterView.scrollHeight>sourceFooterView.clientHeight+1)expect(['auto','scroll']).toContain(sourceFooterView.overflowY);
-      await h.shot(page,info,'D11-all-sources-last.png');await h.press(back,touch(info));await expect(page.getByRole('dialog')).toHaveCount(0);
+      }});await h.press(back,touch(info));await expect(page.getByRole('dialog')).toHaveCount(0);
       start=performance.now();await h.panel(page,'collection',touch(info));
       const pieceId=C.FAMILIES[56].pieceIds[4];await h.revealCollectionPiece(page,pieceId);
       const collectionMs=performance.now()-start;start=performance.now();await h.collectionPiece(page,pieceId).click();

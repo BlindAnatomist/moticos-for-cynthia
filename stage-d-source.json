@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 13758,
-      "sha256": "c49fa44c91e70650fd36072bda343ca6a1e005a3a02bbb8c5abfffe6b0a81a90"
+      "bytes": 16656,
+      "sha256": "b0074411dd845d384125a574b953434be61710d9c1ffcd5cfa15afaa73ec6b29"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -3234,8 +3234,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 9828,
-      "sha256": "a289a09774de8fe70ea5c33df06914a8eddb9203cd7b10231a1fb45f189d34c6"
+      "bytes": 12726,
+      "sha256": "64a9526cc97364f9f0b2c16ce16f411e0d2b7b3d751779367dfd557ac78e69db"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3264,13 +3264,13 @@
     },
     {
       "file": "stage-d-evidence/browser/capture-geometry.mjs",
-      "bytes": 3649,
-      "sha256": "c68c997d746563e64c4209777a54c15b8edbfd8eadc35bec5a93c8cf5840a35f"
+      "bytes": 8372,
+      "sha256": "f8c44edf01b2cf942db957eecb6903a7bd36f4a2f7a7401a1cbf181f22036740"
     },
     {
       "file": "stage-d-evidence/browser/capture-geometry.test.mjs",
-      "bytes": 6441,
-      "sha256": "9197162ac52ac849df7f609244d2426d560a96a8f4d0932b85509a06e1c02d35"
+      "bytes": 12807,
+      "sha256": "71a64e0023beed9299554b01fead17d1b289c2b51ce1bf128b6909ae27b3bb27"
     },
     {
       "file": "stage-d-evidence/browser/compact-labels.mjs",
@@ -3281,6 +3281,21 @@
       "file": "stage-d-evidence/browser/compact-labels.test.mjs",
       "bytes": 1131,
       "sha256": "32dc5a24ac9283fa26c240b6101a15d51505d7305c29da3261f49f4ac6fef692"
+    },
+    {
+      "file": "stage-d-evidence/browser/crop-model.chromium.json",
+      "bytes": 20513,
+      "sha256": "dbb2997d63632e0943d93b4226f7a14eca85236d937406c40b563e5d26f1d042"
+    },
+    {
+      "file": "stage-d-evidence/browser/crop-model.mjs",
+      "bytes": 2600,
+      "sha256": "333130f43489ae08783db14c07128eea9d2fc20644c3ed87a8b3c720bd9777c2"
+    },
+    {
+      "file": "stage-d-evidence/browser/crop-model.test.mjs",
+      "bytes": 4665,
+      "sha256": "fa61c3f5a9533f0c30951cbd9801d087ccae640f1572f19731228835fd9f13bf"
     },
     {
       "file": "stage-d-evidence/browser/early.spec.mjs",
@@ -3304,13 +3319,13 @@
     },
     {
       "file": "stage-d-evidence/browser/helpers.mjs",
-      "bytes": 17091,
-      "sha256": "498850d25d84d9028126d03449acaccc4a8dc48c3f74c7376c5f8fb1d2ee7d9a"
+      "bytes": 17624,
+      "sha256": "ff0450f4f2e9e2b2e98f232be76578df279e11d6e7cdb3746e692f8db25a536d"
     },
     {
       "file": "stage-d-evidence/browser/late.spec.mjs",
-      "bytes": 15840,
-      "sha256": "cacd161630f32901b276ff2a02a564bc428224ef8f426710ff418684135d2962"
+      "bytes": 16773,
+      "sha256": "11a9270b261efc4952191c204e882d1f9b3531fe4f5fc270e3c632f861329488"
     },
     {
       "file": "stage-d-evidence/browser/layout-mode.mjs",
@@ -3404,8 +3419,8 @@
     },
     {
       "file": "stage-d-evidence/browser/stress.spec-cases.mjs",
-      "bytes": 17160,
-      "sha256": "d187a3d02aa6f5a070e0b34bd28c627d2caaffcc07470ba7213a75c96f5d307e"
+      "bytes": 19236,
+      "sha256": "4621d79e016069e068428f52324502c82ddee3da8340560cab05d3d86b3c8c69"
     },
     {
       "file": "stage-d-evidence/browser/text-polish.mjs",
@@ -3599,13 +3614,13 @@
     },
     {
       "file": "stage-d-evidence/execution/validate.mjs",
-      "bytes": 5279,
-      "sha256": "96a42294ae8e8b13d9670fd69afe30a9d635a6949b77f52d988aae93d1906b2d"
+      "bytes": 5944,
+      "sha256": "32dfb0d04a1bda5fa7a59aefefc6096785d68681833d86c119b995b87d6d686e"
     },
     {
       "file": "stage-d-evidence/execution/validator.test.mjs",
-      "bytes": 1521,
-      "sha256": "63d8249e1a7bf987c8cefcb484c8d06266a08f9ff34692870cdc6b9c4d4383d9"
+      "bytes": 3481,
+      "sha256": "20463c1dc02aca2bf6f8f067402898dbb9c9a04ff3486e4057e29689a846a9fe"
     },
     {
       "file": "stage-d-evidence/execution/workflow.test.mjs",
