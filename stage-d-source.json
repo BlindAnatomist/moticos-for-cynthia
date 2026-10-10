@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 18190,
-      "sha256": "1cc4cb7f5722ef672edbff98f725a1bc44bf1eea5449c1ea42e1422c6245a384"
+      "bytes": 20368,
+      "sha256": "3caabee2e30d01f3d6447b3fda2ecbd430c18828a280da59bc7db600673b096a"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -634,8 +634,8 @@
     },
     {
       "file": "src/career/CareerGarden.jsx",
-      "bytes": 62044,
-      "sha256": "b21e760a20d3bd183eb7ee4d12e2a033f3b0011d414c18b300b235cd3f349d42"
+      "bytes": 62120,
+      "sha256": "e9530f1b5107c5cf94bea5656d60c63b6b4a3a992c03fa3bea60bf49653ec100"
     },
     {
       "file": "src/career/audioGate.js",
@@ -646,6 +646,11 @@
       "file": "src/career/boardArt.js",
       "bytes": 775,
       "sha256": "1d2de8422b61a231d5058d7cb638f38dde47a895bd9a7bd15e0d91b0dce27bd3"
+    },
+    {
+      "file": "src/career/boardFocus.js",
+      "bytes": 1396,
+      "sha256": "c3f65632450e3f117b69a82e1c0636f4c52a4adef4b50902f95a85aa471c28af"
     },
     {
       "file": "src/career/career.css",
@@ -3234,8 +3239,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 14260,
-      "sha256": "72fce7b918bb8cd4ff5ff1db17000127fbcf2c27725582a2c8bc71807f50a6d9"
+      "bytes": 16438,
+      "sha256": "4ac329b9d0d4425c0d5fef6e05afb124ce76bc83cd76a17be526e4c99f8a7a1d"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3256,6 +3261,11 @@
       "file": "stage-d-evidence/baseline-files.frozen.json",
       "bytes": 145491,
       "sha256": "ba0679be2e4a1d002fd8aaf7c14e322622cdc74442b99824ae2146b5cd812320"
+    },
+    {
+      "file": "stage-d-evidence/board-focus.test.mjs",
+      "bytes": 5375,
+      "sha256": "8256c3e6b69dcbe1f9bf1417d3e6582e0724663f650fa908732933a4804974c3"
     },
     {
       "file": "stage-d-evidence/browser-proposal.json",
@@ -3304,8 +3314,8 @@
     },
     {
       "file": "stage-d-evidence/browser/fixtures.generated.json.gz",
-      "bytes": 647654,
-      "sha256": "ae05c40f4722c0423c2da9ca00ddb19252730bba5ade536a822b16fb218285eb"
+      "bytes": 647715,
+      "sha256": "6834d288cb089b5c7a001f72fa5ab003e8b606f04996a258d250513beab75e51"
     },
     {
       "file": "stage-d-evidence/browser/fixtures.mjs",
@@ -3434,8 +3444,8 @@
     },
     {
       "file": "stage-d-evidence/browser/text-polish.mjs",
-      "bytes": 9075,
-      "sha256": "966c6bc6073cd6ce6817ccce0f3cbd4950f1bbb043dd2ce26aa037d2d0f116ea"
+      "bytes": 9207,
+      "sha256": "e4b2a6e98931a30be0e5f3e09322850d1b459635d96131be1df3743d9c22a32a"
     },
     {
       "file": "stage-d-evidence/budget-basis.frozen.json",
@@ -3649,8 +3659,8 @@
     },
     {
       "file": "stage-d-evidence/preservation.test.mjs",
-      "bytes": 4300,
-      "sha256": "962a7455f4c38133859e181d0fcafaeb974ab0922c053d2cc1917d88ea69c13b"
+      "bytes": 5301,
+      "sha256": "3b1feff28e14d3d197a2757b99fda63f7776ddef54a2cac955d8aeb6cbd63219"
     },
     {
       "file": "stage-d-evidence/render-contract.mjs",

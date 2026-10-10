@@ -1,3 +1,4 @@
+import {focusBoardCell} from './boardFocus.js';
 import BoardViewport from './BoardViewport.jsx';
 import {distinctEndingNote} from './endingPresentation.js';
 import {CollectionPanel,LettersPanel} from './CampaignPanels.jsx';
@@ -241,8 +242,8 @@ export function CareerGame({ session, initial, replay = false, exitReplay = null
     setNotice(guidance.message);
     const brief = { merge: 'Match this pair for your chosen letter.', send: 'Your letter is ready · press Send', supply: `Add free ${familyName(guidance.familyId)} for this goal`, cut: 'Cut the highlighted piece for this goal.', recover: 'Table full · Recycle, then free supply', chapter: 'Next chapter ready · open it above', complete: replay ? 'Practice complete · Return to career' : 'Letters complete · explore or practice', 'practice-complete': 'Practice complete · Return to career', unavailable: 'No request · check correspondence' };
     setBriefNotice(brief[guidance.kind] ?? guidance.message);
-    if (guidance.pair) { setFocusIndex(guidance.pair[0]); cells.current[guidance.pair[0]]?.focus(); }
-    else if (guidance.at !== undefined) { setSelected(guidance.at); setFocusIndex(guidance.at); cells.current[guidance.at]?.focus(); }
+    if (guidance.pair) { setFocusIndex(guidance.pair[0]); focusBoardCell(cells.current[guidance.pair[0]]); }
+    else if (guidance.at !== undefined) { setSelected(guidance.at); setFocusIndex(guidance.at); focusBoardCell(cells.current[guidance.at]); }
     else if (guidance.kind === 'supply') {
       if (state.activeSourceIds.includes(guidance.familyId)) supplies.current[guidance.familyId]?.focus();
       else setOverlay({ type: 'sources', requestedFamilyId: guidance.familyId });
@@ -253,9 +254,9 @@ export function CareerGame({ session, initial, replay = false, exitReplay = null
   }
   function boardKey(event, index) {
     const shifts = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -5, ArrowDown: 5 };
-    if (event.key === 'Home' || event.key === 'End') { event.preventDefault(); const next = event.ctrlKey ? event.key === 'Home' ? 0 : 24 : Math.floor(index / 5) * 5 + (event.key === 'End' ? 4 : 0); setFocusIndex(next); cells.current[next]?.focus(); return; }
+    if (event.key === 'Home' || event.key === 'End') { event.preventDefault(); const next = event.ctrlKey ? event.key === 'Home' ? 0 : 24 : Math.floor(index / 5) * 5 + (event.key === 'End' ? 4 : 0); setFocusIndex(next); focusBoardCell(cells.current[next]); return; }
     if (event.key === 'Escape') { setSelected(null); setHint([]); drag.current = null; setBriefNotice('Selection cleared · choose a piece'); setNotice('Selection cleared. Choose a piece or a request.'); return; }
-    if (shifts[event.key]) { event.preventDefault(); const next = nextBoardIndex(index, event.key); setFocusIndex(next); cells.current[next]?.focus(); }
+    if (shifts[event.key]) { event.preventDefault(); const next = nextBoardIndex(index, event.key); setFocusIndex(next); focusBoardCell(cells.current[next]); }
   }
   function dropOn(event, index) {
     event.preventDefault(); const started = drag.current; drag.current = null;

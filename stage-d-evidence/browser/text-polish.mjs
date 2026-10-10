@@ -52,7 +52,7 @@ export async function boardScrollProof(page, touch = false) {
   await first.focus();
   const start = await board.evaluate(el => el.scrollLeft);
   const steps = [];
-  for (const [key, at] of [['End',4],['Control+End',24],['Home',20],['Control+Home',0],['ArrowRight',1],['ArrowDown',6],['ArrowLeft',5],['ArrowUp',0]]) {
+  for (const [key, at] of [['End',4],['Control+End',24],['Home',20],['Control+Home',0],['ArrowRight',1],['ArrowRight',2],['ArrowRight',3],['ArrowRight',4],['ArrowLeft',3],['ArrowLeft',2],['ArrowLeft',1],['ArrowLeft',0],['ArrowRight',1],['ArrowDown',6],['ArrowLeft',5],['ArrowUp',0]]) {
     await page.keyboard.press(key);
     const cell = page.locator(`[data-career-cell="${at}"]`);
     await expect(cell).toBeFocused();
