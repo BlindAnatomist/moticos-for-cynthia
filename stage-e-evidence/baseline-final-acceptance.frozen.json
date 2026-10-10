@@ -1,0 +1,87 @@
+{
+  "status": "ACCEPTED_320_NATIVE_ARTIFACT_AND_SCOPED_ORIGINAL_VISUAL_EVIDENCE",
+  "runId": 38016449234,
+  "runUrl": "https://github.com/BlindAnatomist/moticos-for-cynthia/actions/runs/38016449234",
+  "commit": "c5c7714588d0eff5b2a9a3c16de1c9467aa6d508",
+  "tree": "3280796d6b95050ee8d7ca3508aded4aaac32c06",
+  "binding": {
+    "sourceFingerprint": "331e887594b765bf0602550cecce7b50404f9684384fc6614528f848ae95e732",
+    "buildFingerprint": "56937d787e40b063c7c8ba8205951c20c2ae85622e45e07c7523e29944063d95",
+    "probeFingerprint": "53d0b9560ab1faa82dff4d072d30ee250e2357000b433d201c50b272514dbd52",
+    "commit": "c5c7714588d0eff5b2a9a3c16de1c9467aa6d508",
+    "parent": "d0102796404e7b754e94f464c04b00acbc16cc0d",
+    "parentTree": "bb6c34f004b6f80759d4a98b5891e62733b9ac5a"
+  },
+  "trackedFiles": 754,
+  "nativeCases": 22,
+  "contracts": 146,
+  "pngs": 88,
+  "allOriginalsIndividuallyVisuallyInspected": 88,
+  "reports": [
+    {
+      "path": "NATIVE-ARTIFACT-AUDIT.json",
+      "sha256": "2479b85cdee68e2b984c8f2c16254bf8f8d1d30d004d25e15bcd21a9002af355"
+    },
+    {
+      "path": "ORIGINAL-ARTIFACT-INTEGRITY.json",
+      "sha256": "12e65a7a38a1612f2d7e863b9e649de45b85772a97d38221b26ca6fab7a635ad"
+    },
+    {
+      "path": "ARTIFACT-TIMING-BREAKDOWN.json",
+      "sha256": "50fd341e724bb3b0c581d28508d6a586f6d9ad7101e4a16ed208e598c41ad13d"
+    },
+    {
+      "path": "INDEPENDENT-NATIVE-ACCEPTANCE.md",
+      "sha256": "4222a5d88f0309f1c046c4ec6947356d23d4255995f8118ddd42b50a7af5a1cb"
+    },
+    {
+      "path": "INDEPENDENT-PROFILE-VALIDATION.json",
+      "sha256": "18623a9c8d6ec3d792293e07a23a72ac12f986fb1cc0d1cd2bb29340ce5f8f3f"
+    },
+    {
+      "path": "INDEPENDENT-SEMANTIC-CHECK.json",
+      "sha256": "ef499752cabde2fe4792b4ac458c64be2c6281e31a6378f56f935b2301e8f8ec"
+    },
+    {
+      "path": "INDEPENDENT-CHROMIUM-44-VISUAL-AUDIT.json",
+      "sha256": "19af9ffc041c1e0ef1ec65bc5b2304d353a169efd5eab60bec704d1d56c7d454"
+    },
+    {
+      "path": "INDEPENDENT-CHROMIUM-44-VISUAL-AUDIT.md",
+      "sha256": "bd4fd2531607ca84c00221c61b893d889ad761a52a0313bc452ee6da5392a2b9"
+    },
+    {
+      "path": "INDEPENDENT-WEBKIT-44-VISUAL-AUDIT.json",
+      "sha256": "aaa3c26ef4167af2bceb4af93df0170731fb631bbc35f8dad2bff031f0ce5ebe"
+    },
+    {
+      "path": "INDEPENDENT-WEBKIT-44-VISUAL-AUDIT.md",
+      "sha256": "037575c7719e171836d06acdd998b2c0d9cad9ea898c77be9b402da13985c4fe"
+    }
+  ],
+  "originalZip": {
+    "bytes": 41360662,
+    "sha256": "79920b4d6b48edf530eb706e54c135ab7b43d191134562b118ff432e7cea1064"
+  },
+  "limits": {
+    "jobSeconds": 2160,
+    "profileSeconds": 900,
+    "setupSeconds": 180,
+    "evidenceBytes": 134217728
+  },
+  "actualExtractedBytes": 80669687,
+  "cleanup": "confirmed-clean-both-profiles",
+  "limitations": [
+    "This run's 44 original files were opened individually. Previous-run imagery was not substituted, even when hashes matched.",
+    "D06 first/last screenshots do not each show 20 complete cards: first shows 10 complete cards plus partial next row; last shows 15 complete cards plus top-cropped Anvil artwork. This is scroll viewport framing, not evidence of an unusable product layout.",
+    "Full collection names visually verified where shown in D06 and all 12 postcards; board compact names remain intact.",
+    "No claim of all 320 artworks independently inspected, all states covered, WCAG AAA, real-device behavior or full cross-browser acceptance. Native test status is separate from this image audit.",
+    "This audit concerns visual presentation of supplied current-run images, not an independent rerun of native tests.",
+    "Some captures intentionally show partial neighboring content at scrolling boundaries; those are not missing assets.",
+    "D10 standard stills show all forty new variants; larger-text stills show only left-side columns. Successful native traversal/full-name checks remain separate evidence.",
+    "D07 still shows final ending text, not all five endings simultaneously.",
+    "Art at tiny icon size has visibly grainier rasterization in some WebKit captures, but all silhouettes remain recognizable and no blocking loss is apparent.",
+    "No product or original-evidence edits, browser runs or external writes performed. Only this audit artifact was created."
+  ],
+  "publication": "not performed; separate existing owner-private Site update pending"
+}

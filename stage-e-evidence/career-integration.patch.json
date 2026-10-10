@@ -1,0 +1,49 @@
+{
+  "baselineSha256": "e9530f1b5107c5cf94bea5656d60c63b6b4a3a992c03fa3bea60bf49653ec100",
+  "replacements": [
+    [
+      "import {focusBoardCell}",
+      "import {createPortal} from 'react-dom';\nimport useBoardDrag from './useBoardDrag.js';\nimport './boardDrag.css';\nimport {focusBoardCell}"
+    ],
+    [
+      "  const apply = result",
+      "  const touchDrag = useBoardDrag({stateRef, busyRef, nextPiece: id => CATALOG.nextPiece(id), move});\n  useEffect(() => { touchDrag.cancel(); }, [state.careerId, state.revision, busy, overlay, practice]);\n  const apply = result"
+    ],
+    [
+      "    <header className=\"career-mobile-hud\"",
+      "    {touchDrag.visual && createPortal(<div className={`career-drag-ghost ${touchDrag.visual.to === null ? 'is-outside' : ''}`} aria-hidden=\"true\" style={{left: touchDrag.visual.x, top: touchDrag.visual.y, width: touchDrag.visual.width}}><Artwork pieceId={touchDrag.visual.pieceId} /></div>, document.body)}\n    <header className=\"career-mobile-hud\""
+    ],
+    [
+      "${piece ? 'has-piece' : ''} ${selected",
+      "${piece ? 'has-piece' : ''} ${touchDrag.visual?.from === index ? 'is-touch-drag-source' : ''} ${touchDrag.visual?.to === index ? 'is-touch-drop-target' : ''} ${selected"
+    ],
+    [
+      "onClick={() => clickCell(index)} disabled={busy}",
+      "onPointerDown={e => touchDrag.down(e, index)} onPointerMove={touchDrag.update} onPointerUp={touchDrag.up} onPointerCancel={touchDrag.cancel} onLostPointerCapture={touchDrag.cancel} onContextMenu={e => { if (tile) e.preventDefault(); }} onClick={e => { if (!touchDrag.click(e)) clickCell(index); }} disabled={busy}"
+    ],
+    [
+      "onDragStart={e => { if (stateRef.current.sound)",
+      "onDragStart={e => { if (!touchDrag.nativeStart(e)) return; if (stateRef.current.sound)"
+    ],
+    [
+      "onDragEnd={() => { drag.current = null; }}",
+      "onDragEnd={() => { drag.current = null; touchDrag.suppressClick(); }}"
+    ],
+    [
+      "event.preventDefault(); const started = drag.current; drag.current = null;",
+      "event.preventDefault(); const started = drag.current; drag.current = null; if (started) touchDrag.suppressClick();"
+    ],
+    [
+      "tileId: tile.id, revision: state.revision",
+      "tileId: tile.id, careerId: state.careerId, revision: state.revision"
+    ],
+    [
+      "if (current.revision !== started.revision",
+      "if (current.careerId !== started.careerId || current.revision !== started.revision"
+    ],
+    [
+      "You can also drag with a mouse.",
+      "You can also drag a piece with your finger or a mouse. Swipe empty spaces or gaps to scroll, or use the board arrows."
+    ]
+  ]
+}

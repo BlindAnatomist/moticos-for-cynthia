@@ -1,0 +1,7 @@
+/* Only occupied pieces claim a direct drag; gaps, empty cells and the page pan normally. */
+.career-cell.has-piece{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.career-cell.is-touch-drag-source{opacity:.4}
+.career-cell.is-touch-drop-target{outline:3px solid #496e50;outline-offset:-3px;background:#e4edd8}
+.career-drag-ghost{position:fixed;z-index:1000;pointer-events:none;transform:translate(-50%,-65%);padding:5px;border:2px solid #496e50;border-radius:7px;background:#fffbed;box-shadow:0 8px 22px #243d3540;opacity:.94;aspect-ratio:1;max-width:120px}
+.career-drag-ghost .career-art{width:100%;height:100%;object-fit:contain}
+.career-drag-ghost.is-outside{border-color:#a3957c;opacity:.72}

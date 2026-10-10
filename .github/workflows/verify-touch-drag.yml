@@ -1,0 +1,99 @@
+{
+  "name": "Bounded Moticos touch-drag verification",
+  "on": {
+    "push": {
+      "branches": [
+        "verify/touch-drag-20261010"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "moticos-touch-drag-single-run",
+    "cancel-in-progress": false
+  },
+  "defaults": {
+    "run": {
+      "shell": "bash"
+    }
+  },
+  "jobs": {
+    "verification": {
+      "if": "github.repository == 'BlindAnatomist/moticos-for-cynthia' && github.ref == 'refs/heads/verify/touch-drag-20261010' && github.event_name == 'push' && github.run_attempt == 1 && github.event.repository.private == false",
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 36,
+      "container": {
+        "image": "mcr.microsoft.com/playwright:v1.61.1-noble",
+        "options": "--init"
+      },
+      "env": {
+        "MOTICOS_STAGE_E_APPROVAL": "stage-e-browser-results/approval.json",
+        "MOTICOS_STAGE_E_PUBLIC_REPO": "${{ github.event.repository.private == false }}",
+        "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "ref": "${{ github.sha }}",
+            "persist-credentials": false,
+            "fetch-depth": 0
+          },
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Bind actual job-start clock including container provisioning",
+          "run": "node stage-e-evidence/execution/job-clock.mjs",
+          "timeout-minutes": 1
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": "24"
+          },
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Require exact reviewed touch-drag source before installation",
+          "run": "node stage-e-evidence/execution/precheck.mjs",
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Bounded180-second official-image setup and nonbrowser preparation",
+          "timeout-minutes": 4,
+          "run": "node stage-e-evidence/execution/setup.mjs"
+        },
+        {
+          "name": "Bind rebuilt source core and current-session probe",
+          "run": "node stage-e-evidence/execution/authorize.mjs",
+          "timeout-minutes": 1
+        },
+        {
+          "name": "Run two focused eight-case profiles serially with first-failure stop",
+          "run": "node stage-e-evidence/execution/run.mjs"
+        },
+        {
+          "name": "Retain bounded native acceptance or original failure diagnostics",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "run": "export MOTICOS_STAGE_E_UPLOAD=\"${MOTICOS_STAGE_E_UPLOAD:-${RUNNER_TEMP:?}/moticos-touch-drag-upload}\"\ntimeout --signal=TERM --kill-after=5s 45s node stage-e-evidence/execution/finalize.mjs"
+        },
+        {
+          "uses": "actions/upload-artifact@v4",
+          "if": "always()",
+          "timeout-minutes": 1,
+          "with": {
+            "name": "moticos-touch-drag-${{ github.run_id }}",
+            "path": "${{ runner.temp }}/moticos-touch-drag-upload/",
+            "if-no-files-found": "error",
+            "retention-days": 1,
+            "compression-level": 6,
+            "include-hidden-files": true
+          }
+        }
+      ]
+    }
+  }
+}

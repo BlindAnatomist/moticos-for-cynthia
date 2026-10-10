@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import {join} from 'node:path';
+import {assetPaths,createAssetServer} from './server-core.mjs';
+import {digest} from '../../full-campaign-gate/evidence.mjs';
+const probe={files:['stage-e-evidence/browser/probe/current/index.html','assets/probe.js'].map(file=>({file,bytes:1,sha256:'a'.repeat(64)}))};
+test('server exposes only bound Stage E core and lean current-session probe routes',()=>{const core={files:['dist-stage-e/career.html','dist-stage-e/assets/career.js'].map(file=>({file,bytes:1,sha256:'b'.repeat(64)}))},m=assetPaths(core,probe,'/repo','/probe');for(const row of core.files)assert.equal(m.get('/'+row.file.slice('dist-stage-e/'.length)).path,'/repo/'+row.file);assert(m.has('/stage-e-probe/'));assert(!m.has('/stage-d-probe/'));assert(!m.has('/stage-e-v7-probe/'));});
+test('old core output directories cannot be relabeled under Stage E binding',()=>{for(const prefix of ['dist-stage-d','dist-career'])assert.throws(()=>assetPaths({files:[{file:prefix+'/career.html'}]},probe,'/repo','/probe'));});
+test('actual served byte mutation fails closed and unbound paths are unavailable',async t=>{const root=fs.mkdtempSync(join(os.tmpdir(),'e-served-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const path=join(root,'career.html'),bytes=Buffer.from('bound core');fs.writeFileSync(path,bytes);const server=createAssetServer(new Map([['/career.html',{path,bytes:bytes.length,sha256:digest(bytes)}]]));await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));const origin='http://127.0.0.1:'+server.address().port;assert.equal(await (await fetch(origin+'/career.html')).text(),'bound core');assert.equal((await fetch(origin+'/other')).status,404);fs.writeFileSync(path,'wrong core');assert.equal((await fetch(origin+'/career.html')).status,500);});

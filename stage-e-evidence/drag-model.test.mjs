@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {dragMoved,dragIsCurrent,dragDestination,dragEdgeStep} from '../src/career/boardDrag.js';
+const state={careerId:'one',revision:9,board:[{id:'a',pieceId:'bird-1'},null,{id:'b',pieceId:'bird-1'},{id:'c',pieceId:'fern-1'},{id:'d',pieceId:'bird-5'}]};
+const start={careerId:'one',revision:9,from:0,tileId:'a',startX:100,startY:100};
+const next=id=>id==='bird-1'?'bird-2':null;
+test('seven-pixel movement separates jitter from a drag',()=>{assert(!dragMoved(start,104,105));assert(dragMoved(start,107,100));assert(dragMoved(start,93,100));});
+test('only empty or identical mergeable destinations are eligible',()=>{assert.equal(dragDestination(start,state,1,next),1);assert.equal(dragDestination(start,state,2,next),2);for(const to of [0,3,4,-1,5,null,NaN,1.5])assert.equal(dragDestination(start,state,to,next),null);const final={...state,board:[{id:'a',pieceId:'bird-5'},{id:'b',pieceId:'bird-5'}]};assert.equal(dragDestination(start,final,1,next),null);});
+test('career, revision and source identity are all immutable pickup guards',()=>{assert(dragIsCurrent(start,state));for(const change of [{careerId:'two'},{revision:10},{board:[{id:'new',pieceId:'bird-1'}]}]){const changed={...state,...change};assert(!dragIsCurrent(start,changed));assert.equal(dragDestination(start,changed,1,next),null);}});
+test('horizontal edge reveal is frame-bounded and never starts outside the board',()=>{const rect={left:10,right:300,top:20,bottom:220};assert.equal(dragEdgeStep(11,50,rect,1000),-12);assert.equal(dragEdgeStep(299,50,rect,1000),12);assert.equal(dragEdgeStep(150,50,rect),0);for(const [x,y] of [[9,50],[301,50],[11,19],[11,221]])assert.equal(dragEdgeStep(x,y,rect),0);assert.equal(dragEdgeStep(299,50,rect,-1),0);});

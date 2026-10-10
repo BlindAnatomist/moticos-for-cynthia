@@ -1,0 +1,16 @@
+{
+  "runId": 38016449234,
+  "commit": "c5c7714588d0eff5b2a9a3c16de1c9467aa6d508",
+  "tree": "3280796d6b95050ee8d7ca3508aded4aaac32c06",
+  "binding": {
+    "sourceFingerprint": "331e887594b765bf0602550cecce7b50404f9684384fc6614528f848ae95e732",
+    "buildFingerprint": "56937d787e40b063c7c8ba8205951c20c2ae85622e45e07c7523e29944063d95",
+    "probeFingerprint": "53d0b9560ab1faa82dff4d072d30ee250e2357000b433d201c50b272514dbd52",
+    "commit": "c5c7714588d0eff5b2a9a3c16de1c9467aa6d508",
+    "parent": "d0102796404e7b754e94f464c04b00acbc16cc0d",
+    "parentTree": "bb6c34f004b6f80759d4a98b5891e62733b9ac5a"
+  },
+  "finalReceiptSha256": "d65bcc691aacf6b14e546dd32af2e89d33133c63a5fda8d82fa6eac2ca9e8ea0",
+  "nativeReceiptSha256": "6a0b8cd4e4bef860b045b7007e6f684ea71b6bfdde062081e8e31a5d5d809418",
+  "verification": "Local final receipt, native receipt, source fingerprint and every supporting report hash cross-checked; the original baseline is not rerun by Stage E."
+}

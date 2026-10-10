@@ -30,7 +30,7 @@ export default function BoardViewport({largeText, children}) {
     {/* Keep edge controls focusable: reaching an end must not discard keyboard focus. */}
     {edges.overflow && <div className="career-board-scroll-tools">
       <button type="button" onClick={() => shift(-1)} aria-disabled={!edges.left} aria-label="Scroll board left">←</button>
-      <p>Swipe or use the arrows to see all five columns.</p>
+      <p>Swipe empty spaces or gaps, or use the arrows to see all five columns.</p>
       <button type="button" onClick={() => shift(1)} aria-disabled={!edges.right} aria-label="Scroll board right">→</button>
     </div>}
   </div>;
