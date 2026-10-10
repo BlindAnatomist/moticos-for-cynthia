@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 9371,
-      "sha256": "9a5010355458fa73d5c076ffce1402cb262e71d18f62b3a8fb1686e6db857d17"
+      "bytes": 10708,
+      "sha256": "6acd0d22d70d67e6fc11c0de6817227c13c1fdb1d185ea5385dabdde7512d43e"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -3234,8 +3234,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 5441,
-      "sha256": "5c9049dc17c428d8bec4e3aad788e423767dd75620b4feb69b0c1b9efa4b3117"
+      "bytes": 6778,
+      "sha256": "a2f1f9d1fc151ea59da30f60951e87f9d73dbe4fcc0220ea8ac69a28747f1bf9"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3304,13 +3304,23 @@
     },
     {
       "file": "stage-d-evidence/browser/helpers.mjs",
-      "bytes": 16421,
-      "sha256": "ab9149ba81112708da7991dd48d470166d97003cb6391c6b3f0a909d6fcf3ba3"
+      "bytes": 17091,
+      "sha256": "498850d25d84d9028126d03449acaccc4a8dc48c3f74c7376c5f8fb1d2ee7d9a"
     },
     {
       "file": "stage-d-evidence/browser/late.spec.mjs",
-      "bytes": 15629,
-      "sha256": "1f2367c9f4dbc75c8e50dfb7629ebd2c4ddf3f5c58b4dd5e1d9e9e26823d6d03"
+      "bytes": 15840,
+      "sha256": "cacd161630f32901b276ff2a02a564bc428224ef8f426710ff418684135d2962"
+    },
+    {
+      "file": "stage-d-evidence/browser/layout-mode.mjs",
+      "bytes": 729,
+      "sha256": "e1c2b8a3bfd50480de6709ee6a23b66028dd3ad41605404ff08cc5f48b99d3f8"
+    },
+    {
+      "file": "stage-d-evidence/browser/layout-mode.test.mjs",
+      "bytes": 2785,
+      "sha256": "20f258a13c0693b6180aa46a0c0a48356bb63744d0cb41fba3e7eb8a98fbb0e9"
     },
     {
       "file": "stage-d-evidence/browser/migration-load.mjs",

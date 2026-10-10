@@ -1,3 +1,4 @@
+import {layoutOptionsForSurface} from './layout-mode.mjs';
 // Newly reconstructed from accepted280; requires independent320 review.
 import {inspectHudReadability,hudReadabilityViolations} from '../../tests/full-campaign-browser/hud-readability.mjs';
 import {inspectImageReadiness} from '../../tests/full-campaign-browser/image-readiness.mjs';
@@ -45,7 +46,7 @@ export async function imageProof(page){
 }
 export async function exportCard(page,info,pieceId){const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('dialog').getByRole('button',{name:'Download postcard',exact:true}).click()]);expect(await download.failure()).toBe(null);const path=info.outputPath(pieceId+'.png');fs.mkdirSync(info.outputDir,{recursive:true});assert(!fs.existsSync(path));await download.saveAs(path);const bytes=fs.readFileSync(path);verifyPng(bytes,[1536,1120]);return{path,pieceId,filename:pieceId+'.png',suggestedFilename:download.suggestedFilename(),...binding(),bytes:bytes.length,sha256:digest(bytes),dimensions:[1536,1120]};}
 
-export async function noOverflow(page,options={}){const proof=await base.noOverflow(page,options);const cells=await page.locator('[data-career-cell]').evaluateAll(nodes=>nodes.map(node=>{const r=node.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};}));expect(gridViolations(cells),'The actual 25-cell board must retain equal aligned rows and 44px hit targets').toEqual([]);return{...proof,grid:cells};}
+export async function noOverflow(page,{expectedMode}={}){const state=await base.read(page);await expect(page.locator('.career-shell')).toHaveClass(state.largeText?/is-large-text/:/^(?!.*is-large-text)/);const compact=await base.compact(page),surface=await page.evaluate(()=>({width:innerWidth,renderedLargeText:document.querySelector('.career-shell').classList.contains('is-large-text')}));const options=layoutOptionsForSurface({...surface,compact,largeText:state.largeText});if(expectedMode)expect(options.mode,'Actual rendered layout must match the explicitly requested test surface').toBe(expectedMode);const proof=await base.noOverflow(page,options);const cells=await page.locator('[data-career-cell]').evaluateAll(nodes=>nodes.map(node=>{const r=node.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};}));expect(gridViolations(cells),'The actual 25-cell board must retain equal aligned rows and 44px hit targets').toEqual([]);return{...proof,grid:cells,surface:{...surface,compact,largeText:state.largeText}};}
 
 // Wait for actual DOM images, not persisted state: quota failures deliberately
 // leave the practice board ahead of the last saved career.
