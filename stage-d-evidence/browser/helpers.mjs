@@ -1,3 +1,4 @@
+export {frameModalTargets} from './modal-framing.mjs';
 import {layoutOptionsForSurface} from './layout-mode.mjs';
 // Newly reconstructed from accepted280; requires independent320 review.
 import {inspectHudReadability,hudReadabilityViolations} from '../../tests/full-campaign-browser/hud-readability.mjs';

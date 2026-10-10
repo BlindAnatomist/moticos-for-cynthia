@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 16656,
-      "sha256": "b0074411dd845d384125a574b953434be61710d9c1ffcd5cfa15afaa73ec6b29"
+      "bytes": 18190,
+      "sha256": "1cc4cb7f5722ef672edbff98f725a1bc44bf1eea5449c1ea42e1422c6245a384"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -3234,8 +3234,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 12726,
-      "sha256": "64a9526cc97364f9f0b2c16ce16f411e0d2b7b3d751779367dfd557ac78e69db"
+      "bytes": 14260,
+      "sha256": "72fce7b918bb8cd4ff5ff1db17000127fbcf2c27725582a2c8bc71807f50a6d9"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3319,13 +3319,13 @@
     },
     {
       "file": "stage-d-evidence/browser/helpers.mjs",
-      "bytes": 17624,
-      "sha256": "ff0450f4f2e9e2b2e98f232be76578df279e11d6e7cdb3746e692f8db25a536d"
+      "bytes": 17679,
+      "sha256": "21dc87b34c31e90da452eeaa348456c13c87bfbc71cc4a0b962181160da98de4"
     },
     {
       "file": "stage-d-evidence/browser/late.spec.mjs",
-      "bytes": 16773,
-      "sha256": "11a9270b261efc4952191c204e882d1f9b3531fe4f5fc270e3c632f861329488"
+      "bytes": 16766,
+      "sha256": "f9066e59961121d313f16425164a098415d97b454d21077d4abb195ac8fc8781"
     },
     {
       "file": "stage-d-evidence/browser/layout-mode.mjs",
@@ -3356,6 +3356,16 @@
       "file": "stage-d-evidence/browser/migration-load.test.mjs",
       "bytes": 2921,
       "sha256": "0be2906fe9f8e27ea23a7a994caf0d88fd6d940a52d76f6b3677c341c09f54ea"
+    },
+    {
+      "file": "stage-d-evidence/browser/modal-framing.mjs",
+      "bytes": 5077,
+      "sha256": "cc30e434d330b3c5a504e8c8600993a1db4ecaa18388c52c22d65ba694f3fefc"
+    },
+    {
+      "file": "stage-d-evidence/browser/modal-framing.test.mjs",
+      "bytes": 9474,
+      "sha256": "0e1bc0535b767ecbb33fa03a1c505a55cf569e7d852c11522b50595dbc242a7b"
     },
     {
       "file": "stage-d-evidence/browser/prepare-fixtures.mjs",
@@ -3419,8 +3429,8 @@
     },
     {
       "file": "stage-d-evidence/browser/stress.spec-cases.mjs",
-      "bytes": 19236,
-      "sha256": "4621d79e016069e068428f52324502c82ddee3da8340560cab05d3d86b3c8c69"
+      "bytes": 19623,
+      "sha256": "4f9cd4a46fa271fb0c1599d6ecf3d83e9df10ac349c053f2ae9e785415124363"
     },
     {
       "file": "stage-d-evidence/browser/text-polish.mjs",
