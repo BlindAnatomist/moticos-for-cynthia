@@ -1,3 +1,4 @@
+import {responseMetadata,errorResponseSummary,withinDeadline} from './clock-response.mjs';
 // Container provisioning happens before workflow steps. Use the public, exact
 // current-job timestamp so image pull/startup counts toward the 36-minute cap.
 import fs from 'node:fs';
@@ -23,15 +24,18 @@ export function selectClock(payload,env,now=Date.now()) {
 export async function establishClock({env=process.env,fetcher=fetch,now=()=>Date.now(),root=SETUP_ROOT}={}) {
   assert(!fs.existsSync(root),'Never overwrite setup diagnostics');fs.mkdirSync(root);
   const url=`https://api.github.com/repos/${TARGET.repository}/actions/runs/${env.GITHUB_RUN_ID}/attempts/${env.GITHUB_RUN_ATTEMPT}/jobs?per_page=100`;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10000);let responseDiagnostics;
   try {
     environment(env,env.GITHUB_SHA);assert(env.GITHUB_ENV&&env.RUNNER_TEMP);
-    const response=await fetcher(url,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},signal:AbortSignal.timeout(10000)});
+    const response=await withinDeadline(fetcher(url,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},signal:controller.signal}),controller.signal);
+    responseDiagnostics=responseMetadata(response);
+    if(!response.ok)responseDiagnostics.errorBody=await errorResponseSummary(response,controller.signal);
     assert(response.ok,`Public current-job clock lookup failed: HTTP ${response.status}`);
-    const record=selectClock(await response.json(),env,now());
+    const record=selectClock(await withinDeadline(response.json(),controller.signal),env,now());
     fs.appendFileSync(env.GITHUB_ENV,`MOTICOS_320_EPOCH=${record.epoch}\nMOTICOS_STAGE_D_PROBE_OUTPUT=${env.RUNNER_TEMP}/moticos-320-probe\nMOTICOS_320_UPLOAD=${env.RUNNER_TEMP}/moticos-320-upload\n`);
-    fs.writeFileSync(`${root}/job-clock.json`,JSON.stringify({...record,source:url},null,2)+'\n',{flag:'wx'});return record;
+    fs.writeFileSync(`${root}/job-clock.json`,JSON.stringify({...record,source:url,response:responseDiagnostics},null,2)+'\n',{flag:'wx'});return record;
   } catch(error) {
-    fs.writeFileSync(`${root}/job-clock.json`,JSON.stringify({status:'incomplete-or-failed',phase:'current-job-clock',source:url,error:String(error.message).slice(0,8192),browserStarted:false},null,2)+'\n',{flag:'wx'});throw error;
-  }
+    fs.writeFileSync(`${root}/job-clock.json`,JSON.stringify({status:'incomplete-or-failed',phase:'current-job-clock',source:url,error:String(error.message).slice(0,8192),browserStarted:false,...(responseDiagnostics?{response:responseDiagnostics}:{})},null,2)+'\n',{flag:'wx'});throw error;
+  } finally {clearTimeout(timer);}
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){requireRepoCwd();assert.equal(process.argv.length,2);console.log(JSON.stringify(await establishClock()));}

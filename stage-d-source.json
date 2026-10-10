@@ -79,8 +79,8 @@
     },
     {
       "file": "docs/implementation-status.md",
-      "bytes": 12526,
-      "sha256": "2ee3fa49dec8158dd9047def124f6b3e8df2cf6a49df13822975bc8a6b8bba72"
+      "bytes": 13758,
+      "sha256": "c49fa44c91e70650fd36072bda343ca6a1e005a3a02bbb8c5abfffe6b0a81a90"
     },
     {
       "file": "full-browser-evidence/PREPARATION.md",
@@ -3234,8 +3234,8 @@
     },
     {
       "file": "stage-d-evidence/README.md",
-      "bytes": 8596,
-      "sha256": "3e1e443fd66dc491397b356c5ac94230ac375b328bebc23dfcefb64398ea40d0"
+      "bytes": 9828,
+      "sha256": "a289a09774de8fe70ea5c33df06914a8eddb9203cd7b10231a1fb45f189d34c6"
     },
     {
       "file": "stage-d-evidence/accepted-280-timing.frozen.json",
@@ -3453,6 +3453,16 @@
       "sha256": "60ef7b43bda1d9aa4fd5a05b1bdfaed6b8b4d29178d9cfb2575ad680e27d73eb"
     },
     {
+      "file": "stage-d-evidence/execution/clock-response.mjs",
+      "bytes": 2097,
+      "sha256": "6bce00b55bf3fb8db7591764dca8c502f8eacfa5742fb1af1ba6d6f2a8ae09cf"
+    },
+    {
+      "file": "stage-d-evidence/execution/clock-response.test.mjs",
+      "bytes": 3998,
+      "sha256": "5561d44e8cf04d640ba5c95e72c621ed4ea36134ff223c7707223880e460e1f2"
+    },
+    {
       "file": "stage-d-evidence/execution/collection.mjs",
       "bytes": 1216,
       "sha256": "6c11b7d9911a8c066d5bad31ac5cf2bd990ff36e7dad976688ba4d85066da696"
@@ -3484,8 +3494,8 @@
     },
     {
       "file": "stage-d-evidence/execution/job-clock.mjs",
-      "bytes": 3243,
-      "sha256": "a5851c7ad76c22167bf6667b36189b18e3df3c5b994c670361812c41c6f0c6c2"
+      "bytes": 3783,
+      "sha256": "10b4ac6ec511109711cb834c26ac0f4b54e352796e69aad153027df2cf03d1ef"
     },
     {
       "file": "stage-d-evidence/execution/job-clock.test.mjs",
