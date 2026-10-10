@@ -167,13 +167,14 @@ export function registerStressCases() {
     expect(new Set(rows.flatMap(row=>row.standard.map(x=>x.referenceDecodedPixelsSha256))).size).toBe(40);
     await h.record(info,{rows,decodedIdentities:40,largeKeyboardReveals:40,visualAcceptance:'Pending independent review of four original screenshots.'});
   });
-  scenario(title('D11'), async ({browser},info) => {
+  scenario(title('D11'), async ({browser,diagnostics},info) => {
     const use=info.project.use;
     const contextOptions={...use.contextOptions,baseURL:use.baseURL??ORIGIN};
     for(const key of ['viewport','screen','deviceScaleFactor','hasTouch','isMobile','userAgent','locale','timezoneId','colorScheme','reducedMotion','forcedColors','javaScriptEnabled','acceptDownloads','serviceWorkers']) {
       if(use[key]!==undefined)contextOptions[key]=use[key];
     }
     const isolated=await browser.newContext(contextOptions);
+    diagnostics.watchContext(isolated);
     isolated.setDefaultTimeout(use.actionTimeout??7500);
     isolated.setDefaultNavigationTimeout(use.navigationTimeout??15000);
     let page;
@@ -194,8 +195,12 @@ export function registerStressCases() {
       const sources=await sourcePickerProof(page),sourcePickerMs=performance.now()-start;
       await page.getByRole('dialog').locator('.career-source-options button').first().scrollIntoViewIfNeeded();
       await h.shot(page,info,'D11-all-sources-first.png');
-      await page.getByRole('dialog').locator('.career-source-options button').last().scrollIntoViewIfNeeded();
-      await h.shot(page,info,'D11-all-sources-last.png');await h.close(page,touch(info));
+      const sourceDialog=page.getByRole('dialog'),lastSource=sourceDialog.locator('.career-source-options button').last(),back=sourceDialog.getByRole('button',{name:'Back to my board',exact:true});
+      await back.scrollIntoViewIfNeeded();await expect(back).toBeInViewport({ratio:1});await expect(lastSource).toBeInViewport({ratio:1});
+      const sourceFooterView=await sourceDialog.evaluate(dialog=>{const rect=el=>{const r=el.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom};},d=dialog.getBoundingClientRect(),buttons=[...dialog.querySelectorAll('.career-source-options button')],back=[...dialog.querySelectorAll('button')].find(el=>el.textContent.trim()==='Back to my board');return{lastSource:rect(buttons.at(-1)),back:rect(back),scrollport:{left:d.left+dialog.clientLeft,right:d.left+dialog.clientLeft+dialog.clientWidth,top:d.top+dialog.clientTop,bottom:d.top+dialog.clientTop+dialog.clientHeight},scrollTop:dialog.scrollTop,scrollHeight:dialog.scrollHeight,clientHeight:dialog.clientHeight,overflowY:getComputedStyle(dialog).overflowY};});
+      for(const box of [sourceFooterView.lastSource,sourceFooterView.back])for(const [key,lower] of [['left',true],['top',true],['right',false],['bottom',false]]){if(lower)expect(box[key]).toBeGreaterThanOrEqual(sourceFooterView.scrollport[key]-1);else expect(box[key]).toBeLessThanOrEqual(sourceFooterView.scrollport[key]+1);}
+      if(sourceFooterView.scrollHeight>sourceFooterView.clientHeight+1)expect(['auto','scroll']).toContain(sourceFooterView.overflowY);
+      await h.shot(page,info,'D11-all-sources-last.png');await h.press(back,touch(info));await expect(page.getByRole('dialog')).toHaveCount(0);
       start=performance.now();await h.panel(page,'collection',touch(info));
       const pieceId=C.FAMILIES[56].pieceIds[4];await h.revealCollectionPiece(page,pieceId);
       const collectionMs=performance.now()-start;start=performance.now();await h.collectionPiece(page,pieceId).click();
@@ -214,7 +219,7 @@ export function registerStressCases() {
       await h.flushWrites(page);await page.goForward();await expect.poll(()=>page.evaluate(()=>Boolean(window.stageDProbe))).toBe(true);expect(await h.bytes(page)).toBe(saved);
       await h.flushWrites(page);await page.goBack();await expect(page.locator('.career-shell')).toHaveAttribute('data-save-status','saved');expect(await h.bytes(page)).toBe(saved);
       await h.durableNoWrites(page,checkpoint);await h.audit(page);
-      await h.record(info,{loads,sourcePickerMs,collectionMs,postcardMs,sources,cache,savedSha256:digest(Buffer.from(saved)),
+      await h.record(info,{loads,sourcePickerMs,collectionMs,postcardMs,sources,sourceFooterView,cache,savedSha256:digest(Buffer.from(saved)),
         navigation:'Native Back, Forward, Back after opening a view; exact saved bytes and acknowledged cross-navigation write journal unchanged. Each departure flushes known pending acknowledgments; not a general proof against unobserved unload-time writes.',
         timingScope:'Observed elapsed values, not device-wide performance guarantees. Playwright request routing disables HTTP cache; repeat-load is not an HTTP-cache benchmark.'});
     } catch(error) {

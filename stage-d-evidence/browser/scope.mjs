@@ -1,3 +1,4 @@
+import {lifecycleDiagnostics} from './lifecycle-diagnostics.mjs';
 // Newly reconstructed from accepted280; requires independent320 review.
 import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
 import {STORAGE_KEY} from '../../src/career/content.js';
@@ -28,4 +29,4 @@ export async function failureState(page, info, error, details={}) {
   } catch(e) {result.screenshotError=String(e.message).slice(0,4096);}
   try { const path=info.outputPath('failure-state.json');fs.mkdirSync(info.outputDir,{recursive:true});const bytes=Buffer.from(JSON.stringify(result,null,2)+'\n');assert(bytes.length<=256*1024);fs.writeFileSync(path,bytes,{flag:'wx'});await info.attach('failure-state',{path,contentType:'application/json'}); } catch {} 
 }
-export function scenarioFor(test){return(title,fn)=>{const row=CASES.find(([id,t])=>title===id+' '+t);assert(row,'Unreviewed exact case title: '+title);test(title,async({page,context,browser},info)=>{test.setTimeout(row[2]);try{return await fn({page,context,browser},info);}catch(error){await failureState(page,info,error);throw error;}});};}
+export function scenarioFor(test){return(title,fn)=>{const row=CASES.find(([id,t])=>title===id+' '+t);assert(row,'Unreviewed exact case title: '+title);test(title,async({page,context,browser},info)=>{test.setTimeout(row[2]);const diagnostics=lifecycleDiagnostics({context,browser,path:info.outputPath('lifecycle-diagnostics.json')});try{return await fn({page,context,browser,diagnostics},info);}catch(error){diagnostics.note('scenario-failed');await failureState(page,info,error);throw error;}finally{diagnostics.note('scenario-ended');}});};}
